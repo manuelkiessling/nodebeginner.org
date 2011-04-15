@@ -1,376 +1,456 @@
 <html>
 	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>The Node Beginner Book</title>
+		<style>
+			body {
+				font-family: Georgia, serif;
+				background-color: #eee;
+				padding-top: 48px;
+			}
+
+			#book, #footer {
+				width: 840px;
+				margin: 24px;
+				margin-left: 160px;
+				padding: 64px;
+				background-color: white;
+				border-top: 1px solid #ddd;
+				border-left: 1px solid #ddd;
+				border-bottom: 1px solid #ddd;
+				border-right: 8px solid #ddd;
+			}
+
+			#author {
+				margin-top: -28px;
+				margin-left: 166px;
+				color: #888;
+			}
+
+			#footer {
+				font-family: "Helvetica Neue", sans-serif;
+				font-size: 11px;
+				background-color: #f5f5f5;
+			}
+
+			#ccimage {
+				float: left;
+				margin-right: 12px;
+			}
+
+			pre {
+				background-color: #eee;
+				padding: 16px;
+			}
+
+			p {
+				text-align: justify;
+			}
+
+			h1 {
+				margin-left: -63px;
+				margin-top: -94px;
+			}
+
+			h2 {
+				margin-top: 48px;
+				color: #700
+			}
+
+			h3, h4 {
+				margin-top: 36px;
+				color: #700
+			}
+			ul li {
+				margin-bottom: 12px;
+			}
+		</style>
+		<script type="text/javascript">
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-2127388-6']);
+			_gaq.push(['_trackPageview']);
+
+			(function() {
+				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			})();
+		</script>
 	</head>
 	<body>
-		<h1>The Node Beginner Book</h1>
+		<div id="book">
+			<h1>The Node Beginner Book</h1>
+			<div id="author">by Manuel Kiessling</div>
 
 
-			<h2>Preface</h2>
+			<h2>About</h2>
 
-				<h3>About</h3>
-				<p>
-					The aim of this document is to get you started with developing
-					applications for node.js, teaching you everything you need to
-					know about "advanced" JavaScript along the way. It goes way
-					beyond your typical "hello world" tutorial.
-				</p>
+			<p>
+				The aim of this document is to get you started with developing
+				applications for node.js, teaching you everything you need to
+				know about "advanced" JavaScript along the way. It goes way
+				beyond your typical "Hello World" tutorial.
+			</p>
 
-				<h3>Intended audience</h3>
-				<p>
-					This document will probably fit best for readers that have a
-					background similar to my own: experienced with at least one
-					object-oriented language like Ruby, Python PHP or Java, only little
-					experience with JavaScript, and completely new to node.js.
-				</p>
-				<p>
-					Aiming at developers that already have experience with other
-					programming languages means that this document won't cover
-					really basic stuff like data types, variables, control structures
-					and the likes. You already need to know about these to understand
-					this document.
-				</p>
-				<p>
-					However, because functions and objects in JavaScript are different
-					from their counterparts in most other languages, these will be
-					explained in more detail.
-				</p>
+			<h3>Intended audience</h3>
+			<p>
+				This document will probably fit best for readers that have a
+				background similar to my own: experienced with at least one
+				object-oriented language like Ruby, Python, PHP or Java, only little
+				experience with JavaScript, and completely new to node.js.
+			</p>
+			<p>
+				Aiming at developers that already have experience with other
+				programming languages means that this document won't cover
+				really basic stuff like data types, variables, control structures
+				and the likes. You already need to know about these to understand
+				this document.
+			</p>
+			<p>
+				However, because functions and objects in JavaScript are different
+				from their counterparts in most other languages, these will be
+				explained in more detail.
+			</p>
 
-				<h3>Structure of this document</h3>
-				<p>
-					Upon finishing this document, you will have created a complete web
-					application which allows the users of this application to view web
-					pages and upload files.
-					<br />
-					Which, of course, is not exactly
-					world-changing, but we will go some extra miles and not only create
-					the code that is "just enough" to make these use cases possible,
-					but create a simple, yet complete framework to cleanly separate the
-					different aspects of our application. You will see what I mean in a
-					minute.
-				</p>
-				<p>
-					We will start with looking at how JavaScript development in node.js
-					is different from JavaScript development in a browser.
-				</p>
-				<p>
-					Next, we will stay with the good old tradition of writing a "Hello
-					World" application, which is a most basic node.js application that
-					"does" something.
-				</p>
-				<p>
-					Then, we will discuss what kind of "real" application we want to
-					build, dissect the different parts which need to be implemented to
-					assemble this application, and start working on each of these parts
-					step-by-step.
-				</p>
-				<p>
-					As promised, along the way we will learn about some of the more
-					advanced concepts of JavaScript, how to make use of them, and
-					looking at why it makes sense to use these concepts instead of
-					those we know from other programming languages.
-				</p>
+			<h3>Structure of this document</h3>
+			<p>
+				Upon finishing this document, you will have created a complete web
+				application which allows the users of this application to view web
+				pages and upload files.
+			</p>
+			<p>
+				Which, of course, is not exactly
+				world-changing, but we will go some extra miles and not only create
+				the code that is "just enough" to make these use cases possible,
+				but create a simple, yet complete framework to cleanly separate the
+				different aspects of our application. You will see what I mean in a
+				minute.
+			</p>
+			<p>
+				We will start with looking at how JavaScript development in node.js
+				is different from JavaScript development in a browser.
+			</p>
+			<p>
+				Next, we will stay with the good old tradition of writing a "Hello
+				World" application, which is a most basic node.js application that
+				"does" something.
+			</p>
+			<p>
+				Then, we will discuss what kind of "real" application we want to
+				build, dissect the different parts which need to be implemented to
+				assemble this application, and start working on each of these parts
+				step-by-step.
+			</p>
+			<p>
+				As promised, along the way we will learn about some of the more
+				advanced concepts of JavaScript, how to make use of them, and
+				looking at why it makes sense to use these concepts instead of
+				those we know from other programming languages.
+			</p>
 
 
 			<h2>JavaScript and node.js</h2>
 
-				<h3>JavaScript and You</h3>
-				<p>
-					Before we talk about all the technical stuff, let's take a
-					moment and talk about you and your relationship with
-					JavaScript. This chapter is here to allow you to estimate
-					if reading this document any further makes sense for you.
-				</p>
-				<p>
-					If you are like me, you started with HTML "development"
-					long ago, by writing HTML documents. You came along this
-					funny thing called JavaScript, but you only used it in a
-					very basic way, adding interactivity to your web pages
-					every now and then.
-				</p>
-				<p>
-					What you really wanted was "the real thing", you wanted to
-					know how to build complex web sites - you learned a
-					programming language like PHP, Ruby, Java, and started
-					writing "backend" code.
-				</p>
-				<p>
-					Nevertheless, you kept an eye on JavaScript, you saw that
-					with the introduction of jQuery, Prototype and the likes,
-					things got more advanced in JavaScript land, and that this
-					language really was about more than <em>window.open()</em>.
-				</p>
-				<p>
-					However, this was all still frontend stuff, and although it
-					was nice to have jQuery at your disposal whenever you felt
-					like spicing up a web page, at the end of the day you were,
-					at best, a JavaScript <em>user</em>, but not a JavaScript
-					<em>developer</em>.
-				</p>
-				<p>
-					And then came node.js. JavaScript on the server, how cool
-					is that?
-				</p>
-				<p>
-					You decided that it's about time to check out the old, new
-					JavaScript. But wait, writing node.js applications is the
-					one thing; understanding why they need to be written the
-					way they are written means - understanding JavaScript.
-					And this time for real.
-				</p>
-				<p>
-					Here is the problem: Because JavaScript really lives two,
-					maybe even three lives (the funny little DHMTL helper from
-					the mid-90's, the more serious frontend stuff like jQuery
-					and the likes, and now server-side), it's not that easy to
-					find information that helps you to learn JavaScript the
-					"right" way, in order to write node.js applications in a
-					fashion that makes you feel you are not just using
-					JavaScript, you are actually developing it.
-				</p>
-				<p>
-					Because that's the catch, you already are an experienced
-					developer, you don't want to learn a new technique by just
-					hacking around and mis-using it, you want to be sure that
-					you are approaching it from the right angle.
-				</p>
-				<p>
-					There is, of course, excellent documentation out there.
-					But documentation alone	sometimes isn't enough. What is
-					needed is guidance.
-				</p>
-				<p>
-					My goal is to provide a guide for you.
-				</p>
+			<h3>JavaScript and You</h3>
+			<p>
+				Before we talk about all the technical stuff, let's take a
+				moment and talk about you and your relationship with
+				JavaScript. This chapter is here to allow you to estimate
+				if reading this document any further makes sense for you.
+			</p>
+			<p>
+				If you are like me, you started with HTML "development"
+				long ago, by writing HTML documents. You came along this
+				funny thing called JavaScript, but you only used it in a
+				very basic way, adding interactivity to your web pages
+				every now and then.
+			</p>
+			<p>
+				What you really wanted was "the real thing", you wanted to
+				know how to build complex web sites - you learned a
+				programming language like PHP, Ruby, Java, and started
+				writing "backend" code.
+			</p>
+			<p>
+				Nevertheless, you kept an eye on JavaScript, you saw that
+				with the introduction of jQuery, Prototype and the likes,
+				things got more advanced in JavaScript land, and that this
+				language really was about more than <em>window.open()</em>.
+			</p>
+			<p>
+				However, this was all still frontend stuff, and although it
+				was nice to have jQuery at your disposal whenever you felt
+				like spicing up a web page, at the end of the day you were,
+				at best, a JavaScript <em>user</em>, but not a JavaScript
+				<em>developer</em>.
+			</p>
+			<p>
+				And then came node.js. JavaScript on the server, how cool
+				is that?
+			</p>
+			<p>
+				You decided that it's about time to check out the old, new
+				JavaScript. But wait, writing node.js applications is the
+				one thing; understanding why they need to be written the
+				way they are written means - understanding JavaScript.
+				And this time for real.
+			</p>
+			<p>
+				Here is the problem: Because JavaScript really lives two,
+				maybe even three lives (the funny little DHMTL helper from
+				the mid-90's, the more serious frontend stuff like jQuery
+				and the likes, and now server-side), it's not that easy to
+				find information that helps you to learn JavaScript the
+				"right" way, in order to write node.js applications in a
+				fashion that makes you feel you are not just using
+				JavaScript, you are actually developing it.
+			</p>
+			<p>
+				Because that's the catch, you already are an experienced
+				developer, you don't want to learn a new technique by just
+				hacking around and mis-using it, you want to be sure that
+				you are approaching it from the right angle.
+			</p>
+			<p>
+				There is, of course, excellent documentation out there.
+				But documentation alone	sometimes isn't enough. What is
+				needed is guidance.
+			</p>
+			<p>
+				My goal is to provide a guide for you.
+			</p>
 
-				<h3>A word of warning</h3>
-				<p>
-					There are some really excellent JavaScript people out
-					there. I'm not one of them.
-					<br />
-					I'm really the guy I talked about in the previous
-					paragraph. I know a thing or two about developing backend
-					web applications, but I'm still new to "real" JavaScript
-					and	still new to node.js. I learned some of the more
-					advanced aspects of	JavaScript just recently.
-					I'm not experienced.
-				</p>
-				<p>
-					Which is why this is no "from novice to expert" book. It's
-					more like "from novice to expert novice".
-				</p>
-				<p>
-					If I don't fail, then this here will be the kind of
-					document I wish I had when starting with node.js.
-				</p>
+			<h3>A word of warning</h3>
+			<p>
+				There are some really excellent JavaScript people out
+				there. I'm not one of them.
+			</p>
+			<p>
+				I'm really the guy I talked about in the previous
+				paragraph. I know a thing or two about developing backend
+				web applications, but I'm still new to "real" JavaScript
+				and	still new to node.js. I learned some of the more
+				advanced aspects of	JavaScript just recently.
+				I'm not experienced.
+			</p>
+			<p>
+				Which is why this is no "from novice to expert" book. It's
+				more like "from novice to expert-novice".
+			</p>
+			<p>
+				If I don't fail, then this here will be the kind of
+				document I wish I had when starting with node.js.
+			</p>
 
-				<h3>Server-side JavaScript</h3>
-				<p>
-					The first incarnations of JavaScript lived in browsers.
-					But this is just the context. It defines what you can
-					do with the language, but it doesn't say much about what
-					the language itself can do. JavaScript is a "complete"
-					language, you can use it in many contexts and achieve
-					everything with it you can achieve with any other
-					"complete" language.
-				</p>
-				<p>
-					node.js really is just another context: it allows to run
-					JavaScript code in the backend, outside a browser.
-				</p>
-				<p>
-					In order to execute the JavaScript you intend to run in the
-					backend, it needs to be interpreted and, well, executed.
-					This is what node.js does. Plus, it ships with a lot of
-					useful modules, so you don't have to write everything
-					from scratch, like for example something that outputs a
-					string on the console.
-				</p>
-				<p>
-					Thus, node.js is really two things: a runtime
-					environment and a library.
-				</p>
-				<p>
-					In order to make use of them, you need to install node.
-					Instead of repeating the process here, I ask you to visit
-					<a href="https://github.com/joyent/node/wiki/Installation"
-					   title="Building and Installing Node.js">the official
-					installation instructions</a>. Please come back once you
-					are up and running.
-				</p>
+			<h3>Server-side JavaScript</h3>
+			<p>
+				The first incarnations of JavaScript lived in browsers.
+				But this is just the context. It defines what you can
+				do with the language, but it doesn't say much about what
+				the language itself can do. JavaScript is a "complete"
+				language, you can use it in many contexts and achieve
+				everything with it you can achieve with any other
+				"complete" language.
+			</p>
+			<p>
+				node.js really is just another context: it allows to run
+				JavaScript code in the backend, outside a browser.
+			</p>
+			<p>
+				In order to execute the JavaScript you intend to run in the
+				backend, it needs to be interpreted and, well, executed.
+				This is what node.js does. Plus, it ships with a lot of
+				useful modules, so you don't have to write everything
+				from scratch, like for example something that outputs a
+				string on the console.
+			</p>
+			<p>
+				Thus, node.js is really two things: a runtime
+				environment and a library.
+			</p>
+			<p>
+				In order to make use of them, you need to install node.
+				Instead of repeating the process here, I kindly ask you to
+				visit
+				<a href="https://github.com/joyent/node/wiki/Installation"
+				   title="Building and Installing Node.js">the official
+				installation instructions</a>. Please come back once you
+				are up and running.
+			</p>
 
-				<h3>"Hello Server"</h3>
-				<p>
-					Ok, let's just jump in the cold water and write our first
-					node application: "Hello Server"
-				</p>
-				<p>
-					Open your favorite editor and create a file called
-					<em>helloserver.js</em>. We want it to write "Hello Server"
-					to STDOUT, and here is the code needed to do that:
-				</p>
-				<p>
+			<h3>"Hello World"</h3>
+			<p>
+				Ok, let's just jump in the cold water and write our first
+				node application: "Hello World".
+			</p>
+			<p>
+				Open your favorite editor and create a file called
+				<em>helloworld.js</em>. We want it to write "Hello World"
+				to STDOUT, and here is the code needed to do that:
+			</p>
+			<p>
 <pre>var sys = require("sys");
 
-sys.puts("Hello Server");
+sys.puts("Hello World");
 </pre>
-				</p>
-				<p>
-					Save the file, and execute it through node.js:
-				</p>
-				<p>
-					<pre>node helloworld.js</pre>
-				</p>
-				<p>
-					This should output <em>Hello World</em> on your terminal.
-				</p>
-				<p>
-					Ok, this stuff is boring, right? Let's write some real
-					stuff.
-				</p>
+			</p>
+			<p>
+				Save the file, and execute it through node.js:
+			</p>
+			<p>
+				<pre>node helloworld.js</pre>
+			</p>
+			<p>
+				This should output <em>Hello World</em> on your terminal.
+			</p>
+			<p>
+				Ok, this stuff is boring, right? Let's write some real
+				stuff.
+			</p>
 
 
 			<h2>A full blown web application with node</h2>
 
-				<h3>The use cases</h3>
-				<p>
-					Let's keep it simple, but realistic:
-					<ul>
-						<li>
-							The user should be able to use our application with
-							a web browser
-						</li>
-						<li>
-							The user should see a welcome page when
-							requesting http://<em>domain</em>/start
-						</li>
-						<li>
-							When requesting http://<em>domain</em>/upload, the
-							user should be able to upload an image file	from
-							his computer, which is then displayed in his
-							browser.
-						</li>
-					</ul>
-				</p>
-				<p>
-					Fair enough. Now, you could achieve this goal by googling
-					and hacking together <em>something</em>. But that's not
-					what we want to do here.
-					<br />
-					Furthermore, we don't want to write only the most basic
-					code to achieve the goal, how elegant and correct this code
-					might be. We will intentionally add more abstraction than
-					necessary in order to get a feeling for building more
-					complex node applications.
-				</p>
+			<h3>The use cases</h3>
+			<p>
+				Let's keep it simple, but realistic:
+				<ul>
+					<li>
+						The user should be able to use our application with
+						a web browser
+					</li>
+					<li>
+						The user should see a welcome page when
+						requesting http://<em>domain</em>/start
+					</li>
+					<li>
+						When requesting http://<em>domain</em>/upload, the
+						user should be able to upload an image file	from
+						his computer, which is then displayed in his
+						browser.
+					</li>
+				</ul>
+			</p>
+			<p>
+				Fair enough. Now, you could achieve this goal by googling
+				and hacking together <em>something</em>. But that's not
+				what we want to do here.
+			</p>
+			<p>
+				Furthermore, we don't want to write only the most basic
+				code to achieve the goal, how elegant and correct this code
+				might be. We will intentionally add more abstraction than
+				necessary in order to get a feeling for building more
+				complex node applications.
+			</p>
 
-				<h3>The application stack</h3>
-				<p>
-					Let's dissect our application. Which parts need to be
-					implemented in order to fulfill the use cases?
+			<h3>The application stack</h3>
+			<p>
+				Let's dissect our application. Which parts need to be
+				implemented in order to fulfill the use cases?
 
-					<ul>
-						<li>
-							We want to serve web pages, therefore we need an
-							<strong>HTTP server</strong>
-						</li>
-						<li>
-							Our server will need to answer differently to
-							requests, depending on which URL the request was
-							asking for, thus we need some kind of
-							<strong>router</strong> in order to map requests
-							to request handlers
-						</li>
-						<li>
-							To fullfill the requests that arrived at the server
-							and have been routed using the router, we need
-							actual <strong>request handlers</strong>
-						</li>
-						<li>
-							The router probably should also treat any incoming
-							POST data and give it to the request handlers in
-							a convenient form, thus we need a <strong>request
-							data handler</strong>.
-						</li>
-						<li>
-							We not only want to handle requests for URLs, we
-							also want to display content when these URLs are
-							requested, which means we need some kind of
-							<strong>view logic</strong> the request handlers
-							can use in order to send content to the user's
-							browser.
-						</li>
-						<li>
-							Last but not least, the user will be able to upload
-							images, so we are going to need an
-							<strong>upload handler</strong> to take care of the
-							details.
-						</li>
-					</ul>
-				</p>
-				<p>
-					Let's think a moment about how we would build this stack
-					with PHP. It's not exactly a secret that the typical setup
-					would be an Apache HTTP server with mod_php5 installed.
-					<br/>
-					Which in turn means, that the whole "we need to be able to
-					serve web pages and receive HTTP requests" stuff doesn't
-					happen within PHP itself.
-				</p>
-				<p>
-					Well, with node, things are a bit different. Because with
-					node, you not implement your application, you also
-					implement the whole HTTP server. In fact, your web
-					application	and its web server are basically the same.
-				</p>
-				<p>
-					This might sound like a lot of work, but we will see in a
-					moment that with node, it's not.
-				</p>
-				<p>
-					Let's just start at the beginning and implement the first
-					part of our stack, the HTTP server.
-				</p>
+				<ul>
+					<li>
+						We want to serve web pages, therefore we need an
+						<strong>HTTP server</strong>
+					</li>
+					<li>
+						Our server will need to answer differently to
+						requests, depending on which URL the request was
+						asking for, thus we need some kind of
+						<strong>router</strong> in order to map requests
+						to request handlers
+					</li>
+					<li>
+						To fullfill the requests that arrived at the server
+						and have been routed using the router, we need
+						actual <strong>request handlers</strong>
+					</li>
+					<li>
+						The router probably should also treat any incoming
+						POST data and give it to the request handlers in
+						a convenient form, thus we need a <strong>request
+						data handler</strong>.
+					</li>
+					<li>
+						We not only want to handle requests for URLs, we
+						also want to display content when these URLs are
+						requested, which means we need some kind of
+						<strong>view logic</strong> the request handlers
+						can use in order to send content to the user's
+						browser.
+					</li>
+					<li>
+						Last but not least, the user will be able to upload
+						images, so we are going to need an
+						<strong>upload handler</strong> to take care of the
+						details.
+					</li>
+				</ul>
+			</p>
+			<p>
+				Let's think a moment about how we would build this stack
+				with PHP. It's not exactly a secret that the typical setup
+				would be an Apache HTTP server with mod_php5 installed.
+				<br/>
+				Which in turn means, that the whole "we need to be able to
+				serve web pages and receive HTTP requests" stuff doesn't
+				happen within PHP itself.
+			</p>
+			<p>
+				Well, with node, things are a bit different. Because with
+				node, you not implement your application, you also
+				implement the whole HTTP server. In fact, your web
+				application	and its web server are basically the same.
+			</p>
+			<p>
+				This might sound like a lot of work, but we will see in a
+				moment that with node, it's not.
+			</p>
+			<p>
+				Let's just start at the beginning and implement the first
+				part of our stack, the HTTP server.
+			</p>
 
-				<h3>Building the application stack</h3>
-				<h4>The HTTP server</h4>
-				<p>
-					When I arrived at the point where I wanted to start with my
-					first "real" node application, I wondered not only how to
-					actually code it, but also how to organize my code.
-					<br/>
-					Do I need to have everything in one file? Most tutorials on
-					the web that teach you how to write a basic HTTP server in
-					node have all the logic in one place. What if I want to
-					make sure that my code stays readable the more stuff I
-					implement?
-				</p>
-				<p>
-					Turns out, it's relatively easy to keep the different
-					concerns of your code separated, by putting them in
-					modules.
-				</p>
-				<p>
-					This allows you to have a clean main file, which you
-					execute with node, and clean modules that can be used by
-					the main file and among each other.
-				</p>
-				<p>
-					So, let's create a main file which we use to start our
-					application, and a module file where our HTTP server code
-					lives.
-				</p>
-				<p>
-					My impression is that it's more or less a standard to name
-					your main file <em>index.js</em>. It makes sense to put	our
-					server module into a file named <em>server.js</em>.
-				</p>
-				<p>
-					Let's start with the server module. Create the file
-					<em>server.js</em> in the root directory of your project,
-					and fill it with the following code:
-				</p>
-				<p>
+			<h3>Building the application stack</h3>
+			<h4>A basic HTTP server</h4>
+			<p>
+				When I arrived at the point where I wanted to start with my
+				first "real" node application, I wondered not only how to
+				actually code it, but also how to organize my code.
+				<br/>
+				Do I need to have everything in one file? Most tutorials on
+				the web that teach you how to write a basic HTTP server in
+				node have all the logic in one place. What if I want to
+				make sure that my code stays readable the more stuff I
+				implement?
+			</p>
+			<p>
+				Turns out, it's relatively easy to keep the different
+				concerns of your code separated, by putting them in
+				modules.
+			</p>
+			<p>
+				This allows you to have a clean main file, which you
+				execute with node, and clean modules that can be used by
+				the main file and among each other.
+			</p>
+			<p>
+				So, let's create a main file which we use to start our
+				application, and a module file where our HTTP server code
+				lives.
+			</p>
+			<p>
+				My impression is that it's more or less a standard to name
+				your main file <em>index.js</em>. It makes sense to put	our
+				server module into a file named <em>server.js</em>.
+			</p>
+			<p>
+				Let's start with the server module. Create the file
+				<em>server.js</em> in the root directory of your project,
+				and fill it with the following code:
+			</p>
+			<p>
 <pre>var http = require("http");
 
 http.createServer(function(request, response) {
@@ -379,68 +459,80 @@ http.createServer(function(request, response) {
   response.end();
 }).listen(8888);
 </pre>
-				</p>
-				<p>
-					That's it! You just wrote a working HTTP server. Let's
-					prove it by running and testing it. First, execute your
-					script with node:
-				</p>
-				<p>
-					<pre>node server.js</pre>
-				</p>
-				<p>
-					Now, open your browser and point it at
-					<a href="http://localhost:8888/">http://localhost:8888/</a>.
-					This should display a web page that says "Hello World".
-				</p>
-				<p>
-					Well, let's analyze what's actually going on here.
-				</p>
-				<p>
-					The first line <em>require</em>s the <em>http</em> module
-					that ships with node and makes it accessible through the
-					variable <em>http</em>.
-				</p>
-				<p>
-					We then call one of the functions the http module offers:
-					<em>createServer</em>. This function returns an object, and
-					this object has a method named <em>listen</em>, and takes
-					a numeric value which indicates the port number our HTTP
-					server is going to listen on.
-				</p>
-				<p>
-					Please ignore for a second the function definition that
-					follows the opening bracket of <em>http.createServer</em>.
-				</p>
-				<p>
-					We could have written the code that starts our server and
-					makes it listen at port 8888 like this:
-				</p>
-				<p>
-<pre>var server = http.createServer();
+			</p>
+			<p>
+				That's it! You just wrote a working HTTP server. Let's
+				prove it by running and testing it. First, execute your
+				script with node:
+			</p>
+			<p>
+				<pre>node server.js</pre>
+			</p>
+			<p>
+				Now, open your browser and point it at
+				<a href="http://localhost:8888/">http://localhost:8888/</a>.
+				This should display a web page that says "Hello World".
+			</p>
+			<p>
+				That's quite interesting, isn't it. How about talking about
+				what's going on here and leaving the question of how to
+				organize our project for later? I promise we'll get back to
+				it.
+			</p>
+
+			<h4>Analyzing our HTTP server</h4>
+			<p>
+				Well, then, let's analyze what's actually going on here.
+			</p>
+			<p>
+				The first line <em>require</em>s the <em>http</em> module
+				that ships with node and makes it accessible through the
+				variable <em>http</em>.
+			</p>
+			<p>
+				We then call one of the functions the http module offers:
+				<em>createServer</em>. This function returns an object, and
+				this object has a method named <em>listen</em>, and takes
+				a numeric value which indicates the port number our HTTP
+				server is going to listen on.
+			</p>
+			<p>
+				Please ignore for a second the function definition that
+				follows the opening bracket of <em>http.createServer</em>.
+			</p>
+			<p>
+				We could have written the code that starts our server and
+				makes it listen at port 8888 like this:
+			</p>
+			<p>
+<pre>var http = require("http");
+
+var server = http.createServer();
 server.listen(8888);</pre>
-				</p>
-				<p>
-					That would start an HTTP server listening at port 8888
-					and doing nothing else (not even answering any incoming
-					requests).
-				</p>
-				<p>
-					The really interesting (and, if your background is a more
-					conservative language like PHP, odd looking) part is the
-					function definition right there where you would expect the
-					first parameter of the <em>createServer()</em> call.
-				</p>
-				<p>
-					Turns out, this function definition IS the first (and only)
-					parameter we are giving to the <em>createServer()</em>
-					call. Because in JavaScript, functions can be passed around
-					like any other value.
-				</p>
-				<p>
-					You can, for example, do something like this:
-				</p>
-				<p>
+			</p>
+			<p>
+				That would start an HTTP server listening at port 8888
+				and doing nothing else (not even answering any incoming
+				requests).
+			</p>
+			<p>
+				The really interesting (and, if your background is a more
+				conservative language like PHP, odd looking) part is the
+				function definition right there where you would expect the
+				first parameter of the <em>createServer()</em> call.
+			</p>
+			<p>
+				Turns out, this function definition IS the first (and only)
+				parameter we are giving to the <em>createServer()</em>
+				call. Because in JavaScript, functions can be passed around
+				like any other value.
+			</p>
+
+			<h4>Passing functions around</h4>
+			<p>
+				You can, for example, do something like this:
+			</p>
+			<p>
 <pre>var sys = require("sys");
 
 function say(word) {
@@ -452,32 +544,32 @@ function execute(someFunction, value) {
 }
 
 execute(say, "Hello");</pre>
-				</p>
-				<p>
-					Read this carefully! What we are doing here is, we pass the
-					function <em>say</em> as the first parameter to the
-					<em>execute</em> function. Not the return value of
-					<em>say</em>, but <em>say</em> itself!
-				</p>
-				<p>
-					Thus, <em>say</em> becomes the local variable
-					<em>someFunction</em> within <em>execute</em>, and execute
-					can call the function in this variable by issuing
-					<em>someFunction()</em> (adding brackets).
-				</p>
-				<p>
-					Of course, because <em>say</em> takes one parameter,
-					<em>execute</em> can pass such a parameter when calling
-					<em>someFunction</em>.
-				</p>
-				<p>
-					We can, as we just did, pass a function as a parameter to
-					another function by it name. But we don't have to take this
-					indirection of first defining, then passing it - we can
-					define and pass a function as a parameter to another
-					function in-place:
-				</p>
-				<p>
+			</p>
+			<p>
+				Read this carefully! What we are doing here is, we pass the
+				function <em>say</em> as the first parameter to the
+				<em>execute</em> function. Not the return value of
+				<em>say</em>, but <em>say</em> itself!
+			</p>
+			<p>
+				Thus, <em>say</em> becomes the local variable
+				<em>someFunction</em> within <em>execute</em>, and execute
+				can call the function in this variable by issuing
+				<em>someFunction()</em> (adding brackets).
+			</p>
+			<p>
+				Of course, because <em>say</em> takes one parameter,
+				<em>execute</em> can pass such a parameter when calling
+				<em>someFunction</em>.
+			</p>
+			<p>
+				We can, as we just did, pass a function as a parameter to
+				another function by it name. But we don't have to take this
+				indirection of first defining, then passing it - we can
+				define and pass a function as a parameter to another
+				function in-place:
+			</p>
+			<p>
 <pre>var sys = require("sys");
 
 function execute(someFunction, value) {
@@ -486,29 +578,31 @@ function execute(someFunction, value) {
 
 execute(function(word){sys.puts(word)}, "Hello");
 </pre>
-				</p>
-				<p>
-					We define the function we want to pass to <em>execute</em>
-					right there at the place where <em>execute</em> expects its
-					first parameter.
-				</p>
-				<p>
-					This way, we don't even need to give the function a name,
-					which is why this is called an <em>anonymous function</em>.
-				</p>
-				<p>
-					This is a first glimpse at what I like to call "advanced"
-					JavaScript, but let's take it step by step. For now, let's
-					just accept that in JavaScript, we can pass a function as
-					a parameter when calling another function. We can do this
-					by assigning our function to a variable, which we then
-					pass, or by defining the function to pass in-place.
-				</p>
-				<p>
-					With this knowledge, let's get back to our minimalistic
-					HTTP server:
-				</p>
-				<p>
+			</p>
+			<p>
+				We define the function we want to pass to <em>execute</em>
+				right there at the place where <em>execute</em> expects its
+				first parameter.
+			</p>
+			<p>
+				This way, we don't even need to give the function a name,
+				which is why this is called an <em>anonymous function</em>.
+			</p>
+			<p>
+				This is a first glimpse at what I like to call "advanced"
+				JavaScript, but let's take it step by step. For now, let's
+				just accept that in JavaScript, we can pass a function as
+				a parameter when calling another function. We can do this
+				by assigning our function to a variable, which we then
+				pass, or by defining the function to pass in-place.
+			</p>
+
+			<h4>How function passing makes our HTTP server work</h4>
+			<p>
+				With this knowledge, let's get back to our minimalistic
+				HTTP server:
+			</p>
+			<p>
 <pre>var http = require("http");
 
 http.createServer(function(request, response) {
@@ -517,16 +611,16 @@ http.createServer(function(request, response) {
   response.end();
 }).listen(8888);
 </pre>
-				</p>
-				<p>
-					By now it should be clear what we are actually doing here:
-					we pass the <em>createServer</em> function an anonymous
-					function.
-				</p>
-				<p>
-					We could achieve the same by rewriting our code to:
-				</p>
-				<p>
+			</p>
+			<p>
+				By now it should be clear what we are actually doing here:
+				we pass the <em>createServer</em> function an anonymous
+				function.
+			</p>
+			<p>
+				We could achieve the same by refactoring our code to:
+			</p>
+			<p>
 <pre>var http = require("http");
 
 function handle(request, response) {
@@ -537,81 +631,162 @@ function handle(request, response) {
 
 http.createServer(handle).listen(8888);
 </pre>
-				</p>
-				<p>
-					Maybe now is a good moment to ask: Why are we doing it
-					that way?
-				</p>
-				<p>
-					The answer is a) not really simple (at least for me), and
-					b) lies in the very nature of how node works. It's
-					event-driven, which is the reason why it's so fast.
-				</p>
-				<p>
-					You might want to now take the time to read Felix
-					Geisendörfer's excellent post
-					<a href="http://debuggable.com/posts/understanding-node-js:4bd98440-45e4-4a9a-8ef7-0f7ecbdd56cb">Understanding node.js</a>
-					for some background explanation.
-				</p>
-				<p>
-					It all boils down to the fact that node works event-driven.
-					Oh and yes, I, too, don't know exactly what that means.
-					But I will try and explain, why this makes sense for us
-					who want to write web based applications in node.
-				</p>
-				<p>
-					When we call the <em>http.createServer</em> method, we
-					of course not only want to have a server listening at
-					some port, we also want to do something when there is an
-					HTTP request to this server.
-				</p>
-				<p>
-					The problem is, this happens asynchronously: it happens
-					at any given time, but we only have a single process in
-					which our server runs.
-				</p>
-				<p>
-					When writing PHP applications, we aren't bothered by this
-					at all: whenever there is an incoming HTTP request, the
-					webserver (usually Apache) forks a new process for just
-					this request, and starts the according PHP script from
-					scratch, which is then executed from top to bottom.
-				</p>
-				<p>
-					So in regards of control flow, we are in the midst of our
-					node program when a new request arrives at port 8888 - how
-					to handle this without going insane?
-				</p>
-				<p>
-					Well, this is where the event-driven design of
-					node/JavaScript actually helps, although we need to learn
-					some new concepts in order to master it. Let's see how
-					these concepts are applied in our server code.
-				</p>
-				<p>
-					We create the server, and pass a function to the method
-					creating it. Whenever our server receives a request, the
-					function we passed will be called.
-				</p>
-				<p>
-					We don't know when this is going to happen, but we now have
-					a place where we can handle an incoming request. It's our
-					passed function, no matter if we first defined it or passed
-					it anonymously.
-				</p>
-				<p>
-					This concept is called a <em>callback</em>. We pass into
-					some method a function, and the method uses this function
-					to <em>call back</em> if an event related to the method
-					occurs.
-				</p>
-				<p>
-					At least for me, this took some time to understand. Just
-					read Felix' blog post again if you are still unsure.
-				</p>
-				<p>
-					
-				</p>
+			</p>
+			<p>
+				Maybe now is a good moment to ask: Why are we doing it
+				that way?
+			</p>
 
+			<h4>Event-driven callbacks</h4>
+			<p>
+				The answer is a) not really simple (at least for me), and
+				b) lies in the very nature of how node works. It's
+				event-driven, which is the reason why it's so fast.
+			</p>
+			<p>
+				You might now want to take the time to read Felix
+				Geisendörfer's excellent post
+				<a href="http://debuggable.com/posts/understanding-node-js:4bd98440-45e4-4a9a-8ef7-0f7ecbdd56cb">Understanding node.js</a>
+				for some background explanation.
+			</p>
+			<p>
+				It all boils down to the fact that node works event-driven.
+				Oh and yes, I, too, don't know exactly what that means.
+				But I will try and explain, why this makes sense for us
+				who want to write web based applications in node.
+			</p>
+			<p>
+				When we call the <em>http.createServer</em> method, we
+				of course not only want to have a server listening at
+				some port, we also want to do something when there is an
+				HTTP request to this server.
+			</p>
+			<p>
+				The problem is, this happens asynchronously: it happens
+				at any given time, but we only have a single process in
+				which our server runs.
+			</p>
+			<p>
+				When writing PHP applications, we aren't bothered by this
+				at all: whenever there is an incoming HTTP request, the
+				webserver (usually Apache) forks a new process for just
+				this request, and starts the according PHP script from
+				scratch, which is then executed from top to bottom.
+			</p>
+			<p>
+				So in regards of control flow, we are in the midst of our
+				node program when a new request arrives at port 8888 - how
+				to handle this without going insane?
+			</p>
+			<p>
+				Well, this is where the event-driven design of
+				node/JavaScript actually helps, although we need to learn
+				some new concepts in order to master it. Let's see how
+				these concepts are applied in our server code.
+			</p>
+			<p>
+				We create the server, and pass a function to the method
+				creating it. Whenever our server receives a request, the
+				function we passed will be called.
+			</p>
+			<p>
+				We don't know when this is going to happen, but we now have
+				a place where we can handle an incoming request. It's our
+				passed function, no matter if we first defined it or passed
+				it anonymously.
+			</p>
+			<p>
+				This concept is called a <em>callback</em>. We pass into
+				some method a function, and the method uses this function
+				to <em>call back</em> if an event related to the method
+				occurs.
+			</p>
+			<p>
+				At least for me, this took some time to understand. Just
+				read Felix' blog post again if you are still unsure.
+			</p>
+			<p>
+				Let's play around a bit with this new concept. Can we prove
+				that our code continues after creating the server, even if
+				no HTTP request happened and the callback function we
+				passed isn't called? Let's try it:
+			</p>
+			<p>
+				<pre>var sys = require("sys");
+var http = require("http");
+
+function handle(request, response) {
+  sys.puts("Request received.");
+  response.writeHead(200, {"Content-Type": "text/html"});
+  response.write("Hello World");
+  response.end();
+}
+
+http.createServer(handle).listen(8888);
+
+sys.puts("Server has started.");
+</pre>
+			</p>
+			<p>
+				Note that I require the <em>sys</em> module, and use it to
+				output a text whenever the <em>handle</em> function (our
+				callback) is triggered, and another text right
+				<em>after</em> starting	the HTTP server.
+			</p>
+			<p>
+				When we start this (<em>node server.js</em>, as always), it
+				will immediately output "Server has started." on the
+				command line. Whenever we request our server (by opening
+				<a href="http://localhost:8888/">http://localhost:8888/</a>
+				in our browser), the message "Request received." is printed
+				on the command line.
+			</p>
+			<p>
+				Event-driven asynchronuos server-side JavaScript with
+				callbacks in action :-)
+			</p>
+
+			<h4>How our server handles requests</h4>
+			<p>
+				Ok, let's quickly analyze the rest of our server code, that
+				is, the body of our callback function <em>handle()</em>.
+			</p>
+			<p>
+				When the callback fires and our <em>handler</em> function
+				gets triggered, two parameters are passed into it:
+				<em>request</em> and <em>response</em>.
+			</p>
+			<p>
+				Those are objects, and you can use their methods to handle
+				the	details of the HTTP request that occured and to respond
+				to the request (i.e., to actually send something over
+				the wire back to the browser that requested your server).
+			</p>
+			<p>
+				And our code does just that: Whenever a request is
+				received, it uses the <em>response.writeHead()</em>
+				function to send an HTTP status 200 and content-type in the
+				HTTP response header, and the <em>response.writeHead()</em>
+				function to send the text "Hello World" in the HTTP
+				response body.
+			</p>
+			<p>
+				At last, we call <em>response.end()</em> to actually finish
+				our response.
+			</p>
+			<p>
+				At this point, we don't care for the details of the
+				request, which is why we don't use the <em>request</em>
+				object at all.
+			</p>
+		</div>
+		<div id="footer">
+			<p id="ccimage">
+				<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png" /></a>
+			</p>
+			<p>
+				<span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">The Node Beginner Book</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://manuel.kiessling.net" property="cc:attributionName" rel="cc:attributionURL">Manuel Kiessling</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</a>.<br />Permissions beyond the scope of this license may be available at <a xmlns:cc="http://creativecommons.org/ns#" href="mailto:manuel@kiessling.net" rel="cc:morePermissions">mailto:manuel@kiessling.net</a>.
+			</p>
+		</div>
 	</body>
 </html>

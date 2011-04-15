@@ -1,7 +1,13 @@
+var sys = require("sys");
 var http = require("http");
 
-http.createServer(function(request, response) {
+function handle(request, response) {
+  sys.puts("Request received.");
   response.writeHead(200, {"Content-Type": "text/html"});
   response.write("Hello World");
   response.end();
-}).listen(8888);
+}
+
+http.createServer(handle).listen(8888);
+
+sys.puts("Server has started.");
