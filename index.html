@@ -210,7 +210,7 @@
 					to STDOUT, and here is the code needed to do that:
 				</p>
 				<p>
-					<pre>var sys = require("sys");
+<pre>var sys = require("sys");
 
 sys.puts("Hello Server");
 </pre>
@@ -334,6 +334,281 @@ sys.puts("Hello Server");
 
 				<h3>Building the application stack</h3>
 				<h4>The HTTP server</h4>
+				<p>
+					When I arrived at the point where I wanted to start with my
+					first "real" node application, I wondered not only how to
+					actually code it, but also how to organize my code.
+					<br/>
+					Do I need to have everything in one file? Most tutorials on
+					the web that teach you how to write a basic HTTP server in
+					node have all the logic in one place. What if I want to
+					make sure that my code stays readable the more stuff I
+					implement?
+				</p>
+				<p>
+					Turns out, it's relatively easy to keep the different
+					concerns of your code separated, by putting them in
+					modules.
+				</p>
+				<p>
+					This allows you to have a clean main file, which you
+					execute with node, and clean modules that can be used by
+					the main file and among each other.
+				</p>
+				<p>
+					So, let's create a main file which we use to start our
+					application, and a module file where our HTTP server code
+					lives.
+				</p>
+				<p>
+					My impression is that it's more or less a standard to name
+					your main file <em>index.js</em>. It makes sense to put	our
+					server module into a file named <em>server.js</em>.
+				</p>
+				<p>
+					Let's start with the server module. Create the file
+					<em>server.js</em> in the root directory of your project,
+					and fill it with the following code:
+				</p>
+				<p>
+<pre>var http = require("http");
+
+http.createServer(function(request, response) {
+  response.writeHead(200, {"Content-Type": "text/html"});
+  response.write("Hello World");
+  response.end();
+}).listen(8888);
+</pre>
+				</p>
+				<p>
+					That's it! You just wrote a working HTTP server. Let's
+					prove it by running and testing it. First, execute your
+					script with node:
+				</p>
+				<p>
+					<pre>node server.js</pre>
+				</p>
+				<p>
+					Now, open your browser and point it at
+					<a href="http://localhost:8888/">http://localhost:8888/</a>.
+					This should display a web page that says "Hello World".
+				</p>
+				<p>
+					Well, let's analyze what's actually going on here.
+				</p>
+				<p>
+					The first line <em>require</em>s the <em>http</em> module
+					that ships with node and makes it accessible through the
+					variable <em>http</em>.
+				</p>
+				<p>
+					We then call one of the functions the http module offers:
+					<em>createServer</em>. This function returns an object, and
+					this object has a method named <em>listen</em>, and takes
+					a numeric value which indicates the port number our HTTP
+					server is going to listen on.
+				</p>
+				<p>
+					Please ignore for a second the function definition that
+					follows the opening bracket of <em>http.createServer</em>.
+				</p>
+				<p>
+					We could have written the code that starts our server and
+					makes it listen at port 8888 like this:
+				</p>
+				<p>
+<pre>var server = http.createServer();
+server.listen(8888);</pre>
+				</p>
+				<p>
+					That would start an HTTP server listening at port 8888
+					and doing nothing else (not even answering any incoming
+					requests).
+				</p>
+				<p>
+					The really interesting (and, if your background is a more
+					conservative language like PHP, odd looking) part is the
+					function definition right there where you would expect the
+					first parameter of the <em>createServer()</em> call.
+				</p>
+				<p>
+					Turns out, this function definition IS the first (and only)
+					parameter we are giving to the <em>createServer()</em>
+					call. Because in JavaScript, functions can be passed around
+					like any other value.
+				</p>
+				<p>
+					You can, for example, do something like this:
+				</p>
+				<p>
+<pre>var sys = require("sys");
+
+function say(word) {
+  sys.puts(word);
+}
+
+function execute(someFunction, value) {
+  someFunction(value);
+}
+
+execute(say, "Hello");</pre>
+				</p>
+				<p>
+					Read this carefully! What we are doing here is, we pass the
+					function <em>say</em> as the first parameter to the
+					<em>execute</em> function. Not the return value of
+					<em>say</em>, but <em>say</em> itself!
+				</p>
+				<p>
+					Thus, <em>say</em> becomes the local variable
+					<em>someFunction</em> within <em>execute</em>, and execute
+					can call the function in this variable by issuing
+					<em>someFunction()</em> (adding brackets).
+				</p>
+				<p>
+					Of course, because <em>say</em> takes one parameter,
+					<em>execute</em> can pass such a parameter when calling
+					<em>someFunction</em>.
+				</p>
+				<p>
+					We can, as we just did, pass a function as a parameter to
+					another function by it name. But we don't have to take this
+					indirection of first defining, then passing it - we can
+					define and pass a function as a parameter to another
+					function in-place:
+				</p>
+				<p>
+<pre>var sys = require("sys");
+
+function execute(someFunction, value) {
+  someFunction(value);
+}
+
+execute(function(word){sys.puts(word)}, "Hello");
+</pre>
+				</p>
+				<p>
+					We define the function we want to pass to <em>execute</em>
+					right there at the place where <em>execute</em> expects its
+					first parameter.
+				</p>
+				<p>
+					This way, we don't even need to give the function a name,
+					which is why this is called an <em>anonymous function</em>.
+				</p>
+				<p>
+					This is a first glimpse at what I like to call "advanced"
+					JavaScript, but let's take it step by step. For now, let's
+					just accept that in JavaScript, we can pass a function as
+					a parameter when calling another function. We can do this
+					by assigning our function to a variable, which we then
+					pass, or by defining the function to pass in-place.
+				</p>
+				<p>
+					With this knowledge, let's get back to our minimalistic
+					HTTP server:
+				</p>
+				<p>
+<pre>var http = require("http");
+
+http.createServer(function(request, response) {
+  response.writeHead(200, {"Content-Type": "text/html"});
+  response.write("Hello World");
+  response.end();
+}).listen(8888);
+</pre>
+				</p>
+				<p>
+					By now it should be clear what we are actually doing here:
+					we pass the <em>createServer</em> function an anonymous
+					function.
+				</p>
+				<p>
+					We could achieve the same by rewriting our code to:
+				</p>
+				<p>
+<pre>var http = require("http");
+
+function handle(request, response) {
+  response.writeHead(200, {"Content-Type": "text/html"});
+  response.write("Hello World");
+  response.end();
+}
+
+http.createServer(handle).listen(8888);
+</pre>
+				</p>
+				<p>
+					Maybe now is a good moment to ask: Why are we doing it
+					that way?
+				</p>
+				<p>
+					The answer is a) not really simple (at least for me), and
+					b) lies in the very nature of how node works. It's
+					event-driven, which is the reason why it's so fast.
+				</p>
+				<p>
+					You might want to now take the time to read Felix
+					Geisendörfer's excellent post
+					<a href="http://debuggable.com/posts/understanding-node-js:4bd98440-45e4-4a9a-8ef7-0f7ecbdd56cb">Understanding node.js</a>
+					for some background explanation.
+				</p>
+				<p>
+					It all boils down to the fact that node works event-driven.
+					Oh and yes, I, too, don't know exactly what that means.
+					But I will try and explain, why this makes sense for us
+					who want to write web based applications in node.
+				</p>
+				<p>
+					When we call the <em>http.createServer</em> method, we
+					of course not only want to have a server listening at
+					some port, we also want to do something when there is an
+					HTTP request to this server.
+				</p>
+				<p>
+					The problem is, this happens asynchronously: it happens
+					at any given time, but we only have a single process in
+					which our server runs.
+				</p>
+				<p>
+					When writing PHP applications, we aren't bothered by this
+					at all: whenever there is an incoming HTTP request, the
+					webserver (usually Apache) forks a new process for just
+					this request, and starts the according PHP script from
+					scratch, which is then executed from top to bottom.
+				</p>
+				<p>
+					So in regards of control flow, we are in the midst of our
+					node program when a new request arrives at port 8888 - how
+					to handle this without going insane?
+				</p>
+				<p>
+					Well, this is where the event-driven design of
+					node/JavaScript actually helps, although we need to learn
+					some new concepts in order to master it. Let's see how
+					these concepts are applied in our server code.
+				</p>
+				<p>
+					We create the server, and pass a function to the method
+					creating it. Whenever our server receives a request, the
+					function we passed will be called.
+				</p>
+				<p>
+					We don't know when this is going to happen, but we now have
+					a place where we can handle an incoming request. It's our
+					passed function, no matter if we first defined it or passed
+					it anonymously.
+				</p>
+				<p>
+					This concept is called a <em>callback</em>. We pass into
+					some method a function, and the method uses this function
+					to <em>call back</em> if an event related to the method
+					occurs.
+				</p>
+				<p>
+					At least for me, this took some time to understand. Just
+					read Felix' blog post again if you are still unsure.
+				</p>
 				<p>
 					
 				</p>
