@@ -9,7 +9,7 @@
 				padding-top: 48px;
 			}
 
-			#book, #footer {
+			#book, #disqus_thread, #footer {
 				width: 840px;
 				margin: 24px;
 				margin-left: 160px;
@@ -25,6 +25,10 @@
 				margin-top: -28px;
 				margin-left: 166px;
 				color: #888;
+			}
+
+			#disqus_thread {
+				
 			}
 
 			#footer {
@@ -780,6 +784,21 @@ sys.puts("Server has started.");
 				object at all.
 			</p>
 		</div>
+
+		<div id="disqus_thread"></div>
+		<script type="text/javascript">
+			var disqus_shortname = 'nodebeginner';
+			var disqus_identifier = 'nodebeginner-book';
+			var disqus_url = 'http://www.nodebeginner.org/';
+
+			(function() {
+				var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+				dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+				(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+			})();
+		</script>
+		<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
 		<div id="footer">
 			<p id="ccimage">
 				<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png" /></a>
