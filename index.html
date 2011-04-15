@@ -12,7 +12,8 @@
 				<p>
 					The aim of this document is to get you started with developing
 					applications for node.js, teaching you everything you need to
-					know about "advanced" JavaScript along the way.
+					know about "advanced" JavaScript along the way. It goes way
+					beyond your typical "hello world" tutorial.
 				</p>
 
 				<h3>Intended audience</h3>
@@ -161,6 +162,151 @@
 				<p>
 					If I don't fail, then this here will be the kind of
 					document I wish I had when starting with node.js.
+				</p>
+
+				<h3>Server-side JavaScript</h3>
+				<p>
+					The first incarnations of JavaScript lived in browsers.
+					But this is just the context. It defines what you can
+					do with the language, but it doesn't say much about what
+					the language itself can do. JavaScript is a "complete"
+					language, you can use it in many contexts and achieve
+					everything with it you can achieve with any other
+					"complete" language.
+				</p>
+				<p>
+					node.js really is just another context: it allows to run
+					JavaScript code in the backend, outside a browser.
+				</p>
+				<p>
+					In order to execute the JavaScript you intend to run in the
+					backend, it needs to be interpreted and, well, executed.
+					This is what node.js does. Plus, it ships with a lot of
+					useful modules, so you don't have to write everything
+					from scratch, like for example something that outputs a
+					string on the console.
+				</p>
+				<p>
+					Thus, node.js is really two things: a runtime
+					environment and a library.
+				</p>
+				<p>
+					In order to make use of them, you need to install node.
+					Instead of repeating the process here, I ask you to visit
+					<a href="https://github.com/joyent/node/wiki/Installation"
+					   title="Building and Installing Node.js">the official
+					installation instructions</a>. Please come back once you
+					are up and running.
+				</p>
+
+				<h3>"Hello Server"</h3>
+				<p>
+					Ok, let's just jump in the cold water and write our first
+					node application: "Hello Server"
+				</p>
+				<p>
+					Open your favorite editor and create a file called
+					<em>helloserver.js</em>. We want it to write "Hello Server"
+					to STDOUT, and here is the code needed to do that:
+				</p>
+				<p>
+					<pre>var sys = require("sys");
+
+sys.puts("Hello Server");
+</pre>
+				</p>
+				<p>
+					Save the file, and execute it through node.js:
+				</p>
+				<p>
+					<pre>node helloworld.js</pre>
+				</p>
+				<p>
+					This should output <em>Hello World</em> on your terminal.
+				</p>
+				<p>
+					Ok, this stuff is boring, right? Let's write some real
+					stuff.
+				</p>
+
+
+			<h2>A full blown web application with node</h2>
+
+				<h3>The use cases</h3>
+				<p>
+					Let's keep it simple, but realistic:
+					<ul>
+						<li>
+							The user should be able to use our application with
+							a web browser
+						</li>
+						<li>
+							The user should see a welcome page when
+							requesting http://<em>domain</em>/start
+						</li>
+						<li>
+							When requesting http://<em>domain</em>/upload, the
+							user should be able to upload an image file	from
+							his computer, which is then displayed in his
+							browser.
+						</li>
+					</ul>
+				</p>
+				<p>
+					Fair enough. Now, you could achieve this goal by googling
+					and hacking together something. But that's not what we want
+					to do here.
+					<br />
+					Furthermore, we don't want to write only the most basic
+					code to achieve the goal, how elegant and correct this code
+					might be. We will intentionally add more abstraction than
+					necessary in order to get a feeling for building more
+					complex node applications.
+				</p>
+
+				<h3>The application stack</h3>
+				<p>
+					Let's dissect our application. Which parts need to be
+					implemented in order to fulfill the use cases?
+
+					<ul>
+						<li>
+							We want to serve web pages, therefore we need an
+							<strong>HTTP server</strong>
+						</li>
+						<li>
+							Our server will need to answer differently to
+							requests, depending on which URL the request was
+							asking for, thus we need some kind of
+							<strong>router</strong> in order to map requests
+							to request handlers
+						</li>
+						<li>
+							To fullfill the requests that arrived at the server
+							and have been routed using the router, we need
+							actual <strong>request handlers</strong>
+						</li>
+						<li>
+							The router probably should also treat any incoming
+							POST data and give it to the request handlers in
+							a convenient form, thus we need a <strong>request
+							data handler</strong>.
+						</li>
+						<li>
+							We not only want to handle requests for URLs, we
+							also want to display content when these URLs are
+							requested, which means we need some kind of
+							<strong>view logic</strong> the request handlers
+							can use in order to send content to the user's
+							browser.
+						</li>
+						<li>
+							Last but not least, the user will be able to upload
+							images, so we are going to need an
+							<strong>upload handler</strong> to take care of the
+							details.
+						</li>
+					</ul>
 				</p>
 
 	</body>
