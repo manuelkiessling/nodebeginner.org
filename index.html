@@ -49,24 +49,44 @@
 
 			p {
 				text-align: justify;
+				font-size: 110%;
+				line-height: 150%;
 			}
 
 			h1 {
 				margin-left: -63px;
-				margin-top: -94px;
+				margin-top: -109px;
+				font-size: 300%;
+				color: #444;
 			}
 
 			h2 {
 				margin-top: 48px;
-				color: #700
+				color: #700;
+				font-size: 200%;
+			}
+
+			h3 {
+				font-size: 160%;
+			}
+
+			h4 {
+				font-size: 120%;
 			}
 
 			h3, h4 {
 				margin-top: 36px;
-				color: #700
+				color: #700;
 			}
+
+			h2, h3, h4 {
+				font-style: italic;
+				font-weight: normal;
+			}
+
 			ul li {
 				margin-bottom: 12px;
+				font-size: 110%;
 			}
 		</style>
 		<script type="text/javascript">
@@ -82,6 +102,8 @@
 		</script>
 	</head>
 	<body>
+		<a href="https://github.com/ManuelKiessling/NodeBeginnerBook"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://d3nwyuy0nl342s.cloudfront.net/img/71eeaab9d563c2b3c590319b398dd35683265e85/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub"></a>
+
 		<div id="book">
 			<h1>The Node Beginner Book</h1>
 			<div id="author">by Manuel Kiessling</div>
@@ -770,7 +792,7 @@ sys.puts("Server has started.");
 				And our code does just that: Whenever a request is
 				received, it uses the <em>response.writeHead()</em>
 				function to send an HTTP status 200 and content-type in the
-				HTTP response header, and the <em>response.writeHead()</em>
+				HTTP response header, and the <em>response.write()</em>
 				function to send the text "Hello World" in the HTTP
 				response body.
 			</p>
