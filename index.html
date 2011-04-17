@@ -42,17 +42,6 @@
 				margin-right: 12px;
 			}
 
-			pre {
-				background-color: #eee;
-				padding: 16px;
-			}
-
-			p {
-				text-align: justify;
-				font-size: 110%;
-				line-height: 150%;
-			}
-
 			h1 {
 				margin-left: -63px;
 				margin-top: -109px;
@@ -82,6 +71,18 @@
 			h2, h3, h4 {
 				font-style: italic;
 				font-weight: normal;
+			}
+
+			p {
+				text-align: justify;
+				font-size: 110%;
+				line-height: 150%;
+			}
+
+			pre {
+				background-color: #FFFF99;
+				border: 1px solid black;
+			padding: 16px;
 			}
 
 			ul li {
@@ -353,7 +354,7 @@ sys.puts("Hello World");
 						When requesting http://<em>domain</em>/upload, the
 						user should be able to upload an image file	from
 						his computer, which is then displayed in his
-						browser.
+						browser
 					</li>
 				</ul>
 			</p>
@@ -396,7 +397,7 @@ sys.puts("Hello World");
 						The router probably should also treat any incoming
 						POST data and give it to the request handlers in
 						a convenient form, thus we need a <strong>request
-						data handler</strong>.
+						data handler</strong>
 					</li>
 					<li>
 						We not only want to handle requests for URLs, we
@@ -404,13 +405,13 @@ sys.puts("Hello World");
 						requested, which means we need some kind of
 						<strong>view logic</strong> the request handlers
 						can use in order to send content to the user's
-						browser.
+						browser
 					</li>
 					<li>
 						Last but not least, the user will be able to upload
 						images, so we are going to need an
 						<strong>upload handler</strong> to take care of the
-						details.
+						details
 					</li>
 				</ul>
 			</p>
@@ -805,7 +806,17 @@ sys.puts("Server has started.");
 				request, which is why we don't use the <em>request</em>
 				object at all.
 			</p>
+
+
 		</div>
+
+
+
+
+
+
+
+
 
 		<div id="disqus_thread"></div>
 		<script type="text/javascript">
