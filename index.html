@@ -27,6 +27,13 @@
 				color: #888;
 			}
 
+			#workinprogressnote {
+				margin-top: 80px;
+				font-weight: bold;
+				font-style: italic;
+				color: #700;
+			}
+
 			#disqus_thread {
 				
 			}
@@ -420,14 +427,14 @@ sys.puts("Hello World");
 				with PHP. It's not exactly a secret that the typical setup
 				would be an Apache HTTP server with mod_php5 installed.
 				<br/>
-				Which in turn means, that the whole "we need to be able to
+				Which in turn means that the whole "we need to be able to
 				serve web pages and receive HTTP requests" stuff doesn't
 				happen within PHP itself.
 			</p>
 			<p>
 				Well, with node, things are a bit different. Because with
-				node, you not implement your application, you also
-				implement the whole HTTP server. In fact, your web
+				node, we not only implement our application, we also
+				implement the whole HTTP server. In fact, our web
 				application	and its web server are basically the same.
 			</p>
 			<p>
@@ -666,12 +673,12 @@ http.createServer(handle).listen(8888);
 
 			<h4>Event-driven callbacks</h4>
 			<p>
-				The answer is a) not really simple (at least for me), and
+				The answer is a) not that easy to give (at least for me), and
 				b) lies in the very nature of how node works. It's
 				event-driven, which is the reason why it's so fast.
 			</p>
 			<p>
-				You might now want to take the time to read Felix
+				You might want to take the time to read Felix
 				Geisendörfer's excellent post
 				<a href="http://debuggable.com/posts/understanding-node-js:4bd98440-45e4-4a9a-8ef7-0f7ecbdd56cb">Understanding node.js</a>
 				for some background explanation.
@@ -772,6 +779,13 @@ sys.puts("Server has started.");
 				Event-driven asynchronous server-side JavaScript with
 				callbacks in action :-)
 			</p>
+			<p>
+				(Note that our server will probably write "Requested received."
+				to STDOUT two times upon opening the page in a browser. That's
+				because most browser will try to load the favicon by requesting
+				http://localhost:8888/favicon.ico whenever you open
+				http://localhost:8888/).
+			</p>
 
 			<h4>How our server handles requests</h4>
 			<p>
@@ -808,6 +822,134 @@ sys.puts("Server has started.");
 			</p>
 
 
+			<h4>Finding a place for our server module</h4>
+			<p>
+				Ok, I promised we will get back to how to organize our
+				application. We have the code for a very basic HTTP server in
+				the file <em>server.js</em>, and I mentioned that it's common
+				to have a main file called <em>index.js</em> which is used
+				to bootstrap and start our application by making use of the
+				other modules of the application (like the HTTP server module
+				that lives in <em>server.js</em>).
+			</p>
+			<p>
+				Let's talk about how to make server.js a real node module
+				that can be used by our yet to write index.js main file.
+			</p>
+			<p>
+				As you may have noticed, we already used modules in our code,
+				like this:
+			</p>
+			<p>
+<pre>var sys = require("sys");
+
+sys.puts("Hello World");
+</pre>
+			</p>
+			<p>
+				Somewhere within node lives a module called "sys", and we can
+				make use of it in our own code by requiring it and assigning
+				the result of the require to local variable.
+			</p>
+			<p>
+				This makes our local variable an object that carries all the
+				public methods the <em>sys</em> module provides;
+			</p>
+			<p>
+				It's common practice to choose the name of the module for the
+				name of the local variable, but we are free to choose whatever
+				we like:
+			</p>
+			<p>
+<pre>var foo = require("sys");
+
+foo.puts("Hello World");
+</pre>
+			</p>
+			<p>
+				Fine, it's clear how to make use of internal node modules. How
+				do we create our own modules, and how do we use them?
+			</p>
+			<p>
+				Let's find out by turning our <em>server.js</em> script into a
+				real module.
+			</p>
+			<p>
+				Turns out, we don't have to change that much. Making some code
+				a module means we need to <em>export</em> those parts of its
+				functionality that we want to provide to scripts that require
+				our module.
+			</p>
+			<p>
+				For now, the functionality our HTTP server needs to export is
+				simple: scripts requiring our server module simply need to
+				start the server.
+			</p>
+			<p>
+				To make this possible, we will put our server code into a
+				function named <em>start</em>, and we will export this
+				function:
+			</p>
+			<p>
+<pre>var sys = require("sys");
+var http = require("http");
+
+function start() {
+  function handle(request, response) {
+    sys.puts("Request received.");
+    response.writeHead(200, {"Content-Type": "text/html"});
+    response.write("Hello World");
+    response.end();
+  }
+
+  http.createServer(handle).listen(8888);
+  sys.puts("Server has started.");
+}
+
+exports.start = start;
+</pre>
+			</p>
+			<p>
+				This way, we can now create our main file <em>index.js</em>,
+				and start our HTTP there, although the code for the server is
+				still in our <em>server.js</em> file.
+			</p>
+			<p>
+				Create a file <em>index.js</em> with the following content:
+			</p>
+			<p>
+<pre>var server = require("./server");
+
+server.start();
+</pre>
+			</p>
+			<p>
+				As you can see, we can use our server module just like any
+				internal module: by requiring its file and assigning it to
+				a variable, its exported functions become available to us.
+			</p>
+			<p>
+				That's it. We can now start our app via our main script, and it
+				still does exactly the same:
+			</p>
+			<p>
+<pre>
+node index.js
+</pre>
+			</p>
+			<p>
+				Great, we now can put the different parts of our application
+				into different files and wire them together by making them
+				modules.
+			</p>
+
+			<p id="workinprogressnote">
+				The Node Beginner Book is currently work-in-progress.
+				<br />
+				Check back daily to see the latest version.
+			</p>
+
+
 		</div>
 
 
@@ -837,7 +979,9 @@ sys.puts("Server has started.");
 				<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png" /></a>
 			</p>
 			<p>
-				<span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">The Node Beginner Book</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://manuel.kiessling.net" property="cc:attributionName" rel="cc:attributionURL">Manuel Kiessling</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</a>.<br />Permissions beyond the scope of this license may be available at <a xmlns:cc="http://creativecommons.org/ns#" href="mailto:manuel@kiessling.net" rel="cc:morePermissions">mailto:manuel@kiessling.net</a>.
+				<span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">The Node Beginner Book</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://manuel.kiessling.net" property="cc:attributionName" rel="cc:attributionURL">Manuel Kiessling</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</a>.
+				<br />
+				Permissions beyond the scope of this license may be available at <a xmlns:cc="http://creativecommons.org/ns#" href="mailto:manuel@kiessling.net" rel="cc:morePermissions">manuel@kiessling.net</a>.
 			</p>
 		</div>
 	</body>
