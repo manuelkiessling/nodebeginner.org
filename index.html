@@ -260,7 +260,7 @@
 				there. I'm not one of them.
 			</p>
 			<p>
-				I'm really the guy I talked about in the previous
+				I'm really just the guy I talked about in the previous
 				paragraph. I know a thing or two about developing backend
 				web applications, but I'm still new to "real" JavaScript
 				and	still new to node.js. I learned some of the more
@@ -269,7 +269,7 @@
 			</p>
 			<p>
 				Which is why this is no "from novice to expert" book. It's
-				more like "from novice to expert-novice".
+				more like "from novice to advanced novice".
 			</p>
 			<p>
 				If I don't fail, then this here will be the kind of
@@ -403,8 +403,8 @@ sys.puts("Hello World");
 					<li>
 						The router probably should also treat any incoming
 						POST data and give it to the request handlers in
-						a convenient form, thus we need a <strong>request
-						data handler</strong>
+						a convenient form, thus we need <strong>request
+						data handling</strong>
 					</li>
 					<li>
 						We not only want to handle requests for URLs, we
@@ -416,9 +416,9 @@ sys.puts("Hello World");
 					</li>
 					<li>
 						Last but not least, the user will be able to upload
-						images, so we are going to need an
-						<strong>upload handler</strong> to take care of the
-						details
+						images, so we are going to need some kind of
+						<strong>upload handling</strong> which takes care of
+						the	details
 					</li>
 				</ul>
 			</p>
@@ -942,11 +942,264 @@ node index.js
 				into different files and wire them together by making them
 				modules.
 			</p>
+			<p>
+				We still have only the very first part of our application in
+				place: we can receive HTTP requests. But we need to do
+				something with them - depending on which URL the browser
+				requested from our server, we need to react differently.
+			</p>
+			<p>
+				For a very simple application, you could do this directly
+				within the callback function <em>handle()</em>. But as I said,
+				let's add a bit more abstraction in order to make our example
+				application a bit more interesting.
+			</p>
+			<p>
+				Making different HTTP requests point at different parts of our
+				code is called "routing" - well, then, let's create a module
+				called <em>router</em>.
+			</p>
+
+			<h4>What's needed to "route" requests?</h4>
+			<p>
+				We need to be able to feed the requested URL and possible
+				additional GET and POST parameters into our router, and based
+				on these the router then needs to be able to decide which code
+				to execute (this "code to execute" is the third part of our
+				application: a collection of request handlers that do the
+				actual work when a request is received).
+			</p>
+			<p>
+				So, we need to look into the HTTP requests and extract the
+				requested URL as well as the GET/POST parameters from them.
+				It could be argued if that should be part of the router or
+				part of the server (or even a module of its own), but let's
+				just agree on making it part of our HTTP server for now.
+			</p>
+			<p>
+				All the information we need is available through the
+				<em>request</em> object which is passed as the first parameter
+				to our callback function <em>handle()</em>. But to interpret
+				this information, we need some additional node modules, namely
+				<em>url</em> and <em>querystring</em>.
+			</p>
+			<p>
+				The <em>url</em> module provides methods which allow us to
+				extract the different parts of a URL (like e.g. the requested
+				path and query string), and <em>querystring</em> can in turn be
+				used to parse the query string for request parameters:
+			</p>
+<pre>
+                    url.path     url.query
+                       |            |
+                       |            |
+                     ------ -------------------
+http://localhost:8888/start?foo=bar&hello=world
+                                ---       -----
+                                 |          |
+                                 |          |
+            querystring(url.query)["foo"]   |
+                                            |
+                       querystring(url.query)["hello"]
+
+</pre>
+			<p>
+				We can, of course, also use <em>querystring</em> to parse the
+				body of a POST request body for parameters, as we will see
+				later.
+			</p>
+			<p>
+				Let's now add to our <em>handle()</em> function the logic
+				needed to find out which URL path the browser requested:
+			</p>
+			<p>
+<pre>var sys = require("sys");
+var http = require("http");
+var url = require("url");
+
+function start() {
+  function handle(request, response) {
+	var pathname = url.parse(request.url).pathname;
+	sys.puts("Request for " + pathname + " received.");
+	response.writeHead(200, {"Content-Type": "text/html"});
+	response.write("Hello World");
+	response.end();
+  }
+
+  http.createServer(handle).listen(8888);
+  sys.puts("Server has started.");
+}
+
+exports.start = start;
+
+</pre>
+			</p>
+			<p>
+				Fine. Our application can now distinguish requests based on the
+				URL path requested - this allows us to map requests to our
+				request handlers based on the URL path using our (yet to be
+				written) router. Thus, we can build our application in a
+				RESTful way, because we can now implement an interface that
+				follows the guiding principle of <em>Identification of
+				resources</em> (see
+				<a href="http://en.wikipedia.org/wiki/Representational_State_Transfer#Guiding_principles_of_the_interface">the Representational State Transfer article on Wikipedia</a>
+				for background information).
+			</p>
+			<p>
+				In the context of our application, it simply means that we will
+				be able to have requests for the <em>/start</em> and
+				<em>/upload</em> URLs be handled by different parts of our
+				code. We will see how everything fits together soon.
+			</p>
+			<p>
+				Ok, it's time to actually write our router. Create a new file
+				called <em>router.js</em>, with the following content:
+			</p>
+			<p>
+<pre>var sys = require("sys");
+
+function route(resource) {
+  sys.puts("About to route a request for " + resource);
+}
+
+exports.route = route;
+</pre>
+			</p>
+			<p>
+				I hope you are fine with my decision to name the input
+				parameter (which the router needs to decide where to route)
+				<em>resource</em>. That's the RESTful name for "the thing that
+				got requested", which is why I find it quite fitting.
+			</p>
+			<p>
+				Of course, this code basically does nothing, but that's ok for
+				now. Let's first see how to wire together this router with our
+				server before putting more logic into the router.
+			</p>
+			<p>
+				Our HTTP server needs to know about and make use of our router.
+				We could hard-wire this dependency into the server, but because
+				we learned the hard way from our experience with other
+				programming languages, we are going to loosely couple server
+				and router by injection this dependency (you may want to read
+				<a href="http://martinfowler.com/articles/injection.html">Martin Fowlers excellent post on Dependency Injection</a>
+				for	background information).
+			</p>
+			<p>
+				Let's first extend our server's <em>start()</em> function in
+				order to enable us to pass the route function to be used by
+				parameter:
+			</p>
+			<p>
+<pre>var sys = require("sys");
+var http = require("http");
+var url = require("url");
+
+function start(route) {
+  function handle(request, response) {
+    var pathname = url.parse(request.url).pathname;
+    sys.puts("Request for " + pathname + " received.");
+
+    route(pathname);
+
+    response.writeHead(200, {"Content-Type": "text/html"});
+    response.write("Hello World");
+    response.end();
+  }
+
+  http.createServer(handle).listen(8888);
+  sys.puts("Server has started.");
+}
+
+exports.start = start;
+</pre>
+			</p>
+			<p>
+				And let's extend our <em>index.js</em> accordingly, that is,
+				injecting the route function of our router into the server:
+			</p>
+			<p>
+<pre>var server = require("./server");
+var router = require("./router");
+
+server.start(router.route);
+
+</pre>
+			</p>
+			<p>
+				Again, we are passing a function, which by now isn't any news
+				for us.
+			</p>
+			<p>
+				If we start our application now (<em>node index.js,
+				as always</em>), and request an URL, you can now see from the
+				application's output that our HTTP server makes use of our
+				router and passes it the requested pathname:
+			</p>
+			<p>
+<pre>bash$ node index.js
+Request for /foo received.
+About to route a request for /foo
+</pre>
+			</p>
+			<p>
+				(I omitted the rather annoying output for the /favicon.ico
+				request).
+			</p>
+
+			<h4>Execution in the kingdom of verbs</h4>
+			<p>
+				May I once again stray away for a while and talk about
+				functional programming again?
+			</p>
+			<p>
+				Passing functions is not only a technical consideration.
+				In regards of software design, it's almost philosophical.
+				Just think about it: in our index file, we could have passed
+				the	<em>router</em> object into the server, and the server
+				could have called this object's <em>route</em> function.
+			</p>
+			<p>
+				This way, we would have passed a <em>thing</em>, and the server
+				would have used this thing to <em>do</em> something. Hey,
+				router thing, could you please route this for me?
+			</p>
+			<p>
+				But the server doesn't need the thing. It only needs to get
+				something <em>done</em>, and to get something done, you don't
+				need things at all, you need <em>actions</em>. You don't need
+				<em>nouns</em>, you need <em>verbs</em>.
+			</p>
+			<p>
+				Understanding the fundamental mind-shift that's at the core of
+				this idea is what made me really understand functional
+				programming.
+			</p>
+			<p>
+				And I did understand it when reading Steve Yegge's masterpiece
+				<a href="http://steve-yegge.blogspot.com/2006/03/execution-in-kingdom-of-nouns.html">Execution in the Kingdom of Nouns</a>.
+				Go read it now, really. It's one of the best writings related
+				to software I ever had the pleasure to encounter.
+			</p>
+			<p>
+				
+			</p>
+
+
+
+
+
+
+
+
 
 			<p id="workinprogressnote">
 				The Node Beginner Book is currently work-in-progress.
 				<br />
 				Check back daily to see the latest version.
+				<br />
+				The version you are	currently reading was updated on Monday,
+				April 18, 2011.
 			</p>
 
 

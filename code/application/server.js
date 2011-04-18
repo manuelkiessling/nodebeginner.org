@@ -1,9 +1,14 @@
 var sys = require("sys");
 var http = require("http");
+var url = require("url");
 
-function start() {
+function start(route) {
   function handle(request, response) {
-    sys.puts("Request received.");
+    var pathname = url.parse(request.url).pathname;
+    sys.puts("Request for " + pathname + " received.");
+
+    route(pathname);
+
     response.writeHead(200, {"Content-Type": "text/html"});
     response.write("Hello World");
     response.end();
