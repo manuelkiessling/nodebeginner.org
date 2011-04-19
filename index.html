@@ -323,9 +323,7 @@
 				to STDOUT, and here is the code needed to do that:
 			</p>
 			<p>
-<pre>var sys = require("sys");
-
-sys.puts("Hello World");
+<pre>console.log("Hello World");
 </pre>
 			</p>
 			<p>
@@ -567,10 +565,8 @@ server.listen(8888);</pre>
 				You can, for example, do something like this:
 			</p>
 			<p>
-<pre>var sys = require("sys");
-
-function say(word) {
-  sys.puts(word);
+<pre>function say(word) {
+  console.log(word);
 }
 
 function execute(someFunction, value) {
@@ -604,13 +600,11 @@ execute(say, "Hello");</pre>
 				function in-place:
 			</p>
 			<p>
-<pre>var sys = require("sys");
-
-function execute(someFunction, value) {
+<pre>function execute(someFunction, value) {
   someFunction(value);
 }
 
-execute(function(word){sys.puts(word)}, "Hello");
+execute(function(word){ console.log(word) }, "Hello");
 </pre>
 			</p>
 			<p>
@@ -746,11 +740,10 @@ http.createServer(handle).listen(8888);
 				passed isn't called? Let's try it:
 			</p>
 			<p>
-				<pre>var sys = require("sys");
-var http = require("http");
+				<pre>var http = require("http");
 
 function handle(request, response) {
-  sys.puts("Request received.");
+  console.log("Request received.");
   response.writeHead(200, {"Content-Type": "text/html"});
   response.write("Hello World");
   response.end();
@@ -758,14 +751,13 @@ function handle(request, response) {
 
 http.createServer(handle).listen(8888);
 
-sys.puts("Server has started.");
+console.log("Server has started.");
 </pre>
 			</p>
 			<p>
-				Note that I require the <em>sys</em> module, and use it to
-				output a text whenever the <em>handle</em> function (our
-				callback) is triggered, and another text right
-				<em>after</em> starting	the HTTP server.
+				Note that I use <em>console.log</em> to	output a text whenever
+				the <em>handle</em> function (our callback) is triggered, and
+				another text right <em>after</em> starting the HTTP server.
 			</p>
 			<p>
 				When we start this (<em>node server.js</em>, as always), it
@@ -841,19 +833,21 @@ sys.puts("Server has started.");
 				like this:
 			</p>
 			<p>
-<pre>var sys = require("sys");
+<pre>var http = require("http");
 
-sys.puts("Hello World");
+...
+
+http.createServer(...);
 </pre>
 			</p>
 			<p>
-				Somewhere within node lives a module called "sys", and we can
+				Somewhere within node lives a module called "http", and we can
 				make use of it in our own code by requiring it and assigning
 				the result of the require to local variable.
 			</p>
 			<p>
 				This makes our local variable an object that carries all the
-				public methods the <em>sys</em> module provides;
+				public methods the <em>http</em> module provides.
 			</p>
 			<p>
 				It's common practice to choose the name of the module for the
@@ -861,9 +855,11 @@ sys.puts("Hello World");
 				we like:
 			</p>
 			<p>
-<pre>var foo = require("sys");
+<pre>var foo = require("http");
 
-foo.puts("Hello World");
+...
+
+foo.createServer(...);
 </pre>
 			</p>
 			<p>
@@ -891,19 +887,18 @@ foo.puts("Hello World");
 				function:
 			</p>
 			<p>
-<pre>var sys = require("sys");
-var http = require("http");
+<pre>var http = require("http");
 
 function start() {
   function handle(request, response) {
-    sys.puts("Request received.");
+    console.log("Request received.");
     response.writeHead(200, {"Content-Type": "text/html"});
     response.write("Hello World");
     response.end();
   }
 
   http.createServer(handle).listen(8888);
-  sys.puts("Server has started.");
+  console.log("Server has started.");
 }
 
 exports.start = start;
@@ -1013,21 +1008,20 @@ http://localhost:8888/start?foo=bar&hello=world
 				needed to find out which URL path the browser requested:
 			</p>
 			<p>
-<pre>var sys = require("sys");
-var http = require("http");
+<pre>var http = require("http");
 var url = require("url");
 
 function start() {
   function handle(request, response) {
 	var pathname = url.parse(request.url).pathname;
-	sys.puts("Request for " + pathname + " received.");
+	console.log("Request for " + pathname + " received.");
 	response.writeHead(200, {"Content-Type": "text/html"});
 	response.write("Hello World");
 	response.end();
   }
 
   http.createServer(handle).listen(8888);
-  sys.puts("Server has started.");
+  console.log("Server has started.");
 }
 
 exports.start = start;
@@ -1056,10 +1050,8 @@ exports.start = start;
 				called <em>router.js</em>, with the following content:
 			</p>
 			<p>
-<pre>var sys = require("sys");
-
-function route(resource) {
-  sys.puts("About to route a request for " + resource);
+<pre>function route(resource) {
+  console.log("About to route a request for " + resource);
 }
 
 exports.route = route;
@@ -1091,14 +1083,13 @@ exports.route = route;
 				parameter:
 			</p>
 			<p>
-<pre>var sys = require("sys");
-var http = require("http");
+<pre>var http = require("http");
 var url = require("url");
 
 function start(route) {
   function handle(request, response) {
     var pathname = url.parse(request.url).pathname;
-    sys.puts("Request for " + pathname + " received.");
+    console.log("Request for " + pathname + " received.");
 
     route(pathname);
 
@@ -1108,7 +1099,7 @@ function start(route) {
   }
 
   http.createServer(handle).listen(8888);
-  sys.puts("Server has started.");
+  console.log("Server has started.");
 }
 
 exports.start = start;

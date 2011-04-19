@@ -1,3 +1,1 @@
-var sys = require("sys");
-
-sys.puts("Hello Server");
+console.log("Hello Server");

@@ -1,11 +1,10 @@
-var sys = require("sys");
 var http = require("http");
 var url = require("url");
 
 function start(route) {
   function handle(request, response) {
     var pathname = url.parse(request.url).pathname;
-    sys.puts("Request for " + pathname + " received.");
+    console.log("Request for " + pathname + " received.");
 
     route(pathname);
 
@@ -15,7 +14,7 @@ function start(route) {
   }
 
   http.createServer(handle).listen(8888);
-  sys.puts("Server has started.");
+  console.log("Server has started.");
 }
 
 exports.start = start;
