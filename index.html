@@ -3,7 +3,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link href="prettify/prettify.css" type="text/css" rel="stylesheet" />
+
 		<title>The Node Beginner Book</title>
+
 		<style type="text/css">
 			body {
 				font-family: Georgia, serif;
@@ -89,9 +92,15 @@
 			}
 
 			pre {
-				background-color: #FFFF99;
-				border: 1px solid black;
-			padding: 16px;
+				background-color: #f7f7f7;
+				border: 1px solid #eee;
+				padding: 16px;
+			}
+
+			pre.prettyprint {
+				background-color: #f7f7f7;
+				border: 1px solid #eee;
+				padding: 16px;
 			}
 
 			ul li {
@@ -99,6 +108,7 @@
 				font-size: 110%;
 			}
 		</style>
+		<script type="text/javascript" src="prettify/prettify.js"></script>
 		<script type="text/javascript">
 			var _gaq = _gaq || [];
 			_gaq.push(['_setAccount', 'UA-2127388-6']);
@@ -111,7 +121,7 @@
 			})();
 		</script>
 	</head>
-	<body>
+	<body onload="prettyPrint();">
 		<a href="https://github.com/ManuelKiessling/NodeBeginnerBook"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://d3nwyuy0nl342s.cloudfront.net/img/71eeaab9d563c2b3c590319b398dd35683265e85/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" /></a>
 
 		<div id="book">
@@ -329,7 +339,7 @@
 				to STDOUT, and here is the code needed to do that:
 			</p>
 			<p>
-<pre>console.log("Hello World");
+<pre class="prettyprint lang-js">console.log("Hello World");
 </pre>
 			</p>
 			<p>
@@ -489,7 +499,7 @@
 				and fill it with the following code:
 			</p>
 			<p>
-<pre>var http = require("http");
+<pre class="prettyprint lang-js">var http = require("http");
 
 http.createServer(function(request, response) {
   response.writeHead(200, {"Content-Type": "text/html"});
@@ -543,7 +553,7 @@ http.createServer(function(request, response) {
 				makes it listen at port 8888 like this:
 			</p>
 			<p>
-<pre>var http = require("http");
+<pre class="prettyprint lang-js">var http = require("http");
 
 var server = http.createServer();
 server.listen(8888);</pre>
@@ -571,7 +581,7 @@ server.listen(8888);</pre>
 				You can, for example, do something like this:
 			</p>
 			<p>
-<pre>function say(word) {
+<pre class="prettyprint lang-js">function say(word) {
   console.log(word);
 }
 
@@ -606,7 +616,7 @@ execute(say, "Hello");</pre>
 				function in-place:
 			</p>
 			<p>
-<pre>function execute(someFunction, value) {
+<pre class="prettyprint lang-js">function execute(someFunction, value) {
   someFunction(value);
 }
 
@@ -637,7 +647,7 @@ execute(function(word){ console.log(word) }, "Hello");
 				HTTP server:
 			</p>
 			<p>
-<pre>var http = require("http");
+<pre class="prettyprint lang-js">var http = require("http");
 
 http.createServer(function(request, response) {
   response.writeHead(200, {"Content-Type": "text/html"});
@@ -655,7 +665,7 @@ http.createServer(function(request, response) {
 				We could achieve the same by refactoring our code to:
 			</p>
 			<p>
-<pre>var http = require("http");
+<pre class="prettyprint lang-js">var http = require("http");
 
 function onRequest(request, response) {
   response.writeHead(200, {"Content-Type": "text/html"});
@@ -746,7 +756,7 @@ http.createServer(onRequest).listen(8888);
 				passed isn't called? Let's try it:
 			</p>
 			<p>
-				<pre>var http = require("http");
+<pre class="prettyprint lang-js">var http = require("http");
 
 function onRequest(request, response) {
   console.log("Request received.");
@@ -839,7 +849,7 @@ console.log("Server has started.");
 				like this:
 			</p>
 			<p>
-<pre>var http = require("http");
+<pre class="prettyprint lang-js">var http = require("http");
 
 ...
 
@@ -861,7 +871,7 @@ http.createServer(...);
 				we like:
 			</p>
 			<p>
-<pre>var foo = require("http");
+<pre class="prettyprint lang-js">var foo = require("http");
 
 ...
 
@@ -893,7 +903,7 @@ foo.createServer(...);
 				function:
 			</p>
 			<p>
-<pre>var http = require("http");
+<pre class="prettyprint lang-js">var http = require("http");
 
 function start() {
   function onRequest(request, response) {
@@ -919,7 +929,7 @@ exports.start = start;
 				Create a file <em>index.js</em> with the following content:
 			</p>
 			<p>
-<pre>var server = require("./server");
+<pre class="prettyprint lang-js">var server = require("./server");
 
 server.start();
 </pre>
@@ -1014,7 +1024,7 @@ http://localhost:8888/start?foo=bar&hello=world
 				needed to find out which URL path the browser requested:
 			</p>
 			<p>
-<pre>var http = require("http");
+<pre class="prettyprint lang-js">var http = require("http");
 var url = require("url");
 
 function start() {
@@ -1031,7 +1041,6 @@ function start() {
 }
 
 exports.start = start;
-
 </pre>
 			</p>
 			<p>
@@ -1056,7 +1065,7 @@ exports.start = start;
 				called <em>router.js</em>, with the following content:
 			</p>
 			<p>
-<pre>function route(pathname) {
+<pre class="prettyprint lang-js">function route(pathname) {
   console.log("About to route a request for " + pathname);
 }
 
@@ -1083,7 +1092,7 @@ exports.route = route;
 				parameter:
 			</p>
 			<p>
-<pre>var http = require("http");
+<pre class="prettyprint lang-js">var http = require("http");
 var url = require("url");
 
 function start(route) {
@@ -1110,7 +1119,7 @@ exports.start = start;
 				injecting the route function of our router into the server:
 			</p>
 			<p>
-<pre>var server = require("./server");
+<pre class="prettyprint lang-js">var server = require("./server");
 var router = require("./router");
 
 server.start(router.route);
@@ -1204,7 +1213,7 @@ About to route a request for /foo
 				methods of the module:
 			</p>
 			<p>
-<pre>function start() {
+<pre class="prettyprint lang-js">function start() {
   console.log("Request handler 'start' was called.");
 }
 
@@ -1287,7 +1296,7 @@ exports.upload = upload;
 				<em>index.js</em>:
 			</p>
 			<p>
-<pre>var server = require("./server");
+<pre class="prettyprint lang-js">var server = require("./server");
 var router = require("./router");
 var requestHandlers = require("./requestHandlers");
 
@@ -1319,7 +1328,7 @@ server.start(router.route, handle);
 				make use of	it:
 			</p>
 			<p>
-<pre>var http = require("http");
+<pre class="prettyprint lang-js">var http = require("http");
 var url = require("url");
 
 function start(route, handle) {
@@ -1351,7 +1360,7 @@ exports.start = start;
 				<em>router.js</em> file:
 			</p>
 			<p>
-<pre>function route(handle, pathname) {
+<pre class="prettyprint lang-js">function route(handle, pathname) {
   console.log("About to route a request for " + pathname);
   if (handle[pathname] != undefined) {
 	  handle[pathname]();
