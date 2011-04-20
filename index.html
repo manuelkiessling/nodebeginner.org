@@ -200,7 +200,7 @@
 			<p>
 				As promised, along the way we will learn about some of the more
 				advanced concepts of JavaScript, how to make use of them, and
-				looking at why it makes sense to use these concepts instead of
+				look at why it makes sense to use these concepts instead of
 				those we know from other programming languages.
 			</p>
 
@@ -262,9 +262,9 @@
 				JavaScript, you are actually developing it.
 			</p>
 			<p>
-				Because that's the catch, you already are an experienced
+				Because that's the catch: you already are an experienced
 				developer, you don't want to learn a new technique by just
-				hacking around and mis-using it, you want to be sure that
+				hacking around and mis-using it; you want to be sure that
 				you are approaching it from the right angle.
 			</p>
 			<p>
@@ -294,7 +294,7 @@
 				more like "from novice to advanced novice".
 			</p>
 			<p>
-				If I don't fail, then this here will be the kind of
+				If I don't fail, then this will be the kind of
 				document I wish I had when starting with node.js.
 			</p>
 
@@ -304,20 +304,20 @@
 				But this is just the context. It defines what you can
 				do with the language, but it doesn't say much about what
 				the language itself can do. JavaScript is a "complete"
-				language, you can use it in many contexts and achieve
+				language: you can use it in many contexts and achieve
 				everything with it you can achieve with any other
 				"complete" language.
 			</p>
 			<p>
-				node.js really is just another context: it allows to run
+				node.js really is just another context: it allows you to run
 				JavaScript code in the backend, outside a browser.
 			</p>
 			<p>
 				In order to execute the JavaScript you intend to run in the
 				backend, it needs to be interpreted and, well, executed.
 				This is what node.js does, by making use of Google's V8 VM, the
-				same runtime environment for JavaScript that used in Google
-				Chrome.
+				same runtime environment for JavaScript that Google
+				Chrome uses.
 			</p>
 			<p>
 				Plus, node.js ships with a lot of useful modules, so you don't
@@ -396,7 +396,7 @@
 			</p>
 			<p>
 				Furthermore, we don't want to write only the most basic
-				code to achieve the goal, how elegant and correct this code
+				code to achieve the goal, however elegant and correct this code
 				might be. We will intentionally add more abstraction than
 				necessary in order to get a feeling for building more
 				complex node applications.
@@ -620,7 +620,7 @@ execute(say, "Hello");</pre>
 			</p>
 			<p>
 				We can, as we just did, pass a function as a parameter to
-				another function by it name. But we don't have to take this
+				another function by its name. But we don't have to take this
 				indirection of first defining, then passing it - we can
 				define and pass a function as a parameter to another
 				function in-place:
@@ -852,7 +852,7 @@ console.log("Server has started.");
 			</p>
 			<p>
 				Let's talk about how to make server.js a real node module
-				that can be used by our yet to write index.js main file.
+        that can be used by our yet-to-be-written <em>index.js</em> main file.
 			</p>
 			<p>
 				As you may have noticed, we already used modules in our code,
@@ -1164,7 +1164,7 @@ About to route a request for /foo
 			</p>
 			<p>
 				Passing functions is not only a technical consideration.
-				In regards of software design, it's almost philosophical.
+				With regard to software design, it's almost philosophical.
 				Just think about it: in our index file, we could have passed
 				the	<em>router</em> object into the server, and the server
 				could have called this object's <em>route</em> function.
