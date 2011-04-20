@@ -1010,19 +1010,19 @@ node index.js
 				path and query string), and <em>querystring</em> can in turn be
 				used to parse the query string for request parameters:
 			</p>
-<pre>
-                    url.path     url.query
-                       |            |
-                       |            |
+<pre>                               url.parse(string).query
+                                           |
+           url.parse(string).pathname      |
+                       |                   |
+                       |                   |
                      ------ -------------------
 http://localhost:8888/start?foo=bar&hello=world
                                 ---       -----
                                  |          |
                                  |          |
-            querystring(url.query)["foo"]   |
+              querystring(string)["foo"]    |
                                             |
-                       querystring(url.query)["hello"]
-
+                         querystring(string)["hello"]
 </pre>
 			<p>
 				We can, of course, also use <em>querystring</em> to parse the
