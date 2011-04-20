@@ -1,8 +1,10 @@
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>The Node Beginner Book</title>
-		<style>
+		<style type="text/css">
 			body {
 				font-family: Georgia, serif;
 				background-color: #eee;
@@ -11,8 +13,8 @@
 
 			#book, #disqus_thread, #footer {
 				width: 840px;
-				margin: 24px;
-				margin-left: 160px;
+				margin: 0 auto;
+				margin-top: 24px;
 				padding: 64px;
 				background-color: white;
 				border-top: 1px solid #ddd;
@@ -110,11 +112,11 @@
 		</script>
 	</head>
 	<body>
-		<a href="https://github.com/ManuelKiessling/NodeBeginnerBook"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://d3nwyuy0nl342s.cloudfront.net/img/71eeaab9d563c2b3c590319b398dd35683265e85/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub"></a>
+		<a href="https://github.com/ManuelKiessling/NodeBeginnerBook"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://d3nwyuy0nl342s.cloudfront.net/img/71eeaab9d563c2b3c590319b398dd35683265e85/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" /></a>
 
 		<div id="book">
 			<h1>The Node Beginner Book</h1>
-			<div id="author">by Manuel Kiessling</div>
+			<div id="author">by <a href="http://twitter.com/manuelkiessling">Manuel Kiessling</a></div>
 
 
 			<h2>About</h2>
@@ -655,13 +657,13 @@ http.createServer(function(request, response) {
 			<p>
 <pre>var http = require("http");
 
-function handle(request, response) {
+function onRequest(request, response) {
   response.writeHead(200, {"Content-Type": "text/html"});
   response.write("Hello World");
   response.end();
 }
 
-http.createServer(handle).listen(8888);
+http.createServer(onRequest).listen(8888);
 </pre>
 			</p>
 			<p>
@@ -746,22 +748,22 @@ http.createServer(handle).listen(8888);
 			<p>
 				<pre>var http = require("http");
 
-function handle(request, response) {
+function onRequest(request, response) {
   console.log("Request received.");
   response.writeHead(200, {"Content-Type": "text/html"});
   response.write("Hello World");
   response.end();
 }
 
-http.createServer(handle).listen(8888);
+http.createServer(onRequest).listen(8888);
 
 console.log("Server has started.");
 </pre>
 			</p>
 			<p>
 				Note that I use <em>console.log</em> to	output a text whenever
-				the <em>handle</em> function (our callback) is triggered, and
-				another text right <em>after</em> starting the HTTP server.
+				the <em>onRequest</em> function (our callback) is triggered,
+				and	another text right <em>after</em> starting the HTTP server.
 			</p>
 			<p>
 				When we start this (<em>node server.js</em>, as always), it
@@ -786,10 +788,10 @@ console.log("Server has started.");
 			<h4>How our server handles requests</h4>
 			<p>
 				Ok, let's quickly analyze the rest of our server code, that
-				is, the body of our callback function <em>handle()</em>.
+				is, the body of our callback function <em>onRequest()</em>.
 			</p>
 			<p>
-				When the callback fires and our <em>handler</em> function
+				When the callback fires and our <em>onRequest()</em> function
 				gets triggered, two parameters are passed into it:
 				<em>request</em> and <em>response</em>.
 			</p>
@@ -894,14 +896,14 @@ foo.createServer(...);
 <pre>var http = require("http");
 
 function start() {
-  function handle(request, response) {
+  function onRequest(request, response) {
     console.log("Request received.");
     response.writeHead(200, {"Content-Type": "text/html"});
     response.write("Hello World");
     response.end();
   }
 
-  http.createServer(handle).listen(8888);
+  http.createServer(onRequest).listen(8888);
   console.log("Server has started.");
 }
 
@@ -949,7 +951,7 @@ node index.js
 			</p>
 			<p>
 				For a very simple application, you could do this directly
-				within the callback function <em>handle()</em>. But as I said,
+				within the callback function <em>onRequest()</em>. But as I said,
 				let's add a bit more abstraction in order to make our example
 				application a bit more interesting.
 			</p>
@@ -978,7 +980,7 @@ node index.js
 			<p>
 				All the information we need is available through the
 				<em>request</em> object which is passed as the first parameter
-				to our callback function <em>handle()</em>. But to interpret
+				to our callback function <em>onRequest()</em>. But to interpret
 				this information, we need some additional node modules, namely
 				<em>url</em> and <em>querystring</em>.
 			</p>
@@ -1008,7 +1010,7 @@ http://localhost:8888/start?foo=bar&hello=world
 				later.
 			</p>
 			<p>
-				Let's now add to our <em>handle()</em> function the logic
+				Let's now add to our <em>onRequest()</em> function the logic
 				needed to find out which URL path the browser requested:
 			</p>
 			<p>
@@ -1016,7 +1018,7 @@ http://localhost:8888/start?foo=bar&hello=world
 var url = require("url");
 
 function start() {
-  function handle(request, response) {
+  function onRequest(request, response) {
 	var pathname = url.parse(request.url).pathname;
 	console.log("Request for " + pathname + " received.");
 	response.writeHead(200, {"Content-Type": "text/html"});
@@ -1024,7 +1026,7 @@ function start() {
 	response.end();
   }
 
-  http.createServer(handle).listen(8888);
+  http.createServer(onRequest).listen(8888);
   console.log("Server has started.");
 }
 
@@ -1054,18 +1056,12 @@ exports.start = start;
 				called <em>router.js</em>, with the following content:
 			</p>
 			<p>
-<pre>function route(resource) {
-  console.log("About to route a request for " + resource);
+<pre>function route(pathname) {
+  console.log("About to route a request for " + pathname);
 }
 
 exports.route = route;
 </pre>
-			</p>
-			<p>
-				I hope you are fine with my decision to name the input
-				parameter (which the router needs to decide where to route)
-				<em>resource</em>. That's the RESTful name for "the thing that
-				got requested", which is why I find it quite fitting.
 			</p>
 			<p>
 				Of course, this code basically does nothing, but that's ok for
@@ -1091,7 +1087,7 @@ exports.route = route;
 var url = require("url");
 
 function start(route) {
-  function handle(request, response) {
+  function onRequest(request, response) {
     var pathname = url.parse(request.url).pathname;
     console.log("Request for " + pathname + " received.");
 
@@ -1102,7 +1098,7 @@ function start(route) {
     response.end();
   }
 
-  http.createServer(handle).listen(8888);
+  http.createServer(onRequest).listen(8888);
   console.log("Server has started.");
 }
 
@@ -1176,9 +1172,231 @@ About to route a request for /foo
 				Go read it now, really. It's one of the best writings related
 				to software I ever had the pleasure to encounter.
 			</p>
+
+			<h4>Routing to real request handlers</h4>
 			<p>
-				
+				Back to business. Our HTTP server and our request router are
+				now best friends and talk to each other as we intended.
 			</p>
+			<p>
+				Of course, that's not enough. "Routing" means, we want to
+				handle requests to different URLs differently. We would like to
+				have the "business logic" for requests to <em>/start</em>
+				handled in another function than requests to <em>/upload</em>.
+			</p>
+			<p>
+				Right now, the routing "ends" in the router, and the router is
+				not the place to actually "do" something with the requests,
+				because that wouldn't scale well once our application becomes
+				more complex.
+			</p>
+			<p>
+				Let's call these functions, where requests are routed to,
+				<em>request handlers</em>. And let's tackle those next, because
+				unless we have these in place there isn't much sense in doing
+				anything with on the router for now.
+			</p>
+			<p>
+				New application part, new module - no surprise here. Let's
+				create a module called requestHandlers, add a placeholder
+				function for every request handler, and export these as
+				methods of the module:
+			</p>
+			<p>
+<pre>function start() {
+  console.log("Request handler 'start' was called.");
+}
+
+function upload() {
+  console.log("Request handler 'upload' was called.");
+}
+
+exports.start = start;
+exports.upload = upload;
+</pre>
+			</p>
+			<p>
+				This allows us to wire the request handlers into the router,
+				giving our router something to route to.
+			</p>
+			<p>
+				At this point we need to make a decision: do we hard-code usage
+				of the requestHandlers module into the router, or do we want a
+				bit more dependency injection? Although dependency injection,
+				like every other pattern, shouldn't be used only for the sake
+				of using it, in this case it makes sense to loosely couple the
+				router and its request handlers, and thus making the router
+				really reusable.
+			</p>
+			<p>
+				This means we need to pass the request handlers from our server
+				into our router, but this feels even more wrong, which is why
+				we should go the whole way and pass them to the server from	our
+				main file, and passing it on to the router from there.
+			</p>
+			<p>
+				How are we going to pass them? Right now we have two handlers,
+				but in a real application, this number is going to increase and
+				vary, and we sure don't want to fiddle around mapping requests
+				to handlers in the router anytime a new URL / request handler
+				is added. And having some
+				<em>if request == x then call handler y</em> in the router
+				would be more than ugly.
+			</p>
+			<p>
+				A varying number of items, each mapped to a string (the
+				requested URL)? Well, sounds like an associative array would be
+				a perfect fit.
+			</p>
+			<p>
+				Well, this finding is slightly disappointed by the fact that
+				JavaScript doesn't provide associative array - or does it?
+				Turns out, it's actually objects that we want to use if we need
+				an associative array!
+			</p>
+			<p>
+				There's a nice introduction to this at
+				<a href="http://msdn.microsoft.com/en-us/magazine/cc163419.aspx">http://msdn.microsoft.com/en-us/magazine/cc163419.aspx</a>,
+				let me quote the relevant part:
+			</p>
+			<p>
+				<blockquote>
+					In C++ or C#, when we’re talking about objects, we're
+					referring to instances of classes or structs. Objects have
+					different properties and methods, depending on which
+					templates (that is, classes) they are instantiated from.
+					That's not the case with JavaScript objects. In JavaScript,
+					objects are just collections of name/value pairs - think of a
+					JavaScript object as a dictionary with string keys.
+				</blockquote>
+			</p>
+			<p>
+				If JavaScript objects are just collections of name/value pairs,
+				how can they have methods? Well, the values can be strings,
+				numbers etc. - or functions!
+			</p>
+			<p>
+				Ok, now finally back to the code. We decided we want to pass
+				the list of requestHandlers as an object, and in order to
+				achieve loose coupling we want to inject this object into the
+				<em>>route()</em>.
+			</p>
+			<p>
+				Let's start with putting the object together in our main file
+				<em>index.js</em>:
+			</p>
+			<p>
+<pre>var server = require("./server");
+var router = require("./router");
+var requestHandlers = require("./requestHandlers");
+
+var handle = {}
+handle["/"] = requestHandlers.start;
+handle["/start"] = requestHandlers.start;
+handle["/upload"] = requestHandlers.upload;
+
+server.start(router.route, handle);
+</pre>
+			</p>
+			<p>
+				Although <em>handle</em> is more of a "thing" (a collection of
+				request handlers), I propose we name it like a verb, because
+				this will result in a fluent expression in our router, as we
+				will see soon.
+			</p>
+			<p>
+				As you can see, it's really simple to map different URLs to the
+				same request handler: by adding a key/value pair of
+				<em>"/"</em> and <em>requestHandlers.start</em>, we can express
+				in a nice and clean way that not only requests to
+				<em>/start</em>, but also requests to <em>/</em> shall be
+				handled by the <em>start</em> handler.
+			</p>
+			<p>
+				After defining our object, we pass it into the server as an
+				additional parameter. Let's change our <em>server.js</em> to
+				make use of	it:
+			</p>
+			<p>
+<pre>var http = require("http");
+var url = require("url");
+
+function start(route, handle) {
+  function onRequest(request, response) {
+    var pathname = url.parse(request.url).pathname;
+    console.log("Request for " + pathname + " received.");
+
+    route(handle, pathname);
+
+    response.writeHead(200, {"Content-Type": "text/html"});
+    response.write("Hello World");
+    response.end();
+  }
+
+  http.createServer(onRequest).listen(8888);
+  console.log("Server has started.");
+}
+
+exports.start = start;
+</pre>
+			</p>
+			<p>
+				We've added the <em>handle</em> parameter to our
+				<em>start()</em> function, and pass the handle object on to
+				the <em>route()</em> callback, as its first parameter.
+			</p>
+			<p>
+				Let's change the <em>route()</em> function accordingly, in our
+				<em>router.js</em> file:
+			</p>
+			<p>
+<pre>function route(handle, pathname) {
+  console.log("About to route a request for " + pathname);
+  if (handle[pathname] != undefined) {
+	  handle[pathname]();
+  } else {
+	  console.log("No request handler found for " + pathname);
+  }
+}
+
+exports.route = route;
+</pre>
+			</p>
+			<p>
+				We we do here is, we check if a request handler for the given
+				pathname exists, and if it does, we simply call the according
+				function. Because we can access our request handler functions
+				from our object just as we would access an element of an
+				associative array, we have this nice fluent
+				<em>handle[pathname]();</em> expression I talked about earlier:
+				"Please, <em>handle</em> this <em>pathname</em>".
+			</p>
+			<p>
+				Ok, that's all we need to wire server, router, and request
+				handlers together! When starting our application and requesting
+				<a href="http://localhost:8888/start">http://localhost:8888/start</a>
+				in our browser, we can prove that the correct request handler
+				was indeed called:
+			</p>
+			<p>
+<pre>Server has started.
+Request for /start received.
+About to route a request for /start
+Request handler 'start' was called.
+</pre>
+			</p>
+			<p>
+				And opening <a href="http://localhost:8888/">http://localhost:8888/</a>
+				in our browser proves that these requests, too, are indeed handled by
+				the <em>start</em> request handler:
+			</p>
+			<p>
+<pre>Request for / received.
+About to route a request for /
+Request handler 'start' was called.
+</pre>
+			</p>
+
 
 
 
@@ -1193,8 +1411,8 @@ About to route a request for /foo
 				<br />
 				Check back daily to see the latest version.
 				<br />
-				The version you are	currently reading was updated on Tuesday,
-				April 19, 2011.
+				The version you are	currently reading was updated on Wednesday,
+				April 20, 2011.
 			</p>
 
 
