@@ -116,6 +116,10 @@
 				margin-bottom: 12px;
 				font-size: 110%;
 			}
+
+			blockquote {
+				font-style: italic;
+			}
 		</style>
 		<script type="text/javascript" src="prettify/prettify.js"></script>
 		<script type="text/javascript">
@@ -131,7 +135,9 @@
 		</script>
 	</head>
 	<body onload="prettyPrint();">
-		<a href="https://github.com/ManuelKiessling/NodeBeginnerBook"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://d3nwyuy0nl342s.cloudfront.net/img/71eeaab9d563c2b3c590319b398dd35683265e85/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" /></a>
+		<div>
+			<a href="https://github.com/ManuelKiessling/NodeBeginnerBook"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://d3nwyuy0nl342s.cloudfront.net/img/71eeaab9d563c2b3c590319b398dd35683265e85/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" /></a>
+		</div>
 
 		<div id="book">
 			<h1>The Node Beginner Book</h1>
@@ -348,16 +354,12 @@
 				<em>helloworld.js</em>. We want it to write "Hello World"
 				to STDOUT, and here is the code needed to do that:
 			</p>
-			<p>
 <pre class="prettyprint lang-js">console.log("Hello World");
 </pre>
-			</p>
 			<p>
 				Save the file, and execute it through node.js:
 			</p>
-			<p>
-				<pre>node helloworld.js</pre>
-			</p>
+<pre>node helloworld.js</pre>
 			<p>
 				This should output <em>Hello World</em> on your terminal.
 			</p>
@@ -372,23 +374,23 @@
 			<h3>The use cases</h3>
 			<p>
 				Let's keep it simple, but realistic:
-				<ul>
-					<li>
-						The user should be able to use our application with
-						a web browser
-					</li>
-					<li>
-						The user should see a welcome page when
-						requesting http://<em>domain</em>/start
-					</li>
-					<li>
-						When requesting http://<em>domain</em>/upload, the
-						user should be able to upload an image file	from
-						his computer, which is then displayed in his
-						browser
-					</li>
-				</ul>
 			</p>
+			<ul>
+				<li>
+					The user should be able to use our application with
+					a web browser
+				</li>
+				<li>
+					The user should see a welcome page when
+					requesting http://<em>domain</em>/start
+				</li>
+				<li>
+					When requesting http://<em>domain</em>/upload, the
+					user should be able to upload an image file	from
+					his computer, which is then displayed in his
+					browser
+				</li>
+			</ul>
 			<p>
 				Fair enough. Now, you could achieve this goal by googling
 				and hacking together <em>something</em>. But that's not
@@ -406,46 +408,45 @@
 			<p>
 				Let's dissect our application. Which parts need to be
 				implemented in order to fulfill the use cases?
-
-				<ul>
-					<li>
-						We want to serve web pages, therefore we need an
-						<strong>HTTP server</strong>
-					</li>
-					<li>
-						Our server will need to answer differently to
-						requests, depending on which URL the request was
-						asking for, thus we need some kind of
-						<strong>router</strong> in order to map requests
-						to request handlers
-					</li>
-					<li>
-						To fullfill the requests that arrived at the server
-						and have been routed using the router, we need
-						actual <strong>request handlers</strong>
-					</li>
-					<li>
-						The router probably should also treat any incoming
-						POST data and give it to the request handlers in
-						a convenient form, thus we need <strong>request
-						data handling</strong>
-					</li>
-					<li>
-						We not only want to handle requests for URLs, we
-						also want to display content when these URLs are
-						requested, which means we need some kind of
-						<strong>view logic</strong> the request handlers
-						can use in order to send content to the user's
-						browser
-					</li>
-					<li>
-						Last but not least, the user will be able to upload
-						images, so we are going to need some kind of
-						<strong>upload handling</strong> which takes care of
-						the	details
-					</li>
-				</ul>
 			</p>
+			<ul>
+				<li>
+					We want to serve web pages, therefore we need an
+					<strong>HTTP server</strong>
+				</li>
+				<li>
+					Our server will need to answer differently to
+					requests, depending on which URL the request was
+					asking for, thus we need some kind of
+					<strong>router</strong> in order to map requests
+					to request handlers
+				</li>
+				<li>
+					To fullfill the requests that arrived at the server
+					and have been routed using the router, we need
+					actual <strong>request handlers</strong>
+				</li>
+				<li>
+					The router probably should also treat any incoming
+					POST data and give it to the request handlers in
+					a convenient form, thus we need <strong>request
+					data handling</strong>
+				</li>
+				<li>
+					We not only want to handle requests for URLs, we
+					also want to display content when these URLs are
+					requested, which means we need some kind of
+					<strong>view logic</strong> the request handlers
+					can use in order to send content to the user's
+					browser
+				</li>
+				<li>
+					Last but not least, the user will be able to upload
+					images, so we are going to need some kind of
+					<strong>upload handling</strong> which takes care of
+					the	details
+				</li>
+			</ul>
 			<p>
 				Let's think a moment about how we would build this stack
 				with PHP. It's not exactly a secret that the typical setup
@@ -508,7 +509,6 @@
 				<em>server.js</em> in the root directory of your project,
 				and fill it with the following code:
 			</p>
-			<p>
 <pre class="prettyprint lang-js">var http = require("http");
 
 http.createServer(function(request, response) {
@@ -517,15 +517,12 @@ http.createServer(function(request, response) {
   response.end();
 }).listen(8888);
 </pre>
-			</p>
 			<p>
 				That's it! You just wrote a working HTTP server. Let's
 				prove it by running and testing it. First, execute your
 				script with node:
 			</p>
-			<p>
-				<pre>node server.js</pre>
-			</p>
+<pre>node server.js</pre>
 			<p>
 				Now, open your browser and point it at
 				<a href="http://localhost:8888/">http://localhost:8888/</a>.
@@ -562,12 +559,10 @@ http.createServer(function(request, response) {
 				We could have written the code that starts our server and
 				makes it listen at port 8888 like this:
 			</p>
-			<p>
 <pre class="prettyprint lang-js">var http = require("http");
 
 var server = http.createServer();
 server.listen(8888);</pre>
-			</p>
 			<p>
 				That would start an HTTP server listening at port 8888
 				and doing nothing else (not even answering any incoming
@@ -590,7 +585,6 @@ server.listen(8888);</pre>
 			<p>
 				You can, for example, do something like this:
 			</p>
-			<p>
 <pre class="prettyprint lang-js">function say(word) {
   console.log(word);
 }
@@ -600,7 +594,6 @@ function execute(someFunction, value) {
 }
 
 execute(say, "Hello");</pre>
-			</p>
 			<p>
 				Read this carefully! What we are doing here is, we pass the
 				function <em>say</em> as the first parameter to the
@@ -625,14 +618,12 @@ execute(say, "Hello");</pre>
 				define and pass a function as a parameter to another
 				function in-place:
 			</p>
-			<p>
 <pre class="prettyprint lang-js">function execute(someFunction, value) {
   someFunction(value);
 }
 
 execute(function(word){ console.log(word) }, "Hello");
 </pre>
-			</p>
 			<p>
 				We define the function we want to pass to <em>execute</em>
 				right there at the place where <em>execute</em> expects its
@@ -656,7 +647,6 @@ execute(function(word){ console.log(word) }, "Hello");
 				With this knowledge, let's get back to our minimalistic
 				HTTP server:
 			</p>
-			<p>
 <pre class="prettyprint lang-js">var http = require("http");
 
 http.createServer(function(request, response) {
@@ -665,7 +655,6 @@ http.createServer(function(request, response) {
   response.end();
 }).listen(8888);
 </pre>
-			</p>
 			<p>
 				By now it should be clear what we are actually doing here:
 				we pass the <em>createServer</em> function an anonymous
@@ -674,7 +663,6 @@ http.createServer(function(request, response) {
 			<p>
 				We could achieve the same by refactoring our code to:
 			</p>
-			<p>
 <pre class="prettyprint lang-js">var http = require("http");
 
 function onRequest(request, response) {
@@ -685,7 +673,6 @@ function onRequest(request, response) {
 
 http.createServer(onRequest).listen(8888);
 </pre>
-			</p>
 			<p>
 				Maybe now is a good moment to ask: Why are we doing it
 				that way?
@@ -765,7 +752,6 @@ http.createServer(onRequest).listen(8888);
 				no HTTP request happened and the callback function we
 				passed isn't called? Let's try it:
 			</p>
-			<p>
 <pre class="prettyprint lang-js">var http = require("http");
 
 function onRequest(request, response) {
@@ -779,7 +765,6 @@ http.createServer(onRequest).listen(8888);
 
 console.log("Server has started.");
 </pre>
-			</p>
 			<p>
 				Note that I use <em>console.log</em> to	output a text whenever
 				the <em>onRequest</em> function (our callback) is triggered,
@@ -858,14 +843,12 @@ console.log("Server has started.");
 				As you may have noticed, we already used modules in our code,
 				like this:
 			</p>
-			<p>
 <pre class="prettyprint lang-js">var http = require("http");
 
 ...
 
 http.createServer(...);
 </pre>
-			</p>
 			<p>
 				Somewhere within node lives a module called "http", and we can
 				make use of it in our own code by requiring it and assigning
@@ -880,14 +863,12 @@ http.createServer(...);
 				name of the local variable, but we are free to choose whatever
 				we like:
 			</p>
-			<p>
 <pre class="prettyprint lang-js">var foo = require("http");
 
 ...
 
 foo.createServer(...);
 </pre>
-			</p>
 			<p>
 				Fine, it's clear how to make use of internal node modules. How
 				do we create our own modules, and how do we use them?
@@ -912,7 +893,6 @@ foo.createServer(...);
 				function named <em>start</em>, and we will export this
 				function:
 			</p>
-			<p>
 <pre class="prettyprint lang-js">var http = require("http");
 
 function start() {
@@ -929,7 +909,6 @@ function start() {
 
 exports.start = start;
 </pre>
-			</p>
 			<p>
 				This way, we can now create our main file <em>index.js</em>,
 				and start our HTTP there, although the code for the server is
@@ -938,12 +917,10 @@ exports.start = start;
 			<p>
 				Create a file <em>index.js</em> with the following content:
 			</p>
-			<p>
 <pre class="prettyprint lang-js">var server = require("./server");
 
 server.start();
 </pre>
-			</p>
 			<p>
 				As you can see, we can use our server module just like any
 				internal module: by requiring its file and assigning it to
@@ -953,11 +930,7 @@ server.start();
 				That's it. We can now start our app via our main script, and it
 				still does exactly the same:
 			</p>
-			<p>
-<pre>
-node index.js
-</pre>
-			</p>
+<pre>node index.js</pre>
 			<p>
 				Great, we now can put the different parts of our application
 				into different files and wire them together by making them
@@ -1016,7 +989,7 @@ node index.js
                        |                   |
                        |                   |
                      ------ -------------------
-http://localhost:8888/start?foo=bar&hello=world
+http://localhost:8888/start?foo=bar&amp;hello=world
                                 ---       -----
                                  |          |
                                  |          |
@@ -1033,7 +1006,6 @@ http://localhost:8888/start?foo=bar&hello=world
 				Let's now add to our <em>onRequest()</em> function the logic
 				needed to find out which URL path the browser requested:
 			</p>
-			<p>
 <pre class="prettyprint lang-js">var http = require("http");
 var url = require("url");
 
@@ -1052,7 +1024,6 @@ function start() {
 
 exports.start = start;
 </pre>
-			</p>
 			<p>
 				Fine. Our application can now distinguish requests based on the
 				URL path requested - this allows us to map requests to our
@@ -1074,14 +1045,12 @@ exports.start = start;
 				Ok, it's time to actually write our router. Create a new file
 				called <em>router.js</em>, with the following content:
 			</p>
-			<p>
 <pre class="prettyprint lang-js">function route(pathname) {
   console.log("About to route a request for " + pathname);
 }
 
 exports.route = route;
 </pre>
-			</p>
 			<p>
 				Of course, this code basically does nothing, but that's ok for
 				now. Let's first see how to wire together this router with our
@@ -1101,7 +1070,6 @@ exports.route = route;
 				order to enable us to pass the route function to be used by
 				parameter:
 			</p>
-			<p>
 <pre class="prettyprint lang-js">var http = require("http");
 var url = require("url");
 
@@ -1123,19 +1091,16 @@ function start(route) {
 
 exports.start = start;
 </pre>
-			</p>
 			<p>
 				And let's extend our <em>index.js</em> accordingly, that is,
 				injecting the route function of our router into the server:
 			</p>
-			<p>
 <pre class="prettyprint lang-js">var server = require("./server");
 var router = require("./router");
 
 server.start(router.route);
 
 </pre>
-			</p>
 			<p>
 				Again, we are passing a function, which by now isn't any news
 				for us.
@@ -1146,12 +1111,10 @@ server.start(router.route);
 				application's output that our HTTP server makes use of our
 				router and passes it the requested pathname:
 			</p>
-			<p>
 <pre>bash$ node index.js
 Request for /foo received.
 About to route a request for /foo
 </pre>
-			</p>
 			<p>
 				(I omitted the rather annoying output for the /favicon.ico
 				request).
@@ -1222,7 +1185,6 @@ About to route a request for /foo
 				function for every request handler, and export these as
 				methods of the module:
 			</p>
-			<p>
 <pre class="prettyprint lang-js">function start() {
   console.log("Request handler 'start' was called.");
 }
@@ -1234,7 +1196,6 @@ function upload() {
 exports.start = start;
 exports.upload = upload;
 </pre>
-			</p>
 			<p>
 				This allows us to wire the request handlers into the router,
 				giving our router something to route to.
@@ -1279,8 +1240,8 @@ exports.upload = upload;
 				<a href="http://msdn.microsoft.com/en-us/magazine/cc163419.aspx">http://msdn.microsoft.com/en-us/magazine/cc163419.aspx</a>,
 				let me quote the relevant part:
 			</p>
-			<p>
-				<blockquote>
+			<blockquote>
+				<p>
 					In C++ or C#, when we’re talking about objects, we're
 					referring to instances of classes or structs. Objects have
 					different properties and methods, depending on which
@@ -1288,8 +1249,8 @@ exports.upload = upload;
 					That's not the case with JavaScript objects. In JavaScript,
 					objects are just collections of name/value pairs - think of a
 					JavaScript object as a dictionary with string keys.
-				</blockquote>
-			</p>
+				</p>
+			</blockquote>
 			<p>
 				If JavaScript objects are just collections of name/value pairs,
 				how can they have methods? Well, the values can be strings,
@@ -1299,13 +1260,12 @@ exports.upload = upload;
 				Ok, now finally back to the code. We decided we want to pass
 				the list of requestHandlers as an object, and in order to
 				achieve loose coupling we want to inject this object into the
-				<em>>route()</em>.
+				<em>route()</em>.
 			</p>
 			<p>
 				Let's start with putting the object together in our main file
 				<em>index.js</em>:
 			</p>
-			<p>
 <pre class="prettyprint lang-js">var server = require("./server");
 var router = require("./router");
 var requestHandlers = require("./requestHandlers");
@@ -1317,7 +1277,6 @@ handle["/upload"] = requestHandlers.upload;
 
 server.start(router.route, handle);
 </pre>
-			</p>
 			<p>
 				Although <em>handle</em> is more of a "thing" (a collection of
 				request handlers), I propose we name it like a verb, because
@@ -1337,7 +1296,6 @@ server.start(router.route, handle);
 				additional parameter. Let's change our <em>server.js</em> to
 				make use of	it:
 			</p>
-			<p>
 <pre class="prettyprint lang-js">var http = require("http");
 var url = require("url");
 
@@ -1359,7 +1317,6 @@ function start(route, handle) {
 
 exports.start = start;
 </pre>
-			</p>
 			<p>
 				We've added the <em>handle</em> parameter to our
 				<em>start()</em> function, and pass the handle object on to
@@ -1369,7 +1326,6 @@ exports.start = start;
 				Let's change the <em>route()</em> function accordingly, in our
 				<em>router.js</em> file:
 			</p>
-			<p>
 <pre class="prettyprint lang-js">function route(handle, pathname) {
   console.log("About to route a request for " + pathname);
   if (handle[pathname] != undefined) {
@@ -1381,7 +1337,6 @@ exports.start = start;
 
 exports.route = route;
 </pre>
-			</p>
 			<p>
 				What we do here is, we check if a request handler for the given
 				pathname exists, and if it does, we simply call the according
@@ -1398,24 +1353,20 @@ exports.route = route;
 				in our browser, we can prove that the correct request handler
 				was indeed called:
 			</p>
-			<p>
 <pre>Server has started.
 Request for /start received.
 About to route a request for /start
 Request handler 'start' was called.
 </pre>
-			</p>
 			<p>
 				And opening <a href="http://localhost:8888/">http://localhost:8888/</a>
 				in our browser proves that these requests, too, are indeed handled by
 				the <em>start</em> request handler:
 			</p>
-			<p>
 <pre>Request for / received.
 About to route a request for /
 Request handler 'start' was called.
 </pre>
-			</p>
 
 
 
@@ -1462,14 +1413,13 @@ Request handler 'start' was called.
 				(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 			})();
 		</script>
-		<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
 		<div id="footer">
 			<p id="ccimage">
 				<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png" /></a>
 			</p>
 			<p>
-				<span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">The Node Beginner Book</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://manuel.kiessling.net" property="cc:attributionName" rel="cc:attributionURL">Manuel Kiessling</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</a>.
+				<span xmlns:dct="http://purl.org/dc/terms/">The Node Beginner Book</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://manuel.kiessling.net" rel="cc:attributionURL">Manuel Kiessling</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</a>.
 				<br />
 				Permissions beyond the scope of this license may be available at <a xmlns:cc="http://creativecommons.org/ns#" href="mailto:manuel@kiessling.net" rel="cc:morePermissions">manuel@kiessling.net</a>.
 			</p>
