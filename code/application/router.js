@@ -1,8 +1,9 @@
 function route(handle, pathname) {
   console.log("About to route a request for " + pathname);
   if (handle[pathname] != undefined) {
-	  handle[pathname]();
+	  return handle[pathname]();
   } else {
+	  return "404 Not found";
 	  console.log("No request handler found for " + pathname);
   }
 }

@@ -1396,6 +1396,46 @@ Request handler 'start' was called.
 </pre>
 
 
+			<a name="making-the-request-handlers-respond" />
+			<h4>Making the request handlers respond</h4>
+			<p>
+				Beautiful. Now if only the request handlers could actually send
+				something back to the browser, that would be even better,
+				right?
+			</p>
+			<p>
+				Remember, the "Hello World" your browser displays upon
+				requesting a page still comes from the <em>onRequest</em>
+				function in our <em>server.js</em> file.
+			</p>
+			<p>
+				"Handling request" means "answering requests" after all, thus
+				we need to enable our request handlers to speak with the
+				browser just like our <em>onRequest</em> function does.
+			</p>
+
+			<a name="making-the-request-handlers-respond_how-to-not-do-it" />
+			<h5>How to not do it</h5>
+			<p>
+				The straight-forward approach we -  as developers with a
+				background in PHP or Ruby - might want to follow is actually
+				very deceitful: it works like a charm, seems to make a lot of
+				sense, and totally screws things up in the long run.
+			</p>
+			<p>
+				What I mean by "straight-forward approach" is this: make the
+				request handlers return the content they want to display to
+				the user, and send this response data in the onRequest handler
+				back to the user.
+			</p>
+			<p>
+				Let's just do this, and then see why it's not such an overly
+				good idea.
+			</p>
+			<p>
+				
+			</p>
+
 
 
 
