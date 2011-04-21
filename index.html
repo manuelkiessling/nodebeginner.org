@@ -12,6 +12,7 @@
 				font-family: Georgia, serif;
 				background-color: #eee;
 				padding-top: 48px;
+				-webkit-text-size-adjust: 160%;
 			}
 
 			#book, #disqus_thread, #footer {
@@ -23,7 +24,12 @@
 				border-top: 1px solid #ddd;
 				border-left: 1px solid #ddd;
 				border-bottom: 1px solid #ddd;
-				border-right: 8px solid #ddd;
+				border-right: 1px solid #ddd;
+				z-index: 100;
+
+				-moz-box-shadow: 14px 11px 27px #888;
+				-webkit-box-shadow: 14px 11px 27px #888;
+				box-shadow: 14px 11px 27px #888;
 			}
 
 			#author {
@@ -59,6 +65,26 @@
 			#ccimage {
 				float: left;
 				margin-right: 12px;
+			}
+
+			#praise {
+				position: absolute;
+				top: 120px;
+				right: 40px;
+				width: 200px;
+				font-style: italic;
+				color: #aaa;
+				z-index: -1;
+				text-align: right;
+			}
+
+			#praise .praise {
+				margin-bottom: 25px;
+			}
+
+			#praise .author {
+				font-style: normal;
+				font-size: 75%;
 			}
 
 			h1 {
@@ -1391,6 +1417,28 @@ Request handler 'start' was called.
 			</p>
 
 
+		</div>
+
+
+
+		<div id="praise">
+			<div class="praise">
+				<div class="comment">
+					"This is one of the best tutorials I've read.
+					As a former Java coder, I've always found JavaScript
+					to be a black art, but you have really simplified
+					things with this tutorial."
+				</div>
+				<div class="author">Erskine, from the comments</div>
+			</div>
+			<div class="praise">
+				<div class="comment">
+					"This is one of the few beginner articles I made it all the way through because of how well it's written."
+				</div>
+				<div class="author">
+					Paul Gibler, from the comments
+				</div>
+			</div>
 		</div>
 
 
