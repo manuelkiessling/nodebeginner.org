@@ -115,12 +115,16 @@
 				font-size: 120%;
 			}
 
-			h3, h4 {
+			h5 {
+				font-size: 110%;
+			}
+
+			h3, h4, h5 {
 				margin-top: 36px;
 				color: #700;
 			}
 
-			h2, h3, h4 {
+			h2, h3, h4, h5 {
 				font-style: italic;
 				font-weight: normal;
 			}
@@ -184,7 +188,7 @@
 		<div id="book">
 			<h1>The Node Beginner Book</h1>
 			<div id="author">by <a href="http://twitter.com/manuelkiessling">Manuel Kiessling</a></div>
-			<div id="updateinfo">Last updated on Wednesday, April 19, 2011 at 7:57 AM EDT</div>
+			<div id="updateinfo">Last updated on Friday, April 22, 2011 at 6:03 PM EDT</div>
 
 
 			<h2>About</h2>
@@ -1439,24 +1443,199 @@ Request handler 'start' was called.
 			</p>
 			<p>
 				What I mean by "straight-forward approach" is this: make the
-				request handlers return the content they want to display to
-				the user, and send this response data in the onRequest handler
-				back to the user.
+				request handlers <em>return()</em> the content they want to
+				display to the user, and send this response data in the
+				<em>onRequest</em> function back to the user.
 			</p>
 			<p>
 				Let's just do this, and then see why it's not such an overly
 				good idea.
 			</p>
 			<p>
-				
+				We start with the request handlers and make them return what we
+				would like to display in the browser. We need to change
+				<em>requestHandlers.js</em> to this:
+			</p>
+<pre class="prettyprint lang-js">function start() {
+  console.log("Request handler 'start' was called.");
+  return "Hello Start";
+}
+
+function upload() {
+  console.log("Request handler 'upload' was called.");
+  return "Hello Upload";
+}
+
+exports.start = start;
+exports.upload = upload;
+</pre>
+			<p>
+				Good. Likewise, the router needs to return to the server what
+				the request handlers return to him. We therefore need to edit
+				<em>router.js</em> like this:
+			</p>
+<pre class="prettyprint lang-js">function route(handle, pathname) {
+  console.log("About to route a request for " + pathname);
+  if (handle[pathname] != undefined) {
+	  return handle[pathname]();
+  } else {
+	  return "404 Not found";
+	  console.log("No request handler found for " + pathname);
+  }
+}
+
+exports.route = route;
+</pre>
+			<p>
+				As you can see, we also return some text if the request could
+				not be routed.
+			</p>
+			<p>
+				And last but not least, we need to refactor our server to make
+				it respond to the browser with the content the request handlers
+				returned via the router, transforming <em>server.js</em> into:
+			</p>
+<pre class="prettyprint lang-js">var http = require("http");
+var url = require("url");
+
+function start(route, handle) {
+  function onRequest(request, response) {
+    var pathname = url.parse(request.url).pathname;
+    console.log("Request for " + pathname + " received.");
+
+    response.writeHead(200, {"Content-Type": "text/html"});
+	var content = route(handle, pathname)
+	response.write(content);
+    response.end();
+  }
+
+  http.createServer(onRequest).listen(8888);
+  console.log("Server has started.");
+}
+
+exports.start = start;
+</pre>
+			<p>
+				If we start our rewritten application, everything works like
+				a charm: requesting <a href="http://localhost:8888/start" rel="nofollow">http://localhost:8888/start</a>
+				results in "Hello Start" being displayed in the browser,
+				requesting <a href="http://localhost:8888/upload" rel="nofollow">http://localhost:8888/upload</a>
+				gives us "Hello Upload", and <a href="http://localhost:8888/foo" rel="nofollow">http://localhost:8888/foo</a>
+				produces "404 Not found".
+			</p>
+			<p>
+				Ok, then why is that a problem? The short answer: because it's
+				blocking. Let's take a bit more time for the long answer.
 			</p>
 
+			<a name="making-the-request-handlers-respond_blocking-and-non-blocking" />
+			<h5>Blocking and non-blocking</h5>
+			<p>
+				Before we actually explain what "blocking" means, let's prove
+				that our code indeed <em>is</em> blocking - because it in fact
+				already is, although using the app doesn't feel like anything
+				would be blocked. But that's just because the "blocking" parts
+				are currently executed so quickly we simply don't notice.
+			</p>
+			<p>
+				Let's artificially introduce a delay in one of the blocking
+				parts to make the problem of blocking code visible.
+			</p>
+			<p>
+				To do this, we will change our <em>start</em> request handler
+				to make it wait 10 seconds before returning its "Hello Start"
+				string. Because there is no such thing as <em>sleep()</em> in
+				JavaScript, we will use a clever hack for that.
+			</p>
+			<p>
+				Please modify <em>requestHandlers.js</em> as follows:
+			</p>
+<pre class="prettyprint lang-js">function start() {
+  console.log("Request handler 'start' was called.");
 
+  function sleep(milliSeconds) {
+    var startTime = new Date().getTime(); // get the current time
+    while (new Date().getTime() < startTime + milliSeconds); // hog cpu
+  }
 
+  sleep(10000);
+  return "Hello Start";
+}
 
+function upload() {
+  console.log("Request handler 'upload' was called.");
+  return "Hello Upload";
+}
 
-
-
+exports.start = start;
+exports.upload = upload;
+</pre>
+			<p>
+				Just to make clear what that does: when the function
+				<em>start()</em> is called, node waits 10 seconds and only then
+				returns "Hello Start". When calling <em>upload()</em>, it
+				returns immediately, just like before.
+			</p>
+			<p>
+				As always, we need to restart our server. This time, I ask you
+				to follow a slightly complex protocol in order to see what
+				happens: First, open two browser windows or tabs. In the first
+				browser window, please enter <a href="http://localhost:8888/start" rel="nofollow">http://localhost:8888/start</a>
+				into the address bar, but do not yet open this url!
+			</p>
+			<p>
+				In the second browser window's address bar, enter <a href="http://localhost:8888/upload" rel="nofollow">http://localhost:8888/upload</a>,
+				and again, please do not yet hit enter.
+			</p>
+			<p>
+				Now, do as follows: hit enter on the first window ("/start"),
+				then quickly change to the second window ("/upload") and hit
+				enter, too.
+			</p>
+			<p>
+				What you will notice is this: The /start URL takes 10 seconds
+				to load, as we would expect. But the /upload URL <em>also</em>
+				takes 10 seconds to load, although there is no <em>sleep()</em>
+				in the according request handler!
+			</p>
+			<p>
+				Why? Because <em>start()</em> is blocking. Like in "it's
+				blocking everything else from working".
+			</p>
+			<p>
+				And that is a problem, because, as the saying goes: <em>"In
+				node, everything runs in parallel, except your code"</em>.
+			</p>
+			<p>
+				What that means is that Node can handle a lot of concurrent
+				stuff, but doesn't do this by splitting everything into
+				threads - in fact, Node is single-threaded. It does so by
+				running an event loop, and we the developers can make use of
+				this without the need to fiddle around with the details.
+			</p>
+			<p>
+				But we need to make use of callbacks by passing functions
+				around to other functions that might do something that takes
+				some time (like, e.g. sleep for 10 seconds, or query a
+				database, or do some expensive calculation).
+			</p>
+			<p>
+				This way we are saying <em>"Hey, probablyExpensiveFunction(),
+				please do your stuff, but I, the single Node thread, am not
+				going to wait right here until you are finished, I will
+				continue to execute the lines of code below you, so would you
+				please take this callbackFunction() here and call it when
+				you are finished doing your expensive stuff? Thanks!"</em>
+			</p>
+			<p>
+				If you would like to read about it in more detail, please have
+				a look at Mixu's post on <a href="http://blog.mixu.net/2011/02/01/understanding-the-node-js-event-loop/">Understanding the node.js event loop</a>.
+			</p>
+			<p>
+				Ok, after learning how to <em>not</em> do it, the upcoming
+				chapter will discuss how to make our request handlers
+				responding to browser requests the right way.
+			</p>
 
 
 			<p id="workinprogressnote">
@@ -1469,12 +1648,11 @@ Request handler 'start' was called.
 				<br />
 				The version you are	currently reading was updated on
 				<br />
-				Wednesday, April 19, 2011 at 7:57 AM EDT.
+				Friday, April 22, 2011 at 6:03 PM EDT.
 			</p>
 
 
 		</div>
-
 
 
 		<div id="praise">
@@ -1496,12 +1674,6 @@ Request handler 'start' was called.
 				</div>
 			</div>
 		</div>
-
-
-
-
-
-
 
 		<div id="flattr">
 			<p>

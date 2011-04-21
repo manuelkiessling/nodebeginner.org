@@ -7,8 +7,8 @@ function start(route, handle) {
     console.log("Request for " + pathname + " received.");
 
     response.writeHead(200, {"Content-Type": "text/html"});
-	var answer = route(handle, pathname)
-	response.write(answer);
+	var content = route(handle, pathname)
+	response.write(content);
     response.end();
   }
 
