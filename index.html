@@ -15,7 +15,7 @@
 				-webkit-text-size-adjust: 280%;
 			}
 
-			#book, #disqus_thread, #footer {
+			#book, #flattr, #disqus_thread, #footer {
 				width: 840px;
 				margin: 0 auto;
 				margin-top: 24px;
@@ -50,6 +50,10 @@
 				font-weight: bold;
 				font-style: italic;
 				color: #700;
+			}
+
+			#flattr p {
+				text-align: center;
 			}
 
 			#disqus_thread {
@@ -159,6 +163,17 @@
 				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
 				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 			})();
+		</script>
+		<script type="text/javascript">
+		/* <![CDATA[ */
+			(function() {
+				var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
+				s.type = 'text/javascript';
+				s.async = true;
+				s.src = 'http://api.flattr.com/js/0.6/load.js?mode=auto';
+				t.parentNode.insertBefore(s, t);
+			})();
+		/* ]]> */
 		</script>
 	</head>
 	<body onload="prettyPrint();">
@@ -1488,7 +1503,19 @@ Request handler 'start' was called.
 
 
 
+		<div id="flattr">
+			<p>
+				The <em>Node Beginner Book</em> is and will always be freely available for everybody.
+				<br />
+				Furthermore, no money is needed to keep the project alive and progressing.
+				<br />
+				But if you feel like giving, you can do so using Flattr:
+			</p>
+			<p>
+				<a class="FlattrButton" style="display:none;" href="http://www.nodebeginner.org"></a>
+			</p>
 
+		</div>
 
 		<div id="disqus_thread"></div>
 		<script type="text/javascript">
