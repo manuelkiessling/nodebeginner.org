@@ -1555,7 +1555,7 @@ exports.start = start;
 
   function sleep(milliSeconds) {
     var startTime = new Date().getTime(); // get the current time
-    while (new Date().getTime() < startTime + milliSeconds); // hog cpu
+    while (new Date().getTime() &lt; startTime + milliSeconds); // hog cpu
   }
 
   sleep(10000);
@@ -1677,7 +1677,7 @@ exports.upload = upload;
 
 		<div id="flattr">
 			<p>
-				The <em>Node Beginner Book</em> is and will always be freely available for everybody.
+				<em>The Node Beginner Book</em> is and will always available for free.
 				<br />
 				Furthermore, no money is needed to keep the project alive and progressing.
 				<br />
