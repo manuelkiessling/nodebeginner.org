@@ -393,7 +393,7 @@
 			<h3>"Hello World"</h3>
 			<p>
 				Ok, let's just jump in the cold water and write our first
-				node application: "Hello World".
+				Node.js application: "Hello World".
 			</p>
 			<p>
 				Open your favorite editor and create a file called
@@ -447,7 +447,7 @@
 				code to achieve the goal, however elegant and correct this code
 				might be. We will intentionally add more abstraction than
 				necessary in order to get a feeling for building more
-				complex node applications.
+				complex Node.js applications.
 			</p>
 
 			<h3>The application stack</h3>
@@ -521,12 +521,12 @@
 			<h4>A basic HTTP server</h4>
 			<p>
 				When I arrived at the point where I wanted to start with my
-				first "real" node application, I wondered not only how to
+				first "real" Node.js application, I wondered not only how to
 				actually code it, but also how to organize my code.
 				<br/>
 				Do I need to have everything in one file? Most tutorials on
 				the web that teach you how to write a basic HTTP server in
-				node have all the logic in one place. What if I want to
+				Node.js have all the logic in one place. What if I want to
 				make sure that my code stays readable the more stuff I
 				implement?
 			</p>
@@ -587,7 +587,7 @@ http.createServer(function(request, response) {
 			</p>
 			<p>
 				The first line <em>require</em>s the <em>http</em> module
-				that ships with node and makes it accessible through the
+				that ships with Node.js and makes it accessible through the
 				variable <em>http</em>.
 			</p>
 			<p>
@@ -727,7 +727,7 @@ http.createServer(onRequest).listen(8888);
 			<h4>Event-driven callbacks</h4>
 			<p>
 				The answer is a) not that easy to give (at least for me), and
-				b) lies in the very nature of how node works. It's
+				b) lies in the very nature of how Node.js works. It's
 				event-driven, which is the reason why it's so fast.
 			</p>
 			<p>
@@ -737,7 +737,7 @@ http.createServer(onRequest).listen(8888);
 				for some background explanation.
 			</p>
 			<p>
-				It all boils down to the fact that node works event-driven.
+				It all boils down to the fact that Node.js works event-driven.
 				Oh and yes, I, too, don't know exactly what that means.
 				But I will try and explain, why this makes sense for us
 				who want to write web based applications in node.
@@ -762,12 +762,12 @@ http.createServer(onRequest).listen(8888);
 			</p>
 			<p>
 				So in regards of control flow, we are in the midst of our
-				node program when a new request arrives at port 8888 - how
+				Node.js program when a new request arrives at port 8888 - how
 				to handle this without going insane?
 			</p>
 			<p>
 				Well, this is where the event-driven design of
-				node/JavaScript actually helps, although we need to learn
+				Node.js/JavaScript actually helps, although we need to learn
 				some new concepts in order to master it. Let's see how
 				these concepts are applied in our server code.
 			</p>
@@ -882,7 +882,7 @@ console.log("Server has started.");
 				that lives in <em>server.js</em>).
 			</p>
 			<p>
-				Let's talk about how to make server.js a real node module
+				Let's talk about how to make server.js a real Node.js module
         that can be used by our yet-to-be-written <em>index.js</em> main file.
 			</p>
 			<p>
@@ -896,7 +896,7 @@ console.log("Server has started.");
 http.createServer(...);
 </pre>
 			<p>
-				Somewhere within node lives a module called "http", and we can
+				Somewhere within Node.js lives a module called "http", and we can
 				make use of it in our own code by requiring it and assigning
 				the result of the require to local variable.
 			</p>
@@ -916,7 +916,7 @@ http.createServer(...);
 foo.createServer(...);
 </pre>
 			<p>
-				Fine, it's clear how to make use of internal node modules. How
+				Fine, it's clear how to make use of internal Node.js modules. How
 				do we create our own modules, and how do we use them?
 			</p>
 			<p>
@@ -1020,7 +1020,7 @@ server.start();
 				All the information we need is available through the
 				<em>request</em> object which is passed as the first parameter
 				to our callback function <em>onRequest()</em>. But to interpret
-				this information, we need some additional node modules, namely
+				this information, we need some additional Node.js modules, namely
 				<em>url</em> and <em>querystring</em>.
 			</p>
 			<p>
@@ -1572,7 +1572,7 @@ exports.upload = upload;
 </pre>
 			<p>
 				Just to make clear what that does: when the function
-				<em>start()</em> is called, node waits 10 seconds and only then
+				<em>start()</em> is called, Node.js waits 10 seconds and only then
 				returns "Hello Start". When calling <em>upload()</em>, it
 				returns immediately, just like before.
 			</p>
@@ -1607,9 +1607,9 @@ exports.upload = upload;
 				node, everything runs in parallel, except your code"</em>.
 			</p>
 			<p>
-				What that means is that Node can handle a lot of concurrent
+				What that means is that Node.js can handle a lot of concurrent
 				stuff, but doesn't do this by splitting everything into
-				threads - in fact, Node is single-threaded. It does so by
+				threads - in fact, Node.js is single-threaded. It does so by
 				running an event loop, and we the developers can make use of
 				this without the need to fiddle around with the details.
 			</p>
@@ -1621,7 +1621,7 @@ exports.upload = upload;
 			</p>
 			<p>
 				This way we are saying <em>"Hey, probablyExpensiveFunction(),
-				please do your stuff, but I, the single Node thread, am not
+				please do your stuff, but I, the single Node.js thread, am not
 				going to wait right here until you are finished, I will
 				continue to execute the lines of code below you, so would you
 				please take this callbackFunction() here and call it when
