@@ -12,13 +12,14 @@
 				font-family: Georgia, serif;
 				background-color: #eee;
 				padding-top: 48px;
-				-webkit-text-size-adjust: 280%;
+				-webkit-text-size-adjust: 200%;
 			}
 
-			#book, #flattr, #disqus_thread, #footer {
-				width: 840px;
+			#book, #flattr, #disqus_thread, #footer, #workinprogressnote {
+				width: 640px;
 				margin: 0 auto;
 				margin-top: 24px;
+				margin-bottom: 100px;
 				padding: 64px;
 				background-color: white;
 				border-top: 1px solid #ddd;
@@ -45,11 +46,9 @@
 				font-size: 75%;
 			}
 
-			#workinprogressnote {
-				margin-top: 80px;
-				font-weight: bold;
-				font-style: italic;
+			#workinprogressnote p {
 				color: #700;
+				text-align: center;
 			}
 
 			#flattr p {
@@ -57,18 +56,25 @@
 			}
 
 			#disqus_thread {
-				
+				font-family: "Helvetica Neue", sans-serif;
 			}
 
 			#footer {
+				background-color: #f5f5f5;
+				margin-top: 100px;
+			}
+
+			#footer p {
+				text-align: center;
 				font-family: "Helvetica Neue", sans-serif;
 				font-size: 11px;
-				background-color: #f5f5f5;
 			}
 
 			#ccimage {
 				float: left;
-				margin-right: 12px;
+				margin-left: 30px;
+				margin-right: 0;
+				margin-top: 20px;
 			}
 
 			#praise {
@@ -1638,21 +1644,22 @@ exports.upload = upload;
 				responding to browser requests the right way.
 			</p>
 
+		</div>
 
-			<p id="workinprogressnote">
+
+		<div id="workinprogressnote">
+			<p>
 				The Node Beginner Book is work-in-progress.
 				<br />
-				It's currently about 60% done.
+				<strong>It's currently about 60% done.</strong>
 				<br />
 				Check back daily to see the latest version.
 				<br />
 				<br />
 				The version you are	currently reading was updated on
 				<br />
-				Friday, April 22, 2011 at 6:03 PM EDT.
+				<strong>Friday, April 22, 2011 at 6:03 PM EDT.</strong>
 			</p>
-
-
 		</div>
 
 
@@ -1698,11 +1705,11 @@ exports.upload = upload;
 
 		<div id="flattr">
 			<p>
-				<em>The Node Beginner Book</em> is and will always available for free.
+				<em>The Node Beginner Book</em> is and will always be available for free.
 				<br />
 				Furthermore, no money is needed to keep the project alive and progressing.
 				<br />
-				But if you feel like giving, you can do so using Flattr:
+				But if you would like to support the author, you can do so using Flattr:
 			</p>
 			<p>
 				<a class="FlattrButton" style="display:none;" href="http://www.nodebeginner.org"></a>
@@ -1728,7 +1735,12 @@ exports.upload = upload;
 				<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png" /></a>
 			</p>
 			<p>
-				<span xmlns:dct="http://purl.org/dc/terms/">The Node Beginner Book</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://manuel.kiessling.net" rel="cc:attributionURL">Manuel Kiessling</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</a>.
+				<span xmlns:dct="http://purl.org/dc/terms/">The Node Beginner Book</span>
+				by
+				<a xmlns:cc="http://creativecommons.org/ns#" href="http://manuel.kiessling.net" rel="cc:attributionURL">Manuel Kiessling</a>
+				is licensed under a
+				<br />
+				<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</a>.
 				<br />
 				Permissions beyond the scope of this license may be available at <a xmlns:cc="http://creativecommons.org/ns#" href="mailto:manuel@kiessling.net" rel="cc:morePermissions">manuel@kiessling.net</a>.
 			</p>
