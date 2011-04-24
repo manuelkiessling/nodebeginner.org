@@ -194,7 +194,7 @@
 		<div id="book">
 			<h1>The Node Beginner Book</h1>
 			<div id="author">by <a href="http://twitter.com/manuelkiessling">Manuel Kiessling</a></div>
-			<div id="updateinfo">Last updated on Friday, April 22, 2011 at 6:03 PM EDT</div>
+			<div id="updateinfo">Last updated on Sunday, April 24, 2011 at 6:52 AM EDT</div>
 
 
 			<h2>About</h2>
@@ -1534,7 +1534,7 @@ exports.start = start;
 			<p>
 				Ok, then why is that a problem? The short answer: because we
 				will run into problems if one the request handlers wants to make
-				use of a nonblocking operation in the future.
+				use of a non-blocking operation in the future.
 			</p>
 			<p>
 				Let's take a bit more time for the long answer.
@@ -1784,12 +1784,11 @@ exports.upload = upload;
 			<h5>Responding request handlers with non-blocking operations</h5>
 			<p>
 				I've just used the phrase "the right way". Dangerous stuff.
-				Quite often, there is no single "right way". But here is one
-				possible solution, and we will examine it now.
+				Quite often, there is no single "right way".
 			</p>
 			<p>
-				One possible solution for this is, as often with Node.js, to
-				pass functions around.
+				But one possible solution for this is, as often with Node.js,
+				to pass functions around. Let's examine this.
 			</p>
 			<p>
 				Right now, our application is able to transport the content
@@ -1914,11 +1913,13 @@ exports.upload = upload;
 function start(response) {
   console.log("Request handler 'start' was called.");
 
-  exec("find /", { timeout: 10000, maxBuffer: 20000*1024 }, function (error, stdout, stderr) {
-    response.writeHead(200, {"Content-Type": "text/html"});
-    response.write(stdout);
-    response.end();
-  });
+  exec("find /",
+    { timeout: 10000, maxBuffer: 20000*1024 },
+    function (error, stdout, stderr) {
+      response.writeHead(200, {"Content-Type": "text/html"});
+      response.write(stdout);
+      response.end();
+    });
 }
 
 function upload(response) {
@@ -1937,6 +1938,9 @@ exports.upload = upload;
 				will be answered immediately, even if /start is still
 				computing.
 			</p>
+			<p>
+				Enough for today. Upcoming next: Handling file uploads.
+			</p>
 		</div>
 
 
@@ -1947,14 +1951,14 @@ exports.upload = upload;
 			<p>
 				The Node Beginner Book is work-in-progress.
 				<br />
-				<strong>It's currently about 60% done.</strong>
+				<strong>It's currently about 80% done.</strong>
 				<br />
 				Check back daily to see the latest version.
 				<br />
 				<br />
 				The version you are	currently reading was updated on
 				<br />
-				<strong>Friday, April 22, 2011 at 6:03 PM EDT.</strong>
+				<strong>Sunday, April 24, 2011 at 6:52 AM EDT.</strong>
 			</p>
 		</div>
 
