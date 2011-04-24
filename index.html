@@ -1446,7 +1446,8 @@ Request handler 'start' was called.
 				The straight-forward approach we -  as developers with a
 				background in PHP or Ruby - might want to follow is actually
 				very deceitful: it works like a charm, seems to make a lot of
-				sense, and totally screws things up in the long run.
+				sense, and then suddenly screws things up when we don't expect
+				it.
 			</p>
 			<p>
 				What I mean by "straight-forward approach" is this: make the
@@ -1532,8 +1533,8 @@ exports.start = start;
 			</p>
 			<p>
 				Ok, then why is that a problem? The short answer: because we
-				will run into problems if one the request handlers will include
-				a blocking operation in the future.
+				will run into problems if one the request handlers wants to make
+				use of a nonblocking operation in the future.
 			</p>
 			<p>
 				Let's take a bit more time for the long answer.
@@ -1542,13 +1543,14 @@ exports.start = start;
 			<a name="making-the-request-handlers-respond_blocking-and-non-blocking" />
 			<h5>Blocking and non-blocking</h5>
 			<p>
-				Before we actually explain what "blocking" means, let's prove
-				that our code will indeed be in trouble when blocking
-				operations are added.
+				As said, the problems will arise when we include non-blocking
+				operations in the request handlers. But let's talk about
+				blocking operations first, then about non-blocking operations.
 			</p>
 			<p>
-				Let's artificially introduce a delay in one of the request
-				handlers to make the problem of blocking code visible.
+				And instead of trying to explain what "blocking" and
+				"non-blocking" means, let's demonstrate ourselves what happens
+				if we add a	blocking operation to our request handlers.
 			</p>
 			<p>
 				To do this, we will modify our <em>start</em> request handler
@@ -1586,7 +1588,7 @@ exports.upload = upload;
 				returns immediately, just like before.
 			</p>
 			<p>
-				(Of course, you have to imagine that instead of sleeping for
+				(Of course, you should imagine that instead of sleeping for
 				10 seconds, there would be a real life blocking operation in
 				<em>start()</em>, like some sort of long-running computation.)
 			</p>
@@ -1626,15 +1628,16 @@ exports.upload = upload;
 			<p>
 				What that means is that Node.js can handle a lot of concurrent
 				stuff, but doesn't do this by splitting everything into
-				threads - in fact, Node.js is single-threaded. It does so by
-				running an event loop, and we the developers can make use of
-				this without the need to fiddle around with the details.
+				threads - in fact, Node.js is single-threaded. Instead, it does
+				so by running an event loop, and we the developers can make use
+				of this - we should avoid blocking operations whenever
+				possible, and use non-blocking operations instead.
 			</p>
 			<p>
-				But we need to make use of callbacks by passing functions
-				around to other functions that might do something that takes
-				some time (like, e.g. sleep for 10 seconds, or query a
-				database, or do some expensive calculation).
+				But to do so, we need to make use of callbacks by passing
+				functions around to other functions that might do something
+				that takes some time (like, e.g. sleep for 10 seconds, or query
+				a database, or do some expensive calculation).
 			</p>
 			<p>
 				This way we are saying <em>"Hey, probablyExpensiveFunction(),
@@ -1645,45 +1648,301 @@ exports.upload = upload;
 				you are finished doing your expensive stuff? Thanks!"</em>
 			</p>
 			<p>
-				If you would like to read about it in more detail, please have
-				a look at Mixu's post on <a href="http://blog.mixu.net/2011/02/01/understanding-the-node-js-event-loop/">Understanding the node.js event loop</a>.
+				(If you would like to read about that in more detail, please have
+				a look at Mixu's post on <a href="http://blog.mixu.net/2011/02/01/understanding-the-node-js-event-loop/">Understanding the node.js event loop</a>.)
 			</p>
 			<p>
-				Ok, after learning how to <em>not</em> do it, the upcoming
-				chapter will discuss how to make our request handlers
-				responding to browser requests the right way.
+				And we will now see why the way we constructed the "request
+				handler response handling" in our application doesn't allow us
+				to make proper use of non-blocking operations.
+			</p>
+			<p>
+				Once again, let's try to experience the problem first-hand by
+				modifying our application.
+			</p>
+			<p>
+				We are going to use our <em>start</em> request handler for this
+				again. Please modify it to reflect the following (file
+				<em>requestHandlers.js</em>):
+			</p>
+<pre class="prettyprint lang-js">var exec = require("child_process").exec;
+
+function start() {
+  console.log("Request handler 'start' was called.");
+  var content = "empty";
+
+  exec("ls -lah", function (error, stdout, stderr) {
+    content = stdout;
+  });
+
+  return content;
+}
+
+function upload() {
+  console.log("Request handler 'upload' was called.");
+  return "Hello Upload";
+}
+
+exports.start = start;
+exports.upload = upload;
+</pre>
+			<p>
+				As you can see, we just introduced a new Node.js module,
+				<em>child_process</em>. We did so because it allows us to make
+				use of a very simple yet useful non-blocking operation:
+				<em>exec()</em>.
+			</p>
+			<p>
+				What <em>exec()</em> does is, it executes a shell command from
+				within Node.js. In this example, we are going to use it to get
+				a list of all files in the current directory ("ls -lah"),
+				allowing us to display this list in the browser of a user
+				requesting the <em>/start</em> URL.
+			</p>
+			<p>
+				What the code does is straightforward: create a new variable
+				<em>content</em> (with an initial value of "empty"), execute
+				"ls -lah", fill the	variable with the result, and return it.
+			</p>
+			<p>
+				As always, we will start our application, and visit
+				<a href="http://localhost:8888/start" rel="nofollow">http://localhost:8888/start</a>.
+			</p>
+			<p>
+				Which loads a beautiful web page that displays the string
+				"empty". What's going wrong here?
+			</p>
+			<p>
+				Well, as you may have already guessed, <em>exec()</em> does its
+				magic in a non-blocking fashion. That's a good thing, because
+				this way we can execute very expensive shell operations (like,
+				e.g., copying huge files around or similar stuff) without
+				forcing our application into a full stop as the blocking
+				<em>sleep</em> operation did.
+			</p>
+			<p>
+				(If you would like to prove this, replace "ls -lah" with a
+				more expensive operation like "find /").
+			</p>
+			<p>
+				But we aren't exactly happy with our elegant non-blocking
+				operation, when our browser doesn't display its result, right?
+			</p>
+			<p>
+				Well, then, let's fix it. And while we are at it, let's try to
+				understand why the current architecture doesn't work.
+			</p>
+			<p>
+				The problem is that <em>exec()</em>, in order to work
+				non-blocking, makes use of a callback function.
+			</p>
+			<p>
+				In our example, it's an anonymous function which is passed as
+				the second parameter to the <em>exec()</em> function call:
+			</p>
+<pre class="prettyprint lang-js">function (error, stdout, stderr) {
+  content = stdout;
+}
+</pre>
+			<p>
+				And herein lies the root of our problem: our own code is
+				executed synchronous, which means that immediately after
+				calling <em>exec()</em>, Node.js continues to execute
+				<em>return content;</em>. At this point, <em>content</em> is
+				still "empty", due to the fact that the callback function
+				passed to <em>exec()</em> has not yet been called - because
+				<em>exec()</em> operates asynchronous.
+			</p>
+			<p>
+				Now, "ls -lah" is a very inexpensive and fast operation (unless
+				there are millions of files in the directory). Which is why the
+				callback is called relatively expeditious - but it nevertheless
+				happens asynchronously.
+			</p>
+			<p>
+				Thinking about a more expensive command	makes this more
+				obvious: "find /" takes about 1 minute on my
+				machine, but if I replace "ls -lah" with "find /" in the
+				request handler, I still immediately receive an HTTP response
+				when opening the /start URL - it's clear that <em>exec()</em>
+				does something in the background, while Node.js itself
+				continues with the application, and we may assume that the
+				callback function we passed into <em>exec()</em> will be called
+				only when the "find /" command has finished running.
+			</p>
+			<p>
+				But how can we achieve our goal, i.e. showing the user a list
+				of files in the current directory?
+			</p>
+			<p>
+				Well, after learning how to <em>not</em> do it, let's discuss
+				how to make our request handlers respond to browser requests
+				the right way.
 			</p>
 
-			<a name="making-the-request-handlers-respond_how-working-around-blocking-operations" />
-			<h5>Working around blocking operations</h5>
+			<a name="making-the-request-handlers-responding-request-handlers-with-non-blocking-operations" />
+			<h5>Responding request handlers with non-blocking operations</h5>
 			<p>
 				I've just used the phrase "the right way". Dangerous stuff.
-				Quite often, there is no single "right way". But without
-				question there is a	better way, and we will examine it now.
+				Quite often, there is no single "right way". But here is one
+				possible solution, and we will examine it now.
 			</p>
 			<p>
-				Let's just pretend we simply couldn't do anything about the
-				fact that the operation in the <em>start</em> request handler
-				takes 10 seconds to complete. By "operation" I'm of course
-				still talking about the <em>sleep()</em> we constructed.
+				One possible solution for this is, as often with Node.js, to
+				pass functions around.
 			</p>
 			<p>
-				For now, we will reluctantly accept that whenever a user of our
-				application requests the /start URL, he will have to wait 10
-				seconds until he receives an answer.
+				Right now, our application is able to transport the content
+				(which the request handlers would like to display to the user)
+				from the request handlers to the HTTP server by returning it
+				up through the layers of the application (request handler -&gt;
+				router -&gt; server).
 			</p>
 			<p>
-				What we won't accept is that one user requesting /start will
-				force the hundreds of other users (of our extremely famous
-				application) that requested /upload to wait 10 seconds, too.
+				Our new approach is as follows: instead of bringing the content
+				to the server, we will bring the server to the content. To be
+				more precise, we will inject the <em>response</em> object (from
+				our server's callback function <em>onRequest()</em>) through
+				the router into the request handlers. The handlers will then be
+				able to use this object's functions to respond to requests
+				themselves.
 			</p>
 			<p>
-				
+				Enough explanation, here is the step by step recipe on how to
+				change our application.
 			</p>
+			<p>
+				Let's start with our <em>server.js</em>:
+			</p>
+<pre class="prettyprint lang-js">var http = require("http");
+var url = require("url");
 
+function start(route, handle) {
+  function onRequest(request, response) {
+    var pathname = url.parse(request.url).pathname;
+    console.log("Request for " + pathname + " received.");
+
+    route(handle, pathname, response);
+  }
+
+  http.createServer(onRequest).listen(8888);
+  console.log("Server has started.");
+}
+
+exports.start = start;
+</pre>
+			<p>
+				Instead of expecting a return value from the <em>route()</em>
+				function, we pass it a third parameter, our <em>response</em>
+				object. Furthermore, we removed any <em>response</em> method
+				calls from the <em>onRequest()</em> handler, because we now
+				expect <em>route</em> to take care of that.
+			</p>
+			<p>
+				Next comes <em>router.js</em>:
+			</p>
+<pre class="prettyprint lang-js">function route(handle, pathname, response) {
+  console.log("About to route a request for " + pathname);
+  if (typeof handle[pathname] === 'function') {
+    handle[pathname](response);
+  } else {
+    console.log("No request handler found for " + pathname);
+    response.writeHead(404, {"Content-Type": "text/html"});
+    response.write("404 Not found");
+    response.end();
+  }
+}
+
+exports.route = route;
+</pre>
+			<p>
+				Same pattern: instead of expecting a return value from our
+				request handlers, we pass the <em>respond</em> object on.
+			</p>
+			<p>
+				If no request handler can be used, we now take care of
+				responding with a proper "404" header and body ourselves.
+			</p>
+			<p>
+				And last but not least, we modify <em>requestHandlers.js</em>:
+			</p>
+<pre class="prettyprint lang-js">var exec = require("child_process").exec;
+
+function start(response) {
+  console.log("Request handler 'start' was called.");
+
+  exec("ls -lah", function (error, stdout, stderr) {
+    response.writeHead(200, {"Content-Type": "text/html"});
+    response.write(stdout);
+    response.end();
+  });
+}
+
+function upload(response) {
+  console.log("Request handler 'upload' was called.");
+  response.writeHead(200, {"Content-Type": "text/html"});
+  response.write("Hello Upload");
+  response.end();
+}
+
+exports.start = start;
+exports.upload = upload;
+</pre>
+			<p>
+				Our handler functions need to accept the response parameter,
+				and have to make use of them in order to repsond to the
+				request directly.
+			</p>
+			<p>
+				The <em>start</em> handler will respond from within the
+				anonymous <em>exec()</em> callback, and the <em>upload</em>
+				handler still simply replies with "Hello Upload", but now
+				by making use of the <em>response</em> object.
+			</p>
+			<p>
+				If we start our application again (<em>node index.js</em>),
+				this should work as expected.
+			</p>
+			<p>
+				If you would like to prove that an expensive operation behind
+				<em>/start</em> will no longer block requests for
+				<em>/upload</em> from answering immediately, then modify your
+				<em>requestHandlers.js</em> as follows:
+			</p>
+<pre class="prettyprint lang-js">var exec = require("child_process").exec;
+
+function start(response) {
+  console.log("Request handler 'start' was called.");
+
+  exec("find /", { timeout: 10000, maxBuffer: 20000*1024 }, function (error, stdout, stderr) {
+    response.writeHead(200, {"Content-Type": "text/html"});
+    response.write(stdout);
+    response.end();
+  });
+}
+
+function upload(response) {
+  console.log("Request handler 'upload' was called.");
+  response.writeHead(200, {"Content-Type": "text/html"});
+  response.write("Hello Upload");
+  response.end();
+}
+
+exports.start = start;
+exports.upload = upload;
+</pre>
+			<p>
+				This will make HTTP requests to <a href="http://localhost:8888/start" rel="nofollow">http://localhost:8888/start</a>
+				take at least 10 seconds, but requests to <a href="http://localhost:8888/upload" rel="nofollow">http://localhost:8888/upload</a>
+				will be answered immediately, even if /start is still
+				computing.
+			</p>
 		</div>
 
 
+
+
+		
 		<div id="workinprogressnote">
 			<p>
 				The Node Beginner Book is work-in-progress.
