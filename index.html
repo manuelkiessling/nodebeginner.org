@@ -1531,25 +1531,27 @@ exports.start = start;
 				produces "404 Not found".
 			</p>
 			<p>
-				Ok, then why is that a problem? The short answer: because it's
-				blocking. Let's take a bit more time for the long answer.
+				Ok, then why is that a problem? The short answer: because we
+				will run into problems if one the request handlers will include
+				a blocking operation in the future.
+			</p>
+			<p>
+				Let's take a bit more time for the long answer.
 			</p>
 
 			<a name="making-the-request-handlers-respond_blocking-and-non-blocking" />
 			<h5>Blocking and non-blocking</h5>
 			<p>
 				Before we actually explain what "blocking" means, let's prove
-				that our code indeed <em>is</em> blocking - because it in fact
-				already is, although using the app doesn't feel like anything
-				would be blocked. But that's just because the "blocking" parts
-				are currently executed so quickly we simply don't notice.
+				that our code will indeed be in trouble when blocking
+				operations are added.
 			</p>
 			<p>
-				Let's artificially introduce a delay in one of the blocking
-				parts to make the problem of blocking code visible.
+				Let's artificially introduce a delay in one of the request
+				handlers to make the problem of blocking code visible.
 			</p>
 			<p>
-				To do this, we will change our <em>start</em> request handler
+				To do this, we will modify our <em>start</em> request handler
 				to make it wait 10 seconds before returning its "Hello Start"
 				string. Because there is no such thing as <em>sleep()</em> in
 				JavaScript, we will use a clever hack for that.
@@ -1584,8 +1586,16 @@ exports.upload = upload;
 				returns immediately, just like before.
 			</p>
 			<p>
+				(Of course, you have to imagine that instead of sleeping for
+				10 seconds, there would be a real life blocking operation in
+				<em>start()</em>, like some sort of long-running computation.)
+			</p>
+			<p>
+				Let's see what this change does.
+			</p>
+			<p>
 				As always, we need to restart our server. This time, I ask you
-				to follow a slightly complex protocol in order to see what
+				to follow a slightly complex "protocol" in order to see what
 				happens: First, open two browser windows or tabs. In the first
 				browser window, please enter <a href="http://localhost:8888/start" rel="nofollow">http://localhost:8888/start</a>
 				into the address bar, but do not yet open this url!
@@ -1606,8 +1616,8 @@ exports.upload = upload;
 				in the according request handler!
 			</p>
 			<p>
-				Why? Because <em>start()</em> is blocking. Like in "it's
-				blocking everything else from working".
+				Why? Because <em>start()</em> contains a blocking operation.
+				Like in "it's blocking everything else from working".
 			</p>
 			<p>
 				And that is a problem, because, as the saying goes: <em>"In
@@ -1642,6 +1652,33 @@ exports.upload = upload;
 				Ok, after learning how to <em>not</em> do it, the upcoming
 				chapter will discuss how to make our request handlers
 				responding to browser requests the right way.
+			</p>
+
+			<a name="making-the-request-handlers-respond_how-working-around-blocking-operations" />
+			<h5>Working around blocking operations</h5>
+			<p>
+				I've just used the phrase "the right way". Dangerous stuff.
+				Quite often, there is no single "right way". But without
+				question there is a	better way, and we will examine it now.
+			</p>
+			<p>
+				Let's just pretend we simply couldn't do anything about the
+				fact that the operation in the <em>start</em> request handler
+				takes 10 seconds to complete. By "operation" I'm of course
+				still talking about the <em>sleep()</em> we constructed.
+			</p>
+			<p>
+				For now, we will reluctantly accept that whenever a user of our
+				application requests the /start URL, he will have to wait 10
+				seconds until he receives an answer.
+			</p>
+			<p>
+				What we won't accept is that one user requesting /start will
+				force the hundreds of other users (of our extremely famous
+				application) that requested /upload to wait 10 seconds, too.
+			</p>
+			<p>
+				
 			</p>
 
 		</div>
