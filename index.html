@@ -5,7 +5,8 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link href="prettify/prettify.css" type="text/css" rel="stylesheet" />
 
-		<title>The Node Beginner Book</title>
+		<title>The Node Beginner Book » A comprehensive Node.js tutorial</title>
+		<meta name="description" content="A comprehensive Node.js tutorial for beginners: Learn how to build a full blown web application with server-side JavaScript" />
 
 		<style type="text/css">
 			body {
@@ -37,21 +38,26 @@
 				margin-top: -41px;
 				margin-left: 279px;
 				color: #888;
+				font-family: "Helvetica Neue", sans-serif;
+				font-size: 75%;
 			}
 
 			#updateinfo {
 				margin-top: -1px;
 				margin-left: 279px;
 				color: #bbb;
+				font-family: "Helvetica Neue", sans-serif;
 				font-size: 75%;
 			}
 
 			#workinprogressnote p {
+				font-family: "Helvetica Neue", sans-serif;
 				color: #700;
 				text-align: center;
 			}
 
 			#flattr p {
+				font-family: "Helvetica Neue", sans-serif;
 				text-align: center;
 			}
 
@@ -60,6 +66,7 @@
 			}
 
 			#footer {
+				font-family: "Helvetica Neue", sans-serif;
 				background-color: #f5f5f5;
 				margin-top: 100px;
 			}
@@ -97,6 +104,30 @@
 				font-size: 75%;
 			}
 
+			#table-of-contents-headline {
+				margin-top: 48px;
+				color: #700;
+				font-size: 160%;
+				font-weight: bold;
+			}
+
+			#book #table-of-contents {
+				margin-left: -24px;
+			}
+
+			#book #table-of-contents ul li {
+				font-size: 100%;
+				margin-left: 0;
+				list-style-type: none;
+			}
+
+			#book #table-of-contents ul {
+				padding-left: 24px;
+				margin-top: 12px;
+				margin-left: 0;
+				margin-bottom: 36px;
+			}
+
 			h1 {
 				margin-left: -63px;
 				margin-top: -109px;
@@ -108,9 +139,8 @@
 			}
 
 			h2 {
-				margin-top: 48px;
-				color: #700;
-				font-size: 200%;
+				margin-top: 64px;
+				font-size: 180%;
 			}
 
 			h3 {
@@ -118,39 +148,52 @@
 			}
 
 			h4 {
-				font-size: 120%;
+				font-size: 140%;
 			}
 
 			h5 {
-				font-size: 110%;
+				font-size: 120%;
 			}
 
 			h3, h4, h5 {
 				margin-top: 36px;
-				color: #700;
 			}
 
 			h2, h3, h4, h5 {
-				font-style: italic;
-				font-weight: normal;
+				color: #700;
+				font-weight: bold;
+				margin-bottom: 36px;
 			}
 
-			p {
+			#book p {
 				text-align: justify;
 				font-size: 110%;
 				line-height: 150%;
+				margin-bottom: 48px;
+    			margin-top: -22px;
 			}
 
 			pre {
 				background-color: #f7f7f7;
 				border: 1px solid #eee;
 				padding: 16px;
+				margin-bottom: 64px;
+				margin-top: -24px;
+				font-size: 14px;
 			}
 
 			pre.prettyprint {
 				background-color: #f7f7f7;
 				border: 1px solid #eee;
 				padding: 16px;
+				margin-bottom: 64px;
+				margin-top: -24px;
+				font-size: 14px;
+			}
+
+			#book ul {
+				margin-top: -24px;
+				margin-bottom: 64px;
 			}
 
 			ul li {
@@ -162,6 +205,22 @@
 				font-style: italic;
 			}
 		</style>
+		<style type="text/css" media="print">
+			#forkmeongithub {
+				display: none;
+			}
+			#praise {
+				display: none;
+			}
+		</style>
+
+		<script type="text/javascript" src="mootools-core-1.3.1-full-compat-yc.js"></script>
+ 		<script type="text/javascript" src="TOC.js"></script>
+		<script type="text/javascript">
+			window.addEvent('domready', function() {
+    			var toc = new TOC('table-of-contents');
+			});
+		</script>
 		<script type="text/javascript" src="prettify/prettify.js"></script>
 		<script type="text/javascript">
 			var _gaq = _gaq || [];
@@ -187,15 +246,14 @@
 		</script>
 	</head>
 	<body onload="prettyPrint();">
-		<div>
+		<div id="forkmeongithub">
 			<a href="https://github.com/ManuelKiessling/NodeBeginnerBook"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://d3nwyuy0nl342s.cloudfront.net/img/71eeaab9d563c2b3c590319b398dd35683265e85/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" /></a>
 		</div>
 
 		<div id="book">
 			<h1>The Node Beginner Book</h1>
-			<div id="author">by <a href="http://twitter.com/manuelkiessling">Manuel Kiessling</a></div>
+			<div id="author">A Node.js tutorial by <a href="http://twitter.com/manuelkiessling">Manuel Kiessling</a></div>
 			<div id="updateinfo">Last updated on Sunday, April 24, 2011 at 6:52 AM EDT</div>
-
 
 			<h2>About</h2>
 
@@ -266,6 +324,8 @@
 				those we know from other programming languages.
 			</p>
 
+			<div id="table-of-contents-headline">Table of contents</div>
+			<div id="table-of-contents"></div>
 
 			<h2>JavaScript and Node.js</h2>
 
@@ -391,7 +451,7 @@
 				library.
 			</p>
 			<p>
-				In order to make use of these, you need to install node.
+				In order to make use of these, you need to install Node.js.
 				Instead of repeating the process here, I kindly ask you to
 				visit
 				<a href="https://github.com/joyent/node/wiki/Installation"
@@ -425,7 +485,7 @@
 			</p>
 
 
-			<h2>A full blown web application with node</h2>
+			<h2>A full blown web application with Node.js</h2>
 
 			<h3>The use cases</h3>
 			<p>
@@ -514,13 +574,13 @@
 			</p>
 			<p>
 				Well, with node, things are a bit different. Because with
-				node, we not only implement our application, we also
+				Node.js, we not only implement our application, we also
 				implement the whole HTTP server. In fact, our web
 				application	and its web server are basically the same.
 			</p>
 			<p>
 				This might sound like a lot of work, but we will see in a
-				moment that with node, it's not.
+				moment that with Node.js, it's not.
 			</p>
 			<p>
 				Let's just start at the beginning and implement the first
@@ -547,7 +607,7 @@
 			</p>
 			<p>
 				This allows you to have a clean main file, which you
-				execute with node, and clean modules that can be used by
+				execute with Node.js, and clean modules that can be used by
 				the main file and among each other.
 			</p>
 			<p>
@@ -576,12 +636,12 @@ http.createServer(function(request, response) {
 			<p>
 				That's it! You just wrote a working HTTP server. Let's
 				prove it by running and testing it. First, execute your
-				script with node:
+				script with Node.js:
 			</p>
 <pre>node server.js</pre>
 			<p>
 				Now, open your browser and point it at
-				<a href="http://localhost:8888/">http://localhost:8888/</a>.
+				<a href="http://localhost:8888/" rel="nofollow">http://localhost:8888/</a>.
 				This should display a web page that says "Hello World".
 			</p>
 			<p>
@@ -750,7 +810,7 @@ http.createServer(onRequest).listen(8888);
 				It all boils down to the fact that Node.js works event-driven.
 				Oh and yes, I, too, don't know exactly what that means.
 				But I will try and explain, why this makes sense for us
-				who want to write web based applications in node.
+				who want to write web based applications in Node.js.
 			</p>
 			<p>
 				When we call the <em>http.createServer</em> method, we
@@ -830,7 +890,7 @@ console.log("Server has started.");
 				When we start this (<em>node server.js</em>, as always), it
 				will immediately output "Server has started." on the
 				command line. Whenever we request our server (by opening
-				<a href="http://localhost:8888/">http://localhost:8888/</a>
+				<a href="http://localhost:8888/" rel="nofollow">http://localhost:8888/</a>
 				in our browser), the message "Request received." is printed
 				on the command line.
 			</p>
@@ -1212,7 +1272,6 @@ About to route a request for /foo
 				to software I ever had the pleasure to encounter.
 			</p>
 
-			<a name="routing-to-real-request-handlers" />
 			<h4>Routing to real request handlers</h4>
 			<p>
 				Back to business. Our HTTP server and our request router are
@@ -1406,7 +1465,7 @@ exports.route = route;
 			<p>
 				Ok, that's all we need to wire server, router, and request
 				handlers together! When starting our application and requesting
-				<a href="http://localhost:8888/start">http://localhost:8888/start</a>
+				<a href="http://localhost:8888/start" rel="nofollow">http://localhost:8888/start</a>
 				in our browser, we can prove that the correct request handler
 				was indeed called:
 			</p>
@@ -1416,7 +1475,7 @@ About to route a request for /start
 Request handler 'start' was called.
 </pre>
 			<p>
-				And opening <a href="http://localhost:8888/">http://localhost:8888/</a>
+				And opening <a href="http://localhost:8888/" rel="nofollow">http://localhost:8888/</a>
 				in our browser proves that these requests, too, are indeed handled by
 				the <em>start</em> request handler:
 			</p>
@@ -1426,7 +1485,6 @@ Request handler 'start' was called.
 </pre>
 
 
-			<a name="making-the-request-handlers-respond" />
 			<h4>Making the request handlers respond</h4>
 			<p>
 				Beautiful. Now if only the request handlers could actually send
@@ -1444,7 +1502,6 @@ Request handler 'start' was called.
 				browser just like our <em>onRequest</em> function does.
 			</p>
 
-			<a name="making-the-request-handlers-respond_how-to-not-do-it" />
 			<h5>How to not do it</h5>
 			<p>
 				The straight-forward approach we -  as developers with a
@@ -1544,7 +1601,6 @@ exports.start = start;
 				Let's take a bit more time for the long answer.
 			</p>
 
-			<a name="making-the-request-handlers-respond_blocking-and-non-blocking" />
 			<h5>Blocking and non-blocking</h5>
 			<p>
 				As said, the problems will arise when we include non-blocking
@@ -1784,7 +1840,6 @@ exports.upload = upload;
 				the right way.
 			</p>
 
-			<a name="making-the-request-handlers-responding-request-handlers-with-non-blocking-operations" />
 			<h5>Responding request handlers with non-blocking operations</h5>
 			<p>
 				I've just used the phrase "the right way". Dangerous stuff.
