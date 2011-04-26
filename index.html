@@ -16,7 +16,7 @@
 				-webkit-text-size-adjust: 200%;
 			}
 
-			#book, #flattr, #disqus_thread, #footer, #workinprogressnote {
+			#book, #donate, #disqus_thread, #footer, #workinprogressnote {
 				width: 640px;
 				margin: 0 auto;
 				margin-top: 24px;
@@ -56,14 +56,26 @@
 				text-align: center;
 			}
 
-			#flattr p {
+			#donate p {
 				font-family: "Helvetica Neue", sans-serif;
 				text-align: center;
 			}
 
-			#paypal {
+			#flattr {
+				padding-top: 20px;
+				margin-left: 170px;
+				margin-right: 40px;
 				text-align: center;
-				margin-left: 200px;
+				align: left;
+				display: inline-block;
+				width: 100px;
+			}
+
+			#paypal {
+				display: inline-block;
+				margin-top: 27px;
+				text-align: center;
+				vertical-align: top;
 			}
 
 			#disqus_thread {
@@ -2079,7 +2091,7 @@ exports.upload = upload;
 			</div>
 		</div>
 
-		<div id="flattr">
+		<div id="donate">
 			<p>
 				<em>The Node Beginner Book</em> is and will always be available for free.
 				<br />
@@ -2087,17 +2099,17 @@ exports.upload = upload;
 				<br />
 				But if you would like to support the author, you can do so using Flattr or PayPal:
 			</p>
-			<p>
+			<div id="flattr">
 				<a class="FlattrButton" style="display:none;" href="http://www.nodebeginner.org"></a>
-			</p>
-			<p id="paypal">
+			</div>
+			<div id="paypal">
 				<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
 					<input type="hidden" name="cmd" value="_s-xclick">
 					<input type="hidden" name="hosted_button_id" value="AWJS7PD37SQ5G">
 					<input type="image" src="https://www.paypalobjects.com/WEBSCR-640-20110401-1/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
 					<img alt="" border="0" src="https://www.paypalobjects.com/WEBSCR-640-20110401-1/de_DE/i/scr/pixel.gif" width="1" height="1">
 				</form>
-			</p>
+			</div>
 
 		</div>
 
