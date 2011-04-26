@@ -63,8 +63,8 @@
 
 			#flattr {
 				padding-top: 20px;
-				margin-left: 170px;
-				margin-right: 40px;
+				margin-left: 183px;
+				margin-right: 18px;
 				text-align: center;
 				align: left;
 				display: inline-block;
@@ -73,9 +73,13 @@
 
 			#paypal {
 				display: inline-block;
-				margin-top: 27px;
+				margin-top: 24px;
 				text-align: center;
 				vertical-align: top;
+			}
+
+			#paypal fieldset {
+				border: 0;
 			}
 
 			#disqus_thread {
@@ -2104,10 +2108,12 @@ exports.upload = upload;
 			</div>
 			<div id="paypal">
 				<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-					<input type="hidden" name="cmd" value="_s-xclick">
-					<input type="hidden" name="hosted_button_id" value="AWJS7PD37SQ5G">
-					<input type="image" src="https://www.paypalobjects.com/WEBSCR-640-20110401-1/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-					<img alt="" border="0" src="https://www.paypalobjects.com/WEBSCR-640-20110401-1/de_DE/i/scr/pixel.gif" width="1" height="1">
+					<fieldset>
+						<input type="hidden" name="cmd" value="_s-xclick" />
+						<input type="hidden" name="hosted_button_id" value="AWJS7PD37SQ5G" />
+						<input type="image" src="https://www.paypalobjects.com/WEBSCR-640-20110401-1/en_US/i/btn/btn_donateCC_LG.gif" name="submit" alt="PayPal - The safer, easier way to pay online!" />
+						<img alt="" src="https://www.paypalobjects.com/WEBSCR-640-20110401-1/de_DE/i/scr/pixel.gif" width="1" height="1" />
+					</fieldset>
 				</form>
 			</div>
 
