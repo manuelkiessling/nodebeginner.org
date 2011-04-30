@@ -3,7 +3,7 @@
 
 ## Sobre el Libro:
 
-El Libro para Principiantes en Node es una completa introducción a node.js y algunos de los temas más avanzados en JavaScript tales como la Programación Funcional.
+El Libro para Principiantes en Node es una completa introducción a node.js y algunos de los temas más avanzados en JavaScript, tales como la Programación Funcional.
 
 Lee la última versión del libro en [NodeBeginner.org](http://nodebeginner.org).
 
@@ -17,7 +17,8 @@ Simplemente _bifurca_ (fork) aquí en Git, y envía un 'pull request'. El Autor 
 
 ## Contacto
 
-Sigue al Autor en 
+Sigue al Autor en:
+
 - Su cuenta de Twitter del Autor en [@ManuelKiessling](http://twitter.com/manuelkiessling).
 - Escríbele en [manuel@kiessling.net](mailto:manuel@kiessling.net).
 - O chequea su sitio web en [http://manuel.kiessling.net](http://manuel.kiessling.net).
