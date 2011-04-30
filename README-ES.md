@@ -1,19 +1,31 @@
-# The Node Beginner Book Repository
-
-## About
-
-The Node Beginner Book is a comprehensive introduction to node.js and some of the more advanced JavaScript topics like functional programming.
-
-Read the latest version of the book at [NodeBeginner.org](http://nodebeginner.org).
-
-This repository is home to the book itself and the accompanying code examples.
+# Libro para Principiantes en Node - Repositorio
 
 
-## Contributing
+## Sobre el Libro:
 
-Just fork and send pull requests, I'm going to incorporate them as quickly as possible, promised!
+El Libro para Principiantes en Node es una completa introducción a node.js y algunos de los temas más avanzados en JavaScript tales como la Programación Funcional.
+
+Lee la última versión del libro en [NodeBeginner.org](http://nodebeginner.org).
+
+Este repositorio alberga del libro mismo y los códigos de ejemplo que lo acompañan.
 
 
-## Contact
+## Contribuciones
 
-Follow me [@ManuelKiessling](http://twitter.com/manuelkiessling), mail me at [manuel@kiessling.net](mailto:manuel@kiessling.net), or check our my personal home page at [http://manuel.kiessling.net](http://manuel.kiessling.net).
+Simplemente _bifurca_ (fork) aquí en Git, y envía un 'pull request'. El Autor los incorporará tan rápido como sea posible, prometido!
+
+
+## Contacto
+
+Sigue al Autor en 
+- Su cuenta de Twitter del Autor en [@ManuelKiessling](http://twitter.com/manuelkiessling).
+- Escríbele en [manuel@kiessling.net](mailto:manuel@kiessling.net).
+- O chequea su sitio web en [http://manuel.kiessling.net](http://manuel.kiessling.net).
+
+
+## Traducción al Español - Spanish Translations (for suggestions, corrections or complains)
+
+- version 20110430
+- Herman A. Junge 
+- haj@neosource.cl 
+- Twitter: @hermanjunge
