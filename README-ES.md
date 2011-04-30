@@ -26,6 +26,6 @@ Sigue al Autor en
 ## Traducción al Español - Spanish Translations (for suggestions, corrections or complains)
 
 - version 20110430
-- Herman A. Junge 
-- haj@neosource.cl 
-- Twitter: @hermanjunge
+- Herman A. Junge
+- [haj@neosource.cl](mailto:haj@neosource.cl)
+- [@hermanjunge](http://www.twitter.com/hermanjunge)
