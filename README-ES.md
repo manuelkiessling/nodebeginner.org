@@ -19,8 +19,8 @@ Simplemente _bifurca_ (fork) aquí en Git, y envía un 'pull request'. El Autor 
 
 Sigue al Autor en:
 
-- Su cuenta de Twitter del Autor en [@ManuelKiessling](http://twitter.com/manuelkiessling).
-- Escríbele en [manuel@kiessling.net](mailto:manuel@kiessling.net).
+- Twitter: [@ManuelKiessling](http://twitter.com/manuelkiessling).
+- e-Mail: [manuel@kiessling.net](mailto:manuel@kiessling.net).
 - O chequea su sitio web en [http://manuel.kiessling.net](http://manuel.kiessling.net).
 
 
