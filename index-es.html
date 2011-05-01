@@ -275,7 +275,7 @@
 			<h1>El Libro para Principiantes en Node.js</h1>
 			<div id="author">Un tutorial de Node.js por:<a href="http://twitter.com/manuelkiessling">Manuel Kiessling</a></div>
 			<div id="updateinfo">&#218;ltima actualizaci&oacute;n el Domingo 24 de Abril, 2011 a las 6:52 AM EDT</div>
-                        <div id="updateinfo">&#218;ltima traducci&oacute;n el S&aacute;bado 29 de Abril, 2011 a las 20:00 PM EDT</div>
+                        <div id="updateinfo">&#218;ltima traducci&oacute;n el Domingo 01 de Mayo, 2011 a las 04:10 AM EDT</div>
 
 			<h2>Sobre el Tutorial</h2>
 
@@ -283,8 +283,8 @@
 				
 				El objetivo de este documento es ayudarte a empezar con el
 				desarrollo de aplicaciones para Node.js, enseñándote todo lo 
-				que necesites saber acerca de Javascript "avanzado" a lo largo
-				del camino. Este tutorial va mucho más allá del típico manual
+				que necesites saber acerca de Javascript "avanzado" sobre
+				la marcha. Este tutorial va mucho más allá del típico manual
 				"Hola Mundo".
 
 			</p>
@@ -323,87 +323,92 @@
 				páginas web y subir archivos.
 			</p>
 			<p>
-				Lo cual, por supuesto, no es exactamente algo "que cambie
-				al mundo", pero nosotros iremos un paso más allá y no sólo vamos
-				a crear código que sea "simplemente suficiente" para hacer estos
-				casos posible, sino que crearemos un simple, pero completo, 
-				framework a fin de poder separar los distintos aspectos de nuestra
-				aplicación. Verás lo que esto significa en un minuto.
+				La cual, por supuesto, no va ser nada como la "aplicación que
+				va a cambiar el mundo", no obstente eso, nosotros haremos la
+				milla extra y no vamos sólo a codificar una aplicación lo
+				"suficientemente simple" para hacer estos casos de uso posible,
+				sino que crearemos un framewoirk sencillo, pero completo, a fin de 
+				poder separar los distintos aspectos de nuestra aplicación.
+				Verás lo que esto significa en poco tiempo.
 			</p>
 			<p>
-				Empezaremos
-				
-				We will start with looking at how JavaScript development in Node.js
-				is different from JavaScript development in a browser.
+				Empezaremos por mirar cómo el desarrollo en JavaScript en Node.js
+				es diferente del desarrollo en JavaScript en un browser.
 			</p>
 			<p>
-				Next, we will stay with the good old tradition of writing a "Hello
-				World" application, which is a most basic Node.js application that
-				"does" something.
+				Luego, nos mantendremos con la vieja tradición de escribir una
+				aplicación "Hola Mundo", la cual es la aplicación más básica
+				de Node.js que "hace" algo.
 			</p>
 			<p>
-				Then, we will discuss what kind of "real" application we want to
-				build, dissect the different parts which need to be implemented to
-				assemble this application, and start working on each of these parts
-				step-by-step.
+				Enseguida, discutiremos que tipo de "aplicación del mundo real"
+				queremos construir, disectaremos las diferentes partes que necesitan
+				ser implementadas para ensamblar esta aplicación, y empezaremos
+				trabajando en cada una de estas partes paso a paso.
 			</p>
 			<p>
-				As promised, along the way we will learn about some of the more
-				advanced concepts of JavaScript, how to make use of them, and
-				look at why it makes sense to use these concepts instead of
-				those we know from other programming languages.
+				Tal y cual lo prometido, aprenderemos sobre la marcha acerca
+				de algunos de los muchos conceptos avanzados de JavaScript,
+				como hacer uso de ellos, y ver el porqué tiene sentido el hacer
+				uso de estos conceptos en vez de los que ya conocemos por
+				otros lenguajes de programación.
 			</p>
 
-			<div id="table-of-contents-headline">Table of contents</div>
+			<div id="table-of-contents-headline">Tabla de Contenidos</div>
 			<div id="table-of-contents"></div>
 
-			<h2>JavaScript and Node.js</h2>
+			<h2>JavaScript y Node.js</h2>
 
-			<h3>JavaScript and You</h3>
+			<h3>JavaScript y Tú</h3>
 			<p>
-				Before we talk about all the technical stuff, let's take a
-				moment and talk about you and your relationship with
-				JavaScript. This chapter is here to allow you to estimate
-				if reading this document any further makes sense for you.
+				Antes que hablemos de toda la parte técnica, tomémosnos
+				un minuto y hablemos acerca de tí y tu relación con 
+				JavaScript. Este capitulo está aquí para permitirte estimar
+				si tiene sentido el que sigas o no leyendo este documento.
 			</p>
 			<p>
-				If you are like me, you started with HTML "development"
-				long ago, by writing HTML documents. You came along this
-				funny thing called JavaScript, but you only used it in a
-				very basic way, adding interactivity to your web pages
-				every now and then.
+				Si tú eres como yo, Tú empezaste con el "desarrollo" HTML
+				hace bastante tiempo, escribiendo documentos HTML. Te 
+				encontraste en el camino con esta cosa divertida llamada
+				JavaScript, pero solo la usabas en una forma muy básica,
+				agregando interactividad a tus páginas de cuando en cuando.
 			</p>
 			<p>
-				What you really wanted was "the real thing", you wanted to
-				know how to build complex web sites - you learned a
-				programming language like PHP, Ruby, Java, and started
-				writing "backend" code.
+				Lo que Tú realmente querías era "la cosa real", Tú querías
+				saber como construir sitios web comlejos - Tú aprendiste un
+				lenguaje de programación como PHP, Ruby, Java, y empezaste a 
+				escribir codigo "backend".
 			</p>
 			<p>
-				Nevertheless, you kept an eye on JavaScript, you saw that
-				with the introduction of jQuery, Prototype and the likes,
-				things got more advanced in JavaScript land, and that this
-				language really was about more than <em>window.open()</em>.
+				No obstante, Tú mantuviste un ojo en JavaScript, te diste
+				cuenta que con la introducción de jQuery, Prototype y otros,
+				las cosas se fueron poniendo más avanzadas en las Tierras
+				de JavaScript, y que este lenguaje era realmente más que
+				<em>window.open()</em>.							
 			</p>
 			<p>
-				However, this was all still frontend stuff, and although it
-				was nice to have jQuery at your disposal whenever you felt
-				like spicing up a web page, at the end of the day you were,
-				at best, a JavaScript <em>user</em>, but not a JavaScript
-				<em>developer</em>.
+				Sin embargo, esto era todo cosa del 
+				<span style="font-style: italic;">frontend</span> ,y aunque era
+				agradable contar con jQuery a tu disposición en cualquier
+				momento que te sintieras con animo de sazonar una página web,
+				al final del día, tu eras a lo más, un usuario de JavaScript,
+				pero no, un desarrollador de JavaScript.
 			</p>
 			<p>
-				And then came Node.js. JavaScript on the server, how cool
-				is that?
+				Y entonces llegó Node.js. JavaScript en el servidor, ¿Qué
+				hay con eso?				
 			</p>
 			<p>
-				You decided that it's about time to check out the old, new
-				JavaScript. But wait, writing Node.js applications is the
-				one thing; understanding why they need to be written the
-				way they are written means - understanding JavaScript.
-				And this time for real.
+				Decidiste que era ya tiempo de revisar el nuevo JavaScript.
+				Pero espera: Escribir aplicaciones Node.js es una cosa ; Entender
+				el porqué ellas necesitan ser escritas en la manera que lo son
+				significa entender JavaScript! Y esta vez es en serio.
 			</p>
 			<p>
+				Y aquí esta el problema:
+				
+				<!-- LANDMARK -->
+				
 				Here is the problem: Because JavaScript really lives two,
 				maybe even three lives (the funny little DHMTL helper from
 				the mid-90's, the more serious frontend stuff like jQuery
