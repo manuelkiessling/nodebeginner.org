@@ -367,7 +367,7 @@
 				si tiene sentido el que sigas o no leyendo este documento.
 			</p>
 			<p>
-				Si tú eres como yo, Tú empezaste con el "desarrollo" HTML
+				Si tú eres como yo, empezaste con el "desarrollo" HTML
 				hace bastante tiempo, escribiendo documentos HTML. Te 
 				encontraste en el camino con esta cosa divertida llamada
 				JavaScript, pero solo la usabas en una forma muy básica,
@@ -380,7 +380,7 @@
 				escribir codigo "backend".
 			</p>
 			<p>
-				No obstante, Tú mantuviste un ojo en JavaScript, te diste
+				No obstantem tú mantuviste un ojo en JavaScript, y te diste
 				cuenta que con la introducción de jQuery, Prototype y otros,
 				las cosas se fueron poniendo más avanzadas en las Tierras
 				de JavaScript, y que este lenguaje era realmente más que
@@ -405,94 +405,89 @@
 				significa entender JavaScript! Y esta vez es en serio.
 			</p>
 			<p>
-				Y aquí esta el problema:
-				
-				<!-- LANDMARK -->
-				
-				Here is the problem: Because JavaScript really lives two,
-				maybe even three lives (the funny little DHMTL helper from
-				the mid-90's, the more serious frontend stuff like jQuery
-				and the likes, and now server-side), it's not that easy to
-				find information that helps you to learn JavaScript the
-				"right" way, in order to write Node.js applications in a
-				fashion that makes you feel you are not just using
-				JavaScript, you are actually developing it.
+				Y aquí esta el problema: Ya que JavaScript realmente vive
+				dos, o tal vez tres vidas (El pequeño audante DHTML de 
+				mediados de los 90's, las cosas más serias tales como jQuery
+				y similares, y ahora, el lado del servidor), no es tan fácil
+				encontrar información que te ayude a aprender JavaScript de la
+				"manera correcta", de forma de poder escribir aplicaciones de 
+				Node.js en una apariencia que te haga sentir que tú no sólo
+				estás usando JavaScript, sino que también están desarrollando
+				con él.
+			</p>
+			<p>			
+        Porque ahí está el asunto: Tú ya eres un desarrollador
+        experimentado, y no quieres aprender una nueva técnica
+        simplemente metiendo código aquí y allá mal-aprovechandolo;
+        Tú quieres estar seguro que te estás enfocando en un angulo
+        correcto.
 			</p>
 			<p>
-				Because that's the catch: you already are an experienced
-				developer, you don't want to learn a new technique by just
-				hacking around and mis-using it; you want to be sure that
-				you are approaching it from the right angle.
+        Hay, por supuesto, excelente documentación afuera.
+        Pero la documentaión por si sola no es suficiente. Lo que 
+        se necesita es una guía.
 			</p>
 			<p>
-				There is, of course, excellent documentation out there.
-				But documentation alone	sometimes isn't enough. What is
-				needed is guidance.
-			</p>
-			<p>
-				My goal is to provide a guide for you.
+        Mi objetivo es proveerte esta guía.
 			</p>
 
-			<h3>A word of warning</h3>
+			<h3>Una Advertencia</h3>
 			<p>
-				There are some really excellent JavaScript people out
-				there. I'm not one of them.
+			 Hay algunas personas realmente excelente en JavaScript.
+			 No soy una de ellas.
 			</p>
 			<p>
-				I'm really just the guy I talked about in the previous
-				paragraph. I know a thing or two about developing backend
-				web applications, but I'm still new to "real" JavaScript
-				and	still new to Node.js. I learned some of the more
-				advanced aspects of	JavaScript just recently.
-				I'm not experienced.
+			 Yo soy realmente el tipo del que te he hablado en los
+			 párrafos previos. Sé un par de cosas acerca de desarrollar
+			 aplicaciones backend, pero aún soy nuevo al JavaScript "real"
+			 y aún más nuevo a Node.js. He aprendido solo recientemente alguno 
+			 de los aspectos avanzados de JavaScript. No soy experimentado.
 			</p>
 			<p>
-				Which is why this is no "from novice to expert" book. It's
-				more like "from novice to advanced novice".
+        Por lo que este no es un libro "desde novicio hasta experto".
+        Este es más bien un libto "desde novicio a novicio avanzado".
 			</p>
 			<p>
-				If I don't fail, then this will be the kind of
-				document I wish I had when starting with Node.js.
+				Si no fallo, entonces este será el tipo de documento
+				que deseo hubiese tenido cuando empecé con Node.js.
 			</p>
 
-			<h3>Server-side JavaScript</h3>
+			<h3>JavaScript del Lado del Servidor</h3>
 			<p>
-				The first incarnations of JavaScript lived in browsers.
-				But this is just the context. It defines what you can
-				do with the language, but it doesn't say much about what
-				the language itself can do. JavaScript is a "complete"
-				language: you can use it in many contexts and achieve
-				everything with it you can achieve with any other
-				"complete" language.
+				Las primeras encarnaciones de JavaScript vivían en los
+				browsers. Pero esto es sólo el contexto. Define lo que puedes
+				hacer con el lenguaje, pero no dice mucho acerca de lo que el
+				lenguaje mismo puede hacer. JavaScript es un lenguaje "completo":
+				Lo puedes usar en muchos contextos y alcanzar con éste, todo
+				lo que puedes alcanzar con cualquier otro lenguaje "completo".
 			</p>
 			<p>
-				Node.js really is just another context: it allows you to run
-				JavaScript code in the backend, outside a browser.
+				Node.js realmente es sólo otro contexto: te permite correr
+				código JavaScript en el backend, fuera del browser.
 			</p>
 			<p>
-				In order to execute the JavaScript you intend to run in the
-				backend, it needs to be interpreted and, well, executed.
-				This is what Node.js does, by making use of Google's V8 VM, the
-				same runtime environment for JavaScript that Google
-				Chrome uses.
+				Para ejecutar el código JavaScript que tu pretendes correr en el 
+				backend, este necesita ser interpretado y, bueno, ejecutado, Esto
+				es lo que Node.js realiza, haciendo uso de la Maquina Virtual V8 de
+				Google, el mismo entorno de ejecución para JavaScript que Google
+				Chrome utiliza.
 			</p>
 			<p>
-				Plus, Node.js ships with a lot of useful modules, so you don't
-				have to write everything from scratch, like for example
-				something that outputs a string on the console.
+				Además, Node.js viene con muchos módulos utiles, de manera que no
+				tienes que escribir todo de cero, como por ejemplo, algo que ponga un
+				string a la consola.
 			</p>
 			<p>
-				Thus, Node.js is really two things: a runtime environment and a
-				library.
+				Entonces, Node.js es en realidad dos cosas: un entorno de ejecución
+				y una librería.
 			</p>
 			<p>
-				In order to make use of these, you need to install Node.js.
-				Instead of repeating the process here, I kindly ask you to
-				visit
-				<a href="https://github.com/joyent/node/wiki/Installation"
-				   title="Building and Installing Node.js">the official
-				installation instructions</a>. Please come back once you
-				are up and running.
+        Para hacer uso de éstas (la librería y el entorno), Tú necesitas
+        instalar Node.js. En lugar de repetir el proceso aquí. Te ruego
+        visitar <a href="https://github.com/joyent/node/wiki/Installation"
+				   title="Building and Installing Node.js">las instrucciones oficiales
+				de instalación</a>, Por Favor vuelve una vez que estés arriba y corriendo
+				tu versión de Node.js
 			</p>
 
 			<h3>"Hello World"</h3>
