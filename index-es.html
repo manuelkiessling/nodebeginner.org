@@ -275,7 +275,7 @@
 			<h1>El Libro para Principiantes en Node.js</h1>
 			<div id="author">Un tutorial de Node.js por:<a href="http://twitter.com/manuelkiessling">Manuel Kiessling</a></div>
 			<div id="updateinfo">&#218;ltima actualizaci&oacute;n el Domingo 24 de Abril, 2011 a las 6:52 AM EDT</div>
-                        <div id="updateinfo">&#218;ltima traducci&oacute;n el Lunes 02 de Mayo, 2011 a las 00:37 AM EDT</div>
+                        <div id="updateinfo">&#218;ltima traducci&oacute;n el Martes 03 de Mayo, 2011 a las 01.11 AM EDT</div>
 
 			<h2>Sobre el Tutorial</h2>
 
@@ -445,7 +445,7 @@
 			</p>
 			<p>
         Por lo que este no es un libro "desde novicio hasta experto".
-        Este es más bien un libto "desde novicio a novicio avanzado".
+        Este es más bien un libro "desde novicio a novicio avanzado".
 			</p>
 			<p>
 				Si no fallo, entonces este será el tipo de documento
@@ -516,248 +516,259 @@
 
 			<h2>Una Aplicación Web Completa con Node.js</h2>
 
-      <!-- LANDMARK -->
+      <!-- LANDMARK LAST -->
 
-			<h3>The use cases</h3>
+			<h3>Los casos de Uso</h3>
 			<p>
-				Let's keep it simple, but realistic:
+				Mantengámoslo simple, pero realista:
 			</p>
 			<ul>
 				<li>
-					The user should be able to use our application with
-					a web browser
+					El Usuario debería ser capaz de ocupar nuestra aplicación con
+					un browser.
 				</li>
 				<li>
-					The user should see a welcome page when
-					requesting http://<em>domain</em>/start
+					El Usuario debería ver una página de bienvenida cuando
+					solicita http://<em>dominio</em>/inicio.
 				</li>
 				<li>
-					When requesting http://<em>domain</em>/upload, the
-					user should be able to upload an image file	from
-					his computer, which is then displayed in his
-					browser
+					Cuando solicite http://<em>dominio</em>/subir, el 
+					Usuario debería ser capaz de subir un archivo de imagen
+					desde su computador, el cual es luego desplegado en su
+					browser.
 				</li>
 			</ul>
 			<p>
-				Fair enough. Now, you could achieve this goal by googling
-				and hacking together <em>something</em>. But that's not
-				what we want to do here.
+				Muy bien. Ahora, tu puedes ser capaz de alcanzar este objetivo
+				googleando y programando <em>lo que sea</em>, pero eso no es lo
+				que queremos hacer aquí.
 			</p>
 			<p>
-				Furthermore, we don't want to write only the most basic
-				code to achieve the goal, however elegant and correct this code
-				might be. We will intentionally add more abstraction than
-				necessary in order to get a feeling for building more
-				complex Node.js applications.
+				Más que eso, no quieremos escribir simplemente el código más
+				básico posible para alcanzar este objetivo, no importa lo
+				elegante y correcto que pueda ser este código. Nosotros
+				agregaremos intencionalmente más abstracción de lo necesaria
+				de manera de poder tener una idea de lo que es contruir 
+				aplicaciones más complejas de Node.js.
 			</p>
 
-			<h3>The application stack</h3>
+			<h3>La Pila de Aplicaciones</h3>
 			<p>
-				Let's dissect our application. Which parts need to be
-				implemented in order to fulfill the use cases?
+				Hagamos un desglose a nuestra aplicación. ¿Qué partes
+				necesitan ser implementadas para poder satisfacer
+				nuestros casos de uso?
 			</p>
 			<ul>
 				<li>
-					We want to serve web pages, therefore we need an
-					<strong>HTTP server</strong>
+					Queremos servir páginas web, de manera que necesitamos
+					un <strong>Servidor HTTP</strong>.
 				</li>
 				<li>
-					Our server will need to answer differently to
-					requests, depending on which URL the request was
-					asking for, thus we need some kind of
-					<strong>router</strong> in order to map requests
-					to request handlers
+					Nuestro servidor necesitará responder directamente
+					peticiones (requests), dependiendo de que URL sea pedida en
+					este requerimiento, es que necesitaremos algún tipo
+					de <strong>enrutador (router)</strong> de manera de
+					mapear los peticiones a los handlers (manejadores) de éstos.
 				</li>
 				<li>
-					To fullfill the requests that arrived at the server
-					and have been routed using the router, we need
-					actual <strong>request handlers</strong>
+					Para satisfacer a los peticiones que llegaron 
+					al servidor y han sido ruteados usando el enrutador,
+					necesitaremos de hecho 
+					<strong>handlers (manejadores) de peticiones</strong>
 				</li>
 				<li>
-					The router probably should also treat any incoming
-					POST data and give it to the request handlers in
-					a convenient form, thus we need <strong>request
-					data handling</strong>
+					El Enrutador probablemente debería tratar cualquier
+					información POST que llegue y darsela a los handlers de
+					peticiones en una forma conveniente, luego 
+					necesitaremos <strong>manipulación de data requerida</strong>
 				</li>
 				<li>
-					We not only want to handle requests for URLs, we
-					also want to display content when these URLs are
-					requested, which means we need some kind of
-					<strong>view logic</strong> the request handlers
-					can use in order to send content to the user's
-					browser
+					Nosotros no solo queremos manejar peticiones de URLs,
+					sino que también queremos desplegar contenido cuando
+					estas URLs sean pedidas, lo que significa que necesitamos
+					algún tipo de <strong>lógica en las vistas</strong> a
+					ser utilizada por los handlers de peticiones, de manera
+					de poder enviar contenido al browser del Usuaio.
 				</li>
 				<li>
-					Last but not least, the user will be able to upload
-					images, so we are going to need some kind of
-					<strong>upload handling</strong> which takes care of
-					the	details
+					Por último, pero no menos importante, el Usuario será
+					capaz de subir imagenes, así que necesitaremos algún 
+					tipo de <strong>manipulación de subidas</strong> quien
+					ser hará cargo de los detalles.
 				</li>
 			</ul>
 			<p>
-				Let's think a moment about how we would build this stack
-				with PHP. It's not exactly a secret that the typical setup
-				would be an Apache HTTP server with mod_php5 installed.
+				Pensemos un momento acerca de como construirimas esta pila
+				de aplicaciones con PHP. No es exactamente un secreto que
+				la configuración típica sería un Apache HTTP server con 
+				mod_php5 instalado.
 				<br/>
-				Which in turn means that the whole "we need to be able to
-				serve web pages and receive HTTP requests" stuff doesn't
-				happen within PHP itself.
+				Lo que, a su vez, significa que el tema "Necesitamos ser capaces
+				de servir páginas web y recibir peticiones HTTP" ni siquiera
+				sucede dentro de PHP mismo.
 			</p>
 			<p>
-				Well, with node, things are a bit different. Because with
-				Node.js, we not only implement our application, we also
-				implement the whole HTTP server. In fact, our web
-				application	and its web server are basically the same.
+				Bueno, con Node.js, las cosas son un poco distintas. Porque
+				con Node.js, no solo implementamos nuestra aplicación, nosotros
+				también implementamos todo el servidor HTTP completo.
+				De hecho, nuestra aplicación web y su servidor web son
+				básicamente lo mismo.
 			</p>
 			<p>
-				This might sound like a lot of work, but we will see in a
-				moment that with Node.js, it's not.
+				Esto puede sonar como mucho trabajo, pero veremos en un momento
+				que con Node.js, no lo es.
 			</p>
+			
 			<p>
-				Let's just start at the beginning and implement the first
-				part of our stack, the HTTP server.
+				
+				Empecemos por el principio e implementemos la primera parte
+				de nuestra pila, el servidor HTTP..
 			</p>
 
-			<h3>Building the application stack</h3>
-			<h4>A basic HTTP server</h4>
+			<h3>Construyendo la Pila de Aplicaciones</h3>
+			<h4>Un Servidor HTTP Básico</h4>
 			<p>
-				When I arrived at the point where I wanted to start with my
-				first "real" Node.js application, I wondered not only how to
-				actually code it, but also how to organize my code.
+				Cuando llegué al punto donde quería empezar con mi primera
+				aplicación Node.js "real", me pregunté no solo como la iba
+				a programar, sino que también, como organizar mi código.
 				<br/>
-				Do I need to have everything in one file? Most tutorials on
-				the web that teach you how to write a basic HTTP server in
-				Node.js have all the logic in one place. What if I want to
-				make sure that my code stays readable the more stuff I
-				implement?
+				¿Necesitaré tenerlo todo en un archivo? Muchos tutoriales en
+				la Web que te enseñan como escribir un servidor HTTP básico en
+				Node.js tienen toda la lógica en un solo lugar. ¿Qué pasa
+				si yo quiero asegurarme que mi código se mantenga leíble a 
+				medida que le vaya agregando más cosas?
 			</p>
 			<p>
-				Turns out, it's relatively easy to keep the different
-				concerns of your code separated, by putting them in
-				modules.
+				Resulta, que es relativamente fácil de mantener los 
+				distintos aspectos de tu código separados, poniéndolos en
+				módulos.
 			</p>
 			<p>
-				This allows you to have a clean main file, which you
-				execute with Node.js, and clean modules that can be used by
-				the main file and among each other.
+				Esto te permite tener un archivo <em>main</em> limpio, en
+				el cual Tú ejecutas Node.js, y módulos limpios que pueden ser
+				utilizados por el archivo <em>main</em> entre muchos otros.
 			</p>
 			<p>
-				So, let's create a main file which we use to start our
-				application, and a module file where our HTTP server code
-				lives.
+				Así que vamos a crear un archivo <em>main</em> el cual usaremos
+				para iniciar nuestra aplicación, y un archivo de módulo dónde
+				residirá el código de nuestro servidor HTTP.
+
 			</p>
 			<p>
-				My impression is that it's more or less a standard to name
-				your main file <em>index.js</em>. It makes sense to put	our
-				server module into a file named <em>server.js</em>.
+				Mi impresión es que es más o menos un estandar nombrar a tu
+				archivo <em>main</em> como <em>index.js</em>. Tiene sentido
+				también que pongamos nuestro módulo de servidor en un archivo
+				llamado <em>server.js</em>.
 			</p>
 			<p>
-				Let's start with the server module. Create the file
-				<em>server.js</em> in the root directory of your project,
-				and fill it with the following code:
+				Empecemos con el módulo del servidor. Crea el archivo
+				<em>server.js</em> en el directorio raíz de tu proyecto,
+				y llenalo con el código siguiente:
 			</p>
-<pre class="prettyprint lang-js">var http = require("http");
+<pre><code>var http = require("http");
 
 http.createServer(function(request, response) {
   response.writeHead(200, {"Content-Type": "text/html"});
-  response.write("Hello World");
+  response.write("Hola Mundo");
   response.end();
 }).listen(8888);
-</pre>
+</code></pre>
+
 			<p>
-				That's it! You just wrote a working HTTP server. Let's
-				prove it by running and testing it. First, execute your
-				script with Node.js:
+				Eso es! Acabas de escribir un servidor HTTP activo. Probemóslo
+				ejecutándolo y testéandolo. Primero ejecuta tu script con Node.js:
 			</p>
 <pre>node server.js</pre>
 			<p>
-				Now, open your browser and point it at
+				Ahora, abre tu browser y apúntalo a
 				<a href="http://localhost:8888/" rel="nofollow">http://localhost:8888/</a>.
-				This should display a web page that says "Hello World".
+				Esto debería desplegar una página web que diga "Hola Mundo".
 			</p>
 			<p>
-				That's quite interesting, isn't it. How about talking about
-				what's going on here and leaving the question of how to
-				organize our project for later? I promise we'll get back to
-				it.
+				Interesante, ¿no? ¿Que tal si hablamos de que está pasando aquí y
+				dejamos la pregunta de 'cómo organizar nuestro proyecto' para después?
+				Prometo que volveremos a esto.
 			</p>
 
-			<h4>Analyzing our HTTP server</h4>
+			<h4>Analizando nuestro servidor HTTP</h4>
 			<p>
-				Well, then, let's analyze what's actually going on here.
+				Bueno, entonces, analicemos que está pasando aquí.
 			</p>
 			<p>
-				The first line <em>require</em>s the <em>http</em> module
-				that ships with Node.js and makes it accessible through the
+				La primera línea <em>require</em>, requiere al módulo <em>http</em>
+				que viene incluído con Node.js y lo hace accesible a través de la
 				variable <em>http</em>.
 			</p>
 			<p>
-				We then call one of the functions the http module offers:
-				<em>createServer</em>. This function returns an object, and
-				this object has a method named <em>listen</em>, and takes
-				a numeric value which indicates the port number our HTTP
-				server is going to listen on.
+				Luego llamamos a una de las funciones que el módulo http ofrece:
+				<em>createServer</em>. Esta función retorna un objeto, y este objeto
+				tiene un método llamado <em>listen</em> (escucha), y toma un
+				valor numérico que indica el número de puerto en que nuestro
+				servidor HTTP va a escuchar.
 			</p>
 			<p>
-				Please ignore for a second the function definition that
-				follows the opening bracket of <em>http.createServer</em>.
+				Por favor ignora por un segundo a la definición de función
+				que sigue a la llave de apertura de <em>http.createServer</em>.
 			</p>
 			<p>
-				We could have written the code that starts our server and
-				makes it listen at port 8888 like this:
+				Nosotros podríamos haber escrito el código que inicia a nuestro
+				servidor y lo hace escuchar al puerto 8888 de la siguiente manera:
 			</p>
-<pre class="prettyprint lang-js">var http = require("http");
-
+<pre><code>var http = require("http");
 var server = http.createServer();
-server.listen(8888);</pre>
+server.listen(8888);</code></pre>
 			<p>
-				That would start an HTTP server listening at port 8888
-				and doing nothing else (not even answering any incoming
-				requests).
+				Esto hubiese iniciado al servidor HTTP en el puerto 8888
+				y no hubiese hecho nada más (ni siquiera respondido alguna
+				petición entrante).
 			</p>
 			<p>
-				The really interesting (and, if your background is a more
-				conservative language like PHP, odd looking) part is the
-				function definition right there where you would expect the
-				first parameter of the <em>createServer()</em> call.
+				La parte realmente interesante (y rara, si tu trasfondo es 
+				en un lenguaje más conservador, como PHP) es que la definición
+				de función está ahí mismo donde uno esperaría el primer
+				parámetro de la llamada a <em>createServer()</em>.
 			</p>
 			<p>
-				Turns out, this function definition IS the first (and only)
-				parameter we are giving to the <em>createServer()</em>
-				call. Because in JavaScript, functions can be passed around
-				like any other value.
+				Resulta que, este definición de función ES el primer
+				(y único) parametro que le vamos a dar a la llamada a
+				<em>createServer()</em>. Ya que en JavaScript, las funciones
+				pueden ser pasadas de un lado a otro como cualquier otro valor.
 			</p>
 
-			<h4>Passing functions around</h4>
+			<h4>Pasando Funciones de un Lado a Otro</h4>
 			<p>
-				You can, for example, do something like this:
+				Tú puedes, por ejemplo, hacer algo como esto:				
 			</p>
-<pre class="prettyprint lang-js">function say(word) {
-  console.log(word);
+<pre><code>function decir(palabra) {
+  console.log(palabra);
 }
 
-function execute(someFunction, value) {
-  someFunction(value);
+function ejecutar(algunaFuncion, valor) {
+  algunaFuncion(valor);
 }
 
-execute(say, "Hello");</pre>
+ejecutar(decir, "Hola");</code></pre>
 			<p>
-				Read this carefully! What we are doing here is, we pass the
-				function <em>say</em> as the first parameter to the
-				<em>execute</em> function. Not the return value of
-				<em>say</em>, but <em>say</em> itself!
+				Lee esto cuidadosamente! Lo que estamos haciendo aquí es,
+				nosotros pasamos la función <em>decir</em> como el primer
+				parámetro de la función <em>ejecutar</em>. No el valor de retorno
+				de <em>decir</em>, sino que <em>decir</em> misma!
+			</p>
+			
+			<p>
+				Entonces, <em>decir</em> se convierte en la variable local
+				<em>algunaFuncion</em> dentro de <em>ejecutar</em>, y ejecutar
+				puede llamar a la función en esta variable usando 
+				<em>algunaFuncion()</em> (agregando llaves).
 			</p>
 			<p>
-				Thus, <em>say</em> becomes the local variable
-				<em>someFunction</em> within <em>execute</em>, and execute
-				can call the function in this variable by issuing
-				<em>someFunction()</em> (adding brackets).
+				Por supuesto, dado que <em>decir</em> toma un parámetro,
+				<em>ejecutar</em> puede pasar tal parámetro cuando llama a
+				<em>algunaFuncion</em>.
 			</p>
-			<p>
-				Of course, because <em>say</em> takes one parameter,
-				<em>execute</em> can pass such a parameter when calling
-				<em>someFunction</em>.
-			</p>
+			
+			<!-- LANDMARK START-->
+			
 			<p>
 				We can, as we just did, pass a function as a parameter to
 				another function by its name. But we don't have to take this
@@ -824,8 +835,11 @@ http.createServer(onRequest).listen(8888);
 				Maybe now is a good moment to ask: Why are we doing it
 				that way?
 			</p>
+			
+			<!-- LANDMARK END-->	
+			
 
-			<h4>Event-driven callbacks</h4>
+			<h4>Callbacks Manejadas por Eventos</h4>
 			<p>
 				The answer is a) not that easy to give (at least for me), and
 				b) lies in the very nature of how Node.js works. It's
@@ -971,7 +985,10 @@ console.log("Server has started.");
 				object at all.
 			</p>
 
-
+		
+			
+			
+			
 			<h4>Finding a place for our server module</h4>
 			<p>
 				Ok, I promised we will get back to how to organize our
