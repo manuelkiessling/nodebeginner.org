@@ -380,7 +380,7 @@
 				escribir codigo "backend".
 			</p>
 			<p>
-				No obstantem tú mantuviste un ojo en JavaScript, y te diste
+				No obstante tú mantuviste un ojo en JavaScript, y te diste
 				cuenta que con la introducción de jQuery, Prototype y otros,
 				las cosas se fueron poniendo más avanzadas en las Tierras
 				de JavaScript, y que este lenguaje era realmente más que
@@ -515,8 +515,6 @@
 
 
 			<h2>Una Aplicación Web Completa con Node.js</h2>
-
-      <!-- LANDMARK LAST -->
 
 			<h3>Los casos de Uso</h3>
 			<p>
@@ -767,40 +765,44 @@ ejecutar(decir, "Hola");</code></pre>
 				<em>algunaFuncion</em>.
 			</p>
 			
-			<!-- LANDMARK START-->
+			
 			
 			<p>
-				We can, as we just did, pass a function as a parameter to
-				another function by its name. But we don't have to take this
-				indirection of first defining, then passing it - we can
-				define and pass a function as a parameter to another
-				function in-place:
+				Nosotros podemos, tal como lo hicimos, pasar una función
+				por su nombre como parámetro a otra función. Pero no
+				estamos obligados a tener que definir la función primero
+				y luego pasarla. Podemos también definir y pasar la función
+				como un parametro a otra función todo al mismo tiempo:
 			</p>
-<pre class="prettyprint lang-js">function execute(someFunction, value) {
-  someFunction(value);
+<pre><code>function ejecutar(algunaFuncion, valor) {
+  algunafuncion(valor);
 }
 
-execute(function(word){ console.log(word) }, "Hello");
-</pre>
+ejecutar(function(palabra){ console.log(palabra) }, "Hola");
+</code></pre>
 			<p>
-				We define the function we want to pass to <em>execute</em>
-				right there at the place where <em>execute</em> expects its
-				first parameter.
+				(N.del T.: <em>function</em> es una palabra clave de JavaScript).
 			</p>
 			<p>
-				This way, we don't even need to give the function a name,
-				which is why this is called an <em>anonymous function</em>.
+				Nosotros defiunimos la función que queremos pasar a <em>ejecutar</em>
+				justo ahí en el lugar donde <em>ejecutar</em> espera su primer
+				parámetro.
 			</p>
 			<p>
-				This is a first glimpse at what I like to call "advanced"
-				JavaScript, but let's take it step by step. For now, let's
-				just accept that in JavaScript, we can pass a function as
-				a parameter when calling another function. We can do this
-				by assigning our function to a variable, which we then
-				pass, or by defining the function to pass in-place.
+				De esta manera, no necesitamos darle a la función un nombre,
+				por lo que esta función es llamada <em>función anónima</em>.
 			</p>
-
-			<h4>How function passing makes our HTTP server work</h4>
+			<p>
+				Esta es una primera ojeada a lo que me gusta llamar JavaScript
+				"avanzado". Pero tomémoslo paso a paso. Por ahora, aceptemos que
+				en JavaScript, nosotros podemos pasar una función como un parámetro
+				cuando llamamos a otra función. Podemos hacer esto asignando
+				nuestra función a una variable, la cual luego pasamos, o definiendo
+				la función a pasar en el mismo lugar.
+			</p>			
+			
+			<!-- LANDMARK START-->
+			<h4>De Qué manera el pasar funciones hace que nuestro servidor HTTP funcione<h4>
 			<p>
 				With this knowledge, let's get back to our minimalistic
 				HTTP server:
