@@ -519,13 +519,14 @@
 				</li>
 				<li>
 					The user should see a welcome page when
-					requesting http://<em>domain</em>/start
+					requesting http://<em>domain</em>/start which displays a
+					file upload form
 				</li>
 				<li>
-					When requesting http://<em>domain</em>/upload, the
-					user should be able to upload an image file	from
-					his computer, which is then displayed in his
-					browser
+					By choosing an image file to upload and submitting the
+					form, this image should then be uploaded to
+					http://<em>domain</em>/upload, where it is displayed once
+					the upload is finished
 				</li>
 			</ul>
 			<p>
@@ -1166,12 +1167,7 @@ exports.start = start;
 				Fine. Our application can now distinguish requests based on the
 				URL path requested - this allows us to map requests to our
 				request handlers based on the URL path using our (yet to be
-				written) router. Thus, we can build our application in a
-				RESTful way, because we can now implement an interface that
-				follows the guiding principle of <em>Identification of
-				resources</em> (see
-				<a href="http://en.wikipedia.org/wiki/Representational_State_Transfer#Guiding_principles_of_the_interface">the Representational State Transfer article on Wikipedia</a>
-				for background information).
+				written) router.
 			</p>
 			<p>
 				In the context of our application, it simply means that we will
