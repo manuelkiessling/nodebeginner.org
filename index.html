@@ -519,21 +519,13 @@
 				</li>
 				<li>
 					The user should see a welcome page when
-					requesting http://<em>domain</em>/
+					requesting http://<em>domain</em>/start
 				</li>
 				<li>
-					When requesting http://<em>domain</em>/file/new, a file
-					upload form should be shown, allowing the user to select
-					an image file from his computer and triggering the upload
-					of this file
-				</li>
-				<li>
-					Upon sending the upload, the selected file should be sent
-					via HTTP POST to http://<em>domain</em>/file/create
-				</li>
-				<li>
-					Requesting http://<em>domain</em>/file should show the
-					uploaded image in the browser
+					When requesting http://<em>domain</em>/upload, the
+					user should be able to upload an image file	from
+					his computer, which is then displayed in his
+					browser
 				</li>
 			</ul>
 			<p>
@@ -2033,9 +2025,6 @@ exports.upload = upload;
 				Until now, what we have done is all fine and dandy, but we
 				haven't created any value for the customers of our
 				award-winning website.
-			</p>
-			<p>
-				Let's 
 			</p>
 		</div>
 
