@@ -3,9 +3,9 @@ var exec = require("child_process").exec;
 function start(response) {
   console.log("Request handler 'start' was called.");
 
-  var body = '<form action="/upload" method="post" enctype="multipart/form-data">'+
-    '<input type="file" name="upload-file">'+
-    '<input type="submit" value="Upload">'+
+  var body = '<form action="/upload" method="post">'+
+    '<textarea name="text" rows="20" cols="60"></textarea>'+
+    '<input type="submit" value="Submit text" />'+
     '</form>'
 
     response.writeHead(200, {"Content-Type": "text/html"});
