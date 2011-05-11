@@ -2049,10 +2049,10 @@ exports.upload = upload;
 function start(response) {
   console.log("Request handler 'start' was called.");
 
-  var body = '<form action="/upload" method="post" enctype="multipart/form-data">'+
-    '<input type="file" name="upload-file">'+
-    '<input type="submit" value="Upload">'+
-    '</form>'
+  var body = '&lt;form action="/upload" method="post" enctype="multipart/form-data"&gt;'+
+    '&lt;input type="file" name="upload-file"&gt;'+
+    '&lt;input type="submit" value="Upload"&gt;'+
+    '&lt;/form&gt;'
 
     response.writeHead(200, {"Content-Type": "text/html"});
     response.write(body);
@@ -2069,6 +2069,26 @@ function upload(response) {
 exports.start = start;
 exports.upload = upload;
 </pre>
+
+			<p>
+				You should see this very simple form when requesting
+				<a href="http://localhost:8888/start" rel="nofollow">http://localhost:8888/start</a>
+				in your browser. If not, you probably didn't restart the
+				application.
+			</p>
+			<p>
+				I hear you: having view content right in the request handler is
+				ugly. However, I decided to not add that extra level of
+				abstraction (i.e., separating view and controller logic) in
+				this tutorial, because I think that it doesn't teach us
+				anything worth knowing in the context of JavaScript or Node.js.
+			</p>
+			<p>
+				Let's rather use the remaining screen space for a more
+				interesting problem, that is, handling the POST request with
+				the file content that will hit our <em>/upload</em> request
+				handler when the user submits this form.
+			</p>
 		</div>
 
 
