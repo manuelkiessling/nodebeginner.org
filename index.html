@@ -2037,6 +2037,38 @@ exports.upload = upload;
 				same time accelerate a bit. This author likes to hear himself
 				talking way too much anyways.
 			</p>
+			<p>
+				On the homepage of our site, we need to show a file selection
+				and upload form. Nothing special here, that's your everydays
+				multipart/form-data POST form. The HTML for this form needs to
+				be served by our <em>/start</em> request handler, let's add it
+				right away, in file <em>requestHandlers.js</em>:
+			</p>
+<pre class="prettyprint lang-js">var exec = require("child_process").exec;
+
+function start(response) {
+  console.log("Request handler 'start' was called.");
+
+  var body = '<form action="/upload" method="post" enctype="multipart/form-data">'+
+    '<input type="file" name="upload-file">'+
+    '<input type="submit" value="Upload">'+
+    '</form>'
+
+    response.writeHead(200, {"Content-Type": "text/html"});
+    response.write(body);
+    response.end();
+}
+
+function upload(response) {
+  console.log("Request handler 'upload' was called.");
+  response.writeHead(200, {"Content-Type": "text/html"});
+  response.write("Hello Upload");
+  response.end();
+}
+
+exports.start = start;
+exports.upload = upload;
+</pre>
 		</div>
 
 
