@@ -2287,40 +2287,6 @@ exports.start = start;
 exports.upload = upload;
 </pre>
 
-			<h5>Handling file uploads</h5>
-			<p>
-				On the homepage of our site, we need to show a file selection
-				and upload form. Nothing special here, that's your everydays
-				multipart/form-data POST form. The HTML for this form needs to
-				be served by our <em>/start</em> request handler, let's add it
-				right away, in file <em>requestHandlers.js</em>:
-			</p>
-<pre class="prettyprint lang-js">var exec = require("child_process").exec;
-
-function start(response) {
-  console.log("Request handler 'start' was called.");
-
-  var body = '&lt;form action="/upload" method="post" enctype="multipart/form-data"&gt;'+
-    '&lt;input type="file" name="upload-file"&gt;'+
-    '&lt;input type="submit" value="Upload" /&gt;'+
-    '&lt;/form&gt;'
-
-    response.writeHead(200, {"Content-Type": "text/html"});
-    response.write(body);
-    response.end();
-}
-
-function upload(response) {
-  console.log("Request handler 'upload' was called.");
-  response.writeHead(200, {"Content-Type": "text/html"});
-  response.write("Hello Upload");
-  response.end();
-}
-
-exports.start = start;
-exports.upload = upload;
-</pre>
-
 		</div>
 
 
