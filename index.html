@@ -2072,10 +2072,17 @@ exports.upload = upload;
 function start(response) {
   console.log("Request handler 'start' was called.");
 
-  var body = '&lt;form action="/upload" method="post"&gt;'+
+  var body = '&lt;html&gt;'+
+    '&lt;head&gt;'+
+    '&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /&gt;'+
+    '&lt;/head&gt;'+
+    '&lt;body&gt;'+
+    '&lt;form action="/upload" method="post"&gt;'+
     '&lt;textarea name="text" rows="20" cols="60"&gt;&lt;/textarea&gt;'+
     '&lt;input type="submit" value="Submit text" /&gt;'+
-    '&lt;/form&gt;'
+    '&lt;/form&gt;'+
+    '&lt;/body&gt;'+
+    '&lt;/html&gt;';
 
     response.writeHead(200, {"Content-Type": "text/html"});
     response.write(body);
@@ -2093,7 +2100,9 @@ exports.start = start;
 exports.upload = upload;
 </pre>
 			<p>
-				You should see this very simple form when requesting
+				Now if this isn't going to win the Webby Awards, then I don't
+				know what could. You should see this very simple form when
+				requesting
 				<a href="http://localhost:8888/start" rel="nofollow">http://localhost:8888/start</a>
 				in your browser. If not, you probably didn't restart the
 				application.
@@ -2107,7 +2116,7 @@ exports.upload = upload;
 			</p>
 			<p>
 				Let's rather use the remaining screen space for a more
-				interesting problem, that is, handling the POST request with
+				interesting problem, that is, handling the POST request
 				that will hit our <em>/upload</em> request handler when the
 				user submits this form.
 			</p>
@@ -2122,9 +2131,94 @@ exports.upload = upload;
 				multiple megabytes in size. Handling the whole bulk of data in
 				one go would result in a blocking operation.
 			</p>
+			<p>
+				To make the whole process non-blocking, Node.js serves our code
+				the POST data in small chunks, callbacks that are called upon
+				certain events. These events are <em>data</em> (an new chunk of
+				POST data arrives) and <em>end</em> (all chunks have been
+				received).
+			</p>
+			<p>
+				We need to tell Node.js which functions to call back to when
+				these events occur. This is done by adding <em>listeners</em>
+				to the <em>request</em> object that is passed to our
+				<em>onRequest</em> callback whenever an HTTP request is
+				received.
+			</p>
+			<p>
+				This basically looks like this:
+			</p>
+<pre class="prettyprint lang-js">request.addListener("data", function(chunk) {
+	// called when a new chunk of data was received
+});
 
+request.addListener("end", function() {
+	// called when all chunks of data have been received
+});
+</pre>
+			<p>
+				The question arises where to implement this logic. We currently
+				can access the <em>request</em> object in our server only - we
+				don't pass it on to the router and the request handlers, like
+				we did with the <em>response</em> object.
+			</p>
+			<p>
+				In my opinion, it's an HTTP servers job to give the application
+				all the data from a requests it needs to do its job. Therefore,
+				I suggest we handle the POST data processing right in the
+				server and pass the final data on to the router and the request
+				handlers, which then can decide what to do with it.
+			</p>
+			<p>
+				Thus, the idea is to put the <em>data</em> and <em>end</em>
+				event callbacks in the server, collecting all POST data chunks
+				in the <em>data</em> callback, and calling the router upon
+				receiving the <em>end</em> event, while passing the collected
+				data chunks on to the router, which in turn passes it on to the
+				request handlers.
+			</p>
+			<p>
+				Here we go, starting with <em>server.js</em>:
+			</p>
+<pre class="prettyprint lang-js">var http = require("http");
+var url = require("url");
 
+function start(route, handle) {
+  function onRequest(request, response) {
+    var postData = "";
+	var pathname = url.parse(request.url).pathname;
+    console.log("Request for " + pathname + " received.");
 
+    request.setEncoding("utf8");
+
+    request.addListener("data", function(postDataChunk) {
+      postData += postDataChunk;
+      console.log("Received POST data chunk '" + postDataChunk + "'.");
+    });
+
+    request.addListener("end", function() {
+      route(handle, pathname, response, postData);
+    });
+
+  }
+
+  http.createServer(onRequest).listen(8888);
+  console.log("Server has started.");
+}
+
+exports.start = start;
+</pre>
+			<p>
+				We basically did three things here: First, we defined that we
+				expect the encoding of the received data to be UTF-8, we added
+				an event listener for the "data" event which step by step
+				fills our new <em>postData</em> variable whenever a new chunk
+				of POST data arrives, and we moved the call to our router into
+				the <em>end</em> event callback to make sure it's only called
+				when all POST data is gathered. We also pass the POST data into
+				the router, because we are going to need it in our request
+				handlers.
+			</p>
 
 			<h5>Handling file uploads</h5>
 			<p>
