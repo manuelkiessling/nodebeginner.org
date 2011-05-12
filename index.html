@@ -274,7 +274,7 @@
 		<div id="book">
 			<h1>The Node Beginner Book</h1>
 			<div id="author">A Node.js tutorial by <a href="http://twitter.com/manuelkiessling">Manuel Kiessling</a></div>
-			<div id="updateinfo">Last updated on Sunday, April 24, 2011 at 6:52 AM EDT</div>
+			<div id="updateinfo">Last updated on Thursday, May 12, 2011 at 11:31 AM EDT</div>
 
 			<h2>About</h2>
 
@@ -2287,6 +2287,64 @@ exports.start = start;
 exports.upload = upload;
 </pre>
 
+			<p>
+				That's it, we are now able to receive POST data and use it in
+				our request handlers.
+			</p>
+			<p>
+				One last thing for this topic: what we pass on to the router
+				and the request handlers is the complete body of our POST
+				request. We will probably want to consume the individual fields
+				that make up the POST data, in this case, the value of the
+				<em>text</em> field.
+			</p>
+			<p>
+				We already read about the <em>querystring</em> module, which
+				assists us with this:
+			</p>
+<pre class="prettyprint lang-js">var exec = require("child_process").exec,
+    querystring = require("querystring");
+
+function start(response, postData) {
+  console.log("Request handler 'start' was called.");
+
+  var body = '<html>'+
+    '<head>'+
+    '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />'+
+    '</head>'+
+    '<body>'+
+    '<form action="/upload" method="post">'+
+    '<textarea name="text" rows="20" cols="60"></textarea>'+
+    '<input type="submit" value="Submit text" />'+
+    '</form>'+
+    '</body>'+
+    '</html>';
+
+    response.writeHead(200, {"Content-Type": "text/html"});
+    response.write(body);
+    response.end();
+}
+
+function upload(response, postData) {
+  console.log("Request handler 'upload' was called.");
+  response.writeHead(200, {"Content-Type": "text/html"});
+  response.write("You've sent the text: " + querystring.parse(postData)["text"]);
+  response.end();
+}
+
+exports.start = start;
+exports.upload = upload;
+</pre>
+			<p>
+				Well, for a beginner's tutorial, that's all there is to say
+				about handling POST data.
+			</p>
+			<p>
+				Next time, we'll be talking about how to use the excellent
+				<em>node-formidable</em> module to allow for our final use
+				case: uploading and displaying images.
+			</p>
+
 		</div>
 
 
@@ -2297,14 +2355,14 @@ exports.upload = upload;
 			<p>
 				The Node Beginner Book is work in progress.
 				<br />
-				<strong>It's currently about 80% done.</strong>
+				<strong>It's currently about 90% done.</strong>
 				<br />
 				Check back daily to see the latest version.
 			</p>
 			<p>
 				The version you are	currently reading was updated on
 				<br />
-				<strong>Sunday, April 24, 2011 at 6:52 AM EDT</strong>.
+				<strong>Thursday, May 12, 2011 at 11:31 AM EDT</strong>.
 			</p>
 			<p>
 				The best way to stay informed about updates is to follow
