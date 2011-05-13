@@ -2327,17 +2327,17 @@ exports.route = route;
 function start(response, postData) {
   console.log("Request handler 'start' was called.");
 
-  var body = '<html>'+
-    '<head>'+
-    '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />'+
-    '</head>'+
-    '<body>'+
-    '<form action="/upload" method="post">'+
-    '<textarea name="text" rows="20" cols="60"></textarea>'+
-    '<input type="submit" value="Submit text" />'+
-    '</form>'+
-    '</body>'+
-    '</html>';
+  var body = '&lt;html&gt;'+
+    '&lt;head&gt;'+
+    '&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /&gt;'+
+    '&lt;/head&gt;'+
+    '&lt;body&gt;'+
+    '&lt;form action="/upload" method="post"&gt;'+
+    '&lt;textarea name="text" rows="20" cols="60"&gt;&lt;/textarea&gt;'+
+    '&lt;input type="submit" value="Submit text" /&gt;'+
+    '&lt;/form&gt;'+
+    '&lt;/body&gt;'+
+    '&lt;/html&gt;';
 
     response.writeHead(200, {"Content-Type": "text/html"});
     response.write(body);
@@ -2376,17 +2376,17 @@ exports.upload = upload;
 function start(response, postData) {
   console.log("Request handler 'start' was called.");
 
-  var body = '<html>'+
-    '<head>'+
-    '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />'+
-    '</head>'+
-    '<body>'+
-    '<form action="/upload" method="post">'+
-    '<textarea name="text" rows="20" cols="60"></textarea>'+
-    '<input type="submit" value="Submit text" />'+
-    '</form>'+
-    '</body>'+
-    '</html>';
+  var body = '&lt;html&gt;'+
+    '&lt;head&gt;'+
+    '&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /&gt;'+
+    '&lt;/head&gt;'+
+    '&lt;body&gt;'+
+    '&lt;form action="/upload" method="post"&gt;'+
+    '&lt;textarea name="text" rows="20" cols="60"&gt;&lt;/textarea&gt;'+
+    '&lt;input type="submit" value="Submit text" /&gt;'+
+    '&lt;/form&gt;'+
+    '&lt;/body&gt;'+
+    '&lt;/html&gt;';
 
     response.writeHead(200, {"Content-Type": "text/html"});
     response.write(body);
