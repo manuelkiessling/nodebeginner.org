@@ -34,6 +34,10 @@
 				box-shadow: 14px 11px 27px #888;
 			}
 
+			#book {
+				margin-top: 124px;
+			}
+
 			#author {
 				margin-top: -41px;
 				margin-left: 279px;
@@ -54,6 +58,70 @@
 				font-family: "Helvetica Neue", sans-serif;
 				color: #700;
 				text-align: center;
+			}
+
+			#buy-the-ebook-container {
+				width: 100%;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+
+			#buy-the-ebook {
+				font-family: "Helvetica Neue", sans-serif;
+				font-size: 13px;
+				color: #fff;
+				text-align: center;
+				padding: 8px;
+				padding-left: 32px;
+				padding-right: 32px;
+				border-radius: 8px;
+				-moz-border-radius: 8px;
+				-webkit-border-radius: 8px;
+				box-shadow: 0px 0px 4px #444;
+				-moz-box-shadow: 0px 0px 4px #444;
+				-webkit-box-shadow: 0px 0px 4px #444;
+				position: relative;
+				margin: 10px;
+				margin-left: auto;
+				margin-right: auto;
+				width: 704px;
+				background-color: #555;
+			}
+
+			#buy-the-ebook .description {
+				width: 500px;
+				display: table-cell;
+				padding-right: 16px;
+				vertical-align: middle;
+			}
+
+			#buy-the-ebook .description strong {
+				color: #f18d46;
+			}
+
+			#buy-the-ebook .buy {
+				display: table-cell;
+				vertical-align: middle;
+			}
+
+			.button {
+				padding: 8px;
+				width: 140px;
+				border: 1px solid #444;
+				border-radius: 3px;
+				background-image: -moz-linear-gradient(top, #f2ab2b, #e17b19);
+				background-image: -webkit-gradient(linear, center top, center bottom, from(#f2ab2b), to(#e17b19));
+				box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset -1px 1px 0 rgba(255,255,255,0.4);
+				-moz-box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset -1px 1px 0 rgba(255,255,255,0.4);
+				-webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset -1px 1px 0 rgba(255,255,255,0.4);
+			}
+
+			.buttonlink {
+				text-decoration: none;
+				font-weight: bold;
+				font-size: 13px;
+				color: #000;
 			}
 
 			#donate p {
@@ -153,7 +221,7 @@
 				margin-left: -63px;
 				margin-top: -109px;
 				font-size: 300%;
-				color: #444;
+				color: #700;
 				font-style: italic;
     			font-weight: bold;
 				-webkit-text-size-adjust: 100%;
@@ -2415,6 +2483,33 @@ exports.upload = upload;
 				</div>
 				<div class="author">
 					Seth McLaughlin, via eMail
+				</div>
+			</div>
+		</div>
+
+
+		<div id="buy-the-ebook-container">
+			<div id="buy-the-ebook">
+				<div class="image">
+
+				</div>
+				<div class="description">
+					<p>
+						You can buy the <strong>PDF</strong>, <strong>ePub</strong>
+						(for iPad, Sony, Nook) and <strong>MOBI</strong> (for
+						Kindle)
+						<br />
+						version of The Node Beginner Book at
+						Leanpub for only <strong>$2.99</strong>.
+					</p>
+					<p>
+						You will receive any future updates to the book for free.
+					</p>
+				</div>
+				<div class="buy">
+					<a class="buttonlink" href="./buy">
+						<div class="button">Buy the eBook now</div>
+					</a>
 				</div>
 			</div>
 		</div>
