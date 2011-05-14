@@ -2135,9 +2135,7 @@ exports.upload = upload;
 				<em>/start</em> request handler, so let's add it right away, in
 				file <em>requestHandlers.js</em>:
 			</p>
-<pre class="prettyprint lang-js">var exec = require("child_process").exec;
-
-function start(response) {
+<pre class="prettyprint lang-js">function start(response) {
   console.log("Request handler 'start' was called.");
 
   var body = '&lt;html&gt;'+
@@ -2322,9 +2320,7 @@ exports.route = route;
 				And in <em>requestHandlers.js</em>, we include the data in our
 				response of the <em>upload</em> request handler:
 			</p>
-<pre class="prettyprint lang-js">var exec = require("child_process").exec;
-
-function start(response, postData) {
+<pre class="prettyprint lang-js">function start(response, postData) {
   console.log("Request handler 'start' was called.");
 
   var body = '&lt;html&gt;'+
@@ -2370,8 +2366,7 @@ exports.upload = upload;
 				We already read about the <em>querystring</em> module, which
 				assists us with this:
 			</p>
-<pre class="prettyprint lang-js">var exec = require("child_process").exec,
-    querystring = require("querystring");
+<pre class="prettyprint lang-js">var querystring = require("querystring");
 
 function start(response, postData) {
   console.log("Request handler 'start' was called.");
