@@ -934,9 +934,160 @@ console.log("Servidor Iniciado.");
 			cada vez que la función <em>onRequest</em> (nuestro callback) es
 			gatillada, y otro texto <em>despues</em> de iniciar nuestro servidor
 			HTTP.
+		</p>
 		<p>
+			Cuando iniciamos esta aplicación (con <em>node server.js</em>, como siempre).
+			Esta inmediatamente escribirá en pantalla "Servidor Iniciado" en la línea de comandos.
+			Cada vez que hagamos una petición a nuestro servidor (abriendo
+			<a href="http://localhost:8888/" rel="nofollow">http://localhost:8888/</a> en
+			nuestro browser), el mensaje "Peticion Recibida." va a ser impreso en la línea
+			de comandos.
+		</p>
+		<p>
+			Esto es JavaScript del Lado del Servidor Asincrónico y orientado al
+			evento con callbacks en acción :-)
+		</p>
+		<p>
+			(Toma en cuenta que nuestro servidor probablemente escribirá
+			"Petición Recibida." a STDOUT dos veces al abrir la página en un
+			browser. Esto es porque la mayoría de los browsers van a tratar de
+			cargar el favicon mediante la petición http://localhost:8888/favicon.ico
+			cada vez que abras http://localhost:8888/).
+		</p>
+		
+		<h4>Como nuestro Servidor manipula las peticiones</h4>
+		
+		<p>
+			OK, Analicemos rápidamente el resto del código de nuestro servidor, 
+			esto es, el cuerpo de nuestra función de callback <em>onRequest()</em>.
+		</p>
+		<p>
+			Cuando la Callback es disparada y nuestra función <em>onRequest()</em> es
+			gatillada, dos parámetros son pasados a ella: <em>request</em> y <em>response</em>.
+		</p>
+		<p>
+			Estos on objetos, y tú puedes usar sus métodos para manejar los detalles
+			de la petición HTTP ocurrida y responder a la petición (en otras palabras
+			enviar algo de vuelta al browser que hizo la petición a tu servidor).
+		</p>
+		<p>
+			Y eso es lo que nuestro código hace: Cada vez que una petición
+			es recibida, usa la función <em>response.writeHead()</em> para 
+			enviar un estatus HTTP 200 y un content-type (paámetro que define
+			que tipo de contenido es) en el encabezado de la respuesta HTTP,
+			y la función <em>response.write()</em> para enviar el texto
+			"Hola Mundo" en el cuerpo de la respuesta,
+		</p>
+		<p>
+			POr último, nosotros llamamos <em>response.end()</em> para finalizar
+			nuestra respuesta
+		</p>
+		<p>
+			Hasta el momento, no nos hemos interesado por los detalles de la
+			petición, y ese es el porqué no hemos ocupado el objeto <em>request</em>
+			completamente.
+		</p>
+		
+		<h4>Encontrando un lugar para nuestro módulo de servidor</h4>
+		<p>
+			OK, prometí que volveríamos a al Cómo organizar nuestra aplicación.
+			Tenemos el código de nuestro servidor HTTP muy básico en el archivo
+			<em>server.js</em>, y mencioné que es común tener un archivo principal
+			llamado <em>index.js</em>, el cual es usado para arrancar y partir
+			nuestra aplicación haciendo uso de los otros módulos de la aplicación
+			(como el módulo de servidor HTTP que vive en <em>server.js</em>).
+		</p>
+		<p>
+			Hablemos de como podemos hacer que nuestro server.js sea un verdadero
+			módulo Node.js y que pueda ser usado por nuestro pronto-a-ser-escrito
+			archivo principal <em>index.js</em>.
+		</p>
+		<p>
+			Como habrán notado, ya hemos usado módulos en nuestro código, como éste:
+		</p>
+<pre class="prettyprint lang-js">var http = require("http");
 
+...
 
+http.createServer(...);
+</pre>
+		<p>
+			En algún lugar dentro de Node.js vive un módulo llamado "http", y
+			podemos hacer uso de éste en nuestro propio código requiriéndolo
+			y asignando el resultado del requerimiento a una variable local.
+		</p>
+		<p>
+			Esto transforma a nuestra variable local en un objeto que acarrea
+			todos los métodos públicos que el módulo <em>http</em> provee.
+		</p>
+		<p>
+			Es práctica común elegir el nombre del módulo como nombre para nuestra
+			variable local, pero somos libres de escoger cualquiera que nos guste:
+		</p>
+<pre class="prettyprint lang-js">var foo = require("http");
+
+...
+
+foo.createServer(...);
+</pre>
+		<p>
+			Bien. Ya tenemos claro como hacer uso de los módulos internos de Node.js.
+			¿Cómo hacemos para crear nuestros propios módulos, y Cómo los utilizamos?
+		</p>
+		<p>
+			Descubrámoslo transformando nuestro script <em>server,js</em> en un módulo
+			real.
+		</p>
+		<p>
+			Sucede que, no tenemos que transformarlo tanto. Hacer que algún código sea
+			un Módulo, significa que necesitamos <em>exportar</em> las partes de su
+			funcionalidad que queremos proveer a otros scripts que requieran nuestro
+			módulo.
+		</p>
+		<p>
+			Por ahora, la funcionalidad que nuestro servidor HTTP necesita exportar es
+			simple: Permitir a los scripts que utilicen este módulo arrancar el servidor.
+		</p>
+		<p>
+			Para hacer esto posible, Dotaremos al código de nuestro servidor de una
+			función llamada <em>inicio</em>, y exportaremos esta función:
+		<p>
+<pre class="prettyprint lang-js">var http = require("http");
+
+function inicio() {
+  function onRequest(request, response) {
+    console.log("Petición Recibida.");
+    response.writeHead(200, {"Content-Type": "text/html"});
+    response.write("Hola Mundo");
+    response.end();
+  }
+
+  http.createServer(onRequest).listen(8888);
+  console.log("El Servidor Ha Arrancado.");
+}
+
+exports.inicio = inicio;
+</pre>			
+			
+		<p>
+			De este modo, Podemos crear nuestro propio archivo principal <em>index.js</em>,
+			y arrancar nuestro servidor HTTP allío, aunque el código para el servidor este
+			en nuestro archivo <em>server.js</em>.
+		</p>
+		<p>
+			Crea un archivo <em>index.js</em> con el siguiente contenido:
+		</p>
+<pre class="prettyprint lang-js">var server = require("./server");
+
+server.start();
+</pre>
+
+		<p>
+			Como puedes ver, nosotros utilizamos nuestro módulo de servidor
+			tal como cualquier otro módulo interno: requiriendo el archivo
+			donde está contendio y asignándolo a una variable, con las funciones
+			que tenga 'exportadas' disponibles para nosotros.
+		</p>
 
 
 
