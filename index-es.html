@@ -276,7 +276,7 @@
 			<h1>El Libro para Principiantes en Node.js</h1>
 			<div id="author">Un tutorial de Node.js por:<a href="http://twitter.com/manuelkiessling">Manuel Kiessling</a></div>
 			<div id="updateinfo">&#218;ltima actualizaci&oacute;n el Domingo 24 de Abril, 2011 a las 6:52 AM EDT</div>
-                        <div id="updateinfo">&#218;ltima traducci&oacute;n el Martes 03 de Mayo, 2011 a las 01.11 AM EDT</div>
+                        <div id="updateinfo">&#218;ltima traducci&oacute;n el Domingo 22 de Mayo, 2011 a las 02.00 AM EDT</div>
 
 			<h2>Sobre el Tutorial</h2>
 
@@ -328,7 +328,7 @@
 				va a cambiar el mundo", no obstente eso, nosotros haremos la
 				milla extra y no vamos sólo a codificar una aplicación lo
 				"suficientemente simple" para hacer estos casos de uso posible,
-				sino que crearemos un framewoirk sencillo, pero completo, a fin de 
+				sino que crearemos un framework sencillo, pero completo, a fin de 
 				poder separar los distintos aspectos de nuestra aplicación.
 				Verás lo que esto significa en poco tiempo.
 			</p>
@@ -1088,6 +1088,416 @@ server.start();
 			donde está contendio y asignándolo a una variable, con las funciones
 			que tenga 'exportadas' disponibles para nosotros.
 		</p>
+		<p>
+			Eso es. Podemos ahora arrancar nuestra aplicación por medio de nuestro
+			script principal, y va a hacer exactamente lo mismo:
+		</p>
+<pre>node index.js</pre>
+		<p>
+			Bien, ahora podemos poner las diferentes partes de nuestra aplicación
+			en archivos diferentes y enlazarlas juntas a través de la
+			cración de estos módulos.
+		<p>
+		<p>
+			Tenemos sólo la primera parte de nuestra aplicación en su lugar:
+			Podemos recibir peticiones HTTP. Pero necesitamos hacer algo con ellas - 
+			necesitamos reaccionar de manera diferente, dependiendo de que 
+			URL el browser requierea de nuestro servidor.
+		<p>
+		<p>
+			Para una aplicaicón muy simple, Tú podrías hacer esto directamente
+			dentro de una función de callback <em>OnRequest()</em>. Pero, como dije,
+			agreguemos un poco más de abstracción, de manera de hacer nuestra 
+			aplicación más interesante.
+		</p>
+		<p>
+			Hacer diferentes peticiones HTTP ir a partes diferentes de nuestro 
+			código se llama "ruteo" (routing, en inglés) - bueno, entonces, creémos
+			un módulo llamado <em>router</em>.
+		</p>
+			
+		<h4>¿Qué se necesita para "rutear" peticiones?</h4>
+		<p>
+			Necesitamos ser capaces de entregar la URL requerida y los posibles 
+			parámetros GET o POST adicionales a nuestro router, y basado en estos,
+			el router debe ser capaz de decidir qué código ejecutar (este 
+			"código a ejecutar" es la tercera parte de nuestra aplicación: una
+			colección de manipuladores de peticiones que harán el verdadero trabajo
+			cuando una petición es recibida).
+		<p>
+		<p>
+			Así que, Necesitamos mirar en las peticiones HTTP y extraer la URL
+			requerida, así como los parámetros GET/POST de ellos. Se puede discutir
+			acerca de si este procedimiento debe ser parte del router o del servidor
+			(o si lo hacemos un módulo por sí mismo), pero hagamos el acuerdo de
+			hacerlo parte de nuestro servidor HTTP por ahora.
+		<p>
+		<p>
+			Toda la información que necesitamos está disponible en el objeto
+			<em>request</em>, el que es pasado como primer parámetro a nuestra
+			función callback <em>onRequest()</em>. Pero para interpretar esta 
+			información, necesitamos algunos módulos adicionales Node.js, llamados
+			<em>url</em> y <em>querystring</em>.
+		</p>
+		<p>
+			El módulo <em>url</em> provee métodos que nos permite extraer las 
+			diferentes partes de una URL (como por ejemplo la ruta requerida y 
+			el string de consulta), y <em>querystring</em> puede, en cambio, ser usado
+			para parsear el string de consulta para los parámetros requeridos:
+		</p>
+<pre>                               url.parse(string).query
+                                           |
+           url.parse(string).pathname      |
+                       |                   |
+                       |                   |
+                     ------ -------------------
+http://localhost:8888/start?foo=bar&amp;hello=world
+                                ---       -----
+                                 |          |
+                                 |          |
+              querystring(string)["foo"]    |
+                                            |
+                         querystring(string)["hello"]
+</pre>
+		<p>
+			Podemos, por supuesto, también utilizar <em>querystring</em> para 
+			parsear el cuerpo de una petición POST en busca de parámetros, como veremos
+			más tarde.
+		</p>
+		<p>
+			Agreguemos ahora a nuestra función <em>onRequest()</em> la lógica 
+			requerida para encontrar que ruta URL el browser solicitó:
+		<p>
+<pre class="prettyprint lang-js">var http = require("http");
+var url = require("url");
+
+function start() {
+  function onRequest(request, response) {
+	var pathname = url.parse(request.url).pathname;
+	console.log("Petición para " + pathname + " recibida.");
+	response.writeHead(200, {"Content-Type": "text/html"});
+	response.write("Hola Mundo");
+	response.end();
+  }
+
+  http.createServer(onRequest).listen(8888);
+  console.log("Servidor ha sido iniciado.");
+}
+
+exports.start = start;
+</pre>
+		<p>
+			Muy Bien. Nuestra aplicación puede ahora distinguir peticiones
+			basadas en la ruta URL requerida - esto nos permite mapear
+			peticiones hacia nuestro manipuladores de peticiones, basándonos
+			en la ruta URL usando nuestro (pronto a ser escrito) router. Luego, 
+			podemos construir nuestra aplicación en una forma REST (RESTful way
+			en Inglés), ya que ahora podemos implementar una interfaz que 
+			sigue los principios que guían a la <em>Identificación de Recursos</em>
+			(ve por favor <a href="http://es.wikipedia.org/wiki/Representational_State_Transfer">el artículo de Wikipedia acerca de la Transferencia del Estado Representacional</a> para información de trasfondo.
+		</p>
+		<p>
+			En el contexto de nuestra aplicación, esto significa simplemente que 
+			seremos capaces de tener peticiones para las URLs 
+			<em>/inicio</em> y <em>/subir</em> manejadas por partes diferentes de
+			nuestro código. Veremos pronto como todo esto encaja.
+		<p>
+		<p>
+			OK, es hora de escribir nuestro router. Vamos a crear un nuevo archivo
+			llamado <em>router.js</em>, con el siguiente contenido:
+		</p>
+<pre class="prettyprint lang-js">function route(pathname) {
+  console.log("A punto de rutear una peticion para " + pathname);
+}
+
+exports.route = route;
+</pre>	
+		<p>
+			Por supuesto, este código no está haciendo nada, pero eso está bien
+			por ahora. Empezemos a ver como vamos a encajar este router con nuestro
+			servidor antes de poner más lógica en el router.
+		</p>
+		<p>
+			Nuestro servidor HTTP necesita saber y hacer uso de nuestro router.
+			Podemos escribir directamente esta dependencia a nuestro
+			servidor, pero como hemos aprendido de la manera díficil en nuestras
+			experiencias, vamos a acoplar de manera débil (loose coupling en Inglés)
+			al router y su servidor vía inyección por dependencia. Para una referencia
+			de fondo, leer el <a href="http://martinfowler.com/articles/injection.html">Artículo de Martin Fowler (en Inglés)</a>.
+		</p>
+		<p>
+			Primero extendamos nuestra función <em>start()</em> de manera de permitirnos
+			pasar la función de ruteo a ser usada como parámetro:
+		</p>
+<pre class="prettyprint lang-js">var http = require("http");
+var url = require("url");
+
+function start(route) {
+  function onRequest(request, response) {
+    var pathname = url.parse(request.url).pathname;
+    console.log("Peticion para " + pathname + " recibida.");
+
+    route(pathname);
+
+    response.writeHead(200, {"Content-Type": "text/html"});
+    response.write("Hola Mundo");
+    response.end();
+  }
+
+  http.createServer(onRequest).listen(8888);
+  console.log("Servidor Ha Arrancado.");
+}
+
+exports.start = start;
+</pre>
+		<p>
+			Y extendamos nuestro <em>index.js</em> adecuadamente, esto es,
+			inyectando la función de ruteo de nuestro router en el servidor:
+		</p>
+<pre class="prettyprint lang-js">var server = require("./server");
+var router = require("./router");
+
+server.start(router.route);
+
+</pre>		
+	<p>
+		Nuevamente , estamos pasando una función como parámetros, pero esto
+		ya no es una novedad para nosotros.
+	</p>
+	<p>
+		Si arrancamos nuestra aplicación ahora (<em>node index.js</em> como siempre),
+		y hacemos una petición para una URL, puedes ver ahora por las respuestas de 
+		la aplicación que nuestro servidor HTTP hace uso de nuestro router y le entrega
+		el nombre de ruta requerido:
+	</p>
+<pre>bash$ node index.js
+Petición para /foo recibida.
+A punto de rutear una peticion para /foo
+</pre>
+	<p>
+		He omitido la molesta respuesta de la petición para /favicon.ico
+	</p>
+
+	<h4>Ejecución en el reino de los verbos</h4>
+	<p>
+		¿Puedo divagar un vez más por un momento y hablar acerca de la programación 
+		funcional de nuevo?
+	</p>
+	<p>
+		Pasar funciones no es sólo una consideración Técnica. Con respecto al diseño
+		de software, esto es casi filosófico. Tan solo piensa en ello: en nuestro
+		archivo de index, podríamos haber entregado el objeto <em>router</em> al
+		servidor, y el servidor hubiese llamado a la función <em>route</em>
+		de este objeto.
+	</p>
+	<p>
+		De esta manera, podríamos haber pado una <em>cosa</em>, y el servidor hubiese
+		usado esa cosa para <em>hacer</em> algo. Oye, "Cosa Router", ¿Podrías por
+		favor rutear esto por mí?
+	</p>
+	<p>
+		Pero el servidor no necesita la cosa. Sólo necesita <em>hacer algo</em>,
+		y para que algo se haga, no necesitas cosas para nada, sólo necesitas
+		<em>acciones</em>. No necesitas <em>sustantivos</em>, sino que necesitas
+		<em>verbos</em>.
+	</p>	
+	<p>
+		Entender este cambio de mentalidad fundamental que está en el núcleo de 
+		esta idea es lo que realmente me hizo entender la programación funcional.
+	</p>
+	<p>
+		Y lo entendí mientras leía la obra maestra de Steve Yegge (en Inglés)
+		<a href="http://steve-yegge.blogspot.com/2006/03/execution-in-kingdom-of-nouns.html">Ejecución en el Reino de los Sustantivos</a>.
+		Anda, léela, por favor. Es uno de los mejores artículos relacionados con
+		el software que haya tenido el placer de encontrar.
+	</p>
+	<h4>Ruteando a los verdaderos manipuladores de peticiones</h4>
+	<p>
+		Volviendo al tema. Nuestro servidor HTTP y nuestro router de peticviones son
+		ahora los mejores amigos y conversan entre ellos, tal y como pretendimos.
+	</p>
+	<p>
+		Por supuesto, esto no es suficiente, "Rutear" significa que nosotros queremos
+		manipular las peticiones a distintas URLs de manera, diferente. NOs gustaría
+		tener la "lógicas de negocios" para peticiones de <em>/inicio</em> manejadas
+		en otra función, distinta a la que maneja las peticiones para <em>/subir</em>.
+	</p>
+	<p>
+		Por ahora, el ruteo "termina" en el router, y el router no es el lugar donde
+		se está "haciendo algo" con las peticiones, ya que esto no escalaría bien
+		una vez que nuestra aplicación se haga más compleja.
+	</p>
+	<p>
+		Llamemos a estas funciones, donde las peticiones están siendo ruteadas, 
+		<em>manipuladores de peticiones</em> (ó request handlers). Y procedamos con
+		éstos ahora, porque, a menos que no los tengamos en su lugar, no hay tiene
+		mucho sentido en hacer nada con el router por ahora.
+	</p>
+	<p>
+		Nueva parte de la aplicación, significa nuevo módulo - no creo que haya
+		sorpresa acá. Creémos un módulo llamado requestHandlers (por manipuladores
+		de petición), agreguemos un función de ubicación para cada manipulador de
+		petición, y exportemos estos como métodos para el módulo:
+	</p>
+<pre class="prettyprint lang-js">function inicio() {
+  console.log("Manipulador de petición 'inicio' ha sido llamado.");
+}
+
+function subir() {
+  console.log("Manipulador de petición 'subir' ha sido llamado.");
+}
+
+exports.inicio = inicio;
+exports.subir = subir;
+</pre>
+	<p>
+		Esto nos permitirá atar los manipuladores de petición al router,
+		dándole a nuestro router algo que rutear.
+	</p>
+	<p>
+		Llegado a este punto, necesitamos tomar una decisión: ¿Ingresaremos 
+		las rutas del módulo requestHandlers dentro del código del router
+		(hard-coding), o queremos algo más de dependencia por inyección?
+		Aunque en la dependencia por inyección, como cualquier otro patrón,
+		no debería ser usada simplemente por usarla, en este caso tiene
+		sentido acoplar el router débilmente a sus manipuladores de petición,
+		así, de esta manera hacemos que el router sea reutilizable.
+	</p>
+	<p>
+		Esto significa que necesitamos pasar los manipuladores de petición
+		desde nuestro server al router, pero esto se siente equivocado, dado
+		que, ¿Por Qué tenemos que hacer el camino largo y entregar los manipuladores
+		desde el archivo principal al servidor y de ahí al router?
+	</p>
+	<p>
+		¿Cómo vamos a pasarlos? Ahora tenemos sólo dos manipuladores, pero en una
+		aplicación real, este número se va a incrementar y variar, y nosotros no
+		queremos estar a cada momento mapeando peticiones a manipuladores cada vez
+		que una nueva URL o manipulador de petición sea agregado. Y si tenemos un
+		código del tipo <em>if peticion == x then llama manipulador y</em> en
+		el router, esto se pondría cada vez más feo.
+	</p>
+	<p>
+		¿Un número variable de items, cada uno de ellos mapeados a un string?
+		(en este caso la URL requerida) Bueno, esto suena como que un array asociativo
+		haría el truco.
+	</p>
+	<p>
+		Bueno, este descubrimiento es obscurecido por el hecho que JavaScript no
+		provee arrays asociativos - ¿o si? !Resulta que lo que necesitamos usar son
+		objetos si necesitamos un array asociativo!
+	</p>
+	<p>
+		Una buena introducción a esto está (en Inglés) en 
+		<a href="http://msdn.microsoft.com/en-us/magazine/cc163419.aspx">http://msdn.microsoft.com/en-us/magazine/cc163419.aspx</a>,
+		Déjame citarte la parte relevante:
+	</p>
+	<blockquote>
+		<p>
+			En C++ o C#, cuando hablamos acerca de objetos, nos estamos refiriendo
+			a instancias de clases de estructuras. Los objetos tienen distintas
+			propiedades y métodos, dependiendo en las plantillas (esto es, las clases)
+			desde donde éstos sean instanciados. Este no es el caso con los objetos
+			de JavaScript. En JavaScript, los objetos son sólo colecciones de pares
+			nombre/valor - piensa en un objeto JavaScrfipt como en un diccionario
+			con llaves de string.
+		</p>
+	</blockquote>
+	<p>
+		Si los objetos JavaScript son sólo colecciones de pares nombre/valor, ¿Cómo
+		pueden entonces tener métodos? Bueno, los valores pueden ser strings,
+		números, etc... ¡O Funciones!
+	</p>
+	<p>
+		OK, Ahora, volviendo finalmente al código. Hemos decidido que queremos
+		pasar la lista de requestHandlers (manipuladores de petición) como un 
+		objeto, y para lograr este acoplamiento débil, necesitamos usar la técnica
+		de inyectar este objeto en la <em>route()</em> (ruta).
+	</p>
+	<p>
+		Empecemos con poner el objeto en nuestro archivo principal <em>index.js</em>:
+	</p>
+<pre class="prettyprint lang-js">var server = require("./server");
+var router = require("./router");
+var requestHandlers = require("./requestHandlers");
+
+var handle = {}
+handle["/"] = requestHandlers.inicio;
+handle["/start"] = requestHandlers.inicio;
+handle["/upload"] = requestHandlers.subir;
+
+server.start(router.route, handle);
+</pre>
+	<p>
+		Aunque <em>handle</em> es más una "cosa" (una colección de manipuladores
+		de petición), Propongo que lo nombremos como un verbo, ya que esto 
+		resultará en una expresiín fluída en nuestro router, como veremos a
+		continuación:
+	</p>
+	<p>
+		Como puede ver, es realmente simple mapear diferentes URLs al mismo 
+		manipulador de peticiones: Mediante la adición de un par llave/valor
+		de <em>"/"</em> y <em>requestHandlers.inicio</em>, podemos expresar en una
+		forma agradable y limpia que no sólo peticiones a <em>/start</em>, sino 
+		que también peticiones a <em>/</em> pueden ser manejadas por el manipulador
+		<em>inicio</em>.
+	</p>
+	<p>
+		Después de definir nuestro objeto, se lo pasamos al servidor como un
+		parámetro adicional. Modifiquemos nuestro <em>server.js</em> para hacer uso
+		de este:
+	</p>
+	
+<pre class="prettyprint lang-js">var http = require("http");
+var url = require("url");
+
+function start(route, handle) {
+  function onRequest(request, response) {
+    var pathname = url.parse(request.url).pathname;
+    console.log("Peticion para " + pathname + " recibida.");
+
+    route(handle, pathname);
+
+    response.writeHead(200, {"Content-Type": "text/html"});
+    response.write("Hola Mundo");
+    response.end();
+  }
+
+  http.createServer(onRequest).listen(8888);
+  console.log("Servidor Ha Arrancado.");
+}
+
+exports.start = start;
+</pre>	
+	<p>
+		Lo que hacemos aquí, es chequear si un manipulador de petición para una
+		ruta dada existe, y si es así, simplemente llamamos a la función adecuada.
+		Dado que podemos acceder a nuestras funciones manipuladoras de petición
+		desde nuestro objeto de la misma manera que hubiesemos podido acceder a un
+		elemento de un array asociativo, es que tenemos la expresión fluída
+		<em>handle[pathname]();</em> de la que hablé antes, que en otras palabras es:
+		"Por favor, <em>handle</em> (maneja) este(a) <em>pathname</em> (ruta)"</em>.
+	</p>
+	<p>
+		Bien, ¡Esto es todo lo que necesitamos para atar servidor, router y 
+		manipuladores de peticiones juntos! Una vez que arranquemos nuestra 
+		aplicación y hagamos una petición en nuestro browser de 
+		<a href="http://localhost:8888/inicio" rel="nofollow">http://localhost:8888/inicio</a>,
+		vamos a probar que el manipulador de petición correcto fue, de hecho, llamado:
+	</p>
+<pre>Servidor Ha Arrancado.
+Peticion para /inicio recibida.
+
+A punto de rutear una petición para /inicio
+Manipulador de peticion 'inicio' ha sido llamado.
+</pre> 
+
+
+
+
+
+
+
 
 
 
