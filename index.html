@@ -12,7 +12,7 @@
 			body {
 				font-family: Georgia, serif;
 				background-color: #eee;
-				padding-top: 48px;
+				padding-top: 0px;
 				-webkit-text-size-adjust: auto;
 			}
 
@@ -60,7 +60,7 @@
 				text-align: center;
 			}
 
-			#buy-the-ebook {
+			#buy-the-ebook, #translations {
 				font-family: "Helvetica Neue", sans-serif;
 				font-size: 13px;
 				color: #fff;
@@ -75,11 +75,26 @@
 				-moz-box-shadow: 0px 0px 4px #444;
 				-webkit-box-shadow: 0px 0px 4px #444;
 				position: relative;
-				margin-top: -40px;
+				margin-bottom: 20px;
 				margin-left: auto;
 				margin-right: auto;
 				width: 704px;
 				background-color: #555;
+			}
+
+			#translations a {
+				text-decoration: none;
+				color: #fff;
+			}
+
+			#translations .flag {
+				display: inline-block;
+				vertical-align: middle;
+				padding-top: 4px;
+			}
+			#translations .text {
+				display: inline-block;
+				vertical-align: middle;
 			}
 
 			#buy-the-ebook .description {
@@ -331,7 +346,14 @@
 		<div id="forkmeongithub">
 			<a href="https://github.com/ManuelKiessling/NodeBeginnerBook"><img style="z-index: 5; position: absolute; top: 0; right: 0; border: 0;" src="https://d3nwyuy0nl342s.cloudfront.net/img/71eeaab9d563c2b3c590319b398dd35683265e85/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" /></a>
 		</div>
-		
+
+		<div id="translations">
+			<a href="index-es.html">
+				<div class="flag"><img src="es-flag.png" width="24" height="24" alt="spanish flag" /></div>
+				<div class="text">Lee este tutorial en Español</div>
+			</a>
+		</div>
+
 		<div id="buy-the-ebook">
 			<div class="description">
 				<p>
