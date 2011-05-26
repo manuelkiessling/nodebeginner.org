@@ -41,6 +41,14 @@
 				font-family: "Helvetica Neue", sans-serif;
 				font-size: 75%;
 			}
+			
+			#translator {
+				margin-top: 20px;
+				margin-left: 250px;
+				color: #888;
+				font-family: "Helvetica Neue", sans-serif;
+				font-size: 75%;					
+			}
 
 			#updateinfo {
 				margin-top: 20px;
@@ -55,6 +63,48 @@
 				color: #700;
 				text-align: center;
 			}
+			
+			#buy-the-ebook, #translations {
+				font-family: "Helvetica Neue", sans-serif;
+				font-size: 13px;
+				color: #fff;
+				text-align: center;
+				padding: 8px;
+				padding-left: 32px;
+				padding-right: 32px;
+				border-radius: 8px;
+				-moz-border-radius: 8px;
+				-webkit-border-radius: 8px;
+				box-shadow: 0px 0px 4px #444;
+				-moz-box-shadow: 0px 0px 4px #444;
+				-webkit-box-shadow: 0px 0px 4px #444;
+				position: relative;
+				margin-bottom: 20px;
+				margin-left: auto;
+				margin-right: auto;
+				width: 704px;
+				background-color: #555;
+			}
+			
+			
+			
+			#translations a {
+				text-decoration: none;
+				color: #fff;
+			}
+
+			#translations .flag {
+				display: inline-block;
+				vertical-align: middle;
+				padding-top: 4px;
+			}
+			#translations .text {
+				display: inline-block;
+				vertical-align: middle;
+			}
+			
+			
+			
 
 			#donate p {
 				font-family: "Helvetica Neue", sans-serif;
@@ -271,12 +321,23 @@
 		<div id="forkmeongithub">
 			<a href="https://github.com/ManuelKiessling/NodeBeginnerBook"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://d3nwyuy0nl342s.cloudfront.net/img/71eeaab9d563c2b3c590319b398dd35683265e85/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" /></a>
 		</div>
+		
+		
+		<div id="translations">
+			<a href="index.html">
+				<div class="flag"><img src="us-flag.png" width="24" height="24" alt="usa flag" /></div>
+				<div class="text">Read this tutorial in english</div>
+			</a>
+		</div>
+		
+		
 
 		<div id="book">
 			<h1>El Libro para Principiantes en Node.js</h1>
-			<div id="author">Un tutorial de Node.js por:<a href="http://twitter.com/manuelkiessling">Manuel Kiessling</a></div>
-			<div id="updateinfo">&#218;ltima actualizaci&oacute;n el Domingo 24 de Abril, 2011 a las 6:52 AM EDT</div>
-                        <div id="updateinfo">&#218;ltima traducci&oacute;n el Martes 03 de Mayo, 2011 a las 01.11 AM EDT</div>
+			<div id="author">Un tutorial de Node.js por: <a href="http://twitter.com/manuelkiessling">Manuel Kiessling</a></div>			
+			<div id="translator">Traducción al Español por: <a href="http://twitter.com/hermanjunge">Herman A. Junge</a></div>
+			<div id="updateinfo">&#218;ltima actualizaci&oacute;n el Jueves 12 de Mayo, 2011 a las 11:31 AM EDT</div>
+                        <div id="updateinfo">&#218;ltima traducci&oacute;n el Lunes 23 de Mayo, 2011 a las 01:50 AM EDT</div>
 
 			<h2>Sobre el Tutorial</h2>
 
@@ -284,7 +345,7 @@
 				
 				El objetivo de este documento es ayudarte a empezar con el
 				desarrollo de aplicaciones para Node.js, enseñándote todo lo 
-				que necesites saber acerca de Javascript "avanzado" sobre
+				que necesites saber acerca de JavaScript "avanzado" sobre
 				la marcha. Este tutorial va mucho más allá del típico manual
 				"Hola Mundo".
 
@@ -298,7 +359,7 @@
 			<p>
 				Este documento probablemente será mejor entendido por los
 				lectores que tengan un trasfondo similar al mío: Programadores
-				experimientados en al menos un lenguaje orientado al objeto,
+				experimentados en al menos un lenguaje orientado al objeto,
 				como Ruby, Python, PHP o Java; poca experiencia con JavaScript, y
 				ninguna experiencia en Node.js.
 			</p>
@@ -313,7 +374,7 @@
 			</p>
 			<p>
 				Sin embargo, dado que las funciones y objetos en JavaScript
-				son diferentes de sus contrapartes en la mayoria de los lenguajes,
+				son diferentes de sus contrapartes en la mayoría de los lenguajes,
 				estos serán explicados con más detalle.
 			</p>
 
@@ -325,10 +386,10 @@
 			</p>
 			<p>
 				La cual, por supuesto, no va ser nada como la "aplicación que
-				va a cambiar el mundo", no obstente eso, nosotros haremos la
+				va a cambiar el mundo", no obstante eso, nosotros haremos la
 				milla extra y no vamos sólo a codificar una aplicación lo
 				"suficientemente simple" para hacer estos casos de uso posible,
-				sino que crearemos un framewoirk sencillo, pero completo, a fin de 
+				sino que crearemos un framework sencillo, pero completo, a fin de 
 				poder separar los distintos aspectos de nuestra aplicación.
 				Verás lo que esto significa en poco tiempo.
 			</p>
@@ -362,9 +423,9 @@
 
 			<h3>JavaScript y Tú</h3>
 			<p>
-				Antes que hablemos de toda la parte técnica, tomémosnos
-				un minuto y hablemos acerca de tí y tu relación con 
-				JavaScript. Este capitulo está aquí para permitirte estimar
+				Antes que hablemos de toda la parte técnica, tomémonos
+				un minuto y hablemos acerca de ti y tu relación con 
+				JavaScript. Este capítulo está aquí para permitirte estimar
 				si tiene sentido el que sigas o no leyendo este documento.
 			</p>
 			<p>
@@ -376,9 +437,9 @@
 			</p>
 			<p>
 				Lo que Tú realmente querías era "la cosa real", Tú querías
-				saber como construir sitios web comlejos - Tú aprendiste un
+				saber cómo construir sitios web complejos - Tú aprendiste un
 				lenguaje de programación como PHP, Ruby, Java, y empezaste a 
-				escribir codigo "backend".
+				escribir código "backend".
 			</p>
 			<p>
 				No obstante tú mantuviste un ojo en JavaScript, y te diste
@@ -391,8 +452,8 @@
 				Sin embargo, esto era todo cosa del 
 				<span style="font-style: italic;">frontend</span> ,y aunque era
 				agradable contar con jQuery a tu disposición en cualquier
-				momento que te sintieras con animo de sazonar una página web,
-				al final del día, tu eras a lo más, un usuario de JavaScript,
+				momento que te sintieras con ánimo de sazonar una página web,
+				al final del día, tú eras a lo más, un usuario de JavaScript,
 				pero no, un desarrollador de JavaScript.
 			</p>
 			<p>
@@ -406,8 +467,8 @@
 				significa entender JavaScript! Y esta vez es en serio.
 			</p>
 			<p>
-				Y aquí esta el problema: Ya que JavaScript realmente vive
-				dos, o tal vez tres vidas (El pequeño audante DHTML de 
+				Y aquí está el problema: Ya que JavaScript realmente vive
+				dos, o tal vez tres vidas (El pequeño ayudante DHTML de 
 				mediados de los 90's, las cosas más serias tales como jQuery
 				y similares, y ahora, el lado del servidor), no es tan fácil
 				encontrar información que te ayude a aprender JavaScript de la
@@ -419,13 +480,13 @@
 			<p>			
         Porque ahí está el asunto: Tú ya eres un desarrollador
         experimentado, y no quieres aprender una nueva técnica
-        simplemente metiendo código aquí y allá mal-aprovechandolo;
-        Tú quieres estar seguro que te estás enfocando en un angulo
+        simplemente metiendo código aquí y allá mal-aprovechándolo;
+        Tú quieres estar seguro que te estás enfocando en un ángulo
         correcto.
 			</p>
 			<p>
         Hay, por supuesto, excelente documentación afuera.
-        Pero la documentaión por si sola no es suficiente. Lo que 
+        Pero la documentación por sí sola no es suficiente. Lo que 
         se necesita es una guía.
 			</p>
 			<p>
@@ -474,7 +535,7 @@
 				Chrome utiliza.
 			</p>
 			<p>
-				Además, Node.js viene con muchos módulos utiles, de manera que no
+				Además, Node.js viene con muchos módulos útiles, de manera que no
 				tienes que escribir todo de cero, como por ejemplo, algo que ponga un
 				string a la consola.
 			</p>
@@ -498,7 +559,7 @@
 			</p>
 			<p>
 				Abre tu editor favorito y crea un archivo llamado <em>holamundo.js</em>.
-				Nosotors queremos escribir "Hola Mundo" a STDOUT, y aquí esta el código
+				Nosotros queremos escribir "Hola Mundo" a STDOUT, y aquí está el código
 				necesario para hacer esto:			
 			</p>
 <pre class="prettyprint lang-js">console.log("Hola Mundo");
@@ -543,11 +604,11 @@
 				que queremos hacer aquí.
 			</p>
 			<p>
-				Más que eso, no quieremos escribir simplemente el código más
+				Más que eso, no queremos escribir simplemente el código más
 				básico posible para alcanzar este objetivo, no importa lo
 				elegante y correcto que pueda ser este código. Nosotros
 				agregaremos intencionalmente más abstracción de lo necesaria
-				de manera de poder tener una idea de lo que es contruir 
+				de manera de poder tener una idea de lo que es construir 
 				aplicaciones más complejas de Node.js.
 			</p>
 
@@ -577,7 +638,7 @@
 				</li>
 				<li>
 					El Enrutador probablemente debería tratar cualquier
-					información POST que llegue y darsela a los handlers de
+					información POST que llegue y dársela a los handlers de
 					peticiones en una forma conveniente, luego 
 					necesitaremos <strong>manipulación de data requerida</strong>
 				</li>
@@ -587,17 +648,17 @@
 					estas URLs sean pedidas, lo que significa que necesitamos
 					algún tipo de <strong>lógica en las vistas</strong> a
 					ser utilizada por los handlers de peticiones, de manera
-					de poder enviar contenido al browser del Usuaio.
+					de poder enviar contenido al browser del Usuario.
 				</li>
 				<li>
 					Por último, pero no menos importante, el Usuario será
-					capaz de subir imagenes, así que necesitaremos algún 
+					capaz de subir imágenes, así que necesitaremos algún 
 					tipo de <strong>manipulación de subidas</strong> quien
 					ser hará cargo de los detalles.
 				</li>
 			</ul>
 			<p>
-				Pensemos un momento acerca de como construirimas esta pila
+				Pensemos un momento acerca de como construiríamos esta pila
 				de aplicaciones con PHP. No es exactamente un secreto que
 				la configuración típica sería un Apache HTTP server con 
 				mod_php5 instalado.
@@ -632,7 +693,7 @@
 				a programar, sino que también, como organizar mi código.
 				<br/>
 				¿Necesitaré tenerlo todo en un archivo? Muchos tutoriales en
-				la Web que te enseñan como escribir un servidor HTTP básico en
+				la Web que te enseñan cómo escribir un servidor HTTP básico en
 				Node.js tienen toda la lógica en un solo lugar. ¿Qué pasa
 				si yo quiero asegurarme que mi código se mantenga leíble a 
 				medida que le vaya agregando más cosas?
@@ -654,7 +715,7 @@
 
 			</p>
 			<p>
-				Mi impresión es que es más o menos un estandar nombrar a tu
+				Mi impresión es que es más o menos un estándar nombrar a tu
 				archivo <em>main</em> como <em>index.js</em>. Tiene sentido
 				también que pongamos nuestro módulo de servidor en un archivo
 				llamado <em>server.js</em>.
@@ -662,7 +723,7 @@
 			<p>
 				Empecemos con el módulo del servidor. Crea el archivo
 				<em>server.js</em> en el directorio raíz de tu proyecto,
-				y llenalo con el código siguiente:
+				y llénalo con el código siguiente:
 			</p>
 <pre class="prettyprint lang-js">var http = require("http");
 
@@ -674,8 +735,8 @@ http.createServer(function(request, response) {
 </pre>
 
 			<p>
-				Eso es! Acabas de escribir un servidor HTTP activo. Probemóslo
-				ejecutándolo y testéandolo. Primero ejecuta tu script con Node.js:
+				Eso es! Acabas de escribir un servidor HTTP activo. Probémoslo
+				ejecutándolo y testeándolo. Primero ejecuta tu script con Node.js:
 			</p>
 <pre class="prettyprint lang-js">node server.js</pre>
 			<p>
@@ -684,7 +745,7 @@ http.createServer(function(request, response) {
 				Esto debería desplegar una página web que diga "Hola Mundo".
 			</p>
 			<p>
-				Interesante, ¿no? ¿Que tal si hablamos de que está pasando aquí y
+				Interesante, ¿no? ¿Qué tal si hablamos de que está pasando aquí y
 				dejamos la pregunta de 'cómo organizar nuestro proyecto' para después?
 				Prometo que volveremos a esto.
 			</p>
@@ -695,7 +756,7 @@ http.createServer(function(request, response) {
 			</p>
 			<p>
 				La primera línea <em>require</em>, requiere al módulo <em>http</em>
-				que viene incluído con Node.js y lo hace accesible a través de la
+				que viene incluido con Node.js y lo hace accesible a través de la
 				variable <em>http</em>.
 			</p>
 			<p>
@@ -729,7 +790,7 @@ server.listen(8888);</pre>
 			</p>
 			<p>
 				Resulta que, este definición de función ES el primer
-				(y único) parametro que le vamos a dar a la llamada a
+				(y único) parámetro que le vamos a dar a la llamada a
 				<em>createServer()</em>. Ya que en JavaScript, las funciones
 				pueden ser pasadas de un lado a otro como cualquier otro valor.
 			</p>
@@ -773,7 +834,7 @@ ejecutar(decir, "Hola");</pre>
 				por su nombre como parámetro a otra función. Pero no
 				estamos obligados a tener que definir la función primero
 				y luego pasarla. Podemos también definir y pasar la función
-				como un parametro a otra función todo al mismo tiempo:
+				como un parámetro a otra función todo al mismo tiempo:
 			</p>
 <pre class="prettyprint lang-js">function ejecutar(algunaFuncion, valor) {
   algunafuncion(valor);
@@ -785,7 +846,7 @@ ejecutar(function(palabra){ console.log(palabra) }, "Hola");
 				(N.del T.: <em>function</em> es una palabra clave de JavaScript).
 			</p>
 			<p>
-				Nosotros defiunimos la función que queremos pasar a <em>ejecutar</em>
+				Nosotros definimos la función que queremos pasar a <em>ejecutar</em>
 				justo ahí en el lugar donde <em>ejecutar</em> espera su primer
 				parámetro.
 			</p>
@@ -817,7 +878,7 @@ http.createServer(function(request, response) {
 </pre>
 			<p>
 				Para ahora, debería quedar claro lo que estamos haciendo acá:
-				Estamos pasandole a la función <em>createServer</em> una función
+				Estamos pasándole a la función <em>createServer</em> una función
 				anónima.
 			</p>
 			<p>
@@ -842,26 +903,26 @@ http.createServer(onRequest).listen(8888);
 			<h4>Callbacks Manejadas por Eventos</h4>
 			
 			<p>
-				La respuesta a) No es una no muy fácil de dar (al menos para mi),
+				La respuesta a) No es una no muy fácil de dar (al menos para mí),
 				y b) Yace en la naturaleza misma de como Node.js trabaja:
-				Está orientado al evento, esa es la razón de porqué es tan
+				Está orientado al evento, esa es la razón de por qué es tan
 				rápido.
 			</p>
 			<p>
-				Podrías tomarte un tiempo para ller este excelente post (en inglés)
+				Podrías tomarte un tiempo para leer este excelente post (en inglés)
 				de Felix Geisendördfer: <a href="http://debuggable.com/posts/understanding-node-js:4bd98440-45e4-4a9a-8ef7-0f7ecbdd56cb">Understanding node.js</a> para alguna explicación de trasfondo.
 			</p>
 			<p>
 				Al final todo se reduce al hecho que Node.js trabaja orientado
-				al evento. Ah, y sí, Yo tampoco sé exactamente que significa eso.
+				al evento. Ah, y sí, Yo tampoco sé exactamente qué significa eso.
 				Pero voy a hacer un intento de explicar, el porqué esto tiene
 				sentido para nosotros, que queremos escribir aplicaciones
 				web en Node.js.			
 			</p>
 			<p>
-				Cuando nosotros llamamos al metodo <em>http.createServer</em>,
+				Cuando nosotros llamamos al método <em>http.createServer</em>,
 				por supuesto que no sólo queremos que el servidor se quede escuchando
-				en algún puerto, sino que tambien queremos hacer algo cuando hay
+				en algún puerto, sino que también queremos hacer algo cuando hay
 				una petición HTTP a este servidor.
 			</p>
 			<p>
@@ -870,7 +931,7 @@ http.createServer(onRequest).listen(8888);
 				en el cual nuestro servidor corre.
 			</p>
 			<p>
-				Cuando escribiemos aplicaciones PHP, esto no nos molesta en
+				Cuando escribimos aplicaciones PHP, esto no nos molesta en
 				absoluto: cada vez que hay una petición HTTP, el servidor web
 				(por lo general Apache) genera un nuevo proceso solo para esta
 				petición, y empieza el script PHP indicado desde cero, el cual
@@ -886,14 +947,14 @@ http.createServer(onRequest).listen(8888);
 				de Node.js / JavaScript de verdad ayuda, aunque tengamos
 				que aprender nuevos conceptos para poder dominarlo. Veamos
 				como estos conceptos son aplicados en nuestro código de
-				sevidor.
+				servidor.
 			</p>
 			<p>
 				Nosotros creamos el servidor, y pasamos una función al método
 				que lo crea. Cada vez que nuestro servidor recibe una petición,
 				la función que le pasamos será llamada.
 			<p>
-				No sabemos que es lo que va a suceder, pero ahora tenemos un
+				No sabemos qué es lo que va a suceder, pero ahora tenemos un
 				lugar donde vamos a poder manipular la petición entrante.
 				Es la función que pasamos, sin importar si la definimos o si
 				la pasamos de manera anónima.
@@ -911,7 +972,7 @@ http.createServer(onRequest).listen(8888);
 			</p>
 			<p>
 				Juguemos un poco con este nuevo concepto. ¿Podemos probar que nuestro
-				código contnúa despues de haber creado el servidor, incluso
+				código continúa después de haber creado el servidor, incluso
 				si no ha sucedido ninguna petición HTTP y la función callback que
 				pasamos no ha sido llamada? Probemos:
 			<p>
@@ -932,7 +993,7 @@ console.log("Servidor Iniciado.");
 		<p>
 			Noten que utilizo <em>console.log</em> para entregar un texto
 			cada vez que la función <em>onRequest</em> (nuestro callback) es
-			gatillada, y otro texto <em>despues</em> de iniciar nuestro servidor
+			gatillada, y otro texto <em>después</em> de iniciar nuestro servidor
 			HTTP.
 		</p>
 		<p>
@@ -966,20 +1027,20 @@ console.log("Servidor Iniciado.");
 			gatillada, dos parámetros son pasados a ella: <em>request</em> y <em>response</em>.
 		</p>
 		<p>
-			Estos on objetos, y tú puedes usar sus métodos para manejar los detalles
+			Estos son objetos, y tú puedes usar sus métodos para manejar los detalles
 			de la petición HTTP ocurrida y responder a la petición (en otras palabras
 			enviar algo de vuelta al browser que hizo la petición a tu servidor).
 		</p>
 		<p>
 			Y eso es lo que nuestro código hace: Cada vez que una petición
 			es recibida, usa la función <em>response.writeHead()</em> para 
-			enviar un estatus HTTP 200 y un content-type (paámetro que define
+			enviar un estatus HTTP 200 y un content-type (parámetro que define
 			que tipo de contenido es) en el encabezado de la respuesta HTTP,
 			y la función <em>response.write()</em> para enviar el texto
 			"Hola Mundo" en el cuerpo de la respuesta,
 		</p>
 		<p>
-			POr último, nosotros llamamos <em>response.end()</em> para finalizar
+			Por último, nosotros llamamos <em>response.end()</em> para finalizar
 			nuestra respuesta
 		</p>
 		<p>
@@ -1035,7 +1096,7 @@ foo.createServer(...);
 			¿Cómo hacemos para crear nuestros propios módulos, y Cómo los utilizamos?
 		</p>
 		<p>
-			Descubrámoslo transformando nuestro script <em>server,js</em> en un módulo
+			Descubrámoslo transformando nuestro script <em>server.js</em> en un módulo
 			real.
 		</p>
 		<p>
@@ -1071,7 +1132,7 @@ exports.inicio = inicio;
 			
 		<p>
 			De este modo, Podemos crear nuestro propio archivo principal <em>index.js</em>,
-			y arrancar nuestro servidor HTTP allío, aunque el código para el servidor este
+			y arrancar nuestro servidor HTTP allí, aunque el código para el servidor este
 			en nuestro archivo <em>server.js</em>.
 		</p>
 		<p>
@@ -1085,9 +1146,657 @@ server.start();
 		<p>
 			Como puedes ver, nosotros utilizamos nuestro módulo de servidor
 			tal como cualquier otro módulo interno: requiriendo el archivo
-			donde está contendio y asignándolo a una variable, con las funciones
+			donde está contenido y asignándolo a una variable, con las funciones
 			que tenga 'exportadas' disponibles para nosotros.
 		</p>
+		<p>
+			Eso es. Podemos ahora arrancar nuestra aplicación por medio de nuestro
+			script principal, y va a hacer exactamente lo mismo:
+		</p>
+<pre>node index.js</pre>
+		<p>
+			Bien, ahora podemos poner las diferentes partes de nuestra aplicación
+			en archivos diferentes y enlazarlas juntas a través de la
+			creación de estos módulos.
+		<p>
+		<p>
+			Tenemos sólo la primera parte de nuestra aplicación en su lugar:
+			Podemos recibir peticiones HTTP. Pero necesitamos hacer algo con ellas - 
+			necesitamos reaccionar de manera diferente, dependiendo de que 
+			URL el browser requiera de nuestro servidor.
+		<p>
+		<p>
+			Para una aplicación muy simple, Tú podrías hacer esto directamente
+			dentro de una función de callback <em>OnRequest()</em>. Pero, como dije,
+			agreguemos un poco más de abstracción, de manera de hacer nuestra 
+			aplicación más interesante.
+		</p>
+		<p>
+			Hacer diferentes peticiones HTTP ir a partes diferentes de nuestro 
+			código se llama "ruteo" (routing, en inglés) - bueno, entonces, creemos
+			un módulo llamado <em>router</em>.
+		</p>
+			
+		<h4>¿Qué se necesita para "rutear" peticiones?</h4>
+		<p>
+			Necesitamos ser capaces de entregar la URL requerida y los posibles 
+			parámetros GET o POST adicionales a nuestro router, y basado en estos,
+			el router debe ser capaz de decidir qué código ejecutar (este 
+			"código a ejecutar" es la tercera parte de nuestra aplicación: una
+			colección de manipuladores de peticiones que harán el verdadero trabajo
+			cuando una petición es recibida).
+		<p>
+		<p>
+			Así que, Necesitamos mirar en las peticiones HTTP y extraer la URL
+			requerida, así como los parámetros GET/POST de ellos. Se puede discutir
+			acerca de si este procedimiento debe ser parte del router o del servidor
+			(o si lo hacemos un módulo por sí mismo), pero hagamos el acuerdo de
+			hacerlo parte de nuestro servidor HTTP por ahora.
+		<p>
+		<p>
+			Toda la información que necesitamos está disponible en el objeto
+			<em>request</em>, el que es pasado como primer parámetro a nuestra
+			función callback <em>onRequest()</em>. Pero para interpretar esta 
+			información, necesitamos algunos módulos adicionales Node.js, llamados
+			<em>url</em> y <em>querystring</em>.
+		</p>
+		<p>
+			El módulo <em>url</em> provee métodos que nos permite extraer las 
+			diferentes partes de una URL (como por ejemplo la ruta requerida y 
+			el string de consulta), y <em>querystring</em> puede, en cambio, ser usado
+			para parsear el string de consulta para los parámetros requeridos:
+		</p>
+<pre>                               url.parse(string).query
+                                           |
+           url.parse(string).pathname      |
+                       |                   |
+                       |                   |
+                     ------ -------------------
+http://localhost:8888/start?foo=bar&amp;hello=world
+                                ---       -----
+                                 |          |
+                                 |          |
+              querystring(string)["foo"]    |
+                                            |
+                         querystring(string)["hello"]
+</pre>
+		<p>
+			Podemos, por supuesto, también utilizar <em>querystring</em> para 
+			parsear el cuerpo de una petición POST en busca de parámetros, como veremos
+			más tarde.
+		</p>
+		<p>
+			Agreguemos ahora a nuestra función <em>onRequest()</em> la lógica 
+			requerida para encontrar que ruta URL el browser solicitó:
+		<p>
+<pre class="prettyprint lang-js">var http = require("http");
+var url = require("url");
+
+function start() {
+  function onRequest(request, response) {
+	var pathname = url.parse(request.url).pathname;
+	console.log("Petición para " + pathname + " recibida.");
+	response.writeHead(200, {"Content-Type": "text/html"});
+	response.write("Hola Mundo");
+	response.end();
+  }
+
+  http.createServer(onRequest).listen(8888);
+  console.log("Servidor ha sido iniciado.");
+}
+
+exports.start = start;
+</pre>
+		<p>
+			Muy Bien. Nuestra aplicación puede ahora distinguir peticiones
+			basadas en la ruta URL requerida - esto nos permite mapear
+			peticiones hacia nuestro manipuladores de peticiones, basándonos
+			en la ruta URL usando nuestro (pronto a ser escrito) router. Luego, 
+			podemos construir nuestra aplicación en una forma REST (RESTful way
+			en Inglés), ya que ahora podemos implementar una interfaz que 
+			sigue los principios que guían a la <em>Identificación de Recursos</em>
+			(ve por favor <a href="http://es.wikipedia.org/wiki/Representational_State_Transfer">el artículo de Wikipedia acerca de la Transferencia del Estado Representacional</a> para información de trasfondo.
+		</p>
+		<p>
+			En el contexto de nuestra aplicación, esto significa simplemente que 
+			seremos capaces de tener peticiones para las URLs 
+			<em>/inicio</em> y <em>/subir</em> manejadas por partes diferentes de
+			nuestro código. Veremos pronto como todo esto encaja.
+		<p>
+		<p>
+			OK, es hora de escribir nuestro router. Vamos a crear un nuevo archivo
+			llamado <em>router.js</em>, con el siguiente contenido:
+		</p>
+<pre class="prettyprint lang-js">function route(pathname) {
+  console.log("A punto de rutear una peticion para " + pathname);
+}
+
+exports.route = route;
+</pre>	
+		<p>
+			Por supuesto, este código no está haciendo nada, pero eso está bien
+			por ahora. Empecemos a ver como vamos a encajar este router con nuestro
+			servidor antes de poner más lógica en el router.
+		</p>
+		<p>
+			Nuestro servidor HTTP necesita saber y hacer uso de nuestro router.
+			Podemos escribir directamente esta dependencia a nuestro
+			servidor, pero como hemos aprendido de la manera difícil en nuestras
+			experiencias, vamos a acoplar de manera débil (loose coupling en Inglés)
+			al router y su servidor vía inyección por dependencia. Para una referencia
+			de fondo, leer el <a href="http://martinfowler.com/articles/injection.html">Artículo de Martin Fowler (en Inglés)</a>.
+		</p>
+		<p>
+			Primero extendamos nuestra función <em>start()</em> de manera de permitirnos
+			pasar la función de ruteo a ser usada como parámetro:
+		</p>
+<pre class="prettyprint lang-js">var http = require("http");
+var url = require("url");
+
+function start(route) {
+  function onRequest(request, response) {
+    var pathname = url.parse(request.url).pathname;
+    console.log("Peticion para " + pathname + " recibida.");
+
+    route(pathname);
+
+    response.writeHead(200, {"Content-Type": "text/html"});
+    response.write("Hola Mundo");
+    response.end();
+  }
+
+  http.createServer(onRequest).listen(8888);
+  console.log("Servidor Ha Arrancado.");
+}
+
+exports.start = start;
+</pre>
+		<p>
+			Y extendamos nuestro <em>index.js</em> adecuadamente, esto es,
+			inyectando la función de ruteo de nuestro router en el servidor:
+		</p>
+<pre class="prettyprint lang-js">var server = require("./server");
+var router = require("./router");
+
+server.start(router.route);
+
+</pre>		
+	<p>
+		Nuevamente , estamos pasando una función como parámetros, pero esto
+		ya no es una novedad para nosotros.
+	</p>
+	<p>
+		Si arrancamos nuestra aplicación ahora (<em>node index.js</em> como siempre),
+		y hacemos una petición para una URL, puedes ver ahora por las respuestas de 
+		la aplicación que nuestro servidor HTTP hace uso de nuestro router y le entrega
+		el nombre de ruta requerido:
+	</p>
+<pre>bash$ node index.js
+Petición para /foo recibida.
+A punto de rutear una peticion para /foo
+</pre>
+	<p>
+		He omitido la molesta respuesta de la petición para /favicon.ico
+	</p>
+
+	<h4>Ejecución en el reino de los verbos</h4>
+	<p>
+		¿Puedo divagar un vez más por un momento y hablar acerca de la programación 
+		funcional de nuevo?
+	</p>
+	<p>
+		Pasar funciones no es sólo una consideración Técnica. Con respecto al diseño
+		de software, esto es casi filosófico. Tan solo piensa en ello: en nuestro
+		archivo de index, podríamos haber entregado el objeto <em>router</em> al
+		servidor, y el servidor hubiese llamado a la función <em>route</em>
+		de este objeto.
+	</p>
+	<p>
+		De esta manera, podríamos haber pasado una <em>cosa</em>, y el servidor hubiese
+		usado esa cosa para <em>hacer</em> algo. Oye, "Cosa Router", ¿Podrías por
+		favor rutear esto por mí?
+	</p>
+	<p>
+		Pero el servidor no necesita la cosa. Sólo necesita <em>hacer algo</em>,
+		y para que algo se haga, no necesitas cosas para nada, sólo necesitas
+		<em>acciones</em>. No necesitas <em>sustantivos</em>, sino que necesitas
+		<em>verbos</em>.
+	</p>	
+	<p>
+		Entender este cambio de mentalidad fundamental que está en el núcleo de 
+		esta idea es lo que realmente me hizo entender la programación funcional.
+	</p>
+	<p>
+		Y lo entendí mientras leía la obra maestra de Steve Yegge (en Inglés)
+		<a href="http://steve-yegge.blogspot.com/2006/03/execution-in-kingdom-of-nouns.html">Ejecución en el Reino de los Sustantivos</a>.
+		Anda, léela, por favor. Es uno de los mejores artículos relacionados con
+		el software que haya tenido el placer de encontrar.
+	</p>
+	<h4>Ruteando a los verdaderos manipuladores de peticiones</h4>
+	<p>
+		Volviendo al tema. Nuestro servidor HTTP y nuestro router de peticiones son
+		ahora los mejores amigos y conversan entre ellos, tal y como pretendimos.
+	</p>
+	<p>
+		Por supuesto, esto no es suficiente, "Rutear" significa que nosotros queremos
+		manipular las peticiones a distintas URLs de manera, diferente. Nos gustaría
+		tener la "lógicas de negocios" para peticiones de <em>/inicio</em> manejadas
+		en otra función, distinta a la que maneja las peticiones para <em>/subir</em>.
+	</p>
+	<p>
+		Por ahora, el ruteo "termina" en el router, y el router no es el lugar donde
+		se está "haciendo algo" con las peticiones, ya que esto no escalaría bien
+		una vez que nuestra aplicación se haga más compleja.
+	</p>
+	<p>
+		Llamemos a estas funciones, donde las peticiones están siendo ruteadas, 
+		<em>manipuladores de peticiones</em> (ó request handlers). Y procedamos con
+		éstos ahora, porque, a menos que no los tengamos en su lugar, no hay tiene
+		mucho sentido en hacer nada con el router por ahora.
+	</p>
+	<p>
+		Nueva parte de la aplicación, significa nuevo módulo - no creo que haya
+		sorpresa acá. Creemos un módulo llamado requestHandlers (por manipuladores
+		de petición), agreguemos un función de ubicación para cada manipulador de
+		petición, y exportemos estos como métodos para el módulo:
+	</p>
+<pre class="prettyprint lang-js">function inicio() {
+  console.log("Manipulador de petición 'inicio' ha sido llamado.");
+}
+
+function subir() {
+  console.log("Manipulador de petición 'subir' ha sido llamado.");
+}
+
+exports.inicio = inicio;
+exports.subir = subir;
+</pre>
+	<p>
+		Esto nos permitirá atar los manipuladores de petición al router,
+		dándole a nuestro router algo que rutear.
+	</p>
+	<p>
+		Llegado a este punto, necesitamos tomar una decisión: ¿Ingresaremos 
+		las rutas del módulo requestHandlers dentro del código del router
+		(hard-coding), o queremos algo más de dependencia por inyección?
+		Aunque en la dependencia por inyección, como cualquier otro patrón,
+		no debería ser usada simplemente por usarla, en este caso tiene
+		sentido acoplar el router débilmente a sus manipuladores de petición,
+		así, de esta manera hacemos que el router sea reutilizable.
+	</p>
+	<p>
+		Esto significa que necesitamos pasar los manipuladores de petición
+		desde nuestro server al router, pero esto se siente equivocado, dado
+		que, ¿Por Qué tenemos que hacer el camino largo y entregar los manipuladores
+		desde el archivo principal al servidor y de ahí al router?
+	</p>
+	<p>
+		¿Cómo vamos a pasarlos? Ahora tenemos sólo dos manipuladores, pero en una
+		aplicación real, este número se va a incrementar y variar, y nosotros no
+		queremos estar a cada momento mapeando peticiones a manipuladores cada vez
+		que una nueva URL o manipulador de petición sea agregado. Y si tenemos un
+		código del tipo <em>if peticion == x then llama manipulador y</em> en
+		el router, esto se pondría cada vez más feo.
+	</p>
+	<p>
+		¿Un número variable de ítems, cada uno de ellos mapeados a un string?
+		(en este caso la URL requerida) Bueno, esto suena como que un array asociativo
+		haría el truco.
+	</p>
+	<p>
+		Bueno, este descubrimiento es obscurecido por el hecho que JavaScript no
+		provee arrays asociativos - ¿o sí? !Resulta que lo que necesitamos usar son
+		objetos si necesitamos un array asociativo!
+	</p>
+	<p>
+		Una buena introducción a esto está (en Inglés) en 
+		<a href="http://msdn.microsoft.com/en-us/magazine/cc163419.aspx">http://msdn.microsoft.com/en-us/magazine/cc163419.aspx</a>,
+		Déjame citarte la parte relevante:
+	</p>
+	<blockquote>
+		<p>
+			En C++ o C#, cuando hablamos acerca de objetos, nos estamos refiriendo
+			a instancias de clases de estructuras. Los objetos tienen distintas
+			propiedades y métodos, dependiendo en las plantillas (esto es, las clases)
+			desde donde éstos sean instanciados. Este no es el caso con los objetos
+			de JavaScript. En JavaScript, los objetos son sólo colecciones de pares
+			nombre/valor - piensa en un objeto JavaScript como en un diccionario
+			con llaves de string.
+		</p>
+	</blockquote>
+	<p>
+		Si los objetos JavaScript son sólo colecciones de pares nombre/valor, ¿Cómo
+		pueden entonces tener métodos? Bueno, los valores pueden ser strings,
+		números, etc... ¡O Funciones!
+	</p>
+	<p>
+		OK, Ahora, volviendo finalmente al código. Hemos decidido que queremos
+		pasar la lista de requestHandlers (manipuladores de petición) como un 
+		objeto, y para lograr este acoplamiento débil, necesitamos usar la técnica
+		de inyectar este objeto en la <em>route()</em> (ruta).
+	</p>
+	<p>
+		Empecemos con poner el objeto en nuestro archivo principal <em>index.js</em>:
+	</p>
+<pre class="prettyprint lang-js">var server = require("./server");
+var router = require("./router");
+var requestHandlers = require("./requestHandlers");
+
+var handle = {}
+handle["/"] = requestHandlers.inicio;
+handle["/start"] = requestHandlers.inicio;
+handle["/upload"] = requestHandlers.subir;
+
+server.start(router.route, handle);
+</pre>
+	<p>
+		Aunque <em>handle</em> es más una "cosa" (una colección de manipuladores
+		de petición), Propongo que lo nombremos como un verbo, ya que esto 
+		resultará en una expresión fluida en nuestro router, como veremos a
+		continuación:
+	</p>
+	<p>
+		Como puede ver, es realmente simple mapear diferentes URLs al mismo 
+		manipulador de peticiones: Mediante la adición de un par llave/valor
+		de <em>"/"</em> y <em>requestHandlers.inicio</em>, podemos expresar en una
+		forma agradable y limpia que no sólo peticiones a <em>/start</em>, sino 
+		que también peticiones a <em>/</em> pueden ser manejadas por el manipulador
+		<em>inicio</em>.
+	</p>
+	<p>
+		Después de definir nuestro objeto, se lo pasamos al servidor como un
+		parámetro adicional. Modifiquemos nuestro <em>server.js</em> para hacer uso
+		de este:
+	</p>
+	
+<pre class="prettyprint lang-js">var http = require("http");
+var url = require("url");
+
+function start(route, handle) {
+  function onRequest(request, response) {
+    var pathname = url.parse(request.url).pathname;
+    console.log("Peticion para " + pathname + " recibida.");
+
+    route(handle, pathname);
+
+    response.writeHead(200, {"Content-Type": "text/html"});
+    response.write("Hola Mundo");
+    response.end();
+  }
+
+  http.createServer(onRequest).listen(8888);
+  console.log("Servidor Ha Arrancado.");
+}
+
+exports.start = start;
+</pre>	
+	<p>
+		Lo que hacemos aquí, es chequear si un manipulador de petición para una
+		ruta dada existe, y si es así, simplemente llamamos a la función adecuada.
+		Dado que podemos acceder a nuestras funciones manipuladoras de petición
+		desde nuestro objeto de la misma manera que hubiésemos podido acceder a un
+		elemento de un array asociativo, es que tenemos la expresión fluida
+		<em>handle[pathname]();</em> de la que hablé antes, que en otras palabras es:
+		"Por favor, <em>handle</em> (maneja) este(a) <em>pathname</em> (ruta)"</em>.
+	</p>
+	<p>
+		Bien, ¡Esto es todo lo que necesitamos para atar servidor, router y 
+		manipuladores de peticiones juntos! Una vez que arranquemos nuestra 
+		aplicación y hagamos una petición en nuestro browser de 
+		<a href="http://localhost:8888/inicio" rel="nofollow">http://localhost:8888/inicio</a>,
+		vamos a probar que el manipulador de petición correcto fue, de hecho, llamado:
+	</p>
+<pre>Servidor Ha Arrancado.
+Peticion para /inicio recibida.
+
+A punto de rutear una petición para /inicio
+Manipulador de peticion 'inicio' ha sido llamado.
+</pre> 
+		<h4>Haciendo que los Manipuladores de peticiones respondan</h4>
+		<p>
+			Muy bien. Ahora, si tan solo los manipuladores de petición pudieran enviar
+			algo de vuelta al browser, esto sería mucho mejor, ¿cierto?
+		</p>
+		<p>
+			Recuerda, que el "Hola Mundo" que tu browser despliega ante una 
+			petición de una página, aún viene desde la función <em>onRequest</em>
+			en nuestro archivo <em>server.js</em>.
+		</p>
+		<p>
+			"Manipular Peticiones" no significa otra cosa que "Responder a las
+			Peticiones" después de todo, así que necesitamos empoderar a nuestros
+			manipuladores de peticiones para hablar con el browser de la misma
+			manera que la función <em>onRequest</em> lo hace.
+		</p>
+		<h5>¿Cómo no se debe hacer esto?</h5>
+		<p>
+			La aproximación directa que nosotros - desarrolladores con un trasfondo
+			en PHP o Ruby - quisieramos seguir es de hecho conducente a errores:
+			Trabaja de manera espectacular al principio y parece tener mucho sentido, 
+			y de pronto, las cosas se arruinan en el momento menos esperado.
+		</p>
+		<p>
+			A lo que me refiero con "aproximación directa" es esto: hacer que los
+			manipuladores de petición retornen - <em>return()</em> - el contenido
+			que ellos quieran desplegar al usuario, y luego, enviar esta data
+			de respuesta en la función <em>onRequest</em> de vuelta al usuario.
+		</p>
+		<p>
+			Tan sólo hagamos esto, y luego, veamos por qué esto no es tan buena idea.
+		</p>
+		<p>
+			Empecemos con los manipuladores de petición y hagámoslos retornar,
+			lo que nosotros queremos desplegar en el browser. Necesitamos modificar
+			<em>requestHandlers.js</em> a lo siguiente:
+		</p>
+<pre class="prettyprint lang-js">function inicio() {
+  console.log("Manipulador de peticion 'inicio' fue llamado.");
+  return "Hola Inicio";
+}
+
+function subir() {
+  console.log("Manipulador de peticion 'subir' fue llamado.");
+  return "Hola Subir";
+}
+
+exports.inicio = inicio;
+exports.subir = subir;
+</pre>
+		<p>
+			Bien. De todas maneras, el router necesita retornar al servidor
+			lo que los manipuladores de petición le retornaron a él. Necesitamos
+			entonces editar <em>router.js</em> de esta manera:
+		</p>
+<pre class="prettyprint lang-js">function route(handle, pathname) {
+  console.log("A punto de rutear una peticion para " + pathname);
+  if (typeof handle[pathname] === 'function') {
+    return handle[pathname]();
+  } else {
+    console.log("No se encontro manipulador para " + pathname);
+    return "404 No Encontrado";
+  }
+}
+
+exports.route = route;
+</pre>
+		<p>
+			Como puedes ver, nosotros también retornaremos algún texto si
+			la petición no es ruteada.
+		</p>
+		<p>
+			Por último, pero no menos importante, necesitamos refactorizar
+			nuestro servidor para hacerlo responder al browser con el 
+			contenido que los manipuladores de petición le retornaron via 
+			el router, transformando de esta manera a <em>server.js</em> en:
+		</p>
+<pre class="prettyprint lang-js">var http = require("http");
+var url = require("url");
+
+function start(route, handle) {
+  function onRequest(request, response) {
+    var pathname = url.parse(request.url).pathname;
+    console.log("Peticion para " + pathname + " recibida.");
+
+    response.writeHead(200, {"Content-Type": "text/html"});
+	var content = route(handle, pathname)
+	response.write(content);
+    response.end();
+  }
+
+  http.createServer(onRequest).listen(8888);
+  console.log("Servidor ha Arrancado.");
+}
+
+exports.start = start;
+</pre>
+		<p>
+			Si nosotros arrancamos nuestra aplicación re-escrita, todo va
+			a funcionar a las mil maravillas:
+			Hacerle una petición a <a href="http://localhost:8888/inicio" rel="nofollow">http://localhost:8888/inicio</a>
+			resulta en "Hola Inicio" siendo desplegado en el browser, hacerle una
+			petición a <a href="http://localhost:8888/subir" rel="nofollow">http://localhost:8888/subir</a> nos da "Hola Subir", y la petición a <a href="http://localhost:8888/foo" rel="nofollow">http://localhost:8888/foo</a> produce
+			"404 No Encontrado".
+		</p>
+		<p>
+			OK, entonces ¿Por Qué esto es un problema? La respuesta corta es:
+			debido a que si uno de los manipuladores de petición quisiera hacer 
+			uso de una operación <em>no-bloqueante</em> (non-blocking) en el futuro, 
+			entonces esta configuración, como la tenemos, sería problemática.
+		</p>
+		<p>
+			Tomémosnos algún tiempo para la respuesta larga.
+		</p>
+		
+		<h5>Bloqueante y No-Bloqueante</h5>
+		<p>
+			Como se dijo, los problemas van a surgir cuando nosotros incluyamos
+			operaciones no-bloqueantes en los manipuladores de petición. Pero
+			hablemos acerca de las operaciones bloqueantes primero, luego, acerca de
+			las operaciones no-bloqueantes.
+		</p>
+		<p>
+			Y, en vez de intentar explicar que es lo que significa "bloqueante" y
+			"no bloqueante", demostremos nosotros mismo que es lo que sucede su agregamos
+			una operación bloqueante a nuestros manipuladores de petición.
+		</p>
+		<p>
+			Para hacer esto, modificaremos nuestro manipulador de petición
+			<em>inicio</em> para hacer una espera de 10 segundos antes de retornar su
+			string "Hola Inicio". Ya que no existe tal cosa como <em>sleep()</em> en
+			JavaScript, usaremos un hack ingenioso para ello.
+		</p>
+		<p>
+			Por favor, modifica <em>requestHandlers.js</em> como sigue:
+		</p>
+<pre class="prettyprint lang-js">function inicio() {
+  console.log("Manipulador de peticion 'inicio' fue llamado.");
+
+  function sleep(milliSeconds) {  
+    // obten la hora actual
+    var startTime = new Date().getTime();
+    // atasca la cpu
+    while (new Date().getTime() &lt; startTime + milliSeconds); 
+  }
+
+  sleep(10000);
+  return "Hola Inicio";
+}
+
+function upload() {
+  console.log("Manipulador de peticion 'subir' fue llamado.");
+  return "Hola Subir";
+}
+
+exports.inicio = inicio;
+exports.subir = subir;
+</pre>
+		<p>
+			Dejemos claros que es lo que esto hace: Cuando la función
+			<em>inicio()</em> es llamada, NOde.js espera 10 segundos y sólo ahí
+			retorna "Hola Inicio". Cuando está llamando a <em>subir()</em>,
+			retorna inmediatamente, la misma manera que antes.
+		</p>
+		<p>
+			(Por supuesto la idea es que te imagines que, en vez de dormir por
+			10 segundos, exista una operación bloqueando verdadera en <em>inicio()</em>,
+			como algún tipo de calculo de largo aliento.)
+		</p>
+		<p>
+			Veámos que es lo que este cambio hace.
+		</p>
+		<p>
+			Como siempre, necesitamos reiniciar nuestro servidor. Esta vez, te pido
+			sigas un "protocolo" un poco más complejo de manera de ver que sucede:
+			Primero, abre dos ventanas de browser o tablas. En la primera ventana, 
+			por favor ingresa <a href="http://localhost:8888/inicio" rel="nofollow">http://localhost:8888/inicio</a> en la barra de direcciones, pero no abras aún
+			esta url!
+		</p>
+		<p>
+			En la barra de direcciones de la segunda ventana de browser, ingresa
+			<a href="http://localhost:8888/subir" rel="nofollow">http://localhost:8888/subir</a> y, nuevamente, no presiones enter todavía.
+		</p>
+		<p>
+			Ahora, haz lo siguiente: presiona enter en la primera ventana ("/inicio"),
+			luego, rápidamente cambia a la segunda ventana ("/subir") y 
+			presiona enter, también.
+		</p>
+		<p>
+			Lo que veremos será lo siguiente: La URL /inicio toma 10 segundos
+			en cargar, tal cual esperamos. pero la URL /subir <em>también</em>
+			toma 10 segundos para cargar, ¡Aunque no hay definido un <em>sleep()</em>
+			en el manipulador de peticiones correspondiente!
+		</p>
+		<p>
+			¿Por Qué? simple, porque <em>inicio()</em> contiene una operación
+			bloqueante. En otras palabras "Está bloqueando el trabajo de cualquier otra
+			cosa".
+		</p>
+		<p>
+			He ahí el problema, porque, el dicho es: <em>"En Node.js, todo corre
+			en paralelo, excepto tu código"</em>.
+		</p>
+		<p>
+			Lo que eso significa es que Node.js puede manejar un montón de temas
+			concurrentes, pero no lo hace dividiendo todo en hilos (threads) - 
+			de hecho, Node.js corre en un sólo hilo. En vez de eso, lo hace 
+			ejecutando un loop de eventos, y nosotros, los desarrolladores podemos
+			hacer uso de esto - Nosotros debemos evitar operaciones bloqueantes
+			donde sea posible, y utilizar operaciones no-bloqueantes en su lugar.
+		</p>
+		<p>
+			Lo que <em>exec()</em> hace, es que, ejecuta un commando de shell
+			desde dentro de Node.js. En este ejemplo, vamos a usarlo para obtener
+			una lista de todos los archivos del directorio en que nos encontramos
+			("ls -lah"), permitiéndonos desplegar esta lista en el browser de un
+			usuario que este peticionando la URL <em>/inicio</em>.
+		</p>
+		<p>
+			Lo que el código hace es claro: Crea una nueva variable <em>content()</em>
+			(con el valor incial de "vacio"), ejecuta "ls -lah", llena la variable con
+			el resultado, y lo retorna.
+		</p>
+		<p>
+			Como siempre, arrancaremos nuestra aplicación y visitaremos
+			<a href="http://localhost:8888/inicio" rel="nofollow">http://localhost:8888/inicio</a>.
+		</p>
+		<p>
+			Lo que carga una bella página que despliega el string "vacio". ¿Qué es
+			lo que está incorrecto acá?
+		</p>
+		
+
+		
+		
+		
+		
+		
+		
+		
+
+
+
+
+
 
 
 
@@ -1120,7 +1829,8 @@ server.start();
 			<p>
 				La mejor manera de mantenerte informado acerca de actualizaciones
 				<br />
-				es siguiendo a <a href="http://twitter.com/manuelkiessling">@ManuelKiessling en Twitter</a>.
+				es siguiendo en Twitter a <a href="http://twitter.com/manuelkiessling">@ManuelKiessling</a>
+                                o a <a href="http://twitter.com/hermanjunge">@hermanjunge</a> para la Traducción en Español.
 			</p>
 		</div>
 		<div id="donate">
@@ -1129,30 +1839,49 @@ server.start();
 				<br />
 				No se requieren fondos para mantener al proyecto vivo y en marcha.
 				<br />
-				Pero si quieres apoyar al Autor, puede hacerlo usando Flatter o Paypal:		
+				Pero si quieres apoyar al Traductor, puede hacerlo usando Flatter o Paypal:		
 			</p>
 			<div id="flattr">
-				<a class="FlattrButton" style="display:none;" href="http://www.nodebeginner.org"></a>
+				<a class="FlattrButton" style="display:none;" href="http://nodebeginner.org/index-es.html"></a>
+<noscript><a href="http://flattr.com/thing/288892/El-Libro-para-Principiantes-en-Node-js" target="_blank">
+<img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a></noscript>
 			</div>
 			<div id="paypal">
 				<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
 					<fieldset>
-						<input type="hidden" name="cmd" value="_s-xclick" />
-						<input type="hidden" name="hosted_button_id" value="AWJS7PD37SQ5G" />
-						<input type="image" src="https://www.paypalobjects.com/WEBSCR-640-20110401-1/en_US/i/btn/btn_donateCC_LG.gif" name="submit" alt="PayPal - The safer, easier way to pay online!" />
-						<img alt="" src="https://www.paypalobjects.com/WEBSCR-640-20110401-1/de_DE/i/scr/pixel.gif" width="1" height="1" />
+						<input type="hidden" name="cmd" value="_donations">
+						<input type="hidden" name="business" value="haj@neosource.cl">
+						<input type="hidden" name="lc" value="CL">
+						<input type="hidden" name="item_name" value="El Libro para Principiantes en Node.js">
+						<input type="hidden" name="no_note" value="0">
+						<input type="hidden" name="currency_code" value="USD">
+						<input type="hidden" name="bn" value="PP-DonationsBF:btn_donateCC_LG.gif:NonHostedGuest">
+						<input type="image" src="https://www.paypalobjects.com/WEBSCR-640-20110429-1/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+						<img alt="" border="0" src="https://www.paypalobjects.com/WEBSCR-640-20110429-1/en_US/i/scr/pixel.gif" width="1" height="1">
 					</fieldset>
 				</form>
 			</div>
 		</div>
-			
+		
+		<div id="disqus_thread"></div>
+		<script type="text/javascript">
+			var disqus_shortname = 'libro-principiante-nodejs';
+			var disqus_identifier = 'libro-principiante-nodejs-site';
+			var disqus_url = 'http://www.nodebeginner.org/index-es.html';
+
+			(function() {
+				var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+				dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+				(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+			})();
+		</script>
+		
 		<div id="footer">
 			<p id="ccimage">
 				<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png" /></a>
 			</p>			
 			<p>The Node Beginner Book by <a target="_blank" href="http://manuel.kiessling.net/">Manuel Kiessling</a> is licensed under a <a target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</a>. Permissions beyond the scope of this license may be available at <a target="_blank" href="mailto:manuel@kiessling.net">manuel@kiessling.net</a>.</p> 
-<p>“El Libro del Principiante de Node, por Manuel Kiessling está licenciado bajo la Licencia <a target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</a>. Los permisos más allá del alcance de ésta pueden ser conseguidos en <a target="_blank" href="mailto:manuel@kiessling.net">manuel@kiessling.net</a>. </p>
-	
+<p>“El Libro del Principiante de Node, por Manuel Kiessling está licenciado bajo la Licencia <a target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</a>. Los permisos más allá del alcance de ésta pueden ser conseguidos en <a target="_blank" href="mailto:manuel@kiessling.net">manuel@kiessling.net</a>. </p>	
 		</div>
 	</body>
 </html>
