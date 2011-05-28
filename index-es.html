@@ -5,7 +5,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link href="prettify/prettify.css" type="text/css" rel="stylesheet" />
 
-		<title>El Libro de Node.js para el Principiante» Un tutorial completo de node.js</title>
+		<title>El Libro para Principiantes en Node.js» Un tutorial completo de node.js</title>
 		<meta name="description" content="Un tutorial completo de Node.js para principiantes: Aprende como construir una aplicación web completa con Javascript del lado del servidor" />
 
 		<style type="text/css">
@@ -334,8 +334,7 @@
 
 		<div id="book">
 			<h1>El Libro para Principiantes en Node.js</h1>
-			<div id="author">Un tutorial de Node.js por: <a href="http://twitter.com/manuelkiessling">Manuel Kiessling</a></div>			
-			<div id="translator">Traducción al Español por: <a href="http://twitter.com/hermanjunge">Herman A. Junge</a></div>
+			<div id="author">Un tutorial de Node.js por: <a href="http://twitter.com/manuelkiessling">Manuel Kiessling</a> &amp; <a href="http://twitter.com/hermanjunge">Herman A. Junge</a></div>			
 			<div id="updateinfo">&#218;ltima actualizaci&oacute;n el Jueves 12 de Mayo, 2011 a las 11:31 AM EDT</div>
                         <div id="updateinfo">&#218;ltima traducci&oacute;n el Lunes 23 de Mayo, 2011 a las 01:50 AM EDT</div>
 
@@ -380,7 +379,7 @@
 
 			<h3>Estructura de este documento</h3>
 			<p>
-				Al Término de este documento, Tú habrás creado una aplicación
+				Al Término de este documento, Habrás creado una aplicación
 				Web completa, que permita a los usuarios de ésta el ver
 				páginas web y subir archivos.
 			</p>
@@ -429,20 +428,20 @@
 				si tiene sentido el que sigas o no leyendo este documento.
 			</p>
 			<p>
-				Si tú eres como yo, empezaste con el "desarrollo" HTML
+				Si eres como yo, empezaste con el "desarrollo" HTML
 				hace bastante tiempo, escribiendo documentos HTML. Te 
 				encontraste en el camino con esta cosa divertida llamada
 				JavaScript, pero solo la usabas en una forma muy básica,
 				agregando interactividad a tus páginas de cuando en cuando.
 			</p>
 			<p>
-				Lo que Tú realmente querías era "la cosa real", Tú querías
+				Lo que realmente quisiste era "la cosa real", Quisiste
 				saber cómo construir sitios web complejos - Tú aprendiste un
 				lenguaje de programación como PHP, Ruby, Java, y empezaste a 
 				escribir código "backend".
 			</p>
 			<p>
-				No obstante tú mantuviste un ojo en JavaScript, y te diste
+				No obstante mantuviste un ojo en JavaScript, y te diste
 				cuenta que con la introducción de jQuery, Prototype y otros,
 				las cosas se fueron poniendo más avanzadas en las Tierras
 				de JavaScript, y que este lenguaje era realmente más que
@@ -453,7 +452,7 @@
 				<span style="font-style: italic;">frontend</span> ,y aunque era
 				agradable contar con jQuery a tu disposición en cualquier
 				momento que te sintieras con ánimo de sazonar una página web,
-				al final del día, tú eras a lo más, un usuario de JavaScript,
+				al final del día, lo que eras a lo más, era un usuario de JavaScript,
 				pero no, un desarrollador de JavaScript.
 			</p>
 			<p>
@@ -473,15 +472,15 @@
 				y similares, y ahora, el lado del servidor), no es tan fácil
 				encontrar información que te ayude a aprender JavaScript de la
 				"manera correcta", de forma de poder escribir aplicaciones de 
-				Node.js en una apariencia que te haga sentir que tú no sólo
+				Node.js en una apariencia que te haga sentir que no sólo
 				estás usando JavaScript, sino que también están desarrollando
 				con él.
 			</p>
 			<p>			
-        Porque ahí está el asunto: Tú ya eres un desarrollador
+        Porque ahí está el asunto: Ya eres un desarrollador
         experimentado, y no quieres aprender una nueva técnica
         simplemente metiendo código aquí y allá mal-aprovechándolo;
-        Tú quieres estar seguro que te estás enfocando en un ángulo
+        Quieres estar seguro que te estás enfocando en un ángulo
         correcto.
 			</p>
 			<p>
@@ -544,7 +543,7 @@
 				y una librería.
 			</p>
 			<p>
-        Para hacer uso de éstas (la librería y el entorno), Tú necesitas
+        Para hacer uso de éstas (la librería y el entorno), Necesitas
         instalar Node.js. En lugar de repetir el proceso aquí. Te ruego
         visitar <a href="https://github.com/joyent/node/wiki/Installation"
 				   title="Building and Installing Node.js">las instrucciones oficiales
@@ -705,7 +704,7 @@
 			</p>
 			<p>
 				Esto te permite tener un archivo <em>main</em> limpio, en
-				el cual Tú ejecutas Node.js, y módulos limpios que pueden ser
+				el cual ejecutas Node.js, y módulos limpios que pueden ser
 				utilizados por el archivo <em>main</em> entre muchos otros.
 			</p>
 			<p>
@@ -797,7 +796,7 @@ server.listen(8888);</pre>
 
 			<h4>Pasando Funciones de un Lado a Otro</h4>
 			<p>
-				Tú puedes, por ejemplo, hacer algo como esto:				
+				Puedes, por ejemplo, hacer algo como esto:				
 			</p>
 <pre class="prettyprint lang-js">function decir(palabra) {
   console.log(palabra);
@@ -967,7 +966,7 @@ http.createServer(onRequest).listen(8888);
 			</p>
 			<p>
 				Al menos para mí, esto tomó algún tiempo para ser entendido. Lee
-				el articulo del blog de Felix de nuevo si tú todavía no te sientes
+				el articulo del blog de Felix de nuevo si todavía no te sientes
 				seguro.
 			</p>
 			<p>
@@ -1027,7 +1026,7 @@ console.log("Servidor Iniciado.");
 			gatillada, dos parámetros son pasados a ella: <em>request</em> y <em>response</em>.
 		</p>
 		<p>
-			Estos son objetos, y tú puedes usar sus métodos para manejar los detalles
+			Estos son objetos, y puedes usar sus métodos para manejar los detalles
 			de la petición HTTP ocurrida y responder a la petición (en otras palabras
 			enviar algo de vuelta al browser que hizo la petición a tu servidor).
 		</p>
@@ -1166,7 +1165,7 @@ server.start();
 			URL el browser requiera de nuestro servidor.
 		<p>
 		<p>
-			Para una aplicación muy simple, Tú podrías hacer esto directamente
+			Para una aplicación muy simple, podrías hacer esto directamente
 			dentro de una función de callback <em>OnRequest()</em>. Pero, como dije,
 			agreguemos un poco más de abstracción, de manera de hacer nuestra 
 			aplicación más interesante.
@@ -1783,8 +1782,29 @@ exports.subir = subir;
 			Lo que carga una bella página que despliega el string "vacio". ¿Qué es
 			lo que está incorrecto acá?
 		</p>
-		
-
+		<p>
+			Bueno, como ya habrán adivinado, <em>exec()</em> hace su magia de una 
+			manera no-bloqueante. Buena cosa esto, porque de esta manera podemos
+			ejecutar operaciones de shell muy caras en ejecución (como, por ejemplo,
+			copiar archivos enormes o cosas similares) sin tener que forzar a nuestra
+			aplicación a detenerse como lo hizo la operación <em>sleep</em>.
+		</p>
+		<p>
+			(Si quieres probar esto, reemplaza "ls -lah" con una operación más cara
+			como "find /").
+		</p>
+		<p>
+			Pero no estaríamos muy felices si nuestra elegante aplicación no bloqueante
+			no desplegara algún resultado, ¿cierto?.
+		</p>
+		<p>
+			Bueno, entonces, arreglémosla. Y mientras estamos en eso, tratemos de entender
+			por qué la arquitectura actual no funciona.
+		</p>
+		<p>
+			El problema es que <em>exec()</em>, para poder trabajar de manera
+			no-bloqueante, hace uso de una función de callback.
+		</p>
 		
 		
 		
