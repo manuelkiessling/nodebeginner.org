@@ -1805,7 +1805,16 @@ exports.subir = subir;
 			El problema es que <em>exec()</em>, para poder trabajar de manera
 			no-bloqueante, hace uso de una función de callback.
 		</p>
+		<p>
+			En nuestro ejemplo, es una función anónima, la cual es pasada como el
+			segundo parámetro de la llamada a la función <em>exec()</em>:
+		</p>
+<pre class="prettyprint lang-js">function (error, stdout, stderr) {
+  content = stdout;
+}
+</pre>
 		
+			
 		
 		
 		
