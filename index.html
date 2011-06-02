@@ -12,8 +12,8 @@
 			body {
 				font-family: Georgia, serif;
 				background-color: #eee;
-				padding-top: 48px;
-				-webkit-text-size-adjust: 200%;
+				padding-top: 0px;
+				-webkit-text-size-adjust: auto;
 			}
 
 			#book, #donate, #disqus_thread, #footer, #workinprogressnote {
@@ -32,6 +32,10 @@
 				-moz-box-shadow: 14px 11px 27px #888;
 				-webkit-box-shadow: 14px 11px 27px #888;
 				box-shadow: 14px 11px 27px #888;
+			}
+
+			#book {
+				margin-top: 124px;
 			}
 
 			#author {
@@ -54,6 +58,78 @@
 				font-family: "Helvetica Neue", sans-serif;
 				color: #700;
 				text-align: center;
+			}
+
+			#buy-the-ebook, #translations {
+				font-family: "Helvetica Neue", sans-serif;
+				font-size: 13px;
+				color: #fff;
+				text-align: center;
+				padding: 8px;
+				padding-left: 32px;
+				padding-right: 32px;
+				border-radius: 8px;
+				-moz-border-radius: 8px;
+				-webkit-border-radius: 8px;
+				box-shadow: 0px 0px 4px #444;
+				-moz-box-shadow: 0px 0px 4px #444;
+				-webkit-box-shadow: 0px 0px 4px #444;
+				position: relative;
+				margin-bottom: 20px;
+				margin-left: auto;
+				margin-right: auto;
+				width: 704px;
+				background-color: #555;
+			}
+
+			#translations a {
+				text-decoration: none;
+				color: #fff;
+			}
+
+			#translations .flag {
+				display: inline-block;
+				vertical-align: middle;
+				padding-top: 4px;
+			}
+			#translations .text {
+				display: inline-block;
+				vertical-align: middle;
+			}
+
+			#buy-the-ebook .description {
+				width: 500px;
+				display: table-cell;
+				padding-right: 16px;
+				vertical-align: middle;
+			}
+
+			#buy-the-ebook .description strong {
+				color: #f18d46;
+			}
+
+			#buy-the-ebook .buy {
+				display: table-cell;
+				vertical-align: middle;
+			}
+
+			.button {
+				padding: 8px;
+				width: 140px;
+				border: 1px solid #444;
+				border-radius: 3px;
+				background-image: -moz-linear-gradient(top, #f2ab2b, #e17b19);
+				background-image: -webkit-gradient(linear, center top, center bottom, from(#f2ab2b), to(#e17b19));
+				box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset -1px 1px 0 rgba(255,255,255,0.4);
+				-moz-box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset -1px 1px 0 rgba(255,255,255,0.4);
+				-webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset -1px 1px 0 rgba(255,255,255,0.4);
+			}
+
+			.buttonlink {
+				text-decoration: none;
+				font-weight: bold;
+				font-size: 13px;
+				color: #000;
 			}
 
 			#donate p {
@@ -153,7 +229,7 @@
 				margin-left: -63px;
 				margin-top: -109px;
 				font-size: 300%;
-				color: #444;
+				color: #700;
 				font-style: italic;
     			font-weight: bold;
 				-webkit-text-size-adjust: 100%;
@@ -268,13 +344,41 @@
 	</head>
 	<body onload="prettyPrint();">
 		<div id="forkmeongithub">
-			<a href="https://github.com/ManuelKiessling/NodeBeginnerBook"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://d3nwyuy0nl342s.cloudfront.net/img/71eeaab9d563c2b3c590319b398dd35683265e85/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" /></a>
+			<a href="https://github.com/ManuelKiessling/NodeBeginnerBook"><img style="z-index: 5; position: absolute; top: 0; right: 0; border: 0;" src="https://d3nwyuy0nl342s.cloudfront.net/img/71eeaab9d563c2b3c590319b398dd35683265e85/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" /></a>
+		</div>
+
+		<div id="translations">
+			<a href="index-es.html">
+				<div class="flag"><img src="es-flag.png" width="24" height="24" alt="spanish flag" /></div>
+				<div class="text">Lee este tutorial en Español</div>
+			</a>
+		</div>
+
+		<div id="buy-the-ebook">
+			<div class="description">
+				<p>
+					You can buy the <strong>PDF</strong>, <strong>ePub</strong>
+					(for iPad, Sony, Nook) and <strong>MOBI</strong> (for
+					Kindle)
+					<br />
+					version of The Node Beginner Book at
+					Leanpub. It's 48 pages for only <strong>$4.99</strong>.
+				</p>
+				<p>
+					You will receive any future updates to the book for free.
+				</p>
+			</div>
+			<div class="buy">
+				<a class="buttonlink" href="/buy/">
+					<div class="button">Buy the eBook now</div>
+				</a>
+			</div>
 		</div>
 
 		<div id="book">
 			<h1>The Node Beginner Book</h1>
 			<div id="author">A Node.js tutorial by <a href="http://twitter.com/manuelkiessling">Manuel Kiessling</a></div>
-			<div id="updateinfo">Last updated on Sunday, April 24, 2011 at 6:52 AM EDT</div>
+			<div id="updateinfo">Last updated on Thursday, May 12, 2011 at 11:31 AM EDT</div>
 
 			<h2>About</h2>
 
@@ -285,7 +389,7 @@
 				beyond your typical "Hello World" tutorial.
 			</p>
 			<p>
-				This document is currently work in progress and about 80%
+				This document is currently work in progress and about 90%
 				finished.
 			</p>
 
@@ -519,13 +623,14 @@
 				</li>
 				<li>
 					The user should see a welcome page when
-					requesting http://<em>domain</em>/start
+					requesting http://<em>domain</em>/start which displays a
+					file upload form
 				</li>
 				<li>
-					When requesting http://<em>domain</em>/upload, the
-					user should be able to upload an image file	from
-					his computer, which is then displayed in his
-					browser
+					By choosing an image file to upload and submitting the
+					form, this image should then be uploaded to
+					http://<em>domain</em>/upload, where it is displayed once
+					the upload is finished
 				</li>
 			</ul>
 			<p>
@@ -1137,7 +1242,7 @@ http://localhost:8888/start?foo=bar&amp;hello=world
 </pre>
 			<p>
 				We can, of course, also use <em>querystring</em> to parse the
-				body of a POST request body for parameters, as we will see
+				body of a POST request for parameters, as we will see
 				later.
 			</p>
 			<p>
@@ -1166,12 +1271,7 @@ exports.start = start;
 				Fine. Our application can now distinguish requests based on the
 				URL path requested - this allows us to map requests to our
 				request handlers based on the URL path using our (yet to be
-				written) router. Thus, we can build our application in a
-				RESTful way, because we can now implement an interface that
-				follows the guiding principle of <em>Identification of
-				resources</em> (see
-				<a href="http://en.wikipedia.org/wiki/Representational_State_Transfer#Guiding_principles_of_the_interface">the Representational State Transfer article on Wikipedia</a>
-				for background information).
+				written) router.
 			</p>
 			<p>
 				In the context of our application, it simply means that we will
@@ -1199,7 +1299,7 @@ exports.route = route;
 				We could hard-wire this dependency into the server, but because
 				we learned the hard way from our experience with other
 				programming languages, we are going to loosely couple server
-				and router by injection this dependency (you may want to read
+				and router by injecting this dependency (you may want to read
 				<a href="http://martinfowler.com/articles/injection.html">Martin Fowlers excellent post on Dependency Injection</a>
 				for	background information).
 			</p>
@@ -2018,9 +2118,332 @@ exports.upload = upload;
 				will be answered immediately, even if /start is still
 				computing.
 			</p>
+
+
+			<h4>Serving something useful</h4>
 			<p>
-				Enough for today. Upcoming next: Handling file uploads.
+				Until now, what we have done is all fine and dandy, but we
+				haven't created any value for the customers of our
+				award-winning website.
 			</p>
+			<p>
+				Our server, router, and request handlers are in place, thus now
+				we can begin to add content to our site which allows our users
+				to interact and walk through the use case of choosing a file,
+				uploading this file, and viewing the uploaded file in the
+				browser. For the sake of simplicity we will assume that only
+				image files are going to be uploaded and displayed through the
+				application.
+			</p>
+			<p>
+				Ok, let's take it step by step, but with most of the techniques
+				and principles of JavaScript explained by now, let's at the
+				same time accelerate a bit. This author likes to hear himself
+				talking way too much anyways.
+			</p>
+			<p>
+				Here, step by step means roughly two steps: We will first look
+				at how to handle incoming POST requests (but not file uploads),
+				and in a second step, we will make use of an external Node.js
+				module for the file upload handling. I've chosen this approach
+				for two reasons.
+			</p>
+			<p>
+				First, handling basic POST requests is
+				relatively simple with Node.js, but still teaches us enough to
+				be worth exercising it.
+				<br/>
+				Second, handling file uploads (i.e.,
+				multipart POST requests) is <em>not</em> simple with Node.js,
+				and therefore is beyond the scope of this tutorial, but using
+				an external module is itself a lesson that makes sense to be
+				included in a beginner's tutorial.
+			</p>
+
+			<h5>Handling POST requests</h5>
+			<p>
+				Let's keep this banally simple: We will present a textarea that
+				can be filled by the user and submitted to the server in a POST
+				request. Upon receiving and handling this request, we will
+				display the content of the textarea.
+			</p>
+				The HTML for this textarea form needs to be served by our
+				<em>/start</em> request handler, so let's add it right away, in
+				file <em>requestHandlers.js</em>:
+			</p>
+<pre class="prettyprint lang-js">function start(response) {
+  console.log("Request handler 'start' was called.");
+
+  var body = '&lt;html&gt;'+
+    '&lt;head&gt;'+
+    '&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /&gt;'+
+    '&lt;/head&gt;'+
+    '&lt;body&gt;'+
+    '&lt;form action="/upload" method="post"&gt;'+
+    '&lt;textarea name="text" rows="20" cols="60"&gt;&lt;/textarea&gt;'+
+    '&lt;input type="submit" value="Submit text" /&gt;'+
+    '&lt;/form&gt;'+
+    '&lt;/body&gt;'+
+    '&lt;/html&gt;';
+
+    response.writeHead(200, {"Content-Type": "text/html"});
+    response.write(body);
+    response.end();
+}
+
+function upload(response) {
+  console.log("Request handler 'upload' was called.");
+  response.writeHead(200, {"Content-Type": "text/html"});
+  response.write("Hello Upload");
+  response.end();
+}
+
+exports.start = start;
+exports.upload = upload;
+</pre>
+			<p>
+				Now if this isn't going to win the Webby Awards, then I don't
+				know what could. You should see this very simple form when
+				requesting
+				<a href="http://localhost:8888/start" rel="nofollow">http://localhost:8888/start</a>
+				in your browser. If not, you probably didn't restart the
+				application.
+			</p>
+			<p>
+				I hear you: having view content right in the request handler is
+				ugly. However, I decided to not include that extra level of
+				abstraction (i.e., separating view and controller logic) in
+				this tutorial, because I think that it doesn't teach us
+				anything worth knowing in the context of JavaScript or Node.js.
+			</p>
+			<p>
+				Let's rather use the remaining screen space for a more
+				interesting problem, that is, handling the POST request
+				that will hit our <em>/upload</em> request handler when the
+				user submits this form.
+			</p>
+			<p>
+				Now that we are becoming expert novices, we are no longer
+				surprised by the fact that handling POST data is done in a
+				non-blocking fashion, by using asynchronous callbacks.
+			</p>
+			<p>
+				Which makes sense, because POST requests can potentially be
+				very large - nothing stops the user from entering text that is
+				multiple megabytes in size. Handling the whole bulk of data in
+				one go would result in a blocking operation.
+			</p>
+			<p>
+				To make the whole process non-blocking, Node.js serves our code
+				the POST data in small chunks, callbacks that are called upon
+				certain events. These events are <em>data</em> (an new chunk of
+				POST data arrives) and <em>end</em> (all chunks have been
+				received).
+			</p>
+			<p>
+				We need to tell Node.js which functions to call back to when
+				these events occur. This is done by adding <em>listeners</em>
+				to the <em>request</em> object that is passed to our
+				<em>onRequest</em> callback whenever an HTTP request is
+				received.
+			</p>
+			<p>
+				This basically looks like this:
+			</p>
+<pre class="prettyprint lang-js">request.addListener("data", function(chunk) {
+	// called when a new chunk of data was received
+});
+
+request.addListener("end", function() {
+	// called when all chunks of data have been received
+});
+</pre>
+			<p>
+				The question arises where to implement this logic. We currently
+				can access the <em>request</em> object in our server only - we
+				don't pass it on to the router and the request handlers, like
+				we did with the <em>response</em> object.
+			</p>
+			<p>
+				In my opinion, it's an HTTP servers job to give the application
+				all the data from a requests it needs to do its job. Therefore,
+				I suggest we handle the POST data processing right in the
+				server and pass the final data on to the router and the request
+				handlers, which then can decide what to do with it.
+			</p>
+			<p>
+				Thus, the idea is to put the <em>data</em> and <em>end</em>
+				event callbacks in the server, collecting all POST data chunks
+				in the <em>data</em> callback, and calling the router upon
+				receiving the <em>end</em> event, while passing the collected
+				data chunks on to the router, which in turn passes it on to the
+				request handlers.
+			</p>
+			<p>
+				Here we go, starting with <em>server.js</em>:
+			</p>
+<pre class="prettyprint lang-js">var http = require("http");
+var url = require("url");
+
+function start(route, handle) {
+  function onRequest(request, response) {
+    var postData = "";
+	var pathname = url.parse(request.url).pathname;
+    console.log("Request for " + pathname + " received.");
+
+    request.setEncoding("utf8");
+
+    request.addListener("data", function(postDataChunk) {
+      postData += postDataChunk;
+      console.log("Received POST data chunk '" + postDataChunk + "'.");
+    });
+
+    request.addListener("end", function() {
+      route(handle, pathname, response, postData);
+    });
+
+  }
+
+  http.createServer(onRequest).listen(8888);
+  console.log("Server has started.");
+}
+
+exports.start = start;
+</pre>
+			<p>
+				We basically did three things here: First, we defined that we
+				expect the encoding of the received data to be UTF-8, we added
+				an event listener for the "data" event which step by step
+				fills our new <em>postData</em> variable whenever a new chunk
+				of POST data arrives, and we moved the call to our router into
+				the <em>end</em> event callback to make sure it's only called
+				when all POST data is gathered. We also pass the POST data into
+				the router, because we are going to need it in our request
+				handlers.
+			</p>
+			<p>
+				Adding the console logging on every chunk that is received
+				probably is a bad idea for production code (megabytes of POST
+				data, remember?), but makes sense to see what happens.
+			</p>
+			<p>
+				I suggest playing around with this a bit. Put small
+				amounts of text into the textarea as well as lots of text, and
+				you will see that for the larger texts, the <em>data</em>
+				callback is indeed called multiple times.
+			</p>
+			<p>
+				Let's add even more awesome to our app. On the /upload page,
+				we will display the received content. To make this possible, we
+				need to pass the <em>postData</em> on to the request handlers,
+				in <em>router.js</em>:
+			</p>
+<pre class="prettyprint lang-js">function route(handle, pathname, response, postData) {
+  console.log("About to route a request for " + pathname);
+  if (typeof handle[pathname] === 'function') {
+    handle[pathname](response, postData);
+  } else {
+    console.log("No request handler found for " + pathname);
+    response.writeHead(404, {"Content-Type": "text/html"});
+    response.write("404 Not found");
+    response.end();
+  }
+}
+
+exports.route = route;
+</pre>
+			<p>
+				And in <em>requestHandlers.js</em>, we include the data in our
+				response of the <em>upload</em> request handler:
+			</p>
+<pre class="prettyprint lang-js">function start(response, postData) {
+  console.log("Request handler 'start' was called.");
+
+  var body = '&lt;html&gt;'+
+    '&lt;head&gt;'+
+    '&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /&gt;'+
+    '&lt;/head&gt;'+
+    '&lt;body&gt;'+
+    '&lt;form action="/upload" method="post"&gt;'+
+    '&lt;textarea name="text" rows="20" cols="60"&gt;&lt;/textarea&gt;'+
+    '&lt;input type="submit" value="Submit text" /&gt;'+
+    '&lt;/form&gt;'+
+    '&lt;/body&gt;'+
+    '&lt;/html&gt;';
+
+    response.writeHead(200, {"Content-Type": "text/html"});
+    response.write(body);
+    response.end();
+}
+
+function upload(response, postData) {
+  console.log("Request handler 'upload' was called.");
+  response.writeHead(200, {"Content-Type": "text/html"});
+  response.write("You've sent: " + postData);
+  response.end();
+}
+
+exports.start = start;
+exports.upload = upload;
+</pre>
+
+			<p>
+				That's it, we are now able to receive POST data and use it in
+				our request handlers.
+			</p>
+			<p>
+				One last thing for this topic: what we pass on to the router
+				and the request handlers is the complete body of our POST
+				request. We will probably want to consume the individual fields
+				that make up the POST data, in this case, the value of the
+				<em>text</em> field.
+			</p>
+			<p>
+				We already read about the <em>querystring</em> module, which
+				assists us with this:
+			</p>
+<pre class="prettyprint lang-js">var querystring = require("querystring");
+
+function start(response, postData) {
+  console.log("Request handler 'start' was called.");
+
+  var body = '&lt;html&gt;'+
+    '&lt;head&gt;'+
+    '&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /&gt;'+
+    '&lt;/head&gt;'+
+    '&lt;body&gt;'+
+    '&lt;form action="/upload" method="post"&gt;'+
+    '&lt;textarea name="text" rows="20" cols="60"&gt;&lt;/textarea&gt;'+
+    '&lt;input type="submit" value="Submit text" /&gt;'+
+    '&lt;/form&gt;'+
+    '&lt;/body&gt;'+
+    '&lt;/html&gt;';
+
+    response.writeHead(200, {"Content-Type": "text/html"});
+    response.write(body);
+    response.end();
+}
+
+function upload(response, postData) {
+  console.log("Request handler 'upload' was called.");
+  response.writeHead(200, {"Content-Type": "text/html"});
+  response.write("You've sent the text: " + querystring.parse(postData)["text"]);
+  response.end();
+}
+
+exports.start = start;
+exports.upload = upload;
+</pre>
+			<p>
+				Well, for a beginner's tutorial, that's all there is to say
+				about handling POST data.
+			</p>
+			<p>
+				Next time, we'll be talking about how to use the excellent
+				<em>node-formidable</em> module to allow for our final use
+				case: uploading and displaying images.
+			</p>
+
 		</div>
 
 
@@ -2031,14 +2454,14 @@ exports.upload = upload;
 			<p>
 				The Node Beginner Book is work in progress.
 				<br />
-				<strong>It's currently about 80% done.</strong>
+				<strong>It's currently about 90% done.</strong>
 				<br />
 				Check back daily to see the latest version.
 			</p>
 			<p>
 				The version you are	currently reading was updated on
 				<br />
-				<strong>Sunday, April 24, 2011 at 6:52 AM EDT</strong>.
+				<strong>Thursday, May 12, 2011 at 11:31 AM EDT</strong>.
 			</p>
 			<p>
 				The best way to stay informed about updates is to follow
@@ -2116,7 +2539,11 @@ exports.upload = upload;
 					</fieldset>
 				</form>
 			</div>
-
+			<p>
+				Or, have a look at <a href="/buy/">the eBook version (Kindle, ePub, PDF)</a>,
+				<br />
+				which is available for $4.99 via Leanpub.
+			</p>
 		</div>
 
 		<div id="disqus_thread"></div>
