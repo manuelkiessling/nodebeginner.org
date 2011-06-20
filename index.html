@@ -2438,10 +2438,45 @@ exports.upload = upload;
 				Well, for a beginner's tutorial, that's all there is to say
 				about handling POST data.
 			</p>
+
+			<h5>Handling file uploads</h5>
 			<p>
-				Next time, we'll be talking about how to use the excellent
-				<em>node-formidable</em> module to allow for our final use
-				case: uploading and displaying images.
+				Let's tackle our final use case. Our plan was to allow users to
+				upload an image file, and display the uploaded image in the
+				browser.
+			</p>
+			<p>
+				Back in the 90's this would have qualified as a business model
+				for an IPO, today it must suffice to teach us two things: how
+				to install external Node.js libraries, and how to make use of
+				them in our own code.
+			</p>
+			<p>
+				The external module we are going to use is
+				<em>node-formidable</em> by Felix Geisendörfer. It nicely
+				abstracts away all the nasty details of parsing incoming file
+				data. At the end of the day, handling incoming files is "only"
+				about handling POST data - but the devil really is in the
+				details, and using a ready-made solution makes a lot of sense
+				in this case.
+			</p>
+			<p>
+				In order to make use of Felix' code, the according Node.js
+				module needs to be installed. Node.js ships with its own
+				package manager, dubbed <em>NPM</em>. It allows us to install
+				external Node.js modules in a very convenient fashion. Given a
+				working Node.js installation, it boils down to issuing
+			</p>
+<pre class="prettyprint lang-bash">npm install formidable
+</pre>
+			<p>
+				on our command line. If the following output ends with
+			</p>
+<pre class="prettyprint lang-bash">npm info build Success: formidable@1.0.2
+npm ok
+</pre>
+			<p>
+				then we are good to go.
 			</p>
 
 		</div>
