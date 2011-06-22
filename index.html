@@ -2456,9 +2456,9 @@ exports.upload = upload;
 				<em>node-formidable</em> by Felix Geisendörfer. It nicely
 				abstracts away all the nasty details of parsing incoming file
 				data. At the end of the day, handling incoming files is "only"
-				about handling POST data - but the devil really is in the
-				details, and using a ready-made solution makes a lot of sense
-				in this case.
+				about handling POST data - but the devil really <em>is</em> in
+				the	details here, and using a ready-made solution makes a lot
+				of sense in this case.
 			</p>
 			<p>
 				In order to make use of Felix' code, the according Node.js
@@ -2478,7 +2478,196 @@ npm ok
 			<p>
 				then we are good to go.
 			</p>
+			<p>
+				The <em>formidable</em> module is now available to our own
+				code - all we need to do is requiring it just like one of the
+				built-in modules we used earlier:
+			</p>
+<pre class="prettyprint lang-js">var formidable = require("formidable");
+</pre>
+			<p>
+				The metaphor formidable uses is that of a form being submitted
+				via HTTP POST, making it parseable in Node.js. All we need to
+				do is create a new <em>IncomingForm</em>, which is an
+				abstraction of this	submitted form, and which can then be used
+				to parse the <em>request</em> object of our HTTP server for the
+				fields and files that were submitted through this form.
+			</p>
+			<p>
+				The example code from the node-formidable project page shows
+				how the different parts play together:
+			</p>
+<pre class="prettyprint lang-js">var formidable = require('formidable'),
+    http = require('http'),
+    sys = require('sys');
 
+http.createServer(function(req, res) {
+  if (req.url == '/upload' && req.method.toLowerCase() == 'post') {
+    // parse a file upload
+    var form = new formidable.IncomingForm();
+    form.parse(req, function(err, fields, files) {
+      res.writeHead(200, {'content-type': 'text/plain'});
+      res.write('received upload:\n\n');
+      res.end(sys.inspect({fields: fields, files: files}));
+    });
+    return;
+  }
+
+  // show a file upload form
+  res.writeHead(200, {'content-type': 'text/html'});
+  res.end(
+    '&lt;form action="/upload" enctype="multipart/form-data" method="post"&gt;'+
+    '&lt;input type="text" name="title"&gt;&lt;br&gt;'+
+    '&lt;input type="file" name="upload" multiple="multiple"&gt;&lt;br&gt;'+
+    '&lt;input type="submit" value="Upload"&gt;'+
+    '&lt;/form&gt;'
+  );
+}).listen(8888);
+</pre>
+		<p>
+			If we put this code into a file and execute it through
+			<em>node</em>, we are able to submit a simple form, including a
+			file upload, and see how the <em>files</em> object, which is passed
+			to the callback defined in the <em>form.parse</em> call, is
+			structured:
+		</p>
+<pre class="lang-js">received upload:
+
+{ fields: { title: 'Hello World' },
+  files:
+   { upload:
+      { size: 1558,
+        path: '/tmp/1c747974a27a6292743669e91f29350b',
+        name: 'us-flag.png',
+        type: 'image/png',
+        lastModifiedDate: Tue, 21 Jun 2011 07:02:41 GMT,
+        _writeStream: [Object],
+        length: [Getter],
+        filename: [Getter],
+        mime: [Getter] } } }
+</pre>
+
+			<p>
+				In order to make our use case happen, all we need to do is
+				including the form parse logic of formidable into our code
+				structure, and we will need to find out how to serve the
+				content of the uploaded file (which is saved into the
+				<em>/tmp</em> folder) to a requesting browser.
+			</p>
+			<p>
+				Let's tackle the latter one first: if there is an image file on
+				our local hardrive, how do we serve it to a requesting browser?
+			</p>
+			<p>
+				We are obviously going to read the contents of this file into
+				our Node.js server, and unsurprisingly, there is a module for
+				that - it's called <em>fs</em>.
+			</p>
+			<p>
+				Let's add another request handler for the URL <em>/show</em>,
+				which will hardcodingly display the contents of the file
+				<em>/tmp/test.png</em>. It of course makes a lot of sense to
+				save a real png image file to this location first.
+			</p>
+			<p>
+				We are going to modify <em>requestHandlers.js</em> as follows:
+			</p>
+<pre class="prettyprint lang-js">var querystring = require("querystring"),
+    fs = require("fs");
+
+function start(response, postData) {
+  console.log("Request handler 'start' was called.");
+
+  var body = '&lt;html&gt;'+
+    '&lt;head&gt;'+
+    '&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /&gt;'+
+    '&lt;/head&gt;'+
+    '&lt;body&gt;'+
+    '&lt;form action="/upload" method="post"&gt;'+
+    '&lt;textarea name="text" rows="20" cols="60"&gt;&lt;/textarea&gt;'+
+    '&lt;input type="submit" value="Submit text" /&gt;'+
+    '&lt;/form&gt;'+
+    '&lt;/body&gt;'+
+    '&lt;/html&gt;';
+
+    response.writeHead(200, {"Content-Type": "text/html"});
+    response.write(body);
+    response.end();
+}
+
+function upload(response, postData) {
+  console.log("Request handler 'upload' was called.");
+  response.writeHead(200, {"Content-Type": "text/html"});
+  response.write("You've sent the text: " + querystring.parse(postData)["text"]);
+  response.end();
+}
+
+function show(response, postData) {
+  console.log("Request handler 'show' was called.");
+  fs.readFile("/tmp/test.png", "binary", function(error, file) {
+    if(error) {
+      response.writeHead(500, {"Content-Type": "text/plain"});
+      response.write(err + "\n");
+      response.end();
+    } else {
+      response.writeHead(200, {"Content-Type": "image/png"});
+      response.write(file, "binary");
+      response.end();
+    }
+  });
+}
+
+exports.start = start;
+exports.upload = upload;
+exports.show = show;
+</pre>
+
+			<p>
+				We also need to map this new request handler to the URL
+				<em>/show</em> in file <em>index.js</em>:
+			</p>
+<pre class="prettyprint lang-js">var server = require("./server");
+var router = require("./router");
+var requestHandlers = require("./requestHandlers");
+
+var handle = {}
+handle["/"] = requestHandlers.start;
+handle["/start"] = requestHandlers.start;
+handle["/upload"] = requestHandlers.upload;
+handle["/show"] = requestHandlers.show;
+
+server.start(router.route, handle);
+</pre>
+
+			<p>
+				By restarting the server and opening
+				<a href="http://localhost:8888/show" rel="nofollow">http://localhost:8888/show</a>
+				in the browser, the image file saved at <em>/tmp/test.png</em>
+				should be displayed.
+			</p>
+			<p>
+				Fine. All we need to do now is
+				<ul>
+					<li>
+						add a file upload element to the form which is served
+						at <em>/start</em>,
+					</li>
+					<li>
+						integrate node-formidable into the <em>upload</em>
+						request handler, in order to save the uploaded file to
+						<em>/tmp/test.png</em>,
+					</li>
+					<li>
+						embed the uploaded image into the HTML output of the
+						<em>/upload</em> URL.
+					</li>
+				</ul>
+			</p>
+			<p>
+				Step 1 is simple. We need to add an ecoding type of
+				<em>multipart/form-data</em> to our HTML form, remove the
+				textarea, and add a file upload input field.
+			</p>
 		</div>
 
 
