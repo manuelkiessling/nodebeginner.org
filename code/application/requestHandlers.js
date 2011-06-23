@@ -1,5 +1,7 @@
 var querystring = require("querystring"),
-    fs = require("fs");
+    fs = require("fs"),
+    formidable = require("formidable"),
+	sys = require("sys");
 
 function start(response, postData) {
   console.log("Request handler 'start' was called.");
@@ -10,8 +12,8 @@ function start(response, postData) {
     '</head>'+
     '<body>'+
     '<form action="/upload" enctype="multipart/form-data" method="post">'+
-    '<input type="file" name="upload">'+
-    '<input type="submit" value="Submit text" />'+
+    '<input type="file" name="upload" multiple="multiple">'+
+    '<input type="submit" value="Upload file" />'+
     '</form>'+
     '</body>'+
     '</html>';
@@ -21,11 +23,17 @@ function start(response, postData) {
     response.end();
 }
 
-function upload(response, postData) {
+function upload(response, postData, request) {
   console.log("Request handler 'upload' was called.");
-  response.writeHead(200, {"Content-Type": "text/html"});
-  response.write("You've sent the text: " + querystring.parse(postData)["text"]);
-  response.end();
+
+   var form = new formidable.IncomingForm();
+	console.log("about to parse");
+    form.parse(request, function(err, fields, files) {
+      console.log("parsing done");
+      response.writeHead(200, {'content-type': 'text/plain'});
+      response.write('received upload:\n\n');
+      response.end(sys.inspect({fields: fields, files: files}));
+    });
 }
 
 function show(response, postData) {

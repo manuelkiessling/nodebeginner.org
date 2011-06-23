@@ -2664,10 +2664,145 @@ server.start(router.route, handle);
 				</ul>
 			</p>
 			<p>
-				Step 1 is simple. We need to add an ecoding type of
+				Step 1 is simple. We need to add an encoding type of
 				<em>multipart/form-data</em> to our HTML form, remove the
-				textarea, and add a file upload input field.
+				textarea, add a file upload input field, and change the submit
+				button text to "Upload file". Let's do just that in file
+				<em>requestHandlers.js</em>:
 			</p>
+<pre class="prettyprint lang-js">var querystring = require("querystring"),
+    fs = require("fs");
+
+function start(response, postData) {
+  console.log("Request handler 'start' was called.");
+
+  var body = '&lt;html&gt;'+
+    '&lt;head&gt;'+
+    '&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /&gt;'+
+    '&lt;/head&gt;'+
+    '&lt;body&gt;'+
+    '&lt;form action="/upload" enctype="multipart/form-data" method="post"&gt;'+
+    '&lt;input type="file" name="upload"&gt;'+
+    '&lt;input type="submit" value="Upload file" /&gt;'+
+    '&lt;/form&gt;'+
+    '&lt;/body&gt;'+
+    '&lt;/html&gt;';
+
+    response.writeHead(200, {"Content-Type": "text/html"});
+    response.write(body);
+    response.end();
+}
+
+function upload(response, postData) {
+  console.log("Request handler 'upload' was called.");
+  response.writeHead(200, {"Content-Type": "text/html"});
+  response.write("You've sent the text: " + querystring.parse(postData)["text"]);
+  response.end();
+}
+
+function show(response, postData) {
+  console.log("Request handler 'show' was called.");
+  fs.readFile("/tmp/test.png", "binary", function(error, file) {
+    if(error) {
+      response.writeHead(500, {"Content-Type": "text/plain"});
+      response.write(err + "\n");
+      response.end();
+    } else {
+      response.writeHead(200, {"Content-Type": "image/png"});
+      response.write(file, "binary");
+      response.end();
+    }
+  });
+}
+
+exports.start = start;
+exports.upload = upload;
+exports.show = show;
+</pre>
+		<p>
+			Great. The next step is a bit more complex of course. The first
+			problem is: we want to handle the file upload in our
+			<em>upload</em> request handler, and there, we will need to pass
+			the <em>request</em> object to the <em>form.parse</em> call of
+			node-formidable.
+		</p>
+		<p>
+			But all we have is the <em>response</em> object
+			and the <em>postData</em> array. Sad panda. Looks like we will have
+			to pass the <em>request</em> object all the way from the server to
+			the router to the request handler. There may be more elegant
+			solutions, but this approach should do the job for now.
+			Let's start with <em>server.js</em>:
+		</p>
+<pre class="prettyprint lang-js">var http = require("http");
+var url = require("url");
+
+function start(route, handle) {
+  function onRequest(request, response) {
+    var postData = "";
+	var pathname = url.parse(request.url).pathname;
+    console.log("Request for " + pathname + " received.");
+
+    request.setEncoding("utf8");
+
+    request.addListener("data", function(postDataChunk) {
+      postData += postDataChunk;
+      console.log("Received POST data chunk '" + postDataChunk + "'.");
+    });
+
+    request.addListener("end", function() {
+      route(handle, pathname, response, postData, request);
+    });
+
+  }
+
+  http.createServer(onRequest).listen(8888);
+  console.log("Server has started.");
+}
+
+exports.start = start;
+</pre>
+
+		<p>
+			Next comes <em>router.js</em>:
+		</p>
+<pre class="prettyprint lang-js">function route(handle, pathname, response, postData, request) {
+  console.log("About to route a request for " + pathname);
+  if (typeof handle[pathname] === 'function') {
+    handle[pathname](response, postData, request);
+  } else {
+    console.log("No request handler found for " + pathname);
+    response.writeHead(404, {"Content-Type": "text/html"});
+    response.write("404 Not found");
+    response.end();
+  }
+}
+
+exports.route = route;
+</pre>
+
+		<p>
+			Now, the <em>request</em> object can be used in our <em>upload</em>
+			request handler function. node-formidable will handle the details
+			of saving the uploaded file to a local file within <em>/tmp</em>,
+			but we need to make sure that this file is renamed to
+			<em>/tmp/test.png</em> ourselves. Yes, we keep things really simple
+			and assume that only PNG images will be uploaded.
+		</p>
+		<p>
+			For now, <em>fs.renameSync(path1, path2)</em> will do the job.
+			Beware! As the name implies, it works synchronous, thus if the
+			rename operation should be expensive and take a long time, it will
+			lead to blocking. Let's just agree that we are all grown-ups here
+			and know what we are doing.
+		</p>
+		<p>
+			Let's put the pieces of managing the uploaded file and renaming it
+			together now, in file <em>requestHandlers.js</em>:
+		</p>
+		<p>
+			
+		</p>
 		</div>
 
 
