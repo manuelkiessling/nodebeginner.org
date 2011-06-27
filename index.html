@@ -2548,9 +2548,9 @@ http.createServer(function(req, res) {
 </pre>
 
 			<p>
-				In order to make our use case happen, all we need to do is
-				including the form parse logic of formidable into our code
-				structure, and we will need to find out how to serve the
+				In order to make our use case happen, what we need to do is
+				to include the form-parsing logic of formidable into our code
+				structure, plus we will need to find out how to serve the
 				content of the uploaded file (which is saved into the
 				<em>/tmp</em> folder) to a requesting browser.
 			</p>
@@ -2719,35 +2719,36 @@ exports.start = start;
 exports.upload = upload;
 exports.show = show;
 </pre>
-		<p>
-			Great. The next step is a bit more complex of course. The first
-			problem is: we want to handle the file upload in our
-			<em>upload</em> request handler, and there, we will need to pass
-			the <em>request</em> object to the <em>form.parse</em> call of
-			node-formidable.
-		</p>
-		<p>
-			But all we have is the <em>response</em> object
-			and the <em>postData</em> array. Sad panda. Looks like we will have
-			to pass the <em>request</em> object all the way from the server to
-			the router to the request handler. There may be more elegant
-			solutions, but this approach should do the job for now.
-		</p>
-		<p>
-			And while we are at it, let's remove the whole postData stuff in
-			our server and request handlers - we won't need it for handling the
-			file upload, and it even raises a problem: we already "consumed"
-			the <em>data</em> events of the <em>request</em> object in the
-			server, which means that <em>form.parse</em>, which also needs to
-			consume those events, wouldn't receive any more data from them
-			(because Node.js doesn't buffer any data).
-		</p>
-		<p>
-			Let's start with <em>server.js</em> - we remove the postData
-			handling and the <em>request.setEncoding</em> line (which is going
-			to be handled by node-formidable itself):
+			<p>
+				Great. The next step is a bit more complex of course. The first
+				problem is: we want to handle the file upload in our
+				<em>upload</em> request handler, and there, we will need to pass
+				the <em>request</em> object to the <em>form.parse</em> call of
+				node-formidable.
+			</p>
+			<p>
+				But all we have is the <em>response</em> object
+				and the <em>postData</em> array. Sad panda. Looks like we will have
+				to pass the <em>request</em> object all the way from the server to
+				the router to the request handler. There may be more elegant
+				solutions, but this approach should do the job for now.
+			</p>
+			<p>
+				And while we are at it, let's remove the whole <em>postData</em> stuff in
+				our server and request handlers - we won't need it for handling the
+				file upload, and it even raises a problem: we already "consumed"
+				the <em>data</em> events of the <em>request</em> object in the
+				server, which means that <em>form.parse</em>, which also needs to
+				consume those events, wouldn't receive any more data from them
+				(because Node.js doesn't buffer any data).
+			</p>
+			<p>
+				Let's start with <em>server.js</em> - we remove the postData
+				handling and the <em>request.setEncoding</em> line (which is going
+				to be handled by node-formidable itself), and we pass
+				<em>request</em> to the router instead:
 
-		</p>
+			</p>
 <pre class="prettyprint lang-js">var http = require("http");
 var url = require("url");
 
@@ -2784,28 +2785,88 @@ exports.start = start;
 exports.route = route;
 </pre>
 
-		<p>
-			Now, the <em>request</em> object can be used in our <em>upload</em>
-			request handler function. node-formidable will handle the details
-			of saving the uploaded file to a local file within <em>/tmp</em>,
-			but we need to make sure that this file is renamed to
-			<em>/tmp/test.png</em> ourselves. Yes, we keep things really simple
-			and assume that only PNG images will be uploaded.
-		</p>
-		<p>
-			For now, <em>fs.renameSync(path1, path2)</em> will do the job.
-			Beware! As the name implies, it works synchronous, thus if the
-			rename operation should be expensive and take a long time, it will
-			lead to blocking. Let's just agree that we are all grown-ups here
-			and know what we are doing.
-		</p>
-		<p>
-			Let's put the pieces of managing the uploaded file and renaming it
-			together now, in file <em>requestHandlers.js</em>:
-		</p>
-		<p>
-			
-		</p>
+			<p>
+				Now, the <em>request</em> object can be used in our <em>upload</em>
+				request handler function. node-formidable will handle the details
+				of saving the uploaded file to a local file within <em>/tmp</em>,
+				but we need to make sure that this file is renamed to
+				<em>/tmp/test.png</em> ourselves. Yes, we keep things really simple
+				and assume that only PNG images will be uploaded.
+			</p>
+			<p>
+				For now, <em>fs.renameSync(path1, path2)</em> will do the job.
+				Beware! As the name implies, it works synchronous, thus if the
+				rename operation should be expensive and take a long time, it will
+				lead to blocking. Let's just agree that we are all grown-ups here
+				and know what we are doing.
+			</p>
+			<p>
+				Let's put the pieces of managing the uploaded file and renaming it
+				together now, in file <em>requestHandlers.js</em>:
+			</p>
+<pre class="prettyprint lang-js">var querystring = require("querystring"),
+    fs = require("fs"),
+    formidable = require("formidable");
+
+function start(response) {
+  console.log("Request handler 'start' was called.");
+
+  var body = '&lt;html&gt;'+
+    '&lt;head&gt;'+
+    '&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /&gt;'+
+    '&lt;/head&gt;'+
+    '&lt;body&gt;'+
+    '&lt;form action="/upload" enctype="multipart/form-data" method="post"&gt;'+
+    '&lt;input type="file" name="upload" multiple="multiple"&gt;'+
+    '&lt;input type="submit" value="Upload file" /&gt;'+
+    '&lt;/form&gt;'+
+    '&lt;/body&gt;'+
+    '&lt;/html&gt;';
+
+    response.writeHead(200, {"Content-Type": "text/html"});
+    response.write(body);
+    response.end();
+}
+
+function upload(response, request) {
+  console.log("Request handler 'upload' was called.");
+
+  var form = new formidable.IncomingForm();
+  console.log("about to parse");
+  form.parse(request, function(err, fields, files) {
+    console.log("parsing done");
+    fs.renameSync(files.upload.path, "/tmp/test.png");
+    response.writeHead(200, {"Content-Type": "text/html"});
+    response.write("received image:&lt;br/&gt;");
+    response.write("&lt;img src='/show' /&gt;");
+    response.end();
+  });
+}
+
+function show(response) {
+  console.log("Request handler 'show' was called.");
+  fs.readFile("/tmp/test.png", "binary", function(error, file) {
+    if(error) {
+      response.writeHead(500, {"Content-Type": "text/plain"});
+      response.write(err + "\n");
+      response.end();
+    } else {
+      response.writeHead(200, {"Content-Type": "image/png"});
+      response.write(file, "binary");
+      response.end();
+    }
+  });
+}
+
+exports.start = start;
+exports.upload = upload;
+exports.show = show;
+</pre>
+			<p>
+				And that's it. Restart the server, and the complete use case will
+				be available. Select a local PNG image from your hardrive, upload
+				it to the server, and have it displayed in the web page.
+			</p>
 		</div>
 
 

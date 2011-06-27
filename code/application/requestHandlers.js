@@ -1,7 +1,6 @@
 var querystring = require("querystring"),
     fs = require("fs"),
-    formidable = require("formidable"),
-	sys = require("sys");
+    formidable = require("formidable");
 
 function start(response) {
   console.log("Request handler 'start' was called.");
@@ -30,9 +29,11 @@ function upload(response, request) {
   console.log("about to parse");
   form.parse(request, function(err, fields, files) {
     console.log("parsing done");
-    response.writeHead(200, {'content-type': 'text/html'});
-    response.write('received upload:<br/>');
-    response.end(sys.inspect({fields: fields, files: files}));
+    fs.renameSync(files.upload.path, "/tmp/test.png");
+    response.writeHead(200, {"Content-Type": "text/html"});
+    response.write("received image:<br/>");
+    response.write("<img src='/show' />");
+    response.end();
   });
 }
 
