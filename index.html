@@ -2288,7 +2288,7 @@ var url = require("url");
 function start(route, handle) {
   function onRequest(request, response) {
     var postData = "";
-	var pathname = url.parse(request.url).pathname;
+    var pathname = url.parse(request.url).pathname;
     console.log("Request for " + pathname + " received.");
 
     request.setEncoding("utf8");
@@ -2732,28 +2732,30 @@ exports.show = show;
 			to pass the <em>request</em> object all the way from the server to
 			the router to the request handler. There may be more elegant
 			solutions, but this approach should do the job for now.
-			Let's start with <em>server.js</em>:
+		</p>
+		<p>
+			And while we are at it, let's remove the whole postData stuff in
+			our server and request handlers - we won't need it for handling the
+			file upload, and it even raises a problem: we already "consumed"
+			the <em>data</em> events of the <em>request</em> object in the
+			server, which means that <em>form.parse</em>, which also needs to
+			consume those events, wouldn't receive any more data from them
+			(because Node.js doesn't buffer any data).
+		</p>
+		<p>
+			Let's start with <em>server.js</em> - we remove the postData
+			handling and the <em>request.setEncoding</em> line (which is going
+			to be handled by node-formidable itself):
+
 		</p>
 <pre class="prettyprint lang-js">var http = require("http");
 var url = require("url");
 
 function start(route, handle) {
   function onRequest(request, response) {
-    var postData = "";
-	var pathname = url.parse(request.url).pathname;
+    var pathname = url.parse(request.url).pathname;
     console.log("Request for " + pathname + " received.");
-
-    request.setEncoding("utf8");
-
-    request.addListener("data", function(postDataChunk) {
-      postData += postDataChunk;
-      console.log("Received POST data chunk '" + postDataChunk + "'.");
-    });
-
-    request.addListener("end", function() {
-      route(handle, pathname, response, postData, request);
-    });
-
+    route(handle, pathname, response, request);
   }
 
   http.createServer(onRequest).listen(8888);
@@ -2764,12 +2766,13 @@ exports.start = start;
 </pre>
 
 		<p>
-			Next comes <em>router.js</em>:
+			Next comes <em>router.js</em> - we don't need to pass <em>postData</em>
+			on anymore, and instead pass <em>request</em>:
 		</p>
-<pre class="prettyprint lang-js">function route(handle, pathname, response, postData, request) {
+<pre class="prettyprint lang-js">function route(handle, pathname, response, request) {
   console.log("About to route a request for " + pathname);
   if (typeof handle[pathname] === 'function') {
-    handle[pathname](response, postData, request);
+    handle[pathname](response, request);
   } else {
     console.log("No request handler found for " + pathname);
     response.writeHead(404, {"Content-Type": "text/html"});

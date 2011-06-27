@@ -3,7 +3,7 @@ var querystring = require("querystring"),
     formidable = require("formidable"),
 	sys = require("sys");
 
-function start(response, postData) {
+function start(response) {
   console.log("Request handler 'start' was called.");
 
   var body = '<html>'+
@@ -23,20 +23,20 @@ function start(response, postData) {
     response.end();
 }
 
-function upload(response, postData, request) {
+function upload(response, request) {
   console.log("Request handler 'upload' was called.");
 
-   var form = new formidable.IncomingForm();
-	console.log("about to parse");
-    form.parse(request, function(err, fields, files) {
-      console.log("parsing done");
-      response.writeHead(200, {'content-type': 'text/plain'});
-      response.write('received upload:\n\n');
-      response.end(sys.inspect({fields: fields, files: files}));
-    });
+  var form = new formidable.IncomingForm();
+  console.log("about to parse");
+  form.parse(request, function(err, fields, files) {
+    console.log("parsing done");
+    response.writeHead(200, {'content-type': 'text/html'});
+    response.write('received upload:<br/>');
+    response.end(sys.inspect({fields: fields, files: files}));
+  });
 }
 
-function show(response, postData) {
+function show(response) {
   console.log("Request handler 'show' was called.");
   fs.readFile("/tmp/test.png", "binary", function(error, file) {
     if(error) {
