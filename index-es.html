@@ -625,13 +625,14 @@
 				</li>
 				<li>
 					El Usuario debería ver una página de bienvenida cuando
-					solicita http://<em>dominio</em>/inicio.
+					solicita http://<em>dominio</em>/inicio, la cual despliega
+					un formulario de súbida.
 				</li>
 				<li>
-					Cuando solicite http://<em>dominio</em>/subir, el 
-					Usuario debería ser capaz de subir un archivo de imagen
-					desde su computador, el cual es luego desplegado en su
-					browser.
+					Eligiendo un archivo de imagen para subir y enviando
+					el formulario, la imagen debería ser subida a 
+					http://<em>dominio</em>/subir, donde es desplegada una
+					vez que la súbida este finalizada.					
 				</li>
 			</ul>
 			<p>
@@ -643,7 +644,7 @@
 				Más que eso, no queremos escribir simplemente el código más
 				básico posible para alcanzar este objetivo, no importa lo
 				elegante y correcto que pueda ser este código. Nosotros
-				agregaremos intencionalmente más abstracción de lo necesaria
+				agregaremos intencionalmente más abstracción de la necesaria
 				de manera de poder tener una idea de lo que es construir 
 				aplicaciones más complejas de Node.js.
 			</p>
@@ -661,7 +662,7 @@
 				</li>
 				<li>
 					Nuestro servidor necesitará responder directamente
-					peticiones (requests), dependiendo de que URL sea pedida en
+					peticiones (requests), dependiendo de qué URL sea pedida en
 					este requerimiento, es que necesitaremos algún tipo
 					de <strong>enrutador (router)</strong> de manera de
 					mapear los peticiones a los handlers (manejadores) de éstos.
@@ -676,7 +677,7 @@
 					El Enrutador probablemente debería tratar cualquier
 					información POST que llegue y dársela a los handlers de
 					peticiones en una forma conveniente, luego 
-					necesitaremos <strong>manipulación de data requerida</strong>
+					necesitaremos <strong>manipulación de data de petición</strong>
 				</li>
 				<li>
 					Nosotros no solo queremos manejar peticiones de URLs,
@@ -690,7 +691,7 @@
 					Por último, pero no menos importante, el Usuario será
 					capaz de subir imágenes, así que necesitaremos algún 
 					tipo de <strong>manipulación de subidas</strong> quien
-					ser hará cargo de los detalles.
+					se hará cargo de los detalles.
 				</li>
 			</ul>
 			<p>
@@ -713,10 +714,8 @@
 			<p>
 				Esto puede sonar como mucho trabajo, pero veremos en un momento
 				que con Node.js, no lo es.
-			</p>
-			
-			<p>
-				
+			</p>			
+			<p>				
 				Empecemos por el principio e implementemos la primera parte
 				de nuestra pila, el servidor HTTP..
 			</p>
@@ -752,7 +751,7 @@
 			</p>
 			<p>
 				Mi impresión es que es más o menos un estándar nombrar a tu
-				archivo <em>main</em> como <em>index.js</em>. Tiene sentido
+				archivo <em>principal</em> como <em>index.js</em>. Tiene sentido
 				también que pongamos nuestro módulo de servidor en un archivo
 				llamado <em>server.js</em>.
 			</p>
@@ -770,71 +769,71 @@ http.createServer(function(request, response) {
 }).listen(8888);
 </pre>
 
-			<p>
-				Eso es! Acabas de escribir un servidor HTTP activo. Probémoslo
-				ejecutándolo y testeándolo. Primero ejecuta tu script con Node.js:
-			</p>
+		<p>
+			Eso es! Acabas de escribir un servidor HTTP activo. Probémoslo
+			ejecutándolo y testeándolo. Primero ejecuta tu script con Node.js:
+		</p>
 <pre class="prettyprint lang-js">node server.js</pre>
-			<p>
-				Ahora, abre tu browser y apúntalo a
-				<a href="http://localhost:8888/" rel="nofollow">http://localhost:8888/</a>.
-				Esto debería desplegar una página web que diga "Hola Mundo".
-			</p>
-			<p>
-				Interesante, ¿no? ¿Qué tal si hablamos de que está pasando aquí y
-				dejamos la pregunta de 'cómo organizar nuestro proyecto' para después?
-				Prometo que volveremos a esto.
-			</p>
+		<p>
+			Ahora, abre tu browser y apúntalo a
+			<a href="http://localhost:8888/" rel="nofollow">http://localhost:8888/</a>.
+			Esto debería desplegar una página web que diga "Hola Mundo".
+		</p>
+		<p>
+		Interesante, ¿no? ¿Qué tal si hablamos de que está pasando aquí y
+		dejamos la pregunta de 'cómo organizar nuestro proyecto' para después?
+		Prometo que volveremos a esto.
+		</p>
 
-			<h4>Analizando nuestro servidor HTTP</h4>
-			<p>
-				Bueno, entonces, analicemos que está pasando aquí.
-			</p>
-			<p>
-				La primera línea <em>require</em>, requiere al módulo <em>http</em>
-				que viene incluido con Node.js y lo hace accesible a través de la
-				variable <em>http</em>.
-			</p>
-			<p>
-				Luego llamamos a una de las funciones que el módulo http ofrece:
-				<em>createServer</em>. Esta función retorna un objeto, y este objeto
-				tiene un método llamado <em>listen</em> (escucha), y toma un
-				valor numérico que indica el número de puerto en que nuestro
-				servidor HTTP va a escuchar.
-			</p>
-			<p>
-				Por favor ignora por un segundo a la definición de función
-				que sigue a la llave de apertura de <em>http.createServer</em>.
-			</p>
-			<p>
-				Nosotros podríamos haber escrito el código que inicia a nuestro
-				servidor y lo hace escuchar al puerto 8888 de la siguiente manera:
-			</p>
+		<h4>Analizando nuestro servidor HTTP</h4>
+		<p>
+		Bueno, entonces, analicemos que está pasando aquí.
+		</p>
+		<p>
+		La primera línea <em>require</em>, requiere al módulo <em>http</em>
+		que viene incluido con Node.js y lo hace accesible a través de la
+		variable <em>http</em>.
+		</p>
+		<p>
+		Luego llamamos a una de las funciones que el módulo http ofrece:
+		<em>createServer</em>. Esta función retorna un objeto, y este objeto
+		tiene un método llamado <em>listen</em> (escucha), y toma un
+		valor numérico que indica el número de puerto en que nuestro
+		servidor HTTP va a escuchar.
+		</p>
+		<p>
+		Por favor ignora por un segundo a la definición de función
+		que sigue a la llave de apertura de <em>http.createServer</em>.
+		</p>
+		<p>
+		Nosotros podríamos haber escrito el código que inicia a nuestro
+		servidor y lo hace escuchar al puerto 8888 de la siguiente manera:
+		</p>
 <pre class="prettyprint lang-js">var http = require("http");
 var server = http.createServer();
 server.listen(8888);</pre>
-			<p>
-				Esto hubiese iniciado al servidor HTTP en el puerto 8888
-				y no hubiese hecho nada más (ni siquiera respondido alguna
-				petición entrante).
-			</p>
-			<p>
-				La parte realmente interesante (y rara, si tu trasfondo es 
-				en un lenguaje más conservador, como PHP) es que la definición
-				de función está ahí mismo donde uno esperaría el primer
-				parámetro de la llamada a <em>createServer()</em>.
-			</p>
-			<p>
-				Resulta que, este definición de función ES el primer
-				(y único) parámetro que le vamos a dar a la llamada a
-				<em>createServer()</em>. Ya que en JavaScript, las funciones
-				pueden ser pasadas de un lado a otro como cualquier otro valor.
-			</p>
+		<p>
+		Esto hubiese iniciado al servidor HTTP en el puerto 8888
+		y no hubiese hecho nada más (ni siquiera respondido alguna
+		petición entrante).
+		</p>
+		<p>
+		La parte realmente interesante (y rara, si tu trasfondo es 
+		en un lenguaje más conservador, como PHP) es que la definición
+		de función está ahí mismo donde uno esperaría el primer
+		parámetro de la llamada a <em>createServer()</em>.
+		</p>
+		<p>
+		Resulta que, este definición de función ES el primer
+		(y único) parámetro que le vamos a dar a la llamada a
+		<em>createServer()</em>. Ya que en JavaScript, las funciones
+		pueden ser pasadas de un lado a otro como cualquier otro valor.
+		</p>
 
-			<h4>Pasando Funciones de un Lado a Otro</h4>
-			<p>
-				Puedes, por ejemplo, hacer algo como esto:				
-			</p>
+		<h4>Pasando Funciones de un Lado a Otro</h4>
+		<p>
+		Puedes, por ejemplo, hacer algo como esto:				
+		</p>
 <pre class="prettyprint lang-js">function decir(palabra) {
   console.log(palabra);
 }
@@ -844,66 +843,62 @@ function ejecutar(algunaFuncion, valor) {
 }
 
 ejecutar(decir, "Hola");</pre>
-			<p>
-				Lee esto cuidadosamente! Lo que estamos haciendo aquí es,
-				nosotros pasamos la función <em>decir</em> como el primer
-				parámetro de la función <em>ejecutar</em>. No el valor de retorno
-				de <em>decir</em>, sino que <em>decir</em> misma!
-			</p>
-			
-			<p>
-				Entonces, <em>decir</em> se convierte en la variable local
-				<em>algunaFuncion</em> dentro de <em>ejecutar</em>, y ejecutar
-				puede llamar a la función en esta variable usando 
-				<em>algunaFuncion()</em> (agregando llaves).
-			</p>
-			<p>
-				Por supuesto, dado que <em>decir</em> toma un parámetro,
-				<em>ejecutar</em> puede pasar tal parámetro cuando llama a
-				<em>algunaFuncion</em>.
-			</p>
-			
-			
-			
-			<p>
-				Nosotros podemos, tal como lo hicimos, pasar una función
-				por su nombre como parámetro a otra función. Pero no
-				estamos obligados a tener que definir la función primero
-				y luego pasarla. Podemos también definir y pasar la función
-				como un parámetro a otra función todo al mismo tiempo:
-			</p>
+		<p>
+		Lee esto cuidadosamente! Lo que estamos haciendo aquí es,
+		nosotros pasamos la función <em>decir()</em> como el primer
+		parámetro de la función <em>ejecutar</em>. No el valor de retorno
+		de <em>decir</em>, sino que <em>decir()</em> misma!
+		</p>			
+		<p>
+		Entonces, <em>decir</em> se convierte en la variable local
+		<em>algunaFuncion</em> dentro de <em>ejecutar</em>, y ejecutar
+		puede llamar a la función en esta variable usando 
+		<em>algunaFuncion()</em> (agregando llaves).
+		</p>
+		<p>
+		Por supuesto, dado que <em>decir</em> toma un parámetro,
+		<em>ejecutar</em> puede pasar tal parámetro cuando llama a
+		<em>algunaFuncion</em>.
+		</p>
+		<p>
+		Nosotros podemos, tal como lo hicimos, pasar una función
+		por su nombre como parámetro a otra función. Pero no
+		estamos obligados a tener que definir la función primero
+		y luego pasarla. Podemos también definir y pasar la función
+		como un parámetro a otra función todo al mismo tiempo:
+		</p>
 <pre class="prettyprint lang-js">function ejecutar(algunaFuncion, valor) {
-  algunafuncion(valor);
+  algunaFuncion(valor);
 }
 
 ejecutar(function(palabra){ console.log(palabra) }, "Hola");
 </pre>
-			<p>
-				(N.del T.: <em>function</em> es una palabra clave de JavaScript).
-			</p>
-			<p>
-				Nosotros definimos la función que queremos pasar a <em>ejecutar</em>
-				justo ahí en el lugar donde <em>ejecutar</em> espera su primer
-				parámetro.
-			</p>
-			<p>
-				De esta manera, no necesitamos darle a la función un nombre,
-				por lo que esta función es llamada <em>función anónima</em>.
-			</p>
-			<p>
-				Esta es una primera ojeada a lo que me gusta llamar JavaScript
-				"avanzado". Pero tomémoslo paso a paso. Por ahora, aceptemos que
-				en JavaScript, nosotros podemos pasar una función como un parámetro
-				cuando llamamos a otra función. Podemos hacer esto asignando
-				nuestra función a una variable, la cual luego pasamos, o definiendo
-				la función a pasar en el mismo lugar.
-			</p>						
+		<p>
+		(N.del T.: <em>function</em> es una palabra clave de JavaScript).
+		</p>
+		<p>
+		Nosotros definimos la función que queremos pasar a <em>ejecutar</em>
+		justo ahí en el lugar donde <em>ejecutar</em> espera su primer
+		parámetro.
+		</p>
+		<p>
+		De esta manera, no necesitamos darle a la función un nombre,
+		por lo que esta función es llamada <em>función anónima</em>.
+		</p>
+		<p>
+		Esta es una primera ojeada a lo que me gusta llamar JavaScript
+		"avanzado". Pero tomémoslo paso a paso. Por ahora, aceptemos que
+		en JavaScript, nosotros podemos pasar una función como un parámetro
+		cuando llamamos a otra función. Podemos hacer esto asignando
+		nuestra función a una variable, la cual luego pasamos, o definiendo
+		la función a pasar en el mismo lugar.
+		</p>						
 			
-			<h4>De Qué manera el pasar funciones hace que nuestro servidor HTTP funcione</h4>
-			<p>
-				Con este conocimiento, Volvamos a nuestro servidor HTTP
-				minimalista:
-			</p>
+		<h4>De Qué manera el pasar funciones hace que nuestro servidor HTTP funcione</h4>
+		<p>
+		Con este conocimiento, Volvamos a nuestro servidor HTTP
+		minimalista:
+		</p>
 <pre class="prettyprint lang-js">var http = require("http");
 
 http.createServer(function(request, response) {
@@ -912,15 +907,14 @@ http.createServer(function(request, response) {
   response.end();
 }).listen(8888);
 </pre>
-			<p>
-				Para ahora, debería quedar claro lo que estamos haciendo acá:
-				Estamos pasándole a la función <em>createServer</em> una función
-				anónima.
-			</p>
-			<p>
-				Podemos llegar a los mismo refactorizando nuestro código 
-				así:				
-			</p>
+		<p>
+		A estas alturas, debería quedar claro lo que estamos haciendo acá:
+		Estamos pasándole a la función <em>createServer</em> una función
+		anónima.
+		</p>
+		<p>
+		Podemos llegar a lo mismo refactorizando nuestro código así:
+		</p>
 <pre class="prettyprint lang-js">var http = require("http");
 
 function onRequest(request, response) {
@@ -931,87 +925,87 @@ function onRequest(request, response) {
 
 http.createServer(onRequest).listen(8888);
 </pre>
-			<p>
-				Quizás ahora es un buen momento para preguntar:
-				¿Por Qué estamos haciendo esto de esta manera?				
-			</p>
+		<p>
+		Quizás ahora es un buen momento para preguntar:
+		¿Por Qué estamos haciendo esto de esta manera?				
+		</p>
 			
-			<h4>Callbacks Manejadas por Eventos</h4>
+		<h4>Callbacks Manejadas por Eventos</h4>
 			
-			<p>
-				La respuesta a) No es una no muy fácil de dar (al menos para mí),
-				y b) Yace en la naturaleza misma de como Node.js trabaja:
-				Está orientado al evento, esa es la razón de por qué es tan
-				rápido.
-			</p>
-			<p>
-				Podrías tomarte un tiempo para leer este excelente post (en inglés)
-				de Felix Geisendördfer: <a href="http://debuggable.com/posts/understanding-node-js:4bd98440-45e4-4a9a-8ef7-0f7ecbdd56cb">Understanding node.js</a> para alguna explicación de trasfondo.
-			</p>
-			<p>
-				Al final todo se reduce al hecho que Node.js trabaja orientado
-				al evento. Ah, y sí, Yo tampoco sé exactamente qué significa eso.
-				Pero voy a hacer un intento de explicar, el porqué esto tiene
-				sentido para nosotros, que queremos escribir aplicaciones
-				web en Node.js.			
-			</p>
-			<p>
-				Cuando nosotros llamamos al método <em>http.createServer</em>,
-				por supuesto que no sólo queremos que el servidor se quede escuchando
-				en algún puerto, sino que también queremos hacer algo cuando hay
-				una petición HTTP a este servidor.
-			</p>
-			<p>
-				El problema es, que esto sucede de manera asincrónica: Puede
-				suceder en cualquier momento, pero solo tenemos un único proceso
-				en el cual nuestro servidor corre.
-			</p>
-			<p>
-				Cuando escribimos aplicaciones PHP, esto no nos molesta en
-				absoluto: cada vez que hay una petición HTTP, el servidor web
-				(por lo general Apache) genera un nuevo proceso solo para esta
-				petición, y empieza el script PHP indicado desde cero, el cual
-				es ejecutado de principio a fin.
-			</p>
-			<p>
-				Así que respecto al control de flujo, estamos en el medio de
-				nuestro programa en Node.js, cuando una nueva petición llega al
-				puerto 8888: ¿Cómo manipulamos esto sin volvernos locos?
-			</p>
-			<p>
-				Bueno, esta es la parte donde el diseño orientado al evento
-				de Node.js / JavaScript de verdad ayuda, aunque tengamos
-				que aprender nuevos conceptos para poder dominarlo. Veamos
-				como estos conceptos son aplicados en nuestro código de
-				servidor.
-			</p>
-			<p>
-				Nosotros creamos el servidor, y pasamos una función al método
-				que lo crea. Cada vez que nuestro servidor recibe una petición,
-				la función que le pasamos será llamada.
-			<p>
-				No sabemos qué es lo que va a suceder, pero ahora tenemos un
-				lugar donde vamos a poder manipular la petición entrante.
-				Es la función que pasamos, sin importar si la definimos o si
-				la pasamos de manera anónima.
-			</p>
-			<p>
-				Este concepto es llamado un <em>callback</em> (del inglés: call =
-				llamar; y back = de vuelta). Nosotros pasamos una función a algún
-				método, y el método ocupa esta función para llamar (call) de vuelta
-				(back) si un evento relacionado con este método ocurre.
-			</p>
-			<p>
-				Al menos para mí, esto tomó algún tiempo para ser entendido. Lee
-				el articulo del blog de Felix de nuevo si todavía no te sientes
-				seguro.
-			</p>
-			<p>
-				Juguemos un poco con este nuevo concepto. ¿Podemos probar que nuestro
-				código continúa después de haber creado el servidor, incluso
-				si no ha sucedido ninguna petición HTTP y la función callback que
-				pasamos no ha sido llamada? Probemos:
-			<p>
+		<p>
+		La respuesta a) No es una no muy fácil de dar (al menos para mí),
+		y b) Yace en la naturaleza misma de como Node.js trabaja:
+		Está orientado al evento, esa es la razón de por qué es tan
+		rápido.
+		</p>
+		<p>
+		Podrías tomarte un tiempo para leer este excelente post (en inglés)
+		de Felix Geisendördfer: <a href="http://debuggable.com/posts/understanding-node-js:4bd98440-45e4-4a9a-8ef7-0f7ecbdd56cb">Understanding node.js</a> para alguna explicación de trasfondo.
+		</p>
+		<p>
+		Al final todo se reduce al hecho que Node.js trabaja orientado
+		al evento. Ah, y sí, Yo tampoco sé exactamente qué significa eso.
+		Pero voy a hacer un intento de explicar, el porqué esto tiene
+		sentido para nosotros, que queremos escribir aplicaciones
+		web en Node.js.			
+		</p>
+		<p>
+		Cuando nosotros llamamos al método <em>http.createServer</em>,
+		por supuesto que no sólo queremos que el servidor se quede escuchando
+		en algún puerto, sino que también queremos hacer algo cuando hay
+		una petición HTTP a este servidor.
+		</p>
+		<p>
+		El problema es, que esto sucede de manera asincrónica: Puede
+		suceder en cualquier momento, pero solo tenemos un único proceso
+		en el cual nuestro servidor corre.
+		</p>
+		<p>
+		Cuando escribimos aplicaciones PHP, esto no nos molesta en
+		absoluto: cada vez que hay una petición HTTP, el servidor web
+		(por lo general Apache) genera un nuevo proceso solo para esta
+		petición, y empieza el script PHP indicado desde cero, el cual
+		es ejecutado de principio a fin.
+		</p>
+		<p>
+		Así que respecto al control de flujo, estamos en el medio de
+		nuestro programa en Node.js, cuando una nueva petición llega al
+		puerto 8888: ¿Cómo manipulamos esto sin volvernos locos?
+		</p>
+		<p>
+		Bueno, esta es la parte donde el diseño orientado al evento
+		de Node.js / JavaScript de verdad ayuda, aunque tengamos
+		que aprender nuevos conceptos para poder dominarlo. Veamos
+		como estos conceptos son aplicados en nuestro código de
+		servidor.
+		</p>
+		<p>
+		Nosotros creamos el servidor, y pasamos una función al método
+		que lo crea. Cada vez que nuestro servidor recibe una petición,
+		la función que le pasamos será llamada.
+		<p>
+		No sabemos qué es lo que va a suceder, pero ahora tenemos un
+		lugar donde vamos a poder manipular la petición entrante.
+		Es la función que pasamos, sin importar si la definimos o si
+		la pasamos de manera anónima.
+		</p>
+		<p>
+		Este concepto es llamado un <em>callback</em> (del inglés: call =
+		llamar; y back = de vuelta). Nosotros pasamos una función a algún
+		método, y el método ocupa esta función para llamar (call) de vuelta
+		(back) si un evento relacionado con este método ocurre.
+		</p>
+		<p>
+		Al menos para mí, esto tomó algún tiempo para ser entendido. Lee
+		el articulo del blog de Felix de nuevo si todavía no te sientes
+		seguro.
+		</p>
+		<p>
+		Juguemos un poco con este nuevo concepto. ¿Podemos probar que nuestro
+		código continúa después de haber creado el servidor, incluso
+		si no ha sucedido ninguna petición HTTP y la función callback que
+		pasamos no ha sido llamada? Probemos:
+		<p>
 <pre class="prettyprint lang-js">var http = require("http");
 
 function onRequest(request, response) {
@@ -1024,22 +1018,22 @@ function onRequest(request, response) {
 http.createServer(onRequest).listen(8888);
 
 console.log("Servidor Iniciado.");
-</pre>			
-
-		<p>
-			Noten que utilizo <em>console.log</em> para entregar un texto
-			cada vez que la función <em>onRequest</em> (nuestro callback) es
-			gatillada, y otro texto <em>después</em> de iniciar nuestro servidor
-			HTTP.
-		</p>
-		<p>
-			Cuando iniciamos esta aplicación (con <em>node server.js</em>, como siempre).
-			Esta inmediatamente escribirá en pantalla "Servidor Iniciado" en la línea de comandos.
-			Cada vez que hagamos una petición a nuestro servidor (abriendo
-			<a href="http://localhost:8888/" rel="nofollow">http://localhost:8888/</a> en
-			nuestro browser), el mensaje "Peticion Recibida." va a ser impreso en la línea
-			de comandos.
-		</p>
+</pre>
+	<p>
+	Noten que utilizo <em>console.log</em> para entregar un texto
+	cada vez que la función <em>onRequest</em> (nuestro callback) es
+	gatillada, y otro texto <em>después</em> de iniciar nuestro servidor
+	HTTP.
+	</p>
+	<p>
+	Cuando iniciamos esta aplicación (con <em>node server.js</em>, como siempre).
+	Esta inmediatamente escribirá en pantalla "Servidor Iniciado" en la línea de comandos.
+	Cada vez que hagamos una petición a nuestro servidor (abriendo
+	<a href="http://localhost:8888/" rel="nofollow">http://localhost:8888/</a> en
+	nuestro browser), el mensaje "Peticion Recibida." va a ser impreso en la línea
+	de comandos.
+	</p>
+	<!-- HAJ MARK -->
 		<p>
 			Esto es JavaScript del Lado del Servidor Asincrónico y orientado al
 			evento con callbacks en acción :-)
