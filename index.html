@@ -754,7 +754,7 @@
 <pre class="prettyprint lang-js">var http = require("http");
 
 http.createServer(function(request, response) {
-  response.writeHead(200, {"Content-Type": "text/html"});
+  response.writeHead(200, {"Content-Type": "text/plain"});
   response.write("Hello World");
   response.end();
 }).listen(8888);
@@ -892,7 +892,7 @@ execute(function(word){ console.log(word) }, "Hello");
 <pre class="prettyprint lang-js">var http = require("http");
 
 http.createServer(function(request, response) {
-  response.writeHead(200, {"Content-Type": "text/html"});
+  response.writeHead(200, {"Content-Type": "text/plain"});
   response.write("Hello World");
   response.end();
 }).listen(8888);
@@ -908,7 +908,7 @@ http.createServer(function(request, response) {
 <pre class="prettyprint lang-js">var http = require("http");
 
 function onRequest(request, response) {
-  response.writeHead(200, {"Content-Type": "text/html"});
+  response.writeHead(200, {"Content-Type": "text/plain"});
   response.write("Hello World");
   response.end();
 }
@@ -998,7 +998,7 @@ http.createServer(onRequest).listen(8888);
 
 function onRequest(request, response) {
   console.log("Request received.");
-  response.writeHead(200, {"Content-Type": "text/html"});
+  response.writeHead(200, {"Content-Type": "text/plain"});
   response.write("Hello World");
   response.end();
 }
@@ -1141,7 +1141,7 @@ foo.createServer(...);
 function start() {
   function onRequest(request, response) {
     console.log("Request received.");
-    response.writeHead(200, {"Content-Type": "text/html"});
+    response.writeHead(200, {"Content-Type": "text/plain"});
     response.write("Hello World");
     response.end();
   }
@@ -1256,7 +1256,7 @@ function start() {
   function onRequest(request, response) {
 	var pathname = url.parse(request.url).pathname;
 	console.log("Request for " + pathname + " received.");
-	response.writeHead(200, {"Content-Type": "text/html"});
+	response.writeHead(200, {"Content-Type": "text/plain"});
 	response.write("Hello World");
 	response.end();
   }
@@ -1318,7 +1318,7 @@ function start(route) {
 
     route(pathname);
 
-    response.writeHead(200, {"Content-Type": "text/html"});
+    response.writeHead(200, {"Content-Type": "text/plain"});
     response.write("Hello World");
     response.end();
   }
@@ -1543,7 +1543,7 @@ function start(route, handle) {
 
     route(handle, pathname);
 
-    response.writeHead(200, {"Content-Type": "text/html"});
+    response.writeHead(200, {"Content-Type": "text/plain"});
     response.write("Hello World");
     response.end();
   }
@@ -1693,7 +1693,7 @@ function start(route, handle) {
     var pathname = url.parse(request.url).pathname;
     console.log("Request for " + pathname + " received.");
 
-    response.writeHead(200, {"Content-Type": "text/html"});
+    response.writeHead(200, {"Content-Type": "text/plain"});
 	var content = route(handle, pathname)
 	response.write(content);
     response.end();
@@ -2026,7 +2026,7 @@ exports.start = start;
     handle[pathname](response);
   } else {
     console.log("No request handler found for " + pathname);
-    response.writeHead(404, {"Content-Type": "text/html"});
+    response.writeHead(404, {"Content-Type": "text/plain"});
     response.write("404 Not found");
     response.end();
   }
@@ -2051,7 +2051,7 @@ function start(response) {
   console.log("Request handler 'start' was called.");
 
   exec("ls -lah", function (error, stdout, stderr) {
-    response.writeHead(200, {"Content-Type": "text/html"});
+    response.writeHead(200, {"Content-Type": "text/plain"});
     response.write(stdout);
     response.end();
   });
@@ -2059,7 +2059,7 @@ function start(response) {
 
 function upload(response) {
   console.log("Request handler 'upload' was called.");
-  response.writeHead(200, {"Content-Type": "text/html"});
+  response.writeHead(200, {"Content-Type": "text/plain"});
   response.write("Hello Upload");
   response.end();
 }
@@ -2096,7 +2096,7 @@ function start(response) {
   exec("find /",
     { timeout: 10000, maxBuffer: 20000*1024 },
     function (error, stdout, stderr) {
-      response.writeHead(200, {"Content-Type": "text/html"});
+      response.writeHead(200, {"Content-Type": "text/plain"});
       response.write(stdout);
       response.end();
     });
@@ -2104,7 +2104,7 @@ function start(response) {
 
 function upload(response) {
   console.log("Request handler 'upload' was called.");
-  response.writeHead(200, {"Content-Type": "text/html"});
+  response.writeHead(200, {"Content-Type": "text/plain"});
   response.write("Hello Upload");
   response.end();
 }
@@ -2193,7 +2193,7 @@ exports.upload = upload;
 
 function upload(response) {
   console.log("Request handler 'upload' was called.");
-  response.writeHead(200, {"Content-Type": "text/html"});
+  response.writeHead(200, {"Content-Type": "text/plain"});
   response.write("Hello Upload");
   response.end();
 }
@@ -2344,7 +2344,7 @@ exports.start = start;
     handle[pathname](response, postData);
   } else {
     console.log("No request handler found for " + pathname);
-    response.writeHead(404, {"Content-Type": "text/html"});
+    response.writeHead(404, {"Content-Type": "text/plain"});
     response.write("404 Not found");
     response.end();
   }
@@ -2378,7 +2378,7 @@ exports.route = route;
 
 function upload(response, postData) {
   console.log("Request handler 'upload' was called.");
-  response.writeHead(200, {"Content-Type": "text/html"});
+  response.writeHead(200, {"Content-Type": "text/plain"});
   response.write("You've sent: " + postData);
   response.end();
 }
@@ -2426,7 +2426,7 @@ function start(response, postData) {
 
 function upload(response, postData) {
   console.log("Request handler 'upload' was called.");
-  response.writeHead(200, {"Content-Type": "text/html"});
+  response.writeHead(200, {"Content-Type": "text/plain"});
   response.write("You've sent the text: " + querystring.parse(postData)["text"]);
   response.end();
 }
