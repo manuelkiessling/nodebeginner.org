@@ -1153,7 +1153,7 @@ function iniciar() {
   }
 
   http.createServer(onRequest).listen(8888);
-  console.log("El Servidor Iniciado.");
+  console.log("Servidor Iniciado.");
 }
 
 exports.iniciar = iniciar;
@@ -1930,12 +1930,114 @@ function iniciar(route, handle) {
 
 exports.iniciar = iniciar;
 </pre>
-			
-<!-- HAJ CHECK -->
+	<p>
+		En vez de esperar un valor de respuesta desde la función
+		<em>route()</em>, pasémosle un tercer parámetro: nuestro objeto
+		<em>response</em>. Es más, removamos cualquier llamada a 
+		<em>response</em> desde el manipulador <em>onRequest()</em>, ya
+		que ahora esperamos que <em>route</em> se haga cargo de esto.
+	</p>
+	<p>
+		Ahora viene <em>router.js</em>:
+	</p>
+<pre class="prettyprint lang-js">function route(handle, pathname, response) {
+  console.log("About to route a request for " + pathname);
+  if (typeof handle[pathname] === 'function') {
+    handle[pathname](response);
+  } else {
+    console.log("No request handler found for " + pathname);
+    response.writeHead(404, {"Content-Type": "text/html"});
+    response.write("404 Not found");
+    response.end();
+  }
+}
 
+exports.route = route;
+</pre>
+	<p>
+		Mismo patrón: En vez de esperar que retorne un valor desde
+		nuestros manipuladores de petición, nosotros traspasamos
+		el objeto <em>response</em>.
+	</p>
+	<p>
+		Si no hay manipulador de petición para utilizar, ahora nos
+		hacemos cargo de responder con adecuados encabezado y cuerpo
+		"404".
+	</p>
+	<p>
+		Y por último, pero no menos importante, modificamos a
+		<em>requestHandlers.js</em> (el archivo de manipuladores
+		de petición).
+	</p>
+<pre class="prettyprint lang-js">var exec = require("child_process").exec;
 
+function iniciar(response) {
+  console.log("Manipulador de petición 'iniciar' fue llamado.");
 
+  exec("ls -lah", function (error, stdout, stderr) {
+    response.writeHead(200, {"Content-Type": "text/html"});
+    response.write(stdout);
+    response.end();
+  });
+}
 
+function upload(response) {
+  console.log("Manipulador de petición 'subir' fue llamado.");
+  response.writeHead(200, {"Content-Type": "text/html"});
+  response.write("Hola Subir");
+  response.end();
+}
+
+exports.iniciar = iniciar;
+exports.subir = subir;
+</pre>
+	<p>
+		Nuestras funciones manipuladoras necesitan aceptar el parámetro
+		de respuesta <em>response</em>, y de esta manera, hacer uso de él
+		de manera de responder a la petición directamente.
+	</p>
+	<p>
+		El manipulador <em>iniciar</em> responderá con el callback 
+		anónimo <em>exec()</em>, y el manipulador <em>subir</em> replicará
+		simplemente con "Hola Subir", pero esta vez, haciendo uso del 
+		objeto <em>response</em>.
+	</p>
+	<p>
+		Si arrancamos nuestra aplicación de nuevo (<em>node index.js</em>),
+		esto debería funcionar de acuerdo a lo esperado.
+	</p>
+	<p>
+		Si quieres probar que la operación cara dentro de <em>/iniciar</em>
+		no bloqueará más las peticiones para <em>/subir</em> que sean 
+		respondidas inmediatamente, entonces modifica tu archivo
+		<em>requestHandlers.js</em> como sigue:
+	<p>
+<pre class="prettyprint lang-js">var exec = require("child_process").exec;
+
+function iniciar(response) {
+  console.log("Manipulador de petición 'iniciar' fue llamado.");
+
+  exec("find /",
+    { timeout: 10000, maxBuffer: 20000*1024 },
+    function (error, stdout, stderr) {
+      response.writeHead(200, {"Content-Type": "text/html"});
+      response.write(stdout);
+      response.end();
+    });
+}
+
+function subir(response) {
+  console.log("Manipulador de petición 'subir' fue llamado.");
+  response.writeHead(200, {"Content-Type": "text/html"});
+  response.write("Hola Subir");
+  response.end();
+}
+
+exports.iniciar = iniciar;
+exports.subir = subir;
+</pre>
+	
+	<!-- HAJ MARK ->
 
 		</div>
 		<div id="workinprogressnote">
