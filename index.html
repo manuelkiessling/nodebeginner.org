@@ -719,8 +719,8 @@
 				part of our stack, the HTTP server.
 			</p>
 
-			<h3>Building the application stack</h3>
-			<h4>A basic HTTP server</h4>
+			<h2>Building the application stack</h2>
+			<h3>A basic HTTP server</h3>
 			<p>
 				When I arrived at the point where I wanted to start with my
 				first "real" Node.js application, I wondered not only how to
@@ -783,7 +783,7 @@ http.createServer(function(request, response) {
 				it.
 			</p>
 
-			<h4>Analyzing our HTTP server</h4>
+			<h3>Analyzing our HTTP server</h3>
 			<p>
 				Well, then, let's analyze what's actually going on here.
 			</p>
@@ -829,7 +829,7 @@ server.listen(8888);</pre>
 				like any other value.
 			</p>
 
-			<h4>Passing functions around</h4>
+			<h3>Passing functions around</h3>
 			<p>
 				You can, for example, do something like this:
 			</p>
@@ -890,7 +890,7 @@ execute(function(word){ console.log(word) }, "Hello");
 				pass, or by defining the function to pass in-place.
 			</p>
 
-			<h4>How function passing makes our HTTP server work</h4>
+			<h3>How function passing makes our HTTP server work</h3>
 			<p>
 				With this knowledge, let's get back to our minimalistic
 				HTTP server:
@@ -926,7 +926,7 @@ http.createServer(onRequest).listen(8888);
 				that way?
 			</p>
 
-			<h4>Event-driven callbacks</h4>
+			<h3>Event-driven callbacks</h3>
 			<p>
 				The answer is a) not that easy to give (at least for me), and
 				b) lies in the very nature of how Node.js works. It's
@@ -1038,7 +1038,7 @@ console.log("Server has started.");
 				http://localhost:8888/).
 			</p>
 
-			<h4>How our server handles requests</h4>
+			<h3>How our server handles requests</h3>
 			<p>
 				Ok, let's quickly analyze the rest of our server code, that
 				is, the body of our callback function <em>onRequest()</em>.
@@ -1073,7 +1073,7 @@ console.log("Server has started.");
 			</p>
 
 
-			<h4>Finding a place for our server module</h4>
+			<h3>Finding a place for our server module</h3>
 			<p>
 				Ok, I promised we will get back to how to organize our
 				application. We have the code for a very basic HTTP server in
@@ -1203,7 +1203,7 @@ server.start();
 				called <em>router</em>.
 			</p>
 
-			<h4>What's needed to "route" requests?</h4>
+			<h3>What's needed to "route" requests?</h3>
 			<p>
 				We need to be able to feed the requested URL and possible
 				additional GET and POST parameters into our router, and based
@@ -1364,7 +1364,7 @@ About to route a request for /foo
 				request).
 			</p>
 
-			<h4>Execution in the kingdom of verbs</h4>
+			<h3>Execution in the kingdom of verbs</h3>
 			<p>
 				May I once again stray away for a while and talk about
 				functional programming again?
@@ -1399,7 +1399,7 @@ About to route a request for /foo
 				to software I ever had the pleasure to encounter.
 			</p>
 
-			<h4>Routing to real request handlers</h4>
+			<h3>Routing to real request handlers</h3>
 			<p>
 				Back to business. Our HTTP server and our request router are
 				now best friends and talk to each other as we intended.
@@ -1612,7 +1612,7 @@ Request handler 'start' was called.
 </pre>
 
 
-			<h4>Making the request handlers respond</h4>
+			<h3>Making the request handlers respond</h3>
 			<p>
 				Beautiful. Now if only the request handlers could actually send
 				something back to the browser, that would be even better,
@@ -1629,7 +1629,7 @@ Request handler 'start' was called.
 				browser just like our <em>onRequest</em> function does.
 			</p>
 
-			<h5>How to not do it</h5>
+			<h4>How to not do it</h4>
 			<p>
 				The straight-forward approach we -  as developers with a
 				background in PHP or Ruby - might want to follow is actually
@@ -1728,7 +1728,7 @@ exports.start = start;
 				Let's take a bit more time for the long answer.
 			</p>
 
-			<h5>Blocking and non-blocking</h5>
+			<h4>Blocking and non-blocking</h4>
 			<p>
 				As said, the problems will arise when we include non-blocking
 				operations in the request handlers. But let's talk about
@@ -1967,7 +1967,7 @@ exports.upload = upload;
 				the right way.
 			</p>
 
-			<h5>Responding request handlers with non-blocking operations</h5>
+			<h4>Responding request handlers with non-blocking operations</h4>
 			<p>
 				I've just used the phrase "the right way". Dangerous stuff.
 				Quite often, there is no single "right way".
@@ -2126,7 +2126,7 @@ exports.upload = upload;
 			</p>
 
 
-			<h4>Serving something useful</h4>
+			<h3>Serving something useful</h3>
 			<p>
 				Until now, what we have done is all fine and dandy, but we
 				haven't created any value for the customers of our
@@ -2166,7 +2166,7 @@ exports.upload = upload;
 				included in a beginner's tutorial.
 			</p>
 
-			<h5>Handling POST requests</h5>
+			<h4>Handling POST requests</h4>
 			<p>
 				Let's keep this banally simple: We will present a textarea that
 				can be filled by the user and submitted to the server in a POST
@@ -2445,7 +2445,7 @@ exports.upload = upload;
 				about handling POST data.
 			</p>
 
-			<h5>Handling file uploads</h5>
+			<h4>Handling file uploads</h4>
 			<p>
 				Let's tackle our final use case. Our plan was to allow users to
 				upload an image file, and display the uploaded image in the
