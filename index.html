@@ -1572,9 +1572,9 @@ exports.start = start;
 <pre class="prettyprint lang-js">function route(handle, pathname) {
   console.log("About to route a request for " + pathname);
   if (typeof handle[pathname] === 'function') {
-	  handle[pathname]();
+    handle[pathname]();
   } else {
-	  console.log("No request handler found for " + pathname);
+    console.log("No request handler found for " + pathname);
   }
 }
 
@@ -1700,8 +1700,8 @@ function start(route, handle) {
     console.log("Request for " + pathname + " received.");
 
     response.writeHead(200, {"Content-Type": "text/plain"});
-	var content = route(handle, pathname)
-	response.write(content);
+    var content = route(handle, pathname)
+    response.write(content);
     response.end();
   }
 
@@ -1752,8 +1752,8 @@ exports.start = start;
   console.log("Request handler 'start' was called.");
 
   function sleep(milliSeconds) {
-    var startTime = new Date().getTime(); // get the current time
-    while (new Date().getTime() &lt; startTime + milliSeconds); // hog cpu
+    var startTime = new Date().getTime();
+    while (new Date().getTime() &lt; startTime + milliSeconds);
   }
 
   sleep(10000);
@@ -2182,7 +2182,8 @@ exports.upload = upload;
 
   var body = '&lt;html&gt;'+
     '&lt;head&gt;'+
-    '&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /&gt;'+
+    '&lt;meta http-equiv="Content-Type" content="text/html; '+
+    'charset=UTF-8" /&gt;'+
     '&lt;/head&gt;'+
     '&lt;body&gt;'+
     '&lt;form action="/upload" method="post"&gt;'+
@@ -2367,7 +2368,8 @@ exports.route = route;
 
   var body = '&lt;html&gt;'+
     '&lt;head&gt;'+
-    '&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /&gt;'+
+    '&lt;meta http-equiv="Content-Type" content="text/html; '+
+    'charset=UTF-8" /&gt;'+
     '&lt;/head&gt;'+
     '&lt;body&gt;'+
     '&lt;form action="/upload" method="post"&gt;'+
@@ -2415,7 +2417,8 @@ function start(response, postData) {
 
   var body = '&lt;html&gt;'+
     '&lt;head&gt;'+
-    '&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /&gt;'+
+    '&lt;meta http-equiv="Content-Type" content="text/html; '+
+    'charset=UTF-8" /&gt;'+
     '&lt;/head&gt;'+
     '&lt;body&gt;'+
     '&lt;form action="/upload" method="post"&gt;'+
@@ -2433,7 +2436,8 @@ function start(response, postData) {
 function upload(response, postData) {
   console.log("Request handler 'upload' was called.");
   response.writeHead(200, {"Content-Type": "text/plain"});
-  response.write("You've sent the text: " + querystring.parse(postData)["text"]);
+  response.write("You've sent the text: "+
+  querystring.parse(postData)["text"]);
   response.end();
 }
 
@@ -2522,7 +2526,8 @@ http.createServer(function(req, res) {
   // show a file upload form
   res.writeHead(200, {'content-type': 'text/html'});
   res.end(
-    '&lt;form action="/upload" enctype="multipart/form-data" method="post"&gt;'+
+    '&lt;form action="/upload" enctype="multipart/form-data" '+
+    'method="post"&gt;'+
     '&lt;input type="text" name="title"&gt;&lt;br&gt;'+
     '&lt;input type="file" name="upload" multiple="multiple"&gt;&lt;br&gt;'+
     '&lt;input type="submit" value="Upload"&gt;'+
@@ -2586,7 +2591,8 @@ function start(response, postData) {
 
   var body = '&lt;html&gt;'+
     '&lt;head&gt;'+
-    '&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /&gt;'+
+    '&lt;meta http-equiv="Content-Type" '+
+    'content="text/html; charset=UTF-8" /&gt;'+
     '&lt;/head&gt;'+
     '&lt;body&gt;'+
     '&lt;form action="/upload" method="post"&gt;'+
@@ -2603,8 +2609,9 @@ function start(response, postData) {
 
 function upload(response, postData) {
   console.log("Request handler 'upload' was called.");
-  response.writeHead(200, {"Content-Type": "text/html"});
-  response.write("You've sent the text: " + querystring.parse(postData)["text"]);
+  response.writeHead(200, {"Content-Type": "text/plain"});
+  response.write("You've sent the text: "+
+  querystring.parse(postData)["text"]);
   response.end();
 }
 
@@ -2684,10 +2691,12 @@ function start(response, postData) {
 
   var body = '&lt;html&gt;'+
     '&lt;head&gt;'+
-    '&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /&gt;'+
+    '&lt;meta http-equiv="Content-Type" '+
+    'content="text/html; charset=UTF-8" /&gt;'+
     '&lt;/head&gt;'+
     '&lt;body&gt;'+
-    '&lt;form action="/upload" enctype="multipart/form-data" method="post"&gt;'+
+    '&lt;form action="/upload" enctype="multipart/form-data" '+
+    'method="post"&gt;'+
     '&lt;input type="file" name="upload"&gt;'+
     '&lt;input type="submit" value="Upload file" /&gt;'+
     '&lt;/form&gt;'+
@@ -2701,8 +2710,9 @@ function start(response, postData) {
 
 function upload(response, postData) {
   console.log("Request handler 'upload' was called.");
-  response.writeHead(200, {"Content-Type": "text/html"});
-  response.write("You've sent the text: " + querystring.parse(postData)["text"]);
+  response.writeHead(200, {"Content-Type": "text/plain"});
+  response.write("You've sent the text: "+
+  querystring.parse(postData)["text"]);
   response.end();
 }
 
@@ -2819,10 +2829,12 @@ function start(response) {
 
   var body = '&lt;html&gt;'+
     '&lt;head&gt;'+
-    '&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /&gt;'+
+    '&lt;meta http-equiv="Content-Type" content="text/html; '+
+    'charset=UTF-8" /&gt;'+
     '&lt;/head&gt;'+
     '&lt;body&gt;'+
-    '&lt;form action="/upload" enctype="multipart/form-data" method="post"&gt;'+
+    '&lt;form action="/upload" enctype="multipart/form-data" '+
+    'method="post"&gt;'+
     '&lt;input type="file" name="upload" multiple="multiple"&gt;'+
     '&lt;input type="submit" value="Upload file" /&gt;'+
     '&lt;/form&gt;'+
