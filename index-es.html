@@ -717,9 +717,9 @@
 		de nuestra pila, el servidor HTTP..
 	</p>
 
-	<h3>Construyendo la Pila de Aplicaciones</h3>
+	<h2>Construyendo la Pila de Aplicaciones</h2>
 	
-	<h4>Un Servidor HTTP Básico</h4>
+	<h3>Un Servidor HTTP Básico</h3>
 	<p>
 		Cuando llegué al punto donde quería empezar con mi primera
 		aplicación Node.js "real", me pregunté no solo como la iba
@@ -783,7 +783,7 @@ http.createServer(function(request, response) {
 	Prometo que volveremos a esto.
 	</p>
 
-	<h4>Analizando nuestro servidor HTTP</h4>
+	<h3>Analizando nuestro servidor HTTP</h3>
 	
 	<p>
 		Bueno, entonces, analicemos que está pasando aquí.
@@ -829,7 +829,7 @@ server.listen(8888);</pre>
 		pueden ser pasadas de un lado a otro como cualquier otro valor.
 	</p>
 
-	<h4>Pasando Funciones de un Lado a Otro</h4>
+	<h3>Pasando Funciones de un Lado a Otro</h3>
 	
 	<p>
 		Puedes, por ejemplo, hacer algo como esto:				
@@ -894,7 +894,7 @@ ejecutar(function(palabra){ console.log(palabra) }, "Hola");
 		la función a pasar en el mismo lugar.
 	</p>						
 			
-	<h4>De Qué manera el pasar funciones hace que nuestro servidor HTTP funcione</h4>
+	<h3>De Qué manera el pasar funciones hace que nuestro servidor HTTP funcione</h3>
 	<p>
 		Con este conocimiento, Volvamos a nuestro servidor HTTP
 		minimalista:
@@ -930,7 +930,7 @@ http.createServer(onRequest).listen(8888);
 		¿Por Qué estamos haciendo esto de esta manera?				
 	</p>
 		
-	<h4>Callbacks Manejadas por Eventos</h4>
+	<h3>Callbacks Manejadas por Eventos</h3>
 		
 	<p>
 		La respuesta a) No es una no muy fácil de dar (al menos para mí),
@@ -1045,7 +1045,7 @@ console.log("Servidor Iniciado.");
 		cada vez que abras http://localhost:8888/).
 	</p>
 		
-	<h4>Como nuestro Servidor manipula las peticiones</h4>
+	<h3>Como nuestro Servidor manipula las peticiones</h3>
 		
 	<p>
 		OK, Analicemos rápidamente el resto del código de nuestro servidor, 
@@ -1078,7 +1078,7 @@ console.log("Servidor Iniciado.");
 		completamente.
 	</p>
 		
-	<h4>Encontrando un lugar para nuestro módulo de servidor</h4>
+	<h3>Encontrando un lugar para nuestro módulo de servidor</h3>
 	<p>
 		OK, prometí que volveríamos a al Cómo organizar nuestra aplicación.
 		Tenemos el código de nuestro servidor HTTP muy básico en el archivo
@@ -1204,7 +1204,7 @@ server.iniciar();
 		un módulo llamado <em>router</em>.
 	</p>
 		
-	<h4>¿Qué se necesita para "rutear" peticiones?</h4>
+	<h3>¿Qué se necesita para "rutear" peticiones?</h3>
 	<p>
 		Necesitamos ser capaces de entregar la URL requerida y los posibles 
 		parámetros GET o POST adicionales a nuestro router, y basado en estos,
@@ -1366,7 +1366,7 @@ A punto de rutear una peticion para /foo
 		He omitido la molesta respuesta de la petición para /favicon.ico
 	</p>
 
-	<h4>Ejecución en el reino de los verbos</h4>
+	<h3>Ejecución en el reino de los verbos</h3>
 	<p>
 		¿Puedo divagar un vez más por un momento y hablar acerca de la programación 
 		funcional de nuevo?
@@ -1400,7 +1400,7 @@ A punto de rutear una peticion para /foo
 		el software que haya tenido el placer de encontrar.
 	</p>
 	
-	<h4>Ruteando a los verdaderos manipuladores de peticiones</h4>
+	<h3>Ruteando a los verdaderos manipuladores de peticiones</h3>
 	<p>
 		Volviendo al tema. Nuestro servidor HTTP y nuestro router de peticiones son
 		ahora los mejores amigos y conversan entre ellos, tal y como pretendimos.
@@ -1600,7 +1600,7 @@ Manipulador de peticion 'iniciar' ha sido llamado.
 		manipuladores de peticiones para hablar con el browser de la misma
 		manera que la función <em>onRequest</em> lo hace.
 	</p>
-	<h5>¿Cómo no se debe hacer esto?</h5>
+	<h4>¿Cómo no se debe hacer esto?</h4>
 	<p>
 		La aproximación directa que nosotros - desarrolladores con un trasfondo
 		en PHP o Ruby - quisieramos seguir es de hecho conducente a errores:
@@ -1699,7 +1699,7 @@ exports.iniciar = iniciar;
 		Tomémosnos algún tiempo para la respuesta larga.
 	</p>
 		
-	<h5>Bloqueante y No-Bloqueante</h5>
+	<h4>Bloqueante y No-Bloqueante</h4>
 	<p>
 		Como se dijo, los problemas van a surgir cuando nosotros incluyamos
 		operaciones no-bloqueantes en los manipuladores de petición. Pero
@@ -1881,8 +1881,8 @@ exports.subir = subir;
 		cómo hacer que nuestros manipuladores de petición respondan a los
 		requirimientos del browser de la manera correcta.
 	</p>
-	<h5>Respondiendo a los Manipuladores de Petición con Operaciones
-			No Bloqueantes</h5>
+	<h4>Respondiendo a los Manipuladores de Petición con Operaciones
+			No Bloqueantes</h4>
 	<p>
 		Acabo de usar la frase "la manera correcta". Cosa Peligrosa.
 		Frecuentemente, no existe una única "manera correcta".
@@ -2036,26 +2036,159 @@ function subir(response) {
 exports.iniciar = iniciar;
 exports.subir = subir;
 </pre>
+	<p>
+		Esto hará que las peticiones HTTP a <a href="http://localhost:8888/iniciar" rel="nofollow">http://localhost:8888/iniciar</a>
+		tomen al menos 10 segundos, pero, las peticiones a <a href="http://localhost:8888/subir" rel="nofollow">http://localhost:8888/subir</a>
+		sean respondidas inmediatamente, incluso si <em>/iniciar</em> todavía está en proceso.
+	</p>
 	
-	<!-- HAJ MARK ->
+	<h4>Sirviendo algo útil</h4>
+	<p>
+		Hasta ahora, lo que hemos hecho es todo simpático y bonito, pero no
+		hemos creado aún valor para los clientes de nuestro sitio web
+		ganador de premios.
+	</p>
+	<p>
+		Nuestro servidor, router y manipuladores de petición están en su lugar,
+		así que ahora podemos empezar a agregar contenido a nuestro sitio que
+		permitirá a nuestros usuarios interactuar y andar a través de los casos
+		de uso de elegir un archivo, subir este archivo, y ver el archivo
+		subido en el browser. Por simplicidad asumiremos que sòlo los archivos
+		de imagen van a ser subidos y desplegados a través de la aplicación.
+	</p>
+	<p>
+		OK, veámoslo paso a paso, pero ahora, con la mayoría de las técnicas y
+		principios de JavaScript explicadas, acelerémoslo un poco al mismo
+		tiempo.
+	</p>
+	<p>
+		Aquí, paso a paso significa a grandes razgos dos pasos: Vamos a ver
+		primero como manejar peticiones POST entrantes (pero no subidas de
+		archivos), y en un segundo paso, haremos uso de un modulo externo
+		de Node.js para la manipulación de subida de archivos. He escogido
+		este alcance por dos razones:
+	</p>
+	<p>
+		Primero, manejar peticiones POST básicas es relativamente simple con 
+		Node.js, pero aún nos enseña lo suficiente para que valga la pena 
+		ejercitarlo.
+		<br/>
+		Segundo, manejar las subidas de archivos (i.e. peticiones POST
+		multiparte) <em>no es </em> simple con Node.js, consecuentemente
+		está más allá del alcance de este tutorial, pero el aprender a usar 
+		un modulo externo es una lección en sí misma que tiene sentido de
+		ser incluída en un tutorial de principiantes.
+	</p>
+	
+	<h4>Manejando Peticiones POST</h4>
+	<p>
+		Mantengamos esto ridículamente simple: Presentaremos un área de
+		texto que pueda ser llenada por el usuario y luego enviada al servidor
+		en una petición POST. Una vez recibida y manipulada esta petición, 
+		despliegaremos el contenido del área de texto.
+	</p>
+	<p>
+		El HTML para el formulario de esta área de texto necesita ser 
+		servida por nuestro manipulador de petición <em>/iniciar</em>, así
+		que agreguémoslo de inmediato. En el archivo 
+		<em>requestHandlers.js</em>:
+	</p>
+<pre class="prettyprint lang-js">function iniciar(response) {
+  console.log("Manipulador de peticiones 'iniciar' fue llamado.");
 
+  var body = '<html>'+
+    '<head>'+
+    '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />'+
+    '</head>'+
+    '<body>'+
+    '<form action="/subir" method="post">'+
+    '<textarea name="text" rows="20" cols="60"></textarea>'+
+    '<input type="submit" value="Submit text" />'+
+    '</form>'+
+    '</body>'+
+    '</html>';
+
+    response.writeHead(200, {"Content-Type": "text/html"});
+    response.write(body);
+    response.end();
+}
+
+function upload(response) {
+  console.log("Manipulador de peticiones 'subir' fue llamado.");
+  response.writeHead(200, {"Content-Type": "text/html"});
+  response.write("Hola Subir");
+  response.end();
+}
+
+exports.iniciar = iniciar;
+exports.subir = subir;
+</pre>
+	<p>
+		Ahora, si esto no va a ganar los Webby Awards, entonces no se que
+		podría. Haciendo la petición
+		<a href="http://localhost:8888/iniciar" rel="nofollow">http://localhost:8888/iniciar</a>
+		en tu browser, deberías ver un formulario muy simple. Si no, entonces
+		probablemente no has reiniciado la aplicación.
+	</p>
+	<p>
+		Te estoy escuchando: Tener contenido de vista justo en el manipulador
+		de petición es feo. Sin embargo, he decidido no incluir ese nivel
+		extra de abstracción (esto es, separar la lógica de vista y controlador)
+		en este tutorial, ya que pienso que es no nos enseña nada que valga la
+		pena saber en el contexto de JavaScript o Node.js.
+	</p>
+	<p>
+		Mejor usemos el espacio que queda en pantalla para un problema más
+		interesante, esto es, manipular la petición POST que dará con nuestro
+		manipulador de petición <em>/subir</em> cuando el usuario envíe este
+		formulario.
+	</p>
+	<p>
+		Ahora que nos estamos convirtiendo en "novicios expertos", ya no nos
+		sorprende el hecho que manipular información de POST este hecho de una
+		manera no bloqueante, mediante el uso de llamadas asincrónicas.
+	</p>
+	<p>
+		Lo que tiene sentido, ya que las peticiones POST pueden ser potencialmente
+		muy grandes - nada detiene al usuario de introducir texto que tenga 
+		muchos megabytes de tamaño. Manipular este gran volumen de información
+		de una vez puede resultar en una operación bloqueante.
+	</p>
+	<p>
+		Para hacer el proceso completo no bloqueante. Node.js le entrega a
+		nuestro código la información POST en pequeños trozos con callbacks
+		que son llamadas ante determinados eventos. Estos eventos son 
+		<em>data</em> (un nuevo trozo de información POST ha llegado) y
+		<em>end</em> (todos los trozos han sido recibidos).
+	</p>
+	<p>
+		Necesitamos decirle a Node.js que funciones llamar de vuelta cuando
+		estos eventos ocurran. Esto es hecho agregando <em>listeners</em>
+		(N. del T.: Del verbo <em>listen</em> - escuchar) al objeto de
+		petición (<em>request</em>) que es pasado a nuestro callback 
+		<em>onRequest</em> cada vez que una petición HTTP es recibida.
+	</p>
+	<p>
+		Esto básicamente luce así:
+	</p>
+<pre class="prettyprint lang-js">request.addListener("data", function(chunk) {
+	// funcion llamada cuando un nuevo trozo (chunk) de informacion (data)
+	// es recibido.
+});
+
+request.addListener("end", function() {
+	// funcion llamada cuando todos los trozos (chunks) de informacion
+	// (data) han sido recibidos.
+});	
+</pre>
+
+	<!-- HAJ MARK -->
+	
 		</div>
 		<div id="workinprogressnote">
 			<p>
-				El Libro de Node.js para el Principiante
-				<br /> 
-				es un "work in progress", es decir, se está
-				<br />
-				realizando en este mismo minuto
-				<br />
-				<strong>Está terminado en un 80%.</strong>
-				<br />
-				Vuelve diariamente para ver la última versión.
-			</p>
-			<p>
-				La versión que estás leyendo actualmente fue actualizada el
-				<br />
-				<strong>Domingo 24 de Abril a las 06:52 AM EDT</strong>.
+				Este documento fue actualizado el 
+				<strong>Miércoles 29 de Junio a las 12:10 AM EDT</strong>.
 			</p>
 			<p>
 				La mejor manera de mantenerte informado acerca de actualizaciones
