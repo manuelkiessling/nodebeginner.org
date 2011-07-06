@@ -396,7 +396,7 @@
 			</p>
 			<p>
 				The code samples in this book are tested to work with Node.js
-				version 0.4.8.
+				version 0.4.9.
 			</p>
 
 			<h3>Intended audience</h3>
@@ -934,7 +934,7 @@ http.createServer(onRequest).listen(8888);
 			</p>
 			<p>
 				You might want to take the time to read Felix
-				Geisendörfer's excellent post
+				Geisend&ouml;rfer's excellent post
 				<a href="http://debuggable.com/posts/understanding-node-js:4bd98440-45e4-4a9a-8ef7-0f7ecbdd56cb">Understanding node.js</a>
 				for some background explanation.
 			</p>
@@ -2258,11 +2258,11 @@ exports.upload = upload;
 				This basically looks like this:
 			</p>
 <pre class="prettyprint lang-js">request.addListener("data", function(chunk) {
-	// called when a new chunk of data was received
+  // called when a new chunk of data was received
 });
 
 request.addListener("end", function() {
-	// called when all chunks of data have been received
+  // called when all chunks of data have been received
 });
 </pre>
 			<p>
@@ -2302,7 +2302,8 @@ function start(route, handle) {
 
     request.addListener("data", function(postDataChunk) {
       postData += postDataChunk;
-      console.log("Received POST data chunk '" + postDataChunk + "'.");
+      console.log("Received POST data chunk '"+
+      postDataChunk + "'.");
     });
 
     request.addListener("end", function() {
@@ -2463,7 +2464,7 @@ exports.upload = upload;
 			</p>
 			<p>
 				The external module we are going to use is
-				<em>node-formidable</em> by Felix Geisendörfer. It nicely
+				<em>node-formidable</em> by Felix Geisend&ouml;rfer. It nicely
 				abstracts away all the nasty details of parsing incoming file
 				data. At the end of the day, handling incoming files is "only"
 				about handling POST data - but the devil really <em>is</em> in
