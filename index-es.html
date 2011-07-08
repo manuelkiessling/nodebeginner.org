@@ -1180,7 +1180,7 @@ server.iniciar();
 		Eso es. Podemos ahora arrancar nuestra aplicación por medio de nuestro
 		script principal, y va a hacer exactamente lo mismo:
 	</p>
-<pre>node index.js</pre>
+<pre class="prettyprint lang-js">node index.js</pre>
 	<p>
 		Bien, ahora podemos poner las diferentes partes de nuestra aplicación
 		en archivos diferentes y enlazarlas juntas a través de la
@@ -1233,7 +1233,7 @@ server.iniciar();
 		el string de consulta), y <em>querystring</em> puede, en cambio, ser usado
 		para parsear el string de consulta para los parámetros requeridos:
 	</p>
-<pre>                               url.parse(string).query
+<pre class="prettyprint lang-js">                               url.parse(string).query
                                            |
            url.parse(string).pathname      |
                        |                   |
@@ -1358,7 +1358,7 @@ server.iniciar(router.route);
 		la aplicación que nuestro servidor HTTP hace uso de nuestro router y le entrega
 		el nombre de ruta requerido:
 	</p>
-<pre>bash$ node index.js
+<pre class="prettyprint lang-js">bash$ node index.js
 Petición para /foo recibida.
 A punto de rutear una peticion para /foo
 </pre>
@@ -1578,7 +1578,7 @@ exports.iniciar = iniciar;
 		<a href="http://localhost:8888/iniciar" rel="nofollow">http://localhost:8888/iniciar</a>,
 		vamos a probar que el manipulador de petición correcto fue, de hecho, llamado:
 	</p>
-<pre>Servidor Iniciado.
+<pre class="prettyprint lang-js">Servidor Iniciado.
 Peticion para /iniciar recibida.
 
 A punto de rutear una petición para /iniciar
@@ -2096,17 +2096,18 @@ exports.subir = subir;
 <pre class="prettyprint lang-js">function iniciar(response) {
   console.log("Manipulador de peticiones 'iniciar' fue llamado.");
 
-  var body = '<html>'+
-    '<head>'+
-    '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />'+
-    '</head>'+
-    '<body>'+
-    '<form action="/subir" method="post">'+
-    '<textarea name="text" rows="20" cols="60"></textarea>'+
-    '<input type="submit" value="Submit text" />'+
-    '</form>'+
-    '</body>'+
-    '</html>';
+  var body = '&lt;html&gt;'+
+    '&lt;head&gt;'+
+	'&lt;meta http-equiv="Content-Type" content="text/html; 
+		charset=UTF-8" /&gt;'+
+    '&lt;/head&gt;'+
+    '&lt;body&gt;'+
+    '&lt;form action="/subir" method="post"&gt;'+
+    '&lt;textarea name="text" rows="20" cols="60"&gt;&lt;/textarea&gt;'+
+    '&lt;input type="submit" value="Submit text" /&gt;'+
+    '&lt;/form&gt;'+
+    '&lt;/body&gt;'+
+    '&lt;/html&gt;';
 
     response.writeHead(200, {"Content-Type": "text/html"});
     response.write(body);
@@ -2172,18 +2173,204 @@ exports.subir = subir;
 		Esto básicamente luce así:
 	</p>
 <pre class="prettyprint lang-js">request.addListener("data", function(chunk) {
-	// funcion llamada cuando un nuevo trozo (chunk) de informacion (data)
-	// es recibido.
+	// funcion llamada cuando un nuevo trozo (chunk) 
+	// de informacion (data) es recibido.
 });
 
 request.addListener("end", function() {
-	// funcion llamada cuando todos los trozos (chunks) de informacion
-	// (data) han sido recibidos.
+	// funcion llamada cuando todos los trozos (chunks) 
+	// de informacion (data) han sido recibidos.
 });	
 </pre>
 
-	<!-- HAJ MARK -->
-	
+	<p>
+		La pregunta que surge es dónde implementar ésta lógica. Nosotros
+		sólo podemos acceder al objeto <em>request</em> en nuestro 
+		servidor - no se lo estamos pasando al router o a los manipuladores
+		de petición, como lo hicimos con el objeto <em>response</em>.
+	</p>
+	<p>
+		En mi opinión, es un trabajo del servidor HTTP de darle a la 
+		aplicación toda la información de una petición que necesite para hacer
+		su trabajo. Luego, sugiero que manejemos el procesamiento de la
+		petición de POST en el servidor mismo y pasemos la información final
+		al router y a los manipuladores de petición, los que luego decidirán
+		que hacer con ésta.
+	</p>
+	<p>
+		Entonces, la idea es poner los callbacks <em>data</em> y <em>end</em>
+		en el servidor, recogiendo todo los trozos de información POST en el 
+		callback <em>data</em>, y llamando al router una vez recibido el
+		evento <em>end</em>, mientras le entregamos los trozos de información
+		recogidos al router, el que a su vez se los pasa a los manipuladores
+		de petición.
+	</p>
+	<p>
+		Aquí vamos, empezando con <em>server.js</em>:
+	</p>
+<pre class="prettyprint lang-js">var http = require("http");
+var url = require("url");
+
+function iniciar(route, handle) {
+  function onRequest(request, response) {
+    	var dataPosteada = "";
+        var pathname = url.parse(request.url).pathname;
+    	console.log("Peticion para " + pathname + " recibida.");
+
+    	request.setEncoding("utf8");
+
+    	request.addListener("data", function(trozoPosteado) {
+      	dataPosteada += trozoPosteado;
+      	console.log("Recibido trozo POST '" + trozoPosteado + "'.");
+    });
+
+    request.addListener("end", function() {
+      route(handle, pathname, response, dataPosteada);
+    });
+
+  }
+
+  http.createServer(onRequest).listen(8888);
+  console.log("Servidor Iniciado");
+}
+
+exports.iniciar = iniciar;
+</pre>
+	<p>
+		Básicamente hicimos tres cosas aquí: Primero, definimos que
+		esperamos que la codificación de la información recibida sea
+		UTF-8, agregamos un listener de eventos para el evento "data" el
+		cual llena paso a paso nuestra variable <em>dataPosteada</em> cada
+		vez que un nuevo trozo de información POST llega, y movemos la 
+		llamada desde nuestro router al callback del evento <em>end</em>
+		de manera de asegurarnos que sólo sea llamado cuando toda la 
+		información POST sea reunida. Además, pasamos la información POST
+		al router, ya que la vamos a necesitar en nuestros manipuladores
+		de eventos.
+	</p>
+	<p>
+		Agregar un loggueo de consola cada vez que un trozo es recibido es
+		una mala idea para código de producción (megabytes de información
+		POST, ¿recuerdan?, pero tiene sentido para que veamos que pasa.
+	</p>
+	<p>
+	Mejoremos nuestra aplicación. En la página <em>/subir</em>, desplegaremos
+	el contenido recibido. Para hacer esto posible, necesitamos pasar
+	la <em>dataPosteada</em> a los manipuladores de petición, en 
+	<em>router.js</em>.
+
+<pre class="prettyprint lang-js">function route(handle, pathname, response, postData) {
+  console.log("A punto de rutear una peticion para " + pathname);
+  if (typeof handle[pathname] === 'function') {
+    handle[pathname](response, postData);
+  } else {
+    console.log("No se ha encontrado manipulador para " + pathname);
+    response.writeHead(404, {"Content-Type": "text/html"});
+    response.write("404 No encontrado");
+    response.end();
+  }
+}
+
+exports.route = route;
+</pre>
+
+	<p>
+		Y en <em>requestHandlers.js</em>, incluímos la información de
+		nuestro manipulador de petición <em>subir</em>:
+	</p>
+
+<pre class="prettyprint lang-js">function iniciar(response, postData) {
+  console.log("Manipulador de Peticion 'iniciar' fue llamado.");
+
+  var body = '&lt;html&gt;'+
+    '&lt;head&gt;'+
+	'&lt;meta http-equiv="Content-Type" content="text/html; 
+		charset=UTF-8" /&gt;'+
+    '&lt;/head&gt;'+
+    '&lt;body&gt;'+
+    '&lt;form action="/subir" method="post"&gt;'+
+    '&lt;textarea name="text" rows="20" cols="60"&gt;&lt;/textarea&gt;'+
+    '&lt;input type="submit" value="Submit text" /&gt;'+
+    '&lt;/form&gt;'+
+    '&lt;/body&gt;'+
+    '&lt;/html&gt;';
+  
+    response.writeHead(200, {"Content-Type": "text/html"});
+    response.write(body);
+    response.end();
+}
+
+function subir(response, dataPosteada) {
+  console.log("Manipulador de Peticion 'subir' fue llamado.");
+  response.writeHead(200, {"Content-Type": "text/html"});
+  response.write("Tu enviaste: " + dataPosteada);
+  response.end();
+}
+
+exports.start = start;
+exports.upload = upload;
+</pre>
+
+	<p>
+		Eso es, ahora somos capaces de recibir información POST
+		y usarla en nuestros manipuladores de petición.
+	</p>
+	<p>
+		Una última cosa para este tema: Lo que le estamos pasando al
+		router y los manipuladores de petición es el cuerpo (<em>body</em>)
+		de nuestra petición POST. Probablemente necesitemos consumir los
+		campos individuales que conforman la información POST, en este
+		caso, el valor del campo <em>text</em>.
+	<p>
+	</p>
+	<p>
+		Nosotros ya hemos leído acerca del módulo <em>querystring</em>,
+		el que nos ayuda con esto:
+	</p>
+
+<pre class="prettyprint lang-js">var querystring = require("querystring");
+
+function iniciar(response, postData) {
+  console.log("Manipulador de peticion 'inicio' fue llamado.");
+
+  var body = '&lt;html&gt;'+
+    '&lt;head&gt;'+
+	'&lt;meta http-equiv="Content-Type" content="text/html; 
+		charset=UTF-8" /&gt;'+
+    '&lt;/head&gt;'+
+    '&lt;body&gt;'+
+    '&lt;form action="/subir" method="post"&gt;'+
+    '&lt;textarea name="text" rows="20" cols="60"&gt;&lt;/textarea&gt;'+
+    '&lt;input type="submit" value="Submit text" /&gt;'+
+    '&lt;/form&gt;'+
+    '&lt;/body&gt;'+
+    '&lt;/html&gt;';
+
+	response.writeHead(200, {"Content-Type": "text/html"});
+    	response.write(body);
+    	response.end();
+	}
+
+	function subir(response, dataPosteada) {
+  		console.log("Manipulador de peticion 'subir' fue llamado.");
+  		response.writeHead(200, {"Content-Type": "text/html"});
+		response.write("Tu enviaste el texto: : " + 
+			querystring.parse(dataPosteada)["text"]);
+  		response.end();
+		}
+
+exports.iniciar = iniciar;
+exports.subir = subir;
+</pre>
+	<p>
+		Bueno, para un tutorial de principiantes, esto es todo lo que 
+		diremos acerca de la inforamción POST.
+	</p>
+	<p>
+		La próxima vez, hablaremos sobre como usar el excelente módulo
+		<em>node-formidable</em> para permitirnos lograr nuestro caso de 
+		uso final: subir y desplegar imágenes.
+	</p>	
 		</div>
 		<div id="workinprogressnote">
 			<p>
