@@ -98,15 +98,32 @@
 				margin-right: 24px;
 			}
 
-			#buy-the-ebook .description {
-				width: 500px;
+			#buy-the-ebook .cover {
+				width: 60px;
 				display: table-cell;
-				padding-right: 16px;
+				padding-right: 0px;
+				padding-left: 16px;
 				vertical-align: middle;
+				align: center;
+			}
+
+			#buy-the-ebook .cover img {
+				border: 1px solid black;
+				box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset -1px 1px 0 rgba(255,255,255,0.4);
+				-moz-box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset -1px 1px 0 rgba(255,255,255,0.4);
+				-webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset -1px 1px 0 rgba(255,255,255,0.4);
+			}
+
+			#buy-the-ebook .description {
+				width: 420px;
+				display: table-cell;
+				padding-right: 32px;
+				vertical-align: middle;
+				text-align: center;
 			}
 
 			#buy-the-ebook .description strong {
-				color: #f18d46;
+				
 			}
 
 			#buy-the-ebook .buy {
@@ -360,14 +377,18 @@
 		</div>
 
 		<div id="buy-the-ebook">
+			<div class="cover">
+				<a href="/buy/"><img src="the_node_beginner_book_cover.png" height="86" width="57" /></a>
+			</div>
 			<div class="description">
 				<p>
-					You can buy the <strong>PDF</strong>, <strong>ePub</strong>
-					(for iPad, Sony, Nook) and <strong>MOBI</strong> (for
-					Kindle)
+					You can now buy the <strong>PDF</strong>, <strong>ePub</strong> and <strong>MOBI</strong>
+					version
 					<br />
-					version of The Node Beginner Book at
-					Leanpub. It's 48 pages for only <strong>$4.99</strong>.
+					of The Node Beginner Book at Leanpub.
+					<br />
+					<br />
+					It's 59 pages for only <strong>$4.99</strong>.
 				</p>
 				<p>
 					You will receive any future updates to the book for free.
