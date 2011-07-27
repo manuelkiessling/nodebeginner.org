@@ -2371,11 +2371,34 @@ exports.subir = subir;
 		Bueno, para un tutorial de principiantes, esto es todo lo que 
 		diremos acerca de la información POST.
 	</p>
+
+	<h4>Manejando Subida de Archivos</h4>
+
 	<p>
-		La próxima vez, hablaremos sobre como usar el excelente módulo
-		<em>node-formidable</em> para permitirnos lograr nuestro caso de 
-		uso final: subir y desplegar imágenes.
-	</p>	
+		Enfrentemos nuestro caso final. Nuestro plan es permitir a los
+		usuarios subir un archivo de imagen, y desplegar la imagen subida
+		en el browser.
+	</p>
+	<p>
+		De vuelta a los 90's esto habría calificado como un modelo de
+		negocios para una OPA (Oferta de Acciones), hoy día esto debería
+		bastar para enseñarnos dos cosas: Cómo instalar librerías Node.js
+		externas, y cómo hacer uso de ellas en nuestro propio código.
+	</p>
+	<p>
+		El módulo externo que vamos a ocupar es <em>node-formidable</em>
+		hecho por Felix Felix Geisend&ouml;rfer. Este abstrae de 
+		buena manera todos los detalles desagradables relativos al parseo
+		de un archivo entrante. Al final del día, manejar archivos
+		entrantes se trata "sólo" de manejar información POST - pero
+		siempre existen complicaciones imprevistas en los detalles, así
+		que trabajar con una solución lista-para-usar tiene mucho sentido
+		en este caso.
+	</p>
+
+
+	<-- HAJ MARK -->
+
 		</div>
 		<div id="workinprogressnote">
 			<p>
