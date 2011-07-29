@@ -95,31 +95,62 @@
 			#translations .text {
 				display: inline-block;
 				vertical-align: middle;
+				margin-right: 24px;
+			}
+
+			#buy-the-ebook {
+				padding-bottom: 20px;
+			}
+
+			#buy-the-ebook .cover {
+				width: 131px;
+				display: table-cell;
+				padding-right: 0px;
+				padding-left: 16px;
+				vertical-align: top;
+				align: center;
+				color: #bbb;
+			}
+
+			#buy-the-ebook .cover img {
+				border: 1px solid black;
+				box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset -1px 1px 0 rgba(255,255,255,0.4);
+				-moz-box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset -1px 1px 0 rgba(255,255,255,0.4);
+				-webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset -1px 1px 0 rgba(255,255,255,0.4);
 			}
 
 			#buy-the-ebook .description {
-				width: 500px;
+				width: 349px;
 				display: table-cell;
 				padding-right: 16px;
-				vertical-align: middle;
+				padding-left: 16px;
+				vertical-align: top;
+				text-align: center;
 			}
 
-			#buy-the-ebook .description strong {
-				color: #f18d46;
+			#buy-the-ebook strong.price {
+				font-size: 18pt;
+				color: #14d014;
+			}
+
+			#buy-the-ebook strong.price.dollarsign {
+				font-weight: normal;
 			}
 
 			#buy-the-ebook .buy {
 				display: table-cell;
-				vertical-align: middle;
+				vertical-align: top;
+				color: #bbb;
 			}
 
 			.button {
 				padding: 8px;
+				margin-top: 26px;
 				width: 140px;
 				border: 1px solid #444;
-				border-radius: 3px;
-				background-image: -moz-linear-gradient(top, #f2ab2b, #e17b19);
-				background-image: -webkit-gradient(linear, center top, center bottom, from(#f2ab2b), to(#e17b19));
+				border-radius: 6px;
+				background-image: -moz-linear-gradient(top, #14d014, #029302);
+				background-image: -webkit-gradient(linear, center top, center bottom, from(#14d014), to(#029302));
 				box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset -1px 1px 0 rgba(255,255,255,0.4);
 				-moz-box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset -1px 1px 0 rgba(255,255,255,0.4);
 				-webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset -1px 1px 0 rgba(255,255,255,0.4);
@@ -128,8 +159,9 @@
 			.buttonlink {
 				text-decoration: none;
 				font-weight: bold;
-				font-size: 13px;
-				color: #000;
+				font-size: 15px;
+				color: #fff;
+				text-shadow: 0.1em 0.1em #666;
 			}
 
 			#donate p {
@@ -352,25 +384,49 @@
 				<div class="flag"><img src="es-flag.png" width="24" height="24" alt="spanish flag" /></div>
 				<div class="text">Lee este tutorial en Español</div>
 			</a>
+			<a href="http://www.nodebeginner.ru">
+				<div class="flag"><img src="ru-flag.png" width="24" height="24" alt="russian flag" /></div>
+				<div class="text">Читать этот учебник на русском</div>
+			</a>
 		</div>
 
 		<div id="buy-the-ebook">
+			<div class="cover">
+				<p>
+					The perfect introduction plus the perfect reference in one bundle!
+				</p>
+				<a href="/buy-bundle/"><img src="the_node_beginner_book_cover.png" height="86" width="57" /></a>
+				<a href="/buy-bundle/"><img src="hands-on_node.js_cover.png" height="86" width="57" /></a>
+			</div>
 			<div class="description">
 				<p>
-					You can buy the <strong>PDF</strong>, <strong>ePub</strong>
-					(for iPad, Sony, Nook) and <strong>MOBI</strong> (for
-					Kindle)
+					LeanBundle currently offers
+					the final version of
 					<br />
-					version of The Node Beginner Book at
-					Leanpub. It's 48 pages for only <strong>$4.99</strong>.
-				</p>
-				<p>
-					You will receive any future updates to the book for free.
+					<strong>The Node Beginner Book</strong>
+					<br />
+					plus Pedro Teixeira's excellent
+					<br />
+					<strong>Hands-on Node.js</strong> for only
+					<br />
+					<br />
+					<strong class="price dollarsign">$</strong><strong class="price">7.99</strong>
+					<br />
+					(regular price <del>$10.98</del>)
 				</p>
 			</div>
 			<div class="buy">
-				<a class="buttonlink" href="/buy/">
-					<div class="button">Buy the eBook now</div>
+				<p>
+					226 pages in total
+					<br />
+					PDF, ePub & MOBI
+					<br />
+					Direct download
+					<br />
+					Free updates
+				</p>
+				<a class="buttonlink" href="/buy-bundle/">
+					<div class="button">Buy this<br />bundle now</div>
 				</a>
 			</div>
 		</div>
@@ -2625,7 +2681,7 @@ function show(response, postData) {
   fs.readFile("/tmp/test.png", "binary", function(error, file) {
     if(error) {
       response.writeHead(500, {"Content-Type": "text/plain"});
-      response.write(err + "\n");
+      response.write(error + "\n");
       response.end();
     } else {
       response.writeHead(200, {"Content-Type": "image/png"});
@@ -2726,7 +2782,7 @@ function show(response, postData) {
   fs.readFile("/tmp/test.png", "binary", function(error, file) {
     if(error) {
       response.writeHead(500, {"Content-Type": "text/plain"});
-      response.write(err + "\n");
+      response.write(error + "\n");
       response.end();
     } else {
       response.writeHead(200, {"Content-Type": "image/png"});
@@ -2856,7 +2912,7 @@ function upload(response, request) {
 
   var form = new formidable.IncomingForm();
   console.log("about to parse");
-  form.parse(request, function(err, fields, files) {
+  form.parse(request, function(error, fields, files) {
     console.log("parsing done");
     fs.renameSync(files.upload.path, "/tmp/test.png");
     response.writeHead(200, {"Content-Type": "text/html"});
@@ -2871,7 +2927,7 @@ function show(response) {
   fs.readFile("/tmp/test.png", "binary", function(error, file) {
     if(error) {
       response.writeHead(500, {"Content-Type": "text/plain"});
-      response.write(err + "\n");
+      response.write(error + "\n");
       response.end();
     } else {
       response.writeHead(200, {"Content-Type": "image/png"});
@@ -2927,7 +2983,7 @@ exports.show = show;
 		<div id="workinprogressnote">
 			<p>
 				This document was last updated on
-				<strong>Wednesday, June 29, 2011 at 12:10 AM EDT</strong>.
+				<strong>Sunday, July 10, 2011 at 3:52 AM EDT</strong>.
 			</p>
 			<p>
 				The best way to stay informed about updates is to follow
