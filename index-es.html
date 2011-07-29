@@ -2395,9 +2395,44 @@ exports.subir = subir;
 		que trabajar con una solución lista-para-usar tiene mucho sentido
 		en este caso.
 	</p>
+	<p>
+		Para poder hacer uso del código de Felix, el módulo correspondiente
+		de Node.js debe ser instalado. Node.js viene con su propio 
+		administrador de paquetes, llamado <em>NPM</em>. Este nos 
+		permite instalar módulos externos de Node.js de una manera muy
+		conveniente. Dada una instalación funcionando de Node.js, todo
+		lo que hay que hacer es
+	</p>
+<pre class="prettyprint lang-bash">npm install formidable
+</pre>
+	<p>
+		en nuestra línea de comandos. Si la salida de consola termina en
+	</p>
+<pre class="prettyprint lang-bash">npm info build Success: formidable@1.0.2
+npm ok
+</pre>
+	<p>
+		entonces podemos seguir.
+	</p>
+	<p>
+		El módulo <em>formidable</em> está ahora disponible
+		para nuestro propio código - todo lo que necesitamos hacer es
+		requerirlo del mismo modo que lo hemos hecho con los módulos de 
+		fábrica que hemos utilizado antes.
+	</p>
+<pre class="prettyprint lang-js">var formidable = require("formidable");
+</pre>
+	<p>
+	La metáfora que formidable ocupa es la de un formulario siendo
+	enviado via HTTP POST, haciéndolo parseable en Node.js. Todo lo
+	que necesitamos hacer es crear un nuevo objeto <em>IncomingForm</em>
+	(formulario entrante), el cual es una abstracción de este 
+
+	</p>
+	
 
 
-	<-- HAJ MARK -->
+	<!-- HAJ MARK 2560 en index.html (el final está en 2977...) -->
 
 		</div>
 		<div id="workinprogressnote">
