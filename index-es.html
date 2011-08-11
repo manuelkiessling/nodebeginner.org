@@ -2423,81 +2423,16 @@ npm ok
 <pre class="prettyprint lang-js">var formidable = require("formidable");
 </pre>
 	<p>
-		La metáfora que formidable ocupa es la de un formulario siendo
-		enviado via HTTP POST, haciéndolo parseable en Node.js. Todo lo
-		que necesitamos hacer es crear un nuevo objeto <em>IncomingForm</em>
-		(formulario entrante), el cual es una abstracción de este formulario
-		enviado, el cual puede ser usado para parsear el objeto de 
-		<em>request</em> de nuestro servidor HTTP para los campos y archivos
-		que fueron enviados a través de este formulario.
+	La metáfora que formidable ocupa es la de un formulario siendo
+	enviado via HTTP POST, haciéndolo parseable en Node.js. Todo lo
+	que necesitamos hacer es crear un nuevo objeto <em>IncomingForm</em>
+	(formulario entrante), el cual es una abstracción de este 
+
 	</p>
-	<p>
-		El código de ejemplo que está en la página del proyecto
-		node-formidable muestra como las diferentes partes operan juntas:
-	</p>
-<pre class="prettyprint lang-js">var formidable = require('formidable'),
-    http = require('http'),
-    sys = require('sys');
-
-http.createServer(function(req, res) {
-  if (req.url == '/subir' && req.method.toLowerCase() == 'post') {
-    // parsea una subida de archivo
-    var form = new formidable.IncomingForm();
-    form.parse(req, function(err, fields, files) {
-      res.writeHead(200, {'content-type': 'text/plain'});
-      res.write('subida recibida:\n\n');
-      res.end(sys.inspect({fields: fields, files: files}));
-    });
-    return;
-  }
-
-  // muestra un formulario de subida
-  res.writeHead(200, {'content-type': 'text/html'});
-  res.end(
-    '&lt;form action="/subir" enctype="multipart/form-data" '+
-    'method="post"&gt;'+
-    '&lt;input type="text" name="title"&gt;&lt;br&gt;'+
-    '&lt;input type="file" name="upload" multiple="multiple"&gt;&lt;br&gt;'+
-    '&lt;input type="submit" value="Upload"&gt;'+
-    '&lt;/form&gt;'
-  );
-}).listen(8888);
-</pre>
-	<p>
-		Si nosotros ponemos este código en un archivo y lo ejecutamos
-		a través de <em>node</em>, estamos siendo capaces de enviar
-		un formulario simple, incluyendo una subida de archivo, y ver
-		como el objeto <em>files</em> (archivo), el cual es pasado a la
-		callback definida en <em>form.parse</em>, está estructurado:
-	</p>
-<pre class="lang-js">received upload:
-
-{ fields: { title: 'Hello World' },
-  files:
-   { upload:
-      { size: 1558,
-        path: '/tmp/1c747974a27a6292743669e91f29350b',
-        name: 'us-flag.png',	
-        type: 'image/png',
-        lastModifiedDate: Tue, 21 Jun 2011 07:02:41 GMT,
-        _writeStream: [Object],
-        length: [Getter],
-        filename: [Getter],
-        mime: [Getter] } } }
-</pre>
-	<p>
-		Para que podamos hacer que este caso de uso suceda, lo que 
-		necesitamos hacer es incluir la lógica de parseo de formulario
-		en la estructura de nuestro código, además necesitaremos encontrar
-		como servir el contenido del archivo subido (el cual esta siendo
-		guardado en el directorio <em>/tmp</em>) a un browser que lo 
-		requira.
-	</p>
+	
 
 
-
-
-	<!-- HAJ MARK 2630 en index.html (el final está en 2977...) -->
+	<!-- HAJ MARK 2560 en index.html (el final está en 2977...) -->
 
 		</div>
 		<div id="workinprogressnote">
