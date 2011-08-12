@@ -2491,8 +2491,24 @@ http.createServer(function(req, res) {
 		en la estructura de nuestro código, además necesitaremos encontrar
 		como servir el contenido del archivo subido (el cual esta siendo
 		guardado en el directorio <em>/tmp</em>) a un browser que lo 
-		requira.
+		requiera.
 	</p>
+	<p>
+		Resolvamos el segundo tema: ¿Si hay un archivo de imagen en nuestro 
+		disco duro local, Cómo lo servimos al browser que hace la petición?
+	</p>
+	<p>
+		Para hacer esto, vamos a leer los contenidos del archivo en nuestro
+		servidor Node.js, y para esto, existe un módulo que lo hace llamado
+		<em>fs</em>.
+	</p>
+	<p>
+		Agreguemos otro manipulador de petición para la URL <em>/mostrar</em>,
+		el cual, usando código duro, desplegará el contenido del archivo
+		<em>/tmp/test.png</em>. Tiene mucho sentido, desde luego, grabat un
+		archivo png real en esta ubicación primero.
+	</p>
+
 
 
 
