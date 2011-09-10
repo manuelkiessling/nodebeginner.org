@@ -60,7 +60,7 @@
                 text-align: center;
             }
 
-            #buy-the-ebook, #translations {
+            #buy-the-bundle, #buy-the-ebook, #translations {
                 font-family: "Helvetica Neue", sans-serif;
                 font-size: 13px;
                 color: #fff;
@@ -98,17 +98,17 @@
                 margin-right: 24px;
             }
 
-            #buy-the-ebook {
+            #buy-the-bundle {
                 padding-bottom: 20px;
             }
 
-            #buy-the-ebook .headline {
+            #buy-the-bundle .headline {
                 font-size: 24pt;
                 font-weight: bold;
                 padding-bottom: 16px;
             }
 
-            #buy-the-ebook .cover {
+            #buy-the-bundle .cover {
                 width: 131px;
                 display: table-cell;
                 padding-right: 0px;
@@ -118,14 +118,14 @@
                 color: #bbb;
             }
 
-            #buy-the-ebook .cover img {
+            #buy-the-bundle .cover img {
                 border: 1px solid black;
                 box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset -1px 1px 0 rgba(255,255,255,0.4);
                 -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset -1px 1px 0 rgba(255,255,255,0.4);
                 -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset -1px 1px 0 rgba(255,255,255,0.4);
             }
 
-            #buy-the-ebook .description {
+            #buy-the-bundle .description {
                 width: 349px;
                 display: table-cell;
                 padding-right: 32px;
@@ -134,11 +134,11 @@
                 text-align: center;
             }
 
-            #buy-the-ebook .description ul {
+            #buy-the-bundle .description ul {
                 list-style-type: none;
             }
 
-            #buy-the-ebook .price {
+            #buy-the-bundle .price {
                 width: 110px;
                 vertical-align: middle;
                 display: table-cell;
@@ -148,26 +148,26 @@
                 border-radius: 60px;
             }
 
-            #buy-the-ebook .current-price {
+            #buy-the-bundle .current-price {
                 font-size: 24pt;
                 color: #14d014;
                 font-weight: bolder;
                 text-shadow: 0.0125em 0.0125em #333;
             }
 
-            #buy-the-ebook .price a {
+            #buy-the-bundle .price a {
                 text-decoration: none;
                 color: darkred;
             }
 
-            #buy-the-ebook .buy {
+            #buy-the-bundle .buy {
                 color: #bbb;
                 margin-left: 280px;
                 margin-right: auto;
                 position: relative;
             }
 
-            #buy-the-ebook .button {
+            #buy-the-bundle .button {
                 padding: 8px;
                 margin-top: 26px;
                 width: 140px;
@@ -180,12 +180,17 @@
                 -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset -1px 1px 0 rgba(255,255,255,0.4);
             }
 
-            #buy-the-ebook .buttonlink {
+            #buy-the-bundle .buttonlink {
                 text-decoration: none;
                 font-weight: bold;
                 font-size: 24px;
                 color: #fff;
                 text-shadow: 0.05em 0.03em #333;
+            }
+            
+            #buy-the-ebook a {
+                text-decoration: underline;
+                color: yellow;
             }
 
             #donate p {
@@ -414,13 +419,13 @@
             </a>
         </div>
 
-        <div id="buy-the-ebook">
+        <div id="buy-the-bundle">
             <div class="headline">
                 Buy the ultimate Node.js bundle!
             </div>
             <div class="cover">
-                <a href="/buy-bundle/"><img src="the_node_beginner_book_cover.png" height="86" width="57" /></a>
-                <a href="/buy-bundle/"><img src="hands-on_node.js_cover.png" height="86" width="57" /></a>
+                <a href="buy-bundle/"><img src="the_node_beginner_book_cover.png" height="86" width="57" /></a>
+                <a href="buy-bundle/"><img src="hands-on_node.js_cover.png" height="86" width="57" /></a>
             </div>
             <div class="description">
                 <ul>
@@ -436,16 +441,19 @@
                 </ul>
             </div>
             <div class="price">
-                <a href="/buy-bundle/">
+                <a href="buy-bundle/">
                     <del>$10.98</del>
                     <div class="current-price">$7.99</div>
                 </a>
             </div>
             <div class="buy">
-                <a class="buttonlink" href="/buy-bundle/">
+                <a class="buttonlink" href="buy-bundle/">
                     <div class="button">Buy now!</div>
                 </a>
             </div>
+        </div>
+        <div id="buy-the-ebook">
+            If you would like to only buy <em>The Node Beginner Book</em>, it's available for only <strong>$4.99</strong> at <a href="buy/">http://Leanpub.com/NodeBeginner</a>.
         </div>
 
         <div id="book">
