@@ -434,7 +434,7 @@
                 display: none;
             }
         </style>
-        
+                
         <script type="text/javascript">
             // Function to asyncronously load local js files
             function loadScript(url, callback) {
@@ -460,47 +460,8 @@
                 document.getElementsByTagName("head")[0].appendChild(script);
             }
             
-            // Table of Contents script
-            loadScript("mootools-core-1.3.1-full-compat-yc.js", function(){
-                loadScript("TOC.js", function(){
-                    window.addEvent('domready', function() {
-                        var toc = new TOC('table-of-contents');
-                    });
-                });
-            });
-            
-            // Code prettyfier
-            //loadScript("prettify/prettify.js", function(){});
-            
-            // jQuery
-            loadScript("jquery-1.3.1.min.js", function(){
-                loadScript("jquery.inview.js", function(){
-                    $('#disqus_thread').one('inview', function (event, visible) {
-                        if (visible) {
-                            // Disqus
-                            var disqus_shortname = 'nodebeginner';
-                            var disqus_identifier = 'nodebeginner-book';
-                            var disqus_url = 'http://www.nodebeginner.org/';
-                            (function() {
-                                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-                                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                            })();
-                        }
-                    });
-                });
-            });
-
-            // Google Analytics
-            var _gaq = _gaq || [];
-            _gaq.push(['_setAccount', 'UA-2127388-6']);
-            _gaq.push(['_trackPageview']);
-
-            (function loadAnalytics() {
-                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-            })();
+            // Load main JavaScript
+            loadScript("nodebeginner.js", function(){});
         </script>
     </head>
     <body onload="prettyPrint();">
@@ -560,8 +521,8 @@
             <h1>The Node Beginner Book</h1>
             <div id="author">A Node.js tutorial by <a href="http://twitter.com/manuelkiessling">Manuel Kiessling</a></div>
 
+            <a name="about"></a>
             <h2>About</h2>
-
             <p>
                 The aim of this document is to get you started with developing
                 applications for Node.js, teaching you everything you need to
@@ -569,6 +530,7 @@
                 beyond your typical "Hello World" tutorial.
             </p>
 
+            <a name="status"></a>
             <h3>Status</h3>
             <p>
                 You are reading the final version of this book, i.e., updates
@@ -580,6 +542,7 @@
                 version 0.4.9.
             </p>
 
+            <a name="intended-audience"></a>
             <h3>Intended audience</h3>
             <p>
                 This document will probably fit best for readers that have a
@@ -600,6 +563,7 @@
                 explained in more detail.
             </p>
 
+            <a name="structure"></a>
             <h3>Structure of this document</h3>
             <p>
                 Upon finishing this document, you will have created a complete web
@@ -641,10 +605,65 @@
             </p>
 
             <div id="table-of-contents-headline">Table of contents</div>
-            <div id="table-of-contents"></div>
+            <div id="table-of-contents">
+                <ul>
+                    <li><a href="#about">About</a>
+                        <ul>
+                            <li><a href="#status">Status</a></li>
+                            <li><a href="#intended-audience">Intended audience</a></li>
+                            <li><a href="#structure">Structure of this document</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#javascript-and-nodejs">JavaScript and Node.js</a>
+                        <ul>
+                            <li><a href="#javascript-and-you">JavaScript and You</a></li>
+                            <li><a href="#a-word-of-warning">A word of warning</a></li>
+                            <li><a href="#server-side-javascript">Server-side JavaScript</a></li>
+                            <li><a href="#hello-world">"Hello World"</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#a-full-blown-web-application-with-nodejs">A full blown web application with Node.js</a>
+                        <ul>
+                            <li><a href="#the-use-cases">The use cases</a></li>
+                            <li><a href="#the-application-stack">The application stack</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#building-the-application-stack">Building the application stack</a>
+                        <ul>
+                            <li><a href="#a-basic-http-server">A basic HTTP server</a></li>
+                            <li><a href="#analyzing-our-http-server">Analyzing our HTTP server</a></li>
+                            <li><a href="#passing-functions-around">Passing functions around</a></li>
+                            <li><a href="#how-function-passing-makes-our-http-server-work">How function passing makes our HTTP server work</a></li>
+                            <li><a href="#event-driven-callbacks">Event-driven callbacks</a></li>
+                            <li><a href="#how-our-server-handles-requests">How our server handles requests</a></li>
+                            <li><a href="#finding-a-place-for-our-server-module">Finding a place for our server module</a></li>
+                            <li><a href="#whats-needed-to-route-requests">What's needed to "route" requests?</a></li>
+                            <li><a href="#execution-in-the-kongdom-of-verbs">Execution in the kingdom of verbs</a></li>
+                            <li><a href="#routing-to-real-request-handlers">Routing to real request handlers</a></li>
+                            <li><a href="#making-the-request-handlers-respond">Making the request handlers respond</a>
+                                <ul>
+                                    <li><a href="#how-to-not-do-it">How to not do it</a></li>
+                                    <li><a href="#blocking-and-non-blocking">Blocking and non-blocking</a></li>
+                                    <li><a href="#responding-request-handlers-with-non-blocking-operations">Responding request handlers with non-blocking operations</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="#serving-something-useful">Serving something useful</a>
+                                <ul>
+                                    <li><a href="#handling-post-requests">Handling POST requests</a></li>
+                                    <li><a href="#handling-file-uploads">Handling file uploads</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#conclusion-and-outlook">Conclusion and outlook</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
 
+            <a name="javascript-and-nodejs"></a>
             <h2>JavaScript and Node.js</h2>
 
+            <a name="javascript-and-you"></a>
             <h3>JavaScript and You</h3>
             <p>
                 Before we talk about all the technical stuff, let's take a
@@ -714,6 +733,7 @@
                 My goal is to provide a guide for you.
             </p>
 
+            <a name="a-word-of-warning"></a>
             <h3>A word of warning</h3>
             <p>
                 There are some really excellent JavaScript people out
@@ -736,6 +756,7 @@
                 document I wish I had when starting with Node.js.
             </p>
 
+            <a name="server-side-javascript"></a>
             <h3>Server-side JavaScript</h3>
             <p>
                 The first incarnations of JavaScript lived in browsers.
@@ -776,6 +797,7 @@
                 are up and running.
             </p>
 
+            <a name="hello-world"></a>
             <h3>"Hello World"</h3>
             <p>
                 Ok, let's just jump in the cold water and write our first
@@ -801,8 +823,10 @@
             </p>
 
 
+            <a name="a-full-blown-web-application-with-nodejs"></a>
             <h2>A full blown web application with Node.js</h2>
 
+            <a name="the-use-cases"></a>
             <h3>The use cases</h3>
             <p>
                 Let's keep it simple, but realistic:
@@ -837,6 +861,7 @@
                 complex Node.js applications.
             </p>
 
+            <a name="the-application-stack"></a>
             <h3>The application stack</h3>
             <p>
                 Let's dissect our application. Which parts need to be
@@ -904,7 +929,10 @@
                 part of our stack, the HTTP server.
             </p>
 
+            <a name="building-the-application-stack"></a>
             <h2>Building the application stack</h2>
+
+            <a name="a-basic-http-server"></a>
             <h3>A basic HTTP server</h3>
             <p>
                 When I arrived at the point where I wanted to start with my
@@ -968,6 +996,7 @@ http.createServer(function(request, response) {
                 it.
             </p>
 
+            <a name="analyzing-our-http-server"></a>
             <h3>Analyzing our HTTP server</h3>
             <p>
                 Well, then, let's analyze what's actually going on here.
@@ -1014,6 +1043,7 @@ server.listen(8888);</pre>
                 like any other value.
             </p>
 
+            <a name="passing-functions-around"></a>
             <h3>Passing functions around</h3>
             <p>
                 You can, for example, do something like this:
@@ -1075,6 +1105,7 @@ execute(function(word){ console.log(word) }, "Hello");
                 pass, or by defining the function to pass in-place.
             </p>
 
+            <a name="how-function-passing-makes-our-http-server-work"></a>
             <h3>How function passing makes our HTTP server work</h3>
             <p>
                 With this knowledge, let's get back to our minimalistic
@@ -1111,6 +1142,7 @@ http.createServer(onRequest).listen(8888);
                 that way?
             </p>
 
+            <a name="event-driven-callbacks"></a>
             <h3>Event-driven callbacks</h3>
             <p>
                 The answer is a) not that easy to give (at least for me), and
@@ -1223,6 +1255,7 @@ console.log("Server has started.");
                 http://localhost:8888/).
             </p>
 
+            <a name="how-our-server-handles-requests"></a>
             <h3>How our server handles requests</h3>
             <p>
                 Ok, let's quickly analyze the rest of our server code, that
@@ -1257,7 +1290,7 @@ console.log("Server has started.");
                 object at all.
             </p>
 
-
+            <a name="finding-a-place-for-our-server-module"></a>
             <h3>Finding a place for our server module</h3>
             <p>
                 Ok, I promised we will get back to how to organize our
@@ -1388,6 +1421,7 @@ server.start();
                 called <em>router</em>.
             </p>
 
+            <a name="whats-needed-to-route-requests"></a>
             <h3>What's needed to "route" requests?</h3>
             <p>
                 We need to be able to feed the requested URL and possible
@@ -1549,6 +1583,7 @@ About to route a request for /foo
                 request).
             </p>
 
+            <a name="execution-in-the-kongdom-of-verbs"></a>
             <h3>Execution in the kingdom of verbs</h3>
             <p>
                 May I once again stray away for a while and talk about
@@ -1584,6 +1619,7 @@ About to route a request for /foo
                 to software I ever had the pleasure to encounter.
             </p>
 
+            <a name="routing-to-real-request-handlers"></a>
             <h3>Routing to real request handlers</h3>
             <p>
                 Back to business. Our HTTP server and our request router are
@@ -1797,6 +1833,7 @@ Request handler 'start' was called.
 </pre>
 
 
+            <a name="making-the-request-handlers-respond"></a>
             <h3>Making the request handlers respond</h3>
             <p>
                 Beautiful. Now if only the request handlers could actually send
@@ -1814,6 +1851,7 @@ Request handler 'start' was called.
                 browser just like our <em>onRequest</em> function does.
             </p>
 
+            <a name="how-to-not-do-it"></a>
             <h4>How to not do it</h4>
             <p>
                 The straight-forward approach we -  as developers with a
@@ -1913,6 +1951,7 @@ exports.start = start;
                 Let's take a bit more time for the long answer.
             </p>
 
+            <a name="blocking-and-non-blocking"></a>
             <h4>Blocking and non-blocking</h4>
             <p>
                 As said, the problems will arise when we include non-blocking
@@ -2152,6 +2191,7 @@ exports.upload = upload;
                 the right way.
             </p>
 
+            <a name="responding-request-handlers-with-non-blocking-operations"></a>
             <h4>Responding request handlers with non-blocking operations</h4>
             <p>
                 I've just used the phrase "the right way". Dangerous stuff.
@@ -2309,8 +2349,8 @@ exports.upload = upload;
                 will be answered immediately, even if /start is still
                 computing.
             </p>
-
-
+            
+            <a name="serving-something-useful"></a>
             <h3>Serving something useful</h3>
             <p>
                 Until now, what we have done is all fine and dandy, but we
@@ -2351,6 +2391,7 @@ exports.upload = upload;
                 included in a beginner's tutorial.
             </p>
 
+            <a name="handling-post-requests"></a>
             <h4>Handling POST requests</h4>
             <p>
                 Let's keep this banally simple: We will present a textarea that
@@ -2635,6 +2676,7 @@ exports.upload = upload;
                 about handling POST data.
             </p>
 
+            <a name="handling-file-uploads"></a>
             <h4>Handling file uploads</h4>
             <p>
                 Let's tackle our final use case. Our plan was to allow users to
@@ -3072,6 +3114,7 @@ exports.show = show;
                 it to the server, and have it displayed in the web page.
             </p>
 
+            <a name="conclusion-and-outlook"></a>
             <h2>Conclusion and outlook</h2>
             <p>
                 Congratulations, our mission is accomplished! We wrote a simple
