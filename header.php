@@ -9,6 +9,10 @@ if ($extension != 'html') {
     header('Cache-Control: max-age=604800'); // 1 week
 }
 
+if ($extension == 'html') {
+    header('Content-type: text/html; charset=utf-8');
+}
+
 if ($extension == 'css') {
     header('Content-type: text/css; charset=utf-8');
 }
