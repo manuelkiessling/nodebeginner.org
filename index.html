@@ -437,33 +437,21 @@
             _gaq.push(['_setAccount', 'UA-2127388-6']);
             _gaq.push(['_trackPageview']);
 
-            function loadAnalytics() {
+            (function loadAnalytics() {
                 var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
                 ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
                 var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-            }
-            setTimeout(loadAnalytics, 1);
+            })();
 
             // Disqus
             var disqus_shortname = 'nodebeginner';
             var disqus_identifier = 'nodebeginner-book';
             var disqus_url = 'http://www.nodebeginner.org/';
-            function loadDisqus() {
+            (function loadDisqus() {
                 var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
                 dsq.src = 'http://mediacdn.disqus.com/1317948585/build/system/embed.js';
                 (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-            }
-            setTimeout(loadDisqus, 1);
-
-            // Flattr
-            function loadFlattr() {
-                var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
-                s.type = 'text/javascript';
-                s.async = true;
-                s.src = 'http://api.flattr.com/js/0.6/load.js?mode=auto';
-                t.parentNode.insertBefore(s, t);
-            }
-            setTimeout(loadFlattr, 1);
+            })();
         </script>
     </head>
     <body onload="prettyPrint();">
