@@ -60,7 +60,7 @@
                 text-align: center;
             }
 
-            #buy-the-bundle, #buy-the-ebook, #translations {
+            .buy-the-bundle, .buy-the-ebook, #translations {
                 font-family: "Helvetica Neue", sans-serif;
                 font-size: 13px;
                 color: #fff;
@@ -98,17 +98,17 @@
                 margin-right: 24px;
             }
 
-            #buy-the-bundle {
+            .buy-the-bundle {
                 padding-bottom: 20px;
             }
 
-            #buy-the-bundle .headline {
+            .buy-the-bundle .headline {
                 font-size: 24pt;
                 font-weight: bold;
                 padding-bottom: 16px;
             }
 
-            #buy-the-bundle .cover {
+            .buy-the-bundle .cover {
                 width: 131px;
                 display: table-cell;
                 padding-right: 0px;
@@ -118,14 +118,14 @@
                 color: #bbb;
             }
 
-            #buy-the-bundle .cover img {
+            .buy-the-bundle .cover img {
                 border: 1px solid black;
                 box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset -1px 1px 0 rgba(255,255,255,0.4);
                 -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset -1px 1px 0 rgba(255,255,255,0.4);
                 -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset -1px 1px 0 rgba(255,255,255,0.4);
             }
 
-            #buy-the-bundle .description {
+            .buy-the-bundle .description {
                 width: 349px;
                 display: table-cell;
                 padding-right: 32px;
@@ -134,11 +134,11 @@
                 text-align: center;
             }
 
-            #buy-the-bundle .description ul {
+            .buy-the-bundle .description ul {
                 list-style-type: none;
             }
 
-            #buy-the-bundle .price {
+            .buy-the-bundle .price {
                 width: 110px;
                 vertical-align: middle;
                 display: table-cell;
@@ -148,26 +148,26 @@
                 border-radius: 60px;
             }
 
-            #buy-the-bundle .current-price {
+            .buy-the-bundle .current-price {
                 font-size: 24pt;
                 color: #14d014;
                 font-weight: bolder;
                 text-shadow: 0.0125em 0.0125em #333;
             }
 
-            #buy-the-bundle .price a {
+            .buy-the-bundle .price a {
                 text-decoration: none;
                 color: darkred;
             }
 
-            #buy-the-bundle .buy {
+            .buy-the-bundle .buy {
                 color: #bbb;
                 margin-left: 280px;
                 margin-right: auto;
                 position: relative;
             }
 
-            #buy-the-bundle .button {
+            .buy-the-bundle .button {
                 padding: 8px;
                 margin-top: 26px;
                 width: 140px;
@@ -180,7 +180,7 @@
                 -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset -1px 1px 0 rgba(255,255,255,0.4);
             }
 
-            #buy-the-bundle .buttonlink {
+            .buy-the-bundle .buttonlink {
                 text-decoration: none;
                 font-weight: bold;
                 font-size: 24px;
@@ -188,7 +188,7 @@
                 text-shadow: 0.05em 0.03em #333;
             }
             
-            #buy-the-ebook a {
+            .buy-the-ebook a {
                 text-decoration: underline;
                 color: yellow;
             }
@@ -459,7 +459,7 @@
             </a>
         </div>
 
-        <div id="buy-the-bundle">
+        <div class="buy-the-bundle">
             <div class="headline">
                 Buy the ultimate Node.js bundle!
             </div>
@@ -492,7 +492,7 @@
                 </a>
             </div>
         </div>
-        <div id="buy-the-ebook">
+        <div class="buy-the-ebook">
             If you would like to only buy <em>The Node Beginner Book</em>, it's available for only <strong>$4.99</strong> at <a href="buy/">http://Leanpub.com/NodeBeginner</a>.
         </div>
 
@@ -3041,22 +3041,42 @@ exports.show = show;
             </p>
         </div>
 
-
-
-
-        
-        <div id="workinprogressnote">
-            <p>
-                This document was last updated on
-                <strong>Sunday, July 10, 2011 at 3:52 AM EDT</strong>.
-            </p>
-            <p>
-                The best way to stay informed about updates is to follow
-                <br />
-                <a href="http://twitter.com/manuelkiessling">@ManuelKiessling on Twitter</a>.
-            </p>
+        <div class="buy-the-bundle">
+            <div class="headline">
+                Extend your Node.js knowledge!
+            </div>
+            <div class="cover">
+                <a href="buy-bundle-bottom/"><img src="the_node_beginner_book_cover.png" height="86" width="57" /></a>
+                <a href="buy-bundle-bottom/"><img src="hands-on_node.js_cover.png" height="86" width="57" /></a>
+            </div>
+            <div class="description">
+                <ul>
+                    <li>
+                        Introduction plus reference in one bundle
+                    </li>
+                    <li>
+                        226 pages in total - PDF, ePub & MOBI
+                    </li>
+                    <li>
+                        Direct download - <strong>free updates</strong>
+                    </li>
+                </ul>
+            </div>
+            <div class="price">
+                <a href="buy-bundle-bottom/">
+                    <del>$10.98</del>
+                    <div class="current-price">$7.99</div>
+                </a>
+            </div>
+            <div class="buy">
+                <a class="buttonlink" href="buy-bundle-bottom/">
+                    <div class="button">Buy now!</div>
+                </a>
+            </div>
         </div>
-
+        <div class="buy-the-ebook">
+            If you would like to only buy <em>The Node Beginner Book</em>, it's available for only <strong>$4.99</strong> at <a href="buy/">http://Leanpub.com/NodeBeginner</a>.
+        </div>
 
         <div id="praise">
             <div class="praise">
@@ -3103,34 +3123,6 @@ exports.show = show;
                     Seth McLaughlin, via eMail
                 </div>
             </div>
-        </div>
-
-        <div id="donate">
-            <p>
-                <em>The Node Beginner Book</em> is and will always be available for free.
-                <br />
-                Furthermore, no money is needed to keep the project alive and progressing.
-                <br />
-                But if you would like to support the author, you can do so using Flattr or PayPal:
-            </p>
-            <div id="flattr">
-                <a class="FlattrButton" style="display:none;" href="http://www.nodebeginner.org"></a>
-            </div>
-            <div id="paypal">
-                <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-                    <fieldset>
-                        <input type="hidden" name="cmd" value="_s-xclick" />
-                        <input type="hidden" name="hosted_button_id" value="AWJS7PD37SQ5G" />
-                        <input type="image" src="https://www.paypalobjects.com/WEBSCR-640-20110401-1/en_US/i/btn/btn_donateCC_LG.gif" name="submit" alt="PayPal - The safer, easier way to pay online!" />
-                        <img alt="" src="https://www.paypalobjects.com/WEBSCR-640-20110401-1/de_DE/i/scr/pixel.gif" width="1" height="1" />
-                    </fieldset>
-                </form>
-            </div>
-            <p>
-                Or, have a look at <a href="/buy/">the eBook version (Kindle, ePub, PDF)</a>,
-                <br />
-                which is available for $4.99 via Leanpub.
-            </p>
         </div>
 
         <div id="disqus_thread"></div>
