@@ -541,7 +541,6 @@
         <h2>About</h2>
 
         <p>
-
             The aim of this document is to get you started with developing
             applications for Node.js, teaching you everything you need to
             know about "advanced" JavaScript along the way. It goes way
@@ -583,7 +582,6 @@
         </p>
 
         <p>
-
             However, because functions and objects in JavaScript are different
             from their counterparts in most other languages, these will be
             explained in more detail.
@@ -627,7 +625,6 @@
         </p>
 
         <p>
-
             As promised, along the way we will learn about some of the more
             advanced concepts of JavaScript, how to make use of them, and
             look at why it makes sense to use these concepts instead of
@@ -731,7 +728,6 @@
         </p>
 
         <p>
-
             What you really wanted was "the real thing", you wanted to
             know how to build complex web sites - you learned a
             programming language like PHP, Ruby, Java, and started
@@ -778,7 +774,6 @@
         </p>
 
         <p>
-
             Because that's the catch: you already are an experienced
             developer, you don't want to learn a new technique by just
             hacking around and mis-using it; you want to be sure that
@@ -819,7 +814,6 @@
         </p>
 
         <p>
-
             If I don't fail, then this will be the kind of
             document I wish I had when starting with Node.js.
         </p>
@@ -863,7 +857,6 @@
         </p>
 
         <p>
-
             In order to make use of these, you need to install Node.js.
             Instead of repeating the process here, I kindly ask you to
             visit
@@ -883,7 +876,6 @@
         </p>
 
         <p>
-
             Open your favorite editor and create a file called
             <em>helloworld.js</em>. We want it to write "Hello World"
             to STDOUT, and here is the code needed to do that:
@@ -957,6 +949,7 @@
             Let's dissect our application. Which parts need to be
             implemented in order to fulfill the use cases?
         </p>
+
         <ul>
             <li>
                 We want to serve web pages, therefore we need an
@@ -996,8 +989,8 @@
                 <strong>upload handling</strong> which takes care of
                 the details
             </li>
-
         </ul>
+
         <p>
             Let's think a moment about how we would build this stack
             with PHP. It's not exactly a secret that the typical setup
@@ -1016,7 +1009,6 @@
         </p>
 
         <p>
-
             This might sound like a lot of work, but we will see in a
             moment that with Node.js, it's not.
         </p>
@@ -1053,7 +1045,6 @@
         </p>
 
         <p>
-
             This allows you to have a clean main file, which you
             execute with Node.js, and clean modules that can be used by
             the main file and among each other.
@@ -1140,7 +1131,6 @@
         </p>
 
         <p>
-
             We could have written the code that starts our server and
             makes it listen at port 8888 like this:
         </p>
@@ -1201,7 +1191,6 @@
         </p>
 
         <p>
-
             Thus, <em>say</em> becomes the local variable
             <em>someFunction</em> within <em>execute</em>, and execute
             can call the function in this variable by issuing
@@ -1321,7 +1310,6 @@
         </p>
 
         <p>
-
             You might want to take the time to read Felix
             Geisendörfer's excellent post
             <a href="http://debuggable.com/posts/understanding-node-js:4bd98440-45e4-4a9a-8ef7-0f7ecbdd56cb">Understanding
@@ -1364,7 +1352,6 @@
         </p>
 
         <p>
-
             Well, this is where the event-driven design of
             Node.js/JavaScript actually helps, although we need to learn
             some new concepts in order to master it. Let's see how
@@ -1540,14 +1527,13 @@
             name of the local variable, but we are free to choose whatever
             we like:
         </p>
-
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> foo </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
                 class="str">"http"</span><span class="pun">);</span><span class="pln"><br><br></span><span class="pun">...</span><span
                 class="pln"><br><br>foo</span><span class="pun">.</span><span class="pln">createServer</span><span
                 class="pun">(...);</span></pre>
-        <p>
 
+        <p>
             Fine, it's clear how to make use of internal Node.js modules. How
             do we create our own modules, and how do we use them?
         </p>
@@ -1609,11 +1595,11 @@
         <p>
             Create a file <em>index.js</em> with the following content:
         </p>
-
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> server </span><span class="pun">=</span><span
                 class="pln"> require</span><span class="pun">(</span><span class="str">"./server"</span><span
                 class="pun">);</span><span class="pln"><br><br>server</span><span class="pun">.</span><span class="pln">start</span><span
                 class="pun">();</span></pre>
+
         <p>
             As you can see, we can use our server module just like any
             internal module: by requiring its file and assigning it to
@@ -1625,6 +1611,7 @@
             still does exactly the same:
         </p>
         <pre>node index.js</pre>
+
         <p>
             Great, we now can put the different parts of our application
             into different files and wire them together by making them
@@ -1700,8 +1687,8 @@ http://localhost:8888/start?foo=bar&amp;hello=world
                                             |
                          querystring(string)["hello"]
 </pre>
-        <p>
 
+        <p>
             We can, of course, also use <em>querystring</em> to parse the
             body of a POST request for parameters, as we will see
             later.
@@ -1760,7 +1747,6 @@ http://localhost:8888/start?foo=bar&amp;hello=world
         </p>
 
         <p>
-
             Ok, it's time to actually write our router. Create a new file
             called <em>router.js</em>, with the following content:
         </p>
@@ -1785,8 +1771,7 @@ http://localhost:8888/start?foo=bar&amp;hello=world
             we learned the hard way from our experience with other
             programming languages, we are going to loosely couple server
             and router by injecting this dependency (you may want to read
-            <a href="http://martinfowler.com/articles/injection.html">Martin Fowlers excellent post on Dependency
-                Injection</a>
+            <a href="http://martinfowler.com/articles/injection.html">Martin Fowlers excellent post on Dependency Injection</a>
             for background information).
         </p>
 
@@ -1795,7 +1780,6 @@ http://localhost:8888/start?foo=bar&amp;hello=world
             order to enable us to pass the route function to be used by
             parameter:
         </p>
-
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
                 class="str">"http"</span><span class="pun">);</span><span class="pln"><br></span><span
@@ -1857,10 +1841,10 @@ http://localhost:8888/start?foo=bar&amp;hello=world
             application's output that our HTTP server makes use of our
             router and passes it the requested pathname:
         </p>
-<pre>bash$ node index.js
+        <pre>bash$ node index.js
 Request for /foo received.
-About to route a request for /foo
-</pre>
+About to route a request for /foo</pre>
+
         <p>
             (I omitted the rather annoying output for the /favicon.ico
             request).
@@ -1904,8 +1888,7 @@ About to route a request for /foo
 
         <p>
             And I did understand it when reading Steve Yegge's masterpiece
-            <a href="http://steve-yegge.blogspot.com/2006/03/execution-in-kingdom-of-nouns.html">Execution in the
-                Kingdom of Nouns</a>.
+            <a href="http://steve-yegge.blogspot.com/2006/03/execution-in-kingdom-of-nouns.html">Execution in the Kingdom of Nouns</a>.
             Go read it now, really. It's one of the best writings related
             to software I ever had the pleasure to encounter.
         </p>
@@ -1927,7 +1910,6 @@ About to route a request for /foo
         </p>
 
         <p>
-
             Right now, the routing "ends" in the router, and the router is
             not the place to actually "do" something with the requests,
             because that wouldn't scale well once our application becomes
@@ -1983,7 +1965,6 @@ About to route a request for /foo
         </p>
 
         <p>
-
             How are we going to pass them? Right now we have two handlers,
             but in a real application, this number is going to increase and
             vary, and we sure don't want to fiddle around mapping requests
@@ -2007,7 +1988,6 @@ About to route a request for /foo
         </p>
 
         <p>
-
             There's a nice introduction to this at
             <a href="http://msdn.microsoft.com/en-us/magazine/cc163419.aspx">http://msdn.microsoft.com/en-us/magazine/cc163419.aspx</a>,
             let me quote the relevant part:
@@ -2023,6 +2003,7 @@ About to route a request for /foo
                 JavaScript object as a dictionary with string keys.
             </p>
         </blockquote>
+
         <p>
             If JavaScript objects are just collections of name/value pairs,
             how can they have methods? Well, the values can be strings,
@@ -2131,7 +2112,6 @@ About to route a request for /foo
             Let's change the <em>route()</em> function accordingly, in our
             <em>router.js</em> file:
         </p>
-
         <pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> route</span><span
                 class="pun">(</span><span class="pln">handle</span><span class="pun">,</span><span
                 class="pln"> pathname</span><span class="pun">)</span><span class="pln"> </span><span
@@ -2172,22 +2152,19 @@ About to route a request for /foo
             in our browser, we can prove that the correct request handler
             was indeed called:
         </p>
-<pre>Server has started.
+        <pre>Server has started.
 Request for /start received.
 About to route a request for /start
-Request handler 'start' was called.
-</pre>
+Request handler 'start' was called.</pre>
+
         <p>
             And opening <a href="http://localhost:8888/" rel="nofollow">http://localhost:8888/</a>
             in our browser proves that these requests, too, are indeed handled by
             the <em>start</em> request handler:
         </p>
-
-<pre>Request for / received.
+        <pre>Request for / received.
 About to route a request for /
-Request handler 'start' was called.
-</pre>
-
+Request handler 'start' was called.</pre>
 
         <a name="making-the-request-handlers-respond"></a>
 
@@ -2342,8 +2319,7 @@ Request handler 'start' was called.
             a charm: requesting <a href="http://localhost:8888/start" rel="nofollow">http://localhost:8888/start</a>
             results in "Hello Start" being displayed in the browser,
             requesting <a href="http://localhost:8888/upload" rel="nofollow">http://localhost:8888/upload</a>
-            gives us "Hello Upload", and <a href="http://localhost:8888/foo"
-                                            rel="nofollow">http://localhost:8888/foo</a>
+            gives us "Hello Upload", and <a href="http://localhost:8888/foo" rel="nofollow">http://localhost:8888/foo</a>
             produces "404 Not found".
         </p>
 
@@ -2358,10 +2334,10 @@ Request handler 'start' was called.
         </p>
 
         <a name="blocking-and-non-blocking"></a>
+
         <h4>Blocking and non-blocking</h4>
 
         <p>
-
             As said, the problems will arise when we include non-blocking
             operations in the request handlers. But let's talk about
             blocking operations first, then about non-blocking operations.
@@ -2467,7 +2443,6 @@ Request handler 'start' was called.
         </p>
 
         <p>
-
             What that means is that Node.js can handle a lot of concurrent
             stuff, but doesn't do this by splitting everything into
             threads - in fact, Node.js is single-threaded. Instead, it does
@@ -2493,10 +2468,8 @@ Request handler 'start' was called.
         </p>
 
         <p>
-
             (If you would like to read about that in more detail, please have
-            a look at Mixu's post on <a href="http://blog.mixu.net/2011/02/01/understanding-the-node-js-event-loop/">Understanding
-            the node.js event loop</a>.)
+            a look at Mixu's post on <a href="http://blog.mixu.net/2011/02/01/understanding-the-node-js-event-loop/">Understanding the node.js event loop</a>.)
         </p>
 
         <p>
@@ -2511,7 +2484,6 @@ Request handler 'start' was called.
         </p>
 
         <p>
-
             We are going to use our <em>start</em> request handler for this
             again. Please modify it to reflect the following (file
             <em>requestHandlers.js</em>):
@@ -2571,7 +2543,6 @@ Request handler 'start' was called.
         </p>
 
         <p>
-
             Which loads a beautiful web page that displays the string
             "empty". What's going wrong here?
         </p>
@@ -2657,6 +2628,7 @@ Request handler 'start' was called.
         </p>
 
         <a name="responding-request-handlers-with-non-blocking-operations"></a>
+
         <h4>Responding request handlers with non-blocking operations</h4>
 
         <p>
@@ -2693,7 +2665,6 @@ Request handler 'start' was called.
         </p>
 
         <p>
-
             Let's start with our <em>server.js</em>:
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
@@ -2781,7 +2752,6 @@ Request handler 'start' was called.
         <p>
             And last but not least, we modify <em>requestHandlers.js</em>:
         </p>
-
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> exec </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">"child_process"</span><span
                 class="pun">).</span><span class="pln">exec</span><span class="pun">;</span><span
@@ -2828,7 +2798,6 @@ Request handler 'start' was called.
         <p>
             The <em>start</em> handler will respond from within the
             anonymous <em>exec()</em> callback, and the <em>upload</em>
-
             handler still simply replies with "Hello Upload", but now
             by making use of the <em>response</em> object.
         </p>
@@ -2844,7 +2813,6 @@ Request handler 'start' was called.
             <em>/upload</em> from answering immediately, then modify your
             <em>requestHandlers.js</em> as follows:
         </p>
-
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> exec </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">"child_process"</span><span
                 class="pun">).</span><span class="pln">exec</span><span class="pun">;</span><span
@@ -2922,7 +2890,6 @@ Request handler 'start' was called.
         </p>
 
         <p>
-
             Here, step by step means roughly two steps: We will first look
             at how to handle incoming POST requests (but not file uploads),
             and in a second step, we will make use of an external Node.js
@@ -2952,10 +2919,12 @@ Request handler 'start' was called.
             request. Upon receiving and handling this request, we will
             display the content of the textarea.
         </p>
-        The HTML for this textarea form needs to be served by our
-        <em>/start</em> request handler, so let's add it right away, in
-        file <em>requestHandlers.js</em>:
-        <p></p>
+        
+        <p>
+            The HTML for this textarea form needs to be served by our
+            <em>/start</em> request handler, so let's add it right away, in
+            file <em>requestHandlers.js</em>:
+        </p>
         <pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> start</span><span
                 class="pun">(</span><span class="pln">response</span><span class="pun">)</span><span
                 class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; console</span><span
@@ -3056,7 +3025,6 @@ Request handler 'start' was called.
         </p>
 
         <p>
-
             This basically looks like this:
         </p>
         <pre class="prettyprint lang-js"><span class="pln">request</span><span class="pun">.</span><span class="pln">addListener</span><span
@@ -3088,7 +3056,6 @@ Request handler 'start' was called.
         </p>
 
         <p>
-
             Thus, the idea is to put the <em>data</em> and <em>end</em>
             event callbacks in the server, collecting all POST data chunks
             in the <em>data</em> callback, and calling the router upon
@@ -3098,7 +3065,6 @@ Request handler 'start' was called.
         </p>
 
         <p>
-
             Here we go, starting with <em>server.js</em>:
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
@@ -3171,7 +3137,6 @@ Request handler 'start' was called.
         </p>
 
         <p>
-
             I suggest playing around with this a bit. Put small
             amounts of text into the textarea as well as lots of text, and
             you will see that for the larger texts, the <em>data</em>
@@ -3284,7 +3249,6 @@ Request handler 'start' was called.
             We already read about the <em>querystring</em> module, which
             assists us with this:
         </p>
-
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> querystring </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">"querystring"</span><span
                 class="pun">);</span><span class="pln"><br><br></span><span class="kwd">function</span><span
@@ -3343,6 +3307,7 @@ Request handler 'start' was called.
         </p>
 
         <a name="handling-file-uploads"></a>
+
         <h4>Handling file uploads</h4>
 
         <p>
@@ -3352,7 +3317,6 @@ Request handler 'start' was called.
         </p>
 
         <p>
-
             Back in the 90's this would have qualified as a business model
             for an IPO, today it must suffice to teach us two things: how
             to install external Node.js libraries, and how to make use of
@@ -3376,16 +3340,16 @@ Request handler 'start' was called.
             external Node.js modules in a very convenient fashion. Given a
             working Node.js installation, it boils down to issuing
         </p>
-
         <pre class="prettyprint lang-bash"><span class="pln">npm install formidable</span></pre>
+
         <p>
             on our command line. If the following output ends with
         </p>
         <pre class="prettyprint lang-bash"><span class="pln">npm info build </span><span class="typ">Success</span><span
                 class="pun">:</span><span class="pln"> formidable@1</span><span class="pun">.</span><span class="lit">0.2</span><span
                 class="pln"><br>npm ok</span></pre>
-        <p>
 
+        <p>
             then we are good to go.
         </p>
 
@@ -3476,7 +3440,7 @@ Request handler 'start' was called.
             to the callback defined in the <em>form.parse</em> call, is
             structured:
         </p>
-<pre class="lang-js">received upload:
+        <pre class="lang-js">received upload:
 
 { fields: { title: 'Hello World' },
   files:
@@ -3489,11 +3453,9 @@ Request handler 'start' was called.
         _writeStream: [Object],
         length: [Getter],
         filename: [Getter],
-        mime: [Getter] } } }
-</pre>
+        mime: [Getter] } } }</pre>
 
         <p>
-
             In order to make our use case happen, what we need to do is
             to include the form-parsing logic of formidable into our code
             structure, plus we will need to find out how to serve the
@@ -3652,24 +3614,25 @@ Request handler 'start' was called.
         <p>
             Fine. All we need to do now is
         </p>
-        <ul>
-
-            <li>
-                add a file upload element to the form which is served
-                at <em>/start</em>,
-            </li>
-            <li>
-                integrate node-formidable into the <em>upload</em>
-                request handler, in order to save the uploaded file to
-                <em>/tmp/test.png</em>,
-            </li>
-
-            <li>
-                embed the uploaded image into the HTML output of the
-                <em>/upload</em> URL.
-            </li>
-        </ul>
-        <p></p>
+        
+        <p>
+            <ul>
+                <li>
+                    add a file upload element to the form which is served
+                    at <em>/start</em>,
+                </li>
+                <li>
+                    integrate node-formidable into the <em>upload</em>
+                    request handler, in order to save the uploaded file to
+                    <em>/tmp/test.png</em>,
+                </li>
+        
+                <li>
+                    embed the uploaded image into the HTML output of the
+                    <em>/upload</em> URL.
+                </li>
+            </ul>
+        </p>
 
         <p>
             Step 1 is simple. We need to add an encoding type of
@@ -3799,7 +3762,6 @@ Request handler 'start' was called.
         </p>
 
         <p>
-
             Let's start with <em>server.js</em> - we remove the postData
             handling and the <em>request.setEncoding</em> line (which is going
             to be handled by node-formidable itself), and we pass
@@ -4021,7 +3983,6 @@ Request handler 'start' was called.
         </p>
 
         <p>
-
             Of course, there's a lot of stuff we did not talk about:
             how to talk to a database, how to write unit tests, how to
             create external modules that are installable via NPM, or even
@@ -4040,7 +4001,6 @@ Request handler 'start' was called.
             of places to get your questions answered. The
             <a href="https://github.com/joyent/node/wiki">Node.js community wiki</a>
             and <a href="http://www.nodecloud.org/">the NodeCloud directory</a>
-
             are probably the best starting points for more information.
         </p>
         </div>
