@@ -12,7 +12,6 @@
                 font-family: Georgia, serif;
                 background-color: #eee;
                 padding-top: 0px;
-                -webkit-text-size-adjust: auto;
             }
             
             #forkmeongithub img {
@@ -22,7 +21,7 @@
                 right: 0;
                 border: 0;
             }
-
+            
             #book, #disqus_thread, #footer {
                 width: 640px;
                 margin: 0 auto;
@@ -35,12 +34,9 @@
                 border-bottom: 1px solid #ddd;
                 border-right: 1px solid #ddd;
                 z-index: 100;
-
-                -moz-box-shadow: 14px 11px 27px #888;
-                -webkit-box-shadow: 14px 11px 27px #888;
                 box-shadow: 14px 11px 27px #888;
             }
-
+            
             #book {
                 margin-top: 124px;
             }
@@ -68,11 +64,7 @@
                 padding-left: 32px;
                 padding-right: 32px;
                 border-radius: 8px;
-                -moz-border-radius: 8px;
-                -webkit-border-radius: 8px;
                 box-shadow: 0px 0px 4px #444;
-                -moz-box-shadow: 0px 0px 4px #444;
-                -webkit-box-shadow: 0px 0px 4px #444;
                 position: relative;
                 margin-bottom: 20px;
                 margin-left: auto;
@@ -80,7 +72,7 @@
                 width: 704px;
                 background-color: #555;
             }
-
+            
             #translations a {
                 text-decoration: none;
                 color: #fff;
@@ -120,8 +112,6 @@
             .buy-the-bundle .cover img {
                 border: 1px solid black;
                 box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset -1px 1px 0 rgba(255,255,255,0.4);
-                -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset -1px 1px 0 rgba(255,255,255,0.4);
-                -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset -1px 1px 0 rgba(255,255,255,0.4);
             }
 
             .buy-the-bundle .description {
@@ -175,8 +165,6 @@
                 background-image: -moz-linear-gradient(top, #14d014, #029302);
                 background-image: -webkit-gradient(linear, center top, center bottom, from(#14d014), to(#029302));
                 box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset -1px 1px 0 rgba(255,255,255,0.4);
-                -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset -1px 1px 0 rgba(255,255,255,0.4);
-                -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset -1px 1px 0 rgba(255,255,255,0.4);
             }
 
             .buy-the-bundle .buttonlink {
@@ -234,6 +222,13 @@
                 z-index: -1;
                 text-align: right;
             }
+            
+            @media only screen and (max-width: 1330px) {
+                #praise {
+                    display: none;
+                }
+            }
+            
 
             #praise .praise {
                 margin-bottom: 25px;
@@ -275,7 +270,6 @@
                 color: #700;
                 font-style: italic;
                 font-weight: bold;
-                -webkit-text-size-adjust: 100%;
             }
 
             h2 {
@@ -403,11 +397,31 @@
                 background: #eee
             }
         </style>
+        <style type="text/css">
+            @media only screen and (max-width: 1024px) {
+                body {
+                    font-size: 165%;
+                    background-color: #fff;
+                }
+                h1 {
+                    font-size: 250%;
+                    margin-left: -53px;
+                }
+                #book, #disqus_thread, #footer {
+                    width: 90%;
+                    max-width: 90%;
+                    padding: 32px;
+                    box-shadow: none;
+                    border: none;
+                }
+                .buy-the-bundle, .buy-the-ebook, #translations, #forkmeongithub, #praise {
+                    display: none;
+                }
+            }
+        </style>
         <style type="text/css" media="print">
             #book, #footer {
                 border: none;
-                -moz-box-shadow: none;
-                -webkit-box-shadow: none;
                 box-shadow: none;
             }
             
