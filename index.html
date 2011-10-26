@@ -93,18 +93,12 @@
                 padding-bottom: 20px;
             }
 
-            .buy-the-bundle .headline {
-                font-size: 24pt;
-                font-weight: bold;
-                padding-bottom: 16px;
-            }
-
             .buy-the-bundle .cover {
                 width: 131px;
                 display: table-cell;
                 padding-right: 0px;
-                padding-left: 40px;
-                vertical-align: bottom;
+                padding-left: 16px;
+                vertical-align: top;
                 align: center;
                 color: #bbb;
             }
@@ -112,48 +106,32 @@
             .buy-the-bundle .cover img {
                 border: 1px solid black;
                 box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset -1px 1px 0 rgba(255,255,255,0.4);
+                -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset -1px 1px 0 rgba(255,255,255,0.4);
+                -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset -1px 1px 0 rgba(255,255,255,0.4);
             }
 
             .buy-the-bundle .description {
                 width: 349px;
                 display: table-cell;
-                padding-right: 32px;
-                padding-left: 0;
+                padding-right: 16px;
+                padding-left: 16px;
                 vertical-align: top;
                 text-align: center;
             }
 
-            .buy-the-bundle .description ul {
-                list-style-type: none;
-            }
-
-            .buy-the-bundle .price {
-                width: 110px;
-                vertical-align: middle;
-                display: table-cell;
-                font-size: 12pt;
-                color: #ccc;
-                background-color: yellow;
-                border-radius: 60px;
-            }
-
-            .buy-the-bundle .current-price {
-                font-size: 24pt;
+            .buy-the-bundle strong.price {
+                font-size: 18pt;
                 color: #14d014;
-                font-weight: bolder;
-                text-shadow: 0.0125em 0.0125em #333;
             }
 
-            .buy-the-bundle .price a {
-                text-decoration: none;
-                color: darkred;
+            .buy-the-bundle strong.price.dollarsign {
+                font-weight: normal;
             }
 
             .buy-the-bundle .buy {
+                display: table-cell;
+                vertical-align: top;
                 color: #bbb;
-                margin-left: 280px;
-                margin-right: auto;
-                position: relative;
             }
 
             .buy-the-bundle .button {
@@ -165,14 +143,16 @@
                 background-image: -moz-linear-gradient(top, #14d014, #029302);
                 background-image: -webkit-gradient(linear, center top, center bottom, from(#14d014), to(#029302));
                 box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset -1px 1px 0 rgba(255,255,255,0.4);
+                -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset -1px 1px 0 rgba(255,255,255,0.4);
+                -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset -1px 1px 0 rgba(255,255,255,0.4);
             }
 
             .buy-the-bundle .buttonlink {
                 text-decoration: none;
                 font-weight: bold;
-                font-size: 24px;
+                font-size: 15px;
                 color: #fff;
-                text-shadow: 0.05em 0.03em #333;
+                text-shadow: 0.1em 0.1em #666;
             }
             
             .buy-the-ebook a {
@@ -495,35 +475,42 @@
         </div>
 
         <div class="buy-the-bundle">
-            <div class="headline">
-                Buy the ultimate Node.js bundle!
-            </div>
             <div class="cover">
-                <a href="buy-bundle/"><img src="the_node_beginner_book_cover.png" height="86" width="57" /></a>
-                <a href="buy-bundle/"><img src="hands-on_node.js_cover.png" height="86" width="57" /></a>
+                <p>
+                    The perfect introduction plus the perfect reference in one bundle!
+                </p>
+                <a href="/buy-bundle/"><img src="the_node_beginner_book_cover.png" height="86" width="57" /></a>
+                <a href="/buy-bundle/"><img src="hands-on_node.js_cover.png" height="86" width="57" /></a>
             </div>
             <div class="description">
-                <ul>
-                    <li>
-                        Introduction plus reference in one bundle
-                    </li>
-                    <li>
-                        226 pages in total - PDF, ePub & MOBI
-                    </li>
-                    <li>
-                        Direct download - <strong>free updates</strong>
-                    </li>
-                </ul>
-            </div>
-            <div class="price">
-                <a href="buy-bundle/">
-                    <del>$10.98</del>
-                    <div class="current-price">$7.99</div>
-                </a>
+                <p>
+                    LeanBundle currently offers
+                    the final version of
+                    <br />
+                    <strong>The Node Beginner Book</strong>
+                    <br />
+                    plus Pedro Teixeira's excellent
+                    <br />
+                    <strong>Hands-on Node.js</strong> for only
+                    <br />
+                    <br />
+                    <strong class="price dollarsign">$</strong><strong class="price">7.99</strong>
+                    <br />
+                    (regular price <del>$10.98</del>)
+                </p>
             </div>
             <div class="buy">
-                <a class="buttonlink" href="buy-bundle/">
-                    <div class="button">Buy now!</div>
+                <p>
+                    226 pages in total
+                    <br />
+                    PDF, ePub & MOBI
+                    <br />
+                    Direct download
+                    <br />
+                    Free updates
+                </p>
+                <a class="buttonlink" href="/buy-bundle/">
+                    <div class="button">Buy this<br />bundle now</div>
                 </a>
             </div>
         </div>
@@ -4006,35 +3993,42 @@ Request handler 'start' was called.</pre>
         </div>
 
         <div class="buy-the-bundle">
-            <div class="headline">
-                Extend your Node.js knowledge!
-            </div>
             <div class="cover">
-                <a href="buy-bundle-bottom/"><img src="the_node_beginner_book_cover.png" height="86" width="57" /></a>
-                <a href="buy-bundle-bottom/"><img src="hands-on_node.js_cover.png" height="86" width="57" /></a>
+                <p>
+                    The perfect introduction plus the perfect reference in one bundle!
+                </p>
+                <a href="/buy-bundle-bottom/"><img src="the_node_beginner_book_cover.png" height="86" width="57" /></a>
+                <a href="/buy-bundle-bottom/"><img src="hands-on_node.js_cover.png" height="86" width="57" /></a>
             </div>
             <div class="description">
-                <ul>
-                    <li>
-                        Introduction plus reference in one bundle
-                    </li>
-                    <li>
-                        226 pages in total - PDF, ePub & MOBI
-                    </li>
-                    <li>
-                        Direct download - <strong>free updates</strong>
-                    </li>
-                </ul>
-            </div>
-            <div class="price">
-                <a href="buy-bundle-bottom/">
-                    <del>$10.98</del>
-                    <div class="current-price">$7.99</div>
-                </a>
+                <p>
+                    LeanBundle currently offers
+                    the final version of
+                    <br />
+                    <strong>The Node Beginner Book</strong>
+                    <br />
+                    plus Pedro Teixeira's excellent
+                    <br />
+                    <strong>Hands-on Node.js</strong> for only
+                    <br />
+                    <br />
+                    <strong class="price dollarsign">$</strong><strong class="price">7.99</strong>
+                    <br />
+                    (regular price <del>$10.98</del>)
+                </p>
             </div>
             <div class="buy">
-                <a class="buttonlink" href="buy-bundle-bottom/">
-                    <div class="button">Buy now!</div>
+                <p>
+                    226 pages in total
+                    <br />
+                    PDF, ePub & MOBI
+                    <br />
+                    Direct download
+                    <br />
+                    Free updates
+                </p>
+                <a class="buttonlink" href="/buy-bundle-bottom/">
+                    <div class="button">Buy this<br />bundle now</div>
                 </a>
             </div>
         </div>
