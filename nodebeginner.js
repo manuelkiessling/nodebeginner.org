@@ -4,20 +4,15 @@
 // jQuery inView
 (function($){function getViewportHeight(){var height=window.innerHeight;var mode=document.compatMode;if((mode||!$.support.boxModel)){height=(mode=='CSS1Compat')?document.documentElement.clientHeight:document.body.clientHeight;} return height;} $(window).scroll(function(){var vpH=getViewportHeight(),scrolltop=(document.documentElement.scrollTop?document.documentElement.scrollTop:document.body.scrollTop),elems=[];$.each($.cache,function(){if(this.events&&this.events.inview){elems.push(this.handle.elem);}});if(elems.length){$(elems).each(function(){var $el=$(this),top=$el.offset().top,height=$el.height(),inview=$el.data('inview')||false;if(scrolltop>(top+height)||scrolltop+vpH<top){if(inview){$el.data('inview',false);$el.trigger('inview',[false]);}}else if(scrolltop<(top+height)){if(!inview){$el.data('inview',true);$el.trigger('inview',[true]);}}});}});$(function(){$(window).scroll();});})(jQuery);
 
-// Load Disqus only upon scrolling to disqus div
-$('#disqus_thread').one('inview', function (event, visible) {
-    if (visible) {
-        // Disqus
-        var disqus_shortname = 'nodebeginner';
-        var disqus_identifier = 'nodebeginner-book';
-        var disqus_url = 'http://www.nodebeginner.org/';
-        (function() {
-            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-    }
-});
+// Disqus
+var disqus_shortname = 'nodebeginner';
+var disqus_identifier = 'nodebeginner-book';
+var disqus_url = 'http://www.nodebeginner.org/';
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
 
 // Google Analytics
 var _gaq = _gaq || [];
