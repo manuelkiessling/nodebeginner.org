@@ -428,34 +428,28 @@
                 display: none;
             }
         </style>
-                
+        
         <script type="text/javascript">
-            // Function to asyncronously load local js files
-            function loadScript(url, callback) {
-                var script = document.createElement("script")
-                script.type = "text/javascript";
-                script.async = true;
-            
-                if (script.readyState){  //IE
-                    script.onreadystatechange = function(){
-                        if (script.readyState == "loaded" ||
-                                script.readyState == "complete"){
-                            script.onreadystatechange = null;
-                            callback();
-                        }
-                    };
-                } else {  //Others
-                    script.onload = function(){
-                        callback();
-                    };
-                }
-            
-                script.src = url;
-                document.getElementsByTagName("head")[0].appendChild(script);
-            }
-            
-            // Load main JavaScript
-            loadScript("nodebeginner.js", function(){});
+            // Google Analytics
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-2127388-6']);
+            _gaq.push(['_trackPageview']);
+
+            (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+
+            // Disqus
+            var disqus_shortname = 'nodebeginner';
+            var disqus_identifier = 'nodebeginner-book';
+            var disqus_url = 'http://www.nodebeginner.org/';
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
         </script>
     </head>
     <body>
