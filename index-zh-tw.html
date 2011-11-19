@@ -537,15 +537,15 @@
         <h3>讀者對象</h3>
 
         <p>
-            本書最適合與我有相似技術背景的讀者： 至少對一門諸如Ruby、Python、PHP或者Java這樣面向對象的語言有一定的經驗；對JavaScript處於初學階段，並且完全是一個Node.js的新手。
+            本書最適合與我有相似技術背景的讀者： 至少對一門諸如Ruby、Python、PHP或者Java這樣物件導向程式語言有一定的經驗；對JavaScript處於初學階段，並且完全是一個Node.js的新手。
         </p>
 
         <p>
-            這裡指的適合對其他程式語言有一定經驗的開發者，意思是說，本書不會對諸如數據類型、變量、控制結構等等之類非常基礎的概念作介紹。要讀懂本書，這些基礎的概念我都預設你已經會了。
+            這裡指的適合對其他程式語言有一定經驗的開發者，意思是說，本書不會對諸如資料類型、變數、控制結構等等之類非常基礎的概念作介紹。要讀懂本書，這些基礎的概念我都預設你已經會了。
         </p>
 
         <p>
-            然而，本書還是會對JavaScript中的函數和對象作詳細介紹，因為它們與其他同類程式語言中的函數和對象有很大的不同。
+            然而，本書還是會對JavaScript中的函數和物件作詳細介紹，因為它們與其他同類程式語言中的函數和物件有很大的不同。
         </p>
 
         <a name="structure"></a>
@@ -624,11 +624,11 @@
                         <li><a href="#execution-in-the-kongdom-of-verbs">行為驅動執行</a></li>
                         <li><a href="#routing-to-real-request-handlers">路由給真正的請求處理程序</a></li>
 
-                        <li><a href="#making-the-request-handlers-respond">讓請求處理程序作出響應</a>
+                        <li><a href="#making-the-request-handlers-respond">讓請求處理程序作出回應</a>
                             <ul>
                                 <li><a href="#how-to-not-do-it">不好的實現方式</a></li>
                                 <li><a href="#blocking-and-non-blocking">Blocking與Non-Blocking</a></li>
-                                <li><a href="#responding-request-handlers-with-non-blocking-operations">以Non-Blocking操作進行請求響應</a>
+                                <li><a href="#responding-request-handlers-with-non-blocking-operations">以Non-Blocking操作進行請求回應</a>
                                 </li>
                             </ul>
 
@@ -800,9 +800,9 @@
 
         <ul>
         <li>我們需要提供Web頁面，因此需要一個<em>HTTP伺服器</em></li>
-        <li>對於不同的請求，根據請求的URL，我們的伺服器需要給予不同的響應，因此我們需要一個<em>路由</em>，用於把請求對應到請求處理程序（request handler）</li>
+        <li>對於不同的請求，根據請求的URL，我們的伺服器需要給予不同的回應，因此我們需要一個<em>路由</em>，用於把請求對應到請求處理程序（request handler）</li>
         <li>當請求被伺服器接收並透過路由傳遞之後，需要可以對其進行處理，因此我們需要最終的<em>請求處理程序</em></li>
-        <li>路由還應該能處理POST數據，並且把數據封裝成更友好的格式傳遞給請求處理入程序，因此需要<em>請求數據處理功能</em></li>
+        <li>路由還應該能處理POST資料，並且把資料封裝成更友好的格式傳遞給請求處理入程序，因此需要<em>請求資料處理功能</em></li>
         <li>我們不僅僅要處理URL對應的請求，還要把內容顯示出來，這意味著我們需要一些<em>視圖邏輯</em>供請求處理程序使用，以便將內容發送給用戶的瀏覽器</li>
         <li>最後，用戶需要上傳圖片，所以我們需要<em>上傳處理功能</em>來處理這方面的細節</li>
         </ul>
@@ -888,12 +888,12 @@
         </p>
 
         <p>
-            第一行<em>請求（require）</em>Node.js自帶的 <em>http</em> 模組，並且把它賦值給 <em>http</em> 變量。
+            第一行<em>請求（require）</em>Node.js自帶的 <em>http</em> 模組，並且把它賦值給 <em>http</em> 變數。
         </p>
 
 
         <p>
-            接下來我們執行http模組提供的函數： <em>createServer</em> 。這個函數會返回一個對象，這個對象有一個叫做 <em>listen</em> 的方法，這個方法有一個數值參數，指定這個HTTP伺服器監聽的埠號號。
+            接下來我們執行http模組提供的函數： <em>createServer</em> 。這個函數會回傳一個物件，這個物件有一個叫做 <em>listen</em> 的方法，這個方法有一個數值參數，指定這個HTTP伺服器監聽的埠號號。
         </p>
 
         <p>
@@ -920,7 +920,7 @@
         </p>
 
         <p>
-            實際上，這個函數定義是 <em>createServer()</em> 的第一個也是唯一一個參數。因為在JavaScript中，函數和其他變量一樣都是可以被傳遞的。
+            實際上，這個函數定義是 <em>createServer()</em> 的第一個也是唯一一個參數。因為在JavaScript中，函數和其他變數一樣都是可以被傳遞的。
         </p>
 
         <a name="passing-functions-around"></a>
@@ -944,19 +944,19 @@
                 class="pln"> </span><span class="str">"Hello"</span><span class="pun">);</span></pre>
 
         <p>
-            請仔細閱讀這段代碼！在這裡，我們把 <em>say</em> 函數作為<em>execute</em>函數的第一個變量進行了傳遞。這裡返回的不是 <em>say</em> 的返回值，而是 <em>say</em> 本身！
+            請仔細閱讀這段代碼！在這裡，我們把 <em>say</em> 函數作為<em>execute</em>函數的第一個變數進行了傳遞。這裡回傳的不是 <em>say</em> 的回傳值，而是 <em>say</em> 本身！
         </p>
 
         <p>
-            這樣一來， <em>say</em> 就變成了<em>execute</em> 中的區域變量 <em>someFunction</em> ，execute可以透過執行 <em>someFunction()</em> （帶括號的形式）來使用 <em>say</em> 函數。
+            這樣一來， <em>say</em> 就變成了<em>execute</em> 中的區域變數 <em>someFunction</em> ，execute可以透過執行 <em>someFunction()</em> （帶括號的形式）來使用 <em>say</em> 函數。
         </p>
 
         <p>
-            當然，因為 <em>say</em> 有一個變量， <em>execute</em> 在執行 <em>someFunction</em> 時可以傳遞這樣一個變量。
+            當然，因為 <em>say</em> 有一個變數， <em>execute</em> 在執行 <em>someFunction</em> 時可以傳遞這樣一個變數。
         </p>
 
         <p>
-            我們可以，就像剛才那樣，用它的名字把一個函數作為變量傳遞。但是我們不一定要繞這個 &quot;先定義，再傳遞&quot; 的圈子，我們可以直接在另一個函數的括號中定義和傳遞這個函數：
+            我們可以，就像剛才那樣，用它的名字把一個函數作為變數傳遞。但是我們不一定要繞這個 &quot;先定義，再傳遞&quot; 的圈子，我們可以直接在另一個函數的括號中定義和傳遞這個函數：
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> execute</span><span
                 class="pun">(</span><span class="pln">someFunction</span><span class="pun">,</span><span class="pln"> value</span><span
@@ -1096,13 +1096,13 @@
 
         <p>當回呼(callback)啟動，我們的 <em>onRequest()</em> 函數被觸發的時候，有兩個參數被傳入： <em>request</em> 和 <em>response</em> 。  </p>
 
-        <p>它們是對象，你可以使用它們的方法來處理HTTP請求的細節，並且響應請求（比如向發出請求的瀏覽器發回一些東西）。  </p>
+        <p>它們是物件，你可以使用它們的方法來處理HTTP請求的細節，並且回應請求（比如向發出請求的瀏覽器發回一些東西）。  </p>
 
         <p>所以我們的代碼就是：當收到請求時，使用 <em>response.writeHead()</em> 函數發送一個HTTP狀態200和HTTP頭的內容類型（content-type），使用 <em>response.write()</em> 函數在HTTP相應主體中發送文字 &quot;Hello World"。  </p>
 
-        <p>最後，我們執行 <em>response.end()</em> 完成響應。  </p>
+        <p>最後，我們執行 <em>response.end()</em> 完成回應。  </p>
 
-        <p>目前來說，我們對請求的細節並不在意，所以我們沒有使用 <em>request</em> 對象。  </p>
+        <p>目前來說，我們對請求的細節並不在意，所以我們沒有使用 <em>request</em> 物件。  </p>
 
         <a name="finding-a-place-for-our-server-module"></a>
 
@@ -1119,11 +1119,11 @@
                 class="pln"><br><br>http</span><span class="pun">.</span><span class="pln">createServer</span><span
                 class="pun">(...);</span></pre>
 
-        <p>Node.js中自帶了一個叫做 &quot;http&quot; 的模組，我們在我們的代碼中請求它並把返回值賦給一個區域變量。  </p>
+        <p>Node.js中自帶了一個叫做 &quot;http&quot; 的模組，我們在我們的代碼中請求它並把回傳值賦給一個區域變數。  </p>
 
-        <p>這把我們的區域變量變成了一個擁有所有 <em>http</em> 模組所提供的公共方法的對象。</p>
+        <p>這把我們的區域變數變成了一個擁有所有 <em>http</em> 模組所提供的公共方法的物件。</p>
 
-        <p>給這種區域變量起一個和模組名稱一樣的名字是一種慣例，但是你也可以按照自己的喜好來：  </p>
+        <p>給這種區域變數起一個和模組名稱一樣的名字是一種慣例，但是你也可以按照自己的喜好來：  </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> foo </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
                 class="str">"http"</span><span class="pun">);</span><span class="pln"><br><br></span><span class="pun">...</span><span
@@ -1172,7 +1172,7 @@
                 class="pun">);</span><span class="pln"><br><br>server</span><span class="pun">.</span><span class="pln">start</span><span
                 class="pun">();</span></pre>
 
-        <p>正如你所看到的，我們可以像使用任何其他的內置模組一樣使用server模組：請求這個檔案並把它指向一個變量，其中已匯出的函數就可以被我們使用了。</p>
+        <p>正如你所看到的，我們可以像使用任何其他的內置模組一樣使用server模組：請求這個檔案並把它指向一個變數，其中已匯出的函數就可以被我們使用了。</p>
 
         <p>好了。我們現在就可以從我們的主要腳本啟動我們的的應用了，而它還是老樣子：</p>
         <pre>node index.js</pre>
@@ -1189,11 +1189,11 @@
 
         <h3>如何來進行請求的 &quot;路由&quot; </h3> 
 
-         <p>我們要為路由提供請求的URL和其他需要的GET及POST參數，隨後路由需要根據這些數據來執行相應的代碼（這裡 &quot;代碼&quot; 對應整個應用的第三部分：一系列在接收到請求時真正工作的處理程序）。</p>
+         <p>我們要為路由提供請求的URL和其他需要的GET及POST參數，隨後路由需要根據這些資料來執行相應的代碼（這裡 &quot;代碼&quot; 對應整個應用的第三部分：一系列在接收到請求時真正工作的處理程序）。</p>
 
         <p>因此，我們需要查看HTTP請求，從中提取出請求的URL以及GET/POST參數。這一功能應當屬於路由還是伺服器（甚至作為一個模組自身的功能）確實值得探討，但這裡暫定其為我們的HTTP伺服器的功能。</p>
 
-        <p>我們需要的所有數據都會包含在request對象中，該對象作為<em>onRequest()</em>回呼(callback)函數的第一個參數傳遞。但是為了解析這些數據，我們需要額外的Node.JS模組，它們分別是<em>url</em>和<em>querystring</em>模組。</p>
+        <p>我們需要的所有資料都會包含在request物件中，該物件作為<em>onRequest()</em>回呼(callback)函數的第一個參數傳遞。但是為了解析這些資料，我們需要額外的Node.JS模組，它們分別是<em>url</em>和<em>querystring</em>模組。</p>
 <pre>                               url.parse(string).query
                                            |
            url.parse(string).pathname      |
@@ -1314,7 +1314,7 @@ http://localhost:8888/start?foo=bar&amp;hello=world
 
         <p>在這裡，我們傳遞的函數依舊什麼也沒做。</p>
 
-        <p>如果現在啟動應用（<em>node index.js，始終記得這個命令行</em>），隨後請求一個URL，你將會看到應用輸出相應的信息，這表明我們的HTTP伺服器已經在使用路由模組了，並會將請求的路徑傳遞給路由：</p>
+        <p>如果現在啟動應用（<em>node index.js，始終記得這個命令行</em>），隨後請求一個URL，你將會看到應用輸出相應的訊息，這表明我們的HTTP伺服器已經在使用路由模組了，並會將請求的路徑傳遞給路由：</p>
 
         <pre>bash$ node index.js
 Request for /foo received.
@@ -1328,7 +1328,7 @@ About to route a request for /foo</pre>
 
         <p>請允許我再次脫離主題，在這裡談一談函數編程。</p>
 
-        <p>將函數作為參數傳遞並不僅僅出於技術上的考量。對軟體設計來說，這其實是個哲學問題。想想這樣的場景：在index檔案中，我們可以將<em>router</em>對象傳遞進去，伺服器隨後可以執行這個對象的<em>route</em>函數。</p>
+        <p>將函數作為參數傳遞並不僅僅出於技術上的考量。對軟體設計來說，這其實是個哲學問題。想想這樣的場景：在index檔案中，我們可以將<em>router</em>物件傳遞進去，伺服器隨後可以執行這個物件的<em>route</em>函數。</p>
 
         <p>就像這樣，我們傳遞一個東西，然後伺服器利用這個東西來完成一些事。嗨~那個叫路由的東西，能幫我把這個路由一下嗎？</p>
 
@@ -1373,21 +1373,21 @@ About to route a request for /foo</pre>
 
         <p>那麼我們要怎麼傳遞這些請求處理程序呢？別看現在我們只有2個處理程序，在一個真實的應用中，請求處理程序的數量會不斷增加，我們當然不想每次有一個新的URL或請求處理程序時，都要為了在路由裡完成請求到處理程序的映射而反復折騰。除此之外，在路由裡有一大堆<em>if request == x then call handler y</em>也使得系統丑陋不堪。</p>
 
-        <p>仔細想想，有一大堆東西，每個都要映射到一個字串（就是請求的URL）上？似乎關聯數組（associative array）能完美勝任。</p>
+        <p>仔細想想，有一大堆東西，每個都要映射到一個字串（就是請求的URL）上？似乎關聯陣列（associative array）能完美勝任。</p>
 
-        <p>不過結果有點令人失望，JavaScript沒提供關聯數組 -- 也可以說它提供了？事實上，在JavaScript中，真正能提供此類功能的是它的對象。</p>
+        <p>不過結果有點令人失望，JavaScript沒提供關聯陣列 -- 也可以說它提供了？事實上，在JavaScript中，真正能提供此類功能的是它的物件。</p>
 
         <p>在這方面，<a href="http://msdn.microsoft.com/en-us/magazine/cc163419.aspx">http://msdn.microsoft.com/en-us/magazine/cc163419.aspx</a>有一個不錯的介紹，我在此摘錄一段：</p>
 
          <blockquote>
-            <p>在C++或C#中，當我們談到對象，指的是類或者結構體的實體。對象根據他們實體化的模板（就是所謂的類），會擁有不同的屬性和方法。但在JavaScript裡對象不是這個概念。在JavaScript中，對象就是一個鍵/值對的集合 -- 你可以把JavaScript的對象想象成一個鍵為字串類型的字典。</p>
+            <p>在C++或C#中，當我們談到物件，指的是類別(Class)或者結構體(Struct)的實體。物件根據他們實體化的範本（就是所謂的類別），會擁有不同的屬性和方法。但在JavaScript裡物件不是這個概念。在JavaScript中，物件就是一個鍵/值對的集合 -- 你可以把JavaScript的物件想象成一個鍵為字串類型的字典。</p>
         </blockquote>
 
-        <p>但如果JavaScript的對象僅僅是鍵/值對的集合，它又怎麼會擁有方法呢？好吧，這裡的值可以是字串、數字或者……函數！</p>
+        <p>但如果JavaScript的物件僅僅是鍵/值對的集合，它又怎麼會擁有方法呢？好吧，這裡的值可以是字串、數字或者……函數！</p>
 
-        <p>好了，最後再回到代碼上來。現在我們已經確定將一系列請求處理程序透過一個對象來傳遞，並且需要使用松耦合的方式將這個對象注入到<em>route()</em>函數中。</p>
+        <p>好了，最後再回到代碼上來。現在我們已經確定將一系列請求處理程序透過一個物件來傳遞，並且需要使用松耦合的方式將這個物件注入到<em>route()</em>函數中。</p>
 
-        <p>我們先將這個對象引入到主檔案<em>index.js</em>中：</p>
+        <p>我們先將這個物件引入到主檔案<em>index.js</em>中：</p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> server </span><span class="pun">=</span><span
                 class="pln"> require</span><span class="pun">(</span><span class="str">"./server"</span><span
                 class="pun">);</span><span class="pln"><br></span><span class="kwd">var</span><span
@@ -1412,9 +1412,9 @@ About to route a request for /foo</pre>
 
         <p>雖然<em>handle</em>並不僅僅是一個 &quot;東西&quot; （一些請求處理程序的集合），我還是建議以一個動詞作為其命名，這樣做可以讓我們在路由中使用更流暢的表達式，稍後會有說明。</p>
 
-        <p>正如所見，將不同的URL映射到相同的請求處理程序上是很容易的：只要在對象中增加一個鍵為<em>"/"</em>的屬性，對應<em>requestHandlers.start</em>即可，這樣我們就可以乾淨簡潔地配置<em>/start</em>和<em>/</em>的請求都交由<em>start</em>這一處理程序處理。</p>
+        <p>正如所見，將不同的URL映射到相同的請求處理程序上是很容易的：只要在物件中增加一個鍵為<em>"/"</em>的屬性，對應<em>requestHandlers.start</em>即可，這樣我們就可以乾淨簡潔地配置<em>/start</em>和<em>/</em>的請求都交由<em>start</em>這一處理程序處理。</p>
 
-        <p>在完成了對象的定義後，我們把它作為額外的參數傳遞給伺服器，為此將<em>server.js</em>修改如下：</p>
+        <p>在完成了物件的定義後，我們把它作為額外的參數傳遞給伺服器，為此將<em>server.js</em>修改如下：</p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
                 class="str">"http"</span><span class="pun">);</span><span class="pln"><br></span><span
@@ -1453,7 +1453,7 @@ About to route a request for /foo</pre>
                 class="pun">.</span><span class="pln">start </span><span class="pun">=</span><span
                 class="pln"> start</span><span class="pun">;</span></pre>
 
-        <p>這樣我們就在<em>start()</em>函數裡增加了<em>handle</em>參數，並且把handle對象作為第一個參數傳遞給了<em>route()</em>回呼(callback)函數。</p>
+        <p>這樣我們就在<em>start()</em>函數裡增加了<em>handle</em>參數，並且把handle物件作為第一個參數傳遞給了<em>route()</em>回呼(callback)函數。</p>
 
         <p>然後我們相應地在<em>route.js</em>檔案中修改<em>route()</em>函數：</p>
         <pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> route</span><span
@@ -1478,7 +1478,7 @@ About to route a request for /foo</pre>
                 class="pun">.</span><span class="pln">route </span><span class="pun">=</span><span
                 class="pln"> route</span><span class="pun">;</span></pre>
 
-       <p>透過以上代碼，我們首先檢查給定的路徑對應的請求處理程序是否存在，如果存在的話直接執行相應的函數。我們可以用從關聯數組中取得元素一樣的方式從傳遞的對象中取得請求處理函數，因此就有了簡潔流暢的形如<em>handle&#91;pathname&#93;();</em>的表達式，這個感覺就像在前方中提到的那樣： &quot;嗨，請幫我處理了這個路徑&quot; 。</p>
+       <p>透過以上代碼，我們首先檢查給定的路徑對應的請求處理程序是否存在，如果存在的話直接執行相應的函數。我們可以用從關聯陣列中取得元素一樣的方式從傳遞的物件中取得請求處理函數，因此就有了簡潔流暢的形如<em>handle&#91;pathname&#93;();</em>的表達式，這個感覺就像在前方中提到的那樣： &quot;嗨，請幫我處理了這個路徑&quot; 。</p>
 
         <p>有了這些，我們就把伺服器、路由和請求處理程序在一起了。現在我們啟動應用程式並在瀏覽器中存取<em>http://localhost:8888/start</em>，以下日志可以說明系統執行了正確的請求處理程序：</p>
 
@@ -1494,18 +1494,18 @@ Request handler 'start' was called.</pre>
 
         <a name="making-the-request-handlers-respond"></a>
 
-        <h3>讓請求處理程序作出響應</h3>
+        <h3>讓請求處理程序作出回應</h3>
 
         <p>
-            很好。不過現在要是請求處理程序能夠向瀏覽器返回一些有意義的信息而並非全是 &quot;Hello World&quot; ，那就更好了。
+            很好。不過現在要是請求處理程序能夠向瀏覽器回傳一些有意義的訊息而並非全是 &quot;Hello World&quot; ，那就更好了。
         </p>
 
         <p>
-            這裡要記住的是，瀏覽器發出請求後獲得並顯示的 &quot;Hello World&quot; 信息仍是來自於我們<em>server.js</em>檔案中的<em>onRequest</em>函數。
+            這裡要記住的是，瀏覽器發出請求後獲得並顯示的 &quot;Hello World&quot; 訊息仍是來自於我們<em>server.js</em>檔案中的<em>onRequest</em>函數。
         </p>
 
         <p>
-            其實 &quot;處理請求&quot; 說白了就是 &quot;對請求作出響應&quot; ，因此，我們需要讓請求處理程序能夠像<em>onRequest</em>函數那樣可以和瀏覽器進行 &quot;對話&quot; 。
+            其實 &quot;處理請求&quot; 說白了就是 &quot;對請求作出回應&quot; ，因此，我們需要讓請求處理程序能夠像<em>onRequest</em>函數那樣可以和瀏覽器進行 &quot;對話&quot; 。
         </p>
 
         <a name="how-to-not-do-it"></a>
@@ -1517,7 +1517,7 @@ Request handler 'start' was called.</pre>
         </p>
 
         <p>
-            這裡我指的 &quot;直截了當的實現方式&quot; 意思是：讓請求處理程序透過<em>onRequest</em>函數直接返回（<em>return()</em>）他們要展示給用戶的信息。
+            這裡我指的 &quot;直截了當的實現方式&quot; 意思是：讓請求處理程序透過<em>onRequest</em>函數直接回傳（<em>return()</em>）他們要展示給用戶的訊息。
         </p>
 
         <p>
@@ -1525,7 +1525,7 @@ Request handler 'start' was called.</pre>
         </p>
 
         <p>
-            讓我們從讓請求處理程序返回需要在瀏覽器中顯示的信息開始。我們需要將<em>requestHandler.js</em>修改為如下形式：
+            讓我們從讓請求處理程序回傳需要在瀏覽器中顯示的訊息開始。我們需要將<em>requestHandler.js</em>修改為如下形式：
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> start</span><span
                 class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; console</span><span
@@ -1545,7 +1545,7 @@ Request handler 'start' was called.</pre>
                 class="pln"> upload</span><span class="pun">;</span></pre>
 
         <p>
-            好的。同樣的，請求路由需要將請求處理程序返回給它的信息返回給伺服器。因此，我們需要將<em>router.js</em>修改為如下形式：
+            好的。同樣的，請求路由需要將請求處理程序回傳給它的訊息回傳給伺服器。因此，我們需要將<em>router.js</em>修改為如下形式：
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> route</span><span
                 class="pun">(</span><span class="pln">handle</span><span class="pun">,</span><span
@@ -1571,11 +1571,11 @@ Request handler 'start' was called.</pre>
                 class="pun">.</span><span class="pln">route </span><span class="pun">=</span><span
                 class="pln"> route</span><span class="pun">;</span></pre>
         <p>
-            正如上述代碼所示，當請求無法路由的時候，我們也返回了一些相關的錯誤信息。
+            正如上述代碼所示，當請求無法路由的時候，我們也回傳了一些相關的錯誤訊息。
         </p>
 
         <p>
-            最後，我們需要對我們的<em>server.js</em>進行重構以使得它能夠將請求處理程序透過請求路由返回的內容響應給瀏覽器，如下所示：
+            最後，我們需要對我們的<em>server.js</em>進行重構以使得它能夠將請求處理程序透過請求路由回傳的內容回應給瀏覽器，如下所示：
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
@@ -1641,7 +1641,7 @@ Request handler 'start' was called.</pre>
         </p>
 
         <p>
-            這裡，我們來修改下<em>start</em>請求處理程序，我們讓它等待10秒以後再返回 &quot;Hello Start&quot; 。因為，JavaScript中沒有類似<em>sleep()</em>這樣的操作，所以這裡只能夠來點小Hack來模擬實現。
+            這裡，我們來修改下<em>start</em>請求處理程序，我們讓它等待10秒以後再回傳 &quot;Hello Start&quot; 。因為，JavaScript中沒有類似<em>sleep()</em>這樣的操作，所以這裡只能夠來點小Hack來模擬實現。
         </p>
 
         <p>
@@ -1678,7 +1678,7 @@ Request handler 'start' was called.</pre>
                 class="pln"> upload</span><span class="pun">;</span></pre>
 
         <p>
-            上述代碼中，當函數<em>start()</em>被執行的時候，Node.js會先等待10秒，之後才會返回 &quot;Hello Start&quot; 。當執行<em>upload()</em>的時候，會和此前一樣立即返回。
+            上述代碼中，當函數<em>start()</em>被執行的時候，Node.js會先等待10秒，之後才會回傳 &quot;Hello Start&quot; 。當執行<em>upload()</em>的時候，會和此前一樣立即回傳。
         </p>
 
         <p>
@@ -1773,11 +1773,11 @@ Request handler 'start' was called.</pre>
         </p>
 
         <p>
-            <em>exec()</em>做了什麼呢？它從Node.js來執行一個shell命令。在上述例子中，我們用它來取得目前目錄下所有的檔案（ &quot;ls -lah&quot; ）,然後，當<em>/start</em>URL請求的時候將檔案信息輸出到瀏覽器中。
+            <em>exec()</em>做了什麼呢？它從Node.js來執行一個shell命令。在上述例子中，我們用它來取得目前目錄下所有的檔案（ &quot;ls -lah&quot; ），然後，當<em>/start</em>URL請求的時候將檔案訊息輸出到瀏覽器中。
         </p>
 
         <p>
-            上述代碼是非常直觀的： 建立了一個新的變量<em>content</em>（初始值為 &quot;empty&quot; ），執行 &quot;ls -lah&quot; 命令，將結果賦值給content，最後將content返回。
+            上述代碼是非常直觀的： 建立了一個新的變數<em>content</em>（初始值為 &quot;empty&quot; ），執行 &quot;ls -lah&quot; 命令，將結果賦值給content，最後將content回傳。
         </p>
 
         <p>
@@ -1827,7 +1827,7 @@ Request handler 'start' was called.</pre>
         </p>
 
         <p>
-            為了讓效果更加明顯，我們想象一個更耗時的命令：  &quot;find /&quot; ，它在我機器上需要執行1分鐘左右的時間，然而，盡管在請求處理程序中，我把 &quot;ls -lah&quot; 換成 &quot;find /&quot; ，當打開/start URL的時候，依然能夠立即獲得HTTP響應 —— 很明顯，當<em>exec()</em>在後台執行的時候，Node.js自身會繼續執行後面的代碼。並且我們這裡假設傳遞給<em>exec()</em>的回呼(callback)函數，只會在 &quot;find /&quot; 命令執行完成之後才會被執行。
+            為了讓效果更加明顯，我們想象一個更耗時的命令：  &quot;find /&quot; ，它在我機器上需要執行1分鐘左右的時間，然而，盡管在請求處理程序中，我把 &quot;ls -lah&quot; 換成 &quot;find /&quot; ，當打開/start URL的時候，依然能夠立即獲得HTTP回應 —— 很明顯，當<em>exec()</em>在後台執行的時候，Node.js自身會繼續執行後面的代碼。並且我們這裡假設傳遞給<em>exec()</em>的回呼(callback)函數，只會在 &quot;find /&quot; 命令執行完成之後才會被執行。
         </p>
 
         <p>
@@ -1835,12 +1835,12 @@ Request handler 'start' was called.</pre>
         </p>
 
         <p>
-            好，了解了這種不好的實現方式之後，我們接下來來介紹如何以正確的方式讓請求處理程序對瀏覽器請求作出響應。
+            好，了解了這種不好的實現方式之後，我們接下來來介紹如何以正確的方式讓請求處理程序對瀏覽器請求作出回應。
         </p>
 
         <a name="responding-request-handlers-with-non-blocking-operations"></a>
 
-        <h4>以Non-Blocking操作進行請求響應</h4>
+        <h4>以Non-Blocking操作進行請求回應</h4>
 
         <p>
             我剛剛提到了這樣一個短語 ——  &quot;正確的方式&quot; 。而事實上通常 &quot;正確的方式&quot; 一般都不簡單。
@@ -1851,11 +1851,11 @@ Request handler 'start' was called.</pre>
         </p>
 
         <p>
-            到目前為止，我們的應用已經可以透過應用各層之間傳遞值的方式（請求處理程序 -&gt 請求路由 -&gt 伺服器）將請求處理程序返回的內容（請求處理程序最終要顯示給用戶的內容）傳遞給HTTP伺服器。
+            到目前為止，我們的應用已經可以透過應用各層之間傳遞值的方式（請求處理程序 -&gt 請求路由 -&gt 伺服器）將請求處理程序回傳的內容（請求處理程序最終要顯示給用戶的內容）傳遞給HTTP伺服器。
         </p>
 
         <p>
-            現在我們採用如下這種新的實現方式：相對採用將內容傳遞給伺服器的方式，我們這次採用將伺服器 &quot;傳遞&quot; 給內容的方式。 從實踐角度來說，就是將<em>response</em>對象（從伺服器的回呼(callback)函數<em>onRequest()</em>取得）透過請求路由傳遞給請求處理程序。 隨後，處理程序就可以採用該對象上的函數來對請求作出響應。
+            現在我們採用如下這種新的實現方式：相對採用將內容傳遞給伺服器的方式，我們這次採用將伺服器 &quot;傳遞&quot; 給內容的方式。 從實踐角度來說，就是將<em>response</em>物件（從伺服器的回呼(callback)函數<em>onRequest()</em>取得）透過請求路由傳遞給請求處理程序。 隨後，處理程序就可以採用該物件上的函數來對請求作出回應。
         </p>
 
         <p>
@@ -1897,7 +1897,7 @@ Request handler 'start' was called.</pre>
                 class="pln"> start</span><span class="pun">;</span></pre>
 
         <p>
-            相對此前從<em>route()</em>函數取得返回值的做法，這次我們將response對象作為第三個參數傳遞給<em>route()</em>函數，並且，我們將<em>onRequest()</em>處理程序中所有有關<em>response</em>的函數調都移除，因為我們希望這部分工作讓<em>route()</em>函數來完成。
+            相對此前從<em>route()</em>函數取得回傳值的做法，這次我們將response物件作為第三個參數傳遞給<em>route()</em>函數，並且，我們將<em>onRequest()</em>處理程序中所有有關<em>response</em>的函數調都移除，因為我們希望這部分工作讓<em>route()</em>函數來完成。
         </p>
 
         <p>
@@ -1934,11 +1934,11 @@ Request handler 'start' was called.</pre>
                 class="pln"> route</span><span class="pun">;</span></pre>
 
         <p>
-            同樣的模式：相對此前從請求處理程序中取得返回值，這次取而代之的是直接傳遞<em>response</em>對象。
+            同樣的模式：相對此前從請求處理程序中取得回傳值，這次取而代之的是直接傳遞<em>response</em>物件。
         </p>
 
         <p>
-            如果沒有對應的請求處理器處理，我們就直接返回 &quot;404&quot; 錯誤。
+            如果沒有對應的請求處理器處理，我們就直接回傳 &quot;404&quot; 錯誤。
         </p>
 
         <p>
@@ -1982,11 +1982,11 @@ Request handler 'start' was called.</pre>
                 class="pln"> upload</span><span class="pun">;</span></pre>
 
         <p>
-            我們的處理程序函數需要接收response參數，為了對請求作出直接的響應。
+            我們的處理程序函數需要接收response參數，為了對請求作出直接的回應。
         </p>
 
         <p>
-            <em>start</em>處理程序在<em>exec()</em>的匿名回呼(callback)函數中做請求響應的操作，而<em>upload</em>處理程序仍然是簡單的回復 &quot;Hello World&quot; ，只是這次是使用<em>response</em>對象而已。
+            <em>start</em>處理程序在<em>exec()</em>的匿名回呼(callback)函數中做請求回應的操作，而<em>upload</em>處理程序仍然是簡單的回復 &quot;Hello World&quot; ，只是這次是使用<em>response</em>物件而已。
         </p>
 
         <p>
@@ -1994,7 +1994,7 @@ Request handler 'start' was called.</pre>
         </p>
 
         <p>
-            如果想要證明<em>/start</em>處理程序中耗時的操作不會Blocking對<em>/upload</em>請求作出立即響應的話，可以將<em>requestHandlers.js</em>修改為如下形式：
+            如果想要證明<em>/start</em>處理程序中耗時的操作不會Blocking對<em>/upload</em>請求作出立即回應的話，可以將<em>requestHandlers.js</em>修改為如下形式：
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> exec </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">"child_process"</span><span
@@ -2039,7 +2039,7 @@ Request handler 'start' was called.</pre>
                 class="pln"> upload</span><span class="pun">;</span></pre>
 
         <p>
-            這樣一來，當請求<a href="http://localhost:8888/start" rel="nofollow">http://localhost:8888/start</a>的時候，會花10秒鐘的時間才載入，而當請求<a href="http://localhost:8888/upload" rel="nofollow">http://localhost:8888/upload</a>的時候，會立即響應，縱然這個時候/start響應還在處理中。
+            這樣一來，當請求<a href="http://localhost:8888/start" rel="nofollow">http://localhost:8888/start</a>的時候，會花10秒鐘的時間才載入，而當請求<a href="http://localhost:8888/upload" rel="nofollow">http://localhost:8888/upload</a>的時候，會立即回應，縱然這個時候/start回應還在處理中。
         </p>
 
         <a name="serving-something-useful"></a>
@@ -2138,7 +2138,7 @@ Request handler 'start' was called.</pre>
         </p>
 
         <p>
-            現在，我們已經是新手中的專家了，很自然會想到採用非同步回呼(callback)來實現Non-Blocking地處理POST請求的數據。
+            現在，我們已經是新手中的專家了，很自然會想到採用非同步回呼(callback)來實現Non-Blocking地處理POST請求的資料。
         </p>
 
         <p>
@@ -2146,11 +2146,11 @@ Request handler 'start' was called.</pre>
         </p>
 
         <p>
-            為了使整個過程Non-Blocking，Node.js會將POST數據拆分成很多小的數據塊，然後透過觸發特定的事件，將這些小數據塊傳遞給回呼(callback)函數。這裡的特定的事件有<em>data</em>事件（表示新的小數據塊到達了）以及<em>end</em>事件（表示所有的數據都已經接收完畢）。
+            為了使整個過程Non-Blocking，Node.js會將POST資料拆分成很多小的資料區塊，然後透過觸發特定的事件，將這些小資料區塊傳遞給回呼(callback)函數。這裡的特定的事件有<em>data</em>事件（表示新的小資料區塊到達了）以及<em>end</em>事件（表示所有的資料都已經接收完畢）。
         </p>
 
         <p>
-            我們需要告訴Node.js當這些事件觸發的時候，回呼(callback)哪些函數。怎麼告訴呢？ 我們透過在<em>request</em>對象上註冊<em>監聽器</em>（listener） 來實現。這裡的request對象是每次接收到HTTP請求時候，都會把該對象傳遞給<em>onRequest</em>回呼(callback)函數。
+            我們需要告訴Node.js當這些事件觸發的時候，回呼(callback)哪些函數。怎麼告訴呢？ 我們透過在<em>request</em>物件上註冊<em>監聽器</em>（listener） 來實現。這裡的request物件是每次接收到HTTP請求時候，都會把該物件傳遞給<em>onRequest</em>回呼(callback)函數。
         </p>
 
         <p>
@@ -2170,15 +2170,15 @@ Request handler 'start' was called.</pre>
                 class="pln"><br></span><span class="pun">});</span></pre>
 
         <p>
-            問題來了，這部分邏輯寫在哪裡呢？ 我們現在只是在伺服器中取得到了<em>request</em>對象 —— 我們並沒有像之前<em>response</em>對象那樣，把 request 對象傳遞給請求路由和請求處理程序。
+            問題來了，這部分邏輯寫在哪裡呢？ 我們現在只是在伺服器中取得到了<em>request</em>物件 —— 我們並沒有像之前<em>response</em>物件那樣，把 request 物件傳遞給請求路由和請求處理程序。
         </p>
 
         <p>
-            在我看來，取得所有來自請求的數據，然後將這些數據給應用層處理，應該是HTTP伺服器要做的事情。因此，我建議，我們直接在伺服器中處理POST數據，然後將最終的數據傳遞給請求路由和請求處理器，讓他們來進行進一步的處理。
+            在我看來，取得所有來自請求的資料，然後將這些資料給應用層處理，應該是HTTP伺服器要做的事情。因此，我建議，我們直接在伺服器中處理POST資料，然後將最終的資料傳遞給請求路由和請求處理器，讓他們來進行進一步的處理。
         </p>
 
         <p>
-            因此，實現思路就是： 將<em>data</em>和<em>end</em>事件的回呼(callback)函數直接放在伺服器中，在<em>data</em>事件回呼(callback)中收集所有的POST數據，當接收到所有數據，觸發<em>end</em>事件後，其回呼(callback)函數執行請求路由，並將數據傳遞給它，然後，請求路由再將該數據傳遞給請求處理程序。
+            因此，實現思路就是： 將<em>data</em>和<em>end</em>事件的回呼(callback)函數直接放在伺服器中，在<em>data</em>事件回呼(callback)中收集所有的POST資料，當接收到所有資料，觸發<em>end</em>事件後，其回呼(callback)函數執行請求路由，並將資料傳遞給它，然後，請求路由再將該資料傳遞給請求處理程序。
         </p>
 
         <p>
@@ -2236,11 +2236,11 @@ Request handler 'start' was called.</pre>
                 class="pln"> start</span><span class="pun">;</span></pre>
 
         <p>
-            上述代碼做了三件事情： 首先，我們設定了接收數據的編碼格式為UTF-8，然後註冊了 &quot;data&quot; 事件的監聽器，用於收集每次接收到的新數據塊，並將其賦值給<em>postData</em> 變量，最後，我們將請求路由的執行移到<em>end</em>事件處理程序中，以確保它只會當所有數據接收完畢後才觸發，並且只觸發一次。我們同時還把POST數據傳遞給請求路由，因為這些數據，請求處理程序會用到。
+            上述代碼做了三件事情： 首先，我們設定了接收資料的編碼格式為UTF-8，然後註冊了 &quot;data&quot; 事件的監聽器，用於收集每次接收到的新資料區塊，並將其賦值給<em>postData</em> 變數，最後，我們將請求路由的執行移到<em>end</em>事件處理程序中，以確保它只會當所有資料接收完畢後才觸發，並且只觸發一次。我們同時還把POST資料傳遞給請求路由，因為這些資料，請求處理程序會用到。
         </p>
 
         <p>
-            上述代碼在每個數據塊到達的時候輸出了日志，這對於最終生產環境來說，是很不好的（資料量可能會很大，還記得吧？），但是，在開發階段是很有用的，有助於讓我們看到發生了什麼。
+            上述代碼在每個資料區塊到達的時候輸出了日志，這對於最終生產環境來說，是很不好的（資料量可能會很大，還記得吧？），但是，在開發階段是很有用的，有助於讓我們看到發生了什麼。
         </p>
 
         <p>
@@ -2283,7 +2283,7 @@ Request handler 'start' was called.</pre>
                 class="pln"> route</span><span class="pun">;</span></pre>
 
         <p>
-            然後，在<em>requestHandlers.js</em>中，我們將數據包含在對<em>upload</em>請求的響應中：
+            然後，在<em>requestHandlers.js</em>中，我們將資料包含在對<em>upload</em>請求的回應中：
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> start</span><span
                 class="pun">(</span><span class="pln">response</span><span class="pun">,</span><span class="pln"> postData</span><span
@@ -2333,11 +2333,11 @@ Request handler 'start' was called.</pre>
                 class="pln"> upload</span><span class="pun">;</span></pre>
 
         <p>
-            好了，我們現在可以接收POST數據並在請求處理程序中處理該數據了。
+            好了，我們現在可以接收POST資料並在請求處理程序中處理該資料了。
         </p>
 
         <p>
-            我們最後要做的是： 目前我們是把請求的整個消息體傳遞給了請求路由和請求處理程序。我們應該只把POST數據中，我們感興趣的部分傳遞給請求路由和請求處理程序。在我們這個例子中，我們感興趣的其實只是<em>text</em>欄位。
+            我們最後要做的是： 目前我們是把POST請求的整個訊息內容傳遞給了請求路由和請求處理程序。我們應該只把POST資料中感興趣的部分傳遞給請求路由和請求處理程序。在我們這個例子中，我們感興趣的其實只是<em>text</em>欄位。
         </p>
 
         <p>
@@ -2396,7 +2396,7 @@ Request handler 'start' was called.</pre>
                 class="pln"> upload</span><span class="pun">;</span></pre>
 
         <p>
-            好了，以上就是關於處理POST數據的全部內容。
+            好了，以上就是關於處理POST資料的全部內容。
         </p>
 
         <a name="handling-file-uploads"></a>
@@ -2412,7 +2412,7 @@ Request handler 'start' was called.</pre>
         </p>
 
         <p>
-            這裡我們要用到的外部模組是Felix Geisendörfer開發的<em>node-formidable</em>模組。它對解析上傳的檔案數據做了很好的抽象。 其實說白了，處理檔案上傳<em> &quot;就是&quot; </em>處理POST數據 —— 但是，麻煩的是在具體的處理細節，所以，這裡採用現成的方案更合適點。
+            這裡我們要用到的外部模組是Felix Geisendörfer開發的<em>node-formidable</em>模組。它對解析上傳的檔案資料做了很好的抽象。 其實說白了，處理檔案上傳<em> &quot;就是&quot; </em>處理POST資料 —— 但是，麻煩的是在具體的處理細節，所以，這裡採用現成的方案更合適點。
         </p>
 
         <p>
@@ -2439,7 +2439,7 @@ Request handler 'start' was called.</pre>
                 class="pun">);</span></pre>
 
         <p>
-            這裡該模組做的就是將透過HTTP POST請求送出的表單，在Node.js中可以被解析。我們要做的就是建立一個新的<em>IncomingForm</em>，它是對送出表單的抽象表示，之後，就可以用它解析request對象，取得表單中需要的數據欄位。
+            這裡該模組做的就是將透過HTTP POST請求送出的表單，在Node.js中可以被解析。我們要做的就是建立一個新的<em>IncomingForm</em>，它是對送出表單的抽象表示，之後，就可以用它解析request物件，取得表單中需要的資料欄位。
         </p>
 
         <p>
@@ -2504,7 +2504,7 @@ Request handler 'start' was called.</pre>
                 class="pun">(</span><span class="lit">8888</span><span class="pun">);</span></pre>
 
         <p>
-            如果我們將上述代碼，儲存到一個檔案中，並透過<em>node</em>來執行，就可以進行簡單的表單送出了，包括檔案上傳。然後，可以看到透過執行<em>form.parse</em>傳遞給回呼(callback)函數的<em>files</em>對象的內容，如下所示：
+            如果我們將上述代碼，儲存到一個檔案中，並透過<em>node</em>來執行，就可以進行簡單的表單送出了，包括檔案上傳。然後，可以看到透過執行<em>form.parse</em>傳遞給回呼(callback)函數的<em>files</em>物件的內容，如下所示：
         </p>
         <pre class="lang-js">received upload:
 
@@ -2780,20 +2780,20 @@ Request handler 'start' was called.</pre>
                 class="pln"> show</span><span class="pun">;</span></pre>
 
         <p>
-            很好。下一步相對比較復雜。這裡有這樣一個問題： 我們需要在<em>upload</em>處理程序中對上傳的檔案進行處理，這樣的話，我們就需要將<em>request</em>對象傳遞給node-formidable的<em>form.parse</em>函數。
+            很好。下一步相對比較復雜。這裡有這樣一個問題： 我們需要在<em>upload</em>處理程序中對上傳的檔案進行處理，這樣的話，我們就需要將<em>request</em>物件傳遞給node-formidable的<em>form.parse</em>函數。
         </p>
 
         <p>
-            但是，我們有的只是<em>response</em>對象和<em>postData</em>數組。看樣子，我們只能不得不將<em>request</em>對象從伺服器開始一路透過請求路由，再傳遞給請求處理程序。 或許還有更好的方案，但是，不管怎麼說，目前這樣做可以滿足我們的需求。
+            但是，我們有的只是<em>response</em>物件和<em>postData</em>陣列。看樣子，我們只能不得不將<em>request</em>物件從伺服器開始一路透過請求路由，再傳遞給請求處理程序。 或許還有更好的方案，但是，不管怎麼說，目前這樣做可以滿足我們的需求。
         </p>
 
         <p>
-            到這裡，我們可以將<em>postData</em>從伺服器以及請求處理程序中移除了 —— 一方面，對於我們處理檔案上傳來說已經不需要了，另外一方面，它甚至可能會引發這樣一個問題： 我們已經 &quot;消耗&quot; 了<em>request</em>對象中的數據，這意味著，對於<em>form.parse</em>來說，當它想要取得數據的時候就什麼也取得不到了。（因為Node.js不會對數據做快取）
+            到這裡，我們可以將<em>postData</em>從伺服器以及請求處理程序中移除了 —— 一方面，對於我們處理檔案上傳來說已經不需要了，另外一方面，它甚至可能會引發這樣一個問題： 我們已經 &quot;消耗&quot; 了<em>request</em>物件中的資料，這意味著，對於<em>form.parse</em>來說，當它想要取得資料的時候就什麼也取得不到了。（因為Node.js不會對資料做快取）
         </p>
 
         <p>
             我們從<em>server.js</em>開始 —— 移除對postData的處理以及<em>request.setEncoding</em>
-            （這部分node-formidable自身會處理），轉而採用將<em>request</em>對象傳遞給請求路由的方式：
+            （這部分node-formidable自身會處理），轉而採用將<em>request</em>物件傳遞給請求路由的方式：
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
@@ -2828,7 +2828,7 @@ Request handler 'start' was called.</pre>
                 class="pln"> start</span><span class="pun">;</span></pre>
 
         <p>
-            接下來是 router.js —— 我們不再需要傳遞<em>postData</em>了，這次要傳遞<em>request</em>對象：
+            接下來是 router.js —— 我們不再需要傳遞<em>postData</em>了，這次要傳遞<em>request</em>物件：
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> route</span><span
                 class="pun">(</span><span class="pln">handle</span><span class="pun">,</span><span
@@ -2862,7 +2862,7 @@ Request handler 'start' was called.</pre>
                 class="pln"> route</span><span class="pun">;</span></pre>
 
         <p>
-            現在，<em>request</em>對象就可以在我們的<em>upload</em>請求處理程序中使用了。node-formidable會處理將上傳的檔案儲存到區域<em>/tmp</em>目錄中，而我們需要做的是確保該檔案儲存成<em>/tmp/test.png</em>。 沒錯，我們保持簡單，並假設只允許上傳PNG圖片。
+            現在，<em>request</em>物件就可以在我們的<em>upload</em>請求處理程序中使用了。node-formidable會處理將上傳的檔案儲存到區域<em>/tmp</em>目錄中，而我們需要做的是確保該檔案儲存成<em>/tmp/test.png</em>。 沒錯，我們保持簡單，並假設只允許上傳PNG圖片。
         </p>
 
         <p>
