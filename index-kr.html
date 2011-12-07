@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
     <head>
@@ -520,7 +520,9 @@
         <div id="book">
         <h1>The Node Beginner Book</h1>
 
-        <div id="author">A Node.js tutorial by <a href="http://twitter.com/manuelkiessling">Manuel Kiessling</a></div>
+        <div id="author">A Node.js tutorial by <a href="http://twitter.com/manuelkiessling">Manuel Kiessling</a><br/>
+                                   translated into korean by <a href="http://blog.doortts.com/">채수원</a>,
+                                   <a href="http://facebook.com/stoneshim">심형석</a></div>
 
         <a name="about"></a>
 
@@ -617,7 +619,7 @@
             minute.
         </p>
         <p>
-            이 유즈케이스를 만족하기 위해 “충분한 정도”까지만 코드를 만드는 것에서 조금 더 나아가서, “세상을 바꾸는 정도”는 아닙니다만, 간결하지만 완결성있는 프레임워크를 만들어서 우리의 애플리케이션의 다른 부분들로부터 깔끔하게 분리할 겁니다.
+            이 유스케이스를 만족하기 위해 “충분한 정도”까지만 코드를 만드는 것에서 조금 더 나아가서, “세상을 바꾸는 정도”는 아닙니다만, 간결하지만 완결성있는 프레임워크를 만들어서 우리의 애플리케이션의 다른 부분들로부터 깔끔하게 분리할 겁니다.
         </p>
 
         <p>
@@ -730,6 +732,72 @@
                         </li>
 
                         <li><a href="#conclusion-and-outlook">Conclusion and outlook</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div id="table-of-contents-headline">차례</div>
+        <div id="table-of-contents">
+            <ul>
+
+                <li><a href="#about">이 문서에 대하여</a>
+                    <ul>
+                        <li><a href="#status">상태</a></li>
+                        <li><a href="#intended-audience">대상 독자</a></li>
+                        <li><a href="#structure">이 문서의 구조</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#javascript-and-nodejs">JavaScript 와 Node.js</a>
+                    <ul>
+                        <li><a href="#javascript-and-you">JavaScript 와 당신</a></li>
+                        <li><a href="#a-word-of-warning">주의 사항</a></li>
+                        <li><a href="#server-side-javascript">서버사이드 JavaScript</a></li>
+                        <li><a href="#hello-world">"Hello World"</a></li>
+
+                    </ul>
+                </li>
+                <li><a href="#a-full-blown-web-application-with-nodejs">Node.js로 활짝 핀 웹 애플리케이션</a>
+                    <ul>
+                        <li><a href="#the-use-cases">유스케이스</a></li>
+                        <li><a href="#the-application-stack">애플리케이션 스택</a></li>
+                    </ul>
+
+                </li>
+                <li><a href="#building-the-application-stack">애플리케이션 스택 구축하기</a>
+                    <ul>
+                        <li><a href="#a-basic-http-server">기본 HTTP 서버</a></li>
+                        <li><a href="#analyzing-our-http-server">우리의 HTTP 서버를 분석하기</a></li>
+                        <li><a href="#passing-functions-around">함수를 전달하기</a></li>
+                        <li><a href="#how-function-passing-makes-our-http-server-work">어떻게 함수 전달이 
+                            HTTP 서버를 동작하게 하는가</a></li>
+
+                        <li><a href="#event-driven-callbacks">Event-driven callbacks</a></li>
+                        <li><a href="#how-our-server-handles-requests">우리 서버는 요청을 어떻게 처리하는가?</a></li>
+                        <li><a href="#finding-a-place-for-our-server-module">server 모듈의 위치 잡기</a>
+                        </li>
+                        <li><a href="#whats-needed-to-route-requests">요청을 "route" 하려면?</a></li>
+                        <li><a href="#execution-in-the-kongdom-of-verbs">동사들(verbs)의 나라에서의 실행(execution)</a></li>
+                        <li><a href="#routing-to-real-request-handlers">실제 request handler로 라우팅(routing)하기</a></li>
+
+                        <li><a href="#making-the-request-handlers-respond">request handler가 응답하게 만들기</a>
+                            <ul>
+                                <li><a href="#how-to-not-do-it">해서는 안되는 것</a></li>
+                                <li><a href="#blocking-and-non-blocking">Blocking 과 non-blocking</a></li>
+                                <li><a href="#responding-request-handlers-with-non-blocking-operations">request handler가
+                                    non-blocking 방식으로 동작하면서 응답하기</a>
+                                </li>
+                            </ul>
+
+                        </li>
+                        <li><a href="#serving-something-useful">유용한 것을 제공하기</a>
+                            <ul>
+                                <li><a href="#handling-post-requests">POST 요청 처리하기</a></li>
+                                <li><a href="#handling-file-uploads">파일 업로드 처리하기</a></li>
+                            </ul>
+                        </li>
+
+                        <li><a href="#conclusion-and-outlook">결론과 개관</a></li>
                     </ul>
                 </li>
             </ul>
@@ -1018,7 +1086,7 @@
         <a name="the-use-cases"></a>
 
         <h3>The use cases</h3>
-        <h3>유즈케이스</h3>
+        <h3>유스케이스</h3>
 
         <p>
             Let's keep it simple, but realistic:
@@ -1044,11 +1112,24 @@
                 the upload is finished
             </li>
 
+            <li>
+                사용자는 웹 브라우저로 우리의 웹 애플리케이션을 이용할 수 있다.
+            </li>
+            <li>
+                사용자가 http://<em>domain</em>/start 를 요청하면 파일 업로드 폼이 들어있는 웰컴페이지를 볼 수 있어야 한다. 
+            </li>
+            <li>
+                업로드할 이미지 파일을 선택해서 폼으로 전송하면, 해당 이미지는 http://<em>domain</em>/upload 로 업로드 되어야 하며, 업로드가 끝나면 해당 페이지에 표시된다.
+            </li>
+
         </ul>
         <p>
             Fair enough. Now, you could achieve this goal by googling
             and hacking together <em>something</em>. But that's not
             what we want to do here.
+        </p>
+        <p>
+            이 정도면 충분합니다. 이제, 구글링을 통해 위 요구사항을 달성할 수 있습니다. 그런데, 그건 지금 여기서 하려는 건 그건 아니죠. :)
         </p>
 
         <p>
@@ -1058,14 +1139,21 @@
             necessary in order to get a feeling for building more
             complex Node.js applications.
         </p>
+        <p>
+            더욱이, 우리가 원하는 건 해당 목표를 이루기 위해 단지 아주~ 기초적인 코드만을 작성하는 것도 아니고, 우아하게 딱 들어맞는 정답 같은 코드를 작성하는 것도 아닙니다. 우린 의도적으로 좀더 추상화된 부분을 넣어서 좀 더 복잡한 Node.js 애플리케이션을 만들고 있다는 느낌을 갖게 해볼 예정입니다.
+        </p>
 
         <a name="the-application-stack"></a>
 
         <h3>The application stack</h3>
+        <h3>애플리케이션 스택</h3>
 
         <p>
             Let's dissect our application. Which parts need to be
             implemented in order to fulfill the use cases?
+        </p>
+        <p>
+            우리의 애플리케이션을 면밀하게 살펴봅시다. 유스케이스를 만족시키기 위해서 구현되어야 하는 부분은 어떤 부분인가요?
         </p>
 
         <ul>
@@ -1073,7 +1161,6 @@
                 We want to serve web pages, therefore we need an
                 <strong>HTTP server</strong>
             </li>
-
             <li>
                 Our server will need to answer differently to
                 requests, depending on which URL the request was
@@ -1087,7 +1174,6 @@
                 actual <strong>request handlers</strong>
             </li>
             <li>
-
                 The router probably should also treat any incoming
                 POST data and give it to the request handlers in
                 a convenient form, thus we need <strong>request
@@ -1108,6 +1194,26 @@
                 the details
             </li>
         </ul>
+        <ul>
+            <li>
+                우리는 웹 페이지를 제공해야 한다. 따러서 <strong>HTTP 서버</strong>가 필요하다.
+            </li>
+            <li>
+                우리는 서버는 어떤 URL 요청(request)을 받았는지에 따라 다르게 응답해야 한다. 따라서, 요청과 요청을 처리할 핸들러들을 연결짓기 위한 <strong>라우터(router)</strong> 같은 것이 필요하다. 
+            </li>
+            <li>
+                서버로 도착한 요청들, 그리고 라우터를 이용해서 라우팅된 요청들을 만족시키기 위해서 실제적인 <strong>요청 핸들러(request handlers)</strong>가 필요하다.
+            </li>
+            <li>
+                라우터는 아마도 들어오는 어떠한 POST 데이터들도 다룰 수 있어야 한다. 그리고 해당 데이터를 다루기 편한 형태로 만들어 요청 핸들러들에게 넘겨야 한다. 따라서 <strong>요청 데이터 핸들링(request data handling)</strong>이 필요하다.
+            </li>
+            <li>
+                URL에 대한 요청을 다루는 것 뿐 아니라 URL이 요청되었을 때 내용을 표시할 필요도 있다. 이 말은 즉, 요청 핸들러들이 사용자 브라우저로 콘텐트를 보내기 위해 사용할 수 있는 <strong>뷰 로직(view logic)</strong>이 필요하다는 이야기다.
+            </li>
+            <li>
+                마지막이지만 중요한 것으로는, 사용자가 이미지들을 업로드 할 수 있어야 하니까, 세부 사항을 다루는 <strong>업로드 핸들링(upload handling)</strong>이 필요할 것이다.
+            </li>
+        </ul>
 
         <p>
             Let's think a moment about how we would build this stack
@@ -1118,6 +1224,11 @@
             serve web pages and receive HTTP requests" stuff doesn't
             happen within PHP itself.
         </p>
+        <p>
+            PHP를 이용해서 이런 스택을 구축하는 방법에 대해 잠시 생각해 보는 시간을 가져보자. 전형적으로 mod_php5를 가진 아파치 HTTP 서버를 설치하는 것을 생각해 볼 수 있다.
+            <br>
+            이것은 “웹 페이지를 제공하고 HTTP 요청을 받을 수 있어야 한다”는 요구의 전체를 PHP만으로는 이룰 수가 없다는 것을 의미한다.
+        </p>
 
         <p>
             Well, with node, things are a bit different. Because with
@@ -1125,24 +1236,35 @@
             implement the whole HTTP server. In fact, our web
             application and its web server are basically the same.
         </p>
+        <p>
+            그런데 node의 경우는 조금 다르다. Node.js로는 우리가 작성해야 하는 애플리케이션 뿐 아니라, HTTP 서버를 통째로 구현해야 하기 때문이다. 사실 따지고보면, 우리의 웹 애플리케이션과 웹 서버는 기본적으로 동일하다.
+        </p>
 
         <p>
             This might sound like a lot of work, but we will see in a
             moment that with Node.js, it's not.
+        </p>
+        <p>
+            해야 할 일이 많은 것처럼 들릴 수 있는데, Node.js를 이용하면 그렇지 않다는 걸 바로 보게 될 것이다.
         </p>
 
         <p>
             Let's just start at the beginning and implement the first
             part of our stack, the HTTP server.
         </p>
+        <p>
+            자 우리 애플리케이션 스택의 첫번째 파트인 HTTP 서버 구현을 시작해 보자.
+        </p>
 
         <a name="building-the-application-stack"></a>
 
         <h2>Building the application stack</h2>
+        <h2>애플리케이션 스택 구축하기</h2>
 
         <a name="a-basic-http-server"></a>
 
         <h3>A basic HTTP server</h3>
+        <h3>기본 HTTP 서버</h3>
 
         <p>
             When I arrived at the point where I wanted to start with my
@@ -1155,11 +1277,19 @@
             make sure that my code stays readable the more stuff I
             implement?
         </p>
+        <p>
+             “리얼한” Node.js 애플리케이션을 만들어야 겠다고 생각했을 때, 어떻게 코드를 작성하고, 어떻게 구조화시킬지에 대한 의문을 갖게 되었습니다.
+            <br>
+            한 파일에 다 넣어야 하나? 웹상의 대부분의 튜터리얼들은 Node.js에서 하나의 기본 HTTP 서버에서 한 곳에 모든 로직을 갖도록 작성하는 법을 알려주었습니다. 내가 구현한 것들이 좀더 가독성을 갖도록 만들고 싶다면 어떻게 해야 하나?
+        </p>
 
         <p>
             Turns out, it's relatively easy to keep the different
             concerns of your code separated, by putting them in
             modules.
+        </p>
+        <p>
+            모듈로 만들어 넣으면 관점이 다른 코드를 분리해서 유지하는 것이 꽤 쉽다는 것을 알게 되었습니다.
         </p>
 
         <p>
@@ -1167,11 +1297,17 @@
             execute with Node.js, and clean modules that can be used by
             the main file and among each other.
         </p>
+        <p>
+            이렇게 하면 Node.js로 실행에 쓰이는 깔끔한 main 파일과 main 파일과 다른 파일들에서 서로 쓸 수 있는 깔끔한 모듈들을 가질 수 있게 됩니다.
+        </p>
 
         <p>
             So, let's create a main file which we use to start our
             application, and a module file where our HTTP server code
             lives.
+        </p>
+        <p>
+            자 그럼 우리의 애플리케이션을 실행하는 데 쓸 main 파일과 HTTP 서버 코드가 거주하게 될 모듈 파일을 만들어 보겠습니다.
         </p>
 
         <p>
@@ -1179,11 +1315,17 @@
             your main file <em>index.js</em>. It makes sense to put our
             server module into a file named <em>server.js</em>.
         </p>
+        <p>
+            제가 보기에는 main파일의 꽤 표준적인 이름은 index.js 입니다. 서버 모듈을 <em>server.js</em> 이라는 파일로 만드는 것은 괜찮을 것 같습니다.
+        </p>
 
         <p>
             Let's start with the server module. Create the file
             <em>server.js</em> in the root directory of your project,
             and fill it with the following code:
+        </p>
+         <p>
+            자, 서버모듈을 만들어 봅시다. <em>server.js</em> 라는 파일을 프로젝트 루트 디렉터리에 만들어 다음 아래 코드를 타이핑해 넣습니다.
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
@@ -1207,11 +1349,17 @@
             prove it by running and testing it. First, execute your
             script with Node.js:
         </p>
+        <p>
+            이게 끝입니다.  잘 동작하는 HTTP서버를 방금 만들었습니다. 실행해서 확인해 보겠습니다. Node.js 로 방금 만든 스크립트를 실행합니다.
+        </p>
         <pre>node server.js</pre>
         <p>
             Now, open your browser and point it at
             <a href="http://localhost:8888/" rel="nofollow">http://localhost:8888/</a>.
             This should display a web page that says "Hello World".
+        </p>
+        <p>
+            이제 브라우저를 열고 <a href="http://localhost:8888/" rel="nofollow">http://localhost:8888/</a> 로 접속합니다. “Hello World”가 찍히는 웹 페이지가 보일겁니다.
         </p>
 
         <p>
@@ -1220,19 +1368,29 @@
             organize our project for later? I promise we'll get back to
             it.
         </p>
+        <p>
+            매우 흥미롭습니다. 그렇죠? 지금은 여기서 무슨 일이 일어났는 지를 먼저 살펴봅시다. 프로젝트를 어떻게 구조화 하는 지에 대한 질문은 아직 남아 있을 겁니다. 그건 뒤에 다시 다루겠습니다. 
+        </p>
 
         <a name="analyzing-our-http-server"></a>
 
         <h3>Analyzing our HTTP server</h3>
+        <h3>우리의 HTTP 서버를 분석하기</h3>
 
         <p>
             Well, then, let's analyze what's actually going on here.
+        </p>
+        <p>
+            자, 그럼 실제로 뭐가 어떻게 된 건지 살펴봅시다.
         </p>
 
         <p>
             The first line <em>require</em>s the <em>http</em> module
             that ships with Node.js and makes it accessible through the
             variable <em>http</em>.
+        </p>
+        <p>
+            첫 줄은 Node.js에 기본으로 포함된 <em>http</em> 모듈을 읽어 들인 다음, http 라는 이름의 변수를 통해 접근할 수 있게 만들었습니다. 
         </p>
 
         <p>
@@ -1242,15 +1400,24 @@
             a numeric value which indicates the port number our HTTP
             server is going to listen on.
         </p>
+        <p>
+            그 다음 http 모듈에서 제공하는 함수 중 하나인 <em>createServer</em> 를 호출합니다. 해당 함수는 객체를 리턴하고, 그 리턴된 객체는 <em>listen</em> 이라는 이름의 함수를 가지고 있습니다. 이 listen 함수는 HTTP서버에서 요청대기할 포트 번호를 나타내는 숫자를 받습니다.
+        </p>
 
         <p>
             Please ignore for a second the function definition that
             follows the opening bracket of <em>http.createServer</em>.
         </p>
+        <p>
+            <em>http.createServer</em>의 괄호 뒤에 나오는 함수 선언에 대해서는 잠시 무시합시다.
+        </p>
 
         <p>
             We could have written the code that starts our server and
             makes it listen at port 8888 like this:
+        </p>
+        <p>
+            다음과 같은 식으로 8888 port를 listen 하는 서버를 만들 수도 있습니다.
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
@@ -1265,12 +1432,18 @@
             and doing nothing else (not even answering any incoming
             requests).
         </p>
+        <p>
+            8888포트를 리스닝하는 HTTP 서버를 시작한다음 아무일도 안하는 코드입니다. 어떤 요청이 들어오더라도 말입니다. 테스트 해보면 웹 브라우저는 대기상태에 빠집니다.
+        </p>
 
         <p>
             The really interesting (and, if your background is a more
             conservative language like PHP, odd looking) part is the
             function definition right there where you would expect the
             first parameter of the <em>createServer()</em> call.
+        </p>
+        <p>
+            <em>createServer()</em> 호출의 첫번째 파라미터가 있어야 하는 부분에 함수의 정의가 나온 부분이 매우 흥미롭습니다.(당신의 background가 php처럼 더 보수적인 언어라면 이상하게 보일겁니다). 
         </p>
 
         <p>
@@ -1280,13 +1453,20 @@
             call. Because in JavaScript, functions can be passed around
             like any other value.
         </p>
+        <p>
+            이 함수정의는 <em>createServer()</em>에 넘기는 첫번째 파라미터입니다. 자바스크립트에서는 함수도 값처럼 파라미터로 넘길 수 있습니다.
+        </p>
 
         <a name="passing-functions-around"></a>
 
         <h3>Passing functions around</h3>
+        <h3>함수를 전달하기</h3>
 
         <p>
             You can, for example, do something like this:
+        </p>
+        <p>
+            예를 들면 다음과 같은 것이 가능합니다.
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> say</span><span
                 class="pun">(</span><span class="pln">word</span><span class="pun">)</span><span
@@ -1307,6 +1487,9 @@
             <em>execute</em> function. Not the return value of
             <em>say</em>, but <em>say</em> itself!
         </p>
+        <p>
+            주의해서 보세요! 우리는 여기서 <em>say</em> 라는 함수를 <em>execute</em> 함수의 첫번째 파라미터로 넘기고 있습니다. <em>say</em>함수의 return 값을 넘기는 것이 아니라 <em>say</em> 그 자체를 넘기는 겁니다.
+        </p>
 
         <p>
             Thus, <em>say</em> becomes the local variable
@@ -1314,12 +1497,19 @@
             can call the function in this variable by issuing
             <em>someFunction()</em> (adding brackets).
         </p>
+        <p>
+            따라서, <em>say</em>는 <em>execute</em> 함수 내에서 <em>someFunction</em> 이라는 변수가 되며 execute는 이 변수에 담긴 함수를 <em>someFunction()</em> 이라고 표시함으로써 호출할 수 있습니다.(변수에 괄호를 치면서)
+        </p>
 
         <p>
             Of course, because <em>say</em> takes one parameter,
             <em>execute</em> can pass such a parameter when calling
             <em>someFunction</em>.
         </p>
+		<p>
+            <em>say</em>는 한개의 파라미터를 가지므로 <em>execute</em> 는 <em>someFunction</em> 을 호출하면서 파라미터를 넘길 수 있습니다.
+        </p>
+
 
         <p>
             We can, as we just did, pass a function as a parameter to
@@ -1327,6 +1517,9 @@
             indirection of first defining, then passing it - we can
             define and pass a function as a parameter to another
             function in-place:
+        </p>
+        <p>
+            방금 한 것처럼 우리는 함수를 그 이름으로 다른 함수의 파라미터로 넘길 수 있습니다. 하지만 이렇게 먼저 정의하고 그것을 넘기는 간접적인 방법을 사용할 필요가 없습니다. 우리는 한번에 함수를 정의하면서 다른 함수의 파라미터로 넘길 수 있습니다.
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> execute</span><span
                 class="pun">(</span><span class="pln">someFunction</span><span class="pun">,</span><span class="pln"> value</span><span
@@ -1345,10 +1538,16 @@
             right there at the place where <em>execute</em> expects its
             first parameter.
         </p>
+        <p>
+            우린 <em>execute</em> 의 첫번째 파라미터 위치에 <em>execute</em> 에게 넘기려고 하는 함수를 정의했습니다.
+        </p>
 
         <p>
             This way, we don't even need to give the function a name,
             which is why this is called an <em>anonymous function</em>.
+        </p>
+        <p>
+            이때 우리는 함수 이름을 줄 필요가 없습니다. 이것이 바로 <em>anonymous function</em> 이라고 불리는 이유입니다. 
         </p>
 
         <p>
@@ -1359,14 +1558,21 @@
             by assigning our function to a variable, which we then
             pass, or by defining the function to pass in-place.
         </p>
+        <p>
+            이것으로 제가 “advanced” JavaScript 라고 부르고 싶은 것에 대해 처음으로 살짝 맛을 봤습니다. 이제 이것을 기억합시다. JavaScript 에서는 우리는 함수를 다른 함수의 파라미터로 넘길 수 있다. 이것을 함수를 변수에 할당한 후에 넘길 수도 있고, 정의하면서 한번에 넘길 수도 있다.
+        </p>
 
         <a name="how-function-passing-makes-our-http-server-work"></a>
 
         <h3>How function passing makes our HTTP server work</h3>
+        <h3>어떻게 함수 전달이 HTTP 서버를 동작하게 하는가</h3>
 
         <p>
             With this knowledge, let's get back to our minimalistic
             HTTP server:
+        </p>
+		<p>
+            우리의 미니멀리즘적인 HTTP 서버로 되돌아가 봅시다.
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
@@ -1390,9 +1596,15 @@
             we pass the <em>createServer</em> function an anonymous
             function.
         </p>
+        <p>
+            이제 위 코드가 어떤 일을 하는지 명확해 집니다. anonymous 함수가 <em>createServer</em> 함수로 전달되었습니다. 
+        </p>
 
         <p>
             We could achieve the same by refactoring our code to:
+        </p>
+        <p>
+            위 코드를 리팩터링 하면 아래와 같이 만들 수 있습니다.
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
@@ -1416,6 +1628,9 @@
             Maybe now is a good moment to ask: Why are we doing it
             that way?
         </p>
+        <p>
+            이제 다음과 같은 질문을 할 차례입니다.
+        </p>
 
         <a name="event-driven-callbacks"></a>
 
@@ -1426,6 +1641,9 @@
             b) lies in the very nature of how Node.js works. It's
             event-driven, which is the reason why it's so fast.
         </p>
+        <p>
+            답은 a) 그리 쉽지 않고(최소한 저에게는), b) Node.js가 동작하는 방식이 어떤가에 있습니다. Node.js가 굉장히 빠른 이유는 바로 이벤트 드리븐입니다.
+        </p>
 
         <p>
             You might want to take the time to read Felix
@@ -1434,12 +1652,21 @@
                 node.js</a>
             for some background explanation.
         </p>
+        <p>
+            배경 설명을 위해 Felix Geisendörfer 의 뛰어난 포스트 
+            <a href="http://debuggable.com/posts/understanding-node-js:4bd98440-45e4-4a9a-8ef7-0f7ecbdd56cb">Understanding
+                node.js</a>
+            를 읽어보셔도 좋습니다.
+        </p>
 
         <p>
             It all boils down to the fact that Node.js works event-driven.
             Oh and yes, I, too, don't know exactly what that means.
             But I will try and explain, why this makes sense for us
             who want to write web based applications in Node.js.
+        </p>
+        <p>
+            이것은 모두 결국 Node.js 가 이벤트 드리븐으로 동작한다는 사실로 귀결됩니다. 오, 저 역시 이것이 정확히 무슨 뜻인지 모릅니다. 하지만 Node.js로 웹 기반 애플리케이션을 만드는 우리들에게 이게 왜 의미가 있는지 한번 살펴봅시다.
         </p>
 
         <p>
@@ -1448,11 +1675,17 @@
             some port, we also want to do something when there is an
             HTTP request to this server.
         </p>
+        <p>
+            <em>http.createServer</em> 메소드가 호출될 때 서버가 특정 포트를 listen 할 뿐 아니라 HTTP 요청이 올때 무엇인가를 하기를 기대합니다.
+        </p>
 
         <p>
             The problem is, this happens asynchronously: it happens
             at any given time, but we only have a single process in
             which our server runs.
+        </p>
+        <p>
+            문제는 이것이 비동기적으로 일어난다는 점입니다. 이 요청은 언제든지 일어날 수 있지만 우리에게는 하나의 프로세스밖에 없습니다.
         </p>
 
         <p>
@@ -1462,11 +1695,17 @@
             this request, and starts the according PHP script from
             scratch, which is then executed from top to bottom.
         </p>
+        <p>
+            PHP 애플리케이션을 만들때 우린 이런것은 신경쓰지 않죠. HTTP 요청이 올때마다 웹서버(보통 Apache)가 이 요청을 위해 새 프로세스를 포크하고 해당하는 PHP 스크립트를 처음부터 끝까지 실행합니다.
+        </p>
 
         <p>
             So in regards of control flow, we are in the midst of our
             Node.js program when a new request arrives at port 8888 - how
             to handle this without going insane?
+        </p>
+        <p>
+            제어흐름의 관점에서 보면, 새로운 요청이 8888 포트로 들어왔을때 Node.js 의 제어 안에 있습니다. 이것을 어떻게 해결하죠?
         </p>
 
         <p>
@@ -1475,11 +1714,17 @@
             some new concepts in order to master it. Let's see how
             these concepts are applied in our server code.
         </p>
+        <p>
+            이것이 바로 Node.js/JavaScript 의 이벤트 드리븐 디자인이 빛을 발하는 부분입니다. 다만 몇가지 새로운 개념을 익히긴 해야합니다. 이 개념들을 우리 서버 코드에 어떻게 적용할지 한번 봅시다.
+        </p>
 
         <p>
             We create the server, and pass a function to the method
             creating it. Whenever our server receives a request, the
             function we passed will be called.
+        </p>
+        <p>
+            서버를 생성할 때 함수를 생성 메소드의 파라미터로 넘깁니다. 요청이 올 때마다 파라미터로 넘긴 함수가 호출됩니다.
         </p>
 
         <p>
@@ -1488,6 +1733,9 @@
             passed function, no matter if we first defined it or passed
             it anonymously.
         </p>
+        <p>
+            이것이 언제 일어날 지는 모르지만 이제 들어오는 요청을 처리할 곳은 생겼습니다. 파라미터로 넘긴 함수입니다. 함수를 먼저 정의한 후 넘겼든 anonymous function으로 넘겼든 말이죠.
+        </p>
 
         <p>
             This concept is called a <em>callback</em>. We pass into
@@ -1495,10 +1743,16 @@
             to <em>call back</em> if an event related to the method
             occurs.
         </p>
+        <p>
+            이 개념을 <em>callback</em> 이라고 합니다. 우리는 메소드에 함수를 넘기고, 메소드는 관련된 이벤트가 발생하면 이 함수를 <em>거꾸로 호출(call back)</em> 합니다.
+        </p>
 
         <p>
             At least for me, this took some time to understand. Just
             read Felix' blog post again if you are still unsure.
+        </p>
+        <p>
+            최소한 저에게는 이것을 이해하는 데 좀 시간이 걸렸습니다. 확실히 이해가 되지 않으면 Felix 의 블로그 포스트를 다시 읽어보세요.
         </p>
 
         <p>
@@ -1506,6 +1760,9 @@
             that our code continues after creating the server, even if
             no HTTP request happened and the callback function we
             passed isn't called? Let's try it:
+        </p>
+        <p>
+            이 새로운 개념을 가지고 좀 놀아봅시다. 서버를 생성한 후 아무런 HTTP 요청이 발생하지 않아서 우리가 넘긴 callback 함수도 호출되지 않았을 때 우리 코드가 동작한다는 것을 어떻게 알 수 있을까요? 아래와 같이 해봅시다:
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
@@ -1533,6 +1790,9 @@
             the <em>onRequest</em> function (our callback) is triggered,
             and another text right <em>after</em> starting the HTTP server.
         </p>
+        <p>
+            <em>onRequest</em> 함수 (callback) 가 호출될 때 텍스트를 찍기 위해서 <em>console.log</em> 를 사용했습니다. 또 HTTP 서버를 <em>시작하자 마자</em> 다른 텍스트를 하나 찍었습니다.
+        </p>
 
         <p>
             When we start this (<em>node server.js</em>, as always), it
@@ -1543,10 +1803,16 @@
             in our browser), the message "Request received." is printed
             on the command line.
         </p>
+        <p>
+            이것을 실행하면(<em>node server.js</em>), “Server has started”라고 커맨드라인에 찍힙니다.  서버에 요청을 할 때마다(브라우저로 <a href="http://localhost:8888/" rel="nofollow">http://localhost:8888/</a> 을 열어서) “Request received.” 라고 커맨드 라인에 찍힙니다.
+        </p>
 
         <p>
             Event-driven asynchronous server-side JavaScript with
             callbacks in action :-)
+        </p>
+        <p>
+            이벤트 드리븐 비동기 서버사이드 JavaScript 가 callback 으로 동작하네요 :-)
         </p>
 
         <p>
@@ -1556,14 +1822,21 @@
             http://localhost:8888/favicon.ico whenever you open
             http://localhost:8888/).
         </p>
+        <p>
+            (한번의 브라우저 요청에 “Request received.” 메시지가 두번 STDOUT으로 찍히는것은 대부분의 브라우저가 http://localhost:8888/ 을 요청할 때 http://localhost:8888/favicon.ico 를 로드하려고 하기 때문이에요.)
+        </p>
 
         <a name="how-our-server-handles-requests"></a>
 
         <h3>How our server handles requests</h3>
+        <h3>우리 서버는 요청을 어떻게 처리하는가?</h3>
 
         <p>
             Ok, let's quickly analyze the rest of our server code, that
             is, the body of our callback function <em>onRequest()</em>.
+        </p>
+        <p>
+            네. 이제 나머지 코드를 얼른 분석해봅시다. 바로 callback 함수인 <em>onRequest()</em>  입니다.
         </p>
 
         <p>
@@ -1571,12 +1844,18 @@
             gets triggered, two parameters are passed into it:
             <em>request</em> and <em>response</em>.
         </p>
+        <p>
+            callback으로 <em>onRequest()</em> 함수가 호출될때 두개의 파라미터가 넘어옵니다. <em>reqeust</em> 와 <em>response</em> 죠.
+        </p>
 
         <p>
             Those are objects, and you can use their methods to handle
             the details of the HTTP request that occured and to respond
             to the request (i.e., to actually send something over
             the wire back to the browser that requested your server).
+        </p>
+        <p>
+            이것들은 객체인데요, HTTP 요청을 자세히 핸들링하거나 응답을 보내는데에 이 객체들의 메소드를 사용할 수 있어요.
         </p>
 
         <p>
@@ -1587,10 +1866,16 @@
             function to send the text "Hello World" in the HTTP
             response body.
         </p>
+        <p>
+            우리 코드는 요청이 올때마다 <em>response.writeHead()</em> 함수를 사용해서 HTTP status 200 과 content-type 을 응답 헤더로 보내고, <em>response.write()</em> 함수로 “Hello World” 텍스트를 HTTP 응답 바디로 보냅니다.
+        </p>
 
         <p>
             At last, we call <em>response.end()</em> to actually finish
             our response.
+        </p>
+        <p>
+            마지막으로 <em>response.end()</em> 로 응답을 마무리 하죠.
         </p>
 
         <p>
@@ -1598,10 +1883,14 @@
             request, which is why we don't use the <em>request</em>
             object at all.
         </p>
+        <p>
+            여기서는 요청의 자세한 내용에 대해서 신경 쓰지 않았습니다. 그래서 <em>request</em> 객체는 사용하지 않았죠.
+        </p>
 
         <a name="finding-a-place-for-our-server-module"></a>
 
         <h3>Finding a place for our server module</h3>
+        <h3>server 모듈의 위치 잡기</h3>
 
         <p>
             Ok, I promised we will get back to how to organize our
@@ -1612,16 +1901,25 @@
             other modules of the application (like the HTTP server module
             that lives in <em>server.js</em>).
         </p>
+        <p>
+            네. 이제 돌아가서 애플리케이션을 재구성 해봅시다. 매우 기본적인 HTTP 서버 코드는 <em>server.js</em> 에 있고, 애플리케이션의 다른 모듈들을 적재하고 애플리케이션을 시작하는 main file 로 <em>index.js</em> 를 가지고 있습니다.
+        </p>
 
         <p>
             Let's talk about how to make server.js a real Node.js module
             that can be used by our yet-to-be-written <em>index.js</em>
             main file.
         </p>
+        <p>
+            server.js 를 실제 Node.js 모듈로 만들어서 아직 작성하지 않은 <em>index.js</em> main 파일에서 사용하도록 해봅시다.
+        </p>
 
         <p>
             As you may have noticed, we already used modules in our code,
             like this:
+        </p>
+        <p>
+            아시는 것처럼, 아래와 같이 우리 코드에는 이미 모듈을 사용하고 있지요.
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
@@ -1634,16 +1932,25 @@
             make use of it in our own code by requiring it and assigning
             the result of the require to a local variable.
         </p>
+        <p>
+            Node.js 의 내부 어딘가에 “http” 라는 모듈이 있으며, 이를 require 하고 지역 변수에 할당해서 사용할 수 있습니다.
+        </p>
 
         <p>
             This makes our local variable an object that carries all the
             public methods the <em>http</em> module provides.
+        </p>
+        <p>
+            이렇게 하면 지역변수가 <em>http</em> 모듈이 제공하는 모든 public 메소드를 사용할 수 있는 객체가 됩니다.
         </p>
 
         <p>
             It's common practice to choose the name of the module for the
             name of the local variable, but we are free to choose whatever
             we like:
+        </p>
+        <p>
+            모듈의 이름으로 지역변수의 이름을 선택하는것이 일반적이지만, 우리가 원하는 이름으로 지역변수 이름을 선택할 수도 있습니다.
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> foo </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
@@ -1655,10 +1962,16 @@
             Fine, it's clear how to make use of internal Node.js modules. How
             do we create our own modules, and how do we use them?
         </p>
+        <p>
+            좋습니다. Node.js 의 내부모듈을 사용하는 것은 확실히 알겠군요. 그럼 모듈을 어떻게 직접 만들고 사용할 수 있을까요?
+        </p>
 
         <p>
             Let's find out by turning our <em>server.js</em> script into a
             real module.
+        </p>
+        <p>
+            <em>server.js</em> 스크립트를 모듈로 만들면서 알아봅시다.
         </p>
 
         <p>
@@ -1667,17 +1980,26 @@
             functionality that we want to provide to scripts that require
             our module.
         </p>
+        <p>
+            사실 별로 수정하지 않습니다. 코드를 모듈로 만든다는 것은 모듈을 필요로 하는 스크립트에 제공할 기능의 일부를 <em>export</em> 하는 것입니다.
+        </p>
 
         <p>
             For now, the functionality our HTTP server needs to export is
             simple: scripts requiring our server module simply need to
             start the server.
         </p>
+        <p>
+            export 할 필요가 있는 우리 HTTP 서버의 기능은 단순합니다. 우리 서버모듈을 require 하는 스크립트는 단순히 서버를 시작하는 것이 필요한 거죠.
+        </p>
 
         <p>
             To make this possible, we will put our server code into a
             function named <em>start</em>, and we will export this
             function:
+        </p>
+        <p>
+            이렇게 하기 위해, 서버 코드를 <em>start</em> 라는 함수 안에 넣고 이 함수를 export 하겠습니다.
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
@@ -1709,9 +2031,15 @@
             and start our HTTP there, although the code for the server is
             still in our <em>server.js</em> file.
         </p>
+        <p>
+            이렇게 해서 main 파일인 <em>index.js</em> 를 만들고 HTTP 를 시작합니다. 서버 코드는 여전히 <em>server.js</em> 파일에 있습니다.
+        </p>
 
         <p>
             Create a file <em>index.js</em> with the following content:
+        </p>
+        <p>
+            <em>index.js</em> 파일을 만들고 내용을 아래와 같이 만듭니다.
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> server </span><span class="pun">=</span><span
                 class="pln"> require</span><span class="pun">(</span><span class="str">"./server"</span><span
@@ -1723,10 +2051,16 @@
             internal module: by requiring its file and assigning it to
             a variable, its exported functions become available to us.
         </p>
+        <p>
+            보시다시피, 우리 서버 모듈을 다른 내장 모듈과 똑같이 사용할 수 있습니다: 파일을 require 하고, 지역변수에 할당하면 export 된 함수를 쓸 수 있게 되지요.
+        </p>
 
         <p>
             That's it. We can now start our app via our main script, and it
             still does exactly the same:
+        </p>
+        <p>
+            됐습니다. 이제 main 스크립트를 통해 애플리케이션을 구동해서 기존과 완전히 동일하게 동작하는지 봅시다.
         </p>
         <pre>node index.js</pre>
 
@@ -1735,12 +2069,18 @@
             into different files and wire them together by making them
             modules.
         </p>
+        <p>
+            대단하죠. 이제 애플리케이션의 다른 부분을 다른 파일에 넣고 그것들을 모듈로 만들어서 서로 엮을 수 있게 되었습니다.
+        </p>
 
         <p>
             We still have only the very first part of our application in
             place: we can receive HTTP requests. But we need to do
             something with them - depending on which URL the browser
             requested from our server, we need to react differently.
+        </p>
+        <p>
+            우리 애플리케이션의 아주 초기 부분만을 만들었습니다. 단지 HTTP 요청을 받는거죠. 이제 요청을 가지고 뭔가를 할 필요가 있습니다. 브라우저가 요청한 URL에 따라 반응을 다르게 하는거죠.
         </p>
 
         <p>
@@ -1749,16 +2089,23 @@
             let's add a bit more abstraction in order to make our example
             application a bit more interesting.
         </p>
+        <p>
+            아주 단순한 애플리케이션이라면 이 작업을 <em>onRequest()</em> callback 함수에 구현할 수 있죠. 하지만 우리 애플리케이션이 좀 더 재밌기 위해서 좀 더 추상화를 해보자구요.
+        </p>
 
         <p>
             Making different HTTP requests point at different parts of our
             code is called "routing" - well, then, let's create a module
             called <em>router</em>.
         </p>
+        <p>
+            다른 HTTP 요청이 코드의 다른 부분을 가리키도록 하는 것을 “라우팅(routing)” 이라고 합니다. 자 그럼 <em>router</em>를 만들어 봅시다.
+        </p>
 
         <a name="whats-needed-to-route-requests"></a>
 
         <h3>What's needed to "route" requests?</h3>
+        <h3>요청을 "route" 하려면?</h3>
 
         <p>
             We need to be able to feed the requested URL and possible
@@ -1768,6 +2115,9 @@
             application: a collection of request handlers that do the
             actual work when a request is received).
         </p>
+        <p>
+            요청 URL과 GET/POST 파라미터를 router로 전달하면 router 는 어떤 코드를 실행할지 결정할 수 있어야 합니다. (이 실행할 코드는 우리 애플리케이션의 세번째 부분이에요: 요청을 받았을 때 실제 일을 하는 요청 핸들러의 집합입니다.)
+        </p>
 
         <p>
             So, we need to look into the HTTP requests and extract the
@@ -1775,6 +2125,9 @@
             It could be argued if that should be part of the router or
             part of the server (or even a module of its own), but let's
             just agree on making it part of our HTTP server for now.
+        </p>
+        <p>
+            HTTP 요청에서 요청 URL과 GET/POST 파라미터를 뽑아내야 합니다. 이 부분이 router의 일부이거나 서버의 일부(또는 서버의 모듈)일 수 있는데요, 일단 지금은 HTTP 서버의 일부로 만들어 봅시다.
         </p>
 
         <p>
@@ -1784,12 +2137,18 @@
             this information, we need some additional Node.js modules, namely
             <em>url</em> and <em>querystring</em>.
         </p>
+        <p>
+            모든 필요한 정보는 callback 함수인 <em>onRequest()</em> 함수의 첫번째 파라미터로 전달되는 <em>request</em> 객체를 통해 접근할 수 있습니다. 하지만 이 정보를 얻어내기 위해 <em>url</em> 과 <em>querystring</em> 이라는 모듈이 추가로 필요합니다. 
+        </p>
 
         <p>
             The <em>url</em> module provides methods which allow us to
             extract the different parts of a URL (like e.g. the requested
             path and query string), and <em>querystring</em> can in turn be
             used to parse the query string for request parameters:
+        </p>
+        <p>
+            <em>url</em> 모듈은 URL을 서로 다른 부분으로 뽑아낼 수 있게 해주고( 요청 path와 query string을 분리하는 것처럼), <em>querystring</em> 은 query string 을 파싱 하는데 사용합니다.
         </p>
 <pre>                               url.parse(string).query
                                            |
@@ -1811,10 +2170,16 @@ http://localhost:8888/start?foo=bar&amp;hello=world
             body of a POST request for parameters, as we will see
             later.
         </p>
+        <p>
+            나중에 보겠지만 <em>querystring</em> 모듈을 POST 요청의 body를 파싱하는데에도 사용할 수 있습니다.
+        </p>
 
         <p>
             Let's now add to our <em>onRequest()</em> function the logic
             needed to find out which URL path the browser requested:
+        </p>
+        <p>
+            브라우저가 요청한 URL path가 무엇인지 알 수 있도록 하는 로직을 <em>onRequest()</em> 함수에 추가해 봅시다.
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
@@ -1856,6 +2221,9 @@ http://localhost:8888/start?foo=bar&amp;hello=world
             request handlers based on the URL path using our (yet to be
             written) router.
         </p>
+        <p>
+            좋아요. 이제 URL path를 기준으로 요청을 구분할 수 있게 되었습니다. 이걸 이용하면 URL path를 기반으로 요청을 요청 핸들러로 매핑하는 router(아직 안만들었죠)를 만들 수 있겠네요.
+        </p>
 
         <p>
             In the context of our application, it simply means that we will
@@ -1863,10 +2231,16 @@ http://localhost:8888/start?foo=bar&amp;hello=world
             <em>/upload</em> URLs handled by different parts of our
             code. We will see how everything fits together soon.
         </p>
+        <p>
+            우리 애플리케이션에서 보면, <em>/start</em> 요청과 <em>/upload</em> 요청을 각각 다른 코드에서 처리하도록 할 수 있다는 것입니다. 곧 모든것이 어떻게 맞아떨어지는지 보게 될겁니다.
+        </p>
 
         <p>
             Ok, it's time to actually write our router. Create a new file
             called <em>router.js</em>, with the following content:
+        </p>
+        <p>
+            좋아요. 이제 진짜로 router를 만듭시다.  <em>router.js</em> 라는 새 파일을 만들고 내용을 아래와 같이 입력합니다.
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> route</span><span
                 class="pun">(</span><span class="pln">pathname</span><span class="pun">)</span><span
@@ -1882,6 +2256,9 @@ http://localhost:8888/start?foo=bar&amp;hello=world
             now. Let's first see how to wire together this router with our
             server before putting more logic into the router.
         </p>
+        <p>
+            네. 이 코드는 기본적으로 아무것도 안하죠. 하지만 지금은 이걸로 좋습니다.  router에 좀 더 로직을 추가하기 전에 일단 이 router를 서버와 어떻게 엮을지 봅시다.
+        </p>
 
         <p>
             Our HTTP server needs to know about and make use of our router.
@@ -1892,11 +2269,18 @@ http://localhost:8888/start?foo=bar&amp;hello=world
             <a href="http://martinfowler.com/articles/injection.html">Martin Fowlers excellent post on Dependency Injection</a>
             for background information).
         </p>
+        <p>
+            HTTP 서버가 router를 사용한다는것을 알게 해야 합니다. 이 의존성을 강하게 만들수도 있지만 다른 프로그래밍 언어를 통해 배운대로 dependency indection을 통해 서버와 router를 느슨하게 결합할 겁니다.(배경지식을 위해 Martin Fowler 의
+            <a href="http://martinfowler.com/articles/injection.html"> Dependency Injection에 대한 좋은 포스트</a>를 읽어보는걸 추천합니다.)
+        </p>
 
         <p>
             Let's first extend our server's <em>start()</em> function in
             order to enable us to pass the route function to be used by
             parameter:
+        </p>
+        <p>
+            먼저 router 함수를 파라미터로 넘길 수 있도록 서버의 <em>start()</em> 함수를 확장합니다.
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
@@ -1939,6 +2323,9 @@ http://localhost:8888/start?foo=bar&amp;hello=world
             And let's extend our <em>index.js</em> accordingly, that is,
             injecting the route function of our router into the server:
         </p>
+        <p>
+            그리고 <em>index.js</em> 를 확장합니다. 여기서 router 함수를 서버로 주사(inject) 합니다.
+        </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> server </span><span class="pun">=</span><span
                 class="pln"> require</span><span class="pun">(</span><span class="str">"./server"</span><span
                 class="pun">);</span><span class="pln"><br></span><span class="kwd">var</span><span
@@ -1952,12 +2339,18 @@ http://localhost:8888/start?foo=bar&amp;hello=world
             Again, we are passing a function, which by now isn't any news
             for us.
         </p>
+        <p>
+			여기서도 다시 함수를 넘기고 있지요. 이런 것은 이제 우리에게 새로울 것도 없습니다.
+        </p>
 
         <p>
             If we start our application now (<em>node index.js,
             as always</em>), and request an URL, you can now see from the
             application's output that our HTTP server makes use of our
             router and passes it the requested pathname:
+        </p>
+        <p>
+            이제 애플리케이션을 시작하고(<em>node index.js</em>), URL을 요청하면, 애플리케이션의 출력으로 HTTP 서버가 router를 사용하고 pathname을 넘기는것을 볼 수 있습니다.
         </p>
         <pre>bash$ node index.js
 Request for /foo received.
@@ -1967,14 +2360,21 @@ About to route a request for /foo</pre>
             (I omitted the rather annoying output for the /favicon.ico
             request).
         </p>
+        <p>
+            (다소 짜증나는 /favicon.ico 요청 관련 출력은 생략했어요).
+        </p>
 
         <a name="execution-in-the-kongdom-of-verbs"></a>
 
         <h3>Execution in the kingdom of verbs</h3>
+        <h3>동사들(verbs)의 나라에서의 실행(execution)</h3>
 
         <p>
             May I once again stray away for a while and talk about
             functional programming again?
+        </p>
+        <p>
+            잠깐 functional programming 에 대해 이야기를 해볼게요.
         </p>
 
         <p>
@@ -1984,11 +2384,17 @@ About to route a request for /foo</pre>
             the <em>router</em> object into the server, and the server
             could have called this object's <em>route</em> function.
         </p>
+        <p>
+            함수를 전달하는 것은 단지 기술적인 고려사항이 아니에요. 소프트웨어 디자인의 관점에서 보면 이것은 거의 철학적인 이야기입니다. 잠깐 생각해봅시다. index 파일에서 <em>router</em> 객체를 server 로 전달할 수도 있고, server 는 이 객체의 <em>route</em> 함수를 호출할 수도 있습니다.
+        </p>
 
         <p>
             This way, we would have passed a <em>thing</em>, and the server
             would have used this thing to <em>do</em> something. Hey,
             router thing, could you please route this for me?
+        </p>
+        <p>
+            이 방식으로 우리는 <em>물건(thing)</em> 을 전달하고 server는 이 물건(thing)이 무엇인가를 <em>행동(do)</em> 하게 씁니다. 헤이 router 물건~~, route 좀 해줄래?
         </p>
 
         <p>
@@ -1997,11 +2403,17 @@ About to route a request for /foo</pre>
             need things at all, you need <em>actions</em>. You don't need
             <em>nouns</em>, you need <em>verbs</em>.
         </p>
+        <p>
+            하지만 server는 물건(thing)이 필요 없죠. 다만 뭔가를 <em>할</em> 필요가 있는것 뿐입니다. 그리고 뭔가를 하려면 물건(things)이 필요한게 아니라 <em>행동(actions)</em>이 필요하죠. <em>명사(nouns)</em> 는 필요 없고 <em>동사(verbs)</em>가 필요합니다.
+        </p>
 
         <p>
             Understanding the fundamental mind-shift that's at the core of
             this idea is what made me really understand functional
             programming.
+        </p>
+        <p>
+            이 아이디어의 핵심에 있는 근본적인 정신변화를 이해하니 functional programming 을 진정으로 이해할 수 있었습니다.
         </p>
 
         <p>
@@ -2010,14 +2422,21 @@ About to route a request for /foo</pre>
             Go read it now, really. It's one of the best writings related
             to software I ever had the pleasure to encounter.
         </p>
+        <p>
+            Steve Yegge의 걸작 <a href="http://steve-yegge.blogspot.com/2006/03/execution-in-kingdom-of-nouns.html">Execution in the Kingdom of Nouns</a> 을 읽었을 때 이것을 이해했습니다. 지금 읽어보세요. 이것은 제가 본 소프트웨어와 관련된  최고의 저술 중에 하나입니다.
+        </p>
 
         <a name="routing-to-real-request-handlers"></a>
 
         <h3>Routing to real request handlers</h3>
+        <h3>실제 request handler 로 라우팅(routing) 하기</h3>
 
         <p>
             Back to business. Our HTTP server and our request router are
             now best friends and talk to each other as we intended.
+        </p>
+        <p>
+            비즈니스로 돌아옵시다. 이제 우리가 의도한 대로 HTTP server와 router 는 친구가 되어서 서로 이야기를 나눕니다.
         </p>
 
         <p>
@@ -2026,12 +2445,18 @@ About to route a request for /foo</pre>
             have the "business logic" for requests to <em>/start</em>
             handled in another function than requests to <em>/upload</em>.
         </p>
+        <p>
+            당연히, 이걸로는 부족합니다. “Routing” 은 다른 URL 을 다르게 처리하고 싶다는 말이죠. <em>/start</em> 요청에 대한 “비즈니스 로직”은 <em>/upload</em> 요청과는 다른 함수에서 처리하고 싶습니다.
+        </p>
 
         <p>
             Right now, the routing "ends" in the router, and the router is
             not the place to actually "do" something with the requests,
             because that wouldn't scale well once our application becomes
             more complex.
+        </p>
+        <p>
+            router 는 요청에 대해 실제로 뭔가를 할 만한 곳이 아닙니다. 애플리케이션이 더 복잡해지면 router 를 확장하기가 쉽지가 않아집니다.
         </p>
 
         <p>
@@ -2040,12 +2465,18 @@ About to route a request for /foo</pre>
             unless we have these in place there isn't much sense in doing
             anything with the router for now.
         </p>
+        <p>
+            요청이 route 될 함수를 request handler 라고 부르기로 하고 곧바로 달려들어 봅시다.
+        </p>
 
         <p>
             New application part, new module - no surprise here. Let's
             create a module called requestHandlers, add a placeholder
             function for every request handler, and export these as
             methods of the module:
+        </p>
+        <p>
+            새로운 애플리케이션 부분이니까 새 모듈로 만들어야 겠습니다. requestHandlers 라는 모듈을 만들고, 각각의 request handler를 위한 껍데기(placeholder) 함수들 추가한 후 이 모듈의 메소드로 export 합니다.
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> start</span><span
                 class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; console</span><span
@@ -2064,6 +2495,9 @@ About to route a request for /foo</pre>
             This allows us to wire the request handlers into the router,
             giving our router something to route to.
         </p>
+        <p>
+            이제 router와 request handler 를 엮어서 우리 router 가 어딘가로 route 할 수 있게 되었습니다.
+        </p>
 
         <p>
             At this point we need to make a decision: do we hard-code usage
@@ -2074,12 +2508,18 @@ About to route a request for /foo</pre>
             router and its request handlers, and thus making the router
             really reusable.
         </p>
+        <p>
+            이 시점에 결정이 필요합니다: requestHandler 모듈을 router에 hard-code 한 방법으로 묶느냐, 좀 더 dependency injection을 원하느냐? 모든 패턴과 마찬가지로 dependency injection은 그 자체를 위해 사용하는것이 아닙니다. 여기에서는 router 와 request handler 를 느슨하게 묶도록 해주어서 router 가 매우 재사용성이 높도록 합니다.
+        </p>
 
         <p>
             This means we need to pass the request handlers from our server
             into our router, but this feels even more wrong, which is why
             we should go the whole way and pass them to the server from our
             main file, and passing it on to the router from there.
+        </p>
+        <p>
+            이렇게 하려면 request handler 를 server에서 router로 전달해야 하는데, 이건 더 잘못된 느낌을 줍니다. 왜냐하면 main 파일에서 server로 보내고 server에서 router로 보내야 하기 때문이죠.
         </p>
 
         <p>
@@ -2091,11 +2531,17 @@ About to route a request for /foo</pre>
             <em>if request == x then call handler y</em> in the router
             would be more than ugly.
         </p>
+        <p>
+            그럼 어떻게 전달 하는 게 좋을까요? 지금은 두 개의 handler가 있지만 실제 애플리케이션에서는 handler의 수가 많고 변할 겁니다. 그리고 새 URL request handler가 추가될 때마다 router에서 request와 handler 를 매핑하는 일을 하고 싶지 않습니다. 또 <em>if request == x then call handler y</em> 와 같은 코드는 추악함 이상이 될겁니다.
+        </p>
 
         <p>
             A varying number of items, each mapped to a string (the
             requested URL)? Well, sounds like an associative array would be
             a perfect fit.
+        </p>
+        <p>
+            아이템 수가 변경 가능하고, 각각은 string 에 매핑된다? 오, 연관배열이 딱 맞아떨어질것 같네요.
         </p>
 
         <p>
@@ -2104,11 +2550,19 @@ About to route a request for /foo</pre>
             Turns out, it's actually objects that we want to use if we need
             an associative array!
         </p>
+        <p>
+            음. 조금 실망스럽게도 JavaScript 는 연관배열을 지원하지 않는답니다. 그런데, 알고보니 연관배열이 필요한 경우에는 객체를 사용하면 된다는 군요.
+        </p>
 
         <p>
             There's a nice introduction to this at
             <a href="http://msdn.microsoft.com/en-us/magazine/cc163419.aspx">http://msdn.microsoft.com/en-us/magazine/cc163419.aspx</a>,
             let me quote the relevant part:
+        </p>
+        <p>
+            여기 좋은 소개가 있습니다.
+            <a href="http://msdn.microsoft.com/en-us/magazine/cc163419.aspx">http://msdn.microsoft.com/en-us/magazine/cc163419.aspx</a>,
+            관련된 부분을 인용해보면:
         </p>
         <blockquote>
             <p>
@@ -2120,12 +2574,18 @@ About to route a request for /foo</pre>
                 objects are just collections of name/value pairs - think of a
                 JavaScript object as a dictionary with string keys.
             </p>
+            <p>
+                C++과 C#에서, 객체는 class나 struct의 인스턴스를 지칭합니다. 객체는 그것이 어떤 템플릿( class)으로 인스턴스화 되었느냐에 따라 다른 프로퍼티와 메소드를 가집니다. JavaScript 객체는 다릅니다. JavaScript에서 객체는 단지 이름/값 쌍의 컬렉션에 불과합니다. - JavaScript 객체를 string 키를 가진 dictionary 라고 생각하세요.
+            </p>
         </blockquote>
 
         <p>
             If JavaScript objects are just collections of name/value pairs,
             how can they have methods? Well, the values can be strings,
             numbers etc. - or functions!
+        </p>
+        <p>
+            만약 JavaScript 객체가 단순히 이름/값 쌍의 컬렉션이라면 어떻게 메소드를 가질 수 있죠? 네, 값은 string 일수도 숫자일수도 함수!일수도 있습니다.
         </p>
 
         <p>
@@ -2134,10 +2594,16 @@ About to route a request for /foo</pre>
             achieve loose coupling we want to inject this object into the
             <em>route()</em>.
         </p>
+        <p>
+            오케이, 다시 코드로 돌아와서 requestHandlers의 리스트를 객체로 넘기고, 느슨한 연결을 위해 이 객체를 <em>route()</em> 로 주사(inject) 하려고 합니다.
+        </p>
 
         <p>
             Let's start with putting the object together in our main file
             <em>index.js</em>:
+        </p>
+        <p>
+            이 객체를 main 파일인 <em>index.js</em> 에 넣어봅시다.
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> server </span><span class="pun">=</span><span
                 class="pln"> require</span><span class="pun">(</span><span class="str">"./server"</span><span
@@ -2167,6 +2633,9 @@ About to route a request for /foo</pre>
             this will result in a fluent expression in our router, as we
             will see soon.
         </p>
+        <p>
+            <em>handle</em> 은 “물건”(thing) (request handler들의 컬렉션)에 가깝지만 동사처럼 이름을 지었습니다. 곧 보게 되겠지만 결과적으로 router에서 멋지게 보일 겁니다.
+        </p>
 
         <p>
             As you can see, it's really simple to map different URLs to the
@@ -2176,11 +2645,17 @@ About to route a request for /foo</pre>
             <em>/start</em>, but also requests to <em>/</em> shall be
             handled by the <em>start</em> handler.
         </p>
+        <p>
+            아시겠지만 다른 URL을 같은 request handler에 매핑하는 것은 매우 쉽습니다. 키/값 쌍에 <em>“/”</em> 와 <em>requestHandlers.start</em> 를 추가하면 <em>/start</em> 요청뿐 아니라 <em>/</em> 요청도 <em>start</em> handler로 연결됩니다.
+        </p>
 
         <p>
             After defining our object, we pass it into the server as an
             additional parameter. Let's change our <em>server.js</em> to
             make use of it:
+        </p>
+        <p>
+            객체를 정의한 후에 server에게 별도 파라미터로 전달합니다. <em>server.js</em> 를 이렇게 바꿉시다.
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
@@ -2225,10 +2700,16 @@ About to route a request for /foo</pre>
             <em>start()</em> function, and pass the handle object on to
             the <em>route()</em> callback, as its first parameter.
         </p>
+        <p>
+            <em>start()</em> 함수에 <em>handle</em> 파라미터를 추가했고 handle 객체를 <em>route()</em> callback 에 첫번째 파라미터로 넘겼습니다.
+        </p>
 
         <p>
             Let's change the <em>route()</em> function accordingly, in our
             <em>router.js</em> file:
+        </p>
+        <p>
+            이제 <em>route()</em> 함수를 수정해야죠. <em>router.js</em> 파일입니다.
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> route</span><span
                 class="pun">(</span><span class="pln">handle</span><span class="pun">,</span><span
@@ -2261,6 +2742,9 @@ About to route a request for /foo</pre>
             <em>handle[pathname]();</em> expression I talked about earlier:
             "Please, <em>handle</em> this <em>pathname</em>".
         </p>
+        <p>
+            여기에서는 받은 pathname 에 해당하는 request handler가 있는지 체크하고 존재하면 그 함수를 호출합니다. 연관배열에서 요소에 접근하는 것처럼 객체에서 request handler 함수에 접근할 수 있으므로, 앞에서 이야기한 멋진 표현을 갖게 되었습니다. <em>handle[pathname]()</em>; “<em>pathname</em> 을 <em>handle</em> 해줘~”
+        </p>
 
         <p>
             Ok, that's all we need to wire server, router, and request
@@ -2269,6 +2753,11 @@ About to route a request for /foo</pre>
 
             in our browser, we can prove that the correct request handler
             was indeed called:
+        </p>
+        <p>
+            좋아요. 이게 server와 router 그리고 request handler 들을 함께 묶는 전부입니다. 애플리케이션을 실행하고 브라우저로 
+            <a href="http://localhost:8888/start" rel="nofollow">http://localhost:8888/start</a>
+            를 요청하면 정확한 request handler 가 호출된 것을 확인할 수 있습니다.
         </p>
         <pre>Server has started.
 Request for /start received.
@@ -2280,6 +2769,9 @@ Request handler 'start' was called.</pre>
             in our browser proves that these requests, too, are indeed handled by
             the <em>start</em> request handler:
         </p>
+        <p>
+            브라우저로 <a href="http://localhost:8888/" rel="nofollow">http://localhost:8888/</a> 을 열면 역시 <em>start</em> request handler 가 동작합니다.
+        </p>
         <pre>Request for / received.
 About to route a request for /
 Request handler 'start' was called.</pre>
@@ -2287,11 +2779,15 @@ Request handler 'start' was called.</pre>
         <a name="making-the-request-handlers-respond"></a>
 
         <h3>Making the request handlers respond</h3>
+        <h3>request handler가 응답하게 만들기</h3>
 
         <p>
             Beautiful. Now if only the request handlers could actually send
             something back to the browser, that would be even better,
             right?
+        </p>
+        <p>
+            아름다워요. 이제 오직 request handler 만이 브라우저에 뭔가를 보낼 수 있게 한다면 한결 좋아지겠죠. 그렇죠?
         </p>
 
         <p>
@@ -2300,16 +2796,23 @@ Request handler 'start' was called.</pre>
 
             function in our <em>server.js</em> file.
         </p>
+        <p>
+            기억해봅시다. 브라우저에 찍히는 “Hello World” 는 여전히 <em>server.js</em> 파일의 <em>onRequest</em> 함수에서 오는거죠.
+        </p>
 
         <p>
             "Handling request" means "answering requests" after all, thus
             we need to enable our request handlers to speak with the
             browser just like our <em>onRequest</em> function does.
         </p>
+        <p>
+            결국 “request를 handling” 하는것은 “request에 응답하는” 것입니다. 이제 <em>onRequest</em> 이 하는 것처럼 request handler 가 브라우저에 이야기할 수 있게 해줘야 합니다.
+        </p>
 
         <a name="how-to-not-do-it"></a>
 
         <h4>How to not do it</h4>
+        <h4>해서는 안되는 것</h4>
 
         <p>
             The straight-forward approach we - as developers with a
@@ -2318,6 +2821,9 @@ Request handler 'start' was called.</pre>
             sense, and then suddenly screws things up when we don't expect
             it.
         </p>
+        <p>
+            PHP나 Ruby 배경을 가진 개발자처럼 직관적인 접근 방식을 따르고 싶을 수 있는데, 매력적이고 상당히 그럴듯해 보이지만, 예상치 못한 때에 갑자기 망쳐버릴 수 있습니다.
+        </p>
 
         <p>
             What I mean by "straight-forward approach" is this: make the
@@ -2325,16 +2831,25 @@ Request handler 'start' was called.</pre>
             display to the user, and send this response data in the
             <em>onRequest</em> function back to the user.
         </p>
+        <p>
+            “직관적인 접근 방식”이란 이런 겁니다. requesthandler 가 사용자에게 보여주려는 내용을  <em>return()</em> 하게 하고, 이것을 <em>onRequest</em> 함수에서 user에게 보내는 방식입니다.
+        </p>
 
         <p>
             Let's just do this, and then see why it's not such an overly
             good idea.
+        </p>
+        <p>
+            이렇게 한번 해보고, 이게 왜 그리 좋지 않은 아이디어인지 봅시다.
         </p>
 
         <p>
             We start with the request handlers and make them return what we
             would like to display in the browser. We need to change
             <em>requestHandlers.js</em> to this:
+        </p>
+        <p>
+            브라우저에 보내려는 내용을 request handler 가 return 하게 합시다. <em>requestHandlers.js</em> 를 이렇게 고칩니다.
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> start</span><span
                 class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; console</span><span
@@ -2357,6 +2872,9 @@ Request handler 'start' was called.</pre>
             Good. Likewise, the router needs to return to the server what
             the request handlers return to him. We therefore need to edit
             <em>router.js</em> like this:
+        </p>
+        <p>
+            좋아요. 마찬가지로 router 는 request handler 가 return 한 것을 server에게 return 해야 합니다. <em>router.js</em> 를 이렇게 고칩니다.
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> route</span><span
                 class="pun">(</span><span class="pln">handle</span><span class="pun">,</span><span
@@ -2386,11 +2904,17 @@ Request handler 'start' was called.</pre>
             As you can see, we also return some text if the request could
             not be routed.
         </p>
+        <p>
+            보시다시피, route 못하는 요청이 있으면 텍스트를 좀 return 하게 했습니다.
+        </p>
 
         <p>
             And last but not least, we need to refactor our server to make
             it respond to the browser with the content the request handlers
             returned via the router, transforming <em>server.js</em> into:
+        </p>
+        <p>
+            마지막으로, <em>server.js</em> 를 아래와 같이 바꿔서 request handler가 router를 통해 return 한 내용을 브라우저에 응답하도록 수정합니다.
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
@@ -2440,31 +2964,50 @@ Request handler 'start' was called.</pre>
             gives us "Hello Upload", and <a href="http://localhost:8888/foo" rel="nofollow">http://localhost:8888/foo</a>
             produces "404 Not found".
         </p>
+        <p>
+            수정한 애플리케이션을 다시 구동하면 모든것이 매력적으로 동작합니다. 
+            <a href="http://localhost:8888/start" rel="nofollow">http://localhost:8888/start</a>를 요청하면 “Hello Start” 가 출력되고, 
+            <a href="http://localhost:8888/upload" rel="nofollow">http://localhost:8888/upload</a>는 “Hello Upload”가, 
+            <a href="http://localhost:8888/foo" rel="nofollow">http://localhost:8888/foo</a>는 “404 Not found” 가 나옵니다.
+        </p>
 
         <p>
             Ok, then why is that a problem? The short answer: because we
             will run into problems if one of the request handlers wants to make
             use of a non-blocking operation in the future.
         </p>
+        <p>
+            오케이, 뭐가 문제인가요? 짧게 대답하면, 나중에 request handler 중 하나가 non-blocking 동작을 해야할 때 문제에 생기기 때문입니다.
+        </p>
 
         <p>
             Let's take a bit more time for the long answer.
+        </p>
+        <p>
+            좀 더 긴 대답을 들어봅시다.
         </p>
 
         <a name="blocking-and-non-blocking"></a>
 
         <h4>Blocking and non-blocking</h4>
+        <h4>Blocking 과 non-blocking</h4>
 
         <p>
             As said, the problems will arise when we include non-blocking
             operations in the request handlers. But let's talk about
             blocking operations first, then about non-blocking operations.
         </p>
+        <p>
+            이야기 했듯이, 문제는 request handler에 non-blocking 동작을 포함시킬 때 발생합니다. 먼저 blocking 동작에 대해 이야기를 하고, 그 후에 non-blocking 동작에 대해 이야기 할게요.
+        </p>
 
         <p>
             And instead of trying to explain what "blocking" and
             "non-blocking" means, let's demonstrate ourselves what happens
             if we add a blocking operation to our request handlers.
+        </p>
+        <p>
+            그리고 “blocking” 과 “non-blocking” 의 뜻을 설명하는 대신에 request handler에 blocking 동작을 추가할 때 무슨 일이 생기는지 직접 보여 드리겠습니다.
         </p>
 
         <p>
@@ -2473,9 +3016,15 @@ Request handler 'start' was called.</pre>
             string. Because there is no such thing as <em>sleep()</em> in
             JavaScript, we will use a clever hack for that.
         </p>
+        <p>
+            이를 위해, <em>start</em> request handler에서 “Hello Start” 문자열을 return 하기 전에  10초 동안 기다리도록 수정할 겁니다. JavaScript에 <em>sleep()</em> 같은 건 없기 때문에 다른 짓을 해야 합니다.
+        </p>
 
         <p>
             Please modify <em>requestHandlers.js</em> as follows:
+        </p>
+        <p>
+            <em>requestHandlers.js</em> 를 아래와 같이 고칩시다.
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> start</span><span
                 class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; console</span><span
@@ -2513,15 +3062,24 @@ Request handler 'start' was called.</pre>
             returns "Hello Start". When calling <em>upload()</em>, it
             returns immediately, just like before.
         </p>
+        <p>
+            이게 무엇을 하는것인지 살펴보면: <em>start()</em> 함수가 호출되면 Node.js 는 10초를 기다리고 “Hello Start”를 return 합니다. <em>upload()</em>를 호출하면 기존처럼 곧바로 return 합니다.
+        </p>
 
         <p>
             (Of course, you should imagine that instead of sleeping for
             10 seconds, there would be a real life blocking operation in
             <em>start()</em>, like some sort of long-running computation.)
         </p>
+        <p>
+            (10초를 sleep 하는 것 말고 다른 것을 상상할 수 있겠죠. 오랜 시간이 걸리는 계산과 같은 blocking operation 이 있을 수 있습니다.)
+        </p>
 
         <p>
             Let's see what this change does.
+        </p>
+        <p>
+            이 변화가 무엇을 의미하는지 봅시다.
         </p>
 
         <p>
@@ -2531,16 +3089,27 @@ Request handler 'start' was called.</pre>
             browser window, please enter <a href="http://localhost:8888/start" rel="nofollow">http://localhost:8888/start</a>
             into the address bar, but do not yet open this url!
         </p>
+        <p>
+            애플리케이션을 재시작 한 후에 무슨일이 일어나는지 보기 위해 조금 복잡한 절차를 따라주세요. 첫째, 브라우저 두개를 열어주세요. 첫번째 브라우저의 주소창에 
+            <a href="http://localhost:8888/start" rel="nofollow">http://localhost:8888/start</a> 를 입력만 하고 이동하지는 않게 해주세요.
+        </p>
 
         <p>
             In the second browser window's address bar, enter <a href="http://localhost:8888/upload" rel="nofollow">http://localhost:8888/upload</a>,
             and again, please do not yet hit enter.
+        </p>
+        <p>
+            두번째 브라우저의 주소창에 
+            <a href="http://localhost:8888/upload" rel="nofollow">http://localhost:8888/upload</a>를 입력하고 역시 엔터를 치지는 말아주세요.
         </p>
 
         <p>
             Now, do as follows: hit enter on the first window ("/start"),
             then quickly change to the second window ("/upload") and hit
             enter, too.
+        </p>
+        <p>
+            이제 다음과 같이 합니다.: 첫번째 윈도우(“/start”)에 엔터를 치고 재빨리 두번째 윈도우(“/upload”)로 가서 엔터를 칩니다.
         </p>
 
         <p>
@@ -2549,15 +3118,24 @@ Request handler 'start' was called.</pre>
             takes 10 seconds to load, although there is no <em>sleep()</em>
             in the according request handler!
         </p>
+        <p>
+            우리가 예상한대로 /start URL은 로드하는데 10초가 걸립니다. 하지만 이 request handler에는 <em>sleep()</em>이 없음에도 불구하고 /upload URL <em>또한</em> 로드하는 데 10초가 걸립니다. 
+        </p>
 
         <p>
             Why? Because <em>start()</em> contains a blocking operation.
             Like in "it's blocking everything else from working".
         </p>
+        <p>
+            왜요? <em>start()</em> 가 blocking 동작을 포함하기 때문이죠. 마치 “이것이 다른 모든것이 일하는것을 막는것” 같죠.
+        </p>
 
         <p>
             And that is a problem, because, as the saying goes: <em>"In
             node, everything runs in parallel, except your code"</em>.
+        </p>
+        <p>
+            <em>“node 에서는 네 code를 제외하고 모든 것이 병렬로 동작한다”</em>는 말처럼 이것이 문제입니다.
         </p>
 
         <p>
@@ -2568,12 +3146,18 @@ Request handler 'start' was called.</pre>
             of this - we should avoid blocking operations whenever
             possible, and use non-blocking operations instead.
         </p>
+        <p>
+            Node.js 는 다수의 동시작업을 처리할 수 있지만 이를 thread를 나누는 방식으로 하지 않습니다. 사실은 Node.js 는 단일 thread입니다. Node.js는 동시작업을 event loop을 통해서 처리하며 개발자들은 이것을 사용할 수 있습니다. 우리는 blocking 동작을 피해야만 하며 대신 non-blocking 동작을 사용해야만 합니다.
+        </p>
 
         <p>
             But to do so, we need to make use of callbacks by passing
             functions around to other functions that might do something
             that takes some time (like, e.g. sleep for 10 seconds, or query
             a database, or do some expensive calculation).
+        </p>
+        <p>
+            그러기 위해서는 함수를 다른 함수에게 넘겨서 언젠가 무엇인가(예를들면 10초 sleep을 한다거나, database에 질의를 하거나, 값비싼 계산을 하거나)를 할 수 있도록 하는 callback 을 사용해야 합니다.
         </p>
 
         <p>
@@ -2584,10 +3168,17 @@ Request handler 'start' was called.</pre>
             please take this callbackFunction() here and call it when
             you are finished doing your expensive stuff? Thanks!"</em>
         </p>
+        <p>
+            이런식으로 이야기 하는거죠. <em>“헤이, probablyExpensiveFunction(), 니 일을 해줘. 하지만 나 Single Node.js 쓰레드는 네가 끝낼때까지 여기서 기다리지 않을거야. 네 아래에 있는 코드 라인을 계속 실행할거야. 그러니 여기 이 callbackFunction()을 가져가서 네가 너의 비싼 일을 모두 끝냈을 때 호출해 주겠니? 고마워!”</em>
+        </p>
 
         <p>
             (If you would like to read about that in more detail, please have
             a look at Mixu's post on <a href="http://blog.mixu.net/2011/02/01/understanding-the-node-js-event-loop/">Understanding the node.js event loop</a>.)
+        </p>
+        <p>
+            (이것에 대해 더 자세히 읽고 싶다면 Mixu의 
+            <a href="http://blog.mixu.net/2011/02/01/understanding-the-node-js-event-loop/">Understanding the node.js event loop</a>.) 에 대한 포스트를 살펴보세요)
         </p>
 
         <p>
@@ -2595,16 +3186,25 @@ Request handler 'start' was called.</pre>
             handler response handling" in our application doesn't allow us
             to make proper use of non-blocking operations.
         </p>
+        <p>
+            이제 우리가 만들었던 “request handler가 response를 handling” 하는 식의 방법이 왜 non-blocking 동작을 제대로 하지 못하도록 하는지 살펴봅시다.
+        </p>
 
         <p>
             Once again, let's try to experience the problem first-hand by
             modifying our application.
+        </p>
+        <p>
+            다시한번, 먼저 애플리케이션을 수정해서 문제가 발생하는 것을 경험해 봅시다.
         </p>
 
         <p>
             We are going to use our <em>start</em> request handler for this
             again. Please modify it to reflect the following (file
             <em>requestHandlers.js</em>):
+        </p>
+        <p>
+            이번에도 <em>start</em> request handler 를 사용합니다. 아래와 같이 수정해 주세요(<em>requestHandlers.js</em> 파일이에요)
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> exec </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">"child_process"</span><span
@@ -2640,6 +3240,9 @@ Request handler 'start' was called.</pre>
             use of a very simple yet useful non-blocking operation:
             <em>exec()</em>.
         </p>
+        <p>
+            보시는것처럼, 우리는 새로운 Node.js 모듈인 <em>child_process</em> 를 사용했습니다.매우 단순하지만 쓸모가 많은 non-blocking 동작인 <em>exec()</em>을 사용하기 위해서 입니다.
+        </p>
 
         <p>
             What <em>exec()</em> does is, it executes a shell command from
@@ -2648,21 +3251,34 @@ Request handler 'start' was called.</pre>
             allowing us to display this list in the browser of a user
             requesting the <em>/start</em> URL.
         </p>
+        <p>
+            <em>exec()</em> 은 shell 커맨드를 Node.js 안에서 실행시킵니다. 이 예에서는 현재 디렉토리에 있는 모든 파일 리스트를 가져오는데 사용해서 브라우저가 <em>/start</em> URL을 요청할 때 이 리스트를 출력할 수 있습니다.
+        </p>
 
         <p>
             What the code does is straightforward: create a new variable
             <em>content</em> (with an initial value of "empty"), execute
             "ls -lah", fill the variable with the result, and return it.
         </p>
+        <p>
+            코드가 매우 직관적이죠. <em>content</em> 라는 새 변수를 생성하고(초기값은 “empty”로), “ls -alh”를 실행하고, 이 결과로 변수를 채우고 변수를 return 합니다.
+        </p>
 
         <p>
             As always, we will start our application, and visit
             <a href="http://localhost:8888/start" rel="nofollow">http://localhost:8888/start</a>.
         </p>
+        <p>
+            언제나처럼 애플리케이션을 구동시키고 
+            <a href="http://localhost:8888/start" rel="nofollow">http://localhost:8888/start</a> 를 방문합니다.
+        </p>
 
         <p>
             Which loads a beautiful web page that displays the string
             "empty". What's going wrong here?
+        </p>
+        <p>
+            멋진 웹페이지가 로드되고 “empty” 문자열이 출력됩니다. 뭐가 잘못된 거죠?
         </p>
 
         <p>
@@ -2673,30 +3289,48 @@ Request handler 'start' was called.</pre>
             forcing our application into a full stop as the blocking
             <em>sleep</em> operation did.
         </p>
+        <p>
+            짐작하셨겠지만, <em>exec()</em> 이 non-blocking 방식으로 마법을 부렸습니다. blocking <em>sleep</em> operation 처럼 애플리케이션을 정지 시키지 않고 상당히 비싼 shell operation(매우 큰 파일을 복사한다거나 하는) 을  실행할 수 있게 해주기 때문에 exec()은 매우 좋은 겁니다.
+        </p>
 
         <p>
             (If you would like to prove this, replace "ls -lah" with a
             more expensive operation like "find /").
+        </p>
+        <p>
+            (이것을 증명하고 싶다면 “ls -lah” 를 “find /” 처럼 더 비싼 operation 으로 바꿔 보세요)
         </p>
 
         <p>
             But we aren't exactly happy with our elegant non-blocking
             operation, when our browser doesn't display its result, right?
         </p>
+        <p>
+            하지만 브라우저에 그 결과를 출력하지 못하기 때문에 이 우아한 non-blocking operation 에도 좋아할 수는 없습니다. 그렇죠?
+        </p>
 
         <p>
             Well, then, let's fix it. And while we are at it, let's try to
             understand why the current architecture doesn't work.
+        </p>
+        <p>
+            그러면, 고쳐봅시다. 그러면서 왜 지금의 아키텍쳐는 제대로 동작하지 못하는지 이해해 보자구요.
         </p>
 
         <p>
             The problem is that <em>exec()</em>, in order to work
             non-blocking, makes use of a callback function.
         </p>
+        <p>
+            문제는 <em>exec()</em> 이 non-blocking 으로 동작하기 위해서 callback 함수를 사용해야 한다는 것입니다.
+        </p>
 
         <p>
             In our example, it's an anonymous function which is passed as
             the second parameter to the <em>exec()</em> function call:
+        </p>
+        <p>
+            우리 예에서는 <em>exec()</em> 함수의 두번째 파라미터로 전달한 anonymous 함수입니다.
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> </span><span
                 class="pun">(</span><span class="pln">error</span><span class="pun">,</span><span
@@ -2714,12 +3348,18 @@ Request handler 'start' was called.</pre>
             passed to <em>exec()</em> has not yet been called - because
             <em>exec()</em> operates asynchronous.
         </p>
+        <p>
+            그리고 여기에 문제의 뿌리가 놓여있습니다: 우리의 코드는 동기적으로 동작합니다. 즉 <em>exec()</em>을 호출하자 마자 Node.js 는 이어서 <em>return content;</em> 를 실행합니다. <em>exec()</em> 은 비동기적으로 동작하기 때문에 <em>exec()</em>에 전달된 callback 함수는 아직 호출되지 않았으며 바로 이 시점에 <em>content</em> 는 여전히 “empty” 
+        </p>
 
         <p>
             Now, "ls -lah" is a very inexpensive and fast operation (unless
             there are millions of files in the directory). Which is why the
             callback is called relatively expeditious - but it nevertheless
             happens asynchronously.
+        </p>
+        <p>
+            “ls -lah” 는 매우 싸고 빠른 operation 입니다.(디렉토리에 수백만개의 파일이 존재하지 않는다면) 따라서 callback 이 상대적으로 빠르게 호출됩니다. 그럼에도 불구하고 이 일은 비동기적으로 일어납니다.
         </p>
 
         <p>
@@ -2733,10 +3373,16 @@ Request handler 'start' was called.</pre>
             callback function we passed into <em>exec()</em> will be called
             only when the "find /" command has finished running.
         </p>
+        <p>
+            이것을 더욱 확실하게 보여주는 더 비싼 커맨드를 생각해 봅시다: “find /” 는 제 장비에서 대략 1분이 걸리지만 request handler에서 “ls -lah” 를 “find /”로 바꾸어도 /start URL을 요청할 때 여전히 즉시 HTTP 응답을 받게 됩니다. 이제 Node.js가 애플리케이션을 계속 실행하는 중에 <em>exec()</em>은 백그라운드에서 수행한다는 것이 확실합니다. 그리고 <em>exec()</em>에 넘긴 callback 함수는 “find /” 커맨드의 동작이 끝났을 때 호출될것입니다.
+        </p>
 
         <p>
             But how can we achieve our goal, i.e. showing the user a list
             of files in the current directory?
+        </p>
+        <p>
+            그럼 우리는 어떻게 현재 디렉토리의 파일 리스트를 사용자에게 보여주려는 우리 목표를 이룰 수 있을까요?
         </p>
 
         <p>
@@ -2744,19 +3390,29 @@ Request handler 'start' was called.</pre>
             how to make our request handlers respond to browser requests
             the right way.
         </p>
+        <p>
+            어떻게 하면 <em>안</em> 되는지를 배웠으니까, 이제 request handler가 브라우저에게 올바른 방식으로 응답하는 방법을 논의해 봅시다.
+        </p>
 
         <a name="responding-request-handlers-with-non-blocking-operations"></a>
 
         <h4>Responding request handlers with non-blocking operations</h4>
+        <h4>request handler가 non-blocking 방식으로 동작하면서 응답하기</h4>
 
         <p>
             I've just used the phrase "the right way". Dangerous stuff.
             Quite often, there is no single "right way".
         </p>
+        <p>
+            제가 방금 “올바른 방식” 이라는 표현을 사용했는데. 위험한 말입니다. 대부분 “올바른 방식” 하나만 존재하는것이 아닙니다.
+        </p>
 
         <p>
             But one possible solution for this is, as often with Node.js,
             to pass functions around. Let's examine this.
+        </p>
+        <p>
+            이번 경우에는 함수를 전달하는 것이 한 방법입니다. 한번 살펴봅시다.
         </p>
 
         <p>
@@ -2765,6 +3421,9 @@ Request handler 'start' was called.</pre>
             from the request handlers to the HTTP server by returning it
             up through the layers of the application (request handler -&gt;
             router -&gt; server).
+        </p>
+        <p>
+            현재 우리 애플리케이션은 content를 request handler 에서 return 하여 애플리케이션 레이어들을 거쳐 HTTP server 로 전달됩니다 (request handler -&gt; router -&gt; server).
         </p>
 
         <p>
@@ -2776,14 +3435,23 @@ Request handler 'start' was called.</pre>
             able to use this object's functions to respond to requests
             themselves.
         </p>
+        <p>
+            새로운 방법은 다음과 같습니다: content를 server로 보내는 대신 server를 content로 보낼겁니다. 좀 더 자세히 이야기 하면, <em>response</em> 객체 (server의 callback 함수인 <em>onRequest()</em>에서 얻은)를 router를 통해 request handler에게 주사(inject) 합니다. 이제 handler 는 이 객체를 이용해서 스스로 요청에 응답할 수 있게 되었죠.
+        </p>
 
         <p>
             Enough explanation, here is the step by step recipe on how to
             change our application.
         </p>
+        <p>
+            설명은 충분합니다. 이제 하나씩 애플리케이션을 고쳐 봅시다.
+        </p>
 
         <p>
             Let's start with our <em>server.js</em>:
+        </p>
+        <p>
+            <em>server.js</em> 부터 시작합니다
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
@@ -2823,9 +3491,15 @@ Request handler 'start' was called.</pre>
             calls from the <em>onRequest()</em> handler, because we now
             expect <em>route</em> to take care of that.
         </p>
+        <p>
+            <em>route()</em> 함수가 return 하도록 하는 대신 세번째 파라미터로 <em>response</em> 객체를 전달했습니다. 또 <em>onRequest()</em> 에서는 <em>response</em>의 메소드를 모두 제거했습니다. 이제 <em>route</em> 가 처리해야 하니까요.
+        </p>
 
         <p>
             Next comes <em>router.js</em>:
+        </p>
+        <p>
+            다음은 router.js 입니다.
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> route</span><span
                 class="pun">(</span><span class="pln">handle</span><span class="pun">,</span><span
@@ -2861,14 +3535,23 @@ Request handler 'start' was called.</pre>
             Same pattern: instead of expecting a return value from our
             request handlers, we pass the <em>respond</em> object on.
         </p>
+        <p>
+            비슷한 패턴입니다: request handler 가 return 하도록 하는 대신 <em>response</em> 객체를 전달했습니다.
+        </p>
 
         <p>
             If no request handler can be used, we now take care of
             responding with a proper "404" header and body ourselves.
         </p>
+        <p>
+            마땅한 request handler 를 찾지 못하는 경우 직접 “404” header 와 body를 응답하도록 처리해야 합니다.
+        </p>
 
         <p>
             And last but not least, we modify <em>requestHandlers.js</em>:
+        </p>
+        <p>
+            이제 마지막으로 <em>requestHandlers.js</em> 입니다.
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> exec </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">"child_process"</span><span
@@ -2912,6 +3595,9 @@ Request handler 'start' was called.</pre>
             and have to make use of them in order to respond to the
             request directly.
         </p>
+        <p>
+            handler 함수가 response를 파라미터로 받았고 request에 응답하기 위해 이 객체를 직접 사용하고 있습니다.
+        </p>
 
         <p>
             The <em>start</em> handler will respond from within the
@@ -2919,10 +3605,16 @@ Request handler 'start' was called.</pre>
             handler still simply replies with "Hello Upload", but now
             by making use of the <em>response</em> object.
         </p>
+        <p>
+            <em>start</em> handler 는 <em>exec()</em> 함수의 anonymous callback 에서 응답합니다. 그리고 <em>upload</em> handler 는 여전히 단순하게 “Hello Upload” 를 응답하지만 이번에는 직접 <em>response</em> 객체를 사용하지요.
+        </p>
 
         <p>
             If we start our application again (<em>node index.js</em>),
             this should work as expected.
+        </p>
+        <p>
+            이제 애플리케이션을 다시 시작하면(<em>node index.js</em>) 제대로 동작할 겁니다.
         </p>
 
         <p>
@@ -2930,6 +3622,9 @@ Request handler 'start' was called.</pre>
             <em>/start</em> will no longer block requests for
             <em>/upload</em> from answering immediately, then modify your
             <em>requestHandlers.js</em> as follows:
+        </p>
+        <p>
+            <em>/start</em> 요청에 있는 비싼 동작에도 불구하고  <em>/upload</em> 요청이 곧바로 응답되는것을(block 되지 않고) 확인하고 싶다면, 아래와 같이 <em>requestHandlers.js</em> 를 고쳐보세요.
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> exec </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">"child_process"</span><span
@@ -2979,15 +3674,24 @@ Request handler 'start' was called.</pre>
             will be answered immediately, even if /start is still
             computing.
         </p>
+        <p>
+            이렇게 하면 
+            <a href="http://localhost:8888/start" rel="nofollow">http://localhost:8888/start</a> 에 대한 요청이 최소한 10초가 걸리게 되지만 /start 가 여전히 동작 중일 때에도 
+            <a href="http://localhost:8888/upload" rel="nofollow">http://localhost:8888/upload</a> 요청은 곧바로 응답합니다.
+        </p>
 
         <a name="serving-something-useful"></a>
 
         <h3>Serving something useful</h3>
+        <h3>유용한 것을 제공하기</h3>
 
         <p>
             Until now, what we have done is all fine and dandy, but we
             haven't created any value for the customers of our
             award-winning website.
+        </p>
+        <p>
+            지금까지 우리가 한 일은 멋지긴 했습니다만, 우리의 멋진 사이트로 고객에게 가치를 제공하지는 못했습니다.
         </p>
 
         <p>
@@ -2999,12 +3703,18 @@ Request handler 'start' was called.</pre>
             image files are going to be uploaded and displayed through the
             application.
         </p>
+        <p>
+            server, router, request handlers 가 있으니 이제  사이트에 컨텐트를 추가해서 사용자가 파일을 선택하고, 이 파일을 업로드하고, 업로드한 파일을 보는 유스케이스를 제공할 수 있습니다. 단순하게 하기 위해 이미지 파일만 업로드 하고 볼 수 있다고 가정하겠습니다.
+        </p>
 
         <p>
             Ok, let's take it step by step, but with most of the techniques
             and principles of JavaScript explained by now, let's at the
             same time accelerate a bit. This author likes to hear himself
             talking way too much anyways.
+        </p>
+        <p>
+            네. 이제 하나씩 해봅시다. 대부분 지금까지 다룬 JavaScript 테크닉과 이론을 가지고 할 겁니다. 그리고 조금 새로운 것도 나올 겁니다.
         </p>
 
         <p>
@@ -3013,6 +3723,9 @@ Request handler 'start' was called.</pre>
             and in a second step, we will make use of an external Node.js
             module for the file upload handling. I've chosen this approach
             for two reasons.
+        </p>
+        <p>
+            하나씩이라고 했는데 두 단계입니다: 첫번째로 POST 요청(파일 업로드는 아니지만)을  처리하는 방법을 살펴볼 겁니다. 두번째는 파일 업로드를 처리하기 위해 Node.js 의 외부 모듈을 사용할 겁니다. 제가 이런 방식을 선택한 이유는 두 가지가 입니다.
         </p>
 
         <p>
@@ -3026,10 +3739,16 @@ Request handler 'start' was called.</pre>
             an external module is itself a lesson that makes sense to be
             included in a beginner's tutorial.
         </p>
+        <p>
+            첫째, Node.js 로 기본적인 POST 요청을 처리하는 것은 상대적으로 쉽습니다만 연습해 볼 가치가 충분히 있습니다.
+            <br>
+            둘째, Node.js 로 파일 업로드( 즉 multipart POST 요청)를 처리하는 것은 간단하지 <em>않아서</em> 이 튜토리얼의 범위를 넘어갑니다. 하지만 외부 모듈을 사용하는 것은 그 자체로 의미가 있어서 beginner 튜토리얼에 포함할만 합니다.
+        </p>
 
         <a name="handling-post-requests"></a>
 
         <h4>Handling POST requests</h4>
+        <h4>POST 요청 처리하기</h4>
 
         <p>
             Let's keep this banally simple: We will present a textarea that
@@ -3037,11 +3756,17 @@ Request handler 'start' was called.</pre>
             request. Upon receiving and handling this request, we will
             display the content of the textarea.
         </p>
+        <p>
+            뻔하고 단순한 것으로 합시다: textarea 를 하나 제공해서 사용자가 내용을 채우고 submit 해서 POST 요청을 서버로 보냅니다. 이 요청을 받아서 textarea 내부의 내용을 출력하겠습니다.
+        </p>
         
         <p>
             The HTML for this textarea form needs to be served by our
             <em>/start</em> request handler, so let's add it right away, in
             file <em>requestHandlers.js</em>:
+        </p>
+        <p>
+            <em>/start</em> 요청에서 textarea 를 위한 HTML 을 뿌려줘야 하니까 <em>requestHandler.js</em> 에 추가해 봅시다.
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> start</span><span
                 class="pun">(</span><span class="pln">response</span><span class="pun">)</span><span
@@ -3097,6 +3822,10 @@ Request handler 'start' was called.</pre>
             in your browser. If not, you probably didn't restart the
             application.
         </p>
+        <p>
+            이제 이 사이트가 Webby Awards(국제 우수 웹사이트 상)을 받지 않는다면 누가 받을까 모르겠네요. 브라우저로 
+            <a href="http://localhost:8888/start" rel="nofollow">http://localhost:8888/start</a> 를 요청하면 이 단순한 form을 볼 수 있습니다. 만약 안된다면 애플리케이션을 재시작 안했을 겁니다.
+        </p>
 
         <p>
             I hear you: having view content right in the request handler is
@@ -3105,6 +3834,9 @@ Request handler 'start' was called.</pre>
             this tutorial, because I think that it doesn't teach us
             anything worth knowing in the context of JavaScript or Node.js.
         </p>
+        <p>
+            view 컨텐트를 request handler 안에 가지고 있는게 추악하다구요? 하지만 저는 이 튜토리얼에 더 추상화(즉, view와 controller 로직을 분리하는 것)를 하지 않기로 했습니다. 그렇게 하는것이 JavaScript 나 Node.js 관점에서는 의미 있는 것이 아니라고 생각하기 때문입니다.
+        </p>
 
         <p>
             Let's rather use the remaining screen space for a more
@@ -3112,11 +3844,17 @@ Request handler 'start' was called.</pre>
             that will hit our <em>/upload</em> request handler when the
             user submits this form.
         </p>
+        <p>
+            그보다 좀 재미있는 문제를 봅시다. 사용자가 이 form을 submit 할 때 POST 요청은 <em>/upload</em> request handler 로 갑니다.
+        </p>
 
         <p>
             Now that we are becoming expert novices, we are no longer
             surprised by the fact that handling POST data is done in a
             non-blocking fashion, by using asynchronous callbacks.
+        </p>
+        <p>
+            이제 우린 전문가 같은 초보가 되고 있으니까, POST 데이터가 비동기 callback을 사용해서 non-blocking 방식으로 처리된다는 것이 놀랍지 않습니다.
         </p>
 
         <p>
@@ -3124,6 +3862,9 @@ Request handler 'start' was called.</pre>
             very large - nothing stops the user from entering text that is
             multiple megabytes in size. Handling the whole bulk of data in
             one go would result in a blocking operation.
+        </p>
+        <p>
+            POST 요청은 상당히 클겁니다. 누구도 사용자가 몇 메가바이트의 텍스트를 입력하는 것을 막을 수 없겠죠. 전체 데이터 블록을 하나로 처리하는 것은 blocking operation 방법이 될것 입니다.
         </p>
 
         <p>
@@ -3133,6 +3874,9 @@ Request handler 'start' was called.</pre>
             POST data arrives) and <em>end</em> (all chunks have been
             received).
         </p>
+        <p>
+            전체 프로세스를 non-blocking 으로 만들려면, POST 데이터를 작은 청크로 나누고 특정 이벤트때마다 callback 을 호출하는 방식으로 만들어야 합니다. 이 이벤트가 <em>data</em> (POST 데이터의 새 청크가 도착했다) 와 <em>end</em> (모든 청크를 다 받았다) 입니다.
+        </p>
 
         <p>
             We need to tell Node.js which functions to call back to when
@@ -3141,9 +3885,15 @@ Request handler 'start' was called.</pre>
             <em>onRequest</em> callback whenever an HTTP request is
             received.
         </p>
+        <p>
+            이 이벤트가 발생했을때 어떤 callback이 호출되어야 할지 Node.js 에게 알려야 하는데, HTTP 요청이 올때 <em>onRequest</em> callback 함수가 넘겨받은 <em>request</em> 객체에 <em>listener</em> 함수들을 추가하는 방식으로 할 수 있습니다.
+        </p>
 
         <p>
             This basically looks like this:
+        </p>
+        <p>
+            기본적으로 이렇게 보일겁니다:
         </p>
         <pre class="prettyprint lang-js"><span class="pln">request</span><span class="pun">.</span><span class="pln">addListener</span><span
                 class="pun">(</span><span class="str">"data"</span><span class="pun">,</span><span
@@ -3164,6 +3914,9 @@ Request handler 'start' was called.</pre>
             don't pass it on to the router and the request handlers, like
             we did with the <em>response</em> object.
         </p>
+        <p>
+            이 로직을 어디에 구현해야 할까요? 지금은 server 에서만  request 객체에 접근 가능합니다. router 와 request handler 에는 <em>request</em> 객체를 전달하지 않았거든요. <em>response</em> 객체만 전달했었죠.
+        </p>
 
         <p>
             In my opinion, it's an HTTP servers job to give the application
@@ -3171,6 +3924,9 @@ Request handler 'start' was called.</pre>
             I suggest we handle the POST data processing right in the
             server and pass the final data on to the router and the request
             handlers, which then can decide what to do with it.
+        </p>
+        <p>
+            제 생각에, request 로부터 오는 모든 data 를 애플리케이션에게 전달하는 것은 HTTP server의 역할입니다. 그래서 POST data 를 server에서 받고 최종 data 를 router 와 request handler 로 보내는게 좋겠습니다. 그러면 그것으로 무엇을 할지 결정할 수 있겠죠.
         </p>
 
         <p>
@@ -3181,9 +3937,15 @@ Request handler 'start' was called.</pre>
             data chunks on to the router, which in turn passes it on to the
             request handlers.
         </p>
+        <p>
+            그러니까 <em>data</em> 와 <em>end</em> 이벤트 callback 을 server에 두고 <em>data</em> callback에서 모든 POST 데이터 청크를 모은 다음에, <em>end</em> callback 에서 router 를 호출하면서 모든 데이터 청크를 전달합니다. 그러면 결국 request handler 까지 갈겁니다.
+        </p>
 
         <p>
             Here we go, starting with <em>server.js</em>:
+        </p>
+        <p>
+            자 이제 <em>server.js</em> 부터 시작합니다.
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
@@ -3247,11 +4009,17 @@ Request handler 'start' was called.</pre>
             the router, because we are going to need it in our request
             handlers.
         </p>
+        <p>
+            기본적으로 세가지 일을 했습니다: 첫째, 받을 데이터의 인코딩을 UTF-8 로 세팅했고, 새로운 POST 데이터 청크가 올 때마다 <em>postData</em> 변수에 차곡차곡 쌓는 역할을 하는 “data” 이벤트 listener 를 추가했습니다. 그리고 모든 POST 데이터가 모였을 때 호출되는 <em>end</em> 이벤트 callback에서 postData 변수를 router로 전달했습니다. POST 데이터도 router 전달했는데요, request handler에서 필요하게 됩니다.
+        </p>
 
         <p>
             Adding the console logging on every chunk that is received
             probably is a bad idea for production code (megabytes of POST
             data, remember?), but makes sense to see what happens.
+        </p>
+        <p>
+            제품 코드(production code)라면  청크가 올 때마다 콘솔 로그를 찍도록 하는 것은 안좋은 생각입니다만(POST 데이터가 수 메가 바이트가 될 수 있죠?), 무슨일이 벌어지는지 보는것은 괜찮겠죠.
         </p>
 
         <p>
@@ -3260,12 +4028,18 @@ Request handler 'start' was called.</pre>
             you will see that for the larger texts, the <em>data</em>
             callback is indeed called multiple times.
         </p>
+        <p>
+            이 부분에서 좀 살펴보는 것도 좋습니다. textarea에 적은량의 텍스트를 넣다가 그 크기를 늘려가게 되면 <em>data</em> callback 이 실제로 여러 번 호출됩니다.
+        </p>
 
         <p>
             Let's add even more awesome to our app. On the /upload page,
             we will display the received content. To make this possible, we
             need to pass the <em>postData</em> on to the request handlers,
             in <em>router.js</em>:
+        </p>
+        <p>
+            더 기막힌걸 애플리케이션에 추가해 봅시다. /upload 페이지에 받은 내용을 표시할겁니다. 이렇게 하기 위해서는  <em>postData</em> 를 request handler 로 전달해야 합니다. <em>router.js</em> 를 아래와 같이 수정합니다.
         </p>
 
         <pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> route</span><span
@@ -3302,6 +4076,9 @@ Request handler 'start' was called.</pre>
         <p>
             And in <em>requestHandlers.js</em>, we include the data in our
             response of the <em>upload</em> request handler:
+        </p>
+        <p>
+            그리고 <em>requestHandlers.js</em> 의 <em>upload</em> request handler 에서 응답에 이 데이터를 추가합니다.
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> start</span><span
                 class="pun">(</span><span class="pln">response</span><span class="pun">,</span><span class="pln"> postData</span><span
@@ -3354,6 +4131,9 @@ Request handler 'start' was called.</pre>
             That's it, we are now able to receive POST data and use it in
             our request handlers.
         </p>
+        <p>
+            됐습니다. 이제 POST 데이터를 받아서 request handler에서 사용할 수 있습니다. 
+        </p>
 
         <p>
             One last thing for this topic: what we pass on to the router
@@ -3362,10 +4142,16 @@ Request handler 'start' was called.</pre>
             that make up the POST data, in this case, the value of the
             <em>text</em> field.
         </p>
+        <p>
+            이 토픽의 마지막 할 일은 이렇습니다. 지금은 POST 요청의 전체 body 를 router 와 request handler 로 넘기고 있는데, 향후에 POST 데이터를 구성하는 개별 필드를 사용하고 싶을 수 있습니다. 이 경우에는 <em>text</em> 필드의 값이죠.
+        </p>
 
         <p>
             We already read about the <em>querystring</em> module, which
             assists us with this:
+        </p>
+        <p>
+            우린 이미 <em>querystring</em> 모듈에 대해 알고 있죠. 이런식으로 사용하겠습니다.
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> querystring </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">"querystring"</span><span
@@ -3423,15 +4209,22 @@ Request handler 'start' was called.</pre>
             Well, for a beginner's tutorial, that's all there is to say
             about handling POST data.
         </p>
+        <p>
+            네. 초보자 튜토리얼에서 POST 데이터 처리에 대해 다룰 내용은 모두 다뤘습니다.
+        </p>
 
         <a name="handling-file-uploads"></a>
 
         <h4>Handling file uploads</h4>
+        <h4>파일 업로드 처리하기</h4>
 
         <p>
             Let's tackle our final use case. Our plan was to allow users to
             upload an image file, and display the uploaded image in the
             browser.
+        </p>
+        <p>
+            이제 마지막 유스케이스로 갑니다. 우리 계획은 사용자가 이미지 파일을 업로드 하면 업로드된 이미지를 브라우저에 출력하는 것이었습니다.
         </p>
 
         <p>
@@ -3439,6 +4232,9 @@ Request handler 'start' was called.</pre>
             for an IPO, today it must suffice to teach us two things: how
             to install external Node.js libraries, and how to make use of
             them in our own code.
+        </p>
+        <p>
+            90년대로 돌아간다면, 이 기능이 기업공개를 할만한 비즈니스 모델을 가능하게 해줄것 같습니다만, 오늘날에는 우리에게 두가지를 가르쳐 줍니다. Node.js 외부 library를 설치하는 방법과 이것을 코드에서 사용하는 방법이죠.
         </p>
 
         <p>
@@ -3450,6 +4246,9 @@ Request handler 'start' was called.</pre>
             the details here, and using a ready-made solution makes a lot
             of sense in this case.
         </p>
+        <p>
+            우리가 사용할 외부 모듈은 Felix Geisendörfer 가 만든 <em>node-formidable</em> 입니다. 이 모듈은 들어오는 파일 데이터를 파싱해서 처리하는 모든 자잘한 것들을 잘 추상화 해 놨습니다. 결국 파일 데이터를 받아서 처리하는 것은 단지 POST 데이터를 처리하는 것입니다. 하지만 그 자세한 처리가 어렵고 복잡하기 때문에, 여기서는 미리 만들어진 솔루션을 쓰는 것이 좋겠습니다.
+        </p>
 
         <p>
             In order to make use of Felix' code, the according Node.js
@@ -3458,10 +4257,16 @@ Request handler 'start' was called.</pre>
             external Node.js modules in a very convenient fashion. Given a
             working Node.js installation, it boils down to issuing
         </p>
+        <p>
+            Felix 의 코드(모듈)을 사용하기 위해 적절한 모듈이 필요합니다. Node.js 는 <em>NPM</em>이라는 자체의 패키지 관리자를 가지고 있습니다. NPM은 Node.js 외부 모듈을 매우 쉽게 설치할 수 있게 해줍니다. Node.js 가 잘 동작하는 시스템이라면 단지 커맨드 라인에 아래와 같이 타이핑 하면 됩니다.
+        </p>
         <pre class="prettyprint lang-bash"><span class="pln">npm install formidable</span></pre>
 
         <p>
             on our command line. If the following output ends with
+        </p>
+        <p>
+            만약 아래와 같이 출력된다면 
         </p>
         <pre class="prettyprint lang-bash"><span class="pln">npm info build </span><span class="typ">Success</span><span
                 class="pun">:</span><span class="pln"> formidable@1</span><span class="pun">.</span><span class="lit">0.2</span><span
@@ -3470,11 +4275,17 @@ Request handler 'start' was called.</pre>
         <p>
             then we are good to go.
         </p>
+        <p>
+            잘 된겁니다.
+        </p>
 
         <p>
             The <em>formidable</em> module is now available to our own
             code - all we need to do is requiring it just like one of the
             built-in modules we used earlier:
+        </p>
+        <p>
+            이제 <em>formidable</em> 모듈을 코드에서 사용할 수 있습니다. 내장 모듈을 사용할 때 했던 것처럼 require 만 해주면 됩니다.
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> formidable </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">"formidable"</span><span
@@ -3488,10 +4299,16 @@ Request handler 'start' was called.</pre>
             to parse the <em>request</em> object of our HTTP server for the
             fields and files that were submitted through this form.
         </p>
+        <p>
+            formidable 이 사용하는 은유는 HTTP POST 로 submit 된 “form” 을 Node.js 에서 파싱 할 수 있게 (“parseable”) 한다는 겁니다.  다음과 같이 사용하면 됩니다. 새 <em>IncomingForm</em> 을 생성합니다. 이 것은 submit 된 form 의 추상화 객체인데 이것으로 <em>request</em> 객체를 파싱하여 submit 된 파일과 필드들을 얻을 수 있습니다.
+        </p>
 
         <p>
             The example code from the node-formidable project page shows
             how the different parts play together:
+        </p>
+        <p>
+            node-formidable 프로젝트 페이지에서 가져온 이 예제는 서로 다른 부분이 어떻게 함께 동작하는지 잘 보여줍니다.
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> formidable </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">'formidable'</span><span
@@ -3558,6 +4375,9 @@ Request handler 'start' was called.</pre>
             to the callback defined in the <em>form.parse</em> call, is
             structured:
         </p>
+        <p>
+            이 코드를 파일에 추가하고 <em>node</em>를 통해 실행하면, 파일 업로드를 포함하는 단순한 form을 submit 할 수 있고, <em>form.parse</em> 함수의 callback 에 파라미터로 넘어가는 <em>files</em> 객체가 어떻게 생겼는지 살펴볼 수 있습니다.
+        </p>
         <pre class="lang-js">received upload:
 
 { fields: { title: 'Hello World' },
@@ -3580,16 +4400,25 @@ Request handler 'start' was called.</pre>
             content of the uploaded file (which is saved into the
             <em>/tmp</em> folder) to a requesting browser.
         </p>
+        <p>
+            우리 유스케이스대로 동작하게 하기 위해서 이 form 파싱 로직을 우리 코드에 넣어야 하고, 업로드된 파일( <em>/tmp</em> 폴더에 저장될 겁니다) 의 내용을 어떻게 브라우저에 보여줄지 방법을 찾아야 합니다.
+        </p>
 
         <p>
             Let's tackle the latter one first: if there is an image file on
             our local hardrive, how do we serve it to a requesting browser?
+        </p>
+        <p>
+            뒤에 것을 먼저 봅시다. 로컬 하드 드라이브에 이미지 파일이 있을 때 브라우저 요청에 어떻게 응답할 수 있을까요?
         </p>
 
         <p>
             We are obviously going to read the contents of this file into
             our Node.js server, and unsurprisingly, there is a module for
             that - it's called <em>fs</em>.
+        </p>
+        <p>
+            당연히 이 파일의 내용을 Node.js server 에서 읽어야 하고, 역시, 이런일을 하는 모듈이 있습니다. <em>fs</em> 라는 모듈입니다.
         </p>
 
         <p>
@@ -3598,9 +4427,15 @@ Request handler 'start' was called.</pre>
             <em>/tmp/test.png</em>. It of course makes a lot of sense to
             save a real png image file to this location first.
         </p>
+        <p>
+            <em>/show</em> 라는 URL 을 위한 또 하나의 request handler 를 추가합시다. 이것은 <em>/tmp/test.png</em> 라는 파일의 내용을 뿌려줄 겁니다. 당연히 먼저 실제 png 이미지 파일을 이 위치에 저장해야겠죠.
+        </p>
 
         <p>
             We are going to modify <em>requestHandlers.js</em> as follows:
+        </p>
+        <p>
+            <em>requestHandlers.js</em> 를 다음과 같이 수정합니다.
         </p>
 
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> querystring </span><span
@@ -3697,6 +4532,9 @@ Request handler 'start' was called.</pre>
             We also need to map this new request handler to the URL
             <em>/show</em> in file <em>index.js</em>:
         </p>
+        <p>
+            이 request handler 를 <em>/show</em> 라는 URL 과 매핑해야겠죠. <em>index.js</em> 에서요.
+        </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> server </span><span class="pun">=</span><span
                 class="pln"> require</span><span class="pun">(</span><span class="str">"./server"</span><span
                 class="pun">);</span><span class="pln"><br></span><span class="kwd">var</span><span
@@ -3728,9 +4566,16 @@ Request handler 'start' was called.</pre>
             in the browser, the image file saved at <em>/tmp/test.png</em>
             should be displayed.
         </p>
+        <p>
+            서버를 재시작하고 브라우저로 
+            <a href="http://localhost:8888/show" rel="nofollow">http://localhost:8888/show</a>  를 열면 <em>/tmp/test.png</em> 파일이 보여야 합니다.
+        </p>
 
         <p>
             Fine. All we need to do now is
+        </p>
+        <p>
+            좋습니다. 이제 우리가 해야할 것은
         </p>
         
         <p>
@@ -3751,6 +4596,20 @@ Request handler 'start' was called.</pre>
                 </li>
             </ul>
         </p>
+        <p>
+            <ul>
+                <li>
+                    <em>/start</em> 의 form 에 파일 업로드 element 를 추가하고,
+                </li>
+                <li>
+                    업로드된 파일을 <em>/tmp/test.png</em> 에 저장하기 위해서 node-formidable 을 <em>upload</em> request handler 에 추가하고,
+                </li>
+        
+                <li>
+                    <em>/upload</em> URL 의 출력 HTML 에 업로드된 이미지를 추가합니다.
+                </li>
+            </ul>
+        </p>
 
         <p>
             Step 1 is simple. We need to add an encoding type of
@@ -3758,6 +4617,9 @@ Request handler 'start' was called.</pre>
             textarea, add a file upload input field, and change the submit
             button text to "Upload file". Let's do just that in file
             <em>requestHandlers.js</em>:
+        </p>
+        <p>
+            스텝 1은 단순하죠. HTML form 의 encoding type 에 <em>multipart/form-data</em> 를 추가하고, textarea는 삭제합니다. 파일 업로드 input 필드를 추가하고 submit 버튼의 텍스트를 “Upload file”이라고 바꿉니다. 이렇게 해봅시다. <em>requestHandlers.js</em> 파일입니다.
         </p>
 
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> querystring </span><span
@@ -3860,6 +4722,9 @@ Request handler 'start' was called.</pre>
             the <em>request</em> object to the <em>form.parse</em> call of
             node-formidable.
         </p>
+        <p>
+            멋집니다. 다음 스텝은 조금 복잡합니다. 첫번째 문제는, 파일 업로드를 <em>upload</em> request handler 에서 처리하고 싶은데 이렇게 하려면 <em>request</em> 객체를 <em>form.parse</em> 함수에 넘겨줘야 합니다.
+        </p>
 
         <p>
             But all we have is the <em>response</em> object
@@ -3867,6 +4732,9 @@ Request handler 'start' was called.</pre>
             to pass the <em>request</em> object all the way from the server to
             the router to the request handler. There may be more elegant
             solutions, but this approach should do the job for now.
+        </p>
+        <p>
+            하지만 우리에겐 <em>response</em> 객체와 <em>postData</em> 배열밖에 없죠. 슬프게도 <em>request</em> 객체를 server 에서 router 로, 또 request handler 로 전달하고 다녀야 할 것 같습니다. 더 고상한 해결책이 있을 수도 있겠지만, 지금은 이렇게 해야겠네요.
         </p>
 
         <p>
@@ -3878,13 +4746,18 @@ Request handler 'start' was called.</pre>
             consume those events, wouldn't receive any more data from them
             (because Node.js doesn't buffer any data).
         </p>
+        <p>
+            하는김에, <em>postData</em> 관련 코드를 server 와 request handler 에서 날려버립시다. 파일 업로드에 이런 코드가 필요하지 않을 뿐더러 다른 문제를 일으킬 수도 있어요.  이미 server에서 <em>request</em> 객체의 <em>data</em> 이벤트를 “소모했기” 때문에 <em>form.parse</em> 에서도 이 이벤트를 받아야 하는데 더 이상 이 이벤트를 받을 수 없게 됩니다.(왜냐하면 Node.js 는 어떤 data도 버퍼링 하지 않기 때문이죠)
+        </p>
 
         <p>
             Let's start with <em>server.js</em> - we remove the postData
             handling and the <em>request.setEncoding</em> line (which is going
             to be handled by node-formidable itself), and we pass
             <em>request</em> to the router instead:
-
+        </p>
+        <p>
+            <em>server.js</em> 부터 시작해 봅시다. postData 처리와 <em>request.setEncoding</em> 부분을 삭제합니다. 그리고 대신 <em>request</em> 를 router로 넘깁니다.
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
@@ -3921,6 +4794,9 @@ Request handler 'start' was called.</pre>
         <p>
             Next comes <em>router.js</em> - we don't need to pass <em>postData</em>
             on anymore, and instead pass <em>request</em>:
+        </p>
+        <p>
+            다음으로 <em>router.js</em> 입니다. postData 를 넘기는 것은 더이상 필요 없습니다. 대신 <em>request</em>를 넘기면 되죠.
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> route</span><span
                 class="pun">(</span><span class="pln">handle</span><span class="pun">,</span><span
@@ -3961,6 +4837,9 @@ Request handler 'start' was called.</pre>
             <em>/tmp/test.png</em> ourselves. Yes, we keep things really simple
             and assume that only PNG images will be uploaded.
         </p>
+        <p>
+            이제 <em>request</em> 객체를 <em>upload</em> request handler 함수에서 사용할 수 있게 되었습니다. node-formidable 이 업로드되는 파일을 <em>/tmp</em> 에 로컬파일로 잘 저장할 겁니다. 하지만 파일이 <em>/tmp/test.png</em> 에 남아있는지는 우리 스스로 확인을 해봅시다. 단순하게 유지하기 위해서 오직 PNG 이미지만 업로드 하는 것으로 가정합니다.
+        </p>
 
         <p>
             For now, <em>fs.renameSync(path1, path2)</em> will do the job.
@@ -3969,10 +4848,16 @@ Request handler 'start' was called.</pre>
             lead to blocking. Let's just agree that we are all grown-ups here
             and know what we are doing.
         </p>
+        <p>
+            이제 <em>fs.renameSync(path1, path2)</em> 가 동작 할 건데요, 이름이 암시하듯이 이것은 동기적으로 동작합니다. 따라서 만약 rename 동작이 비싸고 시간이 오래 걸린다면 blocking 을 초래하겠죠. 우리는 모두 성인이고 우리가 뭘 하는지 알고 있다고 동의합시다.
+        </p>
 
         <p>
             Let's put the pieces of managing the uploaded file and renaming it
             together now, in file <em>requestHandlers.js</em>:
+        </p>
+        <p>
+            업로드된 파일을 관리하는 코드 몇줄과 rename 코드를 넣읍시다. <em>requestHandler.js</em> 파일입니다.
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> querystring </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">"querystring"</span><span
@@ -4087,10 +4972,14 @@ Request handler 'start' was called.</pre>
             be available. Select a local PNG image from your hardrive, upload
             it to the server, and have it displayed in the web page.
         </p>
+        <p>
+            자 다 됐습니다. 서버를 재시작 하고 유스케이스가 완전히 잘 동작합니다. 로컬 하드 드라이브에 있는 PNG 이미지를 선택하고, 서버에 업로드하고, 웹페이지에 출력됩니다.
+        </p>
 
         <a name="conclusion-and-outlook"></a>
 
         <h2>Conclusion and outlook</h2>
+        <h2>결론과 개관</h2>
 
         <p>
             Congratulations, our mission is accomplished! We wrote a simple
@@ -4099,6 +4988,9 @@ Request handler 'start' was called.</pre>
             non-blocking operations, callbacks, events, custom, internal
             and external modules, and a lot more.
         </p>
+        <p>
+            축하합니다. 우리의 미션을 달성했습니다. 우리는 단순하지만 제대로 된 Node.js 웹 애플리케이션을 작성했습니다. 우리는 서버 사이드 JavaScript, 함수형 프로그래밍, blocking 과 non-blocking 동작, callback, 이벤트, custom, 내장, 외부 모듈 그 외에 여러가지에 대해 이야기 했습니다.
+        </p>
 
         <p>
             Of course, there's a lot of stuff we did not talk about:
@@ -4106,10 +4998,16 @@ Request handler 'start' was called.</pre>
             create external modules that are installable via NPM, or even
             something simple like how to handle GET requests.
         </p>
+        <p>
+            물론 우리가 다루지 않은 많은 내용들이 있습니다. 데이터베이스와 어떻게 통신하는지, 유닛 테스트를 어떻게 작성하는지, NPM을 통해 설치할 수 있는 외부 모듈을 어떻게 만드는지, GET 요청을 어떻게 다루는지 와 같은 단순한 것들도 있지요.
+        </p>
 
         <p>
             But that's the fate of every book aimed at beginners - it can't
             talk about every single aspect in every single detail.
+        </p>
+        <p>
+            하지만 그것은 초보자를 대상으로한 모든 책들의 운명입니다. 모든 내용을 자세히 다룰 수는 없죠.
         </p>
 
         <p>
@@ -4120,6 +5018,11 @@ Request handler 'start' was called.</pre>
             <a href="https://github.com/joyent/node/wiki">Node.js community wiki</a>
             and <a href="http://www.nodecloud.org/">the NodeCloud directory</a>
             are probably the best starting points for more information.
+        </p>
+        <p>
+            좋은 소식은 Node.js 커뮤니티가 매우 활발하다는(카페인을 먹은 ADHD-과잉운동성장애 아이를 긍정적으로 상상해보세요) 것입니다. 이것은 자료와, 당신이 질문할 곳이 많다는 의미입니다. 더 많은 정보를 위해서는 아마 
+            <a href="https://github.com/joyent/node/wiki">Node.js community wiki</a> 와 
+            <a href="http://www.nodecloud.org/">the NodeCloud directory</a> 가 가장 좋은 시작 지점이 될 겁니다.
         </p>
         </div>
 
