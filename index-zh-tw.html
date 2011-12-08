@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
     <head>
@@ -9,8 +9,6 @@
 
         <style type="text/css">
             body {
-                letter-spacing: 1px;
-                inter-word: 2px;
                 font-family: "細明體", Georgia, serif;
                 background-color: #eee;
                 padding-top: 0px;
@@ -45,7 +43,7 @@
 
             #author {
                 margin-top: -41px;
-                margin-left: 260px;
+                margin-left: 279px;
                 color: #888;
                 font-family: "Helvetica Neue", sans-serif;
                 font-size: 75%;
@@ -281,8 +279,8 @@
             }
 
             #book p {
-                text-align: left;
-                font-size: 100%;
+                text-align: justify;
+                font-size: 110%;
                 line-height: 150%;
                 margin-bottom: 48px;
                 margin-top: -22px;
@@ -395,7 +393,14 @@
                     box-shadow: none;
                     border: none;
                 }
-                .buy-the-bundle, .buy-the-ebook, #translations, #forkmeongithub, #praise {
+                .buy-the-bundle, .buy-the-ebook, #forkmeongithub, #praise {
+                    display: none;
+                }
+                #translations {
+                    font-size: 150%;
+                    width: 90%;
+                }
+                #translations img {
                     display: none;
                 }
             }
@@ -471,6 +476,12 @@
             <a href="http://www.nodebeginner.ru">
                 <div class="flag"><img src="ru-flag.png" width="24" height="24" alt="russian flag" /></div>
                 <div class="text">Читать этот учебник на русском</div>
+            </a>
+            <a href="index-zh-cn.html">
+                <div class="flag"><img src="cn-flag.png" width="24" height="24" alt="chinese flag" /></div>
+                <div class="text">
+                    阅读本书中文版
+                </div>
             </a>
         </div>
 

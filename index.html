@@ -394,7 +394,14 @@
                     box-shadow: none;
                     border: none;
                 }
-                .buy-the-bundle, .buy-the-ebook, #translations, #forkmeongithub, #praise {
+                .buy-the-bundle, .buy-the-ebook, #forkmeongithub, #praise {
+                    display: none;
+                }
+                #translations {
+                    font-size: 150%;
+                    width: 90%;
+                }
+                #translations img {
                     display: none;
                 }
             }
@@ -467,10 +474,12 @@
                 <div class="flag"><img src="ru-flag.png" width="24" height="24" alt="russian flag" /></div>
                 <div class="text">Читать этот учебник на русском</div>
             </a>
-            <a href="index-zh-cn.html">
-                <div class="flag"><img src="cn-flag.png" width="24" height="24" alt="chinese flag" /></div>
-                <div class="text">阅读本书中文版</div>
-            </a>
+            <div class="flag"><img src="cn-flag.png" width="24" height="24" alt="chinese flag" /></div>
+            <div class="text">
+                <a href="index-zh-cn.html">阅读本书中文版</a>
+                <br/>
+                <a href="index-zh-tw.html">阅读本书繁体中文版</a>
+            </div>
         </div>
 
         <div class="buy-the-bundle">
