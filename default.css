@@ -63,10 +63,6 @@ body {
     background-color: #555;
 }
 
-#translations {
-    white-space: nowrap;
-}
-
 #translations td {
     text-align: left;
 }
@@ -202,13 +198,6 @@ body {
     z-index: -1;
     text-align: right;
 }
-
-@media only screen and (max-width: 1330px) {
-    #praise {
-        display: none;
-    }
-}
-
 
 #praise .praise {
     margin-bottom: 25px;
@@ -378,15 +367,23 @@ li.L1, li.L3, li.L5, li.L7, li.L9 {
 }
 
 
+@media only screen and (max-width: 1330px) {
+    #praise {
+        display: none;
+    }
+}
+
 @media only screen and (max-width: 1024px) {
     body {
         font-size: 165%;
         background-color: #fff;
     }
+
     h1 {
         font-size: 250%;
         margin-left: -53px;
     }
+
     #book, #disqus_thread, #footer {
         width: 90%;
         max-width: 90%;
@@ -394,13 +391,22 @@ li.L1, li.L3, li.L5, li.L7, li.L9 {
         box-shadow: none;
         border: none;
     }
+
     .buy-the-bundle, .buy-the-ebook, #forkmeongithub, #praise {
         display: none;
     }
+
     #translations {
         font-size: 150%;
         width: 90%;
+        padding-bottom: 32px;
+        padding-left: 48px;
     }
+    
+    #translations td {
+        text-align: center;
+    }
+
     #translations img {
         display: none;
     }
