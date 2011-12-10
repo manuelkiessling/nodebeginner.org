@@ -135,6 +135,8 @@ body {
 .buy-the-bundle .button {
     padding: 8px;
     margin-top: 26px;
+    margin-left: auto;
+    margin-right: auto;
     width: 140px;
     border: 1px solid #444;
     border-radius: 6px;
