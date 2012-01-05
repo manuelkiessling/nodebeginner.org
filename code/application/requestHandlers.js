@@ -36,7 +36,7 @@ function upload(response, request) {
      * Some systems [Windows] raise an error when you attempt to rename new file into one that already exists.
      * This call deletes the previous .PNG image prior to renaming the new one in its place.
     */
-    fs.unlinkSync("/tmp/test.png"); .
+    fs.unlinkSync("/tmp/test.png");
     fs.renameSync(files.upload.path, "/tmp/test.png");
     response.writeHead(200, {"Content-Type": "text/html"});
     response.write("received image:<br/>");
