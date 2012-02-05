@@ -8,379 +8,10 @@
         <title>El Libro para Principiantes en Node.js» Un tutorial completo de node.js</title>
         <meta name="description" content="Un tutorial completo de Node.js para principiantes: Aprende como construir una aplicación web completa con Javascript del lado del servidor" />
 
-        <style type="text/css">
-            body {
-                font-family: Georgia, serif;
-                background-color: #eee;
-                padding-top: 0px;
-                -webkit-text-size-adjust: auto;
-            }
-
-            #book, #donate, #disqus_thread, #footer, #workinprogressnote {
-                width: 640px;
-                margin: 0 auto;
-                margin-top: 24px;
-                margin-bottom: 100px;
-                padding: 64px;
-                background-color: white;
-                border-top: 1px solid #ddd;
-                border-left: 1px solid #ddd;
-                border-bottom: 1px solid #ddd;
-                border-right: 1px solid #ddd;
-                z-index: 100;
-
-                -moz-box-shadow: 14px 11px 27px #888;
-                -webkit-box-shadow: 14px 11px 27px #888;
-                box-shadow: 14px 11px 27px #888;
-            }
-
-            #book {
-                margin-top: 124px;
-            }
-
-            #author {
-                margin-top: -41px;
-                margin-left: 279px;
-                color: #888;
-                font-family: "Helvetica Neue", sans-serif;
-                font-size: 75%;
-            }
-
-            #updateinfo {
-                margin-top: -1px;
-                margin-left: 279px;
-                color: #bbb;
-                font-family: "Helvetica Neue", sans-serif;
-                font-size: 75%;
-            }
-
-            #workinprogressnote p {
-                font-family: "Helvetica Neue", sans-serif;
-                color: #700;
-                text-align: center;
-            }
-
-            #buy-the-bundle, #buy-the-ebook, #translations {
-                font-family: "Helvetica Neue", sans-serif;
-                font-size: 13px;
-                color: #fff;
-                text-align: center;
-                padding: 8px;
-                padding-left: 32px;
-                padding-right: 32px;
-                border-radius: 8px;
-                -moz-border-radius: 8px;
-                -webkit-border-radius: 8px;
-                box-shadow: 0px 0px 4px #444;
-                -moz-box-shadow: 0px 0px 4px #444;
-                -webkit-box-shadow: 0px 0px 4px #444;
-                position: relative;
-                margin-bottom: 20px;
-                margin-left: auto;
-                margin-right: auto;
-                width: 704px;
-                background-color: #555;
-            }
-
-            #translations a {
-                text-decoration: none;
-                color: #fff;
-            }
-
-            #translations .flag {
-                display: inline-block;
-                vertical-align: middle;
-                padding-top: 4px;
-            }
-            #translations .text {
-                display: inline-block;
-                vertical-align: middle;
-                margin-right: 24px;
-            }
-
-            #buy-the-bundle {
-                padding-bottom: 20px;
-            }
-
-            #buy-the-bundle .headline {
-                font-size: 24pt;
-                font-weight: bold;
-                padding-bottom: 16px;
-            }
-
-            #buy-the-bundle .cover {
-                width: 131px;
-                display: table-cell;
-                padding-right: 0px;
-                padding-left: 40px;
-                vertical-align: bottom;
-                align: center;
-                color: #bbb;
-            }
-
-            #buy-the-bundle .cover img {
-                border: 1px solid black;
-                box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset -1px 1px 0 rgba(255,255,255,0.4);
-                -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset -1px 1px 0 rgba(255,255,255,0.4);
-                -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset -1px 1px 0 rgba(255,255,255,0.4);
-            }
-
-            #buy-the-bundle .description {
-                width: 349px;
-                display: table-cell;
-                padding-right: 32px;
-                padding-left: 0;
-                vertical-align: top;
-                text-align: center;
-            }
-
-            #buy-the-bundle .description ul {
-                list-style-type: none;
-            }
-
-            #buy-the-bundle .price {
-                width: 110px;
-                vertical-align: middle;
-                display: table-cell;
-                font-size: 12pt;
-                color: #ccc;
-                background-color: yellow;
-                border-radius: 60px;
-            }
-
-            #buy-the-bundle .current-price {
-                font-size: 24pt;
-                color: #14d014;
-                font-weight: bolder;
-                text-shadow: 0.0125em 0.0125em #333;
-            }
-
-            #buy-the-bundle .price a {
-                text-decoration: none;
-                color: darkred;
-            }
-
-            #buy-the-bundle .buy {
-                color: #bbb;
-                margin-left: 280px;
-                margin-right: auto;
-                position: relative;
-            }
-
-            #buy-the-bundle .button {
-                padding: 8px;
-                margin-top: 26px;
-                width: 140px;
-                border: 1px solid #444;
-                border-radius: 6px;
-                background-image: -moz-linear-gradient(top, #14d014, #029302);
-                background-image: -webkit-gradient(linear, center top, center bottom, from(#14d014), to(#029302));
-                box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset -1px 1px 0 rgba(255,255,255,0.4);
-                -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset -1px 1px 0 rgba(255,255,255,0.4);
-                -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset -1px 1px 0 rgba(255,255,255,0.4);
-            }
-
-            #buy-the-bundle .buttonlink {
-                text-decoration: none;
-                font-weight: bold;
-                font-size: 24px;
-                color: #fff;
-                text-shadow: 0.05em 0.03em #333;
-            }
-            
-            #buy-the-ebook a {
-                text-decoration: underline;
-                color: yellow;
-            }
-
-            #donate p {
-                font-family: "Helvetica Neue", sans-serif;
-                text-align: center;
-            }
-
-            #flattr {
-                padding-top: 20px;
-                margin-left: 183px;
-                margin-right: 18px;
-                text-align: center;
-                align: left;
-                display: inline-block;
-                width: 100px;
-            }
-
-            #paypal {
-                display: inline-block;
-                margin-top: 24px;
-                text-align: center;
-                vertical-align: top;
-            }
-
-            #paypal fieldset {
-                border: 0;
-            }
-
-            #disqus_thread {
-                font-family: "Helvetica Neue", sans-serif;
-            }
-
-            #footer {
-                font-family: "Helvetica Neue", sans-serif;
-                background-color: #f5f5f5;
-                margin-top: 100px;
-            }
-
-            #footer p {
-                text-align: center;
-                font-family: "Helvetica Neue", sans-serif;
-                font-size: 11px;
-            }
-
-            #ccimage {
-                float: left;
-                margin-left: 30px;
-                margin-right: 0;
-                margin-top: 20px;
-            }
-
-            #praise {
-                position: absolute;
-                top: 120px;
-                right: 40px;
-                width: 204px;
-                font-style: italic;
-                color: #aaa;
-                z-index: -1;
-                text-align: right;
-            }
-
-            #praise .praise {
-                margin-bottom: 25px;
-            }
-
-            #praise .author {
-                font-style: normal;
-                font-size: 75%;
-            }
-
-            #table-of-contents-headline {
-                margin-top: 48px;
-                color: #700;
-                font-size: 160%;
-                font-weight: bold;
-            }
-
-            #book #table-of-contents {
-                margin-left: -24px;
-            }
-
-            #book #table-of-contents ul li {
-                font-size: 100%;
-                margin-left: 0;
-                list-style-type: none;
-            }
-
-            #book #table-of-contents ul {
-                padding-left: 24px;
-                margin-top: 12px;
-                margin-left: 0;
-                margin-bottom: 36px;
-            }
-
-            h1 {
-                margin-left: -63px;
-                margin-top: -109px;
-                font-size: 300%;
-                color: #700;
-                font-style: italic;
-                font-weight: bold;
-                -webkit-text-size-adjust: 100%;
-            }
-
-            h2 {
-                margin-top: 64px;
-                font-size: 180%;
-            }
-
-            h3 {
-                font-size: 160%;
-            }
-
-            h4 {
-                font-size: 140%;
-            }
-
-            h5 {
-                font-size: 120%;
-            }
-
-            h3, h4, h5 {
-                margin-top: 36px;
-            }
-
-            h2, h3, h4, h5 {
-                color: #700;
-                font-weight: bold;
-                margin-bottom: 36px;
-            }
-
-            #book p {
-                text-align: justify;
-                font-size: 110%;
-                line-height: 150%;
-                margin-bottom: 48px;
-                margin-top: -22px;
-            }
-
-            pre {
-                background-color: #f7f7f7;
-                border: 1px solid #eee;
-                padding: 16px;
-                margin-bottom: 64px;
-                margin-top: -24px;
-                font-size: 14px;
-            }
-
-            pre.prettyprint {
-                background-color: #f7f7f7;
-                border: 1px solid #eee;
-                padding: 16px;
-                margin-bottom: 64px;
-                margin-top: -24px;
-                font-size: 14px;
-            }
-
-            #book ul {
-                margin-top: -24px;
-                margin-bottom: 64px;
-            }
-
-            ul li {
-                margin-bottom: 12px;
-                font-size: 110%;
-            }
-
-            blockquote {
-                font-style: italic;
-            }
-        </style>
-        <style type="text/css" media="print">
-            #forkmeongithub {
-                display: none;
-            }
-            #praise {
-                display: none;
-            }
-        </style>
-
-        <script type="text/javascript" src="mootools-core-1.3.1-full-compat-yc.js"></script>
-         <script type="text/javascript" src="TOC.js"></script>
+        <link rel="stylesheet" type="text/css" href="default.css" />
+        
         <script type="text/javascript">
-            window.addEvent('domready', function() {
-                var toc = new TOC('table-of-contents');
-            });
-        </script>
-        <script type="text/javascript" src="prettify/prettify.js"></script>
-        <script type="text/javascript">
+            // Google Analytics
             var _gaq = _gaq || [];
             _gaq.push(['_setAccount', 'UA-2127388-6']);
             _gaq.push(['_trackPageview']);
@@ -390,69 +21,110 @@
                 ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
                 var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
             })();
-        </script>
-        <script type="text/javascript">
-        /* <![CDATA[ */
+
+            // Disqus
+            var disqus_shortname = 'nodebeginner';
+            var disqus_identifier = 'nodebeginner-book';
+            var disqus_url = 'http://www.nodebeginner.org/index-es.html';
             (function() {
-                var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
-                s.type = 'text/javascript';
-                s.async = true;
-                s.src = 'http://api.flattr.com/js/0.6/load.js?mode=auto';
-                t.parentNode.insertBefore(s, t);
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
             })();
-        /* ]]> */
         </script>
     </head>
-    <body onload="prettyPrint();">
+    <body>
+        <img style="display: none;" src="the_node_beginner_book_cover_medium.png" height="256" width="171" />
         <div id="forkmeongithub">
-            <a href="https://github.com/ManuelKiessling/NodeBeginnerBook"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://d3nwyuy0nl342s.cloudfront.net/img/71eeaab9d563c2b3c590319b398dd35683265e85/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" /></a>
+            <a href="https://github.com/ManuelKiessling/NodeBeginnerBook"><img src="fork_me_on_github.png" width="149" height="149" alt="Fork me on GitHub" /></a>
         </div>
 
         <div id="translations">
-            <a href="index.html">
-                <div class="flag"><img src="us-flag.png" width="24" height="24" alt="usa flag" /></div>
-                <div class="text">Read this tutorial in english</div>
-            </a>
-            <a href="http://www.nodebeginner.ru">
-                <div class="flag"><img src="ru-flag.png" width="24" height="24" alt="russian flag" /></div>
-                <div class="text">Читать этот учебник на русском</div>
-            </a>
+            <table>
+                <tr>
+                    <td>
+                        <a href="./">
+                            <div class="flag"><img src="us-flag.png" width="24" height="24" alt="usa flag" /></div>
+                            <div class="text">Read this tutorial in english</div>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="index-es.html">
+                            <div class="flag"><img src="es-flag.png" width="24" height="24" alt="spanish flag" /></div>
+                            <div class="text">Lee este tutorial en Español</div>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="index-kr.html">
+                            <div class="flag"><img src="kr-flag.png" width="24" height="24" alt="korean flag" /></div>
+                            <div class="text">이 튜토리얼을 한글로 보세요</div>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="index-zh-cn.html">
+                            <div class="flag"><img src="cn-flag.png" width="24" height="24" alt="chinese flag" /></div>
+                            <div class="text">阅读本书中文版</div>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="index-zh-tw.html">
+                            <div class="flag"><img src="cn-flag.png" width="24" height="24" alt="chinese flag" /></div>
+                            <div class="text">阅读本书繁体中文版</div>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="http://www.nodebeginner.ru">
+                            <div class="flag"><img src="ru-flag.png" width="24" height="24" alt="russian flag" /></div>
+                            <div class="text">Читать этот учебник на русском</div>
+                        </a>
+                    </td>
+                </tr>
+            </table>
         </div>
 
-        <div id="buy-the-bundle">
-            <div class="headline">
-                Buy the ultimate Node.js bundle!
-            </div>
+        <div class="buy-the-bundle">
             <div class="cover">
-                <a href="buy-bundle/"><img src="the_node_beginner_book_cover.png" height="86" width="57" /></a>
-                <a href="buy-bundle/"><img src="hands-on_node.js_cover.png" height="86" width="57" /></a>
+                <p>
+                    The perfect introduction plus the perfect reference in one bundle!
+                </p>
+                <a href="/buy-bundle/"><img src="the_node_beginner_book_cover_small.png" height="86" width="57" /></a>
+                <a href="/buy-bundle/"><img src="hands-on_node.js_cover.png" height="86" width="57" /></a>
             </div>
             <div class="description">
-                <ul>
-                    <li>
-                        Introduction plus reference in one bundle
-                    </li>
-                    <li>
-                        226 pages in total - PDF, ePub & MOBI
-                    </li>
-                    <li>
-                        Direct download - <strong>free updates</strong>
-                    </li>
-                </ul>
-            </div>
-            <div class="price">
-                <a href="buy-bundle/">
-                    <del>$10.98</del>
-                    <div class="current-price">$7.99</div>
-                </a>
+                <p>
+                    LeanBundle currently offers
+                    the final version of
+                    <br />
+                    <strong>The Node Beginner Book</strong>
+                    <br />
+                    plus Pedro Teixeira's excellent
+                    <br />
+                    <strong>Hands-on Node.js</strong> for only
+                    <br />
+                    <br />
+                    <strong class="price dollarsign">$</strong><strong class="price">7.99</strong>
+                    <br />
+                    (regular price <del>$10.98</del>)
+                </p>
             </div>
             <div class="buy">
-                <a class="buttonlink" href="buy-bundle/">
-                    <div class="button">Buy now!</div>
+                <p>
+                    226 pages in total
+                    <br />
+                    PDF, ePub & MOBI
+                    <br />
+                    Direct download
+                    <br />
+                    Free updates
+                </p>
+                <a class="buttonlink" href="/buy-bundle/">
+                    <div class="button">Buy this<br />bundle now</div>
                 </a>
             </div>
         </div>
-        <div id="buy-the-ebook">
+        <div class="buy-the-ebook">
             If you would like to only buy <em>The Node Beginner Book</em>, it's available for only <strong>$4.99</strong> at <a href="buy/">http://Leanpub.com/NodeBeginner</a>.
         </div>
         
@@ -2456,198 +2128,127 @@ exports.subir = subir;
         Bueno, para un tutorial de principiantes, esto es todo lo que 
         diremos acerca de la información POST.
     </p>
-    <h4>Manejando la subida de archivos</h4>
     <p>
-        Enfrentemos nuestro caso de uso final. Nuestro plan era permitir
-        que lo usuarios subieran un archivo de imagen, y desplegar esta
-        imagen subida en el browser.
-    </p>
-    <p>
-        Si estuviesemos en los 90's esto nos hubiese calificado como un
-        modelo de negocios para una Oferta Pública de Acciones, hoy,
-        esto debería ser suficiente para enseñarnos dos cosas: Como 
-        instalar librerías externas de Node.js, y como hacer uso de ellas
-        en nuestro código.
-    </p>
-    <p>
-        El módulo externo que vamos a ocupar es <em>node-formidable</em>
-        hecho por Felix Geisendörfer. Este módulo nos abstrae de todos los 
-        desagradables detalles relacionados con el parseo de datos de
-        archivo entrantes. A la larga, manejar archivos entrantes se
-        trata "solo" de manejar datos POST - pero los errores ocurren
-        siempre en los detalles, sobretodo en este negocio, por lo que 
-        usar una solución de paquete tiene mucho sentido en este caso.
-    </p>
-    <p>
-        Para que podamos usar el código de Felix, los módulos adecuados
-        de Node.js deben ser instalados. Node.js tiene su propio 
-        administrador de paquetes, llamado NPM por su nombre en inglés
-        (Node Package Manager). Este nos permite usar módulos externos
-        de Node.js de una manera muy conveniente. Introduzcamos en una
-        maquina con una instalación funcionando de Node.js lo siguiente:
-    <p>
-<pre class="prettyprint lang-bash">npm install formidable
-</pre>
-    <p>
-        Si la salida termina con las líneas:
-    <p>
-<pre class="prettyprint lang-bash">npm info build Success: formidable@1.0.2
-npm ok
-</pre>
-    <p>
-        Entonces vamos bien.
-    </p>
-    <p>
-        El módulo <em>formidable</em> ahora está disponible para nuestro
-        código, todo lo que necesitamos hacer es requerirlo tal cual como
-        lo hacemos con los módulos propios de Node.js que usamos antes.
-    </p>
-<pre class="prettyprint lang-js">var formidable = require("formidable");
-</pre>
-    <p>
-        El formulario  que se envía mediante HTTP POST
-        es abstraído por <em>formidable</em>, de manera de quedar 
-        parseable por Node.js. Todo lo debemos hacer
-        es crear un nuevo objecto <em>IncomingForm</em>, el cual es una 
-        abstración de este formulario enviado, y podemos usarlo para 
-        parsear los campos y archivos que fueron enviados a través de este
-        formulario.
-    </p>
-    <p>    
-        El código de ejemplo que está en la página del proyecto
-        <em>node-formidable</em> muestra como las distintas partes
-        operan juntas:
-    </p>
-<pre class="prettyprint lang-js">var formidable = require('formidable'),
-    http = require('http'),
-    sys = require('sys');
-
-http.createServer(function(req, res) {
-  if (req.url == '/subir' && req.method.toLowerCase() == 'post') {
-    // Parsea una subida de archivo
-    var form = new formidable.IncomingForm();
-    form.parse(req, function(err, fields, files) {
-      res.writeHead(200, {'content-type': 'text/plain'});
-      res.write('Subida Recibida:\n\n');
-      res.end(sys.inspect({fields: fields, files: files}));
-    });
-    return;
-  }
-
-  // Muestra un formulario de subida
-  res.writeHead(200, {'content-type': 'text/html'});
-  res.end(
-    '&lt;form action="/upload" enctype="multipart/form-data" '+
-    'method="post"&gt;'+
-    '&lt;input type="text" name="title"&gt;&lt;br&gt;'+
-    '&lt;input type="file" name="upload" multiple="multiple"&gt;&lt;br&gt;'+
-    '&lt;input type="submit" value="Upload"&gt;'+
-    '&lt;/form&gt;'
-  );
-}).listen(8888);
-</pre>
-    <p>
-        Si ponemos este código en un archivo y lo ejecutamos a través de 
-        node, seremos capaces de enviar un formulario simple, incluyendo
-        una subida de archivo, y veremos con el objeto <em>files</em>, el
-        que es pasado a la callback definida en la llamada 
-        <em>form.parse</em>, es estructurada:
-    </p>
-<pre class="lang-js">received upload:
-
-{ fields: { title: 'Hola Mundo' },
-  files:
-   { upload:
-      { size: 1558,
-        path: '/tmp/1c747974a27a6292743669e91f29350b',
-        name: 'us-flag.png',
-        type: 'image/png',
-        lastModifiedDate: Tue, 21 Jun 2011 07:02:41 GMT,
-        _writeStream: [Object],
-        length: [Getter],
-        filename: [Getter],
-        mime: [Getter] } } }
-</pre>
-    <p>
-        Para que nuestro caso de uso suceda, lo que necesitamos hacer es
-        incluir la lógica de parseo de formulario de formidable en nuestra
-        estructura de código, además necesitaremos encontrar como servir
-        el contenido de nuestro archivo subido (el cial es grabado al 
-        directorio <em>/tmp</em>) al browser que lo requerirá.
-    </p>
-    <p>
-        Enfrentemos lo segundo primero: Si hubiese un archivo de imagen
-        en nuestro disco duro local, ¿Cómo lo serviríamos al browser que
-        lo requiera?
-    </p>
-        
-
-
-
-
+        La próxima vez, hablaremos sobre como usar el excelente módulo
+        <em>node-formidable</em> para permitirnos lograr nuestro caso de 
+        uso final: subir y desplegar imágenes.
+    </p>    
         </div>
-        <div id="workinprogressnote">
-            <p>
-                Este documento fue actualizado el 
-                <strong>Sábado 24 de Septiembre a las 16:53 PM EDT</strong>.
-            </p>
-            <p>
-                La mejor manera de mantenerte informado acerca de actualizaciones
-                <br />
-                es siguiendo en Twitter a <a href="http://twitter.com/manuelkiessling">@ManuelKiessling</a>
-                                o a <a href="http://twitter.com/hermanjunge">@hermanjunge</a> para la Traducción en Español.
-            </p>
-        </div>
-        <div id="donate">
-            <p>
-                El Libro de Node.js para el Principiante está y siempre estará disponible gratis.
-                <br />
-                No se requieren fondos para mantener al proyecto vivo y en marcha.
-                <br />
-                Pero si quieres apoyar al Traductor, puede hacerlo usando Flatter o Paypal:        
-            </p>
-            <div id="flattr">
-                <a class="FlattrButton" style="display:none;" href="http://nodebeginner.org/index-es.html"></a>
-<noscript><a href="http://flattr.com/thing/288892/El-Libro-para-Principiantes-en-Node-js" target="_blank">
-<img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a></noscript>
+        <div class="buy-the-bundle">
+            <div class="cover">
+                <p>
+                    The perfect introduction plus the perfect reference in one bundle!
+                </p>
+                <a href="/buy-bundle-bottom/"><img src="the_node_beginner_book_cover.png" height="86" width="57" /></a>
+                <a href="/buy-bundle-bottom/"><img src="hands-on_node.js_cover.png" height="86" width="57" /></a>
             </div>
-            <div id="paypal">
-                <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-                    <fieldset>
-                        <input type="hidden" name="cmd" value="_donations">
-                        <input type="hidden" name="business" value="haj@neosource.cl">
-                        <input type="hidden" name="lc" value="CL">
-                        <input type="hidden" name="item_name" value="El Libro para Principiantes en Node.js">
-                        <input type="hidden" name="no_note" value="0">
-                        <input type="hidden" name="currency_code" value="USD">
-                        <input type="hidden" name="bn" value="PP-DonationsBF:btn_donateCC_LG.gif:NonHostedGuest">
-                        <input type="image" src="https://www.paypalobjects.com/WEBSCR-640-20110429-1/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-                        <img alt="" border="0" src="https://www.paypalobjects.com/WEBSCR-640-20110429-1/en_US/i/scr/pixel.gif" width="1" height="1">
-                    </fieldset>
-                </form>
+            <div class="description">
+                <p>
+                    LeanBundle currently offers
+                    the final version of
+                    <br />
+                    <strong>The Node Beginner Book</strong>
+                    <br />
+                    plus Pedro Teixeira's excellent
+                    <br />
+                    <strong>Hands-on Node.js</strong> for only
+                    <br />
+                    <br />
+                    <strong class="price dollarsign">$</strong><strong class="price">7.99</strong>
+                    <br />
+                    (regular price <del>$10.98</del>)
+                </p>
+            </div>
+            <div class="buy">
+                <p>
+                    226 pages in total
+                    <br />
+                    PDF, ePub & MOBI
+                    <br />
+                    Direct download
+                    <br />
+                    Free updates
+                </p>
+                <a class="buttonlink" href="/buy-bundle-bottom/">
+                    <div class="button">Buy this<br />bundle now</div>
+                </a>
             </div>
         </div>
-        
+        <div class="buy-the-ebook">
+            If you would like to only buy <em>The Node Beginner Book</em>, it's available for only <strong>$4.99</strong> at <a href="buy/">http://Leanpub.com/NodeBeginner</a>.
+        </div>
+
+        <div id="praise">
+            <div class="praise">
+                <div class="comment">
+                    "This is an amazing introduction to Node."
+                </div>
+                <div class="author">
+                    Ryan Dahl, creator of Node.js
+                </div>
+            </div>
+            <div class="praise">
+                <div class="comment">
+                    "I love nodebeginner.org - concise, direct to the point and
+                    even enjoyable to read."
+                </div>
+                <div class="author">Gojko Adzic, author of <em>Specification by Example</em> and <em>Bridging the Communication Gap</em></div>
+            </div>
+            <div class="praise">
+                <div class="comment">
+                    "This is one of the best tutorials I've read.
+                    As a former Java coder, I've always found JavaScript
+                    to be a black art, but you have really simplified
+                    things with this tutorial."
+                </div>
+                <div class="author">Erskine, from the comments</div>
+            </div>
+            <div class="praise">
+                <div class="comment">
+                    "This is one of the few beginner articles I made it all the
+                    way through because of how well it's written."
+                </div>
+                <div class="author">
+                    Paul Gibler, from the comments
+                </div>
+            </div>
+            <div class="praise">
+                <div class="comment">
+                    "Indispensable."
+                </div>
+                <div class="author">
+                    @lecolibrilibre, on Twitter
+                </div>
+            </div>
+            <div class="praise">
+                <div class="comment">
+                    "I just wanted to drop you a note to say thank you for
+                    writing such an excellent introduction to node. Your book's
+                    explanation is fantastic, and I can't wait for you to
+                    finish it!"
+                </div>
+                <div class="author">
+                    Seth McLaughlin, via eMail
+                </div>
+            </div>
+        </div>
+
         <div id="disqus_thread"></div>
-        <script type="text/javascript">
-            var disqus_shortname = 'libro-principiante-nodejs';
-            var disqus_identifier = 'libro-principiante-nodejs-site';
-            var disqus_url = 'http://www.nodebeginner.org/index-es.html';
 
-            (function() {
-                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-            })();
-        </script>
-        
         <div id="footer">
             <p id="ccimage">
-                <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png" /></a>
-            </p>            
-            <p>The Node Beginner Book by <a target="_blank" href="http://manuel.kiessling.net/">Manuel Kiessling</a> is licensed under a <a target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</a>. Permissions beyond the scope of this license may be available at <a target="_blank" href="mailto:manuel@kiessling.net">manuel@kiessling.net</a>.</p> 
-<p>“El Libro del Principiante de Node, por Manuel Kiessling está licenciado bajo la Licencia <a target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</a>. Los permisos más allá del alcance de ésta pueden ser conseguidos en <a target="_blank" href="mailto:manuel@kiessling.net">manuel@kiessling.net</a>. </p>    
+                <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img alt="Creative Commons License" border="0" src="creative_commons.png" width="88" height="31"/></a>
+            </p>
+            <p>
+                <span xmlns:dct="http://purl.org/dc/terms/">The Node Beginner Book</span>
+                by
+                <a xmlns:cc="http://creativecommons.org/ns#" href="http://manuel.kiessling.net" rel="cc:attributionURL">Manuel Kiessling</a>
+                is licensed under a
+                <br />
+                <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</a>.
+                <br />
+                Permissions beyond the scope of this license may be available at <a xmlns:cc="http://creativecommons.org/ns#" href="mailto:manuel@kiessling.net" rel="cc:morePermissions">manuel@kiessling.net</a>.
+            </p>
         </div>
     </body>
 </html>
-
