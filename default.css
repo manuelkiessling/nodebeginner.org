@@ -27,8 +27,14 @@ body {
     box-shadow: 14px 11px 27px #888;
 }
 
+#adsense {
+    width: 728px;
+    margin: 0 auto;
+    margin-top: 40px;
+}
+
 #book {
-    margin-top: 124px;
+    margin-top: 94px;
 }
 
 #author {
@@ -61,6 +67,11 @@ body {
     margin-right: auto;
     width: 704px;
     background-color: #555;
+}
+
+.buy-the-ebook {
+    color: #aaa;
+    margin-top: -30px;
 }
 
 #translations td {
@@ -153,7 +164,7 @@ body {
 
 .buy-the-ebook a {
     text-decoration: underline;
-    color: yellow;
+    color: #ddd;
 }
 
 #donate p {
@@ -392,7 +403,7 @@ li.L1, li.L3, li.L5, li.L7, li.L9 {
         border: none;
     }
 
-    .buy-the-bundle, .buy-the-ebook, #forkmeongithub, #praise {
+    .buy-the-bundle, .buy-the-ebook, #forkmeongithub, #praise, #adsense {
         display: none;
     }
 
@@ -414,6 +425,10 @@ li.L1, li.L3, li.L5, li.L7, li.L9 {
 
 
 @media only print {            
+    #book {
+        margin-top: 60px;
+    }
+
     #book, #footer {
         border: none;
         box-shadow: none;
@@ -423,7 +438,7 @@ li.L1, li.L3, li.L5, li.L7, li.L9 {
         border-top: 1px solid black;
     }
     
-    #translations  {
+    #translations, #adsense {
         display: none;
     }
     
