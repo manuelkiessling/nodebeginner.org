@@ -159,12 +159,12 @@
         <p>
             You are reading the final version of this book, i.e., updates
             are only done to correct errors or to reflect changes in new
-            versions of Node.js.
+            versions of Node.js. It was last updated on February 12, 2012.
         </p>
 
         <p>
             The code samples in this book are tested to work with Node.js
-            version 0.4.9.
+            version 0.6.10.
         </p>
 
         <a name="intended-audience"></a>
@@ -3450,124 +3450,83 @@ Request handler 'start' was called.</pre>
         </p>
 
         <p>
-            For now, <em>fs.renameSync(path1, path2)</em> will do the job.
-            Beware! As the name implies, it works synchronous, thus if the
-            rename operation should be expensive and take a long time, it will
-            lead to blocking. Let's just agree that we are all grown-ups here
-            and know what we are doing.
+            There is a bit of extra-complexity in the rename logic: the Windows
+            implementation of node doesn't like it when you try to rename a
+            file onto the position of an existing file, which is why we need to
+            delete the file in case of an error.
         </p>
 
         <p>
             Let's put the pieces of managing the uploaded file and renaming it
             together now, in file <em>requestHandlers.js</em>:
         </p>
-        <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> querystring </span><span
-                class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">"querystring"</span><span
-                class="pun">),</span><span class="pln"><br>&nbsp; &nbsp; fs </span><span class="pun">=</span><span
-                class="pln"> require</span><span class="pun">(</span><span class="str">"fs"</span><span
-                class="pun">),</span><span class="pln"><br>&nbsp; &nbsp; formidable </span><span
-                class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">"formidable"</span><span
-                class="pun">);</span><span class="pln"><br><br></span><span class="kwd">function</span><span
-                class="pln"> start</span><span class="pun">(</span><span class="pln">response</span><span
-                class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; console</span><span
-                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Request handler 'start' was called."</span><span
-                class="pun">);</span><span class="pln"><br><br>&nbsp; </span><span class="kwd">var</span><span
-                class="pln"> body </span><span class="pun">=</span><span class="pln"> </span><span class="str">'&lt;html&gt;'</span><span
-                class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span
-                class="str">'&lt;head&gt;'</span><span class="pun">+</span><span
-                class="pln"><br>&nbsp; &nbsp; </span><span class="str">'&lt;meta http-equiv="Content-Type" content="text/html; '</span><span
-                class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span
-                class="str">'charset=UTF-8" /&gt;'</span><span class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span
-                class="str">'&lt;/head&gt;'</span><span class="pun">+</span><span
-                class="pln"><br>&nbsp; &nbsp; </span><span class="str">'&lt;body&gt;'</span><span
-                class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="str">'&lt;form action="/upload" enctype="multipart/form-data" '</span><span
-                class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span
-                class="str">'method="post"&gt;'</span><span class="pun">+</span><span
-                class="pln"><br>&nbsp; &nbsp; </span><span class="str">'&lt;input type="file" name="upload" multiple="multiple"&gt;'</span><span
-                class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="str">'&lt;input type="submit" value="Upload file" /&gt;'</span><span
-                class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span
-                class="str">'&lt;/form&gt;'</span><span class="pun">+</span><span
-                class="pln"><br>&nbsp; &nbsp; </span><span class="str">'&lt;/body&gt;'</span><span
-                class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span
-                class="str">'&lt;/html&gt;'</span><span class="pun">;</span><span class="pln"><br><br>&nbsp; &nbsp; response</span><span
-                class="pun">.</span><span class="pln">writeHead</span><span class="pun">(</span><span
-                class="lit">200</span><span class="pun">,</span><span class="pln"> </span><span
-                class="pun">{</span><span class="str">"Content-Type"</span><span class="pun">:</span><span
-                class="pln"> </span><span class="str">"text/html"</span><span class="pun">});</span><span
-                class="pln"><br>&nbsp; &nbsp; response</span><span class="pun">.</span><span
-                class="pln">write</span><span class="pun">(</span><span class="pln">body</span><span
-                class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; response</span><span class="pun">.</span><span
-                class="pln">end</span><span class="pun">();</span><span class="pln"><br></span><span
-                class="pun">}</span><span class="pln"><br><br></span><span class="kwd">function</span><span class="pln"> upload</span><span
-                class="pun">(</span><span class="pln">response</span><span class="pun">,</span><span class="pln"> request</span><span
-                class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; console</span><span
-                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Request handler 'upload' was called."</span><span
-                class="pun">);</span><span class="pln"><br><br>&nbsp; </span><span class="kwd">var</span><span
-                class="pln"> form </span><span class="pun">=</span><span class="pln"> </span><span
-                class="kwd">new</span><span class="pln"> formidable</span><span class="pun">.</span><span class="typ">IncomingForm</span><span
-                class="pun">();</span><span class="pln"><br>&nbsp; console</span><span class="pun">.</span><span
-                class="pln">log</span><span class="pun">(</span><span class="str">"about to parse"</span><span
-                class="pun">);</span><span class="pln"><br>&nbsp; form</span><span class="pun">.</span><span
-                class="pln">parse</span><span class="pun">(</span><span class="pln">request</span><span
-                class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span
-                class="pun">(</span><span class="pln">error</span><span class="pun">,</span><span
-                class="pln"> fields</span><span class="pun">,</span><span class="pln"> files</span><span
-                class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; console</span><span
-                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"parsing done"</span><span
-                class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; fs</span><span class="pun">.</span><span
-                class="pln">renameSync</span><span class="pun">(</span><span class="pln">files</span><span
-                class="pun">.</span><span class="pln">upload</span><span class="pun">.</span><span
-                class="pln">path</span><span class="pun">,</span><span class="pln"> </span><span class="str">"/tmp/test.png"</span><span
-                class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; response</span><span class="pun">.</span><span
-                class="pln">writeHead</span><span class="pun">(</span><span class="lit">200</span><span
-                class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span
-                class="str">"Content-Type"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"text/html"</span><span
-                class="pun">});</span><span class="pln"><br>&nbsp; &nbsp; response</span><span class="pun">.</span><span
-                class="pln">write</span><span class="pun">(</span><span
-                class="str">"received image:&lt;br/&gt;"</span><span class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; response</span><span
-                class="pun">.</span><span class="pln">write</span><span class="pun">(</span><span class="str">"&lt;img src='/show' /&gt;"</span><span
-                class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; response</span><span class="pun">.</span><span
-                class="pln">end</span><span class="pun">();</span><span class="pln"><br>&nbsp; </span><span class="pun">});</span><span
-                class="pln"><br></span><span class="pun">}</span><span class="pln"><br><br></span><span class="kwd">function</span><span
-                class="pln"> show</span><span class="pun">(</span><span class="pln">response</span><span
-                class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; console</span><span
-                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Request handler 'show' was called."</span><span
-                class="pun">);</span><span class="pln"><br>&nbsp; fs</span><span class="pun">.</span><span class="pln">readFile</span><span
-                class="pun">(</span><span class="str">"/tmp/test.png"</span><span class="pun">,</span><span
-                class="pln"> </span><span class="str">"binary"</span><span class="pun">,</span><span
-                class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span
-                class="pln">error</span><span class="pun">,</span><span class="pln"> file</span><span
-                class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; </span><span
-                class="kwd">if</span><span class="pun">(</span><span class="pln">error</span><span
-                class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; response</span><span
-                class="pun">.</span><span class="pln">writeHead</span><span class="pun">(</span><span
-                class="lit">500</span><span class="pun">,</span><span class="pln"> </span><span
-                class="pun">{</span><span class="str">"Content-Type"</span><span class="pun">:</span><span
-                class="pln"> </span><span class="str">"text/plain"</span><span class="pun">});</span><span
-                class="pln"><br>&nbsp; &nbsp; &nbsp; response</span><span class="pun">.</span><span
-                class="pln">write</span><span class="pun">(</span><span class="pln">error </span><span
-                class="pun">+</span><span class="pln"> </span><span class="str">"\n"</span><span
-                class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; response</span><span
-                class="pun">.</span><span class="pln">end</span><span class="pun">();</span><span class="pln"><br>&nbsp; &nbsp; </span><span
-                class="pun">}</span><span class="pln"> </span><span class="kwd">else</span><span
-                class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; response</span><span
-                class="pun">.</span><span class="pln">writeHead</span><span class="pun">(</span><span
-                class="lit">200</span><span class="pun">,</span><span class="pln"> </span><span
-                class="pun">{</span><span class="str">"Content-Type"</span><span class="pun">:</span><span
-                class="pln"> </span><span class="str">"image/png"</span><span class="pun">});</span><span
-                class="pln"><br>&nbsp; &nbsp; &nbsp; response</span><span class="pun">.</span><span
-                class="pln">write</span><span class="pun">(</span><span class="pln">file</span><span
-                class="pun">,</span><span class="pln"> </span><span class="str">"binary"</span><span
-                class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; response</span><span
-                class="pun">.</span><span class="pln">end</span><span class="pun">();</span><span class="pln"><br>&nbsp; &nbsp; </span><span
-                class="pun">}</span><span class="pln"><br>&nbsp; </span><span class="pun">});</span><span
-                class="pln"><br></span><span class="pun">}</span><span class="pln"><br><br>exports</span><span
-                class="pun">.</span><span class="pln">start </span><span class="pun">=</span><span
-                class="pln"> start</span><span class="pun">;</span><span class="pln"><br>exports</span><span
-                class="pun">.</span><span class="pln">upload </span><span class="pun">=</span><span
-                class="pln"> upload</span><span class="pun">;</span><span class="pln"><br>exports</span><span
-                class="pun">.</span><span class="pln">show </span><span class="pun">=</span><span
-                class="pln"> show</span><span class="pun">;</span></pre>
+        <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> querystring </span><span class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">"querystring"</span><span class="pun">),</span><span class="pln">
+    fs </span><span class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">"fs"</span><span class="pun">),</span><span class="pln">
+    formidable </span><span class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">"formidable"</span><span class="pun">);</span><span class="pln">
+
+</span><span class="kwd">function</span><span class="pln"> start</span><span class="pun">(</span><span class="pln">response</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Request handler 'start' was called."</span><span class="pun">);</span><span class="pln">
+
+  </span><span class="kwd">var</span><span class="pln"> body </span><span class="pun">=</span><span class="pln"> </span><span class="str">'&lt;html&gt;'</span><span class="pun">+</span><span class="pln">
+    </span><span class="str">'&lt;head&gt;'</span><span class="pun">+</span><span class="pln">
+    </span><span class="str">'&lt;meta http-equiv="Content-Type" '</span><span class="pun">+</span><span class="pln">
+    </span><span class="str">'content="text/html; charset=UTF-8" /&gt;'</span><span class="pun">+</span><span class="pln">
+    </span><span class="str">'&lt;/head&gt;'</span><span class="pun">+</span><span class="pln">
+    </span><span class="str">'&lt;body&gt;'</span><span class="pun">+</span><span class="pln">
+    </span><span class="str">'&lt;form action="/upload" enctype="multipart/form-data" '</span><span class="pun">+</span><span class="pln">
+    </span><span class="str">'method="post"&gt;'</span><span class="pun">+</span><span class="pln">
+    </span><span class="str">'&lt;input type="file" name="upload" multiple="multiple"&gt;'</span><span class="pun">+</span><span class="pln">
+    </span><span class="str">'&lt;input type="submit" value="Upload file" /&gt;'</span><span class="pun">+</span><span class="pln">
+    </span><span class="str">'&lt;/form&gt;'</span><span class="pun">+</span><span class="pln">
+    </span><span class="str">'&lt;/body&gt;'</span><span class="pun">+</span><span class="pln">
+    </span><span class="str">'&lt;/html&gt;'</span><span class="pun">;</span><span class="pln">
+
+    response</span><span class="pun">.</span><span class="pln">writeHead</span><span class="pun">(</span><span class="lit">200</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="str">"Content-Type"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"text/html"</span><span class="pun">});</span><span class="pln">
+    response</span><span class="pun">.</span><span class="pln">write</span><span class="pun">(</span><span class="pln">body</span><span class="pun">);</span><span class="pln">
+    response</span><span class="pun">.</span><span class="pln">end</span><span class="pun">();</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="kwd">function</span><span class="pln"> upload</span><span class="pun">(</span><span class="pln">response</span><span class="pun">,</span><span class="pln"> request</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Request handler 'upload' was called."</span><span class="pun">);</span><span class="pln">
+
+  </span><span class="kwd">var</span><span class="pln"> form </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> formidable</span><span class="pun">.</span><span class="typ">IncomingForm</span><span class="pun">();</span><span class="pln">
+  console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"about to parse"</span><span class="pun">);</span><span class="pln">
+  form</span><span class="pun">.</span><span class="pln">parse</span><span class="pun">(</span><span class="pln">request</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">error</span><span class="pun">,</span><span class="pln"> fields</span><span class="pun">,</span><span class="pln"> files</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"parsing done"</span><span class="pun">);</span><span class="pln">
+
+    </span><span class="com">/* Possible error on Windows systems:
+       tried to rename to an already existing file */</span><span class="pln">
+    fs</span><span class="pun">.</span><span class="pln">rename</span><span class="pun">(</span><span class="pln">files</span><span class="pun">.</span><span class="pln">upload</span><span class="pun">.</span><span class="pln">path</span><span class="pun">,</span><span class="pln"> </span><span class="str">"/tmp/test.png"</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">err</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">err</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        fs</span><span class="pun">.</span><span class="pln">unlink</span><span class="pun">(</span><span class="str">"/tmp/test.png"</span><span class="pun">);</span><span class="pln">
+        fs</span><span class="pun">.</span><span class="pln">rename</span><span class="pun">(</span><span class="pln">files</span><span class="pun">.</span><span class="pln">upload</span><span class="pun">.</span><span class="pln">path</span><span class="pun">,</span><span class="pln"> </span><span class="str">"/tmp/test.png"</span><span class="pun">);</span><span class="pln">
+      </span><span class="pun">}</span><span class="pln">
+    </span><span class="pun">});</span><span class="pln">
+    response</span><span class="pun">.</span><span class="pln">writeHead</span><span class="pun">(</span><span class="lit">200</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="str">"Content-Type"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"text/html"</span><span class="pun">});</span><span class="pln">
+    response</span><span class="pun">.</span><span class="pln">write</span><span class="pun">(</span><span class="str">"received image:&lt;br/&gt;"</span><span class="pun">);</span><span class="pln">
+    response</span><span class="pun">.</span><span class="pln">write</span><span class="pun">(</span><span class="str">"&lt;img src='/show' /&gt;"</span><span class="pun">);</span><span class="pln">
+    response</span><span class="pun">.</span><span class="pln">end</span><span class="pun">();</span><span class="pln">
+  </span><span class="pun">});</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="kwd">function</span><span class="pln"> show</span><span class="pun">(</span><span class="pln">response</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Request handler 'show' was called."</span><span class="pun">);</span><span class="pln">
+  fs</span><span class="pun">.</span><span class="pln">readFile</span><span class="pun">(</span><span class="str">"/tmp/test.png"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"binary"</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">error</span><span class="pun">,</span><span class="pln"> file</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">error</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      response</span><span class="pun">.</span><span class="pln">writeHead</span><span class="pun">(</span><span class="lit">500</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="str">"Content-Type"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"text/plain"</span><span class="pun">});</span><span class="pln">
+      response</span><span class="pun">.</span><span class="pln">write</span><span class="pun">(</span><span class="pln">error </span><span class="pun">+</span><span class="pln"> </span><span class="str">"\n"</span><span class="pun">);</span><span class="pln">
+      response</span><span class="pun">.</span><span class="pln">end</span><span class="pun">();</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">else</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      response</span><span class="pun">.</span><span class="pln">writeHead</span><span class="pun">(</span><span class="lit">200</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="str">"Content-Type"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"image/png"</span><span class="pun">});</span><span class="pln">
+      response</span><span class="pun">.</span><span class="pln">write</span><span class="pun">(</span><span class="pln">file</span><span class="pun">,</span><span class="pln"> </span><span class="str">"binary"</span><span class="pun">);</span><span class="pln">
+      response</span><span class="pun">.</span><span class="pln">end</span><span class="pun">();</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+  </span><span class="pun">});</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+exports</span><span class="pun">.</span><span class="pln">start </span><span class="pun">=</span><span class="pln"> start</span><span class="pun">;</span><span class="pln">
+exports</span><span class="pun">.</span><span class="pln">upload </span><span class="pun">=</span><span class="pln"> upload</span><span class="pun">;</span><span class="pln">
+exports</span><span class="pun">.</span><span class="pln">show </span><span class="pun">=</span><span class="pln"> show</span><span class="pun">;</span></pre>
 
         <p>
             And that's it. Restart the server, and the complete use case will
