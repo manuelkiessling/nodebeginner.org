@@ -38,12 +38,26 @@ body {
 }
 
 #author {
-    margin-top: -41px;
+    margin-top: -36px;
     margin-left: 279px;
     color: #888;
     font-family: "Helvetica Neue", sans-serif;
     font-size: 75%;
 }
+
+#social {
+    text-align: left;
+    margin-top: -14px;
+    margin-bottom: -75px;
+    margin-left: 541px;
+    width: 140px;
+    border-left: 4px solid #eee;
+    border-bottom: 4px solid #eee;
+    padding: 14px;
+    padding-right: 0;
+    border-radius: 10px;
+}
+
 
 #workinprogressnote p {
     font-family: "Helvetica Neue", sans-serif;
@@ -403,7 +417,7 @@ li.L1, li.L3, li.L5, li.L7, li.L9 {
         border: none;
     }
 
-    .buy-the-bundle, .buy-the-ebook, #forkmeongithub, #praise, #adsense {
+    .buy-the-bundle, .buy-the-ebook, #forkmeongithub, #praise, #adsense, #social {
         display: none;
     }
 
