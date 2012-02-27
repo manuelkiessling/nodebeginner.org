@@ -65,7 +65,7 @@ body {
     text-align: center;
 }
 
-.buy-the-bundle, .buy-the-ebook, #translations {
+.buybox, .buy-the-bundle, .buy-kindle, #translations {
     font-family: "Helvetica Neue", sans-serif;
     font-size: 13px;
     color: #fff;
@@ -83,9 +83,8 @@ body {
     background-color: #555;
 }
 
-.buy-the-ebook {
-    color: #aaa;
-    margin-top: -30px;
+#translations img {
+    border: none;
 }
 
 #translations td {
@@ -108,8 +107,62 @@ body {
     margin-right: 24px;
 }
 
+.buybox {
+    background: none;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    width: 769px;
+}
+
+.buy-kindle {
+    padding: 8px;
+    display: inline-block;
+    width: 154px;
+    height: 189px;
+    margin-left: 24px;
+}
+
+.gecko .buy-kindle {
+    height: 195px;
+}
+
+.buy-kindle .inner {
+    background-color: #fff;
+    border-radius: 6px;
+    padding: 4px;
+    box-shadow: 0 0 6px #aaa inset;
+}
+
+.buy-kindle .inner img {
+    border: none;
+}
+
+.buy-kindle .inner img.cover {
+    border: 1px solid #999;
+    margin-top: 16px;
+}
+
+.buy-kindle .inner a {
+    font-size: 10px;
+}
+
+.buy-kindle .inner img.stars {
+    padding-top: 2px;
+    margin-bottom: -6px;
+}
+
+.buy-kindle .inner img.button {
+    padding-top: 10px;
+    margin-bottom: 6px;
+}
+
 .buy-the-bundle {
+    float: left;
     padding-bottom: 20px;
+    width: 510px;
+    display: inline-block;
+    margin: 0;
 }
 
 .buy-the-bundle .cover {
@@ -130,7 +183,7 @@ body {
 }
 
 .buy-the-bundle .description {
-    width: 349px;
+    width: 200px;
     display: table-cell;
     padding-right: 16px;
     padding-left: 16px;
@@ -174,11 +227,6 @@ body {
     font-size: 15px;
     color: #fff;
     text-shadow: 0.1em 0.1em #666;
-}
-
-.buy-the-ebook a {
-    text-decoration: underline;
-    color: #ddd;
 }
 
 #donate p {
@@ -417,7 +465,7 @@ li.L1, li.L3, li.L5, li.L7, li.L9 {
         border: none;
     }
 
-    .buy-the-bundle, .buy-the-ebook, #forkmeongithub, #praise, #adsense, #social {
+    .buy-the-bundle, .buy-kindle, #forkmeongithub, #praise, #adsense, #social {
         display: none;
     }
 
@@ -456,7 +504,7 @@ li.L1, li.L3, li.L5, li.L7, li.L9 {
         display: none;
     }
     
-    .buy-the-bundle, .buy-the-ebook {
+    .buy-the-bundle, .buy-kindle {
         display: none;
     }
     

@@ -31,6 +31,9 @@
                 dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
                 (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
             })();
+
+            // CSS browser select
+            function css_browser_selector(u){var ua=u.toLowerCase(),is=function(t){return ua.indexOf(t)>-1},g='gecko',w='webkit',s='safari',o='opera',m='mobile',h=document.documentElement,b=[(!(/opera|webtv/i.test(ua))&&/msie\s(\d)/.test(ua))?('ie ie'+RegExp.$1):is('firefox/2')?g+' ff2':is('firefox/3.5')?g+' ff3 ff3_5':is('firefox/3.6')?g+' ff3 ff3_6':is('firefox/3')?g+' ff3':is('gecko/')?g:is('opera')?o+(/version\/(\d+)/.test(ua)?' '+o+RegExp.$1:(/opera(\s|\/)(\d+)/.test(ua)?' '+o+RegExp.$2:'')):is('konqueror')?'konqueror':is('blackberry')?m+' blackberry':is('android')?m+' android':is('chrome')?w+' chrome':is('iron')?w+' iron':is('applewebkit/')?w+' '+s+(/version\/(\d+)/.test(ua)?' '+s+RegExp.$1:''):is('mozilla/')?g:'',is('j2me')?m+' j2me':is('iphone')?m+' iphone':is('ipod')?m+' ipod':is('ipad')?m+' ipad':is('mac')?'mac':is('darwin')?'mac':is('webtv')?'webtv':is('win')?'win'+(is('windows nt 6.0')?' vista':''):is('freebsd')?'freebsd':(is('x11')||is('linux'))?'linux':'','js'];c=b.join(' ');h.className+=' '+c;return c;};css_browser_selector(navigator.userAgent);
         </script>
     </head>
     <body>
@@ -84,49 +87,61 @@
             </table>
         </div>
 
-        <div class="buy-the-bundle">
-            <div class="cover">
-                <p>
-                    The perfect introduction plus the perfect reference in one bundle!
-                </p>
-                <a href="/buy-bundle/"><img src="the_node_beginner_book_cover_small.png" height="86" width="57" /></a>
-                <a href="/buy-bundle/"><img src="hands-on_node.js_cover.png" height="86" width="57" /></a>
+        <div class="buybox">
+            <div class="buy-the-bundle">
+                <div class="cover">
+                    <p>
+                        The perfect introduction plus the perfect reference in one bundle!
+                    </p>
+                    <a href="buy-bundle/index.html"><img src="the_node_beginner_book_cover_small.png" height="86" width="57" /></a>
+                    <a href="buy-bundle/index.html"><img src="hands-on_node.js_cover.png" height="86" width="57" /></a>
+                </div>
+                <div class="description">
+                    <p>
+                        LeanBundle currently offers
+                        the final version of
+                        <br />
+                        <strong>The Node Beginner Book</strong>
+                        <br />
+                        plus Pedro Teixeira's excellent
+                        <br />
+                        <strong>Hands-on Node.js</strong> for only
+                        <br />
+                        <br />
+                        <strong class="price dollarsign">$</strong><strong class="price">7.99</strong>
+                        <br />
+                        (regular price <del>$10.98</del>)
+                    </p>
+                </div>
+                <div class="buy">
+                    <p>
+                        226 pages in total
+                        <br />
+                        PDF, ePub & MOBI
+                        <br />
+                        Direct download
+                        <br />
+                        Free updates
+                    </p>
+                    <a class="buttonlink" href="buy-bundle/index.html">
+                        <div class="button">Buy this<br />bundle now</div>
+                    </a>
+                </div>
             </div>
-            <div class="description">
-                <p>
-                    LeanBundle currently offers
-                    the final version of
+
+            <div class="buy-kindle">
+                <div class="inner">
+                    <a href="buy-kindle/index.html"><img class="cover" src="the_node_beginner_book_cover_small.png" height="86" width="57" /></a>
                     <br />
-                    <strong>The Node Beginner Book</strong>
+                    <a href="buy-kindle/reviews.html"><img class="stars" src="amazon_rating_stars.png" width="65" height="12" /></a>
                     <br />
-                    plus Pedro Teixeira's excellent
+                    (<a href="buy-kindle/reviews.html">Read customer reviews</a>)
                     <br />
-                    <strong>Hands-on Node.js</strong> for only
-                    <br />
-                    <br />
-                    <strong class="price dollarsign">$</strong><strong class="price">7.99</strong>
-                    <br />
-                    (regular price <del>$10.98</del>)
-                </p>
-            </div>
-            <div class="buy">
-                <p>
-                    226 pages in total
-                    <br />
-                    PDF, ePub & MOBI
-                    <br />
-                    Direct download
-                    <br />
-                    Free updates
-                </p>
-                <a class="buttonlink" href="/buy-bundle/">
-                    <div class="button">Buy this<br />bundle now</div>
-                </a>
+                    <a href="buy-kindle/index.html"><img class="button" src="add_to_kindle_button.png" width="102" height="25"/></a>
+                </div>
             </div>
         </div>
-        <div class="buy-the-ebook">
-            If you would like to only buy <em>The Node Beginner Book</em>, it's available for only <strong>$4.99</strong> at <a href="buy/">http://Leanpub.com/NodeBeginner</a>.
-        </div>
+
 
         <div id="book">
         <h1>The Node Beginner Book</h1>
@@ -3570,48 +3585,59 @@ exports</span><span class="pun">.</span><span class="pln">show </span><span clas
         </p>
         </div>
 
-        <div class="buy-the-bundle">
-            <div class="cover">
-                <p>
-                    The perfect introduction plus the perfect reference in one bundle!
-                </p>
-                <a href="/buy-bundle-bottom/"><img src="the_node_beginner_book_cover.png" height="86" width="57" /></a>
-                <a href="/buy-bundle-bottom/"><img src="hands-on_node.js_cover.png" height="86" width="57" /></a>
+        <div class="buybox">
+            <div class="buy-the-bundle">
+                <div class="cover">
+                    <p>
+                        The perfect introduction plus the perfect reference in one bundle!
+                    </p>
+                    <a href="buy-bundle-bottom/index.html"><img src="the_node_beginner_book_cover_small.png" height="86" width="57" /></a>
+                    <a href="buy-bundle-bottom/index.html"><img src="hands-on_node.js_cover.png" height="86" width="57" /></a>
+                </div>
+                <div class="description">
+                    <p>
+                        LeanBundle currently offers
+                        the final version of
+                        <br />
+                        <strong>The Node Beginner Book</strong>
+                        <br />
+                        plus Pedro Teixeira's excellent
+                        <br />
+                        <strong>Hands-on Node.js</strong> for only
+                        <br />
+                        <br />
+                        <strong class="price dollarsign">$</strong><strong class="price">7.99</strong>
+                        <br />
+                        (regular price <del>$10.98</del>)
+                    </p>
+                </div>
+                <div class="buy">
+                    <p>
+                        226 pages in total
+                        <br />
+                        PDF, ePub & MOBI
+                        <br />
+                        Direct download
+                        <br />
+                        Free updates
+                    </p>
+                    <a class="buttonlink" href="buy-bundle-bottom/index.html">
+                        <div class="button">Buy this<br />bundle now</div>
+                    </a>
+                </div>
             </div>
-            <div class="description">
-                <p>
-                    LeanBundle currently offers
-                    the final version of
+
+            <div class="buy-kindle">
+                <div class="inner">
+                    <a href="buy-kindle/index.html"><img class="cover" src="the_node_beginner_book_cover_small.png" height="86" width="57" /></a>
                     <br />
-                    <strong>The Node Beginner Book</strong>
+                    <a href="buy-kindle/reviews.html"><img class="stars" src="amazon_rating_stars.png" width="65" height="12" /></a>
                     <br />
-                    plus Pedro Teixeira's excellent
+                    (<a href="buy-kindle/reviews.html">Read customer reviews</a>)
                     <br />
-                    <strong>Hands-on Node.js</strong> for only
-                    <br />
-                    <br />
-                    <strong class="price dollarsign">$</strong><strong class="price">7.99</strong>
-                    <br />
-                    (regular price <del>$10.98</del>)
-                </p>
+                    <a href="buy-kindle/index.html"><img class="button" src="add_to_kindle_button.png" width="102" height="25"/></a>
+                </div>
             </div>
-            <div class="buy">
-                <p>
-                    226 pages in total
-                    <br />
-                    PDF, ePub & MOBI
-                    <br />
-                    Direct download
-                    <br />
-                    Free updates
-                </p>
-                <a class="buttonlink" href="/buy-bundle-bottom/">
-                    <div class="button">Buy this<br />bundle now</div>
-                </a>
-            </div>
-        </div>
-        <div class="buy-the-ebook">
-            If you would like to only buy <em>The Node Beginner Book</em>, it's available for only <strong>$4.99</strong> at <a href="buy/">http://Leanpub.com/NodeBeginner</a>.
         </div>
 
         <div id="praise">
