@@ -165,6 +165,13 @@ body {
     margin: 0;
 }
 
+.buy-the-bundle.cn {
+    float: none;
+    padding-bottom: 20px;
+    display: block;
+    margin: 0 auto;
+}
+
 .buy-the-bundle .cover {
     width: 131px;
     display: table-cell;
