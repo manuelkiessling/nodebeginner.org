@@ -4,11 +4,16 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-        <title>Nodeビギナーズブック</title>
+        <title>Nodeビギナーズブック » Node.jsチュートリアル</title>
         <meta name="description" content="A comprehensive Node.js tutorial for beginners: Learn how to build a full blown web application with server-side JavaScript" />
         
         <link rel="icon" href="favicon.png" type="image/png" />
         <link rel="stylesheet" type="text/css" href="default.css" />
+        <style type="text/css">
+            body {
+                font-family: "MS P明朝", "ヒラギノ明朝 ProN W3","Hiragino Mincho ProN", Georgia, serif;
+            }
+        </style>
         
         <script type="text/javascript">
             // Google Analytics
@@ -87,69 +92,13 @@
             </table>
         </div>
 
-        <div class="buybox">
-            <div class="buy-the-bundle">
-                <div class="cover">
-                    <p>
-                        The perfect introduction plus the perfect reference in one bundle!
-                    </p>
-                    <a href="buy-bundle/index.html"><img src="the_node_beginner_book_cover_small.png" height="86" width="57" /></a>
-                    <a href="buy-bundle/index.html"><img src="hands-on_node.js_cover.png" height="86" width="57" /></a>
-                </div>
-                <div class="description">
-                    <p>
-                        LeanBundle currently offers
-                        the final version of
-                        <br />
-                        <strong>The Node Beginner Book</strong>
-                        <br />
-                        plus Pedro Teixeira's excellent
-                        <br />
-                        <strong>Hands-on Node.js</strong> for only
-                        <br />
-                        <br />
-                        <strong class="price dollarsign">$</strong><strong class="price">7.99</strong>
-                        <br />
-                        (regular price <del>$10.98</del>)
-                    </p>
-                </div>
-                <div class="buy">
-                    <p>
-                        226 pages in total
-                        <br />
-                        PDF, ePub & MOBI
-                        <br />
-                        Direct download
-                        <br />
-                        Free updates
-                    </p>
-                    <a class="buttonlink" href="buy-bundle/index.html">
-                        <div class="button">Buy this<br />bundle now</div>
-                    </a>
-                </div>
-            </div>
-
-            <div class="buy-kindle">
-                <div class="inner">
-                    <a href="buy-kindle/index.html"><img class="cover" src="the_node_beginner_book_cover_small.png" height="86" width="57" /></a>
-                    <br />
-                    <a href="buy-kindle/reviews.html"><img class="stars" src="amazon_rating_stars.png" width="65" height="12" /></a>
-                    <br />
-                    (<a href="buy-kindle/reviews.html">Read customer reviews</a>)
-                    <br />
-                    <a href="buy-kindle/index.html"><img class="button" src="add_to_kindle_button.png" width="102" height="25"/></a>
-                </div>
-            </div>
-        </div>
-
-
         <div id="book">
         <h1>Nodeビギナーズブック</h1>
 
         <div id="author">
             A Node.js tutorial by <a href="http://twitter.com/manuelkiessling">Manuel Kiessling</a>
-            <br/>
-            Japanese translation by <a href="https://www.facebook.com/yukky.kawashima">Yuki Kawashima</a>
+            <br>
+            Translated by <a href="http://il-all.blogspot.com/">Yuki Kawashima</a>
         </div>
 
         <div id="social">
@@ -165,7 +114,9 @@
         <h2>本書について</h2>
 
         <p>
-            本書は、Node.jsでのアプリケーション開発を始めようとする皆さんに、”高度な”JavaScriptについて知るべきあらゆることを解説します。よくある”Hello World”チュートリアルの、はるか上をいくものです。
+            本書は、Node.jsでのアプリケーション開発を始めようとする皆さんに、
+            ”高度な”JavaScriptについて知るべきあらゆることを解説します。
+            よくある”Hello World”チュートリアルの、はるか上をいくものです。
         </p>
 
         <a name="status"></a>
@@ -173,11 +124,14 @@
         <h3>ステータス</h3>
 
         <p>
-            貴方が読んでいるのは、本書のいわゆる最終版となります。つまり本書は、間違いが見つかった場合や、Node.jsの新バージョンにおえる変更点を反映する時のみ、改訂されます。
+            貴方が読んでいるのは、本書のいわゆる最終版となります。
+            つまり本書は、間違いが見つかった場合や、
+            Node.jsの新バージョンにおえる変更点を反映する時のみ、改訂されます。
+            最終更新日は2012年2月12日です。
         </p>
 
         <p>
-            本書内のコードのサンプルは、Node.jsのバージョン0.6.11でテストしています。
+            本書内のコードのサンプルは、Node.jsのバージョン0.6.10でテストしています。
         </p>
 
         <a name="intended-audience"></a>
@@ -185,11 +139,15 @@
         <h3>ターゲット読者</h3>
 
         <p>
-            本書は、Ruby、Python、PHP、Javaのような、少なくともひとつのオブジェクト指向言語を理解しており、JavaScriptについてはあまり経験がなく、Node.jsについては全く経験がないという、著者と同じようなバックグラウンドをもつ読者にとって最もフィットする内容となっています。
+            本書は、Ruby、Python、PHP、Javaのような、少なくともひとつのオブジェクト指向言語を理解しており、
+            JavaScriptについてはあまり経験がなく、Node.jsについては全く経験がないという、
+            著者と同じようなバックグラウンドをもつ読者にとって最もフィットする内容となっています。
         </p>
 
         <p>
-            何かしらのプログラミング言語を経験しているデベロッパー向けですので、本書はデータ型や変数、制御構造などの本当に基本的な事柄はカバーしないということになります。本書を理解するためには、そのような基本的な事柄は読み進める時点で理解している必要があります。
+            何かしらのプログラミング言語を経験しているデベロッパー向けですので、
+            本書はデータ型や変数、制御構造などの本当に基本的な事柄はカバーしないということになります。
+            本書を理解するためには、そのような基本的な事柄は読み進める時点で理解している必要があります。
         </p>
 
         <p>
@@ -201,31 +159,45 @@
         <h3>本書の構造</h3>
 
         <p>
-            本書を読み終わる頃には、貴方はひとつのWebアプリケーションを完成させることになります。そのWebアプリケーションでは、ユーザがWebページを閲覧し、ファイルをアップロードすることができます。
+            本書を読み終わる頃には、貴方はひとつのWebアプリケーションを完成させることになります。
+            そのWebアプリケーションでは、ユーザがWebページを閲覧し、ファイルをアップロードすることができます。
         </p>
 
         <p>
-            もちろん、世界を変えるようなものができるわけではないですが、これらの機能を実現するために”必要最低限”のコードを書くだけではありません。さらに一歩先へ進み、アプリケーションの持ついくつかの相違点をきれいに分離した、シンプルだけれども完全なフレームワークを作りあげることができます。私が言わんとしていることは、すぐにわかることでしょう。
+            もちろん、世界を変えるようなものができるわけではないですが、
+            これらの機能を実現するために”必要最低限”のコードを書くだけではありません。
+            さらに一歩先へ進み、アプリケーションの持ついくつかの相違点をきれいに分離した、
+            シンプルだけれども完全なフレームワークを作りあげることができます。
+            私が言わんとしていることは、すぐにわかることでしょう。
         </p>
 
         <p>
-            まずはNode.jsを使ったJavaScriptでの開発は、ブラウザ内のJavaScriptの開発と何が違うのかを見てみるところから始めます。
+        
+            まずはNode.jsを使ったJavaScriptでの開発は、
+            ブラウザ内のJavaScriptの開発と何が違うのかを見てみるところから始めます。
         </p>
 
         <p>
-            次に、古き良き伝統として”Hello World”アプリケーションを作ります。これは確かに”何かをする”、最も基本的なNode.jsのアプリケーションです。
+            次に、古き良き伝統として”Hello World”アプリケーションを作ります。
+            これは確かに”何かをする”、最も基本的なNode.jsのアプリケーションです。
         </p>
 
         <p>
-            そして、私たちが構築したいと考えている”現実の”アプリケーションの種類について議論します。このアプリケーションを組み立てるために実装が必要となるパーツを分解し、それぞれのパーツをステップバイステップで作っていきます。
+            そして、私たちが構築したいと考えている”現実の”アプリケーションの種類について議論します。
+            このアプリケーションを組み立てるために実装が必要となるパーツを分解し、
+            それぞれのパーツをステップバイステップで作っていきます。
         </p>
 
         <p>
-            約束通り、これらを通してJavaScriptのより先進的なコンセプトを知り、どう活用し、そしてなぜ他のプログラミング言語とは異なるコンセプトが意味をなすのかを学ぶことになります。
+
+            約束通り、これらを通してJavaScriptのより先進的なコンセプトを知り、どう活用し、
+            そしてなぜ他のプログラミング言語とは異なるコンセプトが意味をなすのかを学ぶことになります。
         </p>
 
         <p>
-            完成したアプリケーションのソースコードは<a href="https://github.com/ManuelKiessling/NodeBeginnerBook/tree/master/code/application">NodeBeginnerBook Github</a>リポジトリからダウンロードできます。
+            完成したアプリケーションのソースコードは
+            <a href="https://github.com/ManuelKiessling/NodeBeginnerBook/tree/master/code/application">NodeBeginnerBook Githubリポジトリ</a>
+            からダウンロードできます。
         </p>
 
         <div id="table-of-contents-headline">目次</div>
@@ -240,11 +212,11 @@
                     </ul>
                 </li>
 
-                <li><a href="#javascript-and-nodejs">JavaScript と Node.js</a>
+                <li><a href="#javascript-and-nodejs">JavaScriptとNode.js</a>
                     <ul>
-                        <li><a href="#javascript-and-you">JavaScript と貴方</a></li>
+                        <li><a href="#javascript-and-you">JavaScriptと貴方</a></li>
                         <li><a href="#a-word-of-warning">注意事項</a></li>
-                        <li><a href="#server-side-javascript">サーバサイド JavaScript</a></li>
+                        <li><a href="#server-side-javascript">サーバサイドJavaScript</a></li>
                         <li><a href="#hello-world">"Hello World"</a></li>
 
                     </ul>
@@ -262,12 +234,14 @@
                         <li><a href="#analyzing-our-http-server">HTTPサーバの分析</a></li>
                         <li><a href="#passing-functions-around">関数をあちこちに渡す</a></li>
                         <li><a href="#how-function-passing-makes-our-http-server-work">関数渡しでHTTPサーバを動かす方法</a></li>
+
                         <li><a href="#event-driven-callbacks">イベント駆動コールバック</a></li>
                         <li><a href="#how-our-server-handles-requests">サーバによるリクエストの取り扱い方</a></li>
-                        <li><a href="#finding-a-place-for-our-server-module">サーバモジュールの場所の確保</a></li>
+                        <li><a href="#finding-a-place-for-our-server-module">サーバモジュールの場所の確保</a>
+                        </li>
                         <li><a href="#whats-needed-to-route-requests">リクエストを”ルーティング”するために必要なものは？</a></li>
                         <li><a href="#execution-in-the-kongdom-of-verbs">動詞王国での実行</a></li>
-                        <li><a href="#routing-to-real-request-handlers">リクエストハンドラへのルーティングの基本</a></li>
+                        <li><a href="#routing-to-real-request-handlers">本当のリクエストハンドラへのルーティング</a></li>
 
                         <li><a href="#making-the-request-handlers-respond">リクエストハンドラによる応答</a>
                             <ul>
@@ -293,164 +267,140 @@
 
         <a name="javascript-and-nodejs"></a>
 
-        <h2>JavaScript と Node.js</h2>
+        <h2>JavaScriptとNode.js</h2>
 
         <a name="javascript-and-you"></a>
 
-        <h3>JavaScript と貴方</h3>
+        <h3>JavaScriptと貴方</h3>
 
         <p>
-            Before we talk about all the technical stuff, let's take a
-            moment and talk about you and your relationship with
-            JavaScript. This chapter is here to allow you to estimate
-            if reading this document any further makes sense for you.
+            技術的な話に入る前に、貴方とJavaScriptの関係について話をしておきましょう。
+            本章は、この文書をさらに読み進めることが貴方にとって意味があるのか、判断してもらいたいのです。
         </p>
 
         <p>
-            If you are like me, you started with HTML "development"
-            long ago, by writing HTML documents. You came along this
-            funny thing called JavaScript, but you only used it in a
-            very basic way, adding interactivity to your web pages
-            every now and then.
+            もし貴方が私と同じであれば、はるか昔HTMLの文書を書いてHTMLでの”開発”を始めたはずです。
+            JavaScriptと呼ばれるなんだか面白そうなものに出会い、
+            つまり貴方のWebページに相互作用を加えるような、とても基本的な使い方だけで利用していたことでしょう。
         </p>
 
         <p>
-            What you really wanted was "the real thing", you wanted to
-            know how to build complex web sites - you learned a
-            programming language like PHP, Ruby, Java, and started
-            writing "backend" code.
+            
+            貴方はもっと”本物”が欲しくなり、複雑なWebサイトを構築する方法を学びたくてPHP、
+            Ruby、Javaなどのプログラミング言語を勉強し、
+            ”バックエンド”となるコードを書き始めたのではないでしょうか。
         </p>
 
         <p>
-            Nevertheless, you kept an eye on JavaScript, you saw that
-            with the introduction of jQuery, Prototype and the likes,
-            things got more advanced in JavaScript land, and that this
-            language really was about more than <em>window.open()</em>.
+
+            それにも関わらず、JavaScriptに注目してみるとjQueryやPrototypeなどが目に入ってきました。
+            JavaScriptの世界では物事が進化し、もはやこの言語は、<em>window.open()</em>では済まないのだ、
+            ということがわかってきたのです。
         </p>
 
         <p>
-            However, this was all still frontend stuff, and although it
-            was nice to have jQuery at your disposal whenever you felt
-            like spicing up a web page, at the end of the day you were,
-            at best, a JavaScript <em>user</em>, but not a JavaScript
-            <em>developer</em>.
+            しかしそれは序章に過ぎません。jQueryを自由に扱えればWebページにスパイスを加えることができますが、
+            結局のところ貴方はまだ、JavaScriptの<em>ユーザ</em>でしかなく、
+            <em>デベロッパー</em>ではなかったのです。
         </p>
 
         <p>
-            And then came Node.js. JavaScript on the server, how cool
-            is that?
+        
+            そしていま、Node.jsにたどり着きました。サーバ側でのJavaScriptって、凄いの？
         </p>
 
         <p>
-            You decided that it's about time to check out the old, new
-            JavaScript. But wait, writing Node.js applications is the
-            one thing; understanding why they need to be written the
-            way they are written means - understanding JavaScript.
-            And this time for real.
+
+            そろそろ、古くて新しいJavaScriptをチェックする時期がきたことを確信しました。
+            でもちょっと待って、Node.jsアプリケーションを書くというのはとても厄介。
+            なぜそうやって書く必要があるのか、理解しないといけない、
+            つまりJavaScriptを理解しなければいけないのです。今度こそ、真剣に。
         </p>
 
         <p>
-            Here is the problem: Because JavaScript really lives two,
-            maybe even three lives (the funny little DHMTL helper from
-            the mid-90's, the more serious frontend stuff like jQuery
-            and the likes, and now server-side), it's not that easy to
-            find information that helps you to learn JavaScript the
-            "right" way, in order to write Node.js applications in a
-            fashion that makes you feel you are not just using
-            JavaScript, you are actually developing it.
+            ここで問題があります。JavaScriptには2つ、
+            もしかすると3つの時代があるため(90年代半ばの小さくて可愛らしいDHTMLの助っ人、
+            jQueryなどのもう少し真剣なフロントエンド、そして現在のサーバサイド)、
+            JavaScriptを利用するのではなくてJavaScriptで開発しているのだと感じさせてくれるような、
+            ”正しい”使い方を示す情報を探すのは容易ではありません。
         </p>
 
         <p>
-            Because that's the catch: you already are an experienced
-            developer, you don't want to learn a new technique by just
-            hacking around and mis-using it; you want to be sure that
-            you are approaching it from the right angle.
+            貴方は経験豊富なデベロッパーなのですから、
+            なんとなく時間を無駄に過ごしたり間違った使い方をしたりして新しいテクニックを身につけたい、
+            なんていうことはないでしょう。しっかりと正しい角度でアプローチしていきたいはずです。
         </p>
 
         <p>
-            There is, of course, excellent documentation out there.
-            But documentation alone sometimes isn't enough. What is
-            needed is guidance.
+            もちろん素晴らしい文書はそこら中にあります。しかし一つの文書では十分でないこともあります。
+            必要なのはガイダンスなのです。
         </p>
 
         <p>
-            My goal is to provide a guide for you.
+            私の目的は、貴方にガイドを提供することなのです。
         </p>
 
         <a name="a-word-of-warning"></a>
 
-        <h3>A word of warning</h3>
+        <h3>注意事項</h3>
 
         <p>
-            There are some really excellent JavaScript people out
-            there. I'm not one of them.
+            世の中には本当に素晴らしいJavaScriptエンジニアがいます。でも私は違います。
         </p>
 
         <p>
-            I'm really just the guy I talked about in the previous
-            paragraph. I know a thing or two about developing backend
-            web applications, but I'm still new to "real" JavaScript
-            and still new to Node.js. I learned some of the more
-            advanced aspects of JavaScript just recently.
-            I'm not experienced.
+            本当に、私は前段で述べたような男に過ぎません。
+            バックエンドのWebアプリケーションを1つや2つ知っているだけで、
+            まだまだ”本当の”JavaScriptは学び始めたばかりですし、Node.jsについても同じです。
+            JavaScriptのより先進的な側面を学んだのは最近で、経験も豊富ではありません。
         </p>
 
         <p>
-            Which is why this is no "from novice to expert" book. It's
-            more like "from novice to advanced novice".
+            ですので、本書は”初心者から上級者へ”なるためのではなくて、
+            どちらかというと”初心者から初級者へ”というものです。
         </p>
 
         <p>
-            If I don't fail, then this will be the kind of
-            document I wish I had when starting with Node.js.
+            私がNode.jsを学び始めた時にあったらよかった、そんな文書になっているはずです。
         </p>
 
         <a name="server-side-javascript"></a>
 
-        <h3>Server-side JavaScript</h3>
+        <h3>サーバサイドJavaScript</h3>
 
         <p>
-            The first incarnations of JavaScript lived in browsers.
-            But this is just the context. It defines what you can
-            do with the language, but it doesn't say much about what
-            the language itself can do. JavaScript is a "complete"
-            language: you can use it in many contexts and achieve
-            everything with it you can achieve with any other
-            "complete" language.
+            最初にJavaScriptが日の目を見たのは、ブラウザ上でした。
+            しかしこれは単なるコンテキストに過ぎません。
+            コンテキストによってその言語でできることは決まってきますが、
+            それはその言語自体ができることとイコールというわけではありません。
+            JavaScriptは”完全な”言語であり、様々なコンテキストで使えます。
+            他の言語でやっていることは、すべてJavaScriptでもできます。
         </p>
 
         <p>
-            Node.js really is just another context: it allows you to run
-            JavaScript code in the backend, outside a browser.
+            Node.jsもまた、ひとつのコンテキストに過ぎません。
+            Node.jsによって、JavaScriptはバックエンド、ブラウザの外で動作できるのです。
         </p>
 
         <p>
-            In order to execute the JavaScript you intend to run in the
-            backend, it needs to be interpreted and, well, executed.
-            This is what Node.js does, by making use of Google's V8 VM, the
-            same runtime environment for JavaScript that Google
-            Chrome uses.
+            バックエンドでJavaScriptが動作するには、インタープリターで変換され、
+            そして実行されなければなりません。これをNode.jsが行います。
+            内部ではGoogleのV8 VMが利用されています。
+            V8 VMはGoogle Chromeが使用しているJavaScriptの実行環境そのものと同じです。
         </p>
 
         <p>
-            Plus, Node.js ships with a lot of useful modules, so you don't
-            have to write everything from scratch, like for example
-            something that outputs a string on the console.
+            それに加えて、Node.jsにはたくさんの便利なモジュールが同梱されています。
+            全てを1から作る必要はないのです。例えばコンソールに文字列を出力するモジュールなどがあります。
         </p>
 
         <p>
-            Thus, Node.js is really two things: a runtime environment and a
-            library.
+            つまりNode.jsは、実行環境とライブラリの2つから成っているのです。
         </p>
 
         <p>
-            In order to make use of these, you need to install Node.js.
-            Instead of repeating the process here, I kindly ask you to
-            visit
-            <a href="https://github.com/joyent/node/wiki/Installation" title="Building and Installing Node.js">the
-                official
-                installation instructions</a>. Please come back once you
-            are up and running.
+            さて、これを使うためには、Node.jsをインストールする必要があります。
+            <a href="https://github.com/joyent/node/wiki/Installation" title="Building and Installing Node.js">公式サイトのインストール手順</a>を訪れて、またここに戻ってきて下さい。
         </p>
 
         <a name="hello-world"></a>
@@ -458,201 +408,173 @@
         <h3>"Hello World"</h3>
 
         <p>
-            Ok, let's just jump in the cold water and write our first
-            Node.js application: "Hello World".
+            OK、では冷水に飛び込んで、
+            はじめてのNode.jsアプリケーション”Hello World”を書いてみるとしましょう。
         </p>
 
         <p>
-            Open your favorite editor and create a file called
-            <em>helloworld.js</em>. We want it to write "Hello World"
-            to STDOUT, and here is the code needed to do that:
+            好きなエディタを選んだら、<em>helloworld.js</em>というファイル名で保存して下さい。
+            このアプリケーションでは”Hello World”を標準出力に書き出します。コードはこの通りです:
         </p>
         <pre class="prettyprint lang-js"><span class="pln">console</span><span class="pun">.</span><span
                 class="pln">log</span><span class="pun">(</span><span class="str">"Hello World"</span><span class="pun">);</span></pre>
         <p>
-            Save the file, and execute it through Node.js:
+            ファイルを保存して、Node.jsから動かしてみます:
         </p>
 
         <pre>node helloworld.js</pre>
         <p>
-            This should output <em>Hello World</em> on your terminal.
+            これで貴方の端末で、<em>Hello World</em>と出力されたはずです。
         </p>
 
         <p>
-            Ok, this stuff is boring, right? Let's write some real
-            stuff.
+            いやあ、退屈ですね。次はもっと本物っぽいものを書いてみましょう。
         </p>
 
 
         <a name="a-full-blown-web-application-with-nodejs"></a>
 
-        <h2>A full blown web application with Node.js</h2>
+        <h2>Node.jsでの本格的なWebアプリケーション</h2>
 
         <a name="the-use-cases"></a>
 
-        <h3>The use cases</h3>
+        <h3>ユースケース</h3>
 
         <p>
-            Let's keep it simple, but realistic:
+            シンプルに、しかし現実的に考えてみましょう:
         </p>
         <ul>
 
             <li>
-                The user should be able to use our application with
-                a web browser
+                ユーザは、我々のアプリケーションをWebブラウザから使えるべき
             </li>
             <li>
-                The user should see a welcome page when
-                requesting http://<em>domain</em>/start which displays a
-                file upload form
+                ユーザは、http://<em>domain</em>/startにアクセスしたらウェルカムページを見ることができ、
+                そこではファイルアップロードフォームが表示される
             </li>
             <li>
-                By choosing an image file to upload and submitting the
-                form, this image should then be uploaded to
-                http://<em>domain</em>/upload, where it is displayed once
-                the upload is finished
+                アップロードする画像ファイルを選択して送信すると、
+                画像がhttp://<em>domain</em>/uploadにアップロードされ、
+                アップロードが一旦完了したらそこに表示される
             </li>
 
         </ul>
         <p>
-            Fair enough. Now, you could achieve this goal by googling
-            and hacking together <em>something</em>. But that's not
-            what we want to do here.
+            結構です。Googleで検索して、<em>何か</em>組み合わせていけばできてしまうでしょう。
+            でもここでやりたいのはそういうことではないのです。
         </p>
 
         <p>
-            Furthermore, we don't want to write only the most basic
-            code to achieve the goal, however elegant and correct this code
-            might be. We will intentionally add more abstraction than
-            necessary in order to get a feeling for building more
-            complex Node.js applications.
+            目的を達成するためだけの最も基本的なコードだけを書く、それをやりたいだけではないのです。
+            綺麗で正確なコードを書きたいのです。
+            ここからは、もっと複雑なNode.jsアプリケーションを構築していく時の感覚を得るために、
+            わざと必要以上に抽象的にしていきます。
         </p>
 
         <a name="the-application-stack"></a>
 
-        <h3>The application stack</h3>
+        <h3>アプリケーションスタック</h3>
 
         <p>
-            Let's dissect our application. Which parts need to be
-            implemented in order to fulfill the use cases?
+            それではアプリケーションを分解していきましょう。
+            やりたいことを満たすためには、一体どんなものを実装したら良いのでしょうか。
         </p>
 
         <ul>
             <li>
-                We want to serve web pages, therefore we need an
-                <strong>HTTP server</strong>
+                Webページを提供したい。よって<strong>HTTPサーバ</strong>が必要
             </li>
 
             <li>
-                Our server will need to answer differently to
-                requests, depending on which URL the request was
-                asking for, thus we need some kind of
-                <strong>router</strong> in order to map requests
-                to request handlers
+                我々のサーバでは、リクエストが要求しているURLによってそれぞれ別に応答する必要がある。
+                よってリクエストをリクエストハンドラに結びつけるための<strong>ルータ</strong>のようなものが必要
             </li>
             <li>
-                To fullfill the requests that arrived at the server
-                and have been routed using the router, we need
-                actual <strong>request handlers</strong>
+                サーバに届き、ルータによって渡されたリクエストの内容に応えるために、
+                <strong>リクエストハンドラ</strong>が必要
             </li>
             <li>
-
-                The router probably should also treat any incoming
-                POST data and give it to the request handlers in
-                a convenient form, thus we need <strong>request
-                data handling</strong>
+                ルータはどんなPOSTデータでも取り扱えるべきで、
+                そのデータをリクエストハンドラに使い易い形式で渡す必要がある。
+                よって<strong>リクエストデータハンドリング</strong>が必要
             </li>
             <li>
-                We not only want to handle requests for URLs, we
-                also want to display content when these URLs are
-                requested, which means we need some kind of
-                <strong>view logic</strong> the request handlers
-                can use in order to send content to the user's
-                browser
+                URLへのリクエストだけを扱いたいのではなく、
+                それらのURLが要求された時に内容を表示したい。
+                つまり、コンテンツをユーザのブラウザへ送り返すための、
+                リクエストハンドラから利用できる<strong>ビューロジック</strong>が必要
             </li>
             <li>
-                Last but not least, the user will be able to upload
-                images, so we are going to need some kind of
-                <strong>upload handling</strong> which takes care of
-                the details
+                ユーザは画像をアップロードできるようになるため、何らかの形で、
+                細かい部分の面倒を見る<strong>アップロードハンドリング</strong>が必要
             </li>
         </ul>
 
         <p>
-            Let's think a moment about how we would build this stack
-            with PHP. It's not exactly a secret that the typical setup
-            would be an Apache HTTP server with mod_php5 installed.
+            ちょっと考えてみて下さい。PHPでこのスタックを作り上げるとしたら、
+            どうやって実現するでしょうか。何も隠すことはないので言ってしまうと、
+            だいたいApache HTTPサーバとmod_php5をインストールするのでしょう。
             <br>
-            Which in turn means that the whole "we need to be able to
-            serve web pages and receive HTTP requests" stuff doesn't
-            happen within PHP itself.
+            そう考えると、”Webページを提供して、HTTPリクエストに応答する必要がある”
+            という部分については、PHPの中で起きているわけではないことに気づきます。
         </p>
 
         <p>
-            Well, with node, things are a bit different. Because with
-            Node.js, we not only implement our application, we also
-            implement the whole HTTP server. In fact, our web
-            application and its web server are basically the same.
+            さて、nodeの場合、状況が少し異なります。Node.jsでは、
+            アプリケーションのみを実装するのではなく、HTTPサーバ全体を実装することになります。
+            我々がこれから作ろうとしているWebアプリケーションとWebサーバは基本的に同一のものなのです。
         </p>
 
         <p>
-            This might sound like a lot of work, but we will see in a
-            moment that with Node.js, it's not.
+            もしかすると大変そうな印象を持たれてしまったかもしれませんが、
+            Node.jsでは、そうでもないことがすぐにわかるはずです。
         </p>
 
         <p>
-            Let's just start at the beginning and implement the first
-            part of our stack, the HTTP server.
+            それではスタックの最初の部分である、HTTPサーバから始めてみましょう。
         </p>
 
         <a name="building-the-application-stack"></a>
 
-        <h2>Building the application stack</h2>
+        <h2>アプリケーションスタックの構築</h2>
 
         <a name="a-basic-http-server"></a>
 
-        <h3>A basic HTTP server</h3>
+        <h3>基本的なHTTPサーバ</h3>
 
         <p>
-            When I arrived at the point where I wanted to start with my
-            first "real" Node.js application, I wondered not only how to
-            actually code it, but also how to organize my code.
+            はじめて私が”本当の”Node.js”アプリケーションを作り始めようとした時は、
+            どうやってコードを書くのかわかりませんでしたし、コードをどう構成したら良いかもわかりませんでした。
             <br>
-            Do I need to have everything in one file? Most tutorials on
-            the web that teach you how to write a basic HTTP server in
-            Node.js have all the logic in one place. What if I want to
-            make sure that my code stays readable the more stuff I
-            implement?
+            1つのファイルに全てを書くので良いのでしょうか。Webで見つかるチュートリアルではほとんどの場合で、
+            Node.jsの基本的なHTTPサーバが、全てのロジックを1カ所で持っているようなものでした。
+            次の機能を実装しようとした時、コードの可読性を維持することは果たしてできるのでしょうか。
         </p>
 
         <p>
-            Turns out, it's relatively easy to keep the different
-            concerns of your code separated, by putting them in
-            modules.
+            モジュールを使えば、やりたいこと別にコードを分離することは、
+            比較的簡単だということがわかりました。
         </p>
 
         <p>
-            This allows you to have a clean main file, which you
-            execute with Node.js, and clean modules that can be used by
-            the main file and among each other.
+            そうすることで、Node.jsで実行するメイン部分のファイルを綺麗な状態に保つことができます。
+            また、メインファイルから使ったりモジュール同士で相互利用したりするモジュールも、
+            すっきりさせることができます。
         </p>
 
         <p>
-            So, let's create a main file which we use to start our
-            application, and a module file where our HTTP server code
-            lives.
+            アプリケーションを起動するためのメインファイルと、
+            HTTPサーバのコードから利用されるモジュールファイルを作りましょう。
         </p>
 
         <p>
-            My impression is that it's more or less a standard to name
-            your main file <em>index.js</em>. It makes sense to put our
-            server module into a file named <em>server.js</em>.
+            私の印象では、メインファイルには<em>index.js</em>という名前にするのが標準的です。
+            そしてサーバモジュールには<em>server.js</em>というファイル名を付けます。
         </p>
 
         <p>
-            Let's start with the server module. Create the file
-            <em>server.js</em> in the root directory of your project,
-            and fill it with the following code:
+            では、サーバモジュールから始めます。このプロジェクトのルートディレクトリに<em>server.js</em>
+            という名前のファイルを作成します。ファイルの内容は以下の通りにします:
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
@@ -672,54 +594,49 @@
                 class="pun">);</span></pre>
 
         <p>
-            That's it! You just wrote a working HTTP server. Let's
-            prove it by running and testing it. First, execute your
-            script with Node.js:
+            これだけです！これで実際に動くHTTPサーバが書けました。
+            実行して、ちゃんと動くかテストしてみましょう。
+            まず、このスクリプトをNode.jsから実行します:
         </p>
         <pre>node server.js</pre>
         <p>
-            Now, open your browser and point it at
-            <a href="http://localhost:8888/" rel="nofollow">http://localhost:8888/</a>.
-            This should display a web page that says "Hello World".
+            それでは、ブラウザを開いて
+            <a href="http://localhost:8888/" rel="nofollow">http://localhost:8888/</a>
+            にアクセスしてみましょう。
+            ”Hello World”と表示しているWebページが表示されるはずです。
         </p>
 
         <p>
-            That's quite interesting, isn't it. How about talking about
-            what's going on here and leaving the question of how to
-            organize our project for later? I promise we'll get back to
-            it.
+            これは、とても気になるのではないでしょうか。我々のプロジェクトをどう構成していくのか、
+            というテーマを少し離れて、この部分について深堀してみませんか。すぐに本題に戻ることを約束します。
         </p>
 
         <a name="analyzing-our-http-server"></a>
 
-        <h3>Analyzing our HTTP server</h3>
+        <h3>HTTPサーバの分析</h3>
 
         <p>
-            Well, then, let's analyze what's actually going on here.
+            ではでは、何が起こっていたのか、分析していきます。
         </p>
 
         <p>
-            The first line <em>require</em>s the <em>http</em> module
-            that ships with Node.js and makes it accessible through the
-            variable <em>http</em>.
+            最初の行で、<em>http</em>モジュールを<em>require</em>(要求)しています。
+            これにより、Node.jsに同梱されているhttpモジュールへのアクセスが、
+            変数<em>http</em>を通して可能になります。
         </p>
 
         <p>
-            We then call one of the functions the http module offers:
-            <em>createServer</em>. This function returns an object, and
-            this object has a method named <em>listen</em>, and takes
-            a numeric value which indicates the port number our HTTP
-            server is going to listen on.
+            次に、httpモジュールが提供する関数のひとつである<em>createServer</em>を呼出しています。
+            この関数はオブジェクトを返しますが、このオブジェクトが<em>listen</em>というメソッドを持っています。
+            listenメソッドはポート番号を数値の引数として受け取り、HTTPサーバがそのポート番号で待ち受けします。
         </p>
 
         <p>
-            Please ignore for a second the function definition that
-            follows the opening bracket of <em>http.createServer</em>.
+            今のところは<em>http.createServer</em>の括弧内にある関数定義の箇所は無視しておいて下さい。
         </p>
 
         <p>
-            We could have written the code that starts our server and
-            makes it listen at port 8888 like this:
+            もし8888番ポートで待ち受けするサーバを開始したければ、こんなコードでも良かったはずです:
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
@@ -730,32 +647,26 @@
                 class="lit">8888</span><span class="pun">);</span></pre>
 
         <p>
-            That would start an HTTP server listening at port 8888
-            and doing nothing else (not even answering any incoming
-            requests).
+            これでHTTPサーバが8888番ポートで待ち受けをして、その他、何もすることはありません。
+            (たとえリクエストがきても応答さえしません)
         </p>
 
         <p>
-            The really interesting (and, if your background is a more
-            conservative language like PHP, odd looking) part is the
-            function definition right there where you would expect the
-            first parameter of the <em>createServer()</em> call.
+            (もしPHPのような、より保守的な言語の経験者であれば特に)面白いのは、
+            <em>createServer()</em>の呼出しの第1引数に関数定義があることではないでしょうか。
         </p>
 
         <p>
-            Turns out, this function definition IS the first (and only)
-            parameter we are giving to the <em>createServer()</em>
-
-            call. Because in JavaScript, functions can be passed around
-            like any other value.
+            この関数の定義は、<em>createServer()</em>を呼び出す際に渡す最初の (そして最後の)引数なのです。
+            JavaScriptでは、関数をその他の値と同様、あちこちに渡すことができるのです。
         </p>
 
         <a name="passing-functions-around"></a>
 
-        <h3>Passing functions around</h3>
+        <h3>関数をあちこちに渡す</h3>
 
         <p>
-            You can, for example, do something like this:
+            例えばこんなことができてしまいます:
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> say</span><span
                 class="pun">(</span><span class="pln">word</span><span class="pun">)</span><span
@@ -771,31 +682,27 @@
                 class="pln"> </span><span class="str">"Hello"</span><span class="pun">);</span></pre>
 
         <p>
-            Read this carefully! What we are doing here is, we pass the
-            function <em>say</em> as the first parameter to the
-            <em>execute</em> function. Not the return value of
-            <em>say</em>, but <em>say</em> itself!
+            よく読んでみて下さい！ここでは、関数<em>say</em>を<em>execute</em>関数の第1引数として渡しています。
+            <em>say</em>の戻り値ではなく、<em>say</em>自体を渡しているのです！
         </p>
 
         <p>
-            Thus, <em>say</em> becomes the local variable
-            <em>someFunction</em> within <em>execute</em>, and execute
-            can call the function in this variable by issuing
-            <em>someFunction()</em> (adding brackets).
+            ここでは<em>say</em>が、関数<em>execute</em>の中にあるローカル変数
+            <em>someFunction</em>になっています。
+            そしてexecuteの中では(この変数に括弧をつけて)<em>someFunction()</em>
+            と書くことができるのです。
         </p>
 
         <p>
-            Of course, because <em>say</em> takes one parameter,
-            <em>execute</em> can pass such a parameter when calling
-            <em>someFunction</em>.
+            もちろん<em>say</em>は引数を1つとるので、
+            <em>execute</em>から<em>someFunction</em>を呼び出す時には、
+            さらに引数を渡すことができます。
         </p>
 
         <p>
-            We can, as we just did, pass a function as a parameter to
-            another function by its name. But we don't have to take this
-            indirection of first defining, then passing it - we can
-            define and pass a function as a parameter to another
-            function in-place:
+            このように、関数は、他の関数への引数として名前で渡すことができますが、
+            何も関数の定義を先にしたうえで、それを渡す、といった手順を踏まなくても良いのです。
+            関数は、関数を引数として渡す際、その場で定義しても良いのです:
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> execute</span><span
                 class="pun">(</span><span class="pln">someFunction</span><span class="pun">,</span><span class="pln"> value</span><span
@@ -810,32 +717,30 @@
                 class="pun">);</span></pre>
 
         <p>
-            We define the function we want to pass to <em>execute</em>
-            right there at the place where <em>execute</em> expects its
-            first parameter.
+            まさに<em>execute</em>が第１引数を期待している場所で、<em>execute</em>
+            に渡したい関数を定義しています。
         </p>
 
         <p>
-            This way, we don't even need to give the function a name,
-            which is why this is called an <em>anonymous function</em>.
+            ここで見たやり方をすると、関数に名前をつけてやる必要がありません。
+            このような関数を<em>匿名関数(anonymous function)</em>と呼びます。
         </p>
 
         <p>
-            This is a first glimpse at what I like to call "advanced"
-            JavaScript, but let's take it step by step. For now, let's
-            just accept that in JavaScript, we can pass a function as
-            a parameter when calling another function. We can do this
-            by assigning our function to a variable, which we then
-            pass, or by defining the function to pass in-place.
+            これは”上級の”JavaScriptと呼んでいるものの最たる例ですが、
+            ステップバイステップでやっていきましょう。
+            今のところ、JavaScriptでは関数を呼び出す時の引数として関数を渡すことができる、
+            ということを受け入れて下さい。
+            あらかじめ定義した関数を変数として割り当ててから渡すこともできますし、
+            その場で関数を定義して渡すこともできるのです。
         </p>
 
         <a name="how-function-passing-makes-our-http-server-work"></a>
 
-        <h3>How function passing makes our HTTP server work</h3>
+        <h3>関数渡しでHTTPサーバを動かす方法</h3>
 
         <p>
-            With this knowledge, let's get back to our minimalistic
-            HTTP server:
+            今知った事を活用すれば、最低限のHTTPサーバをこんな風に書く事ができます：
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
@@ -855,13 +760,12 @@
                 class="pun">);</span></pre>
 
         <p>
-            By now it should be clear what we are actually doing here:
-            we pass the <em>createServer</em> function an anonymous
-            function.
+            もうここで何をしているのかは明確なはずです:
+            <em>createServer</em>関数に匿名関数として渡しているのです。
         </p>
 
         <p>
-            We could achieve the same by refactoring our code to:
+            先のコードをリファクタリングすると、こうすることができます:
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
@@ -882,99 +786,87 @@
                 class="lit">8888</span><span class="pun">);</span></pre>
 
         <p>
-            Maybe now is a good moment to ask: Why are we doing it
-            that way?
+            さて、次はこんな疑問が湧いてくるのではないでしょうか: なぜこんなことをしているの？
         </p>
 
         <a name="event-driven-callbacks"></a>
 
-        <h3>Event-driven callbacks</h3>
+        <h3>イベント駆動コールバック</h3>
 
         <p>
-            The answer is a) not that easy to give (at least for me), and
-            b) lies in the very nature of how Node.js works. It's
-            event-driven, which is the reason why it's so fast.
+            先ほどの質問に対する答えは、a) (少なくとも私にとっては)それほど簡単な話ではなく、
+            b) Node.jsがどのように動作するかの原理に従っているものだから、ということになります。
+            それはつまり、イベント駆動型のことであり、高速に動作する理由でもあります。
         </p>
 
         <p>
-            You might want to take the time to read Felix
-            Geisendörfer's excellent post
-            <a href="http://debuggable.com/posts/understanding-node-js:4bd98440-45e4-4a9a-8ef7-0f7ecbdd56cb">Understanding
-                node.js</a>
-            for some background explanation.
+            もしこの背景について知りたければ、
+            Felix Geisendörferの素晴らしいエントリ
+            <a href="http://debuggable.com/posts/understanding-node-js:4bd98440-45e4-4a9a-8ef7-0f7ecbdd56cb">”Understanding node.js”</a>
+            は一読の価値があります。
         </p>
 
         <p>
-            It all boils down to the fact that Node.js works event-driven.
-            Oh and yes, I, too, don't know exactly what that means.
-            But I will try and explain, why this makes sense for us
-            who want to write web based applications in Node.js.
+            つまるところ、Node.jsはイベント駆動で動作するということです。
+            えー、はい、私もです。何を言っているのかさっぱりわかんない。
+            しかし頑張って説明してみようと思います。
+            なぜWebベースのアプリケーションをNode.jsで書くことに意味があるのかを。
         </p>
 
         <p>
-            When we call the <em>http.createServer</em> method, we
-            of course not only want to have a server listening at
-            some port, we also want to do something when there is an
-            HTTP request to this server.
+            <em>http.createServer</em>メソッドを呼び出す時、
+            当然ながらサーバの待ち受けは同じポートでしないようにしたいですし、
+            サーバにHTTPリクエストが届いた時は、他にも何かしたいわけです。
         </p>
 
         <p>
-            The problem is, this happens asynchronously: it happens
-            at any given time, but we only have a single process in
-            which our server runs.
+            問題は、これが非同期で起こるということです: いかなる時でも起こりますし、
+            サーバ内では動かせるのは単一のプロセスしかないのです。
         </p>
 
         <p>
-            When writing PHP applications, we aren't bothered by this
-            at all: whenever there is an incoming HTTP request, the
-            webserver (usually Apache) forks a new process for just
-            this request, and starts the according PHP script from
-            scratch, which is then executed from top to bottom.
+            PHPのアプリケーションを書く時は、このようなことに困る事はありません:
+            HTTPリクエストがあった時はいつでも、
+            (だいたいはApacheなどの)Webサーバがこのリクエストのために新しいプロセスをフォークし、
+            PHPスクリプトが最初から最後まで実行されることになります。
         </p>
 
         <p>
-            So in regards of control flow, we are in the midst of our
-            Node.js program when a new request arrives at port 8888 - how
-            to handle this without going insane?
+            ですので、制御フローについていうとポート8888番に新しいリクエストが届いた時には、
+            Node.jsプログラムの中に入ってきており、
+            おかしなことにならないようそれをうまく取り扱わないといけません。
         </p>
 
         <p>
-            Well, this is where the event-driven design of
-            Node.js/JavaScript actually helps, although we need to learn
-            some new concepts in order to master it. Let's see how
-            these concepts are applied in our server code.
+            これに精通するためにはいくつか新しい概念を学ぶ必要がありますが、
+            まさにここが、Node.js/JavaScriptのイベント駆動設計が役に立つ部分なのです。
+            新しい概念をどのようにサーバのコードに適用するのかを見ていきましょう。
         </p>
 
         <p>
-            We create the server, and pass a function to the method
-            creating it. Whenever our server receives a request, the
-            function we passed will be called.
+            サーバは先ほど作りました。サーバを作る時には関数をメソッドに渡しました。
+            リクエストを受け付けた時は必ず、渡した関数が呼ばれます。
         </p>
 
         <p>
-            We don't know when this is going to happen, but we now have
-            a place where we can handle an incoming request. It's our
-            passed function, no matter if we first defined it or passed
-            it anonymously.
+            実際起こるかどうかはわかりませんが、入ってくるリクエストを取り扱うための場所を作りました。
+            そう、その渡した関数のことです。最初に定義したとか、匿名で渡したとかは置いておきましょう。
         </p>
 
         <p>
-            This concept is called a <em>callback</em>. We pass into
-            some method a function, and the method uses this function
-            to <em>call back</em> if an event related to the method
-            occurs.
+            この概念を<em>コールバック</em>と呼びます。メソッドに関数を渡した時、
+            メソッドに紐づいたイベントが発生していた場合に、この関数を<em>コールバック</em>するのです。
         </p>
 
         <p>
-            At least for me, this took some time to understand. Just
-            read Felix' blog post again if you are still unsure.
+            少なくとも私にとっては、これを理解するのは大変でした。まだ理解が足りないと感じるのであれば、
+            是非Felixのブログエントリを読んでみて下さい。
         </p>
 
         <p>
-            Let's play around a bit with this new concept. Can we prove
-            that our code continues after creating the server, even if
-            no HTTP request happened and the callback function we
-            passed isn't called? Let's try it:
+            それではこの新しい概念を使って遊んでみましょう。サーバを作成してから、
+            HTTPリクエストが発生せず、渡したコールバック関数が呼ばれていなくても、
+            我々のコードが実行を続けることを証明できるでしょうか。やってみましょう:
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
@@ -998,99 +890,84 @@
                 class="pun">);</span></pre>
 
         <p>
-            Note that I use <em>console.log</em> to output a text whenever
-            the <em>onRequest</em> function (our callback) is triggered,
-            and another text right <em>after</em> starting the HTTP server.
+            <em>onRequest</em>関数(コールバック関数)が呼ばれた時、
+            テキストを<em>console.log</em>で出力していることに注目して下さい。
+            その他のテキストはHTTPサーバ開始<em>直後に</em>出力しています。
         </p>
 
         <p>
-            When we start this (<em>node server.js</em>, as always), it
-            will immediately output "Server has started." on the
-            command line. Whenever we request our server (by opening
-            <a href="http://localhost:8888/" rel="nofollow">http://localhost:8888/</a>
-
-            in our browser), the message "Request received." is printed
-            on the command line.
+            これを起動した時(先ほどと同様、<em>node server.js</em>)、
+            すぐに”Server has started.”とコマンドライン上で出力されると思います。
+            (<a href="http://localhost:8888/" rel="nofollow">http://localhost:8888</a>を開いて)
+            サーバにリクエストを送った時、
+            ”Request received.”というメッセージがコマンドライン上に出力されます。
         </p>
 
         <p>
-            Event-driven asynchronous server-side JavaScript with
-            callbacks in action :-)
+            イベント駆動の非同期サーバサイドJavaScriptでのコールバックはうまく動くことがわかりましたね :-)
         </p>
 
         <p>
-            (Note that our server will probably write "Request received."
-            to STDOUT two times upon opening the page in a browser. That's
-            because most browsers will try to load the favicon by requesting
-            http://localhost:8888/favicon.ico whenever you open
-            http://localhost:8888/).
+            (おそらくサーバは標準出力に、”Request received.”を2回出力したのではないでしょうか。
+            これはあなたがhttp://localhost:8888/ を開いた時、
+            ブラウザがfaviconをロードしようとしているためです。)
         </p>
 
         <a name="how-our-server-handles-requests"></a>
 
-        <h3>How our server handles requests</h3>
+        <h3>サーバによるリクエストの取り扱い方</h3>
 
         <p>
-            Ok, let's quickly analyze the rest of our server code, that
-            is, the body of our callback function <em>onRequest()</em>.
+            OK、サーバのコードの残り部分をサクッと解析してしまいましょう。
+            残りはコールバック関数<em>onRequest()</em>の本体です。
         </p>
 
         <p>
-            When the callback fires and our <em>onRequest()</em> function
-            gets triggered, two parameters are passed into it:
-            <em>request</em> and <em>response</em>.
+            コールバックによって<em>onRequest()</em>が呼ばれた時、2つの引数、
+            <em>request</em>と<em>response</em>が渡されます。
         </p>
 
         <p>
-            Those are objects, and you can use their methods to handle
-            the details of the HTTP request that occured and to respond
-            to the request (i.e., to actually send something over
-            the wire back to the browser that requested your server).
+            これらはオブジェクトです。このオブジェクトの持つメソッドを使うと、
+            発生したHTTPリクエストや、そのリクエストへの応答の詳細を取り扱うことができます
+            (例えば、サーバにリクエストを行ったブラウザに対して実際に何かを送り返す、というようなこと)。
         </p>
 
         <p>
-            And our code does just that: Whenever a request is
-            received, it uses the <em>response.writeHead()</em>
-            function to send an HTTP status 200 and content-type in the
-            HTTP response header, and the <em>response.write()</em>
-            function to send the text "Hello World" in the HTTP
-            response body.
+            我々のコードがやっているのはこれだけです:
+            リクエストを受信し、<em>response.writeHead()</em>関数を使って、
+            HTTPステータスコード200とcontent-typeをHTTPレスポンスヘッダとして、
+            さらに<em>response.write()</em>関数を使って、
+            テキスト”Hello World”をHTTPレスポンスのボディーとして送ります。
         </p>
 
         <p>
-            At last, we call <em>response.end()</em> to actually finish
-            our response.
-        </p>
+            さいごに<em>response.end()</em>を呼び出してレスポンスを完了しています。        </p>
 
         <p>
-            At this point, we don't care for the details of the
-            request, which is why we don't use the <em>request</em>
-            object at all.
+            この時点では<em>request</em>オブジェクトは全く使っていないので、
+            リクエストの詳細についてはまだ触れません。
         </p>
 
         <a name="finding-a-place-for-our-server-module"></a>
 
-        <h3>Finding a place for our server module</h3>
+        <h3>サーバモジュールの場所の確保</h3>
 
         <p>
-            Ok, I promised we will get back to how to organize our
-            application. We have the code for a very basic HTTP server in
-            the file <em>server.js</em>, and I mentioned that it's common
-            to have a main file called <em>index.js</em> which is used
-            to bootstrap and start our application by making use of the
-            other modules of the application (like the HTTP server module
-            that lives in <em>server.js</em>).
+            OK、それでは約束通り、アプリケーションの構成の話に戻りましょう。
+            先ほどは<em>server.js</em>というファイルにとても基本的なHTTPサーバのコードを書きました。
+            そしてアプリケーションのブートストラップや他のアプリケーションモジュールを使用して
+            アプリケーションを起動する<em>index.js</em>というメインファイルを置くことが一般的だという話をしました。
+            (<em>server.js</em>にある他のHTTPサーバモジュールと同じです)。
         </p>
 
         <p>
-            Let's talk about how to make server.js a real Node.js module
-            that can be used by our yet-to-be-written <em>index.js</em>
-            main file.
+            それでは、server.jsをまだ書いていない<em>index.js</em>メインファイルから使えるよう、
+            本当のNode.jsモジュールにする方法について話していきましょう。
         </p>
 
         <p>
-            As you may have noticed, we already used modules in our code,
-            like this:
+            みなさんお気づきのように、コードの中で既に書いています:
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
@@ -1099,20 +976,19 @@
                 class="pun">(...);</span></pre>
 
         <p>
-            Somewhere within Node.js lives a module called "http", and we can
-            make use of it in our own code by requiring it and assigning
-            the result of the require to a local variable.
+            Node.jsのどこかに”http”と呼ばれるモジュールがあるので、
+            コード内でrequireを行い、その結果をローカル変数に割り当てることでそれを使うことができます。
         </p>
 
         <p>
-            This makes our local variable an object that carries all the
-            public methods the <em>http</em> module provides.
+            
+            これによりローカル変数にはオブジェクトが割り当てられ、
+            <em>http</em>モジュールが提供する全てのパブリックメソッドを使うことができます。
         </p>
 
-        <p>
-            It's common practice to choose the name of the module for the
-            name of the local variable, but we are free to choose whatever
-            we like:
+        <p>                        
+            ローカル変数名にモジュール名をつけるのが慣習ですが、
+            このように好きな名前を付けることもできます:
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> foo </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
@@ -1121,32 +997,28 @@
                 class="pun">(...);</span></pre>
 
         <p>
-            Fine, it's clear how to make use of internal Node.js modules. How
-            do we create our own modules, and how do we use them?
+            Node.js内部のモジュールの使い方はわかりました。では自分でモジュールを作り、
+            それを使うためにはどのようにしたら良いのでしょうか。
         </p>
 
         <p>
-            Let's find out by turning our <em>server.js</em> script into a
-            real module.
+            <em>server.js</em>スクリプトをモジュールとして作り直してみましょう。
         </p>
 
         <p>
-            Turns out, we don't have to change that much. Making some code
-            a module means we need to <em>export</em> those parts of its
-            functionality that we want to provide to scripts that require
-            our module.
+            そんなに変更する必要はありません。コードをモジュール化するためには、
+            それを必要とするモジュールのスクリプトに提供するように、
+            パーツが持っている機能を<em>export</em>する必要があります。
         </p>
 
         <p>
-            For now, the functionality our HTTP server needs to export is
-            simple: scripts requiring our server module simply need to
-            start the server.
+            今のところ、exportしたいHTTPサーバの機能は単純なものです:
+            我々のサーバモジュールは単にサーバを起動するだけのスクリプトです。
         </p>
 
         <p>
-            To make this possible, we will put our server code into a
-            function named <em>start</em>, and we will export this
-            function:
+            これを実現するには、サーバのコードを<em>start</em>という関数の中に放り込み、
+            この関数をexportします:
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
@@ -1174,13 +1046,12 @@
                 class="pln"> start</span><span class="pun">;</span></pre>
 
         <p>
-            This way, we can now create our main file <em>index.js</em>,
-            and start our HTTP there, although the code for the server is
-            still in our <em>server.js</em> file.
+            このようにすれば、サーバのコードが<em>server.js</em>ファイルの中にある状態で、
+            メインファイル<em>index.js</em>を作り、そこでHTTPサーバを起動することができます。
         </p>
 
         <p>
-            Create a file <em>index.js</em> with the following content:
+            以下の内容の<em>index.js</em>ファイルを作成して下さい:
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> server </span><span class="pun">=</span><span
                 class="pln"> require</span><span class="pun">(</span><span class="str">"./server"</span><span
@@ -1188,78 +1059,69 @@
                 class="pun">();</span></pre>
 
         <p>
-            As you can see, we can use our server module just like any
-            internal module: by requiring its file and assigning it to
-            a variable, its exported functions become available to us.
+            すぐおわかりだと思いますが、サーバモジュールを他の内部モジュールと同じように使うことができます:
+            そのファイルをrequireし、変数に割り当てれば、exportされた関数を使うことができるのです。
         </p>
 
         <p>
-            That's it. We can now start our app via our main script, and it
-            still does exactly the same:
+            これだけです。では我々のアプリをメインスクリプトから起動してみましょう。
+            この部分は今までと同じです:
         </p>
         <pre>node index.js</pre>
 
         <p>
-            Great, we now can put the different parts of our application
-            into different files and wire them together by making them
-            modules.
+            素晴らしいですね。モジュールを作ることで、アプリケーションの特定の部分を別のファイルに移し、
+            再度つなぎ合わせることができました。
         </p>
 
         <p>
-            We still have only the very first part of our application in
-            place: we can receive HTTP requests. But we need to do
-            something with them - depending on which URL the browser
-            requested from our server, we need to react differently.
+            アプリケーションの最初の部分、HTTPリクエストを受け付ける、という部分しか残っていません。
+            ただ、もう少しだけやりたいことがあります –
+            ブラウザからリクエストのあったURLによって応答のしかたを変えたいですね。
         </p>
 
         <p>
-            For a very simple application, you could do this directly
-            within the callback function <em>onRequest()</em>. But as I said,
-            let's add a bit more abstraction in order to make our example
-            application a bit more interesting.
+            単純なアプリケーションとしては、<em>onRequest()</em>
+            コールバック関数の中で直接やることもできます。
+            しかし先ほど述べた通り、もう少しだけ抽象レイヤーを追加して、
+            サンプルアプリケーションを面白くしてみましょう。
         </p>
 
         <p>
-            Making different HTTP requests point at different parts of our
-            code is called "routing" - well, then, let's create a module
-            called <em>router</em>.
+            異なるHTTPリクエストに応じて行き先となるコードを変えることを”ルーティング”と呼びます –
+            では、<em>router</em>と名付けてモジュールを作っていきましょう。
         </p>
 
         <a name="whats-needed-to-route-requests"></a>
 
-        <h3>What's needed to "route" requests?</h3>
+        <h3>リクエストを”ルーティング”するために必要なものは？</h3>
 
         <p>
-            We need to be able to feed the requested URL and possible
-            additional GET and POST parameters into our router, and based
-            on these the router then needs to be able to decide which code
-            to execute (this "code to execute" is the third part of our
-            application: a collection of request handlers that do the
-            actual work when a request is received).
+            リクエストURLに加えて、GETやPOSTパラメータをルータに渡してやる必要があり、
+            ルータはそれに基づいて実行するコードを決定します(この”実行するコード”とは、
+            我々のアプリケーションの第３の部分となるものです：
+            つまり、リクエストを受信した時に実際に働くリクエストハンドラ群です)。
         </p>
 
         <p>
-            So, we need to look into the HTTP requests and extract the
-            requested URL as well as the GET/POST parameters from them.
-            It could be argued if that should be part of the router or
-            part of the server (or even a module of its own), but let's
-            just agree on making it part of our HTTP server for now.
+            HTTPリクエストの中を見て、リクエストURLやGET、POSTパラメータを抽出しなければいけません。
+            ルータの一部としてやるべきか、
+            サーバの中でやるべきか(もしくはモジュール自身か)という点は議論の余地があるかもしれませんが、
+            とりあえず現時点ではHTTPサーバの一部分としてやってみましょう。
         </p>
 
         <p>
-            All the information we need is available through the
-            <em>request</em> object which is passed as the first parameter
-            to our callback function <em>onRequest()</em>. But to interpret
-            this information, we need some additional Node.js modules, namely
-            <em>url</em> and <em>querystring</em>.
+            必要な情報はすべて、コールバック関数<em>onRequest()</em>の第一引数として渡される<em>request</em>
+            オブジェクトから得ることができます。
+            ただ、内容を解釈するためには、Node.jsの追加のモジュール、
+            つまり<em>url</em>と<em>querystring</em>が必要となります。
         </p>
 
         <a name="head20"></a>
         <p>
-            The <em>url</em> module provides methods which allow us to
-            extract the different parts of a URL (like e.g. the requested
-            path and query string), and <em>querystring</em> can in turn be
-            used to parse the query string for request parameters:
+            <em>url</em>モジュールが提供するのは、
+            URLの各部分(例えば、リクエストパスやクエリ文字列)を抽出するメソッドです。
+            抽出した後、<em>querystring</em>モジュールでリクエストパラメータのクエリ文字列をパースすることができます:
         </p>
 <pre>                               url.parse(string).query
                                            |
@@ -1277,14 +1139,14 @@ http://localhost:8888/start?foo=bar&amp;hello=world
 </pre>
 
         <p>
-            We can, of course, also use <em>querystring</em> to parse the
-            body of a POST request for parameters, as we will see
-            later.
+            もちろん、<em>querystring</em>を使って
+            POSTリクエストのパラメータをパースすることもできるのですが、
+            それは後で見てみることにします。
         </p>
 
         <p>
-            Let's now add to our <em>onRequest()</em> function the logic
-            needed to find out which URL path the browser requested:
+            では<em>onRequest()</em>関数に、
+            ブラウザがリクエストしてきたURLパスを見つけるためのロジックを追加してみましょう:
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
@@ -1321,22 +1183,23 @@ http://localhost:8888/start?foo=bar&amp;hello=world
                 class="pln"> start</span><span class="pun">;</span></pre>
 
         <p>
-            Fine. Our application can now distinguish requests based on the
-            URL path requested - this allows us to map requests to our
-            request handlers based on the URL path using our (yet to be
-            written) router.
+            はい。これで我々のアプリケーションはリクエストされたURLパスによって、
+            そのリクエストを区別することができます –
+            これでリクエストを、(これから書くことになる)ルータを使ってURLパスに基づく
+            リクエストハンドラにマッピングすることができます。
         </p>
 
         <p>
-            In the context of our application, it simply means that we will
-            be able to have requests for the <em>/start</em> and
-            <em>/upload</em> URLs handled by different parts of our
-            code. We will see how everything fits together soon.
+            アプリケーションのコンテキストにおいて、
+            <em>/start</em>というURLに対するリクエストと、
+            <em>/upload</em>というURLに対するリクエストは、
+            それぞれ別のコードに渡すことができるわけです。
         </p>
 
         <p>
-            Ok, it's time to actually write our router. Create a new file
-            called <em>router.js</em>, with the following content:
+            OK、実際のルータのコードを書いてみましょう。
+            <em>router.js</em>というファイルを作成し、
+            中身を以下の通り書いて下さい:
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> route</span><span
                 class="pun">(</span><span class="pln">pathname</span><span class="pun">)</span><span
@@ -1348,25 +1211,25 @@ http://localhost:8888/start?foo=bar&amp;hello=world
                 class="pln"> route</span><span class="pun">;</span></pre>
 
         <p>
-            Of course, this code basically does nothing, but that's ok for
-            now. Let's first see how to wire together this router with our
-            server before putting more logic into the router.
+            もちろん、このコード自体は何もしませんが、
+            今のところそれでOKです。色々なロジックをルータの中に書いていく前に、
+            どうやってこのルータをサーバと連携させるのかを見ていきましょう。
         </p>
 
         <p>
-            Our HTTP server needs to know about and make use of our router.
-            We could hard-wire this dependency into the server, but because
-            we learned the hard way from our experience with other
-            programming languages, we are going to loosely couple server
-            and router by injecting this dependency (you may want to read
-            <a href="http://martinfowler.com/articles/injection.html">Martin Fowlers excellent post on Dependency Injection</a>
-            for background information).
+            我々のHTTPサーバは、ルータのことを知り、利用する必要があります。
+            依存関係をサーバから密に結合させることもできますが、
+            様々なプログラミング言語での苦い経験からもわかるとおり、
+            サーバとルータの相互依存性としては粗に結合させるべきでしょう
+            (Dependency Injection: 依存性の注入。
+            背景については
+            <a href="http://martinfowler.com/articles/injection.html">Martin Fowlerによる素晴らしいエントリ</a>
+            を読むと良いでしょう)
         </p>
 
         <p>
-            Let's first extend our server's <em>start()</em> function in
-            order to enable us to pass the route function to be used by
-            parameter:
+            最初にサーバの<em>start()</em>関数を拡張して、
+            ルーティングのための関数を引数で指定して使えるようにしましょう:
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
@@ -1406,8 +1269,7 @@ http://localhost:8888/start?foo=bar&amp;hello=world
                 class="pln"> start</span><span class="pun">;</span></pre>
 
         <p>
-            And let's extend our <em>index.js</em> accordingly, that is,
-            injecting the route function of our router into the server:
+            そして<em>index.js</em>も拡張しましょう。ルーティングのための関数をサーバに組み込みます:
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> server </span><span class="pun">=</span><span
                 class="pln"> require</span><span class="pun">(</span><span class="str">"./server"</span><span
@@ -1419,103 +1281,92 @@ http://localhost:8888/start?foo=bar&amp;hello=world
                 class="pun">);</span><span class="pln"><br></span></pre>
 
         <p>
-            Again, we are passing a function, which by now isn't any news
-            for us.
+            また出てきました。関数を渡していますね。これはもう目新しいことではないはずです。
         </p>
 
-        <p>
-            If we start our application now (<em>node index.js,
-            as always</em>), and request an URL, you can now see from the
-            application's output that our HTTP server makes use of our
-            router and passes it the requested pathname:
+        <p>ここで(<em>node indes.js</em>として)アプリケーションを起動してURLへリクエストを送ったら、
+            HTTPサーバがルータを使用している様子、それからリクエストされたパス名が渡されている様子が、
+            アプリケーションの出力内容からわかるはずです:
         </p>
         <pre>bash$ node index.js
 Request for /foo received.
 About to route a request for /foo</pre>
 
         <p>
-            (I omitted the rather annoying output for the /favicon.ico
-            request).
+            (紛らわしいので/favicon.icoへのリクエストは省略しています)
         </p>
 
         <a name="execution-in-the-kongdom-of-verbs"></a>
 
-        <h3>Execution in the kingdom of verbs</h3>
+        <h3>動詞王国での実行</h3>
 
         <p>
-            May I once again stray away for a while and talk about
-            functional programming again?
+            今一度、少しの間だけ機能的なプログラミングについての話をしても良いでしょうか。
         </p>
 
         <p>
-            Passing functions is not only a technical consideration.
-            With regard to software design, it's almost philosophical.
-            Just think about it: in our index file, we could have passed
-            the <em>router</em> object into the server, and the server
-            could have called this object's <em>route</em> function.
+            関数を渡すのは、技術的な思慮によるものだけではありません。ソフトウェアデザインに関係していて、
+            哲学的とさえいえます。考えてみて下さい:
+            indexファイルは、<em>router</em>オブジェクトをサーバに渡します。
+            そしてサーバはこのオブジェクトの<em>route</em>関数を呼びます。
         </p>
 
         <p>
-            This way, we would have passed a <em>thing</em>, and the server
-            would have used this thing to <em>do</em> something. Hey,
-            router thing, could you please route this for me?
+            このように、<em>モノ</em>を渡して、サーバが何かを<em>スル</em>ためにこれを使うのです。
+            ねえルータさん、これをルーティングしてくれない？
         </p>
 
         <p>
-            But the server doesn't need the thing. It only needs to get
-            something <em>done</em>, and to get something done, you don't
-            need things at all, you need <em>actions</em>. You don't need
-            <em>nouns</em>, you need <em>verbs</em>.
+            しかしサーバは何かする必要はありません。何かを<em>やらせて</em>、それをやらせるために、
+            最終的に何か必要なものがあるわけではなく、
+            とにかく<em>アクション</em>を必要とします。必要なのは<em>名詞</em>ではなく、<em>動詞</em>なのです。
         </p>
 
         <p>
-            Understanding the fundamental mind-shift that's at the core of
-            this idea is what made me really understand functional
-            programming.
+            この考え方の核心となる根本的なマインドシフトが理解できてから、
+            私は機能的プログラミングをとても良く理解することができました。
         </p>
 
         <p>
-            And I did understand it when reading Steve Yegge's masterpiece
-            <a href="http://steve-yegge.blogspot.com/2006/03/execution-in-kingdom-of-nouns.html">Execution in the Kingdom of Nouns</a>.
-            Go read it now, really. It's one of the best writings related
-            to software I ever had the pleasure to encounter.
+            私は、Steve Yeggeによる名作
+            <a href="http://steve-yegge.blogspot.com/2006/03/execution-in-kingdom-of-nouns.html">Execution in the Kingdom of Nouns</a>
+            を読んだ時にこの考え方を理解することができたのです。
+            是非今すぐアクセスしてこれを読んで下さい。
+            私が今まで読んだソフトウェアに関する書き物の中でも、出会えて嬉しいと思える、最高のものです。
         </p>
 
         <a name="routing-to-real-request-handlers"></a>
 
-        <h3>Routing to real request handlers</h3>
+        <h3>本当のリクエストハンドラへのルーティング</h3>
 
         <p>
-            Back to business. Our HTTP server and our request router are
-            now best friends and talk to each other as we intended.
+            さて、仕事に戻るとしましょう。HTTPサーバとリクエストルータは、我々の意図した通り、
+            お互いに会話ができる仲良しの友達となりました。
         </p>
 
         <p>
-            Of course, that's not enough. "Routing" means, we want to
-            handle requests to different URLs differently. We would like to
-            have the "business logic" for requests to <em>/start</em>
-            handled in another function than requests to <em>/upload</em>.
+            もちろん、それだけでは不十分です。”ルーティング”とは、個々のリクエストを別々に取り扱いたい、
+            ということを意味しています。私たちが欲しいのは、
+            <em>/upload</em>へのリクエストや<em>/start</em>へのリクエストをそれぞれ取り扱う”ビジネスロジック”なのです。
         </p>
 
         <p>
-            Right now, the routing "ends" in the router, and the router is
-            not the place to actually "do" something with the requests,
-            because that wouldn't scale well once our application becomes
-            more complex.
+            今、ルーティングはルータの内部で”終了”しています。
+            これはアプリケーションがもっと複雑になった時にスケールできなくなるからで、
+            ルータはリクエストに対して実際に何かを”する”場所ではないわけです。
         </p>
 
         <p>
-            Let's call these functions, where requests are routed to,
-            <em>request handlers</em>. And let's tackle those next, because
-            unless we have these in place there isn't much sense in doing
-            anything with the router for now.
+            では、リクエストが引き渡される<em>リクエストハンドラ</em>を呼び出しましょう。
+            リクエストハンドラがないと、今までルータを使ってやろうとしていた事の意味がなくなってしまいます。
         </p>
 
         <p>
-            New application part, new module - no surprise here. Let's
-            create a module called requestHandlers, add a placeholder
-            function for every request handler, and export these as
-            methods of the module:
+            アプリケーションの新しい部分、新しいモジュールなど、 -
+            驚くような事はここでは一切ありません。
+            リクエストハンドラと呼ばれるモジュールを作って、
+            プレースホルダとなる関数を全てのリクエストハンドラに追加し、
+            モジュールのメソッドとしてエクスポートしましょう:
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> start</span><span
                 class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; console</span><span
@@ -1531,83 +1382,79 @@ About to route a request for /foo</pre>
                 class="pln"> upload</span><span class="pun">;</span></pre>
 
         <p>
-            This allows us to wire the request handlers into the router,
-            giving our router something to route to.
+            こうして、ルータにルーティングする先のものを渡すことで、
+            リクエストハンドラとルータを繋ぎ合わせることができます。
         </p>
 
         <p>
-            At this point we need to make a decision: do we hard-code usage
-            of the requestHandlers module into the router, or do we want a
-            bit more dependency injection? Although dependency injection,
-            like every other pattern, shouldn't be used only for the sake
-            of using it, in this case it makes sense to loosely couple the
-            router and its request handlers, and thus making the router
-            really reusable.
+            この時点で私たちは決断をする必要があります:
+            リクエストハンドラのモジュールはルータの中にハードコーディングするのか、
+            もしくは少しだけ依存性の注入を行うのか。
+            依存性の注入は、他のパターンも同様ですが、使いたいというだけで使うべきではありません。
+            ただしこのケースでは、
+            ルータとリクエストハンドラを粗に結合することでルータの再利用性を高められるという意味がしっかりあります。
+            
+            つまり、リクエストハンドラはサーバからルータに渡す必要があることを意味していますが、
+            これはまだ間違っているような感じがします。ちゃんと説明するとしたら、
+            メインファイルからサーバに渡し、そこからさらにルータに渡す、ということになります。
         </p>
 
         <p>
-            This means we need to pass the request handlers from our server
-            into our router, but this feels even more wrong, which is why
-            we should go the whole way and pass them to the server from our
-            main file, and passing it on to the router from there.
+            つまり、リクエストハンドラはサーバからルータに渡す必要があることを意味していますが、
+            これはまだ間違っているような感じがします。ちゃんと説明するとしたら、
+            メインファイルからサーバに渡し、そこからさらにルータに渡す、ということになります。
         </p>
 
         <p>
-            How are we going to pass them? Right now we have two handlers,
-            but in a real application, this number is going to increase and
-            vary, and we sure don't want to fiddle around mapping requests
-            to handlers in the router anytime a new URL / request handler
-            is added. And having some
-            <em>if request == x then call handler y</em> in the router
-            would be more than ugly.
+            ではどうやってそれを渡すのでしょうか。今現在、2つのハンドラがあります。
+            しかし実際のアプリケーションでは、この数はもっと増えたり減ったりします。
+            新しいURLやリクエストが追加される度に、
+            リクエストをハンドラにマッピングするというつまらない作業をしたくはありません。
+            かといって<em>if request == x then call handler y</em>
+            といったようなことをするのでは美しくありません。
         </p>
 
         <p>
-            A varying number of items, each mapped to a string (the
-            requested URL)? Well, sounds like an associative array would be
-            a perfect fit.
+            要素の数が変わって、文字列(おそらくリクエストURL)にマッピングする？ということは、
+            なんだか連想配列がうまくはまりそうですね。
         </p>
 
         <p>
-            Well, this finding is slightly disappointed by the fact that
-            JavaScript doesn't provide associative array - or does it?
-            Turns out, it's actually objects that we want to use if we need
-            an associative array!
+            ただ、悪いニュースがあります。JavaScriptでは、連想配列が提供されていないのです。
+            でも大丈夫。連想配列が必要なら、オブジェクトを使えば良いのです！
         </p>
 
         <p>
-            There's a nice introduction to this at
-            <a href="http://msdn.microsoft.com/en-us/magazine/cc163419.aspx">http://msdn.microsoft.com/en-us/magazine/cc163419.aspx</a>,
-            let me quote the relevant part:
+            これについては、次のURLに良い記事があります。
+            <a href="http://msdn.microsoft.com/en-us/magazine/cc163419.aspx">http://msdn.microsoft.com/en-us/magazine/cc163419.aspx</a>
+            関連する箇所を引用します:
         </p>
         <blockquote>
             <p>
-                In C++ or C#, when we’re talking about objects, we're
-                referring to instances of classes or structs. Objects have
-                different properties and methods, depending on which
-                templates (that is, classes) they are instantiated from.
-                That's not the case with JavaScript objects. In JavaScript,
-                objects are just collections of name/value pairs - think of a
-                JavaScript object as a dictionary with string keys.
+                C++やC#において、オブジェクトについて話をする時は、
+                クラスや構造体のインスタンスについて触れます。
+                オブジェクトはそれぞれ異なるプロパティやメソッドを持ちますが、
+                それらはインスタンス化するためのテンプレート (つまり、クラスのことです)に依存します。
+                しかしJavaScriptのオブジェクトは、これに当てはまりません。
+                JavaScriptでは、オブジェクトは単なる名前と値のペアの集合なのです。
+                よってJavaScriptにおけるオブジェクトと呼ぶものは、
+                文字列をキーにしたディクショナリであると考えて下さい。
             </p>
         </blockquote>
 
         <p>
-            If JavaScript objects are just collections of name/value pairs,
-            how can they have methods? Well, the values can be strings,
-            numbers etc. - or functions!
+            JavaScriptのオブジェクトが単なる名前と値のペアの集合であるなら、
+            どうやってメソッドを持つのでしょうか？値は、文字列でも良いですし、
+            数字でも良い、 - そして関数でも良いのです！
         </p>
 
         <p>
-            Ok, now finally back to the code. We decided we want to pass
-            the list of requestHandlers as an object, and in order to
-            achieve loose coupling we want to inject this object into the
-            <em>route()</em>.
+            OK、ではコードに戻ってみましょう。リクエストハンドラのリストをオブジェクトとして渡し、
+            粗結合にするためにこのオブジェクトを<em>route()</em>に入れてしまいます。
         </p>
 
         <p>
-            Let's start with putting the object together in our main file
-            <em>index.js</em>:
+            まずは、オブジェクトをメインファイルである<em>index.js</em>に配置してしまいましょう:
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> server </span><span class="pun">=</span><span
                 class="pln"> require</span><span class="pun">(</span><span class="str">"./server"</span><span
@@ -1632,25 +1479,23 @@ About to route a request for /foo</pre>
                 class="pun">,</span><span class="pln"> handle</span><span class="pun">);</span></pre>
 
         <p>
-            Although <em>handle</em> is more of a "thing" (a collection of
-            request handlers), I propose we name it like a verb, because
-            this will result in a fluent expression in our router, as we
-            will see soon.
+            <em>handle</em>は、いわば”モノ”(リクエストハンドラの集合)ではありますが、
+            動詞を使って命名したいと思います。次に出てくるルータのところで、
+            より自然な表現をすることができるからです。
         </p>
 
         <p>
-            As you can see, it's really simple to map different URLs to the
-            same request handler: by adding a key/value pair of
-            <em>"/"</em> and <em>requestHandlers.start</em>, we can express
-            in a nice and clean way that not only requests to
-            <em>/start</em>, but also requests to <em>/</em> shall be
-            handled by the <em>start</em> handler.
+            おわかりの通り、
+            異なるURLを同じリクエストハンドラにマッピングする箇所がとてもシンプルになっています:
+            <em>“/”</em>と<em>requestHandlers.start</em>というキーと値のペアを追加することで、
+            <em>/start</em>へのリクエストだけでなく<em>/</em>へのアクセスも同じ<em>start</em>ハンドラに渡す処理が、
+            とても美しくあざやかに実現できていますね。
         </p>
 
         <p>
-            After defining our object, we pass it into the server as an
-            additional parameter. Let's change our <em>server.js</em> to
-            make use of it:
+            オブジェクトが定義できたら、
+            それを追加の引数としてサーバに渡します。
+            <em>server.js</em>を修正して実際に使えるようにしましょう:
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
@@ -1691,14 +1536,12 @@ About to route a request for /foo</pre>
                 class="pln"> start</span><span class="pun">;</span></pre>
 
         <p>
-            We've added the <em>handle</em> parameter to our
-            <em>start()</em> function, and pass the handle object on to
-            the <em>route()</em> callback, as its first parameter.
+            引数<em>handle</em>を<em>start()</em>関数に追加して、
+            ハンドルオブジェクトを<em>route()</em>コールバックの第一引数として渡すコードに修正しました。
         </p>
 
         <p>
-            Let's change the <em>route()</em> function accordingly, in our
-            <em>router.js</em> file:
+            <em>route()</em>関数も同様に変更しましょう。<em>router.js</em>ファイルは以下のよう修正します：
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> route</span><span
                 class="pun">(</span><span class="pln">handle</span><span class="pun">,</span><span
@@ -1723,22 +1566,20 @@ About to route a request for /foo</pre>
                 class="pln"> route</span><span class="pun">;</span></pre>
 
         <p>
-            What we do here is, we check if a request handler for the given
-            pathname exists, and if it does, we simply call the according
-            function. Because we can access our request handler functions
-            from our object just as we would access an element of an
-            associative array, we have this nice fluent
-            <em>handle[pathname]();</em> expression I talked about earlier:
-            "Please, <em>handle</em> this <em>pathname</em>".
+            ここで何をしているかというと、パス名に対応するリクエストハンドラが存在するかどうかをチェックし、
+            もし存在する場合は、紐付けられた関数を単に呼び出しています。
+            連想配列の要素にアクセスすればオブジェクト経由でリクエストハンドラ関数にアクセスできるので、
+            先述のように実に自然な<em>handle[パス名]();</em>として、
+            あたかも”この<em>パス名</em>を<em>handle</em>して下さい”
+            と言っているように表現することができます。
         </p>
 
         <p>
-            Ok, that's all we need to wire server, router, and request
-            handlers together! When starting our application and requesting
-            <a href="http://localhost:8888/start" rel="nofollow">http://localhost:8888/start</a>
-
-            in our browser, we can prove that the correct request handler
-            was indeed called:
+            OK、これでサーバ、ルータ、リクエストハンドラをすべて繋ぎ合わせることができました！
+            アプリケーションを起動し、
+            <a href="http://localhost:8888/start" rel="nofollow"http://localhost:8888/start</a>
+            にブラウザからリクエストを送れば、
+            このように正しくリクエストハンドラが呼び出されていることがわかります:
         </p>
         <pre>Server has started.
 Request for /start received.
@@ -1746,9 +1587,10 @@ About to route a request for /start
 Request handler 'start' was called.</pre>
 
         <p>
-            And opening <a href="http://localhost:8888/" rel="nofollow">http://localhost:8888/</a>
-            in our browser proves that these requests, too, are indeed handled by
-            the <em>start</em> request handler:
+            そして
+            <a href="http://localhost:8888/" rel="nofollow">http://localhost:8888/</a>
+            をブラウザで開いた時、このリクエストはさらに、
+            <em>start</em>リクエストハンドラによって処理されていることもわかります:
         </p>
         <pre>Request for / received.
 About to route a request for /
@@ -1756,55 +1598,49 @@ Request handler 'start' was called.</pre>
 
         <a name="making-the-request-handlers-respond"></a>
 
-        <h3>Making the request handlers respond</h3>
+        <h3>リクエストハンドラによる応答</h3>
 
         <p>
-            Beautiful. Now if only the request handlers could actually send
-            something back to the browser, that would be even better,
-            right?
+            美しい。あとは実際にリクエストハンドラが何かブラウザに送り返せば良いわけですね。
         </p>
 
         <p>
-            Remember, the "Hello World" your browser displays upon
-            requesting a page still comes from the <em>onRequest</em>
-
-            function in our <em>server.js</em> file.
+            ひとつ思い出してみて下さい。
+            ブラウザがページをリクエストした時に表示される”Hello World”は、
+           <em>server.js</em>ファイルの<em>onRequest()</em>関数が出しているものです。
         </p>
 
         <p>
-            "Handling request" means "answering requests" after all, thus
-            we need to enable our request handlers to speak with the
-            browser just like our <em>onRequest</em> function does.
+            “ハンドリングリクエスト”とは、
+            ”リクエストに応答する”ということを意味していて、
+            この<em>onRequest</em>関数がしているように、
+            リクエストハンドラにブラウザと会話をしてもらう必要があります。
         </p>
 
         <a name="how-to-not-do-it"></a>
 
-        <h4>How to not do it</h4>
+        <h4>うまくいかない方法</h4>
 
         <p>
-            The straight-forward approach we - as developers with a
-            background in PHP or Ruby - might want to follow is actually
-            very deceitful: it works like a charm, seems to make a lot of
-            sense, and then suddenly screws things up when we don't expect
-            it.
+            PHPやRubyの経験を持つデベロッパーにとって、
+            私たちがやりたいと思うような単刀直入なアプローチは間違えやすい可能性があります:
+            魔法のように動いて、もっともらしくて、そして突然予期せず失敗に終わってしまうのです。
         </p>
 
         <p>
-            What I mean by "straight-forward approach" is this: make the
-            request handlers <em>return()</em> the content they want to
-            display to the user, and send this response data in the
-            <em>onRequest</em> function back to the user.
+             “単刀直入なアプローチ”というのはつまりこういうことです：
+            ユーザに対して表示したい内容をリクエストハンドラに<em>return()</em>させ、
+            このレスポンスデータを<em>onRequest</em>関数でユーザに戻す。
         </p>
 
         <p>
-            Let's just do this, and then see why it's not such an overly
-            good idea.
+            とりあえずやってみましょう。良いアイデアではないことがわかるはずです。
         </p>
 
         <p>
-            We start with the request handlers and make them return what we
-            would like to display in the browser. We need to change
-            <em>requestHandlers.js</em> to this:
+            まずリクエストハンドラから始めましょう。
+            ブラウザに表示させたい内容を戻すようにします。
+            <em>requestHandlers.js</em>を下記のように修正します:
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> start</span><span
                 class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; console</span><span
@@ -1824,9 +1660,9 @@ Request handler 'start' was called.</pre>
                 class="pln"> upload</span><span class="pun">;</span></pre>
 
         <p>
-            Good. Likewise, the router needs to return to the server what
-            the request handlers return to him. We therefore need to edit
-            <em>router.js</em> like this:
+            これでよし。
+            同じように、ルータはリクエストハンドラによって返されたものをサーバに渡してやる必要があります。
+            なので<em>router.js</em>はこのようにします:
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> route</span><span
                 class="pun">(</span><span class="pln">handle</span><span class="pun">,</span><span
@@ -1853,14 +1689,11 @@ Request handler 'start' was called.</pre>
                 class="pln"> route</span><span class="pun">;</span></pre>
 
         <p>
-            As you can see, we also return some text if the request could
-            not be routed.
+            これを見ておわかりのとおり、リクエストがルーティングされなかった時にもいくらかのテキストを返すようにしています。
         </p>
 
         <p>
-            And last but not least, we need to refactor our server to make
-            it respond to the browser with the content the request handlers
-            returned via the router, transforming <em>server.js</em> into:
+            そして最後に、ルータ経由でリクエストハンドラが渡してきた内容をブラウザに返すよう、サーバを改修します。<em>server.js</em>は下記のようにしましょう:
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
@@ -1903,49 +1736,48 @@ Request handler 'start' was called.</pre>
                 class="pln"> start</span><span class="pun">;</span></pre>
 
         <p>
-            If we start our rewritten application, everything works like
-            a charm: requesting <a href="http://localhost:8888/start" rel="nofollow">http://localhost:8888/start</a>
-            results in "Hello Start" being displayed in the browser,
-            requesting <a href="http://localhost:8888/upload" rel="nofollow">http://localhost:8888/upload</a>
-            gives us "Hello Upload", and <a href="http://localhost:8888/foo" rel="nofollow">http://localhost:8888/foo</a>
-            produces "404 Not found".
+            書き直したアプリケーションを起動すれば、すべては魔法のようにうまく行くことでしょう。つまり
+            <a href="http://localhost:8888/start" rel="nofollow">http://localhost:8888/start</a>
+            をリクエストすれば”Hello Start”がブラウザに表示され、
+            <a href="http://localhost:8888/upload" rel="nofollow">http://localhost:8888/upload</a>
+            をリクエストすれば”Hello Upload”と、
+            <a href="http://localhost:8888/foo" rel="nofollow">http://localhost:8888/foo</a>
+            などとすれば”404 Not found”となります。
         </p>
 
         <p>
-            Ok, then why is that a problem? The short answer: because we
-            will run into problems if one of the request handlers wants to make
-            use of a non-blocking operation in the future.
+            OK、これで何か問題でも？端的に言うと、もしリクエストハンドラのどれかが、
+            後述のノンブロッキング操作を行いたいとなった場合に問題となってしまうのです。
         </p>
 
         <p>
-            Let's take a bit more time for the long answer.
+            それでは詳しい説明に入りたいと思います。
         </p>
 
         <a name="blocking-and-non-blocking"></a>
 
-        <h4>Blocking and non-blocking</h4>
+        <h4>ブロッキングとノンブロッキング</h4>
 
         <p>
-            As said, the problems will arise when we include non-blocking
-            operations in the request handlers. But let's talk about
-            blocking operations first, then about non-blocking operations.
+            先述のとおり、リクエストハンドラ内でノンブロッキングの操作をしようとした時、
+            問題が発生してしまいます。まずはブロッキングでの操作について、
+            そしてノンブロッキングの操作について説明していきます。
         </p>
 
         <p>
-            And instead of trying to explain what "blocking" and
-            "non-blocking" means, let's demonstrate ourselves what happens
-            if we add a blocking operation to our request handlers.
+            “ブロッキング”と”ノンブロッキング”の方法を説明するかわりに、
+            まずはいまのリクエストハンドラにブロッキングの操作を追加したら何が起こるのかを見てみましょう。
         </p>
 
         <p>
-            To do this, we will modify our <em>start</em> request handler
-            to make it wait 10 seconds before returning its "Hello Start"
-            string. Because there is no such thing as <em>sleep()</em> in
-            JavaScript, we will use a clever hack for that.
+            これをやるためには、リクエストハンドラ<em>start</em>を改造して、
+            ”Hello Start”文字列を返すまで10秒間待つようにします。
+            <em>sleep()</em>の類いはJavaScriptにないので、
+            ちょっとしたうまい方法で工夫してやる必要があります。
         </p>
 
         <p>
-            Please modify <em>requestHandlers.js</em> as follows:
+            では、<em>requestHandlers.js</em>を下記のように修正して下さい:
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> start</span><span
                 class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; console</span><span
@@ -1978,103 +1810,104 @@ Request handler 'start' was called.</pre>
                 class="pln"> upload</span><span class="pun">;</span></pre>
 
         <p>
-            Just to make clear what that does: when the function
-            <em>start()</em> is called, Node.js waits 10 seconds and only then
-            returns "Hello Start". When calling <em>upload()</em>, it
-            returns immediately, just like before.
+            何をしているのかというと: 関数<em>start()</em>が呼ばれたら、
+            Node.jsは10秒間待ち、”Hello Start”と返します。<em>upload()</em>を呼び出した時は、
+            待つことなくすぐに返します。
         </p>
 
         <p>
-            (Of course, you should imagine that instead of sleeping for
-            10 seconds, there would be a real life blocking operation in
-            <em>start()</em>, like some sort of long-running computation.)
+            (<em>start()</em>内で10秒間スリープしている部分は、
+            実際にはブロッキング操作を行う部分で、
+            ある種もっと長い計算処理が行われるということを想像して下さい)
         </p>
 
         <p>
-            Let's see what this change does.
+            この変更で何が起こるのか見てみましょう。
         </p>
 
         <p>
-            As always, we need to restart our server. This time, I ask you
-            to follow a slightly complex "protocol" in order to see what
-            happens: First, open two browser windows or tabs. In the first
-            browser window, please enter <a href="http://localhost:8888/start" rel="nofollow">http://localhost:8888/start</a>
-            into the address bar, but do not yet open this url!
+            いつも通り、サーバを再起動する必要があります。
+            今回は何が起こるのかを見るために、少し複雑な”手順”を追ってもらいます: 
+            まず、2つのブラウザウィンドウもしくはタブを開き、
+            １つ目のブラウザウィンドウのアドレスバーに
+            <a href="http://localhost:8888/start" rel="nofollow">http://localhost:8888/start</a>
+            と入力して下さい。ただし、まだこのURLを開かないで下さい！
         </p>
 
         <p>
-            In the second browser window's address bar, enter <a href="http://localhost:8888/upload" rel="nofollow">http://localhost:8888/upload</a>,
-            and again, please do not yet hit enter.
+            次に2つめのブラウザウィンドウのアドレスバーに、
+            <a href="http://localhost:8888/upload" rel="nofollow">http://localhost:8888/upload</a>
+            と入力し、1つ目と同様、まだenterを打たないで下さい。
         </p>
 
         <p>
-            Now, do as follows: hit enter on the first window ("/start"),
-            then quickly change to the second window ("/upload") and hit
-            enter, too.
+            そしてこのようにします: 1つ目のウィンドウ(“/start”)でenterキーを押し、
+            すぐに2つめのウィンドウ (“/upload”) に切り替えてenterを打ちます。
         </p>
 
         <p>
-            What you will notice is this: The /start URL takes 10 seconds
-            to load, as we would expect. But the /upload URL <em>also</em>
-            takes 10 seconds to load, although there is no <em>sleep()</em>
-            in the according request handler!
+            このような現象に気づくでしょう:
+            /startのURLの方はロードされるのに10秒間かかります。
+            これは期待通りの動きです。しかし、
+            /uploadのURLの方<em>も</em>ロードに10秒間かかってしまっています。
+            こっちのリクエストハンドラでは<em>sleep()</em>していないのに！
         </p>
 
         <p>
-            Why? Because <em>start()</em> contains a blocking operation.
-            Like in "it's blocking everything else from working".
+            なぜでしょう？
+            それは、<em>start()</em>がブロッキング操作をしているからなのです。
+            ”他のものが動くことをブロックしている”というわけです。
         </p>
 
         <p>
-            And that is a problem, because, as the saying goes: <em>"In
-            node, everything runs in parallel, except your code"</em>.
+            これは問題です。なぜなら有名な格言にもあるとおり:
+            <em>“nodeでは、コード以外のすべてが並列で動作する
+            (In node, everything runs in parallel, except your code)”</em>
+            べきだからです。
         </p>
 
         <p>
-            What that means is that Node.js can handle a lot of concurrent
-            stuff, but doesn't do this by splitting everything into
-            threads - in fact, Node.js is single-threaded. Instead, it does
-            so by running an event loop, and we the developers can make use
-            of this - we should avoid blocking operations whenever
-            possible, and use non-blocking operations instead.
+            Node.jsはたくさんの処理を同時に行えるけれども、
+            全てをスレッドに割り振って行うわけではないのです –
+            実際、Node.jsはシングルスレッドです。そうではなく、
+            イベントループを走らせることでデベロッパーはこれを利用できるのです –
+            これらの理由から、ブロッキング操作は極力避け、
+            かわりにノンブロッキング操作を行うべきなのです。
         </p>
 
         <p>
-            But to do so, we need to make use of callbacks by passing
-            functions around to other functions that might do something
-            that takes some time (like, e.g. sleep for 10 seconds, or query
-            a database, or do some expensive calculation).
+            しかしそれを実現するためには、時間のかかる処理になりそうな場合に、
+            関数を他の関数に渡してコールバック処理を行う必要があります
+            (例えば、10秒待つ、データベースに問い合わせる、大変な計算をするときなどです) 。
         </p>
 
         <p>
-            This way we are saying <em>"Hey, probablyExpensiveFunction(),
-            please do your stuff, but I, the single Node.js thread, am not
-            going to wait right here until you are finished, I will
-            continue to execute the lines of code below you, so would you
-            please take this callbackFunction() here and call it when
-            you are finished doing your expensive stuff? Thanks!"</em>
+            つまりこういうことです。
+            <em>“ねえprobablyExpensiveFunction()(時間がかかりそうな関数)さん、担当の仕事をして下さい。
+            でも私Node.jsはシングルスレッドだから、あなたの仕事が終わるのを待ってられないんだ。
+            あなたの次に並んでるコードを実行してしまいたいから、
+            このcallbackFunction()を持っていって、
+            その時間のかかりそうな仕事が終わったら呼び出してくれる？じゃあよろしく！”</em>
         </p>
 
         <p>
-            (If you would like to read about that in more detail, please have
-            a look at Mixu's post on <a href="http://blog.mixu.net/2011/02/01/understanding-the-node-js-event-loop/">Understanding the node.js event loop</a>.)
+            (もしこれについてさらに詳しく読みたいなら、Mixuのポスト
+            <a href="http://blog.mixu.net/2011/02/01/understanding-the-node-js-event-loop/">Understanding the node.js event loop</a>
+            を読んでみて下さい。)
         </p>
 
         <p>
-            And we will now see why the way we constructed the "request
-            handler response handling" in our application doesn't allow us
-            to make proper use of non-blocking operations.
+            では、なぜ我々のアプリケーションの”リクエストハンドラによるレスポンスのしかた”
+            ではノンブロック操作がうまくできないのでしょうか。
         </p>
 
         <p>
-            Once again, let's try to experience the problem first-hand by
-            modifying our application.
+            今一度、アプリケーションを修正して問題を直接再現してみましょう。
         </p>
 
         <p>
-            We are going to use our <em>start</em> request handler for this
-            again. Please modify it to reflect the following (file
-            <em>requestHandlers.js</em>):
+            もう一度<em>start</em>リクエストハンドラを使います。
+            下記を反映するよう、修正して下さい(<em>requestHandlers.js</em>ファイル):
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> exec </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">"child_process"</span><span
@@ -2105,68 +1938,62 @@ Request handler 'start' was called.</pre>
                 class="pln"> upload</span><span class="pun">;</span></pre>
 
         <p>
-            As you can see, we just introduced a new Node.js module,
-            <em>child_process</em>. We did so because it allows us to make
-            use of a very simple yet useful non-blocking operation:
-            <em>exec()</em>.
+            おわかりのとおり、新しいNode.jsモジュール<em>child_process</em>を使っています。
+            これのおかげで、とてもシンプルで便利なノンブロッキング操作、<em>exec()</em>を活用できるのです。
         </p>
 
         <p>
-            What <em>exec()</em> does is, it executes a shell command from
-            within Node.js. In this example, we are going to use it to get
-            a list of all files in the current directory ("ls -lah"),
-            allowing us to display this list in the browser of a user
-            requesting the <em>/start</em> URL.
+            <em>exec()</em>は、Node.jsの中からシェルコマンドを実行します。
+            この例においては、カレントディレクトリにあるすべてのファイルのリストを取得してみます(“ls -lah")。
+            ユーザがURL<em>/start</em>をリクエストするとこのリストがブラウザに表示されます。
         </p>
 
         <p>
-            What the code does is straightforward: create a new variable
-            <em>content</em> (with an initial value of "empty"), execute
-            "ls -lah", fill the variable with the result, and return it.
+            このコードでやっていることは簡単なことです：
+            新しい変数<em>content</em>を(“empty”という文字列の初期値で)作成し、
+            ”ls -lah"を実行してその結果を変数に格納し、返すだけです。
         </p>
 
         <p>
-            As always, we will start our application, and visit
-            <a href="http://localhost:8888/start" rel="nofollow">http://localhost:8888/start</a>.
+            いつもどおり、アプリケーションを起動して、
+            <a href="http://localhost:8888/start" rel="nofollow">http://localhost:8888/start</a>にアクセスしてみましょう。
         </p>
 
         <p>
-            Which loads a beautiful web page that displays the string
-            "empty". What's going wrong here?
+            すっきりしたWebページがロードされ、文字列”empty”が表示されます。
+            おや、なにか間違っているのでしょうか？
         </p>
 
         <p>
-            Well, as you may have already guessed, <em>exec()</em> does its
-            magic in a non-blocking fashion. That's a good thing, because
-            this way we can execute very expensive shell operations (like,
-            e.g., copying huge files around or similar stuff) without
-            forcing our application into a full stop as the blocking
-            <em>sleep</em> operation did.
+            ご想像の通りかもしれません。<em>exec()</em>はノンブロッキングなやりかたで魔法を使ったのです。
+            まあ良いでしょう、これでとても時間がかかるシェル操作を実行できるのですから
+            (例えば、巨大なファイルをコピーしまくるとか)。
+            <em>sleep</em>の時のように、ブロッキングされてアプリケーションが完全に止まってしまうことはないのです。
         </p>
 
         <p>
-            (If you would like to prove this, replace "ls -lah" with a
-            more expensive operation like "find /").
+            (もしこれを証明したければ、”ls -lah"をもっと時間のかかる操作、
+            たとえば”find /”みたいなものと入れ替えてみて下さい)
         </p>
 
         <p>
-            But we aren't exactly happy with our elegant non-blocking
-            operation, when our browser doesn't display its result, right?
+            しかし、このエレガントなノンブロッキング操作、あまり嬉しくないですよね。
+            ブラウザが結果を表示してくれないわけですから。そうでしょう？
         </p>
 
         <p>
-            Well, then, let's fix it. And while we are at it, let's try to
-            understand why the current architecture doesn't work.
+            じゃあ、直していきましょう。直しながら、
+            なぜこのアーキテクチャがうまくいかないのか解明しましょう。
         </p>
 
         <p>
-            The problem is that <em>exec()</em>, in order to work
-            non-blocking, makes use of a callback function.
+            問題は<em>exec()</em>です。ノンブロッキングで動作するよう、
+            コールバック関数を活用します。
         </p>
 
         <p>
-            In our example, it's an anonymous function which is passed as
-            the second parameter to the <em>exec()</em> function call:
+            先ほどの例では、
+            <em>exec()</em>関数を呼び出す時の第2引数として渡されるのは匿名関数です。
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> </span><span
                 class="pun">(</span><span class="pln">error</span><span class="pun">,</span><span
@@ -2176,84 +2003,72 @@ Request handler 'start' was called.</pre>
                 class="pln"><br></span><span class="pun">}</span></pre>
 
         <p>
-            And herein lies the root of our problem: our own code is
-            executed synchronous, which means that immediately after
-            calling <em>exec()</em>, Node.js continues to execute
-            <em>return content;</em>. At this point, <em>content</em> is
-            still "empty", due to the fact that the callback function
-            passed to <em>exec()</em> has not yet been called - because
-            <em>exec()</em> operates asynchronous.
+            そしてここに我々が直面している問題の原因があります:
+            このコードは同期式に実行されているため、
+            <em>exec()</em>を呼び出した直後にNode.jsは<em>return content;</em>の実行へ進んでいます。
+            この時<em>exec()</em>は非同期式に動作するため、<em>exec()</em>に渡されたコールバック関数が呼び出されておらず、
+            <em>content</em>はまだ”empty”のままなのです。
         </p>
 
         <p>
-            Now, "ls -lah" is a very inexpensive and fast operation (unless
-            there are millions of files in the directory). Which is why the
-            callback is called relatively expeditious - but it nevertheless
-            happens asynchronously.
+            いまのところ”ls -lah"は(ディレクトリ内にファイルが数百万もない限り)そ
+            れほど時間がかからず素早く実行されます。
+            それはコールバックが比較的早く呼び出されるからですが、それでも非同期に実行されます。
         </p>
 
         <p>
-            Thinking about a more expensive command makes this more
-            obvious: "find /" takes about 1 minute on my
-            machine, but if I replace "ls -lah" with "find /" in the
-            request handler, I still immediately receive an HTTP response
-            when opening the /start URL - it's clear that <em>exec()</em>
-            does something in the background, while Node.js itself
-            continues with the application, and we may assume that the
-            callback function we passed into <em>exec()</em> will be called
-            only when the "find /" command has finished running.
+            もっと時間のかかるコマンドで考えてみると明らかになります:
+            “find /”と実行すると、私のマシンではおよそ1分程度かかります。
+            しかしリクエストハンドラ内の”ls -lah"を”find /”に置き換えても、
+            やはり/start URLを開いたとき、すぐにHTTPレスポンスが返ってきます。
+            つまり<em>exec()</em>はバックグラウンドで実行され、
+            Node.jsはアプリケーションの実行を続けるということがわかります。
+            そして<em>exec()</em>に渡したコールバック関数は、
+            ”find /”コマンドの実行が完了した時にだけ呼ばれるであろうことが想像できます。
         </p>
 
         <p>
-            But how can we achieve our goal, i.e. showing the user a list
-            of files in the current directory?
+            しかし、これでどうやって目的を達成できるのでしょうか。
+            ユーザに対してカレントディレクトリのファイル一覧を表示したいのです。
         </p>
 
         <p>
-            Well, after learning how to <em>not</em> do it, let's discuss
-            how to make our request handlers respond to browser requests
-            the right way.
+            どうしたらでき<em>ない</em>かを学んだところで、
+            次はどのようにリクエストハンドラがブラウザに正しく応答させられるかを考えていきましょう。
         </p>
 
         <a name="responding-request-handlers-with-non-blocking-operations"></a>
 
-        <h4>Responding request handlers with non-blocking operations</h4>
+        <h4>ノンブロッキング操作で応答するリクエストハンドラ</h4>
 
         <p>
-            I've just used the phrase "the right way". Dangerous stuff.
-            Quite often, there is no single "right way".
+            “正しく”というフレーズを使いました。これは危険ですね。ひとつの”正しい方法”なんていうものはないですから。
         </p>
 
         <p>
-            But one possible solution for this is, as often with Node.js,
-            to pass functions around. Let's examine this.
+            しかし良い方法ならあります。Node.jsでよく見かけるように、関数を渡し合う方法です。少し調べてみましょう。
         </p>
 
         <p>
-            Right now, our application is able to transport the content
-            (which the request handlers would like to display to the user)
-            from the request handlers to the HTTP server by returning it
-            up through the layers of the application (request handler -&gt;
-            router -&gt; server).
+            今のところ、アプリケーションは(リクエストハンドラがユーザに表示したい)コンテンツを送ってやることはできます。
+            リクエストハンドラからHTTPサーバへ、
+            アプリケーションのレイヤーをまたがって(リクエストハンドラ-&gt;ルータ-&gt;サーバと)返していくわけです。
         </p>
 
         <p>
-            Our new approach is as follows: instead of bringing the content
-            to the server, we will bring the server to the content. To be
-            more precise, we will inject the <em>response</em> object (from
-            our server's callback function <em>onRequest()</em>) through
-            the router into the request handlers. The handlers will then be
-            able to use this object's functions to respond to requests
-            themselves.
+            新しいアプローチ方法はこうです:
+            サーバにコンテンツを渡すのではなく、サーバをコンテンツに渡します。
+            もう少し正確にいうと、ルータを通して(サーバのコールバック関数<em>onRequest()</em>から受け取った)<em>response</em>オブジェクトを、
+            リクエストハンドラに渡してしまいます。
+            それにより、このオブジェクトの関数を使ってリクエストハンドラが自分でリクエストに応答することができます。
         </p>
 
         <p>
-            Enough explanation, here is the step by step recipe on how to
-            change our application.
+            解説はもういいとして、アプリケーションをステップバイステップで修正していきましょう。
         </p>
 
         <p>
-            Let's start with our <em>server.js</em>:
+            <em>server.js</em>からはじめます:
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
@@ -2287,15 +2102,14 @@ Request handler 'start' was called.</pre>
                 class="pln"> start</span><span class="pun">;</span></pre>
 
         <p>
-            Instead of expecting a return value from the <em>route()</em>
-            function, we pass it a third parameter, our <em>response</em>
-            object. Furthermore, we removed any <em>response</em> method
-            calls from the <em>onRequest()</em> handler, because we now
-            expect <em>route</em> to take care of that.
+            <em>route()</em>関数からの戻り値は受け取らずに、
+            第3引数として<em>response</em>オブジェクトを渡しています。
+            さらに、<em>response</em>オブジェクトのメソッドは一切呼び出していません。
+            これは<em>route</em>にすべて任せようと考えているからです。
         </p>
 
         <p>
-            Next comes <em>router.js</em>:
+            次に<em>router.js</em>です:
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> route</span><span
                 class="pun">(</span><span class="pln">handle</span><span class="pun">,</span><span
@@ -2328,17 +2142,15 @@ Request handler 'start' was called.</pre>
                 class="pln"> route</span><span class="pun">;</span></pre>
 
         <p>
-            Same pattern: instead of expecting a return value from our
-            request handlers, we pass the <em>respond</em> object on.
+            同じパターンです: リクエストハンドラからの戻り値を受け取らず、<em>response</em>オブジェクトを渡します。
         </p>
 
         <p>
-            If no request handler can be used, we now take care of
-            responding with a proper "404" header and body ourselves.
+            もしリクエストハンドラがない場合、適切に”404”ヘッダとボディーを自分で返します。
         </p>
 
         <p>
-            And last but not least, we modify <em>requestHandlers.js</em>:
+            そして最後に、<em>requestHandlers.js</em>を修正します:
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> exec </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">"child_process"</span><span
@@ -2378,28 +2190,24 @@ Request handler 'start' was called.</pre>
                 class="pln"> upload</span><span class="pun">;</span></pre>
 
         <p>
-            Our handler functions need to accept the response parameter,
-            and have to make use of them in order to respond to the
-            request directly.
+            リクエストハンドラ関数は、
+            リクエストに直接応答するためにレスポンスのパラメータを受け取って使用する必要があります。
         </p>
 
         <p>
-            The <em>start</em> handler will respond from within the
-            anonymous <em>exec()</em> callback, and the <em>upload</em>
-            handler still simply replies with "Hello Upload", but now
-            by making use of the <em>response</em> object.
+            <em>start</em>ハンドラでは、<em>exec()</em>の匿名コールバック関数の中から応答しています。
+            また<em>upload</em>ハンドラは、”Hello Upload”と応答すること自体は同じですが、
+            <em>response</em>オブジェクトを使って応答するようにしました。
         </p>
 
         <p>
-            If we start our application again (<em>node index.js</em>),
-            this should work as expected.
+            同じように(<em>node index.js</em>として)アプリケーションを起動しましょう。期待通り動くはずです。
         </p>
 
         <p>
-            If you would like to prove that an expensive operation behind
-            <em>/start</em> will no longer block requests for
-            <em>/upload</em> from answering immediately, then modify your
-            <em>requestHandlers.js</em> as follows:
+            もし<em>/start</em>で実行される時間のかかる処理のせいで、
+            <em>/upload</em>へのリクエストがブロックされて応答が返らない、
+            ということがないか確認したかったら、<em>requestHandlers.js</em>を以下のようにしてみると良いでしょう:
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> exec </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">"child_process"</span><span
@@ -2444,74 +2252,66 @@ Request handler 'start' was called.</pre>
                 class="pln"> upload</span><span class="pun">;</span></pre>
 
         <p>
-            This will make HTTP requests to <a href="http://localhost:8888/start" rel="nofollow">http://localhost:8888/start</a>
-            take at least 10 seconds, but requests to <a href="http://localhost:8888/upload" rel="nofollow">http://localhost:8888/upload</a>
-            will be answered immediately, even if /start is still
-            computing.
+            これで<a href="http://localhost:8888/start" rel="nofollow">http://localhost:8888/start</a>
+            へのHTTPリクエストは最低でも10秒間かかることになりますが、
+            /startがまだ終わっていなくても、
+            <a href="http://localhost:8888/upload" rel="nofollow">http://localhost:8888/upload</a>
+            へのリクエストに対する応答はすぐに返ってくるはずです。
         </p>
 
         <a name="serving-something-useful"></a>
 
-        <h3>Serving something useful</h3>
+        <h3>有益なものを提供する</h3>
 
         <p>
-            Until now, what we have done is all fine and dandy, but we
-            haven't created any value for the customers of our
-            award-winning website.
+            ここまでのところ、まことに結構な感じですが、
+            まだお客さんにとって価値のある賞を獲得するようなものは何も作っていません。
         </p>
 
         <p>
-            Our server, router, and request handlers are in place, thus now
-            we can begin to add content to our site which allows our users
-            to interact and walk through the use case of choosing a file,
-            uploading this file, and viewing the uploaded file in the
-            browser. For the sake of simplicity we will assume that only
-            image files are going to be uploaded and displayed through the
-            application.
+            サーバ、ルータ、リクエストハンドラはここにあります。
+            やっとコンテンツをサイトに追加して、ユーザがファイルを選択、アップロードし、
+            アップロード済みのファイルをブラウザで表示できるようにしていきましょう。
+            ここではシンプルにするため、画像ファイルだけアップロードおよび表示できるようにしたいと思います。
+               
         </p>
 
         <p>
-            Ok, let's take it step by step, but with most of the techniques
-            and principles of JavaScript explained by now, let's at the
-            same time accelerate a bit. This author likes to hear himself
-            talking way too much anyways.
+            OK、ステップバイステップでいきましょう。
+            ここまででJavaScriptのテクニックや原則は説明してきましたので、
+            すこし飛ばしていきます。どうやらこの著者は、
+            自分が話しすぎるのを聞いているのが好きみたいですね。
         </p>
 
         <p>
-            Here, step by step means roughly two steps: We will first look
-            at how to handle incoming POST requests (but not file uploads),
-            and in a second step, we will make use of an external Node.js
-            module for the file upload handling. I've chosen this approach
-            for two reasons.
+            さて、ステップバイステップと言いましたが、
+            これには2つの意味があります。まず1つ目はPOSTリクエストを取り扱う方法、
+            そして2つ目はアップロード処理にNode.jsの外部モジュールを利用する方法です。
+            このアプローチ方法を選んだのには2つの理由があります。
         </p>
 
         <p>
-            First, handling basic POST requests is
-            relatively simple with Node.js, but still teaches us enough to
-            be worth exercising it.
+            まず通常、POSTリクエストはNode.jsでは比較的シンプルに取り扱うことができます。
+            しかし練習する価値は十分にあります。
             <br>
-            Second, handling file uploads (i.e.,
-            multipart POST requests) is <em>not</em> simple with Node.js,
-            and therefore is beyond the scope of this tutorial, but using
-            an external module is itself a lesson that makes sense to be
-            included in a beginner's tutorial.
+            もう一つは、ファイルアップロード(マルチパートPOSTリクエスト)の取り扱いはたとえNode.jsでもそれほどシンプルでは<em>なく</em>、
+            このチュートリアルのスコープ内ではないのですが、
+            外部モジュールを使う方法自体は初心者向けチュートリアルに入れる内容として意味があると考えたからです。
         </p>
 
         <a name="handling-post-requests"></a>
 
-        <h4>Handling POST requests</h4>
+        <h4>POSTリクエストの扱い</h4>
 
         <p>
-            Let's keep this banally simple: We will present a textarea that
-            can be filled by the user and submitted to the server in a POST
-            request. Upon receiving and handling this request, we will
-            display the content of the textarea.
+            ここはひとつシンプルにいきます： textareaを用意して、ユーザが入力し、
+            サーバにPOSTリクエストで送信するようにします。このリクエストを受け取って取り扱い、
+            textareaの内容を表示してみます。
         </p>
         
         <p>
-            The HTML for this textarea form needs to be served by our
-            <em>/start</em> request handler, so let's add it right away, in
-            file <em>requestHandlers.js</em>:
+            textareaフォームのHTMLは<em>/start</em>リクエストハンドラが受け持つ必要があるので、
+            早速<em>requestHandler.js</em>に追記しましょう：
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> start</span><span
                 class="pun">(</span><span class="pln">response</span><span class="pun">)</span><span
@@ -2560,60 +2360,54 @@ Request handler 'start' was called.</pre>
                 class="pln"> upload</span><span class="pun">;</span></pre>
 
         <p>
-            Now if this isn't going to win the Webby Awards, then I don't
-            know what could. You should see this very simple form when
-            requesting
+            これがウェビー賞を受賞できないなら、他にどんなものが受賞できるのか皆目検討もつきません。
             <a href="http://localhost:8888/start" rel="nofollow">http://localhost:8888/start</a>
-            in your browser. If not, you probably didn't restart the
-            application.
+            にブラウザでアクセスすれば、シンプルなフォームが表示されます。
+            もしされないとしたら、アプリケーションの再起動を忘れているのでしょうね。
+            <br>
+            ※訳注 ウェビー賞…国際デジタル芸術科学アカデミーにより優れているとされたウェブサイトに贈られる賞
         </p>
 
         <p>
-            I hear you: having view content right in the request handler is
-            ugly. However, I decided to not include that extra level of
-            abstraction (i.e., separating view and controller logic) in
-            this tutorial, because I think that it doesn't teach us
-            anything worth knowing in the context of JavaScript or Node.js.
+            こんな声が聞こえてきます: リクエストハンドラにビューの内容を書くなんて酷い。
+            しかしここでは追加の(例えばビューをコントローラロジックから分離する、
+            といったような)抽象レイヤーを挟むのはやめました。
+            それをやってもJavaScriptやNode.jsのコンテキストの理解を深められるわけではないですから。
         </p>
 
         <p>
-            Let's rather use the remaining screen space for a more
-            interesting problem, that is, handling the POST request
-            that will hit our <em>/upload</em> request handler when the
-            user submits this form.
+            それよりももっと面白い課題に取り組むことにしましょう。
+            ユーザがこのフォームを送信すると<em>/upload</em>リクエストハンドラにたどり着く、
+            POSTリクエストを扱う部分です。
         </p>
 
         <p>
-            Now that we are becoming expert novices, we are no longer
-            surprised by the fact that handling POST data is done in a
-            non-blocking fashion, by using asynchronous callbacks.
+            もう初心者から脱していますので、
+            POSTデータの扱いがノンブロッキングであることには驚くことはないでしょう。
+            非同期のコールバックを使えば良いわけです。
         </p>
 
         <p>
-            Which makes sense, because POST requests can potentially be
-            very large - nothing stops the user from entering text that is
-            multiple megabytes in size. Handling the whole bulk of data in
-            one go would result in a blocking operation.
+            これは至極真っ当な動作ですね。
+            POSTリクエストは、とても大きい可能性があります –
+            これで、ユーザが何メガバイトものサイズのテキストを入力しても、何ら問題ありません。
+            すべてのデータを一つの塊として扱うので、ブロッキング操作となってしまう可能性もあるのです。
         </p>
 
         <p>
-            To make the whole process non-blocking, Node.js serves our code
-            the POST data in small chunks, callbacks that are called upon
-            certain events. These events are <em>data</em> (an new chunk of
-            POST data arrives) and <em>end</em> (all chunks have been
-            received).
+            プロセス全体がノンブロッキングで動作できるよう、
+            Node.jsは特定のイベントの時に呼び出されるコールバックではコード上でPOSTデータを細かい塊で扱えるようにしてくれます。
+            特定のイベントとは、<em>data</em>(POSTデータの中の新しい塊が届いた時)と<em>end</em>(すべての塊を受信した時)です。
         </p>
 
         <p>
-            We need to tell Node.js which functions to call back to when
-            these events occur. This is done by adding <em>listeners</em>
-            to the <em>request</em> object that is passed to our
-            <em>onRequest</em> callback whenever an HTTP request is
-            received.
+            Node.jsがこれらのイベント発生時にコールバックするために使う関数を指定してやらなければいけません。
+            これは、HTTPリクエストを受信するときに<em>onRequest</em>コールバックに渡される<em>request</em>オブジェクトにリスナー
+            (<em>listeners</em>)を追加することで実現できます。
         </p>
 
         <p>
-            This basically looks like this:
+            このような感じになります:
         </p>
         <pre class="prettyprint lang-js"><span class="pln">request</span><span class="pun">.</span><span class="pln">addListener</span><span
                 class="pun">(</span><span class="str">"data"</span><span class="pun">,</span><span
@@ -2629,31 +2423,28 @@ Request handler 'start' was called.</pre>
                 class="pln"><br></span><span class="pun">});</span></pre>
 
         <p>
-            The question arises where to implement this logic. We currently
-            can access the <em>request</em> object in our server only - we
-            don't pass it on to the router and the request handlers, like
-            we did with the <em>response</em> object.
+            このロジックを実装するとき、疑問が湧いてきます。
+            今のところ、サーバ内でしかrequestオブジェクトにアクセスすることができません –
+            つまり<em>response</em>オブジェクトでやってきたように、
+            ルータやリクエストハンドラに<em>request</em>オブジェクトを渡していません。
         </p>
 
         <p>
-            In my opinion, it's an HTTP servers job to give the application
-            all the data from a requests it needs to do its job. Therefore,
-            I suggest we handle the POST data processing right in the
-            server and pass the final data on to the router and the request
-            handlers, which then can decide what to do with it.
+            私が思うに、リクエストから全てのデータをアプリケーションに渡すのはHTTPサーバの仕事なのです。
+            ですので、POSTデータの処理はサーバ内で行い、
+            最終的なデータをルータやリクエストハンドラに渡すのです。
+            そしてルータやリクエストハンドラがそれをどう扱うかを決めれば良いのです。
         </p>
 
         <p>
-            Thus, the idea is to put the <em>data</em> and <em>end</em>
-            event callbacks in the server, collecting all POST data chunks
-            in the <em>data</em> callback, and calling the router upon
-            receiving the <em>end</em> event, while passing the collected
-            data chunks on to the router, which in turn passes it on to the
-            request handlers.
+            <em>data</em>および<em>end</em>イベントコールバックはサーバ内に置いておき、
+            <em>data</em>コールバック内ですべてのPOSTデータの断片を集めて、
+            <em>end</em>イベントが呼ばれたときにルータを呼出すのです。
+            ルータに集めたデータの塊を渡せば、そのままリクエストハンドラに渡されることになります。
         </p>
 
         <p>
-            Here we go, starting with <em>server.js</em>:
+            それでは<em>server.js</em>からいきましょう:
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
@@ -2707,35 +2498,31 @@ Request handler 'start' was called.</pre>
                 class="pln"> start</span><span class="pun">;</span></pre>
 
         <p>
-            We basically did three things here: First, we defined that we
-            expect the encoding of the received data to be UTF-8, we added
-            an event listener for the "data" event which step by step
-            fills our new <em>postData</em> variable whenever a new chunk
-            of POST data arrives, and we moved the call to our router into
-            the <em>end</em> event callback to make sure it's only called
-            when all POST data is gathered. We also pass the POST data into
-            the router, because we are going to need it in our request
-            handlers.
+            ここでは基本的には3つのことをしています:
+            まず受信データのエンコーディングをUTF-8と定義し、
+            次に新しいPOSTデータの塊を受信する度に<em>postData</em>変数に追記していく”data”イベントリスナーを追加、
+            そして全てのPOSTデータが収集できた時にだけ呼び出されるよう、
+            ルータ呼び出し部分を<em>end</em>イベントコールバック内に移動しました。
+            また、POSTデータは後ほどリクエストハンドラ内で必要になるため、ここでは一旦ルータに渡しています。
         </p>
 
         <p>
-            Adding the console logging on every chunk that is received
-            probably is a bad idea for production code (megabytes of POST
-            data, remember?), but makes sense to see what happens.
+            本番環境のコードでは、
+            一つデータの塊を受け取る度にコンソールでログ記録するのはよろしくありません
+            (何メガバイトものPOSTデータですからね？)。
+            ただ今回に限っては、何が起きているか確認してみましょう。
         </p>
 
         <p>
-            I suggest playing around with this a bit. Put small
-            amounts of text into the textarea as well as lots of text, and
-            you will see that for the larger texts, the <em>data</em>
-            callback is indeed called multiple times.
+            ここでは、textareaにテキストをたくさん入れたり少しだけ入れたりして遊んでみると良いと思います。
+            多めのテキストを入れた時には<em>data</em>コールバックが何度も呼ばれることがわかるはずです。
         </p>
 
         <p>
-            Let's add even more awesome to our app. On the /upload page,
-            we will display the received content. To make this possible, we
-            need to pass the <em>postData</em> on to the request handlers,
-            in <em>router.js</em>:
+            アプリケーションをもう少しかっこ良くすることにしましょう。
+            /uploadページで、受け取った内容を表示します。
+            これを実現するためには、<em>postData</em>をリクエストハンドラに渡す必要があります。
+            <em>router.js</em>をこのようにします：
         </p>
 
         <pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> route</span><span
@@ -2770,8 +2557,7 @@ Request handler 'start' was called.</pre>
                 class="pln"> route</span><span class="pun">;</span></pre>
 
         <p>
-            And in <em>requestHandlers.js</em>, we include the data in our
-            response of the <em>upload</em> request handler:
+            そして<em>requestHandler.js</em>では、<em>upload</em>リクエストハンドラのレスポンスにそのデータを含めます:
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> start</span><span
                 class="pun">(</span><span class="pln">response</span><span class="pun">,</span><span class="pln"> postData</span><span
@@ -2821,21 +2607,17 @@ Request handler 'start' was called.</pre>
                 class="pln"> upload</span><span class="pun">;</span></pre>
 
         <p>
-            That's it, we are now able to receive POST data and use it in
-            our request handlers.
+            これでよし、リクエストハンドラでPOSTデータを受信できるようになりました。
         </p>
 
         <p>
-            One last thing for this topic: what we pass on to the router
-            and the request handlers is the complete body of our POST
-            request. We will probably want to consume the individual fields
-            that make up the POST data, in this case, the value of the
-            <em>text</em> field.
+            このトピックでひとつやり残したことがあります:
+            ルータに、そしてリクエストハンドラに渡したのはPOSTリクエストのボディー全体です。
+            POSTデータの個々のフィールド、つまりこのケースにおける<em>text</em>フィールドの値を消化したいですね。
         </p>
 
         <p>
-            We already read about the <em>querystring</em> module, which
-            assists us with this:
+            <em>querystring</em>モジュールについてはすでに読んだ通りです。このようになります:
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> querystring </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">"querystring"</span><span
@@ -2890,78 +2672,71 @@ Request handler 'start' was called.</pre>
                 class="pln"> upload</span><span class="pun">;</span></pre>
 
         <p>
-            Well, for a beginner's tutorial, that's all there is to say
-            about handling POST data.
+            さて、初心者向けチュートリアルとしてのPOSTデータの扱い方はこれで全部です。
         </p>
 
         <a name="handling-file-uploads"></a>
 
-        <h4>Handling file uploads</h4>
+        <h4>ファイルアップロードの扱い</h4>
 
         <p>
-            Let's tackle our final use case. Our plan was to allow users to
-            upload an image file, and display the uploaded image in the
-            browser.
+            ではこのユースケースも終盤となりました。
+            ブラウザでユーザに画像ファイルをアップロードさせて、
+            アップロードされた画像を表示するという計画でした。
         </p>
 
         <p>
-            Back in the 90's this would have qualified as a business model
-            for an IPO, today it must suffice to teach us two things: how
-            to install external Node.js libraries, and how to make use of
-            them in our own code.
+            90年代では、これはIPOのためのビジネスモデルとして地位を確立できていましたが、
+            今日ではあと2つのことを満たさなければいけません:
+            Node.js外部ライブラリをインストールする方法、
+            そしてそれらを私たちのコード内で利用する方法です。
         </p>
 
         <p>
-            The external module we are going to use is
-            <em>node-formidable</em> by Felix Geisendörfer. It nicely
-            abstracts away all the nasty details of parsing incoming file
-            data. At the end of the day, handling incoming files is "only"
-            about handling POST data - but the devil really <em>is</em> in
-            the details here, and using a ready-made solution makes a lot
-            of sense in this case.
+            これから使う外部モジュールは、Felix Geisendörferによる<em>node-formidable</em>モジュールです。
+            このモジュールは受け取ったファイルデータの面倒な処理をうまく抽象化してくれます。
+            最終的にはファイルを受信する部分は単にPOSTデータを取り扱えば良いだけになります。 -
+            細かいところを見れば、たしかに悪魔が<em>存在</em>します。出来合いのソリューションを使うのはとても有用なことなのです。
         </p>
 
         <p>
-            In order to make use of Felix' code, the according Node.js
-            module needs to be installed. Node.js ships with its own
-            package manager, dubbed <em>NPM</em>. It allows us to install
-            external Node.js modules in a very convenient fashion. Given a
-            working Node.js installation, it boils down to issuing
+            Felixのコードを利用するためには、
+            関連するNode.jsモジュールがインストールされている必要があります。
+            Node.jsには<em>NPM</em>というパッケージマネージャが同梱されています。
+            これのおかげで外部のNode.jsモジュールを非常に簡単に使うことができます。
+            Node.jsがインストールされた環境で、コマンドラインでこのように実行します
         </p>
         <pre class="prettyprint lang-bash"><span class="pln">npm install formidable</span></pre>
 
         <p>
-            on our command line. If the following output ends with
+            そしてこのような出力になれば
         </p>
         <pre class="prettyprint lang-bash"><span class="pln">npm info build </span><span class="typ">Success</span><span
                 class="pun">:</span><span class="pln"> formidable@1</span><span class="pun">.</span><span class="lit">0.9</span><span
                 class="pln"><br>npm ok</span></pre>
 
         <p>
-            then we are good to go.
+            準備完了です。
         </p>
 
         <p>
-            The <em>formidable</em> module is now available to our own
-            code - all we need to do is requiring it just like one of the
-            built-in modules we used earlier:
+            これで私たちのコード内で<em>formidable</em>モジュールが使えるようになりました –
+            あとは、最初のほうで他のビルトインモジュールでやったようにrequireすれば良いだけです:
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> formidable </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">"formidable"</span><span
                 class="pun">);</span></pre>
 
         <p>
-            The metaphor formidable uses is that of a form being submitted
-            via HTTP POST, making it parseable in Node.js. All we need to
-            do is create a new <em>IncomingForm</em>, which is an
-            abstraction of this submitted form, and which can then be used
-            to parse the <em>request</em> object of our HTTP server for the
-            fields and files that were submitted through this form.
+            formidableという名前が暗に示しているように、
+            HTTP POSTで送られたフォームデータはNode.jsでパースすることができるようになります。
+            あとは送信されたフォームが抽象化された新たな<em>IncomingForm</em>を作成するだけです。
+            これでフォームを通して送信されたフィールドやファイルといったHTTPサーバの<em>request</em>
+            オブジェクトをパースするのに使うことができます。
         </p>
 
         <p>
-            The example code from the node-formidable project page shows
-            how the different parts play together:
+            node-formidableプロジェクトのページに記載されたサンプルコードを見れば、それぞれのパーツを同時に扱う方法がわかります:
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> formidable </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">'formidable'</span><span
@@ -3022,11 +2797,9 @@ Request handler 'start' was called.</pre>
                 class="pun">(</span><span class="lit">8888</span><span class="pun">);</span></pre>
 
         <p>
-            If we put this code into a file and execute it through
-            <em>node</em>, we are able to submit a simple form, including a
-            file upload, and see how the <em>files</em> object, which is passed
-            to the callback defined in the <em>form.parse</em> call, is
-            structured:
+            このコードを書いて<em>node</em>で実行すれば、
+            ファイルアップロードを含む簡単なフォームを送信することができます。
+            そして<em>form.parse</em>呼出し時のコールバック関数に渡される<em>files</em>オブジェクトがどのような構成になっているのかがわかります:
         </p>
         <pre class="lang-js">received upload:
 
@@ -3044,33 +2817,30 @@ Request handler 'start' was called.</pre>
         mime: [Getter] } } }</pre>
 
         <p>
-            In order to make our use case happen, what we need to do is
-            to include the form-parsing logic of formidable into our code
-            structure, plus we will need to find out how to serve the
-            content of the uploaded file (which is saved into the
-            <em>/tmp</em> folder) to a requesting browser.
+            このユースケースを完了するためには、
+            formidableでのフォームのパースロジックを我々のコードに組み込み、
+            アップロードされた（<em>/tmp</em>フォルダに保存される）ファイルの内容を、
+            リクエスト元のブラウザへ返してやる必要があります。
         </p>
 
         <p>
-            Let's tackle the latter one first: if there is an image file on
-            our local hardrive, how do we serve it to a requesting browser?
+            まずは後者のほう、いってみましょう: ローカルのハードドライブに画像ファイルがあったら、
+            リクエスト元のブラウザに対してどうやって返しますか？
         </p>
 
         <p>
-            We are obviously going to read the contents of this file into
-            our Node.js server, and unsurprisingly, there is a module for
-            that - it's called <em>fs</em>.
+            このファイルの中身を読み込んでNode.jsサーバに渡すというのはわかりますね。
+            驚くなかれ、まさにそのためのモジュール、<em>fs</em>モジュールというものがあります。
         </p>
 
         <p>
-            Let's add another request handler for the URL <em>/show</em>,
-            which will hardcodingly display the contents of the file
-            <em>/tmp/test.png</em>. It of course makes a lot of sense to
-            save a real png image file to this location first.
+            <em>/show</em>というURLのためのリクエストハンドラを追加し、
+            ハードコーディングで<em>/tmp/test.png</em>というファイルの内容を表示してみます。
+            もちろん、あらかじめその場所に本物のpng画像を保存しておく必要があります。
         </p>
 
         <p>
-            We are going to modify <em>requestHandlers.js</em> as follows:
+            <em>requestHandlers.js</em>を下記のとおり修正します:
         </p>
 
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> querystring </span><span
@@ -3164,8 +2934,7 @@ Request handler 'start' was called.</pre>
                 class="pln"> show</span><span class="pun">;</span></pre>
 
         <p>
-            We also need to map this new request handler to the URL
-            <em>/show</em> in file <em>index.js</em>:
+            この新しいリクエストハンドラを、<em>/show</em>というURLにマッピングします。<em>index.js</em>を下記のようにします:
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> server </span><span class="pun">=</span><span
                 class="pln"> require</span><span class="pun">(</span><span class="str">"./server"</span><span
@@ -3193,41 +2962,36 @@ Request handler 'start' was called.</pre>
                 class="pun">,</span><span class="pln"> handle</span><span class="pun">);</span></pre>
 
         <p>
-            By restarting the server and opening
+            サーバを再起動して
             <a href="http://localhost:8888/show" rel="nofollow">http://localhost:8888/show</a>
-            in the browser, the image file saved at <em>/tmp/test.png</em>
-            should be displayed.
+            をブラウザで開けば、<em>/tmp/test.png</em>として保存されている画像ファイルが表示されるはずです。
         </p>
 
         <p>
-            Fine. All we need to do now is
+            良いですね。あとやるべきことは
         </p>
         
         <p>
             <ul>
                 <li>
-                    add a file upload element to the form which is served
-                    at <em>/start</em>,
+                    <em>/start</em>で、ファイルアップロードのHTML要素をフォームに追加する
                 </li>
                 <li>
-                    integrate node-formidable into the <em>upload</em>
-                    request handler, in order to save the uploaded file to
-                    <em>/tmp/test.png</em>,
+                    <em>/tmp/test.png</em>にアップロードされたファイルを保存するように、
+                    node-formidableを<em>upload</em>リクエストハンドラに組み込む
                 </li>
         
                 <li>
-                    embed the uploaded image into the HTML output of the
-                    <em>/upload</em> URL.
+                    アップロードされた画像を<em>/upload</em>URLのHTML出力結果として組み込む
                 </li>
             </ul>
         </p>
 
         <p>
-            Step 1 is simple. We need to add an encoding type of
-            <em>multipart/form-data</em> to our HTML form, remove the
-            textarea, add a file upload input field, and change the submit
-            button text to "Upload file". Let's do just that in file
-            <em>requestHandlers.js</em>:
+            ステップ1は簡単です。<em>multipart/form-data</em>のエンコーディングタイプをHTMLフォームに追記し、
+            textareaを削除、ファイルアップロードのinputフィールドを追加して、
+            submitボタンのテキストを”ファイルをアップロード”に変更すれば良いだけです。
+            <em>requestHandlers.js</em>ファイルを修正しましょう:
         </p>
 
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> querystring </span><span
@@ -3324,37 +3088,30 @@ Request handler 'start' was called.</pre>
                 class="pln"> show</span><span class="pun">;</span></pre>
 
         <p>
-            Great. The next step is a bit more complex of course. The first
-            problem is: we want to handle the file upload in our
-            <em>upload</em> request handler, and there, we will need to pass
-            the <em>request</em> object to the <em>form.parse</em> call of
-            node-formidable.
+            これだけです。次のステップは少しだけ難しくなります。
+            最初の問題は： <em>upload</em>リクエストハンドラの中で、ファイルアップロード処理を行いたいのですが、
+            そこで、<em>request</em>オブジェクトをnode-formidableの<em>form.parse</em>に渡してやる必要があるということです。
         </p>
 
         <p>
-            But all we have is the <em>response</em> object
-            and the <em>postData</em> array. Sad panda. Looks like we will have
-            to pass the <em>request</em> object all the way from the server to
-            the router to the request handler. There may be more elegant
-            solutions, but this approach should do the job for now.
+            しかしここで私たちが持っているのは、<em>response</em>オブジェクトと<em>postData</em>配列だけです。
+            なんと残念なことでしょう。<em>request</em>オブジェクトをなんとかしてサーバからルータへ、
+            そしてリクエストハンドラへと渡してやらないといけないようです。もっと綺麗なやり方がありそうですが、
+            とりあえずこのアプローチ方法でなんとかなりそうなので、今回はこれでよしとしましょう。
         </p>
 
         <p>
-            And while we are at it, let's remove the whole <em>postData</em> stuff in
-            our server and request handlers - we won't need it for handling the
-            file upload, and it even raises a problem: we already "consumed"
-            the <em>data</em> events of the <em>request</em> object in the
-            server, which means that <em>form.parse</em>, which also needs to
-            consume those events, wouldn't receive any more data from them
-            (because Node.js doesn't buffer any data).
+            そうこうしている間に、とっとと全ての<em>postData</em>をサーバやリクエストハンドラから削除してしまいましょう –
+            ファイルアップロードではもう使いませんし、問題が発生する可能性さえあります:
+            サーバ内では既に<em>request</em>オブジェクトの<em>data</em>イベントを既に”消化”してしまっているため、
+            同様にこれらのイベントを消化する必要がある<em>form.parse</em>でそのデータを受信できなくなってしまうからです
+            (Node.jsはデータをバッファリングしてくれないのです)。
         </p>
 
         <p>
-            Let's start with <em>server.js</em> - we remove the postData
-            handling and the <em>request.setEncoding</em> line (which is going
-            to be handled by node-formidable itself), and we pass
-            <em>request</em> to the router instead:
-
+            それでは<em>server.js</em>から始めましょう –
+            postDataを扱う部分と (node-formidableが直接取り扱うことになる)
+            <em>request.setEncoding</em>の行をを削除し、代わりに<em>request</em>をルータに渡します:
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
@@ -3389,8 +3146,7 @@ Request handler 'start' was called.</pre>
                 class="pln"> start</span><span class="pun">;</span></pre>
 
         <p>
-            Next comes <em>router.js</em> - we don't need to pass <em>postData</em>
-            on anymore, and instead pass <em>request</em>:
+            次は<em>router.js</em>です – <em>postData</em>はもういらないので、代わりに<em>request</em>を渡します:
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> route</span><span
                 class="pun">(</span><span class="pln">handle</span><span class="pun">,</span><span
@@ -3424,24 +3180,20 @@ Request handler 'start' was called.</pre>
                 class="pln"> route</span><span class="pun">;</span></pre>
 
         <p>
-            Now, the <em>request</em> object can be used in our <em>upload</em>
-            request handler function. node-formidable will handle the details
-            of saving the uploaded file to a local file within <em>/tmp</em>,
-            but we need to make sure that this file is renamed to
-            <em>/tmp/test.png</em> ourselves. Yes, we keep things really simple
-            and assume that only PNG images will be uploaded.
+            これで、<em>request</em>オブジェクトは<em>upload</em>リクエストハンドラ関数で使うことができます。
+            node-formidableではアップロードされたファイルを<em>/tmp</em>のローカルファイルとして保存する時の細かい処理を受け持ってくれるので、
+            このファイルがちゃんと<em>/tmp/test.png</em>という名前にリネームされるところを確認する必要があります。
+            そう、ここでは簡単に済ますため、画像はすべてPNGであると想定しています。
         </p>
 
         <p>
-            There is a bit of extra-complexity in the rename logic: the Windows
-            implementation of node doesn't like it when you try to rename a
-            file onto the position of an existing file, which is why we need to
-            delete the file in case of an error.
+            リネームの際のロジックは少しだけ複雑です:
+            Windowsにおけるnodeの実装では、既存のファイルの位置にリネームすることができないため、
+            エラー発生時にはファイルを削除する必要があります。
         </p>
 
         <p>
-            Let's put the pieces of managing the uploaded file and renaming it
-            together now, in file <em>requestHandlers.js</em>:
+            アップロードされたファイルの管理とリネーム処理を、<em>requestHandlers.js</em>の中に追記しましょう：
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> querystring </span><span class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">"querystring"</span><span class="pun">),</span><span class="pln">
     fs </span><span class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">"fs"</span><span class="pun">),</span><span class="pln">
@@ -3512,152 +3264,91 @@ exports</span><span class="pun">.</span><span class="pln">upload </span><span cl
 exports</span><span class="pun">.</span><span class="pln">show </span><span class="pun">=</span><span class="pln"> show</span><span class="pun">;</span></pre>
 
         <p>
-            And that's it. Restart the server, and the complete use case will
-            be available. Select a local PNG image from your hardrive, upload
-            it to the server, and have it displayed in the web page.
+            これで完了です。サーバを再起動すれば、このユースケースが実現できているはずです。
+            ハードドライブからローカルのPNG画像を選択、
+            サーバにアップロードすれば、Webページに表示されるでしょう。
         </p>
 
         <a name="conclusion-and-outlook"></a>
 
-        <h2>Conclusion and outlook</h2>
+        <h2>まとめと展望</h2>
 
         <p>
-            Congratulations, our mission is accomplished! We wrote a simple
-            yet full-fledged Node.js web application. We talked about
-            server-side JavaScript, functional programming, blocking and
-            non-blocking operations, callbacks, events, custom, internal
-            and external modules, and a lot more.
+            おめでとうございます、ミッションはこれで完了です！
+            シンプルだけど一人前のNode.jsのWebアプリケーションができました。サーバサイドJavaScript、
+            機能的プログラミング、ブロッキングとノンブロッキング、コールバック、イベント、
+            カスタムモジュールと内部、外部モジュール、その他諸々について学びました。
         </p>
 
         <p>
-            Of course, there's a lot of stuff we did not talk about:
-            how to talk to a database, how to write unit tests, how to
-            create external modules that are installable via NPM, or even
-            something simple like how to handle GET requests.
+            もちろん、ここで話さなかったことは沢山あります: どうやってデータベースに接続するのか、
+            どうやって単体テストを書くのか、
+            どうやって外部モジュールを作ってNPM経由でインストールできるようにするのか、
+            GETリクエストをどうやって扱うのか、といったような簡単なことも触れていません。
         </p>
 
         <p>
-            But that's the fate of every book aimed at beginners - it can't
-            talk about every single aspect in every single detail.
+            しかし、初心者向けの本としてはこれが運命なのでしょう。
+            すべてのことについて細かく完璧に説明することはできないのです。
         </p>
 
         <p>
-            The good news is, the Node.js community is extremly vibrant
-            (think of an ADHD kid on caffeine, but in a positive way),
-            which means there are a lot of resources out there, and a lot
-            of places to get your questions answered. The
-            <a href="https://github.com/joyent/node/wiki">Node.js community wiki</a>
-            and <a href="http://www.nodecloud.org/">the NodeCloud directory</a>
-            are probably the best starting points for more information.
+            良いニュースがあります。Node.jsコミュニティーはとても活気があり(良い意味で、
+            落ち着きのない子供を想像してみて下さい)、
+            たくさんのリソースがあります。あなたの質問に応えてくれるところも沢山あります。
+            次のステップとしては、
+            <a href="https://github.com/joyent/node/wiki">Node.js community wiki</a>や
+            <a href="http://www.nodecloud.org/">the NodeCloud directory</a>あたりからはじめると良いでしょう。
         </p>
-        </div>
-
-        <div class="buybox">
-            <div class="buy-the-bundle">
-                <div class="cover">
-                    <p>
-                        The perfect introduction plus the perfect reference in one bundle!
-                    </p>
-                    <a href="buy-bundle-bottom/index.html"><img src="the_node_beginner_book_cover_small.png" height="86" width="57" /></a>
-                    <a href="buy-bundle-bottom/index.html"><img src="hands-on_node.js_cover.png" height="86" width="57" /></a>
-                </div>
-                <div class="description">
-                    <p>
-                        LeanBundle currently offers
-                        the final version of
-                        <br />
-                        <strong>The Node Beginner Book</strong>
-                        <br />
-                        plus Pedro Teixeira's excellent
-                        <br />
-                        <strong>Hands-on Node.js</strong> for only
-                        <br />
-                        <br />
-                        <strong class="price dollarsign">$</strong><strong class="price">7.99</strong>
-                        <br />
-                        (regular price <del>$10.98</del>)
-                    </p>
-                </div>
-                <div class="buy">
-                    <p>
-                        226 pages in total
-                        <br />
-                        PDF, ePub & MOBI
-                        <br />
-                        Direct download
-                        <br />
-                        Free updates
-                    </p>
-                    <a class="buttonlink" href="buy-bundle-bottom/index.html">
-                        <div class="button">Buy this<br />bundle now</div>
-                    </a>
-                </div>
-            </div>
-
-            <div class="buy-kindle">
-                <div class="inner">
-                    <a href="buy-kindle/index.html"><img class="cover" src="the_node_beginner_book_cover_small.png" height="86" width="57" /></a>
-                    <br />
-                    <a href="buy-kindle/reviews.html"><img class="stars" src="amazon_rating_stars.png" width="65" height="12" /></a>
-                    <br />
-                    (<a href="buy-kindle/reviews.html">Read customer reviews</a>)
-                    <br />
-                    <a href="buy-kindle/index.html"><img class="button" src="add_to_kindle_button.png" width="102" height="25"/></a>
-                </div>
-            </div>
         </div>
 
         <div id="praise">
             <div class="praise">
                 <div class="comment">
-                    "This is an amazing introduction to Node."
+                    "これはNodeの素晴らしい入門の手引きです。"
                 </div>
                 <div class="author">
-                    Ryan Dahl, creator of Node.js
+                    Node.jsの開発者、Ryan Dahl
                 </div>
             </div>
             <div class="praise">
                 <div class="comment">
-                    "I love nodebeginner.org - concise, direct to the point and
-                    even enjoyable to read."
+                    "正確で的を射ていて、それでいて読んでいて楽しい。私はnodebeginner.orgが好きです。"
                 </div>
-                <div class="author">Gojko Adzic, author of <em>Specification by Example</em> and <em>Bridging the Communication Gap</em></div>
+                <div class="author"><em>Specification by Example</em>と<em>Bridging the Communication Gap</em>の著者、Gojko Adzic</div>
             </div>
             <div class="praise">
                 <div class="comment">
-                    "This is one of the best tutorials I've read.
-                    As a former Java coder, I've always found JavaScript
-                    to be a black art, but you have really simplified
-                    things with this tutorial."
+                    "いままで読んだ中でも、最高のチュートリアルです。Javaコーダー
+                    として、いつもJavaScriptはブラックアートのように思っていましたが、
+                    このチュートリアルのおかげでとても簡単に思えるようになりました。"
                 </div>
-                <div class="author">Erskine, from the comments</div>
+                <div class="author">Erskine、コメントより</div>
             </div>
             <div class="praise">
                 <div class="comment">
-                    "This is one of the few beginner articles I made it all the
-                    way through because of how well it's written."
+                    "とてもよく書かれていて、"
+                    "あまりうまくかかれているものだから、私が一気に全部読んでしまった数少ない記事のひとつです。"
                 </div>
                 <div class="author">
-                    Paul Gibler, from the comments
+                    Paul Gibler、コメントより
                 </div>
             </div>
             <div class="praise">
                 <div class="comment">
-                    "Indispensable."
+                    "必須。"
                 </div>
                 <div class="author">
-                    @lecolibrilibre, on Twitter
+                    @lecolibrilibre、Twitterより
                 </div>
             </div>
             <div class="praise">
                 <div class="comment">
-                    "I just wanted to drop you a note to say thank you for
-                    writing such an excellent introduction to node. Your book's
-                    explanation is fantastic, and I can't wait for you to
-                    finish it!"
+                    "こんなに素晴らしいnode入門書を書いてくれて本当に嬉しいし、
+                    説明が本当にわかりやすいので、書き終えてくれるのが待ち遠しいです！"
                 </div>
                 <div class="author">
-                    Seth McLaughlin, via eMail
+                    Seth McLaughlin、eメールより
                 </div>
             </div>
         </div>
@@ -3669,14 +3360,13 @@ exports</span><span class="pun">.</span><span class="pln">show </span><span clas
                 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img alt="Creative Commons License" border="0" src="creative_commons.png" width="88" height="31"/></a>
             </p>
             <p>
-                <span xmlns:dct="http://purl.org/dc/terms/">The Node Beginner Book</span>
-                by
-                <a xmlns:cc="http://creativecommons.org/ns#" href="http://manuel.kiessling.net" rel="cc:attributionURL">Manuel Kiessling</a> (see <a href="https://plus.google.com/100272082905360445612?rel=author">Google+ profile</a>)
-                is licensed under a
+                <a xmlns:cc="http://creativecommons.org/ns#" href="http://manuel.kiessling.net" rel="cc:attributionURL">Manuel Kiessling</a> (<a href="https://plus.google.com/100272082905360445612?rel=author">Google+ プロフィール</a>)
+                による
+                <span xmlns:dct="http://purl.org/dc/terms/">Nodeビギナーズブック</span>は、
                 <br />
-                <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</a>.
+                <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons 表示 - 非営利 - 継承 3.0 非移植 ライセンス</a>に従うものとします。
                 <br />
-                Permissions beyond the scope of this license may be available at <a xmlns:cc="http://creativecommons.org/ns#" href="mailto:manuel@kiessling.net" rel="cc:morePermissions">manuel@kiessling.net</a>.
+                このライセンスを超えた範囲での許諾については次の連絡先に問い合わせて下さい <a xmlns:cc="http://creativecommons.org/ns#" href="mailto:manuel@kiessling.net" rel="cc:morePermissions">manuel@kiessling.net</a>.
             </p>
         </div>
 
