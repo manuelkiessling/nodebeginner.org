@@ -83,6 +83,10 @@ body {
     background-color: #555;
 }
 
+#translations table {
+  margin: 0 auto;
+}
+
 #translations img {
     border: none;
 }
