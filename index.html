@@ -1508,6 +1508,7 @@ About to route a request for /foo</pre>
             more complex.
         </p>
 
+        <a name="continuereading"></a>
         <p>
             Let's call these functions, where requests are routed to,
             <em>request handlers</em>. And let's tackle those next, because
@@ -1515,6 +1516,76 @@ About to route a request for /foo</pre>
             anything with the router for now.
         </p>
 
+        <div id="salespitch">
+          <img id="authorimage" src="manuelkiessling.png" width="48" height="48"/>
+          <div id="bubble">
+            <p>
+              Hi there! Sorry to interrupt you.
+            </p>
+            <p>
+              My name is Manuel Kiessling, I'm the author of this book.
+            </p>
+            <p>
+              If you have read that far, I guess I may assume that you like
+              the book. I'm pretty sure you also like the fact that it's free,
+              which is totally fine, and you can continue reading it for free,
+              which also is totally fine.
+            </p>
+            <p>
+              However, I would like you to consider buying the eBook version
+              of the book. It's a beautifully crafted package including a PDF,
+              an ePub, and a MOBI file, which means you can read it on all
+              kinds of eReaders out there like the Amazon Kindle, the Nook, or
+              the Sony Reader.
+            </p>
+            <p>
+              But the best thing about it is that it comes bundled with another
+              great Node.js book: <em>"Hands-on Node.js"</em> by Pedro Teixeira. It's a
+              complete reference that explains all the Node.js modules in great
+              detail - it's perfect to dig deeper once you finished <em>The Node
+              Beginner Book</em>.
+            </p>
+            <p>
+              Both books together would cost a total of $10.98, but we are offering
+              it as a bundle for only <strong>$7.99</strong>.
+              You can download it immediately, it's
+              completely DRM-free, and you will receive any future updates for
+              both books for free.
+            </p>
+            <p>
+              So, here are the two choices you have right now:
+            </p>
+            <div class="box">
+              <a href="buy-bundle/salespitch.html"><img src="the_node_beginner_book_cover_small.png" height="86" width="57" /></a>
+              <a href="buy-bundle/salespitch.html"><img src="hands-on_node.js_cover.png" height="86" width="57" /></a>
+              <br/>
+              <div class="subinfo">
+                226 pages in total<br/>
+                DRM-free<br/>
+                Free updates
+              </div>
+              <a class="buttonlink" href="buy-bundle/salespitch.html">
+                <div class="button">Buy this<br />bundle now</div>
+              </a>
+            </div>
+            <div class="orbox">
+              <strong>OR</strong>
+            </div>
+            <div class="box">
+              <script type="text/javascript">
+              var showHiddenHalf = function() {
+                document.getElementById('hiddenhalf').style.opacity = '1.0';
+                document.getElementById('salespitch').style.display = 'none';
+                return false;
+              };
+              </script>
+              <a href="#continuereading" onclick="showHiddenHalf();">Continue reading<br/>the free version</a>
+            </div>
+          </div>
+          <br clear="all"/>
+        </div>
+
+        <div id="hiddenhalf">
         <p>
             New application part, new module - no surprise here. Let's
             create a module called requestHandlers, add a placeholder
@@ -3554,6 +3625,7 @@ exports</span><span class="pun">.</span><span class="pln">show </span><span clas
             and <a href="http://www.nodecloud.org/">the NodeCloud directory</a>
             are probably the best starting points for more information.
         </p>
+        </div>
         </div>
 
         <div class="buybox">
