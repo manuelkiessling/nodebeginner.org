@@ -359,10 +359,9 @@ h2, h3, h4, h5 {
 }
 
 #authorimage {
-	border: 1px solid #999;
-	border-radius: 4px;
-	padding: 8px;
-	background-color: #ffe;
+	float: right;
+  padding-left: 32px;
+  padding-bottom: 4px;
 }
 
 #salespitch .box {
@@ -380,8 +379,7 @@ h2, h3, h4, h5 {
 }
 
 #bubble {
-	float: right;
-	width: 500px;
+	width: 580px;
 	border: 1px solid #999;
 	border-radius: 16px;
 	padding: 32px;
