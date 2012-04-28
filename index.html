@@ -265,7 +265,7 @@
                         <li><a href="#how-function-passing-makes-our-http-server-work">How function passing makes our
                             HTTP server work</a></li>
 
-                        <li><a href="#event-driven-callbacks">Event-driven callbacks</a></li>
+                        <li><a href="#event-driven-callbacks">Event-driven asynchronous callbacks</a></li>
                         <li><a href="#how-our-server-handles-requests">How our server handles requests</a></li>
                         <li><a href="#finding-a-place-for-our-server-module">Finding a place for our server module</a>
                         </li>
@@ -893,12 +893,132 @@
 
         <a name="event-driven-callbacks"></a>
 
-        <h3>Event-driven callbacks</h3>
+        <h3>Event-driven asynchronous callbacks</h3>
 
         <p>
-            The answer is a) not that easy to give (at least for me), and
-            b) lies in the very nature of how Node.js works. It's
-            event-driven, which is the reason why it's so fast.
+            To understand why Node.js applications have to be written this way,
+            we need to understand how Node.js executes our code. Node's
+            approach isn't unique, but the underlying execution model is
+            different from runtime environments like Python, Ruby, PHP or Java.
+        </p>
+
+        <p>
+            Let's take a very simple piece of code like this:
+        </p>
+
+        <pre class="prettyprint lang-js">var result = database.query("SELECT * FROM hugetable");
+console.log("Hello World");</pre>
+
+        <p>
+            Please ignore for now that we haven't actually talked about
+            connecting to databases before - it's just an example. The
+            first line queries a database for lots of rows, the second
+            line puts "Hello World" to the console.
+        </p>
+
+        <p>
+            Let's assume that the database query is really slow, that it has
+            to read an awful lot of rows, which takes several seconds.
+        </p>
+
+        <p>
+            The way we have written this code, the JavaScript interpreter of
+            Node.js first has to read the complete result set from the
+            database, and then it can execute the <em>console.log()</em>
+            function.
+        </p>
+
+        <p>
+            If this piece of code actually was, say, PHP, it would work the
+            same way: read all the results at once, then execute the next line
+            of code. If this code would be part of a web page script, the user
+            would have to wait several seconds for the page to load.
+        </p>
+
+        <p>
+            However, in the execution model of PHP, this would not become a
+            "global" problem: the web server starts its own PHP process for
+            every HTTP request it receives. If one of these requests results
+            in the execution of a slow piece of code, it results in a slow
+            page load for this particular user, but other users requesting
+            other pages would not be affected.
+        </p>
+
+        <p>
+            The execution model of Node.js is different - there is only one
+            single process. If there is a slow database query somewhere in
+            this process, this affects the whole process - everything comes
+            to a halt until the slow query has finished.
+        </p>
+
+        <p>
+            To avoid this, JavaScript, and therefore Node.js, introduces the
+            concept of event-driven, asynchronous callbacks, by utilizing an
+            event loop.
+        </p>
+
+        <p>
+            We can understand this concept by analyzing a rewritten version
+            of our problematic code:
+        </p>
+
+        <pre class="prettyprint lang-js">database.query("SELECT * FROM hugetable", function(rows) {
+  var result = rows;
+});
+console.log("Hello World");</pre>
+
+        <p>
+            Here, instead of expecting <em>database.query()</em> to directly
+            return a result to us, we pass it a second parameter, an anonymous
+            function.
+        </p>
+
+        <p>
+            In its previous form, our code was synchronous: <em>first</em>
+            do the database query, and only when this is done, <em>then</em>
+            write to the console.
+        </p>
+
+        <p>
+            Now, Node.js can handle the database request asynchronously.
+            Provided that <em>database.query()</em> is part of an asynchronous
+            library, this is what Node.js does: just as before, it takes the
+            query and sends it to the database. But instead of waiting for it
+            to be finished, it makes a mental note that says "When at some
+            point in the future the database server is done and sends the
+            result of the query, then I have to execute the anonymous function
+            that was passed to <em>database.query()</em>."
+        </p>
+
+        <p>
+            Then, it immediately executes <em>console.log()</em>, and
+            afterwards, it enters the event loop. Node.js continuously cycles
+            through this loop again and again whenever there is nothing else
+            to do, waiting for events. Events like, e.g., a slow database
+            query finally delivering its results.
+        </p>
+
+        <p>
+            This also explains why our HTTP server needs a function it can
+            call upon incoming requests - if Node.js would start the server
+            and then just pause, waiting for the next request, continuing
+            only when it arrives, that would be highly inefficent. If a second
+            user requests the server while it is still serving the first
+            request, that second request could only be answered after the first
+            one is done - as soon as you have more than a handful of HTTP
+            requests per second, this wouldn't work at all.
+        </p>
+
+        <p>
+            It's important to note that this asynchronous, single-threaded,
+            event-driven execution model isn't an infinitely scalable
+            performance unicorn with silver bullets attached. It is just one
+            of several models, and it has its limitations, one being that as
+            of now, Node.js is just one single process, and it can run on only
+            one single CPU core. Personally, I find this model quite
+            approachable, because it allows to write applications that have to
+            deal with concurrency in an efficient and relatively
+            straightforward manner.
         </p>
 
         <p>
@@ -906,73 +1026,7 @@
             Geisendörfer's excellent post
             <a href="http://debuggable.com/posts/understanding-node-js:4bd98440-45e4-4a9a-8ef7-0f7ecbdd56cb">Understanding
                 node.js</a>
-            for some background explanation.
-        </p>
-
-        <p>
-            It all boils down to the fact that Node.js works event-driven.
-            Oh and yes, I, too, don't know exactly what that means.
-            But I will try and explain, why this makes sense for us
-            who want to write web based applications in Node.js.
-        </p>
-
-        <p>
-            When we call the <em>http.createServer</em> method, we
-            of course not only want to have a server listening at
-            some port, we also want to do something when there is an
-            HTTP request to this server.
-        </p>
-
-        <p>
-            The problem is, this happens asynchronously: it happens
-            at any given time, but we only have a single process in
-            which our server runs.
-        </p>
-
-        <p>
-            When writing PHP applications, we aren't bothered by this
-            at all: whenever there is an incoming HTTP request, the
-            webserver (usually Apache) forks a new process for just
-            this request, and starts the according PHP script from
-            scratch, which is then executed from top to bottom.
-        </p>
-
-        <p>
-            So in regards of control flow, we are in the midst of our
-            Node.js program when a new request arrives at port 8888 - how
-            to handle this without going insane?
-        </p>
-
-        <p>
-            Well, this is where the event-driven design of
-            Node.js/JavaScript actually helps, although we need to learn
-            some new concepts in order to master it. Let's see how
-            these concepts are applied in our server code.
-        </p>
-
-        <p>
-            We create the server, and pass a function to the method
-            creating it. Whenever our server receives a request, the
-            function we passed will be called.
-        </p>
-
-        <p>
-            We don't know when this is going to happen, but we now have
-            a place where we can handle an incoming request. It's our
-            passed function, no matter if we first defined it or passed
-            it anonymously.
-        </p>
-
-        <p>
-            This concept is called a <em>callback</em>. We pass into
-            some method a function, and the method uses this function
-            to <em>call back</em> if an event related to the method
-            occurs.
-        </p>
-
-        <p>
-            At least for me, this took some time to understand. Just
-            read Felix' blog post again if you are still unsure.
+            for additional background explanation.
         </p>
 
         <p>
@@ -2096,47 +2150,16 @@ Request handler 'start' was called.</pre>
             What you will notice is this: The /start URL takes 10 seconds
             to load, as we would expect. But the /upload URL <em>also</em>
             takes 10 seconds to load, although there is no <em>sleep()</em>
-            in the according request handler!
+            in the according request handler.
         </p>
 
         <p>
             Why? Because <em>start()</em> contains a blocking operation.
-            Like in "it's blocking everything else from working".
-        </p>
-
-        <p>
-            And that is a problem, because, as the saying goes: <em>"In
-            node, everything runs in parallel, except your code"</em>.
-        </p>
-
-        <p>
-            What that means is that Node.js can handle a lot of concurrent
-            stuff, but doesn't do this by splitting everything into
-            threads - in fact, Node.js is single-threaded. Instead, it does
-            so by running an event loop, and we the developers can make use
-            of this - we should avoid blocking operations whenever
-            possible, and use non-blocking operations instead.
-        </p>
-
-        <p>
-            But to do so, we need to make use of callbacks by passing
-            functions around to other functions that might do something
-            that takes some time (like, e.g. sleep for 10 seconds, or query
-            a database, or do some expensive calculation).
-        </p>
-
-        <p>
-            This way we are saying <em>"Hey, probablyExpensiveFunction(),
-            please do your stuff, but I, the single Node.js thread, am not
-            going to wait right here until you are finished, I will
-            continue to execute the lines of code below you, so would you
-            please take this callbackFunction() here and call it when
-            you are finished doing your expensive stuff? Thanks!"</em>
-        </p>
-
-        <p>
-            (If you would like to read about that in more detail, please have
-            a look at Mixu's post on <a href="http://blog.mixu.net/2011/02/01/understanding-the-node-js-event-loop/">Understanding the node.js event loop</a>.)
+            We already talked about Node's execution model - expensive
+            operations are ok, but we must take care to not block the Node.js
+            process with them. Instead, whenever expensive operations must be
+            executed, these must be put in the background, and their events
+            must be handled by the event loop.
         </p>
 
         <p>
