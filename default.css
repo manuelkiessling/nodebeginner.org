@@ -12,6 +12,18 @@ body {
     border: 0;
 }
 
+#ibookstore-banner {
+    display: none;
+    margin: -10px;
+    margin-bottom: 0;
+}
+
+@media only screen and (max-width: 1024px) {
+    #ibookstore-banner {
+        display: block;
+    }
+}
+
 #book, #disqus_thread, #footer {
     width: 640px;
     margin: 0 auto;
@@ -511,7 +523,7 @@ li.L1, li.L3, li.L5, li.L7, li.L9 {
 
     h1 {
         font-size: 250%;
-        margin-left: -53px;
+        margin-left: -33px;
     }
 
     #book, #disqus_thread, #footer {
@@ -527,10 +539,7 @@ li.L1, li.L3, li.L5, li.L7, li.L9 {
     }
 
     #translations {
-        font-size: 150%;
-        width: 90%;
-        padding-bottom: 32px;
-        padding-left: 48px;
+        display: none;
     }
     
     #translations td {
