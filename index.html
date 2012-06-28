@@ -1861,7 +1861,7 @@ About to route a request for /foo</pre>
 
         <p>
             What we do here is, we check if a request handler for the given
-            pathname exists, and if it does, we simply call the according
+            pathname exists, and if it does, we simply call the corresponding
             function. Because we can access our request handler functions
             from our object just as we would access an element of an
             associative array, we have this nice fluent
@@ -2154,7 +2154,7 @@ Request handler 'start' was called.</pre>
             What you will notice is this: The /start URL takes 10 seconds
             to load, as we would expect. But the /upload URL <em>also</em>
             takes 10 seconds to load, although there is no <em>sleep()</em>
-            in the according request handler.
+            in the corrsponding request handler.
         </p>
 
         <p>
@@ -2551,7 +2551,7 @@ Request handler 'start' was called.</pre>
 
         <p>
             This will make HTTP requests to <a href="http://localhost:8888/start" rel="nofollow">http://localhost:8888/start</a>
-            take at least 10 seconds, but requests to <a href="http://localhost:8888/upload" rel="nofollow">http://localhost:8888/upload</a>
+            take at most 10 seconds, but requests to <a href="http://localhost:8888/upload" rel="nofollow">http://localhost:8888/upload</a>
             will be answered immediately, even if /start is still
             computing.
         </p>
@@ -3028,7 +3028,7 @@ Request handler 'start' was called.</pre>
         </p>
 
         <p>
-            In order to make use of Felix' code, the according Node.js
+            In order to make use of Felix' code, the corresponding Node.js
             module needs to be installed. Node.js ships with its own
             package manager, dubbed <em>NPM</em>. It allows us to install
             external Node.js modules in a very convenient fashion. Given a
