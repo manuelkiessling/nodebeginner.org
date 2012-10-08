@@ -77,7 +77,7 @@ body {
     text-align: center;
 }
 
-.buybox, .buy-the-bundle, .buy-kindle, #translations {
+.buybox, .buy-the-bundle, #translations {
     font-family: "Helvetica Neue", sans-serif;
     font-size: 13px;
     color: #fff;
@@ -131,52 +131,8 @@ body {
     width: 769px;
 }
 
-.buy-kindle {
-    padding: 8px;
-    display: inline-block;
-    width: 154px;
-    height: 189px;
-    margin-left: 24px;
-}
-
-.gecko .buy-kindle {
-    height: 195px;
-}
-
-.buy-kindle .inner {
-    background-color: #fff;
-    border-radius: 6px;
-    padding: 4px;
-    box-shadow: 0 0 6px #aaa inset;
-}
-
-.buy-kindle .inner img {
-    border: none;
-}
-
-.buy-kindle .inner img.cover {
-    border: 1px solid #999;
-    margin-top: 16px;
-}
-
-.buy-kindle .inner a {
-    font-size: 10px;
-}
-
-.buy-kindle .inner img.stars {
-    padding-top: 2px;
-    margin-bottom: -6px;
-}
-
-.buy-kindle .inner img.button {
-    padding-top: 10px;
-    margin-bottom: 6px;
-}
-
 .buy-the-bundle {
-    float: left;
     padding-bottom: 20px;
-    width: 510px;
     display: inline-block;
     margin: 0;
 }
@@ -189,7 +145,7 @@ body {
 }
 
 .buy-the-bundle .cover {
-    width: 131px;
+    width: 200px;
     display: table-cell;
     padding-right: 0px;
     padding-left: 16px;
@@ -206,7 +162,7 @@ body {
 }
 
 .buy-the-bundle .description {
-    width: 200px;
+    width: 260px;
     display: table-cell;
     padding-right: 16px;
     padding-left: 16px;
@@ -534,7 +490,7 @@ li.L1, li.L3, li.L5, li.L7, li.L9 {
         border: none;
     }
 
-    .buy-the-bundle, .buy-kindle, #forkmeongithub, #praise, #adsense, #social {
+    .buy-the-bundle, #forkmeongithub, #praise, #adsense, #social {
         display: none;
     }
 
@@ -570,7 +526,7 @@ li.L1, li.L3, li.L5, li.L7, li.L9 {
         display: none;
     }
     
-    .buy-the-bundle, .buy-kindle {
+    .buy-the-bundle {
         display: none;
     }
     
