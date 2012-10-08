@@ -57,20 +57,6 @@ body {
     font-size: 75%;
 }
 
-#social {
-    text-align: left;
-    margin-top: -14px;
-    margin-bottom: -75px;
-    margin-left: 541px;
-    width: 140px;
-    border-left: 4px solid #eee;
-    border-bottom: 4px solid #eee;
-    padding: 14px;
-    padding-right: 0;
-    border-radius: 10px;
-}
-
-
 #workinprogressnote p {
     font-family: "Helvetica Neue", sans-serif;
     color: #700;
@@ -490,7 +476,7 @@ li.L1, li.L3, li.L5, li.L7, li.L9 {
         border: none;
     }
 
-    .buy-the-bundle, #forkmeongithub, #praise, #adsense, #social {
+    .buy-the-bundle, #forkmeongithub, #praise, #adsense {
         display: none;
     }
 
@@ -522,7 +508,7 @@ li.L1, li.L3, li.L5, li.L7, li.L9 {
         border-top: 1px solid black;
     }
     
-    #translations, #adsense, #social {
+    #translations, #adsense {
         display: none;
     }
     
