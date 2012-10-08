@@ -39,12 +39,6 @@ body {
     box-shadow: 14px 11px 27px #888;
 }
 
-#adsense {
-    width: 728px;
-    margin: 0 auto;
-    margin-top: 40px;
-}
-
 #book {
     margin-top: 94px;
 }
@@ -476,7 +470,7 @@ li.L1, li.L3, li.L5, li.L7, li.L9 {
         border: none;
     }
 
-    .buy-the-bundle, #forkmeongithub, #praise, #adsense {
+    .buy-the-bundle, #forkmeongithub, #praise {
         display: none;
     }
 
@@ -508,7 +502,7 @@ li.L1, li.L3, li.L5, li.L7, li.L9 {
         border-top: 1px solid black;
     }
     
-    #translations, #adsense {
+    #translations {
         display: none;
     }
     
