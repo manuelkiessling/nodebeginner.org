@@ -1,0 +1,2690 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+        <title>Node入門 » 一本全面的Node.js教學課程</title>
+        <meta name="description" content="一本適合Node.js初學者的全面教學課程：教你如何使用伺服器端JavaScript來建構一個完整的web應用" />
+
+        <link rel="stylesheet" type="text/css" href="default.css" />
+        <style>
+            #book p {
+                text-align: left;
+            }
+        </style>
+        
+        <script type="text/javascript">
+            // Google Analytics
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-2127388-6']);
+            _gaq.push(['_trackPageview']);
+
+            (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+
+            // Disqus
+            var disqus_shortname = 'nodebeginner';
+            var disqus_identifier = 'nodebeginner-book-chinese';
+            var disqus_url = 'http://www.nodebeginner.org/index-zh-cn.html';
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+    </head>
+    <body>
+        <img style="display: none;" src="the_node_beginner_book_cover_medium.png" height="256" width="171" />
+        <div id="forkmeongithub">
+            <a href="https://github.com/ManuelKiessling/NodeBeginnerBook"><img src="fork_me_on_github.png" width="149" height="149" alt="Fork me on GitHub" /></a>
+        </div>
+
+        <div id="translations">
+            <table>
+                <tr>
+                    <td>
+                        <a href="index-jp.html">
+                            <div class="flag"><img src="jp-flag.png" width="24" height="24" alt="japanese flag" /></div>
+                            <div class="text">日本語で読む</div>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="index-es.html">
+                            <div class="flag"><img src="es-flag.png" width="24" height="24" alt="spanish flag" /></div>
+                            <div class="text">Lee este tutorial en Español</div>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="index-kr.html">
+                            <div class="flag"><img src="kr-flag.png" width="24" height="24" alt="korean flag" /></div>
+                            <div class="text">이 튜토리얼을 한글로 보세요</div>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="index-zh-cn.html">
+                            <div class="flag"><img src="cn-flag.png" width="24" height="24" alt="chinese flag" /></div>
+                            <div class="text">阅读本书中文版</div>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="./">
+                            <div class="flag"><img src="us-flag.png" width="24" height="24" alt="usa flag" /></div>
+                            <div class="text">Read this tutorial in english</div>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="http://www.nodebeginner.ru">
+                            <div class="flag"><img src="ru-flag.png" width="24" height="24" alt="russian flag" /></div>
+                            <div class="text">Читать этот учебник на русском</div>
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="buy-the-bundle cn">
+            <div class="cover">
+                <a href="/buy-chinese/"><img src="the_node_beginner_book_cover_medium_chinese.png" height="120" width="80" /></a>
+            </div>
+            <div class="description">
+                <p>
+                    購買 &quot;Node入門&quot; 中文版電子書
+                </p>
+                <p>
+                    <strong class="price dollarsign">$</strong><strong class="price">0.99</strong>
+                </p>
+                <p>
+                    <a class="buttonlink" href="/buy-chinese/">
+                        <div class="button">立即購買</div>
+                    </a>                    
+                </p>                
+            </div>
+            <div class="buy">
+                <p>
+                    本書共42頁
+                    <br />
+                    支援PDF格式，Kindle以及ePub格式
+                    <br />
+                    直接下載，免費更新
+                </p>
+            </div>
+        </div>
+
+        <div id="book">
+        <h1>Node入門</h1>
+
+        <div id="author">作者： <a href="http://twitter.com/manuelkiessling">Manuel Kiessling</a><br />
+                         翻譯： <a href="http://weibo.com/goddyzhao">goddyzhao</a> & 
+                               <a href="http://www.otakustay.com">GrayZhang</a> & 
+                               <a href="http://weibo.com/cmonday">MondayChen</a> &
+                               <a href="http://blog.miniasp.com/">Will 保哥</a>
+        </div>
+
+        <a name="about"></a>
+
+        <h2>關於</h2>
+
+        <p>
+            本書致力於教會你如何用Node.js來開發應用，過程中會傳授你所有所需的 &quot;進階&quot; JavaScript知識。本書絕不是一本 &quot;Hello World&quot; 的教學課程。
+        </p>
+
+        <a name="status"></a>
+
+        <h3>狀態</h3>
+
+        <p>
+            你正在閱讀的已經是本書的最終版。因此，只有當進行錯誤更正以及針對新版本Node.js的改動進行對應的修正時，才會進行更新。
+        </p>
+
+        <p>
+            本書中的代碼案例都在Node.js 0.6.11版本中測試過，可以正確工作。
+        </p>
+
+        <a name="intended-audience"></a>
+
+        <h3>讀者對象</h3>
+
+        <p>
+            本書最適合與我有相似技術背景的讀者： 至少對一門諸如Ruby、Python、PHP或者Java這樣物件導向程式語言有一定的經驗；對JavaScript處於初學階段，並且完全是一個Node.js的新手。
+        </p>
+
+        <p>
+            這裡指的適合對其他程式語言有一定經驗的開發者，意思是說，本書不會對諸如資料類型、變數、控制結構等等之類非常基礎的概念作介紹。要讀懂本書，這些基礎的概念我都預設你已經會了。
+        </p>
+
+        <p>
+            然而，本書還是會對JavaScript中的函數和物件作詳細介紹，因為它們與其他同類程式語言中的函數和物件有很大的不同。
+        </p>
+
+        <a name="structure"></a>
+
+        <h3>本書結構</h3>
+
+        <p>
+            讀完本書之後，你將完成一個完整的web應用，該應用允許用戶瀏覽頁面以及上傳檔案。
+        </p>
+
+        <p>
+            當然了，應用本身並沒有什麼了不起的，相比為了實現該功能書寫的代碼本身，我們更關注的是如何建立一個框架來對我們應用的不同模組進行乾淨地剝離。 是不是很玄乎？稍後你就明白了。
+        </p>
+
+        <p>
+            本書先從介紹在Node.js環境中進行JavaScript開發和在瀏覽器環境中進行JavaScript開發的差異開始。
+        </p>
+
+        <p>
+            緊接著，會帶領大家完成一個最傳統的 &quot;Hello World&quot; 應用，這也是最基礎的Node.js應用。
+        </p>
+
+        <p>
+            最後，會和大家討論如何設計一個 &quot;真正&quot; 完整的應用，剖析要完成該應用需要實現的不同模組，並一步一步介紹如何來實現這些模組。
+        </p>
+
+        <p>
+            可以確保的是，在這過程中，大家會學到JavaScript中一些進階的概念、如何使用它們以及為什麼使用這些概念就可以實現而其他程式語言中同類的概念就無法實現。
+        </p>
+
+        <p>
+            該應用程式所有的原始碼都可以透過
+            <a href="https://github.com/ManuelKiessling/NodeBeginnerBook/tree/master/code/application">本書Github repository</a>下載.
+        </p>
+
+        <div id="table-of-contents-headline">目錄</div>
+        <div id="table-of-contents">
+            <ul>
+
+                <li><a href="#about">關於</a>
+                    <ul>
+                        <li><a href="#status">狀態</a></li>
+                        <li><a href="#intended-audience">讀者對象</a></li>
+                        <li><a href="#structure">本書結構</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#javascript-and-nodejs">JavaScript與Node.js</a>
+                    <ul>
+                        <li><a href="#javascript-and-you">JavaScript與你</a></li>
+                        <li><a href="#a-word-of-warning">簡短申明</a></li>
+                        <li><a href="#server-side-javascript">伺服器端JavaScript</a></li>
+                        <li><a href="#hello-world"> &quot;Hello World&quot; </a></li>
+
+                    </ul>
+                </li>
+                <li><a href="#a-full-blown-web-application-with-nodejs">一個完整的基於Node.js的web應用</a>
+                    <ul>
+                        <li><a href="#the-use-cases">使用案例</a></li>
+                        <li><a href="#the-application-stack">應用不同模組分析</a></li>
+                    </ul>
+
+                </li>
+                <li><a href="#building-the-application-stack">建構應用的模組</a>
+                    <ul>
+                        <li><a href="#a-basic-http-server">一個基礎的HTTP伺服器</a></li>
+                        <li><a href="#analyzing-our-http-server">分析HTTP伺服器</a></li>
+                        <li><a href="#passing-functions-around">進行函數傳遞</a></li>
+                        <li><a href="#how-function-passing-makes-our-http-server-work">函數傳遞是如何讓HTTP伺服器工作的</a></li>
+
+                        <li><a href="#event-driven-callbacks">基於事件驅動的回呼(callback)</a></li>
+                        <li><a href="#how-our-server-handles-requests">伺服器是如何處理請求的</a></li>
+                        <li><a href="#finding-a-place-for-our-server-module">伺服器端的模組放在哪裡</a>
+                        </li>
+                        <li><a href="#whats-needed-to-route-requests">如何來進行請求的 &quot;路由&quot; </a></li>
+                        <li><a href="#execution-in-the-kongdom-of-verbs">行為驅動執行</a></li>
+                        <li><a href="#routing-to-real-request-handlers">路由給真正的請求處理程序</a></li>
+
+                        <li><a href="#making-the-request-handlers-respond">讓請求處理程序作出回應</a>
+                            <ul>
+                                <li><a href="#how-to-not-do-it">不好的實現方式</a></li>
+                                <li><a href="#blocking-and-non-blocking">Blocking與Non-Blocking</a></li>
+                                <li><a href="#responding-request-handlers-with-non-blocking-operations">以Non-Blocking操作進行請求回應</a>
+                                </li>
+                            </ul>
+
+                        </li>
+                        <li><a href="#serving-something-useful">更有用的場景</a>
+                            <ul>
+                                <li><a href="#handling-post-requests">處理POST請求</a></li>
+                                <li><a href="#handling-file-uploads">處理檔案上傳</a></li>
+                            </ul>
+                        </li>
+
+                        <li><a href="#conclusion-and-outlook">總結與展望</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <a name="javascript-and-nodejs"></a>
+
+        <h2>JavaScript與Node.js</h2>
+
+        <a name="javascript-and-you"></a>
+
+        <h3>JavaScript與你</h3>
+
+        <p>
+            拋開技術，我們先來聊聊你以及你和JavaScript的關系。本章的主要目的是想讓你看看，對你而言是否有必要繼續閱讀後續章節的內容。
+        </p>
+
+        <p>
+            如果你和我一樣，那麼你很早就開始利用HTML進行 &quot;開發&quot; ，正因如此，你接觸到了這個叫JavaScript有趣的東西，而對於JavaScript，你只會基本的操作——為web頁面增加互動。
+        </p>
+
+        <p>
+            而你真正想要的是 &quot;實用的東西&quot; ，你想要知道如何建構復雜的web站點 —— 於是，你學習了一種諸如PHP、Ruby、Java這樣的程式語言，並開始書寫 &quot;後端&quot; 代碼。
+        </p>
+
+        <p>
+            與此同時，你還始終關注著JavaScript，隨著透過一些對jQuery，Prototype之類技術的介紹，你慢慢了解到了很多JavaScript中的進階技能，同時也感受到了JavaScript絕非僅僅是<em>window.open() </em>那麼簡單。 .
+        </p>
+
+        <p>
+            不過，這些畢竟都是前端技術，盡管當想要增強頁面的時候，使用jQuery總讓你覺得很爽，但到最後，你頂多是個JavaScript<em>用戶</em>，而非JavaScript<em>開發者</em>。
+        </p>
+
+        <p>
+            然後，出現了Node.js，伺服器端的JavaScript，這有多酷啊？
+        </p>
+
+        <p>
+            於是，你覺得是時候該重新拾起既熟悉又陌生的JavaScript了。但是別急，寫Node.js應用是一件事情；理解為什麼它們要以它們書寫的這種方式來書寫則意味著——你要懂JavaScript。這次是玩真的了。
+        </p>
+
+        <p>
+            問題來了： 由於JavaScript真正意義上以兩種，甚至可以說是三種形態存在（從中世紀90年代的作為對DHTML進行增強的小玩具，到像jQuery那樣嚴格意義上的前端技術，一直到現在的伺服器端技術），因此，很難找到一個 &quot;正確&quot; 的方式來學習JavaScript，使得讓你書寫Node.js應用的時候感覺自己是在真正開發它而不僅僅是使用它。
+        </p>
+
+        <p>
+            因為這就是關鍵： 你本身已經是個有經驗的開發者，你不想透過到處尋找各種解決方案（其中可能還有不正確的）來學習新的技術，你要確保自己是透過正確的方式來學習這項技術。
+        </p>
+
+        <p>
+            當然了，外面不乏很優秀的學習JavaScript的文章。但是，有的時候光靠那些文章是遠遠不夠的。你需要的是指導。
+        </p>
+
+        <p>
+            本書的目標就是給你提供指導。
+        </p>
+
+        <a name="a-word-of-warning"></a>
+
+        <h3>簡短申明</h3>
+
+        <p>
+            業界有非常優秀的JavaScript程式設計師。而我並非其中一員。
+        </p>
+
+        <p>
+            我就是上一節中描述的那個我。我熟悉如何開發後端web應用，但是對 &quot;真正&quot; 的JavaScript以及Node.js，我都只是新手。我也只是最近學習了一些JavaScript的進階概念，並沒有實踐經驗。
+        </p>
+
+        <p>
+            因此，本書並不是一本 &quot;從入門到精通&quot; 的書，更像是一本 &quot;從初級入門到進階入門&quot; 的書。
+        </p>
+
+        <p>
+            如果成功的話，那麼本書就是我當初開始學習Node.js最希望擁有的教學課程。
+        </p>
+
+        <a name="server-side-javascript"></a>
+
+        <h3>伺服器端JavaScript</h3>
+
+        <p>
+            JavaScript最早是運行在瀏覽器中，然而瀏覽器只是提供了一個上下文，它定義了使用JavaScript可以做什麼，但並沒有 &quot;說&quot; 太多關於JavaScript語言本身可以做什麼。事實上，JavaScript是一門 &quot;完整&quot; 的語言： 它可以使用在不同的上下文中，其能力與其他同類語言相比有過之而無不及。
+        </p>
+
+        <p>
+            Node.js事實上就是另外一種上下文，它允許在後端（脫離瀏覽器環境）運行JavaScript代碼。
+        </p>
+
+        <p>
+            要實現在後台運行JavaScript代碼，代碼需要先被解釋然後正確的執行。Node.js的原理正是如此，它使用了Google的V8虛擬機（Google的Chrome瀏覽器使用的JavaScript執行環境），來解釋和執行JavaScript代碼。
+        </p>
+
+        <p>
+            除此之外，伴隨著Node.js的還有許多有用的模組，它們可以簡化很多重復的勞作，比如向終端輸出字串。
+        </p>
+
+        <p>
+            因此，Node.js事實上既是一個運行時環境，同時又是一個函式庫。
+        </p>
+
+        <p>
+            要使用Node.js,首先需要進行安裝。關於如何安裝Node.js，這裡就不贅述了，可以直接參考<a href="https://github.com/joyent/node/wiki/Installation" title="Building and Installing Node.js">官方的安裝指南</a>。安裝完成後，繼續回來閱讀本書下面的內容。
+        </p>
+
+        <a name="hello-world"></a>
+
+        <h3> &quot;Hello World&quot; </h3>
+
+        <p>
+            好了， &quot;廢話&quot; 不多說了，馬上開始我們第一個Node.js應用： &quot;Hello World&quot; 。
+        </p>
+
+        <p>
+            打開你最喜歡的編輯器，建立一個<em>helloworld.js</em>檔案。我們要做就是向STDOUT輸出 &quot;Hello World&quot; ，如下是實現該功能的代碼：
+        </p>
+        <pre class="prettyprint lang-js"><span class="pln">console</span><span class="pun">.</span><span
+                class="pln">log</span><span class="pun">(</span><span class="str">"Hello World"</span><span class="pun">);</span></pre>
+        
+        <p>
+            儲存該檔案，並透過Node.js來執行：
+        </p>
+
+        <pre>node helloworld.js</pre>
+        <p>
+            正常的話，就會在終端輸出<em>Hello World</em> 。
+        </p>
+
+        <p>
+            好吧，我承認這個應用是有點無趣，那麼下面我們就來點 &quot;實用的東西&quot; 。
+        </p>
+
+
+        <a name="a-full-blown-web-application-with-nodejs"></a>
+
+        <h2>一個完整的基於Node.js的web應用</h2>
+ 
+        <a name="the-use-cases"></a> 
+ 
+        <h3>使用案例</h3> 
+ 
+        <p>我們來把目標設定得簡單點，不過也要夠實際才行：</p>
+
+        <ul>
+        <li>用戶可以透過瀏覽器使用我們的應用。</li>
+        <li>當用戶請求<em>http://domain/start</em>時，可以看到一個歡迎頁面，頁面上有一個檔案上傳的表單。</li>
+        <li>用戶可以選擇一個圖片並送出表單，隨後檔案將被上傳到<em>http://domain/upload</em>，該頁面完成上傳後會把圖片顯示在頁面上。</li>
+        </ul>
+
+        <p>差不多了，你現在也可以去Google一下，找點東西亂搞一下來完成功能。但是我們現在先不做這個。</p>
+
+        <p>更進一步地說，在完成這一目標的過程中，我們不僅僅需要基礎的代碼而不管代碼是否優雅。我們還要對此進行抽象，來尋找一種適合建構更為復雜的Node.js應用的方式。</p>
+
+        <h3>應用不同模組分析</h3>
+
+        <p>我們來分解一下這個應用，為了實現上文的使用案例，我們需要實現哪些部分呢？</p>
+
+        <ul>
+        <li>我們需要提供Web頁面，因此需要一個<em>HTTP伺服器</em></li>
+        <li>對於不同的請求，根據請求的URL，我們的伺服器需要給予不同的回應，因此我們需要一個<em>路由</em>，用於把請求對應到請求處理程序（request handler）</li>
+        <li>當請求被伺服器接收並透過路由傳遞之後，需要可以對其進行處理，因此我們需要最終的<em>請求處理程序</em></li>
+        <li>路由還應該能處理POST資料，並且把資料封裝成更友好的格式傳遞給請求處理入程序，因此需要<em>請求資料處理功能</em></li>
+        <li>我們不僅僅要處理URL對應的請求，還要把內容顯示出來，這意味著我們需要一些<em>視圖邏輯</em>供請求處理程序使用，以便將內容發送給用戶的瀏覽器</li>
+        <li>最後，用戶需要上傳圖片，所以我們需要<em>上傳處理功能</em>來處理這方面的細節</li>
+        </ul>
+
+        <p>我們先來想想，使用PHP的話我們會怎麼建構這個結構。一般來說我們會用一個Apache HTTP伺服器並配上mod_php5模組。<br />從這個角度看，整個 &quot;接收HTTP請求並提供Web頁面&quot; 的需求根本不需要PHP來處理。</p>
+
+        <p>不過對Node.js來說，概念完全不一樣了。使用Node.js時，我們不僅僅在實現一個應用，同時還實現了整個HTTP伺服器。事實上，我們的Web應用以及對應的Web伺服器基本上是一樣的。</p>
+
+        <p>聽起來好像有一大堆活要做，但隨後我們會逐漸意識到，對Node.js來說這並不是什麼麻煩的事。</p>
+
+        <p>現在我們就來開始實現之路，先從第一個部分--HTTP伺服器著手。</p>
+
+        <a name="building-the-application-stack"></a>
+
+        <h2>建構應用的模組</h2>
+
+        <a name="a-basic-http-server"></a>
+
+        <h3>一個基礎的HTTP伺服器</h3>
+
+        <p>
+            當我準備開始寫我的第一個 &quot;真正的&quot; Node.js應用的時候，我不但不知道怎麼寫Node.js代碼，也不知道怎麼組織這些代碼。
+            <br>
+            我應該把所有東西都放進一個檔案裡嗎？網上有很多教學課程都會教你把所有的邏輯都放進一個用Node.js寫的基礎HTTP伺服器裡。但是如果我想加入更多的內容，同時還想保持代碼的可讀性呢？
+        </p>
+
+        <p>
+
+            實際上，只要把不同功能的代碼放入不同的模組中，保持代碼分離還是相當簡單的。
+        </p>
+
+        <p>
+            這種方法允許你擁有一個乾淨的主檔案（main file），你可以用Node.js執行它；同時你可以擁有乾淨的模組，它們可以被主檔案和其他的模組執行。  
+        </p>
+
+        <p>
+            那麼，現在我們來建立一個用於啟動我們的應用的主檔案，和一個儲存著我們的HTTP伺服器代碼的模組。
+        </p>
+
+        <p>
+
+            在我的印象裡，把主檔案叫做<em>index.js</em>或多或少是個標準格式。把伺服器模組放進叫<em>server.js</em>的檔案裡則很好理解。
+        </p>
+
+        <p>
+            讓我們先從伺服器模組開始。在你的項目的根目錄下建立一個叫<em>server.js</em>的檔案，並寫入以下代碼：
+        </p>
+        <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
+                class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
+                class="str">"http"</span><span class="pun">);</span><span class="pln"><br><br>http</span><span
+                class="pun">.</span><span class="pln">createServer</span><span class="pun">(</span><span class="kwd">function</span><span
+                class="pun">(</span><span class="pln">request</span><span class="pun">,</span><span class="pln"> response</span><span
+                class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; response</span><span
+                class="pun">.</span><span class="pln">writeHead</span><span class="pun">(</span><span
+                class="lit">200</span><span class="pun">,</span><span class="pln"> </span><span
+                class="pun">{</span><span class="str">"Content-Type"</span><span class="pun">:</span><span
+                class="pln"> </span><span class="str">"text/plain"</span><span class="pun">});</span><span
+                class="pln"><br>&nbsp; response</span><span class="pun">.</span><span class="pln">write</span><span
+                class="pun">(</span><span class="str">"Hello World"</span><span class="pun">);</span><span
+                class="pln"><br>&nbsp; response</span><span class="pun">.</span><span class="pln">end</span><span
+                class="pun">();</span><span class="pln"><br></span><span class="pun">}).</span><span
+                class="pln">listen</span><span class="pun">(</span><span class="lit">8888</span><span
+                class="pun">);</span></pre>
+
+        <p>
+            搞定！你剛剛完成了一個可以工作的HTTP伺服器。為了證明這一點，我們來運行並且測試這段代碼。首先，用Node.js執行你的腳本：
+        </p>
+        <pre>node server.js</pre>
+        <p>
+            接下來，打開瀏覽器存取<a href="http://localhost:8888/" rel="nofollow">http://localhost:8888/</a>，你會看到一個寫著 &quot;Hello World&quot; 的網頁。 
+        </p>
+
+        <p>
+            這很有趣，不是嗎？讓我們先來談談HTTP伺服器的問題，把如何組織項目的事情先放一邊吧，你覺得如何？我保證之後我們會解決那個問題的。
+        </p>
+
+        <a name="analyzing-our-http-server"></a>
+
+        <h3>分析HTTP伺服器</h3>
+
+        <p>
+            那麼接下來，讓我們分析一下這個HTTP伺服器的構成。
+        </p>
+
+        <p>
+            第一行<em>請求（require）</em>Node.js自帶的 <em>http</em> 模組，並且把它賦值給 <em>http</em> 變數。
+        </p>
+
+
+        <p>
+            接下來我們執行http模組提供的函數： <em>createServer</em> 。這個函數會回傳一個物件，這個物件有一個叫做 <em>listen</em> 的方法，這個方法有一個數值參數，指定這個HTTP伺服器監聽的埠號號。
+        </p>
+
+        <p>
+            咱們暫時先不管 <em>http.createServer</em> 的括號裡的那個函數定義。
+        </p>
+
+        <p>
+            我們本來可以用這樣的代碼來啟動伺服器並偵聽8888埠號：
+        </p>
+        <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
+                class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
+                class="str">"http"</span><span class="pun">);</span><span class="pln"><br><br></span><span class="kwd">var</span><span
+                class="pln"> server </span><span class="pun">=</span><span class="pln"> http</span><span
+                class="pun">.</span><span class="pln">createServer</span><span class="pun">();</span><span
+                class="pln"><br>server</span><span class="pun">.</span><span class="pln">listen</span><span class="pun">(</span><span
+                class="lit">8888</span><span class="pun">);</span></pre>
+
+        <p>
+            這段代碼只會啟動一個偵聽8888埠號的伺服器，它不做任何別的事情，甚至連請求都不會應答。
+        </p>
+
+        <p>
+            最有趣（而且，如果你之前習慣使用一個更加保守的語言，比如PHP，它還很奇怪）的部分是 <em>createSever()</em> 的第一個參數，一個函數定義。
+        </p>
+
+        <p>
+            實際上，這個函數定義是 <em>createServer()</em> 的第一個也是唯一一個參數。因為在JavaScript中，函數和其他變數一樣都是可以被傳遞的。
+        </p>
+
+        <a name="passing-functions-around"></a>
+
+        <h3>進行函數傳遞</h3>
+
+        <p>
+            舉例來說，你可以這樣做：
+        </p>
+        <pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> say</span><span
+                class="pun">(</span><span class="pln">word</span><span class="pun">)</span><span
+                class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; console</span><span
+                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span
+                class="pln">word</span><span class="pun">);</span><span class="pln"><br></span><span
+                class="pun">}</span><span class="pln"><br><br></span><span class="kwd">function</span><span class="pln"> execute</span><span
+                class="pun">(</span><span class="pln">someFunction</span><span class="pun">,</span><span class="pln"> value</span><span
+                class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; someFunction</span><span
+                class="pun">(</span><span class="pln">value</span><span class="pun">);</span><span
+                class="pln"><br></span><span class="pun">}</span><span class="pln"><br><br>execute</span><span
+                class="pun">(</span><span class="pln">say</span><span class="pun">,</span><span
+                class="pln"> </span><span class="str">"Hello"</span><span class="pun">);</span></pre>
+
+        <p>
+            請仔細閱讀這段代碼！在這裡，我們把 <em>say</em> 函數作為<em>execute</em>函數的第一個變數進行了傳遞。這裡回傳的不是 <em>say</em> 的回傳值，而是 <em>say</em> 本身！
+        </p>
+
+        <p>
+            這樣一來， <em>say</em> 就變成了<em>execute</em> 中的區域變數 <em>someFunction</em> ，execute可以透過執行 <em>someFunction()</em> （帶括號的形式）來使用 <em>say</em> 函數。
+        </p>
+
+        <p>
+            當然，因為 <em>say</em> 有一個變數， <em>execute</em> 在執行 <em>someFunction</em> 時可以傳遞這樣一個變數。
+        </p>
+
+        <p>
+            我們可以，就像剛才那樣，用它的名字把一個函數作為變數傳遞。但是我們不一定要繞這個 &quot;先定義，再傳遞&quot; 的圈子，我們可以直接在另一個函數的括號中定義和傳遞這個函數：
+        </p>
+        <pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> execute</span><span
+                class="pun">(</span><span class="pln">someFunction</span><span class="pun">,</span><span class="pln"> value</span><span
+                class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; someFunction</span><span
+                class="pun">(</span><span class="pln">value</span><span class="pun">);</span><span
+                class="pln"><br></span><span class="pun">}</span><span class="pln"><br><br>execute</span><span
+                class="pun">(</span><span class="kwd">function</span><span class="pun">(</span><span
+                class="pln">word</span><span class="pun">){</span><span class="pln"> console</span><span
+                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span
+                class="pln">word</span><span class="pun">)</span><span class="pln"> </span><span
+                class="pun">},</span><span class="pln"> </span><span class="str">"Hello"</span><span
+                class="pun">);</span></pre>
+
+        <p>
+            我們在 <em>execute</em> 接受第一個參數的地方直接定義了我們準備傳遞給 <em>execute</em> 的函數。
+        </p>
+
+        <p>
+            用這種方式，我們甚至不用給這個函數起名字，這也是為什麼它被叫做 <em>匿名函數</em> 。
+        </p>
+
+        <p>
+            這是我們和我所認為的 &quot;進階&quot; JavaScript的第一次親密接觸，不過我們還是得循序漸進。現在，我們先接受這一點：在JavaScript中，一個函數可以作為另一個函數接收一個參數。我們可以先定義一個函數，然後傳遞，也可以在傳遞參數的地方直接定義函數。
+        </p>
+
+        <a name="how-function-passing-makes-our-http-server-work"></a>
+
+        <h3>函數傳遞是如何讓HTTP伺服器工作的</h3>
+
+        <p>帶著這些知識，我們再來看看我們簡約而不簡單的HTTP伺服器：</p>
+        <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
+                class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
+                class="str">"http"</span><span class="pun">);</span><span class="pln"><br><br>http</span><span
+                class="pun">.</span><span class="pln">createServer</span><span class="pun">(</span><span class="kwd">function</span><span
+                class="pun">(</span><span class="pln">request</span><span class="pun">,</span><span class="pln"> response</span><span
+                class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; response</span><span
+                class="pun">.</span><span class="pln">writeHead</span><span class="pun">(</span><span
+                class="lit">200</span><span class="pun">,</span><span class="pln"> </span><span
+                class="pun">{</span><span class="str">"Content-Type"</span><span class="pun">:</span><span
+                class="pln"> </span><span class="str">"text/plain"</span><span class="pun">});</span><span
+                class="pln"><br>&nbsp; response</span><span class="pun">.</span><span class="pln">write</span><span
+                class="pun">(</span><span class="str">"Hello World"</span><span class="pun">);</span><span
+                class="pln"><br>&nbsp; response</span><span class="pun">.</span><span class="pln">end</span><span
+                class="pun">();</span><span class="pln"><br></span><span class="pun">}).</span><span
+                class="pln">listen</span><span class="pun">(</span><span class="lit">8888</span><span
+                class="pun">);</span></pre>
+
+        <p>現在它看上去應該清晰了很多：我們向 <em>createServer</em> 函數傳遞了一個匿名函數。  </p>
+
+        <p>用這樣的代碼也可以達到同樣的目的：  </p>
+        <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
+                class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
+                class="str">"http"</span><span class="pun">);</span><span class="pln"><br><br></span><span class="kwd">function</span><span
+                class="pln"> onRequest</span><span class="pun">(</span><span class="pln">request</span><span
+                class="pun">,</span><span class="pln"> response</span><span class="pun">)</span><span
+                class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; response</span><span
+                class="pun">.</span><span class="pln">writeHead</span><span class="pun">(</span><span
+                class="lit">200</span><span class="pun">,</span><span class="pln"> </span><span
+                class="pun">{</span><span class="str">"Content-Type"</span><span class="pun">:</span><span
+                class="pln"> </span><span class="str">"text/plain"</span><span class="pun">});</span><span
+                class="pln"><br>&nbsp; response</span><span class="pun">.</span><span class="pln">write</span><span
+                class="pun">(</span><span class="str">"Hello World"</span><span class="pun">);</span><span
+                class="pln"><br>&nbsp; response</span><span class="pun">.</span><span class="pln">end</span><span
+                class="pun">();</span><span class="pln"><br></span><span class="pun">}</span><span class="pln"><br><br>http</span><span
+                class="pun">.</span><span class="pln">createServer</span><span class="pun">(</span><span class="pln">onRequest</span><span
+                class="pun">).</span><span class="pln">listen</span><span class="pun">(</span><span
+                class="lit">8888</span><span class="pun">);</span></pre>
+
+        <p>也許現在我們該問這個問題了：我們為什麼要用這種方式呢？  </p>
+
+        <a name="event-driven-callbacks"></a>
+
+        <h3>基於事件驅動的回呼(callback)</h3>
+
+        <p>這個問題可不好回答（至少對我來說），不過這是Node.js原生的工作方式。它是事件驅動的，這也是它為什麼這麼快的原因。  </p>
+
+        <p>你也許會想花點時間讀一下Felix Geisendörfer的大作<a href="http://debuggable.com/posts/understanding-node-js:4bd98440-45e4-4a9a-8ef7-0f7ecbdd56cb">Understanding node.js</a>，它介紹了一些背景知識。  </p>
+
+        <p>這一切都歸結於 &quot;Node.js是事件驅動的&quot; 這一事實。好吧，其實我也不是特別確切的了解這句話的意思。不過我會試著解釋，為什麼它對我們用Node.js寫網絡應用（Web based application）是有意義的。  </p>
+
+        <p>當我們使用 <em>http.createServer</em> 方法的時候，我們當然不只是想要一個偵聽某個埠號的伺服器，我們還想要它在伺服器收到一個HTTP請求的時候做點什麼。  </p>
+
+        <p>問題是，這是非同步的：請求任何時候都可能到達，但是我們的伺服器卻跑在一個單程序中。  </p>
+
+        <p>寫PHP應用的時候，我們一點也不為此擔心：任何時候當有請求進入的時候，網頁伺服器（通常是Apache）就為這一請求新建一個程序，並且開始從頭到尾執行相應的PHP腳本。  </p>
+
+        <p>那麼在我們的Node.js程序中，當一個新的請求到達8888埠號的時候，我們怎麼控制流程呢？  </p>
+
+        <p>嗯，這就是Node.js/JavaScript的事件驅動設計能夠真正幫上忙的地方了——雖然我們還得學一些新概念才能掌握它。讓我們來看看這些概念是怎麼應用在我們的伺服器程式碼裡的。  </p>
+
+        <p>我們建立了伺服器，並且向建立它的方法傳遞了一個函數。無論何時我們的伺服器收到一個請求，這個函數就會被執行。  </p>
+
+        <p>我們不知道這件事情什麼時候會發生，但是我們現在有了一個處理請求的地方：它就是我們傳遞過去的那個函數。至於它是被預先定義的函數還是匿名函數，就無關緊要了。  </p>
+
+        <p>這個就是傳說中的 <em>回呼(callback)</em> 。我們給某個方法傳遞了一個函數，這個方法在有相應事件發生時執行這個函數來進行 <em>回呼(callback)</em> 。  </p>
+
+        <p>至少對我來說，需要一些功夫才能弄懂它。你如果還是不太確定的話就再去讀讀Felix的部落格文章。  </p>
+
+        <p>讓我們再來琢磨琢磨這個新概念。我們怎麼證明，在建立完伺服器之後，即使沒有HTTP請求進來、我們的回呼(callback)函數也沒有被執行的情況下，我們的代碼還繼續有效呢？我們試試這個：  </p>
+
+        <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
+                class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
+                class="str">"http"</span><span class="pun">);</span><span class="pln"><br><br></span><span class="kwd">function</span><span
+                class="pln"> onRequest</span><span class="pun">(</span><span class="pln">request</span><span
+                class="pun">,</span><span class="pln"> response</span><span class="pun">)</span><span
+                class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; console</span><span
+                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Request received."</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; response</span><span class="pun">.</span><span
+                class="pln">writeHead</span><span class="pun">(</span><span class="lit">200</span><span
+                class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span
+                class="str">"Content-Type"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"text/plain"</span><span
+                class="pun">});</span><span class="pln"><br>&nbsp; response</span><span class="pun">.</span><span
+                class="pln">write</span><span class="pun">(</span><span class="str">"Hello World"</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; response</span><span class="pun">.</span><span
+                class="pln">end</span><span class="pun">();</span><span class="pln"><br></span><span
+                class="pun">}</span><span class="pln"><br><br>http</span><span class="pun">.</span><span class="pln">createServer</span><span
+                class="pun">(</span><span class="pln">onRequest</span><span class="pun">).</span><span class="pln">listen</span><span
+                class="pun">(</span><span class="lit">8888</span><span class="pun">);</span><span class="pln"><br><br>console</span><span
+                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Server has started."</span><span
+                class="pun">);</span></pre>
+
+        <p>注意：在 <em>onRequest</em> （我們的回呼(callback)函數）觸發的地方，我用 <em>console.log</em> 輸出了一段文字。在HTTP伺服器開始工作<em>之後</em>，也輸出一段文字。  </p>
+
+        <p>
+            當我們與往常一樣，運行它<em>node server.js</em>時，它會馬上在命令行上輸出 &quot;Server has started.&quot; 。當我們向伺服器發出請求（在瀏覽器存取<a href="http://localhost:8888/" rel="nofollow">http://localhost:8888/</a> ）， &quot;Request received.&quot; 這條消息就會在命令行中出現。
+        </p>
+
+        <p>這就是事件驅動的非同步伺服器端JavaScript和它的回呼(callback)啦！</p>
+
+        <p>（請注意，當我們在伺服器存取網頁時，我們的伺服器可能會輸出兩次 &quot;Request received.&quot; 。那是因為大部分伺服器都會在你存取 http://localhost:8888 /時嘗試讀取 http://localhost:8888/favicon.ico )</p>
+
+        <a name="how-our-server-handles-requests"></a>
+
+        <h3>伺服器是如何處理請求的</h3>
+
+        <p>好的，接下來我們簡單分析一下我們伺服器代碼中剩下的部分，也就是我們的回呼(callback)函數 <em>onRequest()</em> 的主體部分。  </p>
+
+        <p>當回呼(callback)啟動，我們的 <em>onRequest()</em> 函數被觸發的時候，有兩個參數被傳入： <em>request</em> 和 <em>response</em> 。  </p>
+
+        <p>它們是物件，你可以使用它們的方法來處理HTTP請求的細節，並且回應請求（比如向發出請求的瀏覽器發回一些東西）。  </p>
+
+        <p>所以我們的代碼就是：當收到請求時，使用 <em>response.writeHead()</em> 函數發送一個HTTP狀態200和HTTP頭的內容類型（content-type），使用 <em>response.write()</em> 函數在HTTP相應主體中發送文字 &quot;Hello World"。  </p>
+
+        <p>最後，我們執行 <em>response.end()</em> 完成回應。  </p>
+
+        <p>目前來說，我們對請求的細節並不在意，所以我們沒有使用 <em>request</em> 物件。  </p>
+
+        <a name="finding-a-place-for-our-server-module"></a>
+
+        <h3>伺服器端的模組放在哪裡</h3>
+
+        <p>OK，就像我保證過的那樣，我們現在可以回到我們如何組織應用這個問題上了。我們現在在 <em>server.js</em> 檔案中有一個非常基礎的HTTP伺服器代碼，而且我提到通常我們會有一個叫 <em>index.js</em> 的檔案去執行應用的其他模組（比如 <em>server.js</em> 中的HTTP伺服器模組）來引導和啟動應用。  </p>
+
+        <p>我們現在就來談談怎麼把server.js變成一個真正的Node.js模組，使它可以被我們（還沒動工）的 <em>index.js</em> 主檔案使用。</p>
+
+        <p>也許你已經注意到，我們已經在代碼中使用了模組了。像這樣：  </p>
+        <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
+                class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
+                class="str">"http"</span><span class="pun">);</span><span class="pln"><br><br></span><span class="pun">...</span><span
+                class="pln"><br><br>http</span><span class="pun">.</span><span class="pln">createServer</span><span
+                class="pun">(...);</span></pre>
+
+        <p>Node.js中自帶了一個叫做 &quot;http&quot; 的模組，我們在我們的代碼中請求它並把回傳值賦給一個區域變數。  </p>
+
+        <p>這把我們的區域變數變成了一個擁有所有 <em>http</em> 模組所提供的公共方法的物件。</p>
+
+        <p>給這種區域變數起一個和模組名稱一樣的名字是一種慣例，但是你也可以按照自己的喜好來：  </p>
+        <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> foo </span><span
+                class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
+                class="str">"http"</span><span class="pun">);</span><span class="pln"><br><br></span><span class="pun">...</span><span
+                class="pln"><br><br>foo</span><span class="pun">.</span><span class="pln">createServer</span><span
+                class="pun">(...);</span></pre>
+
+        <p>很好，怎麼使用Node.js內部模組已經很清楚了。我們怎麼建立自己的模組，又怎麼使用它呢？  </p>
+
+        <p>等我們把 <em>server.js</em> 變成一個真正的模組，你就能搞明白了。  </p>
+
+        <p>事實上，我們不用做太多的修改。把某段代碼變成模組意味著我們需要把我們希望提供其功能的部分 <em>匯出</em> 到請求這個模組的腳本。  </p>
+
+        <p>目前，我們的HTTP伺服器需要匯出的功能非常簡單，因為請求伺服器模組的腳本僅僅是需要啟動伺服器而已。  </p>
+
+        <p>我們把我們的伺服器腳本放到一個叫做 <em>start</em> 的函數裡，然後我們會匯出這個函數。  </p>
+        <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
+                class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
+                class="str">"http"</span><span class="pun">);</span><span class="pln"><br><br></span><span class="kwd">function</span><span
+                class="pln"> start</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span
+                class="pln"><br>&nbsp; </span><span class="kwd">function</span><span class="pln"> onRequest</span><span
+                class="pun">(</span><span class="pln">request</span><span class="pun">,</span><span class="pln"> response</span><span
+                class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; console</span><span
+                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Request received."</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; response</span><span class="pun">.</span><span
+                class="pln">writeHead</span><span class="pun">(</span><span class="lit">200</span><span
+                class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span
+                class="str">"Content-Type"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"text/plain"</span><span
+                class="pun">});</span><span class="pln"><br>&nbsp; &nbsp; response</span><span class="pun">.</span><span
+                class="pln">write</span><span class="pun">(</span><span class="str">"Hello World"</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; response</span><span class="pun">.</span><span
+                class="pln">end</span><span class="pun">();</span><span class="pln"><br>&nbsp; </span><span class="pun">}</span><span
+                class="pln"><br><br>&nbsp; http</span><span class="pun">.</span><span
+                class="pln">createServer</span><span class="pun">(</span><span class="pln">onRequest</span><span
+                class="pun">).</span><span class="pln">listen</span><span class="pun">(</span><span
+                class="lit">8888</span><span class="pun">);</span><span class="pln"><br>&nbsp; console</span><span
+                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Server has started."</span><span
+                class="pun">);</span><span class="pln"><br></span><span class="pun">}</span><span class="pln"><br><br>exports</span><span
+                class="pun">.</span><span class="pln">start </span><span class="pun">=</span><span
+                class="pln"> start</span><span class="pun">;</span></pre>
+
+        <p>這樣，我們現在就可以建立我們的主檔案 <em>index.js</em> 並在其中啟動我們的HTTP了，雖然伺服器的代碼還在 <em>server.js</em> 中。  </p>
+
+        <p>建立 <em>index.js</em> 檔案並寫入以下內容：  </p>
+        <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> server </span><span class="pun">=</span><span
+                class="pln"> require</span><span class="pun">(</span><span class="str">"./server"</span><span
+                class="pun">);</span><span class="pln"><br><br>server</span><span class="pun">.</span><span class="pln">start</span><span
+                class="pun">();</span></pre>
+
+        <p>正如你所看到的，我們可以像使用任何其他的內置模組一樣使用server模組：請求這個檔案並把它指向一個變數，其中已匯出的函數就可以被我們使用了。</p>
+
+        <p>好了。我們現在就可以從我們的主要腳本啟動我們的的應用了，而它還是老樣子：</p>
+        <pre>node index.js</pre>
+
+        <p>非常好，我們現在可以把我們的應用的不同部分放入不同的檔案裡，並且透過建置模組的方式把它們連接到一起了。  </p>
+
+        <p>我們仍然只擁有整個應用的最初部分：我們可以接收HTTP請求。但是我們得做點什麼——對於不同的URL請求，伺服器應該有不同的反應。  </p>
+
+        <p>對於一個非常簡單的應用來說，你可以直接在回呼(callback)函數 <em>onRequest()</em> 中做這件事情。不過就像我說過的，我們應該加入一些抽象的元素，讓我們的例子變得更有趣一點兒。  </p>
+
+        <p>處理不同的HTTP請求在我們的代碼中是一個不同的部分，叫做 &quot;路由選擇&quot; ——那麼，我們接下來就創造一個叫做 <em>路由</em> 的模組吧。  </p>
+
+        <a name="whats-needed-to-route-requests"></a>
+
+        <h3>如何來進行請求的 &quot;路由&quot; </h3> 
+
+         <p>我們要為路由提供請求的URL和其他需要的GET及POST參數，隨後路由需要根據這些資料來執行相應的代碼（這裡 &quot;代碼&quot; 對應整個應用的第三部分：一系列在接收到請求時真正工作的處理程序）。</p>
+
+        <p>因此，我們需要查看HTTP請求，從中提取出請求的URL以及GET/POST參數。這一功能應當屬於路由還是伺服器（甚至作為一個模組自身的功能）確實值得探討，但這裡暫定其為我們的HTTP伺服器的功能。</p>
+
+        <p>我們需要的所有資料都會包含在request物件中，該物件作為<em>onRequest()</em>回呼(callback)函數的第一個參數傳遞。但是為了解析這些資料，我們需要額外的Node.JS模組，它們分別是<em>url</em>和<em>querystring</em>模組。</p>
+<pre>                               url.parse(string).query
+                                           |
+           url.parse(string).pathname      |
+                       |                   |
+                       |                   |
+                     ------ -------------------
+http://localhost:8888/start?foo=bar&amp;hello=world
+                                ---       -----
+                                 |          |
+                                 |          |
+              querystring(string)["foo"]    |
+                                            |
+                         querystring(string)["hello"]
+</pre>
+
+        <p>當然我們也可以用<em>querystring</em>模組來解析POST請求體中的參數，稍後會有示範。</p>
+
+        <p>現在我們來給<em>onRequest()</em>函數加上一些邏輯，用來找出瀏覽器請求的URL路徑：</p>
+        <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
+                class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
+                class="str">"http"</span><span class="pun">);</span><span class="pln"><br></span><span
+                class="kwd">var</span><span class="pln"> url </span><span class="pun">=</span><span
+                class="pln"> require</span><span class="pun">(</span><span class="str">"url"</span><span
+                class="pun">);</span><span class="pln"><br><br></span><span class="kwd">function</span><span
+                class="pln"> start</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span
+                class="pln"><br>&nbsp; </span><span class="kwd">function</span><span class="pln"> onRequest</span><span
+                class="pun">(</span><span class="pln">request</span><span class="pun">,</span><span class="pln"> response</span><span
+                class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="kwd">var</span><span class="pln"> pathname </span><span class="pun">=</span><span class="pln"> url</span><span
+                class="pun">.</span><span class="pln">parse</span><span class="pun">(</span><span
+                class="pln">request</span><span class="pun">.</span><span class="pln">url</span><span
+                class="pun">).</span><span class="pln">pathname</span><span class="pun">;</span><span class="pln"><br>&nbsp; &nbsp; console</span><span
+                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Request for "</span><span
+                class="pln"> </span><span class="pun">+</span><span class="pln"> pathname </span><span
+                class="pun">+</span><span class="pln"> </span><span class="str">" received."</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; response</span><span class="pun">.</span><span
+                class="pln">writeHead</span><span class="pun">(</span><span class="lit">200</span><span
+                class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span
+                class="str">"Content-Type"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"text/plain"</span><span
+                class="pun">});</span><span class="pln"><br>&nbsp; &nbsp; response</span><span class="pun">.</span><span
+                class="pln">write</span><span class="pun">(</span><span class="str">"Hello World"</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; response</span><span class="pun">.</span><span
+                class="pln">end</span><span class="pun">();</span><span class="pln"><br>&nbsp; </span><span class="pun">}</span><span
+                class="pln"><br><br>&nbsp; http</span><span class="pun">.</span><span
+                class="pln">createServer</span><span class="pun">(</span><span class="pln">onRequest</span><span
+                class="pun">).</span><span class="pln">listen</span><span class="pun">(</span><span
+                class="lit">8888</span><span class="pun">);</span><span class="pln"><br>&nbsp; console</span><span
+                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Server has started."</span><span
+                class="pun">);</span><span class="pln"><br></span><span class="pun">}</span><span class="pln"><br><br>exports</span><span
+                class="pun">.</span><span class="pln">start </span><span class="pun">=</span><span
+                class="pln"> start</span><span class="pun">;</span></pre>
+
+        <p>好了，我們的應用現在可以透過請求的URL路徑來區別不同請求了--這使我們得以使用路由（還未完成）來將請求以URL路徑為基準映射到處理程序上。</p>
+
+        <p>在我們所要建構的應用中，這意味著來自<em>/start</em>和<em>/upload</em>的請求可以使用不同的代碼來處理。稍後我們將看到這些內容是如何整合到一起的。</p>
+
+        <p>現在我們可以來編寫路由了，建立一個名為<em>router.js</em>的檔案，增加以下內容：</p>
+        <pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> route</span><span
+                class="pun">(</span><span class="pln">pathname</span><span class="pun">)</span><span
+                class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; console</span><span
+                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"About to route a request for "</span><span
+                class="pln"> </span><span class="pun">+</span><span class="pln"> pathname</span><span
+                class="pun">);</span><span class="pln"><br></span><span class="pun">}</span><span class="pln"><br><br>exports</span><span
+                class="pun">.</span><span class="pln">route </span><span class="pun">=</span><span
+                class="pln"> route</span><span class="pun">;</span></pre>
+
+        <p>如你所見，這段代碼什麼也沒幹，不過對於現在來說這是應該的。在增加更多的邏輯以前，我們先來看看如何把路由和伺服器整合起來。</p>
+
+        <p>我們的伺服器應當知道路由的存在並加以有效利用。我們當然可以透過硬編碼的方式將這一依賴項綁定到伺服器上，但是其它語言的編程經驗告訴我們這會是一件非常痛苦的事，因此我們將使用依賴注入的方式較松散地增加路由模組（你可以讀讀<a href="http://martinfowler.com/articles/injection.html">Martin Fowlers關於依賴注入的大作</a>來作為背景知識）。</p>
+
+        <p>首先，我們來擴充一下伺服器的<em>start()</em>函數，以便將路由函數作為參數傳遞過去：</p>
+        <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
+                class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
+                class="str">"http"</span><span class="pun">);</span><span class="pln"><br></span><span
+                class="kwd">var</span><span class="pln"> url </span><span class="pun">=</span><span
+                class="pln"> require</span><span class="pun">(</span><span class="str">"url"</span><span
+                class="pun">);</span><span class="pln"><br><br></span><span class="kwd">function</span><span
+                class="pln"> start</span><span class="pun">(</span><span class="pln">route</span><span
+                class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span
+                class="pln"><br>&nbsp; </span><span class="kwd">function</span><span class="pln"> onRequest</span><span
+                class="pun">(</span><span class="pln">request</span><span class="pun">,</span><span class="pln"> response</span><span
+                class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="kwd">var</span><span class="pln"> pathname </span><span class="pun">=</span><span class="pln"> url</span><span
+                class="pun">.</span><span class="pln">parse</span><span class="pun">(</span><span
+                class="pln">request</span><span class="pun">.</span><span class="pln">url</span><span
+                class="pun">).</span><span class="pln">pathname</span><span class="pun">;</span><span class="pln"><br>&nbsp; &nbsp; console</span><span
+                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Request for "</span><span
+                class="pln"> </span><span class="pun">+</span><span class="pln"> pathname </span><span
+                class="pun">+</span><span class="pln"> </span><span class="str">" received."</span><span
+                class="pun">);</span><span class="pln"><br><br>&nbsp; &nbsp; route</span><span class="pun">(</span><span
+                class="pln">pathname</span><span class="pun">);</span><span
+                class="pln"><br><br>&nbsp; &nbsp; response</span><span class="pun">.</span><span
+                class="pln">writeHead</span><span class="pun">(</span><span class="lit">200</span><span
+                class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span
+                class="str">"Content-Type"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"text/plain"</span><span
+                class="pun">});</span><span class="pln"><br>&nbsp; &nbsp; response</span><span class="pun">.</span><span
+                class="pln">write</span><span class="pun">(</span><span class="str">"Hello World"</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; response</span><span class="pun">.</span><span
+                class="pln">end</span><span class="pun">();</span><span class="pln"><br>&nbsp; </span><span class="pun">}</span><span
+                class="pln"><br><br>&nbsp; http</span><span class="pun">.</span><span
+                class="pln">createServer</span><span class="pun">(</span><span class="pln">onRequest</span><span
+                class="pun">).</span><span class="pln">listen</span><span class="pun">(</span><span
+                class="lit">8888</span><span class="pun">);</span><span class="pln"><br>&nbsp; console</span><span
+                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Server has started."</span><span
+                class="pun">);</span><span class="pln"><br></span><span class="pun">}</span><span class="pln"><br><br>exports</span><span
+                class="pun">.</span><span class="pln">start </span><span class="pun">=</span><span
+                class="pln"> start</span><span class="pun">;</span></pre>
+
+        <p>同時，我們會相應擴充<em>index.js</em>，使得路由函數可以被注入到伺服器中：</p>
+        <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> server </span><span class="pun">=</span><span
+                class="pln"> require</span><span class="pun">(</span><span class="str">"./server"</span><span
+                class="pun">);</span><span class="pln"><br></span><span class="kwd">var</span><span
+                class="pln"> router </span><span class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
+                class="str">"./router"</span><span class="pun">);</span><span class="pln"><br><br>server</span><span
+                class="pun">.</span><span class="pln">start</span><span class="pun">(</span><span
+                class="pln">router</span><span class="pun">.</span><span class="pln">route</span><span
+                class="pun">);</span><span class="pln"><br></span></pre>
+
+        <p>在這裡，我們傳遞的函數依舊什麼也沒做。</p>
+
+        <p>如果現在啟動應用（<em>node index.js，始終記得這個命令行</em>），隨後請求一個URL，你將會看到應用輸出相應的訊息，這表明我們的HTTP伺服器已經在使用路由模組了，並會將請求的路徑傳遞給路由：</p>
+
+        <pre>bash$ node index.js
+Request for /foo received.
+About to route a request for /foo</pre>
+
+        <p>（以上輸出已經去掉了比較煩人的/favicon.ico請求相關的部分）。</p>
+ 
+        <a name="execution-in-the-kongdom-of-verbs"></a> 
+ 
+        <h3>行為驅動執行</h3> 
+
+        <p>請允許我再次脫離主題，在這裡談一談函數編程。</p>
+
+        <p>將函數作為參數傳遞並不僅僅出於技術上的考量。對軟體設計來說，這其實是個哲學問題。想想這樣的場景：在index檔案中，我們可以將<em>router</em>物件傳遞進去，伺服器隨後可以執行這個物件的<em>route</em>函數。</p>
+
+        <p>就像這樣，我們傳遞一個東西，然後伺服器利用這個東西來完成一些事。嗨~那個叫路由的東西，能幫我把這個路由一下嗎？</p>
+
+        <p>但是伺服器其實不需要這樣的東西。它只需要把事情做完就行，其實為了把事情做完，你根本不需要東西，你需要的是動作。也就是說，你不需要<em>名詞</em>，你需要<em>動詞</em>。</p>
+
+        <p>理解了這個概念裡最核心、最基本的思想轉換後，我自然而然地理解了函數編程。</p>
+
+        <p>我是在讀了Steve Yegge的大作<a href="http://steve-yegge.blogspot.com/2006/03/execution-in-kingdom-of-nouns.html">名詞王國中的死刑</a>之後理解函數編程。你也去讀一讀這本書吧，真的。這是曾給予我閱讀的快樂的關於軟體的書籍之一。</p>
+
+        <a name="routing-to-real-request-handlers"></a> 
+ 
+        <h3>路由給真正的請求處理程序</h3> 
+
+         <p>回到正題，現在我們的HTTP伺服器和請求路由模組已經如我們的期望，可以相互交流了，就像一對親密無間的兄弟。</p>
+
+        <p>當然這還遠遠不夠，路由，顧名思義，是指我們要針對不同的URL有不同的處理方式。例如處理<em>/start</em>的 &quot;業務邏輯&quot; 就應該和處理<em>/upload</em>的不同。</p>
+
+        <p>在現在的實現下，路由過程會在路由模組中 &quot;結束&quot; ，並且路由模組並不是真正針對請求 &quot;采取行動&quot; 的模組，否則當我們的應用程式變得更為復雜時，將無法很好地擴充。</p>
+
+        <p>我們暫時把作為路由目標的函數稱為請求處理程序。現在我們不要急著來開發路由模組，因為如果請求處理程序沒有就緒的話，再怎麼完善路由模組也沒有多大意義。</p>
+
+        <p>應用程式需要新的部件，因此加入新的模組 -- 已經無需為此感到新奇了。我們來建立一個叫做requestHandlers的模組，並對於每一個請求處理程序，增加一個占位用函數，隨後將這些函數作為模組的方法匯出：</p>
+
+        <pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> start</span><span
+                class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; console</span><span
+                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Request handler 'start' was called."</span><span
+                class="pun">);</span><span class="pln"><br></span><span class="pun">}</span><span
+                class="pln"><br><br></span><span class="kwd">function</span><span class="pln"> upload</span><span
+                class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; console</span><span
+                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Request handler 'upload' was called."</span><span
+                class="pun">);</span><span class="pln"><br></span><span class="pun">}</span><span class="pln"><br><br>exports</span><span
+                class="pun">.</span><span class="pln">start </span><span class="pun">=</span><span
+                class="pln"> start</span><span class="pun">;</span><span class="pln"><br>exports</span><span
+                class="pun">.</span><span class="pln">upload </span><span class="pun">=</span><span
+                class="pln"> upload</span><span class="pun">;</span></pre>
+
+        <p>這樣我們就可以把請求處理程序和路由模組連接起來，讓路由 &quot;有路可尋&quot; 。</p>
+
+        <p>在這裡我們得做個決定：是將requestHandlers模組硬編碼到路由裡來使用，還是再增加一點依賴注入？雖然和其他模式一樣，依賴注入不應該僅僅為使用而使用，但在現在這個情況下，使用依賴注入可以讓路由和請求處理程序之間的耦合更加松散，也因此能讓路由的重用性更高。</p>
+
+        <p>這意味著我們得將請求處理程序從伺服器傳遞到路由中，但感覺上這麼做更離譜了，我們得一路把這堆請求處理程序從我們的主檔案傳遞到伺服器中，再將之從伺服器傳遞到路由。</p>
+
+        <p>那麼我們要怎麼傳遞這些請求處理程序呢？別看現在我們只有2個處理程序，在一個真實的應用中，請求處理程序的數量會不斷增加，我們當然不想每次有一個新的URL或請求處理程序時，都要為了在路由裡完成請求到處理程序的映射而反復折騰。除此之外，在路由裡有一大堆<em>if request == x then call handler y</em>也使得系統丑陋不堪。</p>
+
+        <p>仔細想想，有一大堆東西，每個都要映射到一個字串（就是請求的URL）上？似乎關聯陣列（associative array）能完美勝任。</p>
+
+        <p>不過結果有點令人失望，JavaScript沒提供關聯陣列 -- 也可以說它提供了？事實上，在JavaScript中，真正能提供此類功能的是它的物件。</p>
+
+        <p>在這方面，<a href="http://msdn.microsoft.com/en-us/magazine/cc163419.aspx">http://msdn.microsoft.com/en-us/magazine/cc163419.aspx</a>有一個不錯的介紹，我在此摘錄一段：</p>
+
+         <blockquote>
+            <p>在C++或C#中，當我們談到物件，指的是類別(Class)或者結構體(Struct)的實體。物件根據他們實體化的範本（就是所謂的類別），會擁有不同的屬性和方法。但在JavaScript裡物件不是這個概念。在JavaScript中，物件就是一個鍵/值對的集合 -- 你可以把JavaScript的物件想象成一個鍵為字串類型的字典。</p>
+        </blockquote>
+
+        <p>但如果JavaScript的物件僅僅是鍵/值對的集合，它又怎麼會擁有方法呢？好吧，這裡的值可以是字串、數字或者……函數！</p>
+
+        <p>好了，最後再回到代碼上來。現在我們已經確定將一系列請求處理程序透過一個物件來傳遞，並且需要使用松耦合的方式將這個物件注入到<em>route()</em>函數中。</p>
+
+        <p>我們先將這個物件引入到主檔案<em>index.js</em>中：</p>
+        <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> server </span><span class="pun">=</span><span
+                class="pln"> require</span><span class="pun">(</span><span class="str">"./server"</span><span
+                class="pun">);</span><span class="pln"><br></span><span class="kwd">var</span><span
+                class="pln"> router </span><span class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
+                class="str">"./router"</span><span class="pun">);</span><span class="pln"><br></span><span class="kwd">var</span><span
+                class="pln"> requestHandlers </span><span class="pun">=</span><span class="pln"> require</span><span
+                class="pun">(</span><span class="str">"./requestHandlers"</span><span class="pun">);</span><span
+                class="pln"><br><br></span><span class="kwd">var</span><span class="pln"> handle </span><span
+                class="pun">=</span><span class="pln"> </span><span class="pun">{}</span><span
+                class="pln"><br>handle</span><span class="pun">[</span><span class="str">"/"</span><span
+                class="pun">]</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> requestHandlers</span><span
+                class="pun">.</span><span class="pln">start</span><span class="pun">;</span><span class="pln"><br>handle</span><span
+                class="pun">[</span><span class="str">"/start"</span><span class="pun">]</span><span
+                class="pln"> </span><span class="pun">=</span><span class="pln"> requestHandlers</span><span
+                class="pun">.</span><span class="pln">start</span><span class="pun">;</span><span class="pln"><br>handle</span><span
+                class="pun">[</span><span class="str">"/upload"</span><span class="pun">]</span><span
+                class="pln"> </span><span class="pun">=</span><span class="pln"> requestHandlers</span><span
+                class="pun">.</span><span class="pln">upload</span><span class="pun">;</span><span class="pln"><br><br>server</span><span
+                class="pun">.</span><span class="pln">start</span><span class="pun">(</span><span
+                class="pln">router</span><span class="pun">.</span><span class="pln">route</span><span
+                class="pun">,</span><span class="pln"> handle</span><span class="pun">);</span></pre>
+
+        <p>雖然<em>handle</em>並不僅僅是一個 &quot;東西&quot; （一些請求處理程序的集合），我還是建議以一個動詞作為其命名，這樣做可以讓我們在路由中使用更流暢的表達式，稍後會有說明。</p>
+
+        <p>正如所見，將不同的URL映射到相同的請求處理程序上是很容易的：只要在物件中增加一個鍵為<em>"/"</em>的屬性，對應<em>requestHandlers.start</em>即可，這樣我們就可以乾淨簡潔地配置<em>/start</em>和<em>/</em>的請求都交由<em>start</em>這一處理程序處理。</p>
+
+        <p>在完成了物件的定義後，我們把它作為額外的參數傳遞給伺服器，為此將<em>server.js</em>修改如下：</p>
+        <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
+                class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
+                class="str">"http"</span><span class="pun">);</span><span class="pln"><br></span><span
+                class="kwd">var</span><span class="pln"> url </span><span class="pun">=</span><span
+                class="pln"> require</span><span class="pun">(</span><span class="str">"url"</span><span
+                class="pun">);</span><span class="pln"><br><br></span><span class="kwd">function</span><span
+                class="pln"> start</span><span class="pun">(</span><span class="pln">route</span><span
+                class="pun">,</span><span class="pln"> handle</span><span class="pun">)</span><span class="pln"> </span><span
+                class="pun">{</span><span class="pln"><br>&nbsp; </span><span class="kwd">function</span><span
+                class="pln"> onRequest</span><span class="pun">(</span><span class="pln">request</span><span
+                class="pun">,</span><span class="pln"> response</span><span class="pun">)</span><span
+                class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="kwd">var</span><span class="pln"> pathname </span><span class="pun">=</span><span class="pln"> url</span><span
+                class="pun">.</span><span class="pln">parse</span><span class="pun">(</span><span
+                class="pln">request</span><span class="pun">.</span><span class="pln">url</span><span
+                class="pun">).</span><span class="pln">pathname</span><span class="pun">;</span><span class="pln"><br>&nbsp; &nbsp; console</span><span
+                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Request for "</span><span
+                class="pln"> </span><span class="pun">+</span><span class="pln"> pathname </span><span
+                class="pun">+</span><span class="pln"> </span><span class="str">" received."</span><span
+                class="pun">);</span><span class="pln"><br><br>&nbsp; &nbsp; route</span><span class="pun">(</span><span
+                class="pln">handle</span><span class="pun">,</span><span class="pln"> pathname</span><span class="pun">);</span><span
+                class="pln"><br><br>&nbsp; &nbsp; response</span><span class="pun">.</span><span
+                class="pln">writeHead</span><span class="pun">(</span><span class="lit">200</span><span
+                class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span
+                class="str">"Content-Type"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"text/plain"</span><span
+                class="pun">});</span><span class="pln"><br>&nbsp; &nbsp; response</span><span class="pun">.</span><span
+                class="pln">write</span><span class="pun">(</span><span class="str">"Hello World"</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; response</span><span class="pun">.</span><span
+                class="pln">end</span><span class="pun">();</span><span class="pln"><br>&nbsp; </span><span class="pun">}</span><span
+                class="pln"><br><br>&nbsp; http</span><span class="pun">.</span><span
+                class="pln">createServer</span><span class="pun">(</span><span class="pln">onRequest</span><span
+                class="pun">).</span><span class="pln">listen</span><span class="pun">(</span><span
+                class="lit">8888</span><span class="pun">);</span><span class="pln"><br>&nbsp; console</span><span
+                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Server has started."</span><span
+                class="pun">);</span><span class="pln"><br></span><span class="pun">}</span><span class="pln"><br><br>exports</span><span
+                class="pun">.</span><span class="pln">start </span><span class="pun">=</span><span
+                class="pln"> start</span><span class="pun">;</span></pre>
+
+        <p>這樣我們就在<em>start()</em>函數裡增加了<em>handle</em>參數，並且把handle物件作為第一個參數傳遞給了<em>route()</em>回呼(callback)函數。</p>
+
+        <p>然後我們相應地在<em>route.js</em>檔案中修改<em>route()</em>函數：</p>
+        <pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> route</span><span
+                class="pun">(</span><span class="pln">handle</span><span class="pun">,</span><span
+                class="pln"> pathname</span><span class="pun">)</span><span class="pln"> </span><span
+                class="pun">{</span><span class="pln"><br>&nbsp; console</span><span class="pun">.</span><span
+                class="pln">log</span><span class="pun">(</span><span class="str">"About to route a request for "</span><span
+                class="pln"> </span><span class="pun">+</span><span class="pln"> pathname</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; </span><span class="kwd">if</span><span
+                class="pln"> </span><span class="pun">(</span><span class="kwd">typeof</span><span
+                class="pln"> handle</span><span class="pun">[</span><span class="pln">pathname</span><span
+                class="pun">]</span><span class="pln"> </span><span class="pun">===</span><span
+                class="pln"> </span><span class="str">'function'</span><span class="pun">)</span><span
+                class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; handle</span><span
+                class="pun">[</span><span class="pln">pathname</span><span class="pun">]();</span><span class="pln"><br>&nbsp; </span><span
+                class="pun">}</span><span class="pln"> </span><span class="kwd">else</span><span
+                class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; console</span><span
+                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"No request handler found for "</span><span
+                class="pln"> </span><span class="pun">+</span><span class="pln"> pathname</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; </span><span class="pun">}</span><span
+                class="pln"><br></span><span class="pun">}</span><span class="pln"><br><br>exports</span><span
+                class="pun">.</span><span class="pln">route </span><span class="pun">=</span><span
+                class="pln"> route</span><span class="pun">;</span></pre>
+
+       <p>透過以上代碼，我們首先檢查給定的路徑對應的請求處理程序是否存在，如果存在的話直接執行相應的函數。我們可以用從關聯陣列中取得元素一樣的方式從傳遞的物件中取得請求處理函數，因此就有了簡潔流暢的形如<em>handle&#91;pathname&#93;();</em>的表達式，這個感覺就像在前方中提到的那樣： &quot;嗨，請幫我處理了這個路徑&quot; 。</p>
+
+        <p>有了這些，我們就把伺服器、路由和請求處理程序在一起了。現在我們啟動應用程式並在瀏覽器中存取<em>http://localhost:8888/start</em>，以下日志可以說明系統執行了正確的請求處理程序：</p>
+
+        <pre>Server has started.
+Request for /start received.
+About to route a request for /start
+Request handler 'start' was called.</pre>
+
+         <p>並且在瀏覽器中打開<em>http://localhost:8888/</em>可以看到這個請求同樣被<em>start</em>請求處理程序處理了：</p>
+        <pre>Request for / received.
+About to route a request for /
+Request handler 'start' was called.</pre>
+
+        <a name="making-the-request-handlers-respond"></a>
+
+        <h3>讓請求處理程序作出回應</h3>
+
+        <p>
+            很好。不過現在要是請求處理程序能夠向瀏覽器回傳一些有意義的訊息而並非全是 &quot;Hello World&quot; ，那就更好了。
+        </p>
+
+        <p>
+            這裡要記住的是，瀏覽器發出請求後獲得並顯示的 &quot;Hello World&quot; 訊息仍是來自於我們<em>server.js</em>檔案中的<em>onRequest</em>函數。
+        </p>
+
+        <p>
+            其實 &quot;處理請求&quot; 說白了就是 &quot;對請求作出回應&quot; ，因此，我們需要讓請求處理程序能夠像<em>onRequest</em>函數那樣可以和瀏覽器進行 &quot;對話&quot; 。
+        </p>
+
+        <a name="how-to-not-do-it"></a>
+
+        <h4>不好的實現方式</h4>
+
+        <p>
+            對於我們這樣擁有PHP或者Ruby技術背景的開發者來說，最直截了當的實現方式事實上並不是非常靠譜： 看似有效，實則未必如此。
+        </p>
+
+        <p>
+            這裡我指的 &quot;直截了當的實現方式&quot; 意思是：讓請求處理程序透過<em>onRequest</em>函數直接回傳（<em>return()</em>）他們要展示給用戶的訊息。
+        </p>
+
+        <p>
+            我們先就這樣去實現，然後再來看為什麼這不是一種很好的實現方式。
+        </p>
+
+        <p>
+            讓我們從讓請求處理程序回傳需要在瀏覽器中顯示的訊息開始。我們需要將<em>requestHandler.js</em>修改為如下形式：
+        </p>
+        <pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> start</span><span
+                class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; console</span><span
+                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Request handler 'start' was called."</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; </span><span class="kwd">return</span><span
+                class="pln"> </span><span class="str">"Hello Start"</span><span class="pun">;</span><span
+                class="pln"><br></span><span class="pun">}</span><span class="pln"><br><br></span><span class="kwd">function</span><span
+                class="pln"> upload</span><span class="pun">()</span><span class="pln"> </span><span
+                class="pun">{</span><span class="pln"><br>&nbsp; console</span><span class="pun">.</span><span
+                class="pln">log</span><span class="pun">(</span><span
+                class="str">"Request handler 'upload' was called."</span><span class="pun">);</span><span
+                class="pln"><br>&nbsp; </span><span class="kwd">return</span><span class="pln"> </span><span
+                class="str">"Hello Upload"</span><span class="pun">;</span><span class="pln"><br></span><span
+                class="pun">}</span><span class="pln"><br><br>exports</span><span class="pun">.</span><span class="pln">start </span><span
+                class="pun">=</span><span class="pln"> start</span><span class="pun">;</span><span class="pln"><br>exports</span><span
+                class="pun">.</span><span class="pln">upload </span><span class="pun">=</span><span
+                class="pln"> upload</span><span class="pun">;</span></pre>
+
+        <p>
+            好的。同樣的，請求路由需要將請求處理程序回傳給它的訊息回傳給伺服器。因此，我們需要將<em>router.js</em>修改為如下形式：
+        </p>
+        <pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> route</span><span
+                class="pun">(</span><span class="pln">handle</span><span class="pun">,</span><span
+                class="pln"> pathname</span><span class="pun">)</span><span class="pln"> </span><span
+                class="pun">{</span><span class="pln"><br>&nbsp; console</span><span class="pun">.</span><span
+                class="pln">log</span><span class="pun">(</span><span class="str">"About to route a request for "</span><span
+                class="pln"> </span><span class="pun">+</span><span class="pln"> pathname</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; </span><span class="kwd">if</span><span
+                class="pln"> </span><span class="pun">(</span><span class="kwd">typeof</span><span
+                class="pln"> handle</span><span class="pun">[</span><span class="pln">pathname</span><span
+                class="pun">]</span><span class="pln"> </span><span class="pun">===</span><span
+                class="pln"> </span><span class="str">'function'</span><span class="pun">)</span><span
+                class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="kwd">return</span><span class="pln"> handle</span><span class="pun">[</span><span class="pln">pathname</span><span
+                class="pun">]();</span><span class="pln"><br>&nbsp; </span><span class="pun">}</span><span
+                class="pln"> </span><span class="kwd">else</span><span class="pln"> </span><span
+                class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; console</span><span class="pun">.</span><span
+                class="pln">log</span><span class="pun">(</span><span class="str">"No request handler found for "</span><span
+                class="pln"> </span><span class="pun">+</span><span class="pln"> pathname</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="kwd">return</span><span
+                class="pln"> </span><span class="str">"404 Not found"</span><span class="pun">;</span><span class="pln"><br>&nbsp; </span><span
+                class="pun">}</span><span class="pln"><br></span><span class="pun">}</span><span class="pln"><br><br>exports</span><span
+                class="pun">.</span><span class="pln">route </span><span class="pun">=</span><span
+                class="pln"> route</span><span class="pun">;</span></pre>
+        <p>
+            正如上述代碼所示，當請求無法路由的時候，我們也回傳了一些相關的錯誤訊息。
+        </p>
+
+        <p>
+            最後，我們需要對我們的<em>server.js</em>進行重構以使得它能夠將請求處理程序透過請求路由回傳的內容回應給瀏覽器，如下所示：
+        </p>
+        <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
+                class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
+                class="str">"http"</span><span class="pun">);</span><span class="pln"><br></span><span
+                class="kwd">var</span><span class="pln"> url </span><span class="pun">=</span><span
+                class="pln"> require</span><span class="pun">(</span><span class="str">"url"</span><span
+                class="pun">);</span><span class="pln"><br><br></span><span class="kwd">function</span><span
+                class="pln"> start</span><span class="pun">(</span><span class="pln">route</span><span
+                class="pun">,</span><span class="pln"> handle</span><span class="pun">)</span><span class="pln"> </span><span
+                class="pun">{</span><span class="pln"><br>&nbsp; </span><span class="kwd">function</span><span
+                class="pln"> onRequest</span><span class="pun">(</span><span class="pln">request</span><span
+                class="pun">,</span><span class="pln"> response</span><span class="pun">)</span><span
+                class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="kwd">var</span><span class="pln"> pathname </span><span class="pun">=</span><span class="pln"> url</span><span
+                class="pun">.</span><span class="pln">parse</span><span class="pun">(</span><span
+                class="pln">request</span><span class="pun">.</span><span class="pln">url</span><span
+                class="pun">).</span><span class="pln">pathname</span><span class="pun">;</span><span class="pln"><br>&nbsp; &nbsp; console</span><span
+                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Request for "</span><span
+                class="pln"> </span><span class="pun">+</span><span class="pln"> pathname </span><span
+                class="pun">+</span><span class="pln"> </span><span class="str">" received."</span><span
+                class="pun">);</span><span class="pln"><br><br>&nbsp; &nbsp; response</span><span
+                class="pun">.</span><span class="pln">writeHead</span><span class="pun">(</span><span
+                class="lit">200</span><span class="pun">,</span><span class="pln"> </span><span
+                class="pun">{</span><span class="str">"Content-Type"</span><span class="pun">:</span><span
+                class="pln"> </span><span class="str">"text/plain"</span><span class="pun">});</span><span
+                class="pln"><br>&nbsp; &nbsp; </span><span class="kwd">var</span><span class="pln"> content </span><span
+                class="pun">=</span><span class="pln"> route</span><span class="pun">(</span><span
+                class="pln">handle</span><span class="pun">,</span><span class="pln"> pathname</span><span
+                class="pun">)</span><span class="pln"><br>&nbsp; &nbsp; response</span><span class="pun">.</span><span
+                class="pln">write</span><span class="pun">(</span><span class="pln">content</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; response</span><span class="pun">.</span><span
+                class="pln">end</span><span class="pun">();</span><span class="pln"><br>&nbsp; </span><span class="pun">}</span><span
+                class="pln"><br><br>&nbsp; http</span><span class="pun">.</span><span
+                class="pln">createServer</span><span class="pun">(</span><span class="pln">onRequest</span><span
+                class="pun">).</span><span class="pln">listen</span><span class="pun">(</span><span
+                class="lit">8888</span><span class="pun">);</span><span class="pln"><br>&nbsp; console</span><span
+                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Server has started."</span><span
+                class="pun">);</span><span class="pln"><br></span><span class="pun">}</span><span class="pln"><br><br>exports</span><span
+                class="pun">.</span><span class="pln">start </span><span class="pun">=</span><span
+                class="pln"> start</span><span class="pun">;</span></pre>
+        <p>
+            如果我們運行重構後的應用，一切都會工作的很好：請求<a href="http://localhost:8888/start" rel="nofollow">http://localhost:8888/start</a>,瀏覽器會輸出 &quot;Hello Start&quot; ，請求<a href="http://localhost:8888/upload" rel="nofollow">http://localhost:8888/upload</a>會輸出 &quot;Hello Upload&quot; ,而請求<a href="http://localhost:8888/foo" rel="nofollow">http://localhost:8888/foo</a> 會輸出 &quot;404 Not found&quot; 。
+        </p>
+
+        <p>
+            好，那麼問題在哪裡呢？簡單的說就是： 當未來有請求處理程序需要進行Non-Blocking的操作的時候，我們的應用就 &quot;掛&quot; 了。
+        </p>
+
+        <p>
+            沒理解？沒關系，下面就來詳細解釋下。
+        </p>
+
+        <a name="blocking-and-non-blocking"></a>
+
+        <h4>Blocking與Non-Blocking</h4>
+
+        <p>
+            正如此前所提到的，當在請求處理程序中包括Non-Blocking操作時就會出問題。但是，在說這之前，我們先來看看什麼是Blocking操作。
+        </p>
+
+        <p>
+            我不想去解釋 &quot;Blocking&quot; 和 &quot;Non-Blocking&quot; 的具體含義，我們直接來看，當在請求處理程序中加入Blocking操作時會發生什麼。
+        </p>
+
+        <p>
+            這裡，我們來修改下<em>start</em>請求處理程序，我們讓它等待10秒以後再回傳 &quot;Hello Start&quot; 。因為，JavaScript中沒有類似<em>sleep()</em>這樣的操作，所以這裡只能夠來點小Hack來模擬實現。
+        </p>
+
+        <p>
+            讓我們將<em>requestHandlers.js</em>修改成如下形式：
+        </p>
+        <pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> start</span><span
+                class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; console</span><span
+                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Request handler 'start' was called."</span><span
+                class="pun">);</span><span class="pln"><br><br>&nbsp; </span><span class="kwd">function</span><span
+                class="pln"> sleep</span><span class="pun">(</span><span class="pln">milliSeconds</span><span
+                class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="kwd">var</span><span class="pln"> startTime </span><span class="pun">=</span><span
+                class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span
+                class="typ">Date</span><span class="pun">().</span><span class="pln">getTime</span><span
+                class="pun">();</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="kwd">while</span><span
+                class="pln"> </span><span class="pun">(</span><span class="kwd">new</span><span
+                class="pln"> </span><span class="typ">Date</span><span class="pun">().</span><span
+                class="pln">getTime</span><span class="pun">()</span><span class="pln"> </span><span
+                class="pun">&lt;</span><span class="pln"> startTime </span><span class="pun">+</span><span class="pln"> milliSeconds</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; </span><span class="pun">}</span><span
+                class="pln"><br><br>&nbsp; sleep</span><span class="pun">(</span><span class="lit">10000</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; </span><span class="kwd">return</span><span
+                class="pln"> </span><span class="str">"Hello Start"</span><span class="pun">;</span><span
+                class="pln"><br></span><span class="pun">}</span><span class="pln"><br><br></span><span class="kwd">function</span><span
+                class="pln"> upload</span><span class="pun">()</span><span class="pln"> </span><span
+                class="pun">{</span><span class="pln"><br>&nbsp; console</span><span class="pun">.</span><span
+                class="pln">log</span><span class="pun">(</span><span
+                class="str">"Request handler 'upload' was called."</span><span class="pun">);</span><span
+                class="pln"><br>&nbsp; </span><span class="kwd">return</span><span class="pln"> </span><span
+                class="str">"Hello Upload"</span><span class="pun">;</span><span class="pln"><br></span><span
+                class="pun">}</span><span class="pln"><br><br>exports</span><span class="pun">.</span><span class="pln">start </span><span
+                class="pun">=</span><span class="pln"> start</span><span class="pun">;</span><span class="pln"><br>exports</span><span
+                class="pun">.</span><span class="pln">upload </span><span class="pun">=</span><span
+                class="pln"> upload</span><span class="pun">;</span></pre>
+
+        <p>
+            上述代碼中，當函數<em>start()</em>被執行的時候，Node.js會先等待10秒，之後才會回傳 &quot;Hello Start&quot; 。當執行<em>upload()</em>的時候，會和此前一樣立即回傳。
+        </p>
+
+        <p>
+            （當然了，這裡只是模擬休眠10秒，實際場景中，這樣的Blocking操作有很多，比方說一些長時間的計算操作等。）
+        </p>
+
+        <p>
+            接下來就讓我們來看看，我們的改動帶來了哪些變化。
+        </p>
+
+        <p>
+            如往常一樣，我們先要重啟下伺服器。為了看到效果，我們要進行一些相對復雜的操作（跟著我一起做）： 首先，打開兩個瀏覽器窗口或者標簽頁。在第一個瀏覽器窗口的地址欄中輸入<a href="http://localhost:8888/start" rel="nofollow">http://localhost:8888/start</a>， 但是先不要打開它！
+        </p>
+
+        <p>
+            在第二個瀏覽器窗口的地址欄中輸入<a href="http://localhost:8888/upload" rel="nofollow">http://localhost:8888/upload</a>， 同樣的，先不要打開它！
+        </p>
+
+        <p>
+           接下來，做如下操作：在第一個窗口中（ &quot;/start&quot; ）按下 Enter，然後快速切換到第二個窗口中（ &quot;/upload&quot; ）按下 Enter。
+        </p>
+
+        <p>
+            注意，發生了什麼： /start URL加載花了10秒，這和我們預期的一樣。但是，/upload URL居然<em>也</em>花了10秒，而它在對應的請求處理程序中並沒有類似於<em>sleep()</em>這樣的操作！
+        </p>
+
+        <p>
+            這到底是為什麼呢？原因就是<em>start()</em>包含了Blocking操作。形象的說就是 &quot;它Blocking了所有其他的處理工作&quot; 。
+        </p>
+
+        <p>
+            這顯然是個問題，因為Node一向是這樣來標榜自己的：<em> &quot;在node中除了代碼，所有一切都是並行執行的&quot; </em>。
+        </p>
+
+        <p>
+            這句話的意思是說，Node.js可以在不新增額外執行緒的情況下，依然可以對任務進行並行處理 —— Node.js是單執行緒的。它透過事件輪詢（event loop）來實現並行操作，對此，我們應該要充分利用這一點 —— 盡可能的避免Blocking操作，取而代之，多使用Non-Blocking操作。
+        </p>
+
+        <p>
+            然而，要用Non-Blocking操作，我們需要使用回呼(callback)，透過將函數作為參數傳遞給其他需要花時間做處理的函數（比方說，休眠10秒，或者查詢資料庫，又或者是進行大量的計算）。
+        </p>
+
+        <p>
+            對於Node.js來說，它是這樣處理的：<em> &quot;嘿，probablyExpensiveFunction()（譯者注：這裡指的就是需要花時間處理的函數），你繼續處理你的事情，我（Node.js執行緒）先不等你了，我繼續去處理你後面的代碼，請你提供一個callbackFunction()，等你處理完之後我會去執行該回呼(callback)函數的，謝謝！&quot; </em>
+        </p>
+
+        <p>
+            （如果想要了解更多關於事件輪詢細節，可以閱讀Mixu的博文——<a href="http://blog.mixu.net/2011/02/01/understanding-the-node-js-event-loop/">理解node.js的事件輪詢</a>。）
+        </p>
+
+        <p>
+            接下來，我們會介紹一種錯誤的使用Non-Blocking操作的方式。
+        </p>
+
+        <p>
+            和上次一樣，我們透過修改我們的應用來暴露問題。
+        </p>
+
+        <p>
+            這次我們還是拿<em>start</em>請求處理程序來 &quot;開刀&quot; 。將其修改成如下形式：
+        </p>
+        <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> exec </span><span
+                class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">"child_process"</span><span
+                class="pun">).</span><span class="pln">exec</span><span class="pun">;</span><span
+                class="pln"><br><br></span><span class="kwd">function</span><span class="pln"> start</span><span
+                class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; console</span><span
+                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Request handler 'start' was called."</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; </span><span class="kwd">var</span><span class="pln"> content </span><span
+                class="pun">=</span><span class="pln"> </span><span class="str">"empty"</span><span class="pun">;</span><span
+                class="pln"><br><br>&nbsp; exec</span><span class="pun">(</span><span class="str">"ls -lah"</span><span
+                class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span
+                class="pln"> </span><span class="pun">(</span><span class="pln">error</span><span
+                class="pun">,</span><span class="pln"> stdout</span><span class="pun">,</span><span
+                class="pln"> stderr</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span
+                class="pln"><br>&nbsp; &nbsp; content </span><span class="pun">=</span><span
+                class="pln"> stdout</span><span class="pun">;</span><span class="pln"><br>&nbsp; </span><span
+                class="pun">});</span><span class="pln"><br><br>&nbsp; </span><span class="kwd">return</span><span
+                class="pln"> content</span><span class="pun">;</span><span class="pln"><br></span><span
+                class="pun">}</span><span class="pln"><br><br></span><span class="kwd">function</span><span class="pln"> upload</span><span
+                class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; console</span><span
+                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Request handler 'upload' was called."</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; </span><span class="kwd">return</span><span
+                class="pln"> </span><span class="str">"Hello Upload"</span><span class="pun">;</span><span
+                class="pln"><br></span><span class="pun">}</span><span class="pln"><br><br>exports</span><span
+                class="pun">.</span><span class="pln">start </span><span class="pun">=</span><span
+                class="pln"> start</span><span class="pun">;</span><span class="pln"><br>exports</span><span
+                class="pun">.</span><span class="pln">upload </span><span class="pun">=</span><span
+                class="pln"> upload</span><span class="pun">;</span></pre>
+
+        <p>
+            上述代碼中，我們引入了一個新的Node.js模組，<em>child_process</em>。之所以用它，是為了實現一個既簡單又實用的Non-Blocking操作：<em>exec()</em>。
+        </p>
+
+        <p>
+            <em>exec()</em>做了什麼呢？它從Node.js來執行一個shell命令。在上述例子中，我們用它來取得目前目錄下所有的檔案（ &quot;ls -lah&quot; ），然後，當<em>/start</em>URL請求的時候將檔案訊息輸出到瀏覽器中。
+        </p>
+
+        <p>
+            上述代碼是非常直觀的： 建立了一個新的變數<em>content</em>（初始值為 &quot;empty&quot; ），執行 &quot;ls -lah&quot; 命令，將結果賦值給content，最後將content回傳。
+        </p>
+
+        <p>
+            和往常一樣，我們啟動伺服器，然後存取 &quot;<a href="http://localhost:8888/start" rel="nofollow">http://localhost:8888/start</a>&quot;  。
+        </p>
+
+        <p>
+            之後會載入一個漂亮的web頁面，其內容為 &quot;empty&quot; 。怎麼回事？
+        </p>
+
+        <p>
+            這個時候，你可能大致已經猜到了，<em>exec()</em>在Non-Blocking這塊發揮了神奇的功效。它其實是個很好的東西，有了它，我們可以執行非常耗時的shell操作而無需迫使我們的應用停下來等待該操作。
+        </p>
+
+        <p>
+            （如果想要證明這一點，可以將 &quot;ls -lah&quot; 換成比如 &quot;find /&quot; 這樣更耗時的操作來效果）。
+        </p>
+
+        <p>
+            然而，針對瀏覽器顯示的結果來看，我們並不滿意我們的Non-Blocking操作，對吧？
+        </p>
+
+        <p>
+            好，接下來，我們來修正這個問題。在這過程中，讓我們先來看看為什麼目前的這種方式不起作用。
+        </p>
+
+        <p>
+            問題就在於，為了進行Non-Blocking工作，<em>exec()</em>使用了回呼(callback)函數。
+        </p>
+
+        <p>
+            在我們的例子中，該回呼(callback)函數就是作為第二個參數傳遞給<em>exec()</em>的匿名函數：
+        </p>
+        <pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> </span><span
+                class="pun">(</span><span class="pln">error</span><span class="pun">,</span><span
+                class="pln"> stdout</span><span class="pun">,</span><span class="pln"> stderr</span><span
+                class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; content </span><span
+                class="pun">=</span><span class="pln"> stdout</span><span class="pun">;</span><span
+                class="pln"><br></span><span class="pun">}</span></pre>
+
+        <p>
+            現在就到了問題根源所在了：我們的代碼是同步執行的，這就意味著在執行<em>exec()</em>之後，Node.js會立即執行 <em>return content</em> ；在這個時候，<em>content</em>仍然是 &quot;empty&quot; ，因為傳遞給<em>exec()</em>的回呼(callback)函數還未執行到——因為<em>exec()</em>的操作是非同步的。
+        </p>
+
+        <p>
+            我們這裡 &quot;ls -lah&quot; 的操作其實是非常快的（除非目前目錄下有上百萬個檔案）。這也是為什麼回呼(callback)函數也會很快的執行到 —— 不過，不管怎麼說它還是非同步的。
+        </p>
+
+        <p>
+            為了讓效果更加明顯，我們想象一個更耗時的命令：  &quot;find /&quot; ，它在我機器上需要執行1分鐘左右的時間，然而，盡管在請求處理程序中，我把 &quot;ls -lah&quot; 換成 &quot;find /&quot; ，當打開/start URL的時候，依然能夠立即獲得HTTP回應 —— 很明顯，當<em>exec()</em>在後台執行的時候，Node.js自身會繼續執行後面的代碼。並且我們這裡假設傳遞給<em>exec()</em>的回呼(callback)函數，只會在 &quot;find /&quot; 命令執行完成之後才會被執行。
+        </p>
+
+        <p>
+            那究竟我們要如何才能實現將目前目錄下的檔案列表顯示給用戶呢？
+        </p>
+
+        <p>
+            好，了解了這種不好的實現方式之後，我們接下來來介紹如何以正確的方式讓請求處理程序對瀏覽器請求作出回應。
+        </p>
+
+        <a name="responding-request-handlers-with-non-blocking-operations"></a>
+
+        <h4>以Non-Blocking操作進行請求回應</h4>
+
+        <p>
+            我剛剛提到了這樣一個短語 ——  &quot;正確的方式&quot; 。而事實上通常 &quot;正確的方式&quot; 一般都不簡單。
+        </p>
+
+        <p>
+            不過，用Node.js就有這樣一種實現方案： 函數傳遞。下面就讓我們來具體看看如何實現。
+        </p>
+
+        <p>
+            到目前為止，我們的應用已經可以透過應用各層之間傳遞值的方式（請求處理程序 -&gt 請求路由 -&gt 伺服器）將請求處理程序回傳的內容（請求處理程序最終要顯示給用戶的內容）傳遞給HTTP伺服器。
+        </p>
+
+        <p>
+            現在我們採用如下這種新的實現方式：相對採用將內容傳遞給伺服器的方式，我們這次採用將伺服器 &quot;傳遞&quot; 給內容的方式。 從實踐角度來說，就是將<em>response</em>物件（從伺服器的回呼(callback)函數<em>onRequest()</em>取得）透過請求路由傳遞給請求處理程序。 隨後，處理程序就可以採用該物件上的函數來對請求作出回應。
+        </p>
+
+        <p>
+            原理就是如此，接下來讓我們來一步步實現這種方案。
+        </p>
+
+        <p>
+            先從<em>server.js</em>開始：
+        </p>
+        <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
+                class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
+                class="str">"http"</span><span class="pun">);</span><span class="pln"><br></span><span
+                class="kwd">var</span><span class="pln"> url </span><span class="pun">=</span><span
+                class="pln"> require</span><span class="pun">(</span><span class="str">"url"</span><span
+                class="pun">);</span><span class="pln"><br><br></span><span class="kwd">function</span><span
+                class="pln"> start</span><span class="pun">(</span><span class="pln">route</span><span
+                class="pun">,</span><span class="pln"> handle</span><span class="pun">)</span><span class="pln"> </span><span
+                class="pun">{</span><span class="pln"><br>&nbsp; </span><span class="kwd">function</span><span
+                class="pln"> onRequest</span><span class="pun">(</span><span class="pln">request</span><span
+                class="pun">,</span><span class="pln"> response</span><span class="pun">)</span><span
+                class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="kwd">var</span><span class="pln"> pathname </span><span class="pun">=</span><span class="pln"> url</span><span
+                class="pun">.</span><span class="pln">parse</span><span class="pun">(</span><span
+                class="pln">request</span><span class="pun">.</span><span class="pln">url</span><span
+                class="pun">).</span><span class="pln">pathname</span><span class="pun">;</span><span class="pln"><br>&nbsp; &nbsp; console</span><span
+                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Request for "</span><span
+                class="pln"> </span><span class="pun">+</span><span class="pln"> pathname </span><span
+                class="pun">+</span><span class="pln"> </span><span class="str">" received."</span><span
+                class="pun">);</span><span class="pln"><br><br>&nbsp; &nbsp; route</span><span class="pun">(</span><span
+                class="pln">handle</span><span class="pun">,</span><span class="pln"> pathname</span><span
+                class="pun">,</span><span class="pln"> response</span><span class="pun">);</span><span class="pln"><br>&nbsp; </span><span
+                class="pun">}</span><span class="pln"><br><br>&nbsp; http</span><span class="pun">.</span><span
+                class="pln">createServer</span><span class="pun">(</span><span class="pln">onRequest</span><span
+                class="pun">).</span><span class="pln">listen</span><span class="pun">(</span><span
+                class="lit">8888</span><span class="pun">);</span><span class="pln"><br>&nbsp; console</span><span
+                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Server has started."</span><span
+                class="pun">);</span><span class="pln"><br></span><span class="pun">}</span><span class="pln"><br><br>exports</span><span
+                class="pun">.</span><span class="pln">start </span><span class="pun">=</span><span
+                class="pln"> start</span><span class="pun">;</span></pre>
+
+        <p>
+            相對此前從<em>route()</em>函數取得回傳值的做法，這次我們將response物件作為第三個參數傳遞給<em>route()</em>函數，並且，我們將<em>onRequest()</em>處理程序中所有有關<em>response</em>的函數調都移除，因為我們希望這部分工作讓<em>route()</em>函數來完成。
+        </p>
+
+        <p>
+            下面就來看看我們的<em>router.js</em>:
+        </p>
+        <pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> route</span><span
+                class="pun">(</span><span class="pln">handle</span><span class="pun">,</span><span
+                class="pln"> pathname</span><span class="pun">,</span><span class="pln"> response</span><span
+                class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; console</span><span
+                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"About to route a request for "</span><span
+                class="pln"> </span><span class="pun">+</span><span class="pln"> pathname</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; </span><span class="kwd">if</span><span
+                class="pln"> </span><span class="pun">(</span><span class="kwd">typeof</span><span
+                class="pln"> handle</span><span class="pun">[</span><span class="pln">pathname</span><span
+                class="pun">]</span><span class="pln"> </span><span class="pun">===</span><span
+                class="pln"> </span><span class="str">'function'</span><span class="pun">)</span><span
+                class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; handle</span><span
+                class="pun">[</span><span class="pln">pathname</span><span class="pun">](</span><span class="pln">response</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; </span><span class="pun">}</span><span
+                class="pln"> </span><span class="kwd">else</span><span class="pln"> </span><span
+                class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; console</span><span class="pun">.</span><span
+                class="pln">log</span><span class="pun">(</span><span class="str">"No request handler found for "</span><span
+                class="pln"> </span><span class="pun">+</span><span class="pln"> pathname</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; response</span><span class="pun">.</span><span
+                class="pln">writeHead</span><span class="pun">(</span><span class="lit">404</span><span
+                class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span
+                class="str">"Content-Type"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"text/plain"</span><span
+                class="pun">});</span><span class="pln"><br>&nbsp; &nbsp; response</span><span class="pun">.</span><span
+                class="pln">write</span><span class="pun">(</span><span class="str">"404 Not found"</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; response</span><span class="pun">.</span><span
+                class="pln">end</span><span class="pun">();</span><span class="pln"><br>&nbsp; </span><span class="pun">}</span><span
+                class="pln"><br></span><span class="pun">}</span><span class="pln"><br><br>exports</span><span
+                class="pun">.</span><span class="pln">route </span><span class="pun">=</span><span
+                class="pln"> route</span><span class="pun">;</span></pre>
+
+        <p>
+            同樣的模式：相對此前從請求處理程序中取得回傳值，這次取而代之的是直接傳遞<em>response</em>物件。
+        </p>
+
+        <p>
+            如果沒有對應的請求處理器處理，我們就直接回傳 &quot;404&quot; 錯誤。
+        </p>
+
+        <p>
+            最後，我們將<em>requestHandler.js</em>修改為如下形式：
+        </p>
+        <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> exec </span><span
+                class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">"child_process"</span><span
+                class="pun">).</span><span class="pln">exec</span><span class="pun">;</span><span
+                class="pln"><br><br></span><span class="kwd">function</span><span class="pln"> start</span><span
+                class="pun">(</span><span class="pln">response</span><span class="pun">)</span><span
+                class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; console</span><span
+                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Request handler 'start' was called."</span><span
+                class="pun">);</span><span class="pln"><br><br>&nbsp; exec</span><span class="pun">(</span><span
+                class="str">"ls -lah"</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span
+                class="pln"> </span><span class="pun">(</span><span class="pln">error</span><span
+                class="pun">,</span><span class="pln"> stdout</span><span class="pun">,</span><span
+                class="pln"> stderr</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span
+                class="pln"><br>&nbsp; &nbsp; response</span><span class="pun">.</span><span
+                class="pln">writeHead</span><span class="pun">(</span><span class="lit">200</span><span
+                class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span
+                class="str">"Content-Type"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"text/plain"</span><span
+                class="pun">});</span><span class="pln"><br>&nbsp; &nbsp; response</span><span class="pun">.</span><span
+                class="pln">write</span><span class="pun">(</span><span class="pln">stdout</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; response</span><span class="pun">.</span><span
+                class="pln">end</span><span class="pun">();</span><span class="pln"><br>&nbsp; </span><span class="pun">});</span><span
+                class="pln"><br></span><span class="pun">}</span><span class="pln"><br><br></span><span class="kwd">function</span><span
+                class="pln"> upload</span><span class="pun">(</span><span class="pln">response</span><span
+                class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; console</span><span
+                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Request handler 'upload' was called."</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; response</span><span class="pun">.</span><span
+                class="pln">writeHead</span><span class="pun">(</span><span class="lit">200</span><span
+                class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span
+                class="str">"Content-Type"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"text/plain"</span><span
+                class="pun">});</span><span class="pln"><br>&nbsp; response</span><span class="pun">.</span><span
+                class="pln">write</span><span class="pun">(</span><span class="str">"Hello Upload"</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; response</span><span class="pun">.</span><span
+                class="pln">end</span><span class="pun">();</span><span class="pln"><br></span><span
+                class="pun">}</span><span class="pln"><br><br>exports</span><span class="pun">.</span><span class="pln">start </span><span
+                class="pun">=</span><span class="pln"> start</span><span class="pun">;</span><span class="pln"><br>exports</span><span
+                class="pun">.</span><span class="pln">upload </span><span class="pun">=</span><span
+                class="pln"> upload</span><span class="pun">;</span></pre>
+
+        <p>
+            我們的處理程序函數需要接收response參數，為了對請求作出直接的回應。
+        </p>
+
+        <p>
+            <em>start</em>處理程序在<em>exec()</em>的匿名回呼(callback)函數中做請求回應的操作，而<em>upload</em>處理程序仍然是簡單的回復 &quot;Hello World&quot; ，只是這次是使用<em>response</em>物件而已。
+        </p>
+
+        <p>
+            這時再次我們啟動應用（<em>node index.js</em>），一切都會工作的很好。
+        </p>
+
+        <p>
+            如果想要證明<em>/start</em>處理程序中耗時的操作不會Blocking對<em>/upload</em>請求作出立即回應的話，可以將<em>requestHandlers.js</em>修改為如下形式：
+        </p>
+        <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> exec </span><span
+                class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">"child_process"</span><span
+                class="pun">).</span><span class="pln">exec</span><span class="pun">;</span><span
+                class="pln"><br><br></span><span class="kwd">function</span><span class="pln"> start</span><span
+                class="pun">(</span><span class="pln">response</span><span class="pun">)</span><span
+                class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; console</span><span
+                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Request handler 'start' was called."</span><span
+                class="pun">);</span><span class="pln"><br><br>&nbsp; exec</span><span class="pun">(</span><span
+                class="str">"find /"</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="pun">{</span><span class="pln"> timeout</span><span class="pun">:</span><span
+                class="pln"> </span><span class="lit">10000</span><span class="pun">,</span><span
+                class="pln"> maxBuffer</span><span class="pun">:</span><span class="pln"> </span><span
+                class="lit">20000</span><span class="pun">*</span><span class="lit">1024</span><span
+                class="pln"> </span><span class="pun">},</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span
+                class="pln">error</span><span class="pun">,</span><span class="pln"> stdout</span><span
+                class="pun">,</span><span class="pln"> stderr</span><span class="pun">)</span><span class="pln"> </span><span
+                class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; response</span><span class="pun">.</span><span
+                class="pln">writeHead</span><span class="pun">(</span><span class="lit">200</span><span
+                class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span
+                class="str">"Content-Type"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"text/plain"</span><span
+                class="pun">});</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; response</span><span
+                class="pun">.</span><span class="pln">write</span><span class="pun">(</span><span
+                class="pln">stdout</span><span class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; response</span><span
+                class="pun">.</span><span class="pln">end</span><span class="pun">();</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="pun">});</span><span class="pln"><br></span><span class="pun">}</span><span class="pln"><br><br></span><span
+                class="kwd">function</span><span class="pln"> upload</span><span class="pun">(</span><span class="pln">response</span><span
+                class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; console</span><span
+                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Request handler 'upload' was called."</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; response</span><span class="pun">.</span><span
+                class="pln">writeHead</span><span class="pun">(</span><span class="lit">200</span><span
+                class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span
+                class="str">"Content-Type"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"text/plain"</span><span
+                class="pun">});</span><span class="pln"><br>&nbsp; response</span><span class="pun">.</span><span
+                class="pln">write</span><span class="pun">(</span><span class="str">"Hello Upload"</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; response</span><span class="pun">.</span><span
+                class="pln">end</span><span class="pun">();</span><span class="pln"><br></span><span
+                class="pun">}</span><span class="pln"><br><br>exports</span><span class="pun">.</span><span class="pln">start </span><span
+                class="pun">=</span><span class="pln"> start</span><span class="pun">;</span><span class="pln"><br>exports</span><span
+                class="pun">.</span><span class="pln">upload </span><span class="pun">=</span><span
+                class="pln"> upload</span><span class="pun">;</span></pre>
+
+        <p>
+            這樣一來，當請求<a href="http://localhost:8888/start" rel="nofollow">http://localhost:8888/start</a>的時候，會花10秒鐘的時間才載入，而當請求<a href="http://localhost:8888/upload" rel="nofollow">http://localhost:8888/upload</a>的時候，會立即回應，縱然這個時候/start回應還在處理中。
+        </p>
+
+        <a name="serving-something-useful"></a>
+
+        <h3>更有用的場景</h3>
+
+        <p>
+            到目前為止，我們做的已經很好了，但是，我們的應用沒有實際用途。
+        </p>
+
+        <p>
+            伺服器，請求路由以及請求處理程序都已經完成了，下面讓我們按照此前的使用案例給網站增加互動：用戶選擇一個檔案，上傳該檔案，然後在瀏覽器中看到上傳的檔案。 為了保持簡單，我們假設用戶只會上傳圖片，然後我們應用將該圖片顯示到瀏覽器中。
+        </p>
+
+        <p>
+            好，下面就一步步來實現，鑒於此前已經對JavaScript原理性技術性的內容做過大量介紹了，這次我們加快點速度。
+        </p>
+
+        <p>
+            要實現該功能，分為如下兩步： 首先，讓我們來看看如何處理POST請求（非檔案上傳），之後，我們使用Node.js的一個用於檔案上傳的外部模組。之所以採用這種實現方式有兩個理由。
+        </p>
+
+        <p>
+            第一，盡管在Node.js中處理基礎的POST請求相對比較簡單，但在這過程中還是能學到很多。
+            <br>
+            第二，用Node.js來處理檔案上傳（multipart POST請求）是比較復雜的，它<em>不</em>在本書的范疇，但，如何使用外部模組卻是在本書涉獵內容之內。
+        </p>
+
+        <a name="handling-post-requests"></a>
+
+        <h4>處理POST請求</h4>
+
+        <p>
+            考慮這樣一個簡單的例子：我們顯示一個文字區（textarea）供用戶輸入內容，然後透過POST請求送出給伺服器。最後，伺服器接受到請求，透過處理程序將輸入的內容展示到瀏覽器中。
+        </p>
+        
+        <p>
+            <em>/start</em>請求處理程序用於建置帶文字區的表單，因此，我們將<em>requestHandlers.js</em>修改為如下形式：
+        </p>
+        <pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> start</span><span
+                class="pun">(</span><span class="pln">response</span><span class="pun">)</span><span
+                class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; console</span><span
+                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Request handler 'start' was called."</span><span
+                class="pun">);</span><span class="pln"><br><br>&nbsp; </span><span class="kwd">var</span><span
+                class="pln"> body </span><span class="pun">=</span><span class="pln"> </span><span class="str">'&lt;html&gt;'</span><span
+                class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="str">'&lt;head&gt;'</span><span class="pun">+</span><span
+                class="pln"><br>&nbsp; &nbsp; </span><span class="str">'&lt;meta http-equiv="Content-Type" content="text/html; '</span><span
+                class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="str">'charset=UTF-8" /&gt;'</span><span class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="str">'&lt;/head&gt;'</span><span class="pun">+</span><span
+                class="pln"><br>&nbsp; &nbsp; </span><span class="str">'&lt;body&gt;'</span><span
+                class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="str">'&lt;form action="/upload" method="post"&gt;'</span><span
+                class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="str">'&lt;textarea name="text" rows="20" cols="60"&gt;&lt;/textarea&gt;'</span><span
+                class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="str">'&lt;input type="submit" value="Submit text" /&gt;'</span><span
+                class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="str">'&lt;/form&gt;'</span><span class="pun">+</span><span
+                class="pln"><br>&nbsp; &nbsp; </span><span class="str">'&lt;/body&gt;'</span><span
+                class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="str">'&lt;/html&gt;'</span><span class="pun">;</span><span class="pln"><br><br>&nbsp; &nbsp; response</span><span
+                class="pun">.</span><span class="pln">writeHead</span><span class="pun">(</span><span
+                class="lit">200</span><span class="pun">,</span><span class="pln"> </span><span
+                class="pun">{</span><span class="str">"Content-Type"</span><span class="pun">:</span><span
+                class="pln"> </span><span class="str">"text/html"</span><span class="pun">});</span><span
+                class="pln"><br>&nbsp; &nbsp; response</span><span class="pun">.</span><span
+                class="pln">write</span><span class="pun">(</span><span class="pln">body</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; response</span><span class="pun">.</span><span
+                class="pln">end</span><span class="pun">();</span><span class="pln"><br></span><span
+                class="pun">}</span><span class="pln"><br><br></span><span class="kwd">function</span><span class="pln"> upload</span><span
+                class="pun">(</span><span class="pln">response</span><span class="pun">)</span><span
+                class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; console</span><span
+                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Request handler 'upload' was called."</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; response</span><span class="pun">.</span><span
+                class="pln">writeHead</span><span class="pun">(</span><span class="lit">200</span><span
+                class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span
+                class="str">"Content-Type"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"text/plain"</span><span
+                class="pun">});</span><span class="pln"><br>&nbsp; response</span><span class="pun">.</span><span
+                class="pln">write</span><span class="pun">(</span><span class="str">"Hello Upload"</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; response</span><span class="pun">.</span><span
+                class="pln">end</span><span class="pun">();</span><span class="pln"><br></span><span
+                class="pun">}</span><span class="pln"><br><br>exports</span><span class="pun">.</span><span class="pln">start </span><span
+                class="pun">=</span><span class="pln"> start</span><span class="pun">;</span><span class="pln"><br>exports</span><span
+                class="pun">.</span><span class="pln">upload </span><span class="pun">=</span><span
+                class="pln"> upload</span><span class="pun">;</span></pre>
+
+        <p>
+            好了，現在我們的應用已經很完善了，都可以獲得威比獎（Webby Awards）了，哈哈。（譯者注：威比獎是由國際數字藝術與科學學院主辦的評選全球最佳網站的獎項，具體參見詳細說明）透過在瀏覽器中存取<a href="http://localhost:8888/start" rel="nofollow">http://localhost:8888/start</a>就可以看到簡單的表單了，要記得重啟伺服器哦！
+        </p>
+
+        <p>
+            你可能會說：這種直接將視覺元素放在請求處理程序中的方式太丑陋了。說的沒錯，但是，我並不想在本書中介紹諸如MVC之類的模式，因為這對於你了解JavaScript或者Node.js環境來說沒多大關系。
+        </p>
+
+        <p>
+            余下的篇幅，我們來探討一個更有趣的問題： 當用戶送出表單時，觸發<em>/upload</em>請求處理程序處理POST請求的問題。
+        </p>
+
+        <p>
+            現在，我們已經是新手中的專家了，很自然會想到採用非同步回呼(callback)來實現Non-Blocking地處理POST請求的資料。
+        </p>
+
+        <p>
+            這裡採用Non-Blocking方式處理是明智的，因為POST請求一般都比較 &quot;重&quot;  —— 用戶可能會輸入大量的內容。用Blocking的方式處理大資料量的請求必然會導致用戶操作的Blocking。
+        </p>
+
+        <p>
+            為了使整個過程Non-Blocking，Node.js會將POST資料拆分成很多小的資料區塊，然後透過觸發特定的事件，將這些小資料區塊傳遞給回呼(callback)函數。這裡的特定的事件有<em>data</em>事件（表示新的小資料區塊到達了）以及<em>end</em>事件（表示所有的資料都已經接收完畢）。
+        </p>
+
+        <p>
+            我們需要告訴Node.js當這些事件觸發的時候，回呼(callback)哪些函數。怎麼告訴呢？ 我們透過在<em>request</em>物件上註冊<em>監聽器</em>（listener） 來實現。這裡的request物件是每次接收到HTTP請求時候，都會把該物件傳遞給<em>onRequest</em>回呼(callback)函數。
+        </p>
+
+        <p>
+            如下所示：
+        </p>
+        <pre class="prettyprint lang-js"><span class="pln">request</span><span class="pun">.</span><span class="pln">addListener</span><span
+                class="pun">(</span><span class="str">"data"</span><span class="pun">,</span><span
+                class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span
+                class="pln">chunk</span><span class="pun">)</span><span class="pln"> </span><span
+                class="pun">{</span><span class="pln"><br>&nbsp; </span><span class="com">// called when a new chunk of data was received</span><span
+                class="pln"><br></span><span class="pun">});</span><span class="pln"><br><br>request</span><span
+                class="pun">.</span><span class="pln">addListener</span><span class="pun">(</span><span class="str">"end"</span><span
+                class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span
+                class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span
+                class="pln"><br>&nbsp; </span><span
+                class="com">// called when all chunks of data have been received</span><span
+                class="pln"><br></span><span class="pun">});</span></pre>
+
+        <p>
+            問題來了，這部分邏輯寫在哪裡呢？ 我們現在只是在伺服器中取得到了<em>request</em>物件 —— 我們並沒有像之前<em>response</em>物件那樣，把 request 物件傳遞給請求路由和請求處理程序。
+        </p>
+
+        <p>
+            在我看來，取得所有來自請求的資料，然後將這些資料給應用層處理，應該是HTTP伺服器要做的事情。因此，我建議，我們直接在伺服器中處理POST資料，然後將最終的資料傳遞給請求路由和請求處理器，讓他們來進行進一步的處理。
+        </p>
+
+        <p>
+            因此，實現思路就是： 將<em>data</em>和<em>end</em>事件的回呼(callback)函數直接放在伺服器中，在<em>data</em>事件回呼(callback)中收集所有的POST資料，當接收到所有資料，觸發<em>end</em>事件後，其回呼(callback)函數執行請求路由，並將資料傳遞給它，然後，請求路由再將該資料傳遞給請求處理程序。
+        </p>
+
+        <p>
+            還等什麼，馬上來實現。先從<em>server.js</em>開始：
+        </p>
+        <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
+                class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
+                class="str">"http"</span><span class="pun">);</span><span class="pln"><br></span><span
+                class="kwd">var</span><span class="pln"> url </span><span class="pun">=</span><span
+                class="pln"> require</span><span class="pun">(</span><span class="str">"url"</span><span
+                class="pun">);</span><span class="pln"><br><br></span><span class="kwd">function</span><span
+                class="pln"> start</span><span class="pun">(</span><span class="pln">route</span><span
+                class="pun">,</span><span class="pln"> handle</span><span class="pun">)</span><span class="pln"> </span><span
+                class="pun">{</span><span class="pln"><br>&nbsp; </span><span class="kwd">function</span><span
+                class="pln"> onRequest</span><span class="pun">(</span><span class="pln">request</span><span
+                class="pun">,</span><span class="pln"> response</span><span class="pun">)</span><span
+                class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="kwd">var</span><span class="pln"> postData </span><span class="pun">=</span><span
+                class="pln"> </span><span class="str">""</span><span class="pun">;</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="kwd">var</span><span class="pln"> pathname </span><span class="pun">=</span><span class="pln"> url</span><span
+                class="pun">.</span><span class="pln">parse</span><span class="pun">(</span><span
+                class="pln">request</span><span class="pun">.</span><span class="pln">url</span><span
+                class="pun">).</span><span class="pln">pathname</span><span class="pun">;</span><span class="pln"><br>&nbsp; &nbsp; console</span><span
+                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Request for "</span><span
+                class="pln"> </span><span class="pun">+</span><span class="pln"> pathname </span><span
+                class="pun">+</span><span class="pln"> </span><span class="str">" received."</span><span
+                class="pun">);</span><span class="pln"><br><br>&nbsp; &nbsp; request</span><span
+                class="pun">.</span><span class="pln">setEncoding</span><span class="pun">(</span><span class="str">"utf8"</span><span
+                class="pun">);</span><span class="pln"><br><br>&nbsp; &nbsp; request</span><span
+                class="pun">.</span><span class="pln">addListener</span><span class="pun">(</span><span class="str">"data"</span><span
+                class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span
+                class="pun">(</span><span class="pln">postDataChunk</span><span class="pun">)</span><span
+                class="pln"> </span><span class="pun">{</span><span
+                class="pln"><br>&nbsp; &nbsp; &nbsp; postData </span><span class="pun">+=</span><span class="pln"> postDataChunk</span><span
+                class="pun">;</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; console</span><span
+                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Received POST data chunk '"</span><span
+                class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; postDataChunk </span><span
+                class="pun">+</span><span class="pln"> </span><span class="str">"'."</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">});</span><span
+                class="pln"><br><br>&nbsp; &nbsp; request</span><span class="pun">.</span><span
+                class="pln">addListener</span><span class="pun">(</span><span class="str">"end"</span><span class="pun">,</span><span
+                class="pln"> </span><span class="kwd">function</span><span class="pun">()</span><span
+                class="pln"> </span><span class="pun">{</span><span
+                class="pln"><br>&nbsp; &nbsp; &nbsp; route</span><span class="pun">(</span><span
+                class="pln">handle</span><span class="pun">,</span><span class="pln"> pathname</span><span
+                class="pun">,</span><span class="pln"> response</span><span class="pun">,</span><span class="pln"> postData</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">});</span><span
+                class="pln"><br><br>&nbsp; </span><span class="pun">}</span><span class="pln"><br><br>&nbsp; http</span><span
+                class="pun">.</span><span class="pln">createServer</span><span class="pun">(</span><span class="pln">onRequest</span><span
+                class="pun">).</span><span class="pln">listen</span><span class="pun">(</span><span
+                class="lit">8888</span><span class="pun">);</span><span class="pln"><br>&nbsp; console</span><span
+                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Server has started."</span><span
+                class="pun">);</span><span class="pln"><br></span><span class="pun">}</span><span class="pln"><br><br>exports</span><span
+                class="pun">.</span><span class="pln">start </span><span class="pun">=</span><span
+                class="pln"> start</span><span class="pun">;</span></pre>
+
+        <p>
+            上述代碼做了三件事情： 首先，我們設定了接收資料的編碼格式為UTF-8，然後註冊了 &quot;data&quot; 事件的監聽器，用於收集每次接收到的新資料區塊，並將其賦值給<em>postData</em> 變數，最後，我們將請求路由的執行移到<em>end</em>事件處理程序中，以確保它只會當所有資料接收完畢後才觸發，並且只觸發一次。我們同時還把POST資料傳遞給請求路由，因為這些資料，請求處理程序會用到。
+        </p>
+
+        <p>
+            上述代碼在每個資料區塊到達的時候輸出了日志，這對於最終生產環境來說，是很不好的（資料量可能會很大，還記得吧？），但是，在開發階段是很有用的，有助於讓我們看到發生了什麼。
+        </p>
+
+        <p>
+            我建議可以嘗試下，嘗試著去輸入一小段文字，以及大段內容，當大段內容的時候，就會發現<em>data</em>事件會觸發多次。
+        </p>
+
+        <p>
+            再來點酷的。我們接下來在/upload頁面，展示用戶輸入的內容。要實現該功能，我們需要將<em>postData</em>傳遞給請求處理程序，修改<em>router.js</em>為如下形式：
+        </p>
+
+        <pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> route</span><span
+                class="pun">(</span><span class="pln">handle</span><span class="pun">,</span><span
+                class="pln"> pathname</span><span class="pun">,</span><span class="pln"> response</span><span
+                class="pun">,</span><span class="pln"> postData</span><span class="pun">)</span><span
+                class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; console</span><span
+                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"About to route a request for "</span><span
+                class="pln"> </span><span class="pun">+</span><span class="pln"> pathname</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; </span><span class="kwd">if</span><span
+                class="pln"> </span><span class="pun">(</span><span class="kwd">typeof</span><span
+                class="pln"> handle</span><span class="pun">[</span><span class="pln">pathname</span><span
+                class="pun">]</span><span class="pln"> </span><span class="pun">===</span><span
+                class="pln"> </span><span class="str">'function'</span><span class="pun">)</span><span
+                class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; handle</span><span
+                class="pun">[</span><span class="pln">pathname</span><span class="pun">](</span><span class="pln">response</span><span
+                class="pun">,</span><span class="pln"> postData</span><span class="pun">);</span><span class="pln"><br>&nbsp; </span><span
+                class="pun">}</span><span class="pln"> </span><span class="kwd">else</span><span
+                class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; console</span><span
+                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"No request handler found for "</span><span
+                class="pln"> </span><span class="pun">+</span><span class="pln"> pathname</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; response</span><span class="pun">.</span><span
+                class="pln">writeHead</span><span class="pun">(</span><span class="lit">404</span><span
+                class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span
+                class="str">"Content-Type"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"text/plain"</span><span
+                class="pun">});</span><span class="pln"><br>&nbsp; &nbsp; response</span><span class="pun">.</span><span
+                class="pln">write</span><span class="pun">(</span><span class="str">"404 Not found"</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; response</span><span class="pun">.</span><span
+                class="pln">end</span><span class="pun">();</span><span class="pln"><br>&nbsp; </span><span class="pun">}</span><span
+                class="pln"><br></span><span class="pun">}</span><span class="pln"><br><br>exports</span><span
+                class="pun">.</span><span class="pln">route </span><span class="pun">=</span><span
+                class="pln"> route</span><span class="pun">;</span></pre>
+
+        <p>
+            然後，在<em>requestHandlers.js</em>中，我們將資料包含在對<em>upload</em>請求的回應中：
+        </p>
+        <pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> start</span><span
+                class="pun">(</span><span class="pln">response</span><span class="pun">,</span><span class="pln"> postData</span><span
+                class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; console</span><span
+                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Request handler 'start' was called."</span><span
+                class="pun">);</span><span class="pln"><br><br>&nbsp; </span><span class="kwd">var</span><span
+                class="pln"> body </span><span class="pun">=</span><span class="pln"> </span><span class="str">'&lt;html&gt;'</span><span
+                class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="str">'&lt;head&gt;'</span><span class="pun">+</span><span
+                class="pln"><br>&nbsp; &nbsp; </span><span class="str">'&lt;meta http-equiv="Content-Type" content="text/html; '</span><span
+                class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="str">'charset=UTF-8" /&gt;'</span><span class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="str">'&lt;/head&gt;'</span><span class="pun">+</span><span
+                class="pln"><br>&nbsp; &nbsp; </span><span class="str">'&lt;body&gt;'</span><span
+                class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="str">'&lt;form action="/upload" method="post"&gt;'</span><span
+                class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="str">'&lt;textarea name="text" rows="20" cols="60"&gt;&lt;/textarea&gt;'</span><span
+                class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="str">'&lt;input type="submit" value="Submit text" /&gt;'</span><span
+                class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="str">'&lt;/form&gt;'</span><span class="pun">+</span><span
+                class="pln"><br>&nbsp; &nbsp; </span><span class="str">'&lt;/body&gt;'</span><span
+                class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="str">'&lt;/html&gt;'</span><span class="pun">;</span><span class="pln"><br><br>&nbsp; &nbsp; response</span><span
+                class="pun">.</span><span class="pln">writeHead</span><span class="pun">(</span><span
+                class="lit">200</span><span class="pun">,</span><span class="pln"> </span><span
+                class="pun">{</span><span class="str">"Content-Type"</span><span class="pun">:</span><span
+                class="pln"> </span><span class="str">"text/html"</span><span class="pun">});</span><span
+                class="pln"><br>&nbsp; &nbsp; response</span><span class="pun">.</span><span
+                class="pln">write</span><span class="pun">(</span><span class="pln">body</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; response</span><span class="pun">.</span><span
+                class="pln">end</span><span class="pun">();</span><span class="pln"><br></span><span
+                class="pun">}</span><span class="pln"><br><br></span><span class="kwd">function</span><span class="pln"> upload</span><span
+                class="pun">(</span><span class="pln">response</span><span class="pun">,</span><span class="pln"> postData</span><span
+                class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; console</span><span
+                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Request handler 'upload' was called."</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; response</span><span class="pun">.</span><span
+                class="pln">writeHead</span><span class="pun">(</span><span class="lit">200</span><span
+                class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span
+                class="str">"Content-Type"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"text/plain"</span><span
+                class="pun">});</span><span class="pln"><br>&nbsp; response</span><span class="pun">.</span><span
+                class="pln">write</span><span class="pun">(</span><span class="str">"You've sent: "</span><span
+                class="pln"> </span><span class="pun">+</span><span class="pln"> postData</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; response</span><span class="pun">.</span><span
+                class="pln">end</span><span class="pun">();</span><span class="pln"><br></span><span
+                class="pun">}</span><span class="pln"><br><br>exports</span><span class="pun">.</span><span class="pln">start </span><span
+                class="pun">=</span><span class="pln"> start</span><span class="pun">;</span><span class="pln"><br>exports</span><span
+                class="pun">.</span><span class="pln">upload </span><span class="pun">=</span><span
+                class="pln"> upload</span><span class="pun">;</span></pre>
+
+        <p>
+            好了，我們現在可以接收POST資料並在請求處理程序中處理該資料了。
+        </p>
+
+        <p>
+            我們最後要做的是： 目前我們是把POST請求的整個訊息內容傳遞給了請求路由和請求處理程序。我們應該只把POST資料中感興趣的部分傳遞給請求路由和請求處理程序。在我們這個例子中，我們感興趣的其實只是<em>text</em>欄位。
+        </p>
+
+        <p>
+            我們可以使用此前介紹過的<em>querystring</em>模組來實現：
+        </p>
+        <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> querystring </span><span
+                class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">"querystring"</span><span
+                class="pun">);</span><span class="pln"><br><br></span><span class="kwd">function</span><span
+                class="pln"> start</span><span class="pun">(</span><span class="pln">response</span><span
+                class="pun">,</span><span class="pln"> postData</span><span class="pun">)</span><span
+                class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; console</span><span
+                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Request handler 'start' was called."</span><span
+                class="pun">);</span><span class="pln"><br><br>&nbsp; </span><span class="kwd">var</span><span
+                class="pln"> body </span><span class="pun">=</span><span class="pln"> </span><span class="str">'&lt;html&gt;'</span><span
+                class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="str">'&lt;head&gt;'</span><span class="pun">+</span><span
+                class="pln"><br>&nbsp; &nbsp; </span><span class="str">'&lt;meta http-equiv="Content-Type" content="text/html; '</span><span
+                class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="str">'charset=UTF-8" /&gt;'</span><span class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="str">'&lt;/head&gt;'</span><span class="pun">+</span><span
+                class="pln"><br>&nbsp; &nbsp; </span><span class="str">'&lt;body&gt;'</span><span
+                class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="str">'&lt;form action="/upload" method="post"&gt;'</span><span
+                class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="str">'&lt;textarea name="text" rows="20" cols="60"&gt;&lt;/textarea&gt;'</span><span
+                class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="str">'&lt;input type="submit" value="Submit text" /&gt;'</span><span
+                class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="str">'&lt;/form&gt;'</span><span class="pun">+</span><span
+                class="pln"><br>&nbsp; &nbsp; </span><span class="str">'&lt;/body&gt;'</span><span
+                class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="str">'&lt;/html&gt;'</span><span class="pun">;</span><span class="pln"><br><br>&nbsp; &nbsp; response</span><span
+                class="pun">.</span><span class="pln">writeHead</span><span class="pun">(</span><span
+                class="lit">200</span><span class="pun">,</span><span class="pln"> </span><span
+                class="pun">{</span><span class="str">"Content-Type"</span><span class="pun">:</span><span
+                class="pln"> </span><span class="str">"text/html"</span><span class="pun">});</span><span
+                class="pln"><br>&nbsp; &nbsp; response</span><span class="pun">.</span><span
+                class="pln">write</span><span class="pun">(</span><span class="pln">body</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; response</span><span class="pun">.</span><span
+                class="pln">end</span><span class="pun">();</span><span class="pln"><br></span><span
+                class="pun">}</span><span class="pln"><br><br></span><span class="kwd">function</span><span class="pln"> upload</span><span
+                class="pun">(</span><span class="pln">response</span><span class="pun">,</span><span class="pln"> postData</span><span
+                class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; console</span><span
+                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Request handler 'upload' was called."</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; response</span><span class="pun">.</span><span
+                class="pln">writeHead</span><span class="pun">(</span><span class="lit">200</span><span
+                class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span
+                class="str">"Content-Type"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"text/plain"</span><span
+                class="pun">});</span><span class="pln"><br>&nbsp; response</span><span class="pun">.</span><span
+                class="pln">write</span><span class="pun">(</span><span class="str">"You've sent the text: "</span><span
+                class="pun">+</span><span class="pln"><br>&nbsp; querystring</span><span class="pun">.</span><span
+                class="pln">parse</span><span class="pun">(</span><span class="pln">postData</span><span
+                class="pun">).</span><span class="pln">text</span><span class="pun">);</span><span class="pln"><br>&nbsp; response</span><span
+                class="pun">.</span><span class="pln">end</span><span class="pun">();</span><span
+                class="pln"><br></span><span class="pun">}</span><span class="pln"><br><br>exports</span><span
+                class="pun">.</span><span class="pln">start </span><span class="pun">=</span><span
+                class="pln"> start</span><span class="pun">;</span><span class="pln"><br>exports</span><span
+                class="pun">.</span><span class="pln">upload </span><span class="pun">=</span><span
+                class="pln"> upload</span><span class="pun">;</span></pre>
+
+        <p>
+            好了，以上就是關於處理POST資料的全部內容。
+        </p>
+
+        <a name="handling-file-uploads"></a>
+
+        <h4>處理檔案上傳</h4>
+
+        <p>
+            最後，我們來實現我們最終的使用案例：允許用戶上傳圖片，並將該圖片在瀏覽器中顯示出來。
+        </p>
+
+        <p>
+            回到90年代，這個使用案例完全可以滿足用於IPO的商業模型了，如今，我們透過它能學到這樣兩件事情： 如何安裝外部Node.js模組，以及如何將它們應用到我們的應用中。
+        </p>
+
+        <p>
+            這裡我們要用到的外部模組是Felix Geisendörfer開發的<em>node-formidable</em>模組。它對解析上傳的檔案資料做了很好的抽象。 其實說白了，處理檔案上傳<em> &quot;就是&quot; </em>處理POST資料 —— 但是，麻煩的是在具體的處理細節，所以，這裡採用現成的方案更合適點。
+        </p>
+
+        <p>
+            使用該模組，首先需要安裝該模組。Node.js有它自己的包管理器，叫<em>NPM</em>。它可以讓安裝Node.js的外部模組變得非常方便。透過如下一條命令就可以完成該模組的安裝：
+        </p>
+        <pre class="prettyprint lang-bash"><span class="pln">npm install formidable</span></pre>
+
+        <p>
+            如果終端輸出如下內容：
+        </p>
+        <pre class="prettyprint lang-bash"><span class="pln">npm info build </span><span class="typ">Success</span><span
+                class="pun">:</span><span class="pln"> formidable@1</span><span class="pun">.</span><span class="lit">0.9</span><span
+                class="pln"><br>npm ok</span></pre>
+
+        <p>
+            就說明模組已經安裝成功了。
+        </p>
+
+        <p>
+            現在我們就可以用<em>formidable</em>模組了——使用外部模組與內部模組類似，用require語句將其引入即可：
+        </p>
+        <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> formidable </span><span
+                class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">"formidable"</span><span
+                class="pun">);</span></pre>
+
+        <p>
+            這裡該模組做的就是將透過HTTP POST請求送出的表單，在Node.js中可以被解析。我們要做的就是建立一個新的<em>IncomingForm</em>，它是對送出表單的抽象表示，之後，就可以用它解析request物件，取得表單中需要的資料欄位。
+        </p>
+
+        <p>
+            node-formidable官方的例子展示了這兩部分是如何融合在一起工作的：
+        </p>
+        <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> formidable </span><span
+                class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">'formidable'</span><span
+                class="pun">),</span><span class="pln"><br>&nbsp; &nbsp; http </span><span class="pun">=</span><span
+                class="pln"> require</span><span class="pun">(</span><span class="str">'http'</span><span
+                class="pun">),</span><span class="pln"><br>&nbsp; &nbsp; sys </span><span class="pun">=</span><span
+                class="pln"> require</span><span class="pun">(</span><span class="str">'sys'</span><span
+                class="pun">);</span><span class="pln"><br><br>http</span><span class="pun">.</span><span class="pln">createServer</span><span
+                class="pun">(</span><span class="kwd">function</span><span class="pun">(</span><span
+                class="pln">req</span><span class="pun">,</span><span class="pln"> res</span><span
+                class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span
+                class="pln"><br>&nbsp; </span><span class="kwd">if</span><span class="pln"> </span><span
+                class="pun">(</span><span class="pln">req</span><span class="pun">.</span><span
+                class="pln">url </span><span class="pun">==</span><span class="pln"> </span><span
+                class="str">'/upload'</span><span class="pln"> </span><span class="pun">&amp;&amp;</span><span
+                class="pln"> req</span><span class="pun">.</span><span class="pln">method</span><span
+                class="pun">.</span><span class="pln">toLowerCase</span><span class="pun">()</span><span
+                class="pln"> </span><span class="pun">==</span><span class="pln"> </span><span class="str">'post'</span><span
+                class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="com">// parse a file upload</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="kwd">var</span><span
+                class="pln"> form </span><span class="pun">=</span><span class="pln"> </span><span
+                class="kwd">new</span><span class="pln"> formidable</span><span class="pun">.</span><span class="typ">IncomingForm</span><span
+                class="pun">();</span><span class="pln"><br>&nbsp; &nbsp; form</span><span class="pun">.</span><span
+                class="pln">parse</span><span class="pun">(</span><span class="pln">req</span><span class="pun">,</span><span
+                class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span
+                class="pln">err</span><span class="pun">,</span><span class="pln"> fields</span><span
+                class="pun">,</span><span class="pln"> files</span><span class="pun">)</span><span
+                class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; res</span><span
+                class="pun">.</span><span class="pln">writeHead</span><span class="pun">(</span><span
+                class="lit">200</span><span class="pun">,</span><span class="pln"> </span><span
+                class="pun">{</span><span class="str">'content-type'</span><span class="pun">:</span><span
+                class="pln"> </span><span class="str">'text/plain'</span><span class="pun">});</span><span
+                class="pln"><br>&nbsp; &nbsp; &nbsp; res</span><span class="pun">.</span><span
+                class="pln">write</span><span class="pun">(</span><span class="str">'received upload:\n\n'</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; res</span><span
+                class="pun">.</span><span class="pln">end</span><span class="pun">(</span><span
+                class="pln">sys</span><span class="pun">.</span><span class="pln">inspect</span><span
+                class="pun">({</span><span class="pln">fields</span><span class="pun">:</span><span
+                class="pln"> fields</span><span class="pun">,</span><span class="pln"> files</span><span
+                class="pun">:</span><span class="pln"> files</span><span class="pun">}));</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="pun">});</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="kwd">return</span><span
+                class="pun">;</span><span class="pln"><br>&nbsp; </span><span class="pun">}</span><span class="pln"><br><br>&nbsp; </span><span
+                class="com">// show a file upload form</span><span class="pln"><br>&nbsp; res</span><span
+                class="pun">.</span><span class="pln">writeHead</span><span class="pun">(</span><span
+                class="lit">200</span><span class="pun">,</span><span class="pln"> </span><span
+                class="pun">{</span><span class="str">'content-type'</span><span class="pun">:</span><span
+                class="pln"> </span><span class="str">'text/html'</span><span class="pun">});</span><span
+                class="pln"><br>&nbsp; res</span><span class="pun">.</span><span class="pln">end</span><span
+                class="pun">(</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="str">'&lt;form action="/upload" enctype="multipart/form-data" '</span><span
+                class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="str">'method="post"&gt;'</span><span class="pun">+</span><span
+                class="pln"><br>&nbsp; &nbsp; </span><span class="str">'&lt;input type="text" name="title"&gt;&lt;br&gt;'</span><span
+                class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="str">'&lt;input type="file" name="upload" multiple="multiple"&gt;&lt;br&gt;'</span><span
+                class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="str">'&lt;input type="submit" value="Upload"&gt;'</span><span
+                class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="str">'&lt;/form&gt;'</span><span class="pln"><br>&nbsp; </span><span class="pun">);</span><span
+                class="pln"><br></span><span class="pun">}).</span><span class="pln">listen</span><span
+                class="pun">(</span><span class="lit">8888</span><span class="pun">);</span></pre>
+
+        <p>
+            如果我們將上述代碼，儲存到一個檔案中，並透過<em>node</em>來執行，就可以進行簡單的表單送出了，包括檔案上傳。然後，可以看到透過執行<em>form.parse</em>傳遞給回呼(callback)函數的<em>files</em>物件的內容，如下所示：
+        </p>
+        <pre class="lang-js">received upload:
+
+{ fields: { title: 'Hello World' },
+  files:
+   { upload:
+      { size: 1558,
+        path: '/tmp/1c747974a27a6292743669e91f29350b',
+        name: 'us-flag.png',
+        type: 'image/png',
+        lastModifiedDate: Tue, 21 Jun 2011 07:02:41 GMT,
+        _writeStream: [Object],
+        length: [Getter],
+        filename: [Getter],
+        mime: [Getter] } } }</pre>
+
+        <p>
+            為了實現我們的功能，我們需要將上述代碼應用到我們的應用中，另外，我們還要考慮如何將上傳檔案的內容（儲存在<em>/tmp</em>目錄中）顯示到瀏覽器中。
+        </p>
+
+        <p>
+            我們先來解決後面那個問題： 對於儲存在區域硬碟中的檔案，如何才能在瀏覽器中看到呢？
+        </p>
+
+        <p>
+            顯然，我們需要將該檔案讀取到我們的伺服器中，使用一個叫<em>fs</em>的模組。
+        </p>
+
+        <p>
+            我們來增加<em>/show</em>URL的請求處理程序，該處理程序直接硬編碼將檔案<em>/tmp/test.png</em>內容展示到瀏覽器中。當然了，首先需要將該圖片儲存到這個位置才行。
+        </p>
+
+        <p>
+            將<em>requestHandlers.js</em>修改為如下形式：
+        </p>
+
+        <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> querystring </span><span
+                class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">"querystring"</span><span
+                class="pun">),</span><span class="pln"><br>&nbsp; &nbsp; fs </span><span class="pun">=</span><span
+                class="pln"> require</span><span class="pun">(</span><span class="str">"fs"</span><span
+                class="pun">);</span><span class="pln"><br><br></span><span class="kwd">function</span><span
+                class="pln"> start</span><span class="pun">(</span><span class="pln">response</span><span
+                class="pun">,</span><span class="pln"> postData</span><span class="pun">)</span><span
+                class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; console</span><span
+                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Request handler 'start' was called."</span><span
+                class="pun">);</span><span class="pln"><br><br>&nbsp; </span><span class="kwd">var</span><span
+                class="pln"> body </span><span class="pun">=</span><span class="pln"> </span><span class="str">'&lt;html&gt;'</span><span
+                class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="str">'&lt;head&gt;'</span><span class="pun">+</span><span
+                class="pln"><br>&nbsp; &nbsp; </span><span class="str">'&lt;meta http-equiv="Content-Type" '</span><span
+                class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="str">'content="text/html; charset=UTF-8" /&gt;'</span><span
+                class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="str">'&lt;/head&gt;'</span><span class="pun">+</span><span
+                class="pln"><br>&nbsp; &nbsp; </span><span class="str">'&lt;body&gt;'</span><span
+                class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="str">'&lt;form action="/upload" method="post"&gt;'</span><span
+                class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="str">'&lt;textarea name="text" rows="20" cols="60"&gt;&lt;/textarea&gt;'</span><span
+                class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="str">'&lt;input type="submit" value="Submit text" /&gt;'</span><span
+                class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="str">'&lt;/form&gt;'</span><span class="pun">+</span><span
+                class="pln"><br>&nbsp; &nbsp; </span><span class="str">'&lt;/body&gt;'</span><span
+                class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="str">'&lt;/html&gt;'</span><span class="pun">;</span><span class="pln"><br><br>&nbsp; &nbsp; response</span><span
+                class="pun">.</span><span class="pln">writeHead</span><span class="pun">(</span><span
+                class="lit">200</span><span class="pun">,</span><span class="pln"> </span><span
+                class="pun">{</span><span class="str">"Content-Type"</span><span class="pun">:</span><span
+                class="pln"> </span><span class="str">"text/html"</span><span class="pun">});</span><span
+                class="pln"><br>&nbsp; &nbsp; response</span><span class="pun">.</span><span
+                class="pln">write</span><span class="pun">(</span><span class="pln">body</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; response</span><span class="pun">.</span><span
+                class="pln">end</span><span class="pun">();</span><span class="pln"><br></span><span
+                class="pun">}</span><span class="pln"><br><br></span><span class="kwd">function</span><span class="pln"> upload</span><span
+                class="pun">(</span><span class="pln">response</span><span class="pun">,</span><span class="pln"> postData</span><span
+                class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; console</span><span
+                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Request handler 'upload' was called."</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; response</span><span class="pun">.</span><span
+                class="pln">writeHead</span><span class="pun">(</span><span class="lit">200</span><span
+                class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span
+                class="str">"Content-Type"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"text/plain"</span><span
+                class="pun">});</span><span class="pln"><br>&nbsp; response</span><span class="pun">.</span><span
+                class="pln">write</span><span class="pun">(</span><span class="str">"You've sent the text: "</span><span
+                class="pun">+</span><span class="pln"><br>&nbsp; querystring</span><span class="pun">.</span><span
+                class="pln">parse</span><span class="pun">(</span><span class="pln">postData</span><span
+                class="pun">).</span><span class="pln">text</span><span class="pun">);</span><span class="pln"><br>&nbsp; response</span><span
+                class="pun">.</span><span class="pln">end</span><span class="pun">();</span><span
+                class="pln"><br></span><span class="pun">}</span><span class="pln"><br><br></span><span class="kwd">function</span><span
+                class="pln"> show</span><span class="pun">(</span><span class="pln">response</span><span
+                class="pun">,</span><span class="pln"> postData</span><span class="pun">)</span><span
+                class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; console</span><span
+                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Request handler 'show' was called."</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; fs</span><span class="pun">.</span><span class="pln">readFile</span><span
+                class="pun">(</span><span class="str">"/tmp/test.png"</span><span class="pun">,</span><span
+                class="pln"> </span><span class="str">"binary"</span><span class="pun">,</span><span
+                class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span
+                class="pln">error</span><span class="pun">,</span><span class="pln"> file</span><span
+                class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="kwd">if</span><span class="pun">(</span><span class="pln">error</span><span
+                class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; response</span><span
+                class="pun">.</span><span class="pln">writeHead</span><span class="pun">(</span><span
+                class="lit">500</span><span class="pun">,</span><span class="pln"> </span><span
+                class="pun">{</span><span class="str">"Content-Type"</span><span class="pun">:</span><span
+                class="pln"> </span><span class="str">"text/plain"</span><span class="pun">});</span><span
+                class="pln"><br>&nbsp; &nbsp; &nbsp; response</span><span class="pun">.</span><span
+                class="pln">write</span><span class="pun">(</span><span class="pln">error </span><span
+                class="pun">+</span><span class="pln"> </span><span class="str">"\n"</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; response</span><span
+                class="pun">.</span><span class="pln">end</span><span class="pun">();</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="pun">}</span><span class="pln"> </span><span class="kwd">else</span><span
+                class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; response</span><span
+                class="pun">.</span><span class="pln">writeHead</span><span class="pun">(</span><span
+                class="lit">200</span><span class="pun">,</span><span class="pln"> </span><span
+                class="pun">{</span><span class="str">"Content-Type"</span><span class="pun">:</span><span
+                class="pln"> </span><span class="str">"image/png"</span><span class="pun">});</span><span
+                class="pln"><br>&nbsp; &nbsp; &nbsp; response</span><span class="pun">.</span><span
+                class="pln">write</span><span class="pun">(</span><span class="pln">file</span><span
+                class="pun">,</span><span class="pln"> </span><span class="str">"binary"</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; response</span><span
+                class="pun">.</span><span class="pln">end</span><span class="pun">();</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="pun">}</span><span class="pln"><br>&nbsp; </span><span class="pun">});</span><span
+                class="pln"><br></span><span class="pun">}</span><span class="pln"><br><br>exports</span><span
+                class="pun">.</span><span class="pln">start </span><span class="pun">=</span><span
+                class="pln"> start</span><span class="pun">;</span><span class="pln"><br>exports</span><span
+                class="pun">.</span><span class="pln">upload </span><span class="pun">=</span><span
+                class="pln"> upload</span><span class="pun">;</span><span class="pln"><br>exports</span><span
+                class="pun">.</span><span class="pln">show </span><span class="pun">=</span><span
+                class="pln"> show</span><span class="pun">;</span></pre>
+
+        <p>
+            我們還需要將這新的請求處理程序，增加到<em>index.js</em>中的路由映射表中：
+        </p>
+        <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> server </span><span class="pun">=</span><span
+                class="pln"> require</span><span class="pun">(</span><span class="str">"./server"</span><span
+                class="pun">);</span><span class="pln"><br></span><span class="kwd">var</span><span
+                class="pln"> router </span><span class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
+                class="str">"./router"</span><span class="pun">);</span><span class="pln"><br></span><span class="kwd">var</span><span
+                class="pln"> requestHandlers </span><span class="pun">=</span><span class="pln"> require</span><span
+                class="pun">(</span><span class="str">"./requestHandlers"</span><span class="pun">);</span><span
+                class="pln"><br><br></span><span class="kwd">var</span><span class="pln"> handle </span><span
+                class="pun">=</span><span class="pln"> </span><span class="pun">{}</span><span
+                class="pln"><br>handle</span><span class="pun">[</span><span class="str">"/"</span><span
+                class="pun">]</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> requestHandlers</span><span
+                class="pun">.</span><span class="pln">start</span><span class="pun">;</span><span class="pln"><br>handle</span><span
+                class="pun">[</span><span class="str">"/start"</span><span class="pun">]</span><span
+                class="pln"> </span><span class="pun">=</span><span class="pln"> requestHandlers</span><span
+                class="pun">.</span><span class="pln">start</span><span class="pun">;</span><span class="pln"><br>handle</span><span
+                class="pun">[</span><span class="str">"/upload"</span><span class="pun">]</span><span
+                class="pln"> </span><span class="pun">=</span><span class="pln"> requestHandlers</span><span
+                class="pun">.</span><span class="pln">upload</span><span class="pun">;</span><span class="pln"><br>handle</span><span
+                class="pun">[</span><span class="str">"/show"</span><span class="pun">]</span><span class="pln"> </span><span
+                class="pun">=</span><span class="pln"> requestHandlers</span><span class="pun">.</span><span
+                class="pln">show</span><span class="pun">;</span><span class="pln"><br><br>server</span><span
+                class="pun">.</span><span class="pln">start</span><span class="pun">(</span><span
+                class="pln">router</span><span class="pun">.</span><span class="pln">route</span><span
+                class="pun">,</span><span class="pln"> handle</span><span class="pun">);</span></pre>
+
+        <p>
+            重啟伺服器之後，透過存取<a href="http://localhost:8888/show" rel="nofollow">http://localhost:8888/show</a>，就可以看到儲存在<em>/tmp/test.png</em>的圖片了。
+        </p>
+
+        <p>
+            好，最後我們要的就是：
+        </p>
+        
+        <p>
+            <ul>
+                <li>
+                    在<em>/start</em>表單中增加一個檔案上傳元素
+                </li>
+                <li>
+                    將node-formidable整合到我們的<em>upload</em>請求處理程序中，用於將上傳的圖片儲存到<em>/tmp/test.png</em>
+                </li>
+        
+                <li>
+                    將上傳的圖片內嵌到<em>/upload</em>URL輸出的HTML中
+                </li>
+            </ul>
+        </p>
+
+        <p>
+            第一項很簡單。只需要在HTML表單中，增加一個<em>multipart/form-data</em>的編碼類型，移除此前的文字區，增加一個檔案上傳組件，並將送出按鈕的文案改為 &quot;Upload file&quot; 即可。 如下<em>requestHandler.js</em>所示：
+        </p>
+
+        <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> querystring </span><span
+                class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">"querystring"</span><span
+                class="pun">),</span><span class="pln"><br>&nbsp; &nbsp; fs </span><span class="pun">=</span><span
+                class="pln"> require</span><span class="pun">(</span><span class="str">"fs"</span><span
+                class="pun">);</span><span class="pln"><br><br></span><span class="kwd">function</span><span
+                class="pln"> start</span><span class="pun">(</span><span class="pln">response</span><span
+                class="pun">,</span><span class="pln"> postData</span><span class="pun">)</span><span
+                class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; console</span><span
+                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Request handler 'start' was called."</span><span
+                class="pun">);</span><span class="pln"><br><br>&nbsp; </span><span class="kwd">var</span><span
+                class="pln"> body </span><span class="pun">=</span><span class="pln"> </span><span class="str">'&lt;html&gt;'</span><span
+                class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="str">'&lt;head&gt;'</span><span class="pun">+</span><span
+                class="pln"><br>&nbsp; &nbsp; </span><span class="str">'&lt;meta http-equiv="Content-Type" '</span><span
+                class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="str">'content="text/html; charset=UTF-8" /&gt;'</span><span
+                class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="str">'&lt;/head&gt;'</span><span class="pun">+</span><span
+                class="pln"><br>&nbsp; &nbsp; </span><span class="str">'&lt;body&gt;'</span><span
+                class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="str">'&lt;form action="/upload" enctype="multipart/form-data" '</span><span
+                class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="str">'method="post"&gt;'</span><span class="pun">+</span><span
+                class="pln"><br>&nbsp; &nbsp; </span><span
+                class="str">'&lt;input type="file" name="upload"&gt;'</span><span class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="str">'&lt;input type="submit" value="Upload file" /&gt;'</span><span class="pun">+</span><span
+                class="pln"><br>&nbsp; &nbsp; </span><span class="str">'&lt;/form&gt;'</span><span
+                class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="str">'&lt;/body&gt;'</span><span class="pun">+</span><span
+                class="pln"><br>&nbsp; &nbsp; </span><span class="str">'&lt;/html&gt;'</span><span
+                class="pun">;</span><span class="pln"><br><br>&nbsp; &nbsp; response</span><span
+                class="pun">.</span><span class="pln">writeHead</span><span class="pun">(</span><span
+                class="lit">200</span><span class="pun">,</span><span class="pln"> </span><span
+                class="pun">{</span><span class="str">"Content-Type"</span><span class="pun">:</span><span
+                class="pln"> </span><span class="str">"text/html"</span><span class="pun">});</span><span
+                class="pln"><br>&nbsp; &nbsp; response</span><span class="pun">.</span><span
+                class="pln">write</span><span class="pun">(</span><span class="pln">body</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; response</span><span class="pun">.</span><span
+                class="pln">end</span><span class="pun">();</span><span class="pln"><br></span><span
+                class="pun">}</span><span class="pln"><br><br></span><span class="kwd">function</span><span class="pln"> upload</span><span
+                class="pun">(</span><span class="pln">response</span><span class="pun">,</span><span class="pln"> postData</span><span
+                class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; console</span><span
+                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Request handler 'upload' was called."</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; response</span><span class="pun">.</span><span
+                class="pln">writeHead</span><span class="pun">(</span><span class="lit">200</span><span
+                class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span
+                class="str">"Content-Type"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"text/plain"</span><span
+                class="pun">});</span><span class="pln"><br>&nbsp; response</span><span class="pun">.</span><span
+                class="pln">write</span><span class="pun">(</span><span class="str">"You've sent the text: "</span><span
+                class="pun">+</span><span class="pln"><br>&nbsp; querystring</span><span class="pun">.</span><span
+                class="pln">parse</span><span class="pun">(</span><span class="pln">postData</span><span
+                class="pun">).</span><span class="pln">text</span><span class="pun">);</span><span class="pln"><br>&nbsp; response</span><span
+                class="pun">.</span><span class="pln">end</span><span class="pun">();</span><span
+                class="pln"><br></span><span class="pun">}</span><span class="pln"><br><br></span><span class="kwd">function</span><span
+                class="pln"> show</span><span class="pun">(</span><span class="pln">response</span><span
+                class="pun">,</span><span class="pln"> postData</span><span class="pun">)</span><span
+                class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; console</span><span
+                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Request handler 'show' was called."</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; fs</span><span class="pun">.</span><span class="pln">readFile</span><span
+                class="pun">(</span><span class="str">"/tmp/test.png"</span><span class="pun">,</span><span
+                class="pln"> </span><span class="str">"binary"</span><span class="pun">,</span><span
+                class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span
+                class="pln">error</span><span class="pun">,</span><span class="pln"> file</span><span
+                class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="kwd">if</span><span class="pun">(</span><span class="pln">error</span><span
+                class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; response</span><span
+                class="pun">.</span><span class="pln">writeHead</span><span class="pun">(</span><span
+                class="lit">500</span><span class="pun">,</span><span class="pln"> </span><span
+                class="pun">{</span><span class="str">"Content-Type"</span><span class="pun">:</span><span
+                class="pln"> </span><span class="str">"text/plain"</span><span class="pun">});</span><span
+                class="pln"><br>&nbsp; &nbsp; &nbsp; response</span><span class="pun">.</span><span
+                class="pln">write</span><span class="pun">(</span><span class="pln">error </span><span
+                class="pun">+</span><span class="pln"> </span><span class="str">"\n"</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; response</span><span
+                class="pun">.</span><span class="pln">end</span><span class="pun">();</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="pun">}</span><span class="pln"> </span><span class="kwd">else</span><span
+                class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; response</span><span
+                class="pun">.</span><span class="pln">writeHead</span><span class="pun">(</span><span
+                class="lit">200</span><span class="pun">,</span><span class="pln"> </span><span
+                class="pun">{</span><span class="str">"Content-Type"</span><span class="pun">:</span><span
+                class="pln"> </span><span class="str">"image/png"</span><span class="pun">});</span><span
+                class="pln"><br>&nbsp; &nbsp; &nbsp; response</span><span class="pun">.</span><span
+                class="pln">write</span><span class="pun">(</span><span class="pln">file</span><span
+                class="pun">,</span><span class="pln"> </span><span class="str">"binary"</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; response</span><span
+                class="pun">.</span><span class="pln">end</span><span class="pun">();</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="pun">}</span><span class="pln"><br>&nbsp; </span><span class="pun">});</span><span
+                class="pln"><br></span><span class="pun">}</span><span class="pln"><br><br>exports</span><span
+                class="pun">.</span><span class="pln">start </span><span class="pun">=</span><span
+                class="pln"> start</span><span class="pun">;</span><span class="pln"><br>exports</span><span
+                class="pun">.</span><span class="pln">upload </span><span class="pun">=</span><span
+                class="pln"> upload</span><span class="pun">;</span><span class="pln"><br>exports</span><span
+                class="pun">.</span><span class="pln">show </span><span class="pun">=</span><span
+                class="pln"> show</span><span class="pun">;</span></pre>
+
+        <p>
+            很好。下一步相對比較復雜。這裡有這樣一個問題： 我們需要在<em>upload</em>處理程序中對上傳的檔案進行處理，這樣的話，我們就需要將<em>request</em>物件傳遞給node-formidable的<em>form.parse</em>函數。
+        </p>
+
+        <p>
+            但是，我們有的只是<em>response</em>物件和<em>postData</em>陣列。看樣子，我們只能不得不將<em>request</em>物件從伺服器開始一路透過請求路由，再傳遞給請求處理程序。 或許還有更好的方案，但是，不管怎麼說，目前這樣做可以滿足我們的需求。
+        </p>
+
+        <p>
+            到這裡，我們可以將<em>postData</em>從伺服器以及請求處理程序中移除了 —— 一方面，對於我們處理檔案上傳來說已經不需要了，另外一方面，它甚至可能會引發這樣一個問題： 我們已經 &quot;消耗&quot; 了<em>request</em>物件中的資料，這意味著，對於<em>form.parse</em>來說，當它想要取得資料的時候就什麼也取得不到了。（因為Node.js不會對資料做快取）
+        </p>
+
+        <p>
+            我們從<em>server.js</em>開始 —— 移除對postData的處理以及<em>request.setEncoding</em>
+            （這部分node-formidable自身會處理），轉而採用將<em>request</em>物件傳遞給請求路由的方式：
+        </p>
+        <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
+                class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
+                class="str">"http"</span><span class="pun">);</span><span class="pln"><br></span><span
+                class="kwd">var</span><span class="pln"> url </span><span class="pun">=</span><span
+                class="pln"> require</span><span class="pun">(</span><span class="str">"url"</span><span
+                class="pun">);</span><span class="pln"><br><br></span><span class="kwd">function</span><span
+                class="pln"> start</span><span class="pun">(</span><span class="pln">route</span><span
+                class="pun">,</span><span class="pln"> handle</span><span class="pun">)</span><span class="pln"> </span><span
+                class="pun">{</span><span class="pln"><br>&nbsp; </span><span class="kwd">function</span><span
+                class="pln"> onRequest</span><span class="pun">(</span><span class="pln">request</span><span
+                class="pun">,</span><span class="pln"> response</span><span class="pun">)</span><span
+                class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="kwd">var</span><span class="pln"> pathname </span><span class="pun">=</span><span class="pln"> url</span><span
+                class="pun">.</span><span class="pln">parse</span><span class="pun">(</span><span
+                class="pln">request</span><span class="pun">.</span><span class="pln">url</span><span
+                class="pun">).</span><span class="pln">pathname</span><span class="pun">;</span><span class="pln"><br>&nbsp; &nbsp; console</span><span
+                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Request for "</span><span
+                class="pln"> </span><span class="pun">+</span><span class="pln"> pathname </span><span
+                class="pun">+</span><span class="pln"> </span><span class="str">" received."</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; route</span><span class="pun">(</span><span
+                class="pln">handle</span><span class="pun">,</span><span class="pln"> pathname</span><span
+                class="pun">,</span><span class="pln"> response</span><span class="pun">,</span><span class="pln"> request</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; </span><span class="pun">}</span><span
+                class="pln"><br><br>&nbsp; http</span><span class="pun">.</span><span
+                class="pln">createServer</span><span class="pun">(</span><span class="pln">onRequest</span><span
+                class="pun">).</span><span class="pln">listen</span><span class="pun">(</span><span
+                class="lit">8888</span><span class="pun">);</span><span class="pln"><br>&nbsp; console</span><span
+                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Server has started."</span><span
+                class="pun">);</span><span class="pln"><br></span><span class="pun">}</span><span class="pln"><br><br>exports</span><span
+                class="pun">.</span><span class="pln">start </span><span class="pun">=</span><span
+                class="pln"> start</span><span class="pun">;</span></pre>
+
+        <p>
+            接下來是 router.js —— 我們不再需要傳遞<em>postData</em>了，這次要傳遞<em>request</em>物件：
+        </p>
+        <pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> route</span><span
+                class="pun">(</span><span class="pln">handle</span><span class="pun">,</span><span
+                class="pln"> pathname</span><span class="pun">,</span><span class="pln"> response</span><span
+                class="pun">,</span><span class="pln"> request</span><span class="pun">)</span><span
+                class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; console</span><span
+                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"About to route a request for "</span><span
+                class="pln"> </span><span class="pun">+</span><span class="pln"> pathname</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; </span><span class="kwd">if</span><span
+                class="pln"> </span><span class="pun">(</span><span class="kwd">typeof</span><span
+                class="pln"> handle</span><span class="pun">[</span><span class="pln">pathname</span><span
+                class="pun">]</span><span class="pln"> </span><span class="pun">===</span><span
+                class="pln"> </span><span class="str">'function'</span><span class="pun">)</span><span
+                class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; handle</span><span
+                class="pun">[</span><span class="pln">pathname</span><span class="pun">](</span><span class="pln">response</span><span
+                class="pun">,</span><span class="pln"> request</span><span class="pun">);</span><span class="pln"><br>&nbsp; </span><span
+                class="pun">}</span><span class="pln"> </span><span class="kwd">else</span><span
+                class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; console</span><span
+                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"No request handler found for "</span><span
+                class="pln"> </span><span class="pun">+</span><span class="pln"> pathname</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; response</span><span class="pun">.</span><span
+                class="pln">writeHead</span><span class="pun">(</span><span class="lit">404</span><span
+                class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span
+                class="str">"Content-Type"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"text/html"</span><span
+                class="pun">});</span><span class="pln"><br>&nbsp; &nbsp; response</span><span class="pun">.</span><span
+                class="pln">write</span><span class="pun">(</span><span class="str">"404 Not found"</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; response</span><span class="pun">.</span><span
+                class="pln">end</span><span class="pun">();</span><span class="pln"><br>&nbsp; </span><span class="pun">}</span><span
+                class="pln"><br></span><span class="pun">}</span><span class="pln"><br><br>exports</span><span
+                class="pun">.</span><span class="pln">route </span><span class="pun">=</span><span
+                class="pln"> route</span><span class="pun">;</span></pre>
+
+        <p>
+            現在，<em>request</em>物件就可以在我們的<em>upload</em>請求處理程序中使用了。node-formidable會處理將上傳的檔案儲存到區域<em>/tmp</em>目錄中，而我們需要做的是確保該檔案儲存成<em>/tmp/test.png</em>。 沒錯，我們保持簡單，並假設只允許上傳PNG圖片。
+        </p>
+
+        <p>
+            這裡採用<em>fs.renameSync(path1,path2)</em>來實現。要注意的是，正如其名，該方法是同步執行的，
+            也就是說，如果該重命名的操作很耗時的話會Blocking。 這塊我們先不考慮。
+        </p>
+
+        <p>
+            接下來，我們把處理檔案上傳以及重命名的操作放到一起，如下<em>requestHandlers.js</em>所示：
+        </p>
+        <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> querystring </span><span
+                class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">"querystring"</span><span
+                class="pun">),</span><span class="pln"><br>&nbsp; &nbsp; fs </span><span class="pun">=</span><span
+                class="pln"> require</span><span class="pun">(</span><span class="str">"fs"</span><span
+                class="pun">),</span><span class="pln"><br>&nbsp; &nbsp; formidable </span><span
+                class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">"formidable"</span><span
+                class="pun">);</span><span class="pln"><br><br></span><span class="kwd">function</span><span
+                class="pln"> start</span><span class="pun">(</span><span class="pln">response</span><span
+                class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; console</span><span
+                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Request handler 'start' was called."</span><span
+                class="pun">);</span><span class="pln"><br><br>&nbsp; </span><span class="kwd">var</span><span
+                class="pln"> body </span><span class="pun">=</span><span class="pln"> </span><span class="str">'&lt;html&gt;'</span><span
+                class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="str">'&lt;head&gt;'</span><span class="pun">+</span><span
+                class="pln"><br>&nbsp; &nbsp; </span><span class="str">'&lt;meta http-equiv="Content-Type" content="text/html; '</span><span
+                class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="str">'charset=UTF-8" /&gt;'</span><span class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="str">'&lt;/head&gt;'</span><span class="pun">+</span><span
+                class="pln"><br>&nbsp; &nbsp; </span><span class="str">'&lt;body&gt;'</span><span
+                class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="str">'&lt;form action="/upload" enctype="multipart/form-data" '</span><span
+                class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="str">'method="post"&gt;'</span><span class="pun">+</span><span
+                class="pln"><br>&nbsp; &nbsp; </span><span class="str">'&lt;input type="file" name="upload" multiple="multiple"&gt;'</span><span
+                class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="str">'&lt;input type="submit" value="Upload file" /&gt;'</span><span
+                class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="str">'&lt;/form&gt;'</span><span class="pun">+</span><span
+                class="pln"><br>&nbsp; &nbsp; </span><span class="str">'&lt;/body&gt;'</span><span
+                class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="str">'&lt;/html&gt;'</span><span class="pun">;</span><span class="pln"><br><br>&nbsp; &nbsp; response</span><span
+                class="pun">.</span><span class="pln">writeHead</span><span class="pun">(</span><span
+                class="lit">200</span><span class="pun">,</span><span class="pln"> </span><span
+                class="pun">{</span><span class="str">"Content-Type"</span><span class="pun">:</span><span
+                class="pln"> </span><span class="str">"text/html"</span><span class="pun">});</span><span
+                class="pln"><br>&nbsp; &nbsp; response</span><span class="pun">.</span><span
+                class="pln">write</span><span class="pun">(</span><span class="pln">body</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; response</span><span class="pun">.</span><span
+                class="pln">end</span><span class="pun">();</span><span class="pln"><br></span><span
+                class="pun">}</span><span class="pln"><br><br></span><span class="kwd">function</span><span class="pln"> upload</span><span
+                class="pun">(</span><span class="pln">response</span><span class="pun">,</span><span class="pln"> request</span><span
+                class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; console</span><span
+                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Request handler 'upload' was called."</span><span
+                class="pun">);</span><span class="pln"><br><br>&nbsp; </span><span class="kwd">var</span><span
+                class="pln"> form </span><span class="pun">=</span><span class="pln"> </span><span
+                class="kwd">new</span><span class="pln"> formidable</span><span class="pun">.</span><span class="typ">IncomingForm</span><span
+                class="pun">();</span><span class="pln"><br>&nbsp; console</span><span class="pun">.</span><span
+                class="pln">log</span><span class="pun">(</span><span class="str">"about to parse"</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; form</span><span class="pun">.</span><span
+                class="pln">parse</span><span class="pun">(</span><span class="pln">request</span><span
+                class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span
+                class="pun">(</span><span class="pln">error</span><span class="pun">,</span><span
+                class="pln"> fields</span><span class="pun">,</span><span class="pln"> files</span><span
+                class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; console</span><span
+                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"parsing done"</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; fs</span><span class="pun">.</span><span
+                class="pln">renameSync</span><span class="pun">(</span><span class="pln">files</span><span
+                class="pun">.</span><span class="pln">upload</span><span class="pun">.</span><span
+                class="pln">path</span><span class="pun">,</span><span class="pln"> </span><span class="str">"/tmp/test.png"</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; response</span><span class="pun">.</span><span
+                class="pln">writeHead</span><span class="pun">(</span><span class="lit">200</span><span
+                class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span
+                class="str">"Content-Type"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"text/html"</span><span
+                class="pun">});</span><span class="pln"><br>&nbsp; &nbsp; response</span><span class="pun">.</span><span
+                class="pln">write</span><span class="pun">(</span><span
+                class="str">"received image:&lt;br/&gt;"</span><span class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; response</span><span
+                class="pun">.</span><span class="pln">write</span><span class="pun">(</span><span class="str">"&lt;img src='/show' /&gt;"</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; response</span><span class="pun">.</span><span
+                class="pln">end</span><span class="pun">();</span><span class="pln"><br>&nbsp; </span><span class="pun">});</span><span
+                class="pln"><br></span><span class="pun">}</span><span class="pln"><br><br></span><span class="kwd">function</span><span
+                class="pln"> show</span><span class="pun">(</span><span class="pln">response</span><span
+                class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; console</span><span
+                class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Request handler 'show' was called."</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; fs</span><span class="pun">.</span><span class="pln">readFile</span><span
+                class="pun">(</span><span class="str">"/tmp/test.png"</span><span class="pun">,</span><span
+                class="pln"> </span><span class="str">"binary"</span><span class="pun">,</span><span
+                class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span
+                class="pln">error</span><span class="pun">,</span><span class="pln"> file</span><span
+                class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="kwd">if</span><span class="pun">(</span><span class="pln">error</span><span
+                class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; response</span><span
+                class="pun">.</span><span class="pln">writeHead</span><span class="pun">(</span><span
+                class="lit">500</span><span class="pun">,</span><span class="pln"> </span><span
+                class="pun">{</span><span class="str">"Content-Type"</span><span class="pun">:</span><span
+                class="pln"> </span><span class="str">"text/plain"</span><span class="pun">});</span><span
+                class="pln"><br>&nbsp; &nbsp; &nbsp; response</span><span class="pun">.</span><span
+                class="pln">write</span><span class="pun">(</span><span class="pln">error </span><span
+                class="pun">+</span><span class="pln"> </span><span class="str">"\n"</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; response</span><span
+                class="pun">.</span><span class="pln">end</span><span class="pun">();</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="pun">}</span><span class="pln"> </span><span class="kwd">else</span><span
+                class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; response</span><span
+                class="pun">.</span><span class="pln">writeHead</span><span class="pun">(</span><span
+                class="lit">200</span><span class="pun">,</span><span class="pln"> </span><span
+                class="pun">{</span><span class="str">"Content-Type"</span><span class="pun">:</span><span
+                class="pln"> </span><span class="str">"image/png"</span><span class="pun">});</span><span
+                class="pln"><br>&nbsp; &nbsp; &nbsp; response</span><span class="pun">.</span><span
+                class="pln">write</span><span class="pun">(</span><span class="pln">file</span><span
+                class="pun">,</span><span class="pln"> </span><span class="str">"binary"</span><span
+                class="pun">);</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; response</span><span
+                class="pun">.</span><span class="pln">end</span><span class="pun">();</span><span class="pln"><br>&nbsp; &nbsp; </span><span
+                class="pun">}</span><span class="pln"><br>&nbsp; </span><span class="pun">});</span><span
+                class="pln"><br></span><span class="pun">}</span><span class="pln"><br><br>exports</span><span
+                class="pun">.</span><span class="pln">start </span><span class="pun">=</span><span
+                class="pln"> start</span><span class="pun">;</span><span class="pln"><br>exports</span><span
+                class="pun">.</span><span class="pln">upload </span><span class="pun">=</span><span
+                class="pln"> upload</span><span class="pun">;</span><span class="pln"><br>exports</span><span
+                class="pun">.</span><span class="pln">show </span><span class="pun">=</span><span
+                class="pln"> show</span><span class="pun">;</span></pre>
+
+        <p>
+            好了，重啟伺服器，我們應用所有的功能就可以用了。選擇一張區域圖片，將其上傳到伺服器，然後瀏覽器就會顯示該圖片。
+        </p>
+
+        <a name="conclusion-and-outlook"></a>
+
+        <h2>總結與展望</h2>
+
+        <p>
+            恭喜，我們的任務已經完成了！我們開發完了一個Node.js的web應用，應用雖小，但卻 &quot;五臟俱全&quot; 。 期間，我們介紹了很多技術點：伺服器端JavaScript、函數編程、Blocking與Non-Blocking、回呼(callback)、事件、內部和外部模組等等。
+        </p>
+
+        <p>
+            當然了，還有許多本書沒有介紹到的： 如何操作資料庫、如何進行單元測試、如何開發Node.js的外部模組以及一些簡單的諸如如何取得GET請求之類的方法。
+        </p>
+
+        <p>
+            但本書畢竟只是一本給初學者的教學課程 —— 不可能覆蓋到所有的內容。
+        </p>
+
+        <p>
+            幸運的是，Node.js社區非常活躍（作個不恰當的比喻就是猶如一群有過動兒在一起，能不活躍嗎？），
+            這意味著，有許多關於Node.js的資源，有什麼問題都可以向社區尋求解答。
+            其中<a href="https://github.com/joyent/node/wiki">Node.js社區的wiki</a>以及
+            <a href="http://www.nodecloud.org/">NodeCloud</a>就是最好的資源。
+        </p>
+        </div>
+
+        <div class="buy-the-bundle cn">
+            <div class="cover">
+                <a href="/buy-chinese/"><img src="the_node_beginner_book_cover_medium_chinese.png" height="120" width="80" /></a>
+            </div>
+            <div class="description">
+                <p>
+                    <strong>購買 &quot;Node入門&quot; 中文版電子書</strong>
+                </p>
+                <p>
+                    <strong class="price dollarsign">$</strong><strong class="price">0.99</strong>
+                </p>
+                <p>
+                    <a class="buttonlink" href="/buy-chinese/">
+                        <div class="button">立即購買</div>
+                    </a>                    
+                </p>                
+            </div>
+            <div class="buy">
+                <p>
+                    本書共42頁
+                    <br />
+                    支援PDF格式，Kindle以及ePub格式
+                    <br />
+                    直接下載，免費更新
+                </p>
+            </div>
+        </div>
+
+        <div id="praise">
+            <div class="praise">
+                <div class="comment">
+                     &quot;這是我讀過最好的教學課程之一。此前作為一名Java程式設計師，我總覺得JavaScript像妖術，但在這教學課程中，你真的把它講解的淺顯易懂。&quot; 
+                </div>
+            </div>
+            <div class="praise">
+                <div class="comment">
+                     &quot;真的忍不住要感謝你這麼好的node入門教學課程，內容非常精彩。&quot; 
+                </div>
+            </div>
+            <div class="praise">
+                <div class="comment">
+                     &quot;這是為數不多的讓我認認真真完整讀完的入門教學課程，只因實在寫得太好了&quot; 
+                </div>
+            </div>
+        </div>
+
+        <div id="disqus_thread"></div>
+
+        <div id="footer">
+            <p id="ccimage">
+                <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img alt="Creative Commons License" border="0" src="creative_commons.png" width="88" height="31"/></a>
+            </p>
+            <p>
+                <span xmlns:dct="http://purl.org/dc/terms/">The Node Beginner Book</span>
+                by
+                <a xmlns:cc="http://creativecommons.org/ns#" href="http://manuel.kiessling.net" rel="cc:attributionURL">Manuel Kiessling</a> (see <a href="https://plus.google.com/100272082905360445612?rel=author">Google+ profile</a>)
+                is licensed under a
+                <br />
+                <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</a>.
+                <br />
+                Permissions beyond the scope of this license may be available at <a xmlns:cc="http://creativecommons.org/ns#" href="mailto:manuel@kiessling.net" rel="cc:morePermissions">manuel@kiessling.net</a>.
+            </p>
+        </div>
+    </body>
+</html>

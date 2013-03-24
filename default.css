@@ -1,0 +1,523 @@
+body {
+    font-family: Georgia, serif;
+    background-color: #eee;
+    padding-top: 0px;
+}
+
+#forkmeongithub img {
+    z-index: 5;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: 0;
+}
+
+#ibookstore-banner {
+    display: none;
+    margin: -10px;
+    margin-bottom: 0;
+}
+
+@media only screen and (max-width: 1024px) {
+    #ibookstore-banner {
+        display: block;
+    }
+}
+
+#book, #disqus_thread, #footer {
+    width: 640px;
+    margin: 0 auto;
+    margin-top: 24px;
+    margin-bottom: 100px;
+    padding: 64px;
+    background-color: white;
+    border-top: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    z-index: 100;
+    box-shadow: 14px 11px 27px #888;
+}
+
+#book {
+    margin-top: 94px;
+}
+
+#author {
+    margin-top: -36px;
+    margin-left: 279px;
+    color: #888;
+    font-family: "Helvetica Neue", sans-serif;
+    font-size: 75%;
+}
+
+#workinprogressnote p {
+    font-family: "Helvetica Neue", sans-serif;
+    color: #700;
+    text-align: center;
+}
+
+.buybox, .buy-the-bundle, #translations {
+    font-family: "Helvetica Neue", sans-serif;
+    font-size: 13px;
+    color: #fff;
+    text-align: center;
+    padding: 8px;
+    padding-left: 32px;
+    padding-right: 32px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 4px #444;
+    position: relative;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 704px;
+    background-color: #555;
+}
+
+#translations table {
+  margin: 0 auto;
+}
+
+#translations img {
+    border: none;
+}
+
+#translations td {
+    text-align: left;
+}
+
+#translations a {
+    text-decoration: none;
+    color: #fff;
+}
+
+#translations .flag {
+    display: inline-block;
+    vertical-align: middle;
+    padding-top: 4px;
+}
+#translations .text {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 24px;
+}
+
+.buybox {
+    background: none;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    width: 769px;
+}
+
+.buy-the-bundle {
+    padding-bottom: 20px;
+    display: inline-block;
+    margin: 0;
+}
+
+.buy-the-bundle.cn {
+    float: none;
+    padding-bottom: 20px;
+    display: block;
+    margin: 0 auto;
+}
+
+.buy-the-bundle .cover {
+    width: 200px;
+    display: table-cell;
+    padding-right: 0px;
+    padding-left: 16px;
+    vertical-align: top;
+    align: center;
+    color: #bbb;
+}
+
+.buy-the-bundle .cover img {
+    border: 1px solid black;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset -1px 1px 0 rgba(255,255,255,0.4);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset -1px 1px 0 rgba(255,255,255,0.4);
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset -1px 1px 0 rgba(255,255,255,0.4);
+}
+
+.buy-the-bundle .description {
+    width: 260px;
+    display: table-cell;
+    padding-right: 16px;
+    padding-left: 16px;
+    vertical-align: top;
+    text-align: center;
+}
+
+.buy-the-bundle strong.price {
+    font-size: 18pt;
+    color: #14d014;
+}
+
+.buy-the-bundle strong.price.dollarsign {
+    font-weight: normal;
+}
+
+.buy-the-bundle .buy {
+    display: table-cell;
+    vertical-align: top;
+    color: #bbb;
+}
+
+.buy-the-bundle .button, #salespitch .button {
+    padding: 8px;
+    margin-top: 26px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 140px;
+    border: 1px solid #444;
+    border-radius: 6px;
+    background-image: -moz-linear-gradient(top, #14d014, #029302);
+    background-image: -webkit-gradient(linear, center top, center bottom, from(#14d014), to(#029302));
+    box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset -1px 1px 0 rgba(255,255,255,0.4);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset -1px 1px 0 rgba(255,255,255,0.4);
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.4), inset -1px 1px 0 rgba(255,255,255,0.4);
+    text-align: center;
+    font-family: "Helvetica Neue", sans-serif;
+}
+
+.buttonlink {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 15px;
+    color: #fff;
+    text-shadow: 0.1em 0.1em #666;
+}
+
+#donate p {
+    font-family: "Helvetica Neue", sans-serif;
+    text-align: center;
+}
+
+#paypal fieldset {
+    border: 0;
+}
+
+#disqus_thread {
+    font-family: "Helvetica Neue", sans-serif;
+}
+
+#footer {
+    font-family: "Helvetica Neue", sans-serif;
+    background-color: #f5f5f5;
+    margin-top: 100px;
+}
+
+#footer p {
+    text-align: center;
+    font-family: "Helvetica Neue", sans-serif;
+    font-size: 11px;
+}
+
+#ccimage {
+    float: left;
+    margin-left: 30px;
+    margin-right: 0;
+    margin-top: 20px;
+}
+
+#praise {
+    position: absolute;
+    top: 120px;
+    right: 40px;
+    width: 204px;
+    font-style: italic;
+    color: #aaa;
+    z-index: -1;
+    text-align: right;
+}
+
+#praise .praise {
+    margin-bottom: 25px;
+}
+
+#praise .author {
+    font-style: normal;
+    font-size: 75%;
+}
+
+#table-of-contents-headline {
+    margin-top: 48px;
+    color: #700;
+    font-size: 160%;
+    font-weight: bold;
+}
+
+#book #table-of-contents {
+    margin-left: -24px;
+}
+
+#book #table-of-contents ul li {
+    font-size: 100%;
+    margin-left: 0;
+    list-style-type: none;
+}
+
+#book #table-of-contents ul {
+    padding-left: 24px;
+    margin-top: 12px;
+    margin-left: 0;
+    margin-bottom: 36px;
+}
+
+h1 {
+    margin-left: -63px;
+    margin-top: -109px;
+    font-size: 300%;
+    color: #700;
+    font-style: italic;
+    font-weight: bold;
+}
+
+h2 {
+    margin-top: 64px;
+    font-size: 180%;
+}
+
+h3 {
+    font-size: 160%;
+}
+
+h4 {
+    font-size: 140%;
+}
+
+h5 {
+    font-size: 120%;
+}
+
+h3, h4, h5 {
+    margin-top: 36px;
+}
+
+h2, h3, h4, h5 {
+    color: #700;
+    font-weight: bold;
+    margin-bottom: 36px;
+}
+
+#salespitch {
+	font-family: "Helvetica Neue", sans-serif;
+}
+
+#authorimage {
+	float: right;
+  padding-left: 32px;
+  padding-bottom: 4px;
+}
+
+#salespitch .box {
+	text-align: center;
+	width: 200px;
+	background-color: #eee;
+	border-radius: 16px;
+	padding: 32px;
+	margin: 0 auto;
+}
+
+#salespitch .box .subinfo {
+	font-size: 10pt;
+	color: #777;
+}
+
+#bubble {
+	width: 580px;
+	border: 1px solid #999;
+	border-radius: 16px;
+	padding: 32px;
+	background-color: #ffe;
+	margin-bottom: 60px;
+}
+
+#salespitch .orbox {
+	width: 200px;
+	margin: 0 auto;
+	text-align: center;
+	padding: 24px;
+}
+
+#hiddenhalf {
+  opacity: 0.075;
+}
+
+#book p {
+    text-align: justify;
+    font-size: 110%;
+    line-height: 150%;
+    margin-bottom: 48px;
+    margin-top: -22px;
+}
+
+pre {
+    background-color: #f7f7f7;
+    border: 1px solid #eee;
+    padding: 16px;
+    margin-bottom: 64px;
+    margin-top: -24px;
+    font-size: 14px;
+}
+
+pre.prettyprint {
+    background-color: #f7f7f7;
+    border: 1px solid #eee;
+    padding: 16px;
+    margin-bottom: 64px;
+    margin-top: -24px;
+    font-size: 14px;
+}
+
+#book ul {
+    margin-top: -24px;
+    margin-bottom: 64px;
+}
+
+ul li {
+    margin-bottom: 12px;
+    font-size: 110%;
+}
+
+blockquote {
+    font-style: italic;
+}
+
+/* Prettify */
+.str {
+    color: #080
+}
+
+.kwd {
+    color: #008
+}
+
+.com {
+    color: #800
+}
+
+.typ {
+    color: #606
+}
+
+.lit {
+    color: #066
+}
+
+.pun {
+    color: #660
+}
+
+.pln {
+    color: #000
+}
+
+.tag {
+    color: #008
+}
+
+.atn {
+    color: #606
+}
+
+.atv {
+    color: #080
+}
+
+.dec {
+    color: #606
+}
+
+ol.linenums {
+    margin-top: 0;
+    margin-bottom: 0
+}
+
+li.L0, li.L1, li.L2, li.L3, li.L5, li.L6, li.L7, li.L8 {
+    list-style: none
+}
+
+li.L1, li.L3, li.L5, li.L7, li.L9 {
+    background: #eee
+}
+
+
+@media only screen and (max-width: 1330px) {
+    #praise {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    body {
+        font-size: 165%;
+        background-color: #fff;
+    }
+
+    h1 {
+        font-size: 250%;
+        margin-left: -33px;
+    }
+
+    #book, #disqus_thread, #footer {
+        width: 90%;
+        max-width: 90%;
+        padding: 32px;
+        box-shadow: none;
+        border: none;
+    }
+
+    .buy-the-bundle, #forkmeongithub, #praise {
+        display: none;
+    }
+
+    #translations {
+        display: none;
+    }
+    
+    #translations td {
+        text-align: center;
+    }
+
+    #translations img {
+        display: none;
+    }
+}
+
+
+@media only print {            
+    #book {
+        margin-top: 60px;
+    }
+
+    #book, #footer {
+        border: none;
+        box-shadow: none;
+    }
+    
+    #footer {
+        border-top: 1px solid black;
+    }
+    
+    #translations {
+        display: none;
+    }
+    
+    .buy-the-bundle {
+        display: none;
+    }
+    
+    #disqus_thread {
+        display: none;
+    }
+    
+    #forkmeongithub {
+        display: none;
+    }
+    #praise {
+        display: none;
+    }
+}
