@@ -17,3 +17,8 @@ Just fork and send pull requests, I'm going to incorporate them as quickly as po
 ## Contact
 
 Follow me [@ManuelKiessling](http://twitter.com/manuelkiessling), mail me at [manuel@kiessling.net](mailto:manuel@kiessling.net), or check our my personal home page at [http://manuel.kiessling.net](http://manuel.kiessling.net).
+
+## License
+
+All contents of this repository is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License.
+See http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US for more details. 
