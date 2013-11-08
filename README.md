@@ -9,7 +9,7 @@ You can read the preview of the book at [NodeBeginner.org](http://nodebeginner.o
 
 This repository is home to the HTML source of the book preview as well as the HTML version of the full book (see file index-en.html), and the accompanying code examples.
 
-It does NOT contain the sources for the commercially available Leanpub version of the book. The sources for the Leanpub version as well as the PDF, Mobi and ePub versions created from these sources are not available under an open license, and are (c)2011-2013 Manuel Kiessling. The PDF, Mobi and ePub version of this book is available through http://leanpub.com/nodebeginner.
+It does NOT contain the sources for the commercially available Leanpub version of the book. The sources for the Leanpub version as well as the PDF, Mobi and ePub versions created from these sources are not available under an open license, and are © 2011-2013 Manuel Kiessling. The PDF, Mobi and ePub version of this book is available through http://leanpub.com/nodebeginner.
 
 
 ## Contributing
