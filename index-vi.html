@@ -106,9 +106,11 @@
 
         <div id="book">
         <div>
-        <h1>Node.js cho người mới bắt đầu</h1>
+        <h1>Node cho người mới bắt đầu</h1>
 
-        <div id="author">Một tài liệu hướng dẫn về Node.js bởi <a href="http://twitter.com/manuelkiessling">Manuel Kiessling</a></div>
+        <div id="author">Tài liệu hướng dẫn về Node.js bởi <a href="http://twitter.com/manuelkiessling">Manuel Kiessling</a>
+        Dịch bởi <a href="http://twitter.com/tuanva">Tuan Vu</a>
+        </div>
 
         <a name="about"></a>
 
@@ -123,7 +125,7 @@
         <h3>Tình trạng</h3>
 
         <p>
-            Bạn đang đọc phiên bản mới nhất của cuốn sách này, điều này có nghĩa là các cập nhật chỉ được thực hiện để phù hợp với các thay đổi cũng như các bản sửa lỗi của các phiên bản Node.js mới. Lần cập nhập mới nhất được thực hiện vào 01 tháng 07 năm 2013.
+            Bạn đang đọc phiên bản mới nhất của cuốn sách này, điều này có nghĩa là thay đổi chỉ được thực hiện để bắt kịp với các bản cập nhật cũng như vá lỗi của các phiên bản Node.js mới hơn. Thay đổi gần đây nhất là vào 01 tháng 07 năm 2013.
         </p>
 
         <p>
@@ -139,15 +141,15 @@
         <h3>Đối tượng độc giả</h3>
 
         <p>
-            Tài liệu này chắc chắn phù hợp với độc giả có kiến thức tương tự như tôi: đã có kinh nghiệm với ít nhất một ngôn ngữ lập trình hướng đối tượng như Ruby, Python, PHP hay Java, một chút kinh nghiệm về Javascript và hoàn toàn lạ lẫm với Node.js.
+            Tôi chắc chắn rằng cuốn sách này phù hợp với các độc giả có kiến thức tương đương với tôi: đã có kinh nghiệm với ít nhất một ngôn ngữ lập trình hướng đối tượng như Ruby, Python, PHP hay Java, một chút kinh nghiệm về Javascript và chưa biết gì về Node.js.
         </p>
 
         <p>
-            Hướng tới các lập trình viên đã có kinh nghiệm với các ngôn ngữ lập trình khác đồng nghĩa với việc cuốn sách này sẽ không đề cập tới những phạm trù cơ bản tương tự như kiểu dữ liệu, biến, các cấu trúc điều khiển v.v. Để hiểu tốt hơn về cuốn sách này, bạn cần nắm vững những vấn đề cơ bản trên.
+            Hướng tới các lập trình viên đã có kinh nghiệm với các ngôn ngữ lập trình khác đồng nghĩa với việc cuốn sách này sẽ không đề cập tới những khái niệm cơ bản trong lập trình như: kiểu dữ liệu, biến, các cấu trúc điều khiển v.v. Để hiểu tốt hơn về cuốn sách này, bạn cần nắm vững những khái niệm trên.
         </p>
 
         <p>
-            Tuy nhiên, các hàm và đối tượng trong JavaScript khác biệt so với các ngôn ngữ khác, nên nó sẽ được giải thích chi tiết hơn.
+            Tuy nhiên, hàm và đối tượng trong JavaScript có đôi chút khác biệt so với các ngôn ngữ khác, nên nó sẽ được giải thích chi tiết hơn.
         </p>
 
         <a name="structure"></a>
@@ -155,27 +157,27 @@
         <h3>Cấu trúc</h3>
 
         <p>
-            Hoàn thành tài liệu này cũng đồng nghĩa với việc bạn đã xây dựng hoàn chỉnh một ứng dụng web có khả năng cho phép người dùng duyệt qua các trang khác nhau và tải file lên.
+            Đọc xong cuốn sách này cũng đồng nghĩa với việc bạn đã xây dựng hoàn chỉnh một ứng dụng web có khả năng cho phép người dùng duyệt qua các trang khác nhau và tải file lên.
         </p>
 
         <p>
-            Tất nhiên, đây không hẳn là thứ mang tính chất thay đổi thế giới, nhưng chúng ta sẽ tiến xa hơn việc chỉ làm các ví dụ bằng việc xây dựng một framework có các thành phần được tổ chức, bố trí rõ ràng. Bạn sẽ được thấy nó trong ít phút nữa.
+            Tuy những gì được đề cập trong cuốn sách này không mang tính chất thay đổi thế giới, nhưng chúng ta sẽ tiến xa hơn việc chỉ dừng lại ở các ví dụ bằng việc xây dựng một framework có các thành phần được tổ chức, bố trí rõ ràng. Bạn sẽ được thấy nó trong ít phút nữa.
         </p>
 
         <p>
-            Chúng ta sẽ bắt đầu bằng việc phân tích sự khác nhau trong quá trình phát triển của JavaScript trong Node.js và trình duyệt.
+            Chúng ta sẽ bắt đầu bằng việc so sánh sự khác nhau trong quá trình phát triển của JavaScript trong Node.js và trong trình duyệt.
         </p>
 
         <p>
-            Tiếp đó, chúng ta sẽ trở lại với ứng dụng "Hello World" truyền thống, ứng dụng Node.js cơ bản nhất.
+            Tiếp đó, chúng ta sẽ bắt tay vào thực hiện ví dụ "Hello World" truyền thống, ứng dụng Node.js cơ bản nhất.
         </p>
 
         <p>
-            Sau đó chúng ta sẽ thảo luận về một ứng dụng thực tế mà chúng ta muốn xây dựng, phân tích kỹ lưỡng các thành phần khác nhau cần xây dựng của ứng dụng, và bắt tay lần lượt từng bước vào mỗi phần.
+            Sau đó chúng ta sẽ thảo luận về một ứng dụng thực tế mà chúng ta muốn xây dựng, phân tích kỹ lưỡng các thành phần cơ bản không thể thiếu của ứng dụng, và bắt tay lần lượt vào từng phần.
         </p>
 
         <p>
-            Như đã đề cập trước, song song đó chúng ta sẽ học một số khái niệm nâng cao về JavaScript, học cách áp dụng chúng vào trong ứng dụng của chúng ta, và cùng nghiên cứu tại sao việc áp dụng các khái niệm đó lại tốt hơn những khái niệm tương tự chúng ta đã biết trong các ngôn ngữ lập trình khác.
+            Như đã đề cập, song song đó chúng ta sẽ học một số khái niệm nâng cao về JavaScript, học cách áp dụng chúng, và cùng nghiên cứu tại sao nó lại tốt hơn những khái niệm tương tự trong các ngôn ngữ lập trình khác.
         </p>
 
         <p>
@@ -205,7 +207,7 @@
 
                     </ul>
                 </li>
-                <li><a href="#a-full-blown-web-application-with-nodejs">Một ứng dụng web hoàn thiện với Node.js</a>
+                <li><a href="#a-full-blown-web-application-with-nodejs">Một ứng dụng web hoàn thiện sử dụng Node.js</a>
                     <ul>
                         <li><a href="#the-use-cases">The use cases</a></li>
                         <li><a href="#the-application-stack">Cấu trúc ứng dụng</a></li>
@@ -216,8 +218,8 @@
                     <ul>
                         <li><a href="#a-basic-http-server">Một máy chủ HTTP đơn giản</a></li>
                         <li><a href="#analyzing-our-http-server">Phân tích máy chủ HTTP</a></li>
-                        <li><a href="#passing-functions-around">Sự tương tác giữa các hàm</a></li>
-                        <li><a href="#how-function-passing-makes-our-http-server-work">Sử dụng hàm như biến</a></li>
+                        <li><a href="#passing-functions-around">Về cách sử dụng hàm</a></li>
+                        <li><a href="#how-function-passing-makes-our-http-server-work">Sử dụng hàm như vậy giúp máy chủ HTTP của chúng ta hoạt động như thế nào</a></li>
 
                         <li><a href="#event-driven-callbacks">Gọi lại không đồng bộ dựa trên sự kiện</a></li>
                         <li><a href="#how-our-server-handles-requests">Máy chủ xử lý yêu cầu như thế nào</a></li>
@@ -565,7 +567,7 @@
 
         <a name="passing-functions-around"></a>
 
-        <h3>Sử dụng hàm như biến</h3>
+        <h3>Về cách sử dụng hàm</h3>
 
         <p>
             Ví dụ, bạn có thể viết như sau:
@@ -596,11 +598,7 @@
         </p>
 
         <p>
-            We can, as we just did, pass a function as a parameter to
-            another function by its name. But we don't have to take this
-            indirection of first defining, then passing it - we can
-            define and pass a function as a parameter to another
-            function in-place:
+            Chúng ta có thể làm, chúng ta đã làm, là sử dụng hàm như một biến đầu vào cho hàm khác bằng cách sử dụng tên của chúng. Nhưng, chúng ta không nhất thiết phải đi theo hướng vòng vo thế này, từ định nghĩa rồi mới đến sử dụng - chúng ta có thể kết hợp hai bước này lại với nhau ở chung một vị trí:
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> execute</span><span
                 class="pun">(</span><span class="pln">someFunction</span><span class="pun">,</span><span class="pln"> value</span><span
@@ -615,32 +613,23 @@
                 class="pun">);</span></pre>
 
         <p>
-            We define the function we want to pass to <em>execute</em>
-            right there at the place where <em>execute</em> expects its
-            first parameter.
+            Chúng ta định nghĩa hàm mà chúng ta muốn <em>thực thi</em> ở ngay chính nơi chúng ta truyền biến đầu vào.
         </p>
 
         <p>
-            This way, we don't even need to give the function a name,
-            which is why this is called an <em>anonymous function</em>.
+            Với cách này, chúng ta thậm chí không cần đặt tên cho hàm đó, hay còn được biết đến với cái tên <em>hàm vô danh</em> (anonymous function).
         </p>
 
         <p>
-            This is a first glimpse at what I like to call "advanced"
-            JavaScript, but let's take it step by step. For now, let's
-            just accept that in JavaScript, we can pass a function as
-            a parameter when calling another function. We can do this
-            by assigning our function to a variable, which we then
-            pass, or by defining the function to pass in-place.
+            Đây mới chỉ là thoáng qua cái chúng ta gọi là JavaScript "nâng cao", đừng nôn nóng vội, chúng ta sẽ làm quen với nó từng bước một. Hãy tạm thời chấp nhập rằng trong JavaScript chúng ta có thể sử dụng hàm như là một biến đầu vào cho một hàm khác. Chúng ta có thể gán hàm đó vào một biến nào đó hoặc định nghĩa đồng thời với hàm mà chúng ta muốn truyền.
         </p>
 
         <a name="how-function-passing-makes-our-http-server-work"></a>
 
-        <h3>How function passing makes our HTTP server work</h3>
+        <h3>Sử dụng hàm như vậy giúp máy chủ HTTP của chúng ta hoạt động như thế nào</h3>
 
         <p>
-            With this knowledge, let's get back to our minimalistic
-            HTTP server:
+            Với những gì bạn vừa học được, hãy quay lại và cải tiến máy chủ HTTP của chúng ta:
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
@@ -660,13 +649,11 @@
                 class="pun">);</span></pre>
 
         <p>
-            By now it should be clear what we are actually doing here:
-            we pass the <em>createServer</em> function an anonymous
-            function.
+            Đến bây giờ thì mọi thứ dường như đã được làm sáng tỏ, thực sự cái chúng ta đang làm là truyền cho hàm <em>createServer</em> một hàm vô danh.
         </p>
 
         <p>
-            We could achieve the same by refactoring our code to:
+            Chúng ta cũng có thể đạt được kết quả tương tự với đoạn code sau:
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
@@ -687,79 +674,54 @@
                 class="lit">8888</span><span class="pun">);</span></pre>
 
         <p>
-            Maybe now is a good moment to ask: Why are we doing it
-            that way?
+            Có thể bây giờ đã đến thời điểm thích hợp để hỏi: Tại sao chúng ta lại thực hiện theo cách đó?
         </p>
 
         <a name="event-driven-callbacks"></a>
 
-        <h3>Event-driven asynchronous callbacks</h3>
+        <h3>Gọi lại không đồng bộ dựa trên sự kiện</h3>
 
         <p>
-            To understand why Node.js applications have to be written this way,
-            we need to understand how Node.js executes our code. Node's
-            approach isn't unique, but the underlying execution model is
-            different from runtime environments like Python, Ruby, PHP or Java.
+            Để hiểu được tại sao các ứng dụng sử dụng Node.js lại phải viết theo cách như vậy, chúng ta cần hiểu được Node.js thực thi code của chúng ta như thế nào. Không phải chỉ có Node.js tiếp cận vấn đề bằng phương pháp này, nhưng mô hình thực thi code cơ bản (underlying execution model) khác nhau ở mỗi môi trường chạy (runtime environment) như Python, Ruby, PHP, hay Java.
         </p>
 
         <p>
-            Let's take a very simple piece of code like this:
+            Hãy cùng xem đoạn code đơn giản dưới đây:
         </p>
 
         <pre class="prettyprint lang-js">var result = database.query("SELECT * FROM hugetable");
 console.log("Hello World");</pre>
 
         <p>
-            Please ignore for now that we haven't actually talked about
-            connecting to databases before - it's just an example. The
-            first line queries a database for lots of rows, the second
-            line puts "Hello World" to the console.
+            Hãy tạm thời bỏ qua các tương tác với database mà chúng ta chưa đề cập tới - đây chỉ là ví dụ mà thôi. Dòng đầu tiên truy vấn đến database và có thể trả về rất nhiều bản ghi, dòng thứ hai đơn giản chỉ in ra màn hình "Hello World". 
         </p>
 
         <p>
-            Let's assume that the database query is really slow, that it has
-            to read an awful lot of rows, which takes several seconds.
+            Giả sử thao tác đến database diễn ra rất chậm, có rất nhiều bản ghi thoả mãn yêu cầu, thậm chí mất vài giây.
         </p>
 
         <p>
-            The way we have written this code, the JavaScript interpreter of
-            Node.js first has to read the complete result set from the
-            database, and then it can execute the <em>console.log()</em>
-            function.
+            Với cách mà chúng ta đang làm, trình biên dịch (interpreter) JavaScript của Node.js trước tiên sẽ phải chờ khi thao tác tới database hoàn tất, sau đó mới thực thi lệnh <em>console.log()</em>.
         </p>
 
         <p>
-            If this piece of code actually was, say, PHP, it would work the
-            same way: read all the results at once, then execute the next line
-            of code. If this code would be part of a web page script, the user
-            would have to wait several seconds for the page to load.
+            Nếu đoạn code này được viết bằng PHP, nó cũng sẽ được thực thi một cách giống nhau: đọc tất cả các kết quả trả về trước, sau đó mới thực thi dòng tiếp theo. Nếu đoạn code này là một phần của một trang web, thời gian tải trang người dùng phải chờ có thể lên tới vài giây.
         </p>
 
         <p>
-            However, in the execution model of PHP, this would not become a
-            "global" problem: the web server starts its own PHP process for
-            every HTTP request it receives. If one of these requests results
-            in the execution of a slow piece of code, it results in a slow
-            page load for this particular user, but other users requesting
-            other pages would not be affected.
+            Tuy nhiên, trong mô hình thực thi của PHP thì đó không phải là vấn đề đáng quan tâm: máy chủ web PHP khởi tạo một process riêng cho mỗi request nó nhận được. Nếu một trong những request này chậm hơn bình thường, nó chỉ có thể ảnh hưởng đến thời gian tải trang của người tạo ra request đó, chứ không gây ảnh hưởng đến người dùng khác với các request khác.
         </p>
 
         <p>
-            The execution model of Node.js is different - there is only one
-            single process. If there is a slow database query somewhere in
-            this process, this affects the whole process - everything comes
-            to a halt until the slow query has finished.
+            Mô hình thực hiện của Node.js không giống như vậy - nó chỉ dùng duy nhất một process. Nếu có truy vấn tới database nào đó tốn nhiều thời gian, nó sẽ làm chậm cả process - mọi thứ sẽ bị dừng lại cho đến khi truy vấn kia kết thúc.
         </p>
 
         <p>
-            To avoid this, JavaScript, and therefore Node.js, introduces the
-            concept of event-driven, asynchronous callbacks, by utilizing an
-            event loop.
+            Để tránh tình trạng này xảy ra, JavaScript và cà Node.js đưa ra khái niệm "dựa theo sự kiện" (event-driven), gọi lại không đồng bộ (asynchronous callback), bằng cách sử dụng một "vòng lặp sự kiện" (event loop).
         </p>
 
         <p>
-            We can understand this concept by analyzing a rewritten version
-            of our problematic code:
+            Chúng ta sẽ hiểu rõ khái niệm này hơn bằng cách phân tích phiên bản đã được viết lại của đoạn code ví dụ vừa rồi:
         </p>
 
         <pre class="prettyprint lang-js">database.query("SELECT * FROM hugetable", function(rows) {
@@ -768,72 +730,37 @@ console.log("Hello World");</pre>
 console.log("Hello World");</pre>
 
         <p>
-            Here, instead of expecting <em>database.query()</em> to directly
-            return a result to us, we pass it a second parameter, an anonymous
-            function.
+            Ở đây, thay vì chờ đợi <em>database.query()</em> trực tiếp trả về kết quả, chúng ta truyền nó như là một tham số, hay nói cách khác là một hàm vô danh.
         </p>
 
         <p>
-            In its previous form, our code was synchronous: <em>first</em>
-            do the database query, and only when this is done, <em>then</em>
-            write to the console.
+            Trong phiên bản cũ, code của chúng ta được thực hiện một cách "đồng bộ": <em>(1) trước tiên</em> truy vấn tới database, <em>chỉ sau khi truy vấn này hoàn tất</em>, (2) lệnh in ra màn hình mới được thực hiện.
         </p>
 
         <p>
-            Now, Node.js can handle the database request asynchronously.
-            Provided that <em>database.query()</em> is part of an asynchronous
-            library, this is what Node.js does: just as before, it takes the
-            query and sends it to the database. But instead of waiting for it
-            to be finished, it makes a mental note that says "When at some
-            point in the future the database server is done and sends the
-            result of the query, then I have to execute the anonymous function
-            that was passed to <em>database.query()</em>."
+            Bây giờ Node.js đã có thể xử lý các truy vấn tới database một cách không đồng bộ. Giả sử <em>database.query()</em> được cung cấp sẵn bởi một thư viện chuyên xử không đồng bộ (asynchronous library), Node.js sẽ xử lý như sau: cũng giống như trước, nó sẽ gửi truy vấn tới database. Nhưng, thay vì chờ kết quả khi truy vấn đó kết thúc, nó sẽ ghi nhớ rằng "Đến một thời điểm nào đó trong tương lai - khi truy vấn kết thúc, kết quả được trả về - nó sẽ phải thực hiện những gì được viết trong hàm vô danh (hàm được truyền như là tham số cho <em>database.query()</em>)".
         </p>
 
         <p>
-            Then, it immediately executes <em>console.log()</em>, and
-            afterwards, it enters the event loop. Node.js continuously cycles
-            through this loop again and again whenever there is nothing else
-            to do, waiting for events. Events like, e.g., a slow database
-            query finally delivering its results.
+            Lúc đó nó sẽ ngay lập tức thực thi <em>console.log()</em>, và sau đó nó sẽ bắt đầu một vòng lặp vô tận, và cứ thế chờ đợi, không xử lý bất kỳ gì khác cho đến khi có một sự kiện nào đó đánh thức nó ví dụ như truy vấn tới database đã có dữ liệu trả về.
         </p>
 
         <p>
-            This also explains why our HTTP server needs a function it can
-            call upon incoming requests - if Node.js would start the server
-            and then just pause, waiting for the next request, continuing
-            only when it arrives, that would be highly inefficent. If a second
-            user requests the server while it is still serving the first
-            request, that second request could only be answered after the first
-            one is done - as soon as you have more than a handful of HTTP
-            requests per second, this wouldn't work at all.
+            Điều này cũng giải thích cho việc tại sao máy chủ HTTP của chúng ta cần một hàm để nó có thể gọi tới khi nhận được request - nếu Node.js khởi động rồi sau đó dừng lại để chờ request khác, chỉ tiếp tục khi nhận được request mới thì sẽ không có hiệu quả. Nếu một người dùng thứ hai nào đó gửi một request lên trong khi máy chủ của chúng ta còn đang xử lý request thứ nhất thì request thứ hai chỉ có thể được xử lý sau khi xong request thứ nhất - thì chỉ ngay khi bạn có khoảng "vài" (a handful of) request trên một giây nó sẽ không thể hoạt động được nữa.
         </p>
 
         <p>
-            It's important to note that this asynchronous, single-threaded,
-            event-driven execution model isn't an infinitely scalable
-            performance unicorn with silver bullets attached. It is just one
-            of several models, and it has its limitations, one being that as
-            of now, Node.js is just one single process, and it can run on only
-            one single CPU core. Personally, I find this model quite
-            approachable, because it allows to write applications that have to
-            deal with concurrency in an efficient and relatively
-            straightforward manner.
+            Có điều quan trọng bạn phải ghi nhớ làm mô hình thực thi không đồng bộ, đơn luồng, và dựa trên sự kiện này không phải thứ gì đó hoàn hảo tuyệt đối. Nó chỉ là một trong nhiều mô hình đang tồn tại, nó cũng có những nhược điểm, một trong số đó là nó chỉ có thể chạy trên một nhân của CPU mà thôi. Cá nhân tôi cho thằng, mô hình này là chấp nhận được (approachable), vì chúng ta có thể dùng nó để xây dựng các ứng dụng "thời gian thực" (concurrency) có hiệu quả cao không mấy khó khăn.
         </p>
 
         <p>
-            You might want to take the time to read Felix
-            Geisendörfer's excellent post
-            <a href="http://debuggable.com/posts/understanding-node-js:4bd98440-45e4-4a9a-8ef7-0f7ecbdd56cb">Understanding
-                node.js</a>
-            for additional background explanation.
+            Bạn có thể giành thời gian đọc thêm bài viết tuyệt vời của Felix
+            Geisendörfer's <a href="http://debuggable.com/posts/understanding-node-js:4bd98440-45e4-4a9a-8ef7-0f7ecbdd56cb">Understanding
+                node.js</a> để hiểu sâu hơn về Node.js cũng như cách hoạt động của nó.
         </p>
 
         <p>
-            Let's play around a bit with this new concept. Can we prove
-            that our code continues after creating the server, even if
-            no HTTP request happened and the callback function we
-            passed isn't called? Let's try it:
+            Hãy thử một vài ví dụ với khái niệm mới này xem sao. Chúng ta có thể chắc chắn rằng code của chúng ta vẫn hoạt động tốt sau khi đã tạo máy chủ hay không? thậm chí không có request nào được xử lý và hàm gọi lại (callback function) không được gọi? Cùng thử xem sao:
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
@@ -857,99 +784,65 @@ console.log("Hello World");</pre>
                 class="pun">);</span></pre>
 
         <p>
-            Note that I use <em>console.log</em> to output a text whenever
-            the <em>onRequest</em> function (our callback) is triggered,
-            and another text right <em>after</em> starting the HTTP server.
+            Chú ý là tôi sử dụng <em>console.log</em> để hiển thị chuỗi ra màn hình mỗi khi hàm<em>onRequest</em> (hàm gọi lại của chúng ta) được gọi, và một chuỗi khác <em>ngay sau khi</em> khởi động máy chủ HTTP.
         </p>
 
         <p>
-            When we start this (<em>node server.js</em>, as always), it
-            will immediately output "Server has started." on the
-            command line. Whenever we request our server (by opening
-            <a href="http://localhost:8888/" rel="nofollow">http://localhost:8888/</a>
-
-            in our browser), the message "Request received." is printed
-            on the command line.
+            Khi chúng ta chạy lệnh (<em>node server.js</em>, như thường lệ), nó sẽ in ra màn hình dòng này "Server has started." ngay lập tức. Và mỗi khi chúng ta gửi request đến máy chủ (bằng cách truy cập vào <a href="http://localhost:8888/" rel="nofollow">http://localhost:8888/</a>trên trình duyệt), thông báo "Request received." sẽ được hiển thị trên màn hình console.
         </p>
 
         <p>
-            Event-driven asynchronous server-side JavaScript with
-            callbacks in action :-)
+            "Event-driven asynchronous server-side JavaScript with
+            callbacks in action" :-) (cái này mình không dịch để cho rõ nghĩa nhất)
         </p>
 
         <p>
-            (Note that our server will probably write "Request received."
-            to STDOUT two times upon opening the page in a browser. That's
-            because most browsers will try to load the favicon by requesting
-            http://localhost:8888/favicon.ico whenever you open
-            http://localhost:8888/).
+            (Lưu ý là máy chủ chắc chắn sẽ hiện thông báo: "Request received."
+            ra STDOUT (màn hình/console) hai lần mỗi khi một trang nào đó được truy cập. Vì đa số trình duyệt gửi đi hai request, một là http://localhost:8888/favicon.ico (biểu tượng nhỏ của mỗi trang nếu có) và bản thân trang http://localhost:8888/).
         </p>
 
         <a name="how-our-server-handles-requests"></a>
 
-        <h3>How our server handles requests</h3>
+        <h3>Máy chủ xử lý yêu cầu như thế nào</h3>
 
         <p>
-            Ok, let's quickly analyze the rest of our server code, that
-            is, the body of our callback function <em>onRequest()</em>.
+            Hãy cùng phân tích nhanh phần code còn lại của máy chủ, phần nội dung của hàm gọi ngược <em>onRequest()</em>.
         </p>
 
         <p>
-            When the callback fires and our <em>onRequest()</em> function
-            gets triggered, two parameters are passed into it:
-            <em>request</em> and <em>response</em>.
+            Khi hàm gọi ngược <em>onRequest()</em> được gọi đến bởi một sự kiện nào đó, hai tham số: <em>request</em> và <em>response</em> sẽ được truyền vào cho nó.
         </p>
 
         <p>
-            Those are objects, and you can use their methods to handle
-            the details of the HTTP request that occured and to respond
-            to the request (i.e., to actually send something over
-            the wire back to the browser that requested your server).
+            Chúng là các đối tượng (object), bạn có thể sử dụng các hàm của chúng để xử lý các chi tiết của HTTP request nhận được và phản hồi lại các request đó (ví dụ như, trả về dữ liệu gì đó cho trình duyệt đã gửi request).
         </p>
 
         <p>
-            And our code does just that: Whenever a request is
-            received, it uses the <em>response.writeHead()</em>
-            function to send an HTTP status 200 and content-type in the
-            HTTP response header, and the <em>response.write()</em>
-            function to send the text "Hello World" in the HTTP
-            response body.
+            Và đoạn code của chúng ta chỉ thực hiện: Mỗi khi nhận được request, nó gọi đến hàm <em>response.writeHead()</em> để ghi một mã trạng thái dưới dạng số: 200 cũng như loại/kiểu nội dung sẽ được gửi về trong đoạn đầu (header) của phản hồi và dùng hàm <em>response.write()</em> để ghi chuỗi "Hello World" vào phần thân của phản hồi (HTTP response).
         </p>
 
         <p>
-            At last, we call <em>response.end()</em> to actually finish
-            our response.
+            Cuối cùng, chúng ta dùng <em>response.end()</em> để chính thức kết thúc phản hồi.
         </p>
 
         <p>
-            At this point, we don't care for the details of the
-            request, which is why we don't use the <em>request</em>
-            object at all.
+            Đến lúc này rồi, chúng ta không quan tâm đến chi tiết của request nữa, đó là lý do tại sao chúng ta không sử dụng đến tham số <em>request</em> một chút nào.
         </p>
 
         <a name="finding-a-place-for-our-server-module"></a>
 
-        <h3>Finding a place for our server module</h3>
+        <h3>Nơi lưu trữ module máy chủ</h3>
 
         <p>
-            Ok, I promised we will get back to how to organize our
-            application. We have the code for a very basic HTTP server in
-            the file <em>server.js</em>, and I mentioned that it's common
-            to have a main file called <em>index.js</em> which is used
-            to bootstrap and start our application by making use of the
-            other modules of the application (like the HTTP server module
-            that lives in <em>server.js</em>).
+            Như tôi đã hứa trước là chúng ta sẽ quay lại với chủ đề: làm thế nào để tổ chức tốt ứng dụng của chúng ta. Chúng ta đã hoàn thành xong một máy chủ web hết sức đơn giản ở trong file <em>server.js</em>, và như tôi đã đề cập, mọi người thường đặt tên <em>index.js</em> cho file chính của ứng dụng, file này có nhiệm vụ "mồi" và rồi khởi động ứng dụng của chúng ta bằng cách sử dụng các module (ví dụ như module <em>server.js</em> của chúng ta).
         </p>
 
         <p>
-            Let's talk about how to make server.js a real Node.js module
-            that can be used by our yet-to-be-written <em>index.js</em>
-            main file.
+            Hãy cùng xem làm như thế nào để khiến <em>server.js</em> trở thành một module thực sự của Node.js mà có thể sử dụng cho file <em>index.js</em> sắp được viết của chúng ta.
         </p>
 
         <p>
-            As you may have noticed, we already used modules in our code,
-            like this:
+            Có thể bạn đã nhận ra là chúng ta đã sử dụng module ở trong đoạn code của chúng ta:
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
@@ -958,20 +851,15 @@ console.log("Hello World");</pre>
                 class="pun">(...);</span></pre>
 
         <p>
-            Somewhere within Node.js lives a module called "http", and we can
-            make use of it in our own code by requiring it and assigning
-            the result of the require to a local variable.
+            Ở đâu đó bên trong Node.js, có một module gọi là "http", vì thế nên chúng ta mới có thể sử dụng nó bằng cách tham chiếu và gán nó cho một biến nội bộ trong chương trình của chúng ta.
         </p>
 
         <p>
-            This makes our local variable an object that carries all the
-            public methods the <em>http</em> module provides.
+            Cách này giúp chúng ta sử dụng được tất cả các hàm được cung cấp công khai của đối tượng hay module <em>http</em> đó giống như bất kỳ một đối tượng nào khác.
         </p>
 
         <p>
-            It's common practice to choose the name of the module for the
-            name of the local variable, but we are free to choose whatever
-            we like:
+            Thói quen tốt để ghi nhớ là đặt tên các biến nội bộ trùng với tên của module, mặc dù về lý thuyết bạn có thể đặt tên biến tuỳ thích theo ý bạn:
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> foo </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
@@ -980,32 +868,23 @@ console.log("Hello World");</pre>
                 class="pun">(...);</span></pre>
 
         <p>
-            Fine, it's clear how to make use of internal Node.js modules. How
-            do we create our own modules, and how do we use them?
+            Bây giờ việc sử dụng các module các module có sẵn của Node.js đã trở nên dễ dàng. Vậy làm thể nào để chúng ta tạo được các module riêng của chúng ta, và sử dụng chúng như thế nào?
         </p>
 
         <p>
-            Let's find out by turning our <em>server.js</em> script into a
-            real module.
+            Hãy cùng trả lời câu hỏi đó bằng cách biến <em>server.js</em> trở thành một module thực sự.
         </p>
 
         <p>
-            Turns out, we don't have to change that much. Making some code
-            a module means we need to <em>export</em> those parts of its
-            functionality that we want to provide to scripts that require
-            our module.
+            Thật ra thì, chúng ta không phải thay đổi nhiều lắm. Biến một đoạn code thành một module có nghĩa là chúng ta phải <em>trích xuất</em> (export) một phần chức năng mà chúng ta muốn (từ một file nào đó, hay cả file) để đưa vào module kia.
         </p>
 
         <p>
-            For now, the functionality our HTTP server needs to export is
-            simple: scripts requiring our server module simply need to
-            start the server.
+            Bây giờ, phần chức năng của máy chủ web cần được xuất ra rất đơn giản: đó là những gì cần và đủ để khởi động máy chủ.
         </p>
 
         <p>
-            To make this possible, we will put our server code into a
-            function named <em>start</em>, and we will export this
-            function:
+            Để có thể làm được điều này, chúng ta gộp tất cả code lại vào trong một hàm <em>start</em>, rồi sẽ export nó ra:
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
@@ -1033,13 +912,12 @@ console.log("Hello World");</pre>
                 class="pln"> start</span><span class="pun">;</span></pre>
 
         <p>
-            This way, we can now create our main file <em>index.js</em>,
-            and start our HTTP there, although the code for the server is
-            still in our <em>server.js</em> file.
+            Theo cách này, bây giờ chúng ta có thể tạo mới file chính <em>index.js</em>,
+            và khởi động ứng dụng của chúng ta trong đó, mặc dù tất cả code cần thiết để chạy máy chủ nằm ở file <em>server.js</em>.
         </p>
 
         <p>
-            Create a file <em>index.js</em> with the following content:
+            Tạo mới file <em>index.js</em> với nội dung sau:
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> server </span><span class="pun">=</span><span
                 class="pln"> require</span><span class="pun">(</span><span class="str">"./server"</span><span
@@ -1047,78 +925,49 @@ console.log("Hello World");</pre>
                 class="pun">();</span></pre>
 
         <p>
-            As you can see, we can use our server module just like any
-            internal module: by requiring its file and assigning it to
-            a variable, its exported functions become available to us.
+            Như bạn thấy, chúng ta có thể sử dụng module máy chủ giống như bất kỳ một module tích hợp sẵn nào khác trong Node.js: bằng cách tham chiếu đến file đó và gán nó vào một biến nội bộ nào đó, bất kỳ hàm được cung cấp một cách công khai (export) là chúng ta có thể gọi được.
         </p>
 
         <p>
-            That's it. We can now start our app via our main script, and it
-            still does exactly the same:
+            Xong rồi đó. Bây giờ chúng ta có thể chạy ứng dụng của chúng ta thông qua file <em>index.js</em>, và cũng cho kết quả tương tự:
         </p>
         <pre>node index.js</pre>
 
         <p>
-            Great, we now can put the different parts of our application
-            into different files and wire them together by making them
-            modules.
+            Tuyệt vời, giờ chúng ta đã có thể bố trí các thành phần khác nhau trong ứng dụng của chúng ta ra từng file riêng biệt và kết nối chúng lại với nhau thông qua thông qua việc tạo module.
         </p>
 
         <p>
-            We still have only the very first part of our application in
-            place: we can receive HTTP requests. But we need to do
-            something with them - depending on which URL the browser
-            requested from our server, we need to react differently.
+            Khả năng duy nhất mà ứng dụng của chúng ta có thể thực hiện cho đến lúc này là: nhận request. Nhưng việc chúng ta còn phải làm nữa là xử lý các request đó - mỗi request cần được xử lý hoàn toàn khác nhau.
         </p>
 
         <p>
-            For a very simple application, you could do this directly
-            within the callback function <em>onRequest()</em>. But as I said,
-            let's add a bit more abstraction in order to make our example
-            application a bit more interesting.
+            Đối với những ứng dụng đơn giản, bạn có thể xử lý vấn đề này trực tiếp bên trong hàm gọi ngược <em>onRequest()</em>. Nhưng như tôi đã nói, chúng ta sẽ áp dụng nhiều sự trừu tượng hoá để làm cho ứng dụng này trở nên thú vị hơn.
         </p>
 
         <p>
-            Making different HTTP requests point at different parts of our
-            code is called "routing" - well, then, let's create a module
-            called <em>router</em>.
+            Việc hướng cho các request khác nhau trỏ tới các phần khác nhau trong ứng dụng của chúng ta được gọi là "điều hướng" (routing) - vậy nên, hãy cùng tạo một module mới có tên <em>router</em>.
         </p>
 
         <a name="whats-needed-to-route-requests"></a>
 
-        <h3>What's needed to "route" requests?</h3>
+        <h3>Cần những gì để điều hướng các request?</h3>
 
         <p>
-            We need to be able to feed the requested URL and possible
-            additional GET and POST parameters into our router, and based
-            on these the router then needs to be able to decide which code
-            to execute (this "code to execute" is the third part of our
-            application: a collection of request handlers that do the
-            actual work when a request is received).
+            Chúng ta cần có khả năng cung cấp cho "router" địa chỉ của request nhận được và có thể các tham số bổ sung như GET hoặc POST, và dựa vào những thông tin này router cần có khả năng quyết định được xem phần code nào sẽ được thực thi ("code cần được thực thi" là phần thứ ba của ứng dụng: tập hợp các thành phần xử lý request mà thực sự làm những việc được yêu cầu).
         </p>
 
         <p>
-            So, we need to look into the HTTP requests and extract the
-            requested URL as well as the GET/POST parameters from them.
-            It could be argued if that should be part of the router or
-            part of the server (or even a module of its own), but let's
-            just agree on making it part of our HTTP server for now.
+            Vì thế, chúng ta cần tìm hiểu thêm bên trong một HTTP request và tách được cái địa chỉ được yêu cầu cũng như tham số GET/POST. Có người cho rằng đây là một phần của router nhưng cũng có người khác tin tưởng nó là một phần của server (hay thậm chí cũng là một module độc lập), nhưng cứ tạm thời cho nó là một phần của máy chủ (HTTP server) đã.
         </p>
 
         <p>
-            All the information we need is available through the
-            <em>request</em> object which is passed as the first parameter
-            to our callback function <em>onRequest()</em>. But to interpret
-            this information, we need some additional Node.js modules, namely
-            <em>url</em> and <em>querystring</em>.
+            Tất cả thông tin chúng ta cần đều có trong đối tượng <em>request</em>, được truyền vào là tham số đầu tiên của hàm gọi ngược <em>onRequest()</em>. Nhưng để biên dịch được những thông tin này, chúng ta cần thêm một số module bổ sung của Node.js, cụ thể là <em>url</em> và <em>querystring</em>.
         </p>
 
         <a name="head20"></a>
         <p>
-            The <em>url</em> module provides methods which allow us to
-            extract the different parts of a URL (like e.g. the requested
-            path and query string), and <em>querystring</em> can in turn be
-            used to parse the query string for request parameters:
+            Module <em>url</em> cung cấp các phương thức cho phép chúng ta trích xuất các thành phần khác nhau của một địa chỉ URL (ví dụ như: địa chỉ yêu cầu và các truy vấn đi kèm (query string) ), và module <em>querystring</em> được dùng để phân tích cú pháp của các địa chỉ yêu cầu để lấy các tham số:
         </p>
 <pre>                               url.parse(string).query
                                            |
@@ -1136,14 +985,11 @@ http://localhost:8888/start?foo=bar&amp;hello=world
 </pre>
 
         <p>
-            We can, of course, also use <em>querystring</em> to parse the
-            body of a POST request for parameters, as we will see
-            later.
+            Đương nhiên là chúng ta cũng có thể sử dụng <em>querystring</em> để phân tích phần nội dung của một yêu cầu dạng POST để lấy ra các tham số, sẽ đề cập ở phần sau.
         </p>
 
         <p>
-            Let's now add to our <em>onRequest()</em> function the logic
-            needed to find out which URL path the browser requested:
+            Hãy cùng bổ sung logic cần thiết cho hàm <em>onRequest()</em> để tìm xem đường dẫn nào được yêu cầu:
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
@@ -1180,22 +1026,16 @@ http://localhost:8888/start?foo=bar&amp;hello=world
                 class="pln"> start</span><span class="pun">;</span></pre>
 
         <p>
-            Fine. Our application can now distinguish requests based on the
-            URL path requested - this allows us to map requests to our
-            request handlers based on the URL path using our (yet to be
-            written) router.
+            Tốt rồi, chương trình của chúng ta bây giờ đã có thể phân biệt được các yêu cầu (request) dựa trên đường dẫn được yêu cầu - việc này cho phép chúng ta "nối" (map) được các request đến nơi chúng được xử lý (request handler) dựa trên đường dẫn bằng "router" (sắp viết) của chúng ta.
+        </p>
+
+        <p> 
+            Riêng với ứng dụng này, đơn giản là chúng ta chỉ có hai request <em>/start</em> và
+            <em>/upload</em>. Chúng ta sẽ xem nó kết hợp với nhau như thế nào ngay thôi.
         </p>
 
         <p>
-            In the context of our application, it simply means that we will
-            be able to have requests for the <em>/start</em> and
-            <em>/upload</em> URLs handled by different parts of our
-            code. We will see how everything fits together soon.
-        </p>
-
-        <p>
-            Ok, it's time to actually write our router. Create a new file
-            called <em>router.js</em>, with the following content:
+            Đã đến lúc để viết router của chúng ta. Tạo mới một file có tên <em>router.js</em> với nội dung sau:
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> route</span><span
                 class="pun">(</span><span class="pln">pathname</span><span class="pun">)</span><span
@@ -1207,25 +1047,15 @@ http://localhost:8888/start?foo=bar&amp;hello=world
                 class="pln"> route</span><span class="pun">;</span></pre>
 
         <p>
-            Of course, this code basically does nothing, but that's ok for
-            now. Let's first see how to wire together this router with our
-            server before putting more logic into the router.
+            Tuy đoạn code này chẳng làm gì cả, nhưng tạm thời cứ như vậy đã. Hãy xem router này kết nối với máy chủ (HTTP server) của chúng ta như thế nào trước đã.
         </p>
 
         <p>
-            Our HTTP server needs to know about and make use of our router.
-            We could hard-wire this dependency into the server, but because
-            we learned the hard way from our experience with other
-            programming languages, we are going to loosely couple server
-            and router by injecting this dependency (you may want to read
-            <a href="http://martinfowler.com/articles/injection.html">Martin Fowlers excellent post on Dependency Injection</a>
-            for background information).
+            Máy chủ HTTP cần phải "nhận dạng" và "tương tác" được với router. Chúng ta có thể "cố định" (hard-wire) sự phụ thuộc này vào máy chủ, tuy nhiên vì chúng ta đã có kinh nghiệm về các ngôn ngữ lập trình khác nên chúng ta sẽ kết nối chúng với nhau theo cách linh hoạt hơn (loosely couple) bằng cách can thiệp vào sự phụ thuộc này (tìm hiều thêm về <a href="http://martinfowler.com/articles/injection.html">Dependency Injection</a> trong bài viết tuyệt vời này của Martin Fowlers).
         </p>
 
         <p>
-            Let's first extend our server's <em>start()</em> function in
-            order to enable us to pass the route function to be used by
-            parameter:
+            Trước tiên hãy phát triển hàm <em>start()</em> của máy chủ để chắc chắn rằng chúng ta có thể gọi hàm thông qua tham số (chính xác hơn là điều hướng đến hàm muốn gọi):
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
@@ -1265,8 +1095,7 @@ http://localhost:8888/start?foo=bar&amp;hello=world
                 class="pln"> start</span><span class="pun">;</span></pre>
 
         <p>
-            And let's extend our <em>index.js</em> accordingly, that is,
-            injecting the route function of our router into the server:
+            Viết thêm vào file <em>index.js</em> sao cho tương ứng, đây chính là bước điều hướng hàm trong router từ server:
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> server </span><span class="pun">=</span><span
                 class="pln"> require</span><span class="pun">(</span><span class="str">"./server"</span><span
@@ -1278,23 +1107,19 @@ http://localhost:8888/start?foo=bar&amp;hello=world
                 class="pun">);</span><span class="pln"><br></span></pre>
 
         <p>
-            Again, we are passing a function, which by now isn't any news
-            for us.
+            Chúng ta sẽ lại truyền hàm đi, việc không có gì lạ lẫm cho đến giờ phút này.
         </p>
 
         <p>
-            If we start our application now (<em>node index.js,
-            as always</em>), and request an URL, you can now see from the
-            application's output that our HTTP server makes use of our
-            router and passes it the requested pathname:
+            Nếu chúng ta chạy chương trình (<em>node index.js,
+            như thường lệ</em>), và gửi đi một yêu cầu, thì bây giờ chúng ta sẽ nhìn thấy máy chủ đã sử dụng router để truyền đi đường dẫn được yêu cầu:
         </p>
         <pre>bash$ node index.js
 Request for /foo received.
 About to route a request for /foo</pre>
 
         <p>
-            (I omitted the rather annoying output for the /favicon.ico
-            request).
+            (Tôi đã xoá đi những dòng không cần thiết của request tới file /favicon.ico).
         </p>
 
         <a name="execution-in-the-kongdom-of-verbs"></a>
@@ -1302,73 +1127,49 @@ About to route a request for /foo</pre>
         <h3>Execution in the kingdom of verbs</h3>
 
         <p>
-            May I once again stray away for a while and talk about
-            functional programming again?
+            Một lần nữa, xin cho phép tôi có đôi lời tản mạn về "functional programming".
         </p>
 
         <p>
-            Passing functions is not only a technical consideration.
-            With regard to software design, it's almost philosophical.
-            Just think about it: in our index file, we could have passed
-            the <em>router</em> object into the server, and the server
-            could have called this object's <em>route</em> function.
+            Sự trao đổi/truyền (passing) trực tiếp các hàm không chỉ là một khái niệm mang tính kỹ thuật. Trong lĩnh vực thiết kế phần mềm, nó gần như còn mang tính triết học. Thử nghĩ xem: trong file index, chúng là có thể truyền đối tượng <em>router</em> cho server, và server có thể gọi đến hàm <em>route</em> của đối tượng đó.
         </p>
 
         <p>
-            This way, we would have passed a <em>thing</em>, and the server
-            would have used this thing to <em>do</em> something. Hey,
-            router thing, could you please route this for me?
+            Theo cách này, chúng ta đã truyền một <em>thứ</em>, và server đã sử dụng thứ này để <em>làm</em> một cái gì đó. "Hey, router thing, could you please route this for me?"
         </p>
 
         <p>
-            But the server doesn't need the thing. It only needs to get
-            something <em>done</em>, and to get something done, you don't
-            need things at all, you need <em>actions</em>. You don't need
-            <em>nouns</em>, you need <em>verbs</em>.
+            Nhưng server không cần thứ đó. Nó chỉ cần <em>làm</em> một việc gì đó. Để làm xong một việc bất kỳ, bạn không cần một <em>thứ</em>, cái bạn cần là một <em>hành động</em>. Bạn không cần <em>thứ gì</em> mà bạn cần biết phải <em>làm gì</em>.
         </p>
 
         <p>
-            Understanding the fundamental mind-shift that's at the core of
-            this idea is what made me really understand functional
-            programming.
+            Hiểu được cốt lõi sự thay đổi cơ bản trong tư tưởng về vấn đề này đã khiến tôi hiểu thực sự hiểu rõ về "functional programming".
         </p>
 
         <p>
-            And I did understand it when reading Steve Yegge's masterpiece
-            <a href="http://steve-yegge.blogspot.com/2006/03/execution-in-kingdom-of-nouns.html">Execution in the Kingdom of Nouns</a>.
-            Go read it now, really. It's one of the best writings related
-            to software I ever had the pleasure to encounter.
+            Tôi đã hiểu được ra nó khi đọc kiệt tác này của Steve Yegge
+            <a href="http://steve-yegge.blogspot.com/2006/03/execution-in-kingdom-of-nouns.html">Execution in the Kingdom of Nouns</a>. Bạn <em>nên</em> đọc nó. Đó thực sự là một trong những bài viết tuyệt vời nhất về lĩnh vực phần mềm mà tôi đã từng đọc qua.
         </p>
 
         <a name="routing-to-real-request-handlers"></a>
 
-        <h3>Routing to real request handlers</h3>
+        <h3>Sự điều hướng request tới request handlers</h3>
 
         <p>
-            Back to business. Our HTTP server and our request router are
-            now best friends and talk to each other as we intended.
+            Quay trở lại bài viết. Máy chủ HTTP và router bây giờ đã tương tác với nhau nhịp nhàng đúng như mong đợi.
         </p>
 
         <p>
-            Of course, that's not enough. "Routing" means, we want to
-            handle requests to different URLs differently. We would like to
-            have the "business logic" for requests to <em>/start</em>
-            handled in another function than requests to <em>/upload</em>.
+            Tất nhiên, thế chưa phải là đủ. "Điều hướng" (routing) có nghĩa là, chúng ta muốn điều khiển các request (có đường dẫn khác nhau) một cách riêng biệt. Chúng ta muốn viết nghiệp vụ xử lý cho <em>/start</em> tách biệt với <em>/upload</em>.
         </p>
 
         <p>
-            Right now, the routing "ends" in the router, and the router is
-            not the place to actually "do" something with the requests,
-            because that wouldn't scale well once our application becomes
-            more complex.
+            Ngay bây giờ, quá trình điều hướng đã "kết thúc" trong router, và router không phải là nơi để "làm" gì đó với các request, vì đó không phải là cách tốt để mở rộng khi ứng dụng trở nên phức tạp hơn.
         </p>
 
         <a name="continuereading"></a>
         <p>
-            Let's call these functions, where requests are routed to,
-            <em>request handlers</em>. And let's tackle those next, because
-            unless we have these in place there isn't much sense in doing
-            anything with the router for now.
+            Hãy gọi những hàm mà request được điều hướng tới là <em>request handlers</em> (Nơi đón nhận, xử lý "một" request nào đó). Và đó là cái chúng ta sẽ cùng đề cập tiếp theo, vì nếu không bạn sẽ không hiểu những gì mà chúng ta sắp thực hiện bên trong router ngay bây giờ.
         </p>
         </div>
 
@@ -1377,31 +1178,19 @@ About to route a request for /foo</pre>
             <img id="authorimage" src="manuelkiessling.jpg" width="160" height="160"/>
             <p>
               <br/>
-              Hi there! Sorry to interrupt you.
+              Chào bạn! Xin lỗi vì đã làm gián đoạn.
             </p>
             <p>
-              My name is Manuel Kiessling, I'm the author of this book.
+              Tên tôi là Manuel Kiessling, tác giả của cuốn sách này.
             </p>
             <p>
-              If you have read that far, I would like you to consider buying the eBook version
-              of this book. It's a beautifully crafted package including a PDF,
-              an ePub, and a MOBI file, which means you can read it on all
-              kinds of eReaders out there like the Amazon Kindle, the iPad, or
-              the Sony Reader, and of course on any PC or Mac.
+                Nếu bạn đã đọc đến đây, tôi mong bạn hãy cân nhắc mua phiên bản điện tử của cuốn sách này. Bao gồm nhiều định dạng như PDF, ePub và MOBI, nghĩa là bạn có thể đọc nó với bất kỳ thiết bị đọc sách hiện hành nào như Amazon Kindle, iPad nay Sony Reader, và đương nhiên bất kỳ máy tính cá nhân hoặc máy Mac nào khác. 
             </p>
             <p>
-              But the best thing about it is that it comes bundled with another
-              great Node.js book: <em>"Hands-on Node.js"</em> by Pedro Teixeira. It's a
-              complete reference that explains all the Node.js modules in great
-              detail - it's perfect to dig deeper once you've finished <em>The Node
-              Beginner Book</em>.
+                Tuy nhiên tuyệt vời hơn cả là nó đi kèm với một cuốn sách tuyệt vời về Node.js nữa là: <em>"Hands-on Node.js"</em> bởi Pedro Teixeira. Nó là một cuốn sách thao khảo hoàn chỉnh, giải thich tất cả các module của Node.js rất chi tiết - có thể nói nó là cuốn sách hoàn hảo để bạn nghiên cứu sâu hơn về Node.js khi đọc xong <em>Node.js cho người mới bắt đầu</em> của tôi.
             </p>
             <p>
-              Both books together would cost a total of $21.98, but we are offering
-              it as a bundle for only <strong>$9.99</strong>.
-              You can download it immediately, it's
-              completely DRM-free, and you will receive any future updates to
-              both books for free.
+                Giá cho cả hai cuốn sách là $21.98, nhưng chúng tôi đang khuyến mại với gia <strong>$9.99</strong>. Bạn có thể tải nó về ngay lập tức dưới dạng DRM-free và sẽ nhận được tất cả các phiên bản cập nhật sau này.
             </p>
             <div class="box">
               <a class="buttonlink" href="buy-bundle/salespitch.html">
@@ -1427,54 +1216,46 @@ About to route a request for /foo</pre>
         <div id="praise">
             <div class="praise">
                 <div class="comment">
-                    "This is an amazing introduction to Node."
+                    "Đây là một giới thiệu tuyệt vời về Node."
                 </div>
                 <div class="author">
-                    Ryan Dahl, creator of Node.js
+                    Ryan Dahl, nhà sáng lập Node.js
                 </div>
             </div>
             <div class="praise">
                 <div class="comment">
-                    "I love nodebeginner.org - concise, direct to the point and
-                    even enjoyable to read."
+                    "Tôi yêu nodebeginner.org - ngắn gọn, đi thẳng vào vấn đề và lôi cuốn người đọc."
                 </div>
-                <div class="author">Gojko Adzic, author of <em>Specification by Example</em> and <em>Bridging the Communication Gap</em></div>
+                <div class="author">Gojko Adzic, tác giả của <em>Specification by Example</em> và <em>Bridging the Communication Gap</em></div>
             </div>
             <div class="praise">
                 <div class="comment">
-                    "This is one of the best tutorials I've read.
-                    As a former Java coder, I've always found JavaScript
-                    to be a black art, but you have really simplified
-                    things with this tutorial."
+                    "Đây là một trong những hướng dẫn hay nhất mà tôi từng đọc". Đã từng là một lập trình viên Java, tôi luôn coi JavaScript là một nghệ thuật, nhưng với hướng dẫn này mọi thứ thực sự trở nên đơn giản."
                 </div>
-                <div class="author">Erskine, from the comments</div>
+                <div class="author">Erskine bình luận</div>
             </div>
             <div class="praise">
                 <div class="comment">
-                    "This is one of the few beginner articles I made it all the
-                    way through because of how well it's written."
+                    "Đây là một trong những tài liệu dành cho người mới bắt đầu mà tôi đã đọc hết từ đầu đến cuối vì cách diễn đạt vô cùng xuất sắc."
                 </div>
                 <div class="author">
-                    Paul Gibler, from the comments
+                    Paul Gibler bình luận
                 </div>
             </div>
             <div class="praise">
                 <div class="comment">
-                    "Indispensable."
+                    "Không thể bỏ qua."
                 </div>
                 <div class="author">
-                    @lecolibrilibre, on Twitter
+                    @lecolibrilibre, trên Twitter
                 </div>
             </div>
             <div class="praise">
                 <div class="comment">
-                    "I just wanted to drop you a note to say thank you for
-                    writing such an excellent introduction to node. Your book's
-                    explanation is fantastic, and I can't wait for you to
-                    finish it!"
+                    "Tôi muốn gửi lời cảm ơn tới bạn vì đã viết một cuốn sách tuyệt vời giới thiệu về Node.js. Cách giải thích trên cả tuyệt vời, và tôi không đủ kiên nhẫn chờ bạn hoàn thành cuốn sách này!"
                 </div>
                 <div class="author">
-                    Seth McLaughlin, via eMail
+                    Seth McLaughlin, qua eMail
                 </div>
             </div>
         </div>
