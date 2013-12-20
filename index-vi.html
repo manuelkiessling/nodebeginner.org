@@ -327,28 +327,28 @@
         <h3>Server-side JavaScript</h3>
 
         <p>
-            Những hiện thân đầu tiên của JavaScript tồn tại trên trình duyệt. Nhưng đây chỉ là cái ngữ cảnh mà thôi. Nó vạch rõ những cái bạn có thể làm với JavaScript chứ không đề cập nhiều tới những cái mà bản thân JavaScript có thể làm. JavaScript là một ngôn ngữ "trọn vẹn": bạn có thể sử dụng nó ở nhiều ngữ cảnh và đạt được mọi thứ giống như với bất kỳ ngôn ngữ "trọn vẹn" nào khác.
+            Những "hiện thân" đầu tiên của JavaScript tồn tại trên trình duyệt. Nhưng đây thực sự chỉ là ngữ cảnh của nó. Người ta vạch rõ những cái mà bạn có thể làm với JavaScript chứ không hề đề cập tới những cái mà bản thân nó có thể làm được. JavaScript là một ngôn ngữ "hoàn thiện": bạn có thể sử dụng nó ở nhiều ngữ cảnh và đạt được kết quả tương tự như với bất kỳ một ngôn ngữ đã "hoàn thiện" nào khác.
         </p>
 
         <p>
-            Node.js thực tế chỉ là một ngữ cảnh khác: nó cho phép bạn chạy mã JavaScript ở phía backend, vượt ra khỏi phạm vi trình duyệt.
+            Và Node.js thực tế chỉ là một ngữ cảnh khác: nó cho phép bạn chạy mã JavaScript ở phía backend, vượt ra khỏi phạm vi trình duyệt.
         </p>
 
         <p>
-            Để chạy được JavaScript phía backend, mã nguồn cần phải được biên dịch, và, chạy. Đây chính là những gì mà Node.js đảm nhiệm, bằng việc sử dụng lại máy ảo V8 của Google, nó chính là môi trường chạy của JavaScript được sử dụng trên Google Chrome.
+            Để chạy được JavaScript phía backend, mã nguồn cần phải được biên dịch, và ...chạy. Đây chính là nhiệm vụ mà Node.js đảm nhiệm, bằng việc sử dụng lại máy ảo V8 của Google, hay còn được biết đến là môi trường chạy của JavaScript trên trình duyệt Google Chrome.
         </p>
 
         <p>
-            Thêm vào đó, Node.js còn cung cấp rất nhiều phần bổ sung (module) hữu ích, chính vì vậy bạn sẽ không phải viết ứng dụng của bạn từ đầu, ví dụ đơn giản như hiển thị một dòng chữ nào đó cho người dùng.
+            Thêm vào đó, Node.js còn cung cấp rất nhiều thư viện bổ sung (module) hữu ích, vì thế bạn sẽ không phải viết ứng dụng của bạn từ con số 0, ví dụ đơn giản nhất như hiển thị một dòng chữ nào đó ra màn hình.
         </p>
 
         <p>
-            Chính vì thế, Node.js bao gồm 2 trong 1: một môi trường chạy (runtime environment) và một thư viện.
+            Vì vậy có thể nói Node.js bao gồm 2 trong 1: một môi trường chạy (runtime environment) và một thư viện.
         </p>
 
         <p>
-            Để có thể tận dụng được hết những tính năng này, bạn cần phải cài đặt Node.js. Thay vì lặp lại các bước hướng dẫn cài đặt ở đây, bạn vui lòng hãy làm theo 
-            <a href="https://github.com/joyent/node/wiki/Installation" title="Building and Installing Node.js">hướng dẫn cài đặt chính thức tại đây</a>. Sau đó trở lại đây khi đã hoàn tất.
+            Để có thể tận dụng được hết những tính năng này, bạn cần phải cài đặt Node.js. Thay vì lặp lại các bước hướng dẫn cài đặt ở đây, bạn vui lòng làm theo 
+            <a href="https://github.com/joyent/node/wiki/Installation" title="Building and Installing Node.js">hướng dẫn cài đặt chính thức tại đây</a>. Sau đó quay trở lại khi đã hoàn tất.
         </p>
 
         <a name="hello-world"></a>
@@ -381,7 +381,7 @@
 
         <a name="a-full-blown-web-application-with-nodejs"></a>
 
-        <h2>Một ứng dụng web hoàn chính với Node.js</h2>
+        <h2>Một ứng dụng web hoàn chính sử dụng Node.js</h2>
 
         <a name="the-use-cases"></a>
 
@@ -393,10 +393,10 @@
         <ul>
 
             <li>
-                Người dùng có thể dùng được ứng dụng của chúng ta trên một trình duyệt bất kỳ.
+                Người dùng có thể truy cập vào ứng dụng trên một trình duyệt bất kỳ.
             </li>
             <li>
-                Người dùng sẽ nhìn thấy một trang chào đón có hiển thị một form để tải file lên khi truy cập vào địa chỉ http://<em>domain</em>/start
+                Người dùng sẽ nhìn thấy một trang chào đón có hiển thị một form cho phép tải file lên khi truy cập vào địa chỉ http://<em>domain</em>/start
             </li>
             <li>
                 Sau khi chọn một bức ảnh và ấn gửi đi, bức ảnh đó sẽ được gửi đến http://<em>domain</em>/upload, nơi nó sẽ được hiển thị sau khi quá trình tải lên hoàn tất.
@@ -404,11 +404,11 @@
 
         </ul>
         <p>
-            Thế là đủ rồi. Bây giờ, bạn có thể đạt được mục tiêu này bằng cách google và sửa code của một <em>ai đó</em>. Nhưng đó không phải là cách mà chúng ta làm ở đây.
+            Thế là đủ rồi. Bây giờ, bạn có thể đạt được mục tiêu này bằng cách ... google và sửa code của một <em>ai đó</em>. Nhưng đó không phải là cách mà chúng ta làm ở đây.
         </p>
 
         <p>
-            Hơn nữa, chúng ta không muốn chỉ viết code đơn giản nhất có thể để "miễn sao xong là được", cái chúng ta muốn ở đây là chính xác và rõ ràng nhất có thể. Chúng ta sẽ sử dụng nhiều sự trừu tượng hoá hơn mức bình thường nhằm mục đích làm quen với các ứng dụng Node.js phức tạp hơn.
+            Hơn nữa, chúng ta không muốn viết code đơn giản nhất có thể để "miễn sao xong là được", cái chúng ta muốn ở đây là chính xác và rõ ràng nhất có thể. Chúng ta sẽ sử dụng trừu tượng hoá nhiều hơn nhằm mục đích giúp bạn làm quen dần với việc xây dựng các ứng dụng Node.js phức tạp hơn.
         </p>
 
         <a name="the-application-stack"></a>
@@ -416,48 +416,47 @@
         <h3>Cấu trúc của ứng dụng</h3>
 
         <p>
-            Hãy cùng chia nhỏ ứng dụng của chúng ta ra để xem phần nào cần được thực hiện để có thể đạt được mục tiêu đã đề ra (use cases).
+            Hãy cùng chia nhỏ ứng dụng của chúng ta ra để xem phần nào cần được thực hiện để thoả mãn yêu cầu đã đề ra (use cases).
         </p>
 
         <ul>
             <li>
-                Chúng ta muốn cung cấp các trang web, vì thế chúng ta cần một
-                <strong>máy chủ HTTP</strong>
+                Chúng ta muốn cho phép người dùng truy cập vào các trang web, vì thế chúng ta cần một <strong>máy chủ HTTP</strong>
             </li>
 
             <li>
-                Máy chủ của chúng ta phải phản hồi/trả lời được các yêu cầu khác nhau, phụ thuộc vào địa chỉ (URL) nào được gửi lên, vì thể chúng ta cần cái gì đó giống như <strong>router</strong> (cầu nối/dẫn) để ánh xạ các yêu cầu đến nơi chuyên xử lý các yêu cầu (request handler) đó.
+                Máy chủ của chúng ta phải phản hồi/trả lời được các yêu cầu khác nhau, tuỳ thuộc vào địa chỉ (URL) nào được yêu cầu, vì thể chúng ta cần cái gì đó có chức năng giống như <strong>router</strong> (cầu nối/dẫn) để "nối" các yêu cầu đến nơi chuyên xử lý các yêu cầu (request handler) đó.
             </li>
             <li>
-                Để đáp ứng các yêu cầu nhận được ở phía máy chủ mà đã được dẫn hướng thông qua router, chúng ta cần các <strong>request handlers</strong> thật sự.
+                Để đáp ứng các yêu cầu nhận được ở phía máy chủ và đã được dẫn hướng thông qua router, chúng ta cần các <strong>request handlers</strong> thật sự.
             </li>
             <li>
-                Chắc chắn router của chúng ta sẽ xử lý tất cả các dữ liệu được gửi đến qua phương thức POST và gửi nó dưới một định dạng thuận tiện đến các request handlers, vì thế chúng ta cần <strong>request data handling</strong>. (Đây là bước xử lý &nbsp; format dữ liệu).
+                Chắc chắn router của chúng ta sẽ xử lý tất cả các dữ liệu được gửi đến qua phương thức POST rồi gửi nó đi dưới một định dạng thuận tiện đến các request handlers, vì thế chúng ta cần <strong>request data handling</strong>. (Có thể hiểu là xử lý dữ liệu đầu vào).
             </li>
             <li>
-                Chúng ta không chỉ muốn xử lý các yêu cầu cho các địa chỉ (URLs) mà còn hiển thị nội dung khi những địa chỉ này được yêu cầu, điều này có nghĩa chúng ta cần một loại <strong>view logic</strong> mà request handlers có thể sử dụng để gửi nội dung về trình duyệt của người dùng.
+                Chúng ta không chỉ muốn quản lý các request theo đường dẫn mà còn hiển thị nội dung khi một đường dẫn nào đó được gọi, điều này có nghĩa chúng ta cần một <strong>view logic</strong> mà request handlers có thể sử dụng để gửi lại nội dung về trình duyệt của yêu cầu.
             </li>
             <li>
-                Cuối cùng, người dùng có thể tải ảnh, vì thể chúng ta cần một loại <strong>upload handling</strong> để xử lý việc upload.
+                Cuối cùng, người dùng có thể tải ảnh lên, vì thể chúng ta cần bước <strong>upload handling</strong> để xử lý việc upload.
             </li>
         </ul>
 
         <p>
-            Hãy dành một chút thời gian để nghĩ xem chúng ta sẽ xây dựng cấu trúc này với PHP như thế nào. Đó không hẳn là một bí mật, thiết lập đặc trưng sẽ là máy chủ Apache với mod_php5.
+            Hãy dành một chút thời gian để nghĩ xem chúng ta sẽ xây dựng cấu trúc này với PHP như thế nào. Không quá khó để đoán ra, mô hình phổ biến sẽ là máy chủ web Apache và mod_php5.
             <br>
-            Điều này đồng nghĩa với việc nhận, gửi và xử lý các yêu cầu không hề xảy ra trong chính bản thân PHP.
+            Điều này đồng nghĩa với việc nhận, gửi và xử lý các yêu cầu không xảy ra trong bản thân PHP.
         </p>
 
         <p>
-            Với node, mọi thứ có một chút khác biệt. Bởi vì chúng ta không chỉ viết ứng dụng, mà còn cả máy chủ HTTP. Thực tế, ứng dụng web của chúng ta và máy chủ web của nó về cơ bản là giống nhau.
+            Với Node.js thì khác. Bởi vì chúng ta không chỉ viết ứng dụng, mà còn cả máy chủ HTTP. Thực tế, ứng dụng web của chúng ta và máy chủ web của nó về cơ bản là giống nhau.
         </p>
 
         <p>
-            Có vẻ như có rất nhiều việc để làm, nhưng bạn sẽ thấy trong một lát nữa, với Node.js nó không phải như vậy.
+            Có vẻ như có rất nhiều việc phải làm, nhưng lát nữa bạn sẽ thấy với Node.js, mọi thứ không quá khó đến vậy.
         </p>
 
         <p>
-            Cùng bắt đầu từ vạch xuất phát và viết phần đầu tiên trong cấu trúc của ứng dụng của chúng ta, máy chủ HTTP.
+            Hãy cùng bắt đầu từ vạch xuất phát và viết phần đầu tiên trong cấu trúc của ứng dụng của chúng ta, máy chủ HTTP.
         </p>
 
         <a name="building-the-application-stack"></a>
@@ -469,13 +468,13 @@
         <h3>Một máy chủ HTTP cơ bản</h3>
 
         <p>
-            Ở cái thời điểm mà tôi muốn bắt đầu phát triển ứng dụng Node.js có tính thực tiễn đầu tiên của tôi, tôi không chỉ băn khoăn xem phát triển nó như thế nào mà còn tổ chức nó ra làm sao.
+            Ở cái thời điểm mà tôi muốn bắt đầu phát triển ứng dụng Node.js có tính thực tế đầu tiên của tôi, tôi không chỉ băn khoăn xem phát triển nó như thế nào mà còn tổ chức nó ra làm sao.
             <br>
-            Tôi có nên viết tất cả vào trong một file? Đa số các hướng dẫn viết một máy chủ HTTP sử dung Node.js cơ bản đều gộp tất cả vào một chỗ. Vậy nếu tôi muốn đảm bảo rằng code của tôi luôn dễ hiểu khi ứng dụng của tôi ngày một mở rộng lên thì sao?
+            Tôi có nên viết tất cả vào trong một file? Đa số các hướng dẫn viết một máy chủ HTTP sử dung Node.js cơ bản đều gộp tất cả vào một chỗ. Vậy nếu tôi muốn đảm bảo rằng code của tôi luôn rõ ràng và dễ hiểu khi ứng dụng của tôi ngày một mở rộng lên thì sao?
         </p>
 
         <p>
-            Hiển nhiên, nó tương đối là đơn giản để tổ chức, lưu trữ tách biệt những thứ không có liên quan tới nhau ra, bằng cách cho chúng vào các module khác nhau.
+            Hoá ra, cũng không quá khó để tách biệt những thứ không có liên quan tới nhau ra, và sắp xếp chúng vào các module khác nhau.
         </p>
 
         <p>
@@ -487,7 +486,7 @@
         </p>
 
         <p>
-            Theo quan điểm cá nhân của tôi, quy chuẩn để đặt tên file chính là <em>index.js</em> sẽ khiến việc đặt tên module máy chủ <em>server.js</em> trở nên hợp lý và logic hơn.
+            Theo quan điểm cá nhân của tôi, tiêu chuẩn để đặt tên file chính nên là <em>index.js</em> và nó sẽ khiến việc đặt tên module máy chủ <em>server.js</em> trở nên hợp lý và logic hơn.
         </p>
 
         <p>
@@ -535,11 +534,11 @@
         </p>
 
         <p>
-            Tiếp đến chúng ta sẽ gọi một trong các hàm có sẵn của module http: <em>createServer</em>. Hàm này sẽ trả về một đối tượng, đối tượng này chứa một hàm/phương thức khác gọi là <em>listen</em>, hàm này nhận giá trị truyền vào bằng số và sử dụng nó làm cổng để lắng nghe các request từ phía client.
+            Tiếp đến chúng ta sẽ gọi một trong các hàm có sẵn của module http: <em>createServer</em>. Hàm này sẽ trả về một đối tượng, đối tượng này chứa một hàm/phương thức khác gọi là <em>listen</em>, hàm này nhận vào một tham số kiểu số để sử dụng làm cổng lắng nghe cho máy chủ HTTP.
         </p>
 
         <p>
-            Bạn đừng để ý gì tới cái hàm được khai báo sau dấu mở ngoặc của hàm <em>http.createServer</em> vội.
+            Bạn đừng chú ý gì tới cái hàm được khai báo sau dấu mở ngoặc của hàm <em>http.createServer</em> vội.
         </p>
 
         <p>
@@ -554,15 +553,15 @@
                 class="lit">8888</span><span class="pun">);</span></pre>
 
         <p>
-            Đoạn code này sẽ khởi động một máy chủ HTTP, lắng nghe ở cổng 8888 nhưng không làm gì cả (thậm chí không hề trả lời các yêu cầu được gửi tới).
+            Đoạn code này sẽ khởi động một máy chủ HTTP, lắng nghe ở cổng 8888 nhưng không làm gì cả (thậm chí không trả lời các yêu cầu được gửi tới).
         </p>
 
         <p>
-            Điều thực sự thú vị (nhìn nó hơi buồn cười nếu như bạn đã biết về PHP) ở đây chính là phần định nghĩa của cái hàm được sử dụng như là giá trị truyền vào cho hàm <em>createServer()</em> kia.
+            Điều thực sự thú vị (nhìn nó hơi buồn cười nếu như bạn đã biết về PHP) ở đây chính là phần định nghĩa/khai báo của hàm được sử dụng nơi mà đúng ra nó phải là một tham số cho <em>createServer()</em>.
         </p>
 
         <p>
-            Hoá ra, định nghĩa hàm kia lại chính là giá trị đầu tiên (và duy nhất) mà chúng ta truyền cho lời gọi hàm <em>createServer()</em>. Bởi vì trong JavaScript, hàm có thể được sử dụng như là biến truyền vào cho các hàm.
+            Hoá ra, định nghĩa hàm kia lại chính là giá trị đầu tiên (và duy nhất) mà chúng ta truyền cho lời gọi hàm <em>createServer()</em>. Bởi vì trong JavaScript, hàm có thể được sử dụng như là tham số đầu vào.
         </p>
 
         <a name="passing-functions-around"></a>
@@ -586,7 +585,7 @@
                 class="pln"> </span><span class="str">"Hello"</span><span class="pun">);</span></pre>
 
         <p>
-            Hãy đọc thật kĩ! Cái chúng ta viết ở đây là, hàm <em>say</em> được sử dụng như là biến đầu vào cho hàm <em>execute</em>. Không phải giá trị trả về của <em>say</em>, mà chính bản thân nó!
+            Hãy đọc thật kĩ! Cái chúng ta viết ở đây là, hàm <em>say</em> được sử dụng như là tham số đầu vào cho hàm <em>execute</em>. Không phải giá trị trả về của <em>say</em>, mà chính bản thân nó!
         </p>
 
         <p>
@@ -594,11 +593,11 @@
         </p>
 
         <p>
-            Tất nhiên, vì <em>say</em> nhận một biến truyền vào, <em>execute</em> cũng có thể truyền một biến tương tự như thế khi gọi hàm <em>someFunction</em>.
+            Tất nhiên, vì <em>say</em> nhận một tham số đầu vào, <em>execute</em> cũng có thể truyền một tham số tương tự như thế khi gọi hàm <em>someFunction</em>.
         </p>
 
         <p>
-            Chúng ta có thể làm, chúng ta đã làm, là sử dụng hàm như một biến đầu vào cho hàm khác bằng cách sử dụng tên của chúng. Nhưng, chúng ta không nhất thiết phải đi theo hướng vòng vo thế này, từ định nghĩa rồi mới đến sử dụng - chúng ta có thể kết hợp hai bước này lại với nhau ở chung một vị trí:
+            Chúng ta có thể làm, chúng ta đã làm, là sử dụng hàm như một tham số đầu vào cho hàm khác bằng cách sử dụng tên của chúng. Nhưng, chúng ta không nhất thiết phải đi theo hướng vòng vo thế này, từ định nghĩa rồi mới đến sử dụng - chúng ta có thể kết hợp hai bước này lại với nhau ở chung một vị trí/ thời điểm:
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> execute</span><span
                 class="pun">(</span><span class="pln">someFunction</span><span class="pun">,</span><span class="pln"> value</span><span
@@ -613,15 +612,15 @@
                 class="pun">);</span></pre>
 
         <p>
-            Chúng ta định nghĩa hàm mà chúng ta muốn <em>thực thi</em> ở ngay chính nơi chúng ta truyền biến đầu vào.
+            Chúng ta định nghĩa hàm muốn <em>thực thi</em> ở ngay chính nơi chúng ta truyền tham số đầu vào.
         </p>
 
         <p>
-            Với cách này, chúng ta thậm chí không cần đặt tên cho hàm đó, hay còn được biết đến với cái tên <em>hàm vô danh</em> (anonymous function).
+            Với cách này, chúng ta thậm chí không cần phải đặt tên cho hàm đó, nó còn được biết đến với cái tên <em>hàm vô danh</em> (anonymous function).
         </p>
 
         <p>
-            Đây mới chỉ là thoáng qua cái chúng ta gọi là JavaScript "nâng cao", đừng nôn nóng vội, chúng ta sẽ làm quen với nó từng bước một. Hãy tạm thời chấp nhập rằng trong JavaScript chúng ta có thể sử dụng hàm như là một biến đầu vào cho một hàm khác. Chúng ta có thể gán hàm đó vào một biến nào đó hoặc định nghĩa đồng thời với hàm mà chúng ta muốn truyền.
+            Đây mới chỉ là thoáng qua cái chúng ta gọi là JavaScript "nâng cao", đừng nôn nóng vội, chúng ta sẽ làm quen với nó từng bước. Hãy tạm thời chấp nhập rằng trong JavaScript chúng ta có thể sử dụng hàm như là một tham số đầu vào cho một hàm khác. Chúng ta có thể gán hàm đó vào một biến nào đó hoặc định nghĩa đồng thời với hàm mà chúng ta muốn truyền vào.
         </p>
 
         <a name="how-function-passing-makes-our-http-server-work"></a>
@@ -679,10 +678,10 @@
 
         <a name="event-driven-callbacks"></a>
 
-        <h3>Gọi lại không đồng bộ dựa trên sự kiện</h3>
+        <h3>Gọi ngược không đồng bộ dựa trên sự kiện</h3>
 
         <p>
-            Để hiểu được tại sao các ứng dụng sử dụng Node.js lại phải viết theo cách như vậy, chúng ta cần hiểu được Node.js thực thi code của chúng ta như thế nào. Không phải chỉ có Node.js tiếp cận vấn đề bằng phương pháp này, nhưng mô hình thực thi code cơ bản (underlying execution model) khác nhau ở mỗi môi trường chạy (runtime environment) như Python, Ruby, PHP, hay Java.
+            Để hiểu được tại sao các ứng dụng sử dụng Node.js lại phải viết theo cách như vậy, chúng ta cần hiểu được cách Node.js thực thi code như thế nào. Không phải duy nhất Node.js tiếp cận vấn đề bằng phương pháp này, mỗi mô hình thực thi code cơ bản (underlying execution model) khác nhau ở từng môi trường chạy (runtime environment) như Python, Ruby, PHP, hay Java.
         </p>
 
         <p>
@@ -697,7 +696,7 @@ console.log("Hello World");</pre>
         </p>
 
         <p>
-            Giả sử thao tác đến database diễn ra rất chậm, có rất nhiều bản ghi thoả mãn yêu cầu, thậm chí mất vài giây.
+            Giả sử thao tác đến database diễn ra rất chậm, có rất nhiều bản ghi thoả mãn yêu cầu, thời gian thực thi có thể mất mất vài giây.
         </p>
 
         <p>
@@ -705,23 +704,23 @@ console.log("Hello World");</pre>
         </p>
 
         <p>
-            Nếu đoạn code này được viết bằng PHP, nó cũng sẽ được thực thi một cách giống nhau: đọc tất cả các kết quả trả về trước, sau đó mới thực thi dòng tiếp theo. Nếu đoạn code này là một phần của một trang web, thời gian tải trang người dùng phải chờ có thể lên tới vài giây.
+            Nếu đoạn code này được viết bằng PHP, nó cũng sẽ được thực thi tương tự: đầu tiên là chờ và đọc tất cả các kết quả trả về, sau đó mới thực thi dòng tiếp theo. Nếu đoạn code này là một phần của một trang web, thời gian tải trang người dùng phải chờ có thể lên tới vài giây.
         </p>
 
         <p>
-            Tuy nhiên, trong mô hình thực thi của PHP thì đó không phải là vấn đề đáng quan tâm: máy chủ web PHP khởi tạo một process riêng cho mỗi request nó nhận được. Nếu một trong những request này chậm hơn bình thường, nó chỉ có thể ảnh hưởng đến thời gian tải trang của người tạo ra request đó, chứ không gây ảnh hưởng đến người dùng khác với các request khác.
+            Tuy nhiên, trong mô hình thực thi của PHP thì đó không phải là vấn đề đáng quan tâm: máy chủ web PHP khởi tạo một process riêng cho mỗi request nó nhận được. Nếu một trong những request này chậm hơn bình thường, nó chỉ có thể ảnh hưởng đến thời gian tải trang của người tạo ra request đó, chứ không gây ảnh hưởng đến những người dùng khác.
         </p>
 
         <p>
-            Mô hình thực hiện của Node.js không giống như vậy - nó chỉ dùng duy nhất một process. Nếu có truy vấn tới database nào đó tốn nhiều thời gian, nó sẽ làm chậm cả process - mọi thứ sẽ bị dừng lại cho đến khi truy vấn kia kết thúc.
+            Mô hình thực hiện của Node.js không giống như vậy - nó chỉ dùng duy nhất một process. Nếu có truy vấn tới database nào đó tốn nhiều thời gian, nó sẽ làm chậm toàn bộ process - mọi thứ sẽ bị dừng lại cho đến khi truy vấn kia kết thúc.
         </p>
 
         <p>
-            Để tránh tình trạng này xảy ra, JavaScript và cà Node.js đưa ra khái niệm "dựa theo sự kiện" (event-driven), gọi lại không đồng bộ (asynchronous callback), bằng cách sử dụng một "vòng lặp sự kiện" (event loop).
+            Để tránh tình trạng này xảy ra, JavaScript và Node.js đưa ra khái niệm "dựa theo sự kiện" (event-driven), gọi ngược không đồng bộ (asynchronous callback), bằng cách sử dụng một "vòng lặp sự kiện" (event loop).
         </p>
 
         <p>
-            Chúng ta sẽ hiểu rõ khái niệm này hơn bằng cách phân tích phiên bản đã được viết lại của đoạn code ví dụ vừa rồi:
+            Chúng ta sẽ hiểu rõ khái niệm này hơn bằng cách phân tích phiên bản đã được cải thiện của ví dụ vừa rồi:
         </p>
 
         <pre class="prettyprint lang-js">database.query("SELECT * FROM hugetable", function(rows) {
@@ -734,33 +733,33 @@ console.log("Hello World");</pre>
         </p>
 
         <p>
-            Trong phiên bản cũ, code của chúng ta được thực hiện một cách "đồng bộ": <em>(1) trước tiên</em> truy vấn tới database, <em>chỉ sau khi truy vấn này hoàn tất</em>, (2) lệnh in ra màn hình mới được thực hiện.
+            Trong phiên bản cũ, code của chúng ta được thực hiện một cách "đồng bộ": <em>(1) trước tiên</em> truy vấn tới database, chỉ sau khi truy vấn này hoàn tất, (2) <em>(2) mới</em> thực hiện lệnh in ra màn hình.
         </p>
 
         <p>
-            Bây giờ Node.js đã có thể xử lý các truy vấn tới database một cách không đồng bộ. Giả sử <em>database.query()</em> được cung cấp sẵn bởi một thư viện chuyên xử không đồng bộ (asynchronous library), Node.js sẽ xử lý như sau: cũng giống như trước, nó sẽ gửi truy vấn tới database. Nhưng, thay vì chờ kết quả khi truy vấn đó kết thúc, nó sẽ ghi nhớ rằng "Đến một thời điểm nào đó trong tương lai - khi truy vấn kết thúc, kết quả được trả về - nó sẽ phải thực hiện những gì được viết trong hàm vô danh (hàm được truyền như là tham số cho <em>database.query()</em>)".
+            Bây giờ Node.js đã có thể xử lý các truy vấn tới database một cách không đồng bộ. Giả sử <em>database.query()</em> được cung cấp sẵn bởi một thư viện chuyên xử không đồng bộ (asynchronous library), Node.js sẽ xử lý như sau: cũng giống như trước, nó sẽ gửi truy vấn tới database. Nhưng, thay vì chờ kết quả khi truy vấn đó kết thúc, nó sẽ ghi nhớ rằng "Đến một thời điểm nào đó trong tương lai - khi truy vấn kết thúc, kết quả được trả về - nó sẽ phải thực hiện những gì được viết trong hàm vô danh (hàm được truyền như là tham số cho <em>database.query()</em>)" kia.
         </p>
 
         <p>
-            Lúc đó nó sẽ ngay lập tức thực thi <em>console.log()</em>, và sau đó nó sẽ bắt đầu một vòng lặp vô tận, và cứ thế chờ đợi, không xử lý bất kỳ gì khác cho đến khi có một sự kiện nào đó đánh thức nó ví dụ như truy vấn tới database đã có dữ liệu trả về.
+            Lúc đó nó sẽ ngay lập tức thực thi <em>console.log()</em>, và sau đó bắt đầu một vòng lặp vô tận, và cứ thế chờ đợi, không xử lý bất kỳ gì khác cho đến khi có một sự kiện nào đó đánh thức nó, ví dụ như truy vấn tới database đã có dữ liệu trả về.
         </p>
 
         <p>
-            Điều này cũng giải thích cho việc tại sao máy chủ HTTP của chúng ta cần một hàm để nó có thể gọi tới khi nhận được request - nếu Node.js khởi động rồi sau đó dừng lại để chờ request khác, chỉ tiếp tục khi nhận được request mới thì sẽ không có hiệu quả. Nếu một người dùng thứ hai nào đó gửi một request lên trong khi máy chủ của chúng ta còn đang xử lý request thứ nhất thì request thứ hai chỉ có thể được xử lý sau khi xong request thứ nhất - thì chỉ ngay khi bạn có khoảng "vài" (a handful of) request trên một giây nó sẽ không thể hoạt động được nữa.
+            Điều này cũng giải thích cho việc tại sao máy chủ HTTP của chúng ta cần một hàm để nó có thể gọi tới khi nhận được request - nếu Node.js khởi động rồi dừng lại để chờ request khác, chỉ tiếp tục khi nhận được request mới thì sẽ rất kém hiệu quả. Nếu một người dùng thứ hai nào đó gửi một request lên trong khi máy chủ của chúng ta còn đang xử lý request thứ nhất thì request thứ hai chỉ có thể được xử lý sau khi xong request thứ nhất - có nghĩa là chỉ ngay khi bạn có khoảng "vài" (a handful of) request trên một giây nó sẽ không thể hoạt động được nữa.
         </p>
 
         <p>
-            Có điều quan trọng bạn phải ghi nhớ làm mô hình thực thi không đồng bộ, đơn luồng, và dựa trên sự kiện này không phải thứ gì đó hoàn hảo tuyệt đối. Nó chỉ là một trong nhiều mô hình đang tồn tại, nó cũng có những nhược điểm, một trong số đó là nó chỉ có thể chạy trên một nhân của CPU mà thôi. Cá nhân tôi cho thằng, mô hình này là chấp nhận được (approachable), vì chúng ta có thể dùng nó để xây dựng các ứng dụng "thời gian thực" (concurrency) có hiệu quả cao không mấy khó khăn.
+            Có điều quan trọng bạn phải ghi nhớ là mô hình thực thi không đồng bộ, đơn luồng, và dựa trên sự kiện này không phải thứ gì đó hoàn hảo tuyệt đối. Nó chỉ là một trong nhiều mô hình đang tồn tại, nó cũng có những nhược điểm, một trong số đó chính là: nó chỉ có thể chạy trên một nhân của CPU mà thôi. Cá nhân tôi cho thằng, mô hình này là chấp nhận được (approachable), vì chúng ta có thể dùng nó để xây dựng các ứng dụng "thời gian thực" (concurrency) có hiệu quả cao mà không mấy khó khăn.
         </p>
 
         <p>
             Bạn có thể giành thời gian đọc thêm bài viết tuyệt vời của Felix
             Geisendörfer's <a href="http://debuggable.com/posts/understanding-node-js:4bd98440-45e4-4a9a-8ef7-0f7ecbdd56cb">Understanding
-                node.js</a> để hiểu sâu hơn về Node.js cũng như cách hoạt động của nó.
+                node.js</a> để hiểu sâu hơn về Node.js cũng như cách thức hoạt động của nó.
         </p>
 
         <p>
-            Hãy thử một vài ví dụ với khái niệm mới này xem sao. Chúng ta có thể chắc chắn rằng code của chúng ta vẫn hoạt động tốt sau khi đã tạo máy chủ hay không? thậm chí không có request nào được xử lý và hàm gọi lại (callback function) không được gọi? Cùng thử xem sao:
+            Hãy thử một vài ví dụ với khái niệm mới này xem sao. Chúng ta có thể chắc chắn rằng code của chúng ta vẫn hoạt động tốt sau khi đã tạo máy chủ hay không? thậm chí khi không có request nào được xử lý và hàm gọi ngược (callback function) không được gọi? Cùng thử xem sao:
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
@@ -784,21 +783,20 @@ console.log("Hello World");</pre>
                 class="pun">);</span></pre>
 
         <p>
-            Chú ý là tôi sử dụng <em>console.log</em> để hiển thị chuỗi ra màn hình mỗi khi hàm<em>onRequest</em> (hàm gọi lại của chúng ta) được gọi, và một chuỗi khác <em>ngay sau khi</em> khởi động máy chủ HTTP.
+            Chú ý là tôi sử dụng <em>console.log</em> để hiển thị chuỗi ra màn hình mỗi khi <em>onRequest</em> được gọi, và một chuỗi khác <em>ngay sau khi</em> khởi động máy chủ HTTP.
         </p>
 
         <p>
-            Khi chúng ta chạy lệnh (<em>node server.js</em>, như thường lệ), nó sẽ in ra màn hình dòng này "Server has started." ngay lập tức. Và mỗi khi chúng ta gửi request đến máy chủ (bằng cách truy cập vào <a href="http://localhost:8888/" rel="nofollow">http://localhost:8888/</a>trên trình duyệt), thông báo "Request received." sẽ được hiển thị trên màn hình console.
+            Khi chúng ta chạy lệnh (<em>node server.js</em>, như thường lệ), nó sẽ in ra màn hình "Server has started." ngay lập tức. Và mỗi khi chúng ta gửi request đến máy chủ (bằng cách truy cập vào <a href="http://localhost:8888/" rel="nofollow">http://localhost:8888/</a> trên trình duyệt), thông báo "Request received." sẽ được hiển thị ra màn hình console.
         </p>
 
         <p>
             "Event-driven asynchronous server-side JavaScript with
-            callbacks in action" :-) (cái này mình không dịch để cho rõ nghĩa nhất)
+            callbacks in action" :-)
         </p>
 
         <p>
-            (Lưu ý là máy chủ chắc chắn sẽ hiện thông báo: "Request received."
-            ra STDOUT (màn hình/console) hai lần mỗi khi một trang nào đó được truy cập. Vì đa số trình duyệt gửi đi hai request, một là http://localhost:8888/favicon.ico (biểu tượng nhỏ của mỗi trang nếu có) và bản thân trang http://localhost:8888/).
+            (Lưu ý là máy chủ sẽ hiện thông báo: "Request received." ra STDOUT (màn hình/console) hai lần mỗi khi một trang nào đó được truy cập. Vì đa số trình duyệt gửi đi hai request, trong đó một là http://localhost:8888/favicon.ico (biểu tượng nhỏ của mỗi trang nếu có) và bản thân trang http://localhost:8888/).
         </p>
 
         <a name="how-our-server-handles-requests"></a>
@@ -814,11 +812,11 @@ console.log("Hello World");</pre>
         </p>
 
         <p>
-            Chúng là các đối tượng (object), bạn có thể sử dụng các hàm của chúng để xử lý các chi tiết của HTTP request nhận được và phản hồi lại các request đó (ví dụ như, trả về dữ liệu gì đó cho trình duyệt đã gửi request).
+            Chúng là các đối tượng (object), bạn có thể sử dụng các hàm của chúng để xử lý các chi tiết của HTTP request nhận được và phản hồi lại các request đó (ví dụ như, trả về dữ liệu gì đó cho trình duyệt).
         </p>
 
         <p>
-            Và đoạn code của chúng ta chỉ thực hiện: Mỗi khi nhận được request, nó gọi đến hàm <em>response.writeHead()</em> để ghi một mã trạng thái dưới dạng số: 200 cũng như loại/kiểu nội dung sẽ được gửi về trong đoạn đầu (header) của phản hồi và dùng hàm <em>response.write()</em> để ghi chuỗi "Hello World" vào phần thân của phản hồi (HTTP response).
+            Và đoạn code của chúng ta thực hiện: Mỗi khi nhận được request, nó gọi đến hàm <em>response.writeHead()</em> để ghi một mã trạng thái ở dạng số: 200 cũng như loại/kiểu nội dung sẽ được gửi về trong đoạn đầu (header) của phản hồi và dùng hàm <em>response.write()</em> để ghi chuỗi "Hello World" vào phần nội dung của phản hồi (HTTP response).
         </p>
 
         <p>
@@ -826,7 +824,7 @@ console.log("Hello World");</pre>
         </p>
 
         <p>
-            Đến lúc này rồi, chúng ta không quan tâm đến chi tiết của request nữa, đó là lý do tại sao chúng ta không sử dụng đến tham số <em>request</em> một chút nào.
+            Cho tới thời điểm này, chúng ta vẫn chưa hề sử dụng đến tham số <em>request</em>.
         </p>
 
         <a name="finding-a-place-for-our-server-module"></a>
@@ -834,11 +832,11 @@ console.log("Hello World");</pre>
         <h3>Nơi lưu trữ module máy chủ</h3>
 
         <p>
-            Như tôi đã hứa trước là chúng ta sẽ quay lại với chủ đề: làm thế nào để tổ chức tốt ứng dụng của chúng ta. Chúng ta đã hoàn thành xong một máy chủ web hết sức đơn giản ở trong file <em>server.js</em>, và như tôi đã đề cập, mọi người thường đặt tên <em>index.js</em> cho file chính của ứng dụng, file này có nhiệm vụ "mồi" và rồi khởi động ứng dụng của chúng ta bằng cách sử dụng các module (ví dụ như module <em>server.js</em> của chúng ta).
+            Như tôi đã hứa trước là chúng ta sẽ quay lại với chủ đề: làm thế nào để tổ chức tốt ứng dụng của chúng ta. Chúng ta đã hoàn thành xong một máy chủ web hết sức đơn giản và được lưu vào file <em>server.js</em>, như tôi đã đề cập, mọi người thường đặt tên <em>index.js</em> cho file chính của ứng dụng, file này có nhiệm vụ "mồi" và rồi khởi động ứng dụng của chúng ta bằng cách sử dụng các module (ví dụ như module <em>server.js</em> của chúng ta).
         </p>
 
         <p>
-            Hãy cùng xem làm như thế nào để khiến <em>server.js</em> trở thành một module thực sự của Node.js mà có thể sử dụng cho file <em>index.js</em> sắp được viết của chúng ta.
+            Hãy cùng xem làm như thế nào để biến <em>server.js</em> trở thành một module thực sự của Node.js mà có thể sử dụng cho file <em>index.js</em> sắp được viết của chúng ta.
         </p>
 
         <p>
@@ -851,7 +849,7 @@ console.log("Hello World");</pre>
                 class="pun">(...);</span></pre>
 
         <p>
-            Ở đâu đó bên trong Node.js, có một module gọi là "http", vì thế nên chúng ta mới có thể sử dụng nó bằng cách tham chiếu và gán nó cho một biến nội bộ trong chương trình của chúng ta.
+            Ở đâu đó bên trong Node.js, có một module gọi là "http", vì thế nên chúng ta mới có thể sử dụng nó bằng cách tham chiếu dến và gán nó cho một biến nội bộ trong chương trình của chúng ta.
         </p>
 
         <p>
@@ -859,7 +857,7 @@ console.log("Hello World");</pre>
         </p>
 
         <p>
-            Thói quen tốt để ghi nhớ là đặt tên các biến nội bộ trùng với tên của module, mặc dù về lý thuyết bạn có thể đặt tên biến tuỳ thích theo ý bạn:
+            Thói quen tốt để ghi nhớ là đặt tên các biến nội bộ trùng với tên của module, mặc dù về mặt lý thuyết bạn có thể đặt tên biến tự do:
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> foo </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
@@ -958,7 +956,7 @@ console.log("Hello World");</pre>
         </p>
 
         <p>
-            Vì thế, chúng ta cần tìm hiểu thêm bên trong một HTTP request và tách được cái địa chỉ được yêu cầu cũng như tham số GET/POST. Có người cho rằng đây là một phần của router nhưng cũng có người khác tin tưởng nó là một phần của server (hay thậm chí cũng là một module độc lập), nhưng cứ tạm thời cho nó là một phần của máy chủ (HTTP server) đã.
+            Vì thế, chúng ta cần tìm hiểu thêm bên trong một HTTP request và tách được địa chỉ được yêu cầu cũng như tham số GET/POST. Có người cho rằng đây là một phần của router nhưng cũng có người khác tin tưởng nó là một phần của server (hay thậm chí cũng là một module độc lập), nhưng cứ tạm thời cho nó là một phần của máy chủ (HTTP server) đã.
         </p>
 
         <p>
@@ -1051,7 +1049,7 @@ http://localhost:8888/start?foo=bar&amp;hello=world
         </p>
 
         <p>
-            Máy chủ HTTP cần phải "nhận dạng" và "tương tác" được với router. Chúng ta có thể "cố định" (hard-wire) sự phụ thuộc này vào máy chủ, tuy nhiên vì chúng ta đã có kinh nghiệm về các ngôn ngữ lập trình khác nên chúng ta sẽ kết nối chúng với nhau theo cách linh hoạt hơn (loosely couple) bằng cách can thiệp vào sự phụ thuộc này (tìm hiều thêm về <a href="http://martinfowler.com/articles/injection.html">Dependency Injection</a> trong bài viết tuyệt vời này của Martin Fowlers).
+            Máy chủ HTTP cần phải "nhận dạng" và "tương tác" được với router. Chúng ta có thể "cố định" (hard-wire) sự phụ thuộc này vào máy chủ, tuy nhiên vì đã có kinh nghiệm về lập trình nên chúng ta sẽ kết nối chúng với nhau theo cách linh hoạt hơn (loosely couple) bằng cách can thiệp vào sự phụ thuộc này (tìm hiều thêm về <a href="http://martinfowler.com/articles/injection.html">Dependency Injection</a> trong bài viết tuyệt vời này của Martin Fowlers).
         </p>
 
         <p>
@@ -1131,7 +1129,7 @@ About to route a request for /foo</pre>
         </p>
 
         <p>
-            Sự trao đổi/truyền (passing) trực tiếp các hàm không chỉ là một khái niệm mang tính kỹ thuật. Trong lĩnh vực thiết kế phần mềm, nó gần như còn mang tính triết học. Thử nghĩ xem: trong file index, chúng là có thể truyền đối tượng <em>router</em> cho server, và server có thể gọi đến hàm <em>route</em> của đối tượng đó.
+            Sự trao đổi/truyền (passing) trực tiếp các hàm không chỉ là một khái niệm mang tính kỹ thuật. Trong lĩnh vực thiết kế phần mềm, nó gần như còn mang tính triết học. Thử nghĩ xem: trong file index, chúng là có thể truyền đối tượng <em>router</em> cho server, và server có thể gọi đến hàm <em>route</em> của router đó.
         </p>
 
         <p>
