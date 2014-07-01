@@ -12,18 +12,6 @@ body {
     border: 0;
 }
 
-#ibookstore-banner {
-    display: none;
-    margin: -10px;
-    margin-bottom: 0;
-}
-
-@media only screen and (max-width: 1024px) {
-    #ibookstore-banner {
-        display: block;
-    }
-}
-
 #book, #disqus_thread, #footer {
     width: 640px;
     margin: 0 auto;
