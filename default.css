@@ -45,7 +45,7 @@ body {
     text-align: center;
 }
 
-.buybox, .buy-the-bundle, #translations {
+#translations {
     font-family: "Helvetica Neue", sans-serif;
     font-size: 13px;
     color: #fff;
