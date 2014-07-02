@@ -294,14 +294,34 @@ h2, h3, h4, h5 {
 	font-family: "Helvetica Neue", sans-serif;
 }
 
+#salespitch .bundle-book {
+    overflow: hidden;
+}
+
 #salespitch .bundle-book-image {
-    display: inline-block;
     width: 100px;
     float: left;
 }
 
+#salespitch .bundle-book-image img {
+    box-shadow: 2px 2px 1px #bbb;
+}
+
+#salespitch .bundle-book-text {
+    overflow: hidden;
+}
+
+#salespitch .bundle-book-connection {
+    text-align: center;
+    font-size: 36pt;
+    font-weight: bolder;
+    color: #6b6;
+    margin-top: -16px;
+    margin-bottom: 8px;
+}
+
 #authorimage {
-	float: right;
+  float: right;
   padding-left: 32px;
   padding-bottom: 4px;
 }
@@ -318,6 +338,11 @@ h2, h3, h4, h5 {
 #salespitch .box .subinfo {
 	font-size: 10pt;
 	color: #777;
+}
+
+#salespitch .box .subinfo strong {
+    font-size: 14pt;
+    color: #080;
 }
 
 #bubble {
@@ -482,7 +507,7 @@ li.L1, li.L3, li.L5, li.L7, li.L9 {
 }
 
 
-@media only print {            
+@media only print {
     #book {
         margin-top: 60px;
     }
