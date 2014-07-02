@@ -294,6 +294,12 @@ h2, h3, h4, h5 {
 	font-family: "Helvetica Neue", sans-serif;
 }
 
+#salespitch .bundle-book-image {
+    display: inline-block;
+    width: 100px;
+    float: left;
+}
+
 #authorimage {
 	float: right;
   padding-left: 32px;
@@ -360,12 +366,12 @@ pre.prettyprint {
     font-size: 14px;
 }
 
-#book ul {
+#book p ul {
     margin-top: -24px;
     margin-bottom: 64px;
 }
 
-ul li {
+#book p ul li {
     margin-bottom: 12px;
     font-size: 110%;
 }
