@@ -14,7 +14,7 @@ It does NOT contain the sources for the commercially available Leanpub version o
 
 ## Contributing
 
-Just fork and send pull requests, I'm going to incorporate them as quickly as possible, promised!
+Just fork and send pull requests, I'm going to incorporate them as quickly as possible, promise!
 
 
 ## Contact
