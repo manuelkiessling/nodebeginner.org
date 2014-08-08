@@ -231,7 +231,7 @@
         agregando interactividad a tus páginas de cuando en cuando.
     </p>
     <p>
-        Lo que realmente quisiste era "la cosa real", Querías
+        Lo que realmente quisiste era "la cosa real", querías
         saber cómo construir sitios web complejos - Aprendiste un
         lenguaje de programación como PHP, Ruby, Java, y empezaste a 
         escribir código "backend".
@@ -245,7 +245,7 @@
     </p>
     <p>
         Sin embargo, esto era todo cosa del 
-        <span style="font-style: italic;">frontend</span> ,y aunque era
+        <span style="font-style: italic;">frontend</span>, y aunque era
         agradable contar con jQuery a tu disposición en cualquier
         momento que te sintieras con ánimo de sazonar una página web,
         al final del día, lo que eras a lo más, era un usuario de JavaScript,
@@ -257,7 +257,7 @@
     </p>
     <p>
         Decidiste que era ya tiempo de revisar el nuevo JavaScript.
-        Pero espera: Escribir aplicaciones Node.js es una cosa ; Entender
+        Pero espera: Escribir aplicaciones Node.js es una cosa; Entender
         el porqué ellas necesitan ser escritas en la manera que lo son
         significa entender JavaScript! Y esta vez es en serio.
     </p>
@@ -339,12 +339,12 @@
         y una librería.
     </p>
     <p>
-        Para hacer uso de éstas (la librería y el entorno), Necesitas
-        instalar Node.js. En lugar de repetir el proceso aquí. Te ruego
+        Para hacer uso de éstas (la librería y el entorno), necesitas
+        instalar Node.js. En lugar de repetir el proceso aquí, te ruego
         visitar <a href="https://github.com/joyent/node/wiki/Installation"
            title="Building and Installing Node.js">las instrucciones oficiales
-        de instalación</a>, Por Favor vuelve una vez que estés arriba y corriendo
-        tu versión de Node.js
+        de instalación</a>. Por favor vuelve una vez que tengas tu versión de
+        Node.js corriendo.
     </p>
     
     <h3>"Hola Mundo"</h3>
@@ -506,7 +506,6 @@
         Así que vamos a crear un archivo <em>main</em> el cual usaremos
         para iniciar nuestra aplicación, y un archivo de módulo dónde
         residirá el código de nuestro servidor HTTP.
-
     </p>
     <p>
         Mi impresión es que es más o menos un estándar nombrar a tu
@@ -694,7 +693,7 @@ http.createServer(onRequest).listen(8888);
     <h3>Callbacks Manejadas por Eventos</h3>
         
     <p>
-        La respuesta a) No es una no muy fácil de dar (al menos para mí),
+        La respuesta a) No es algo fácil de explicar (al menos para mí),
         y b) Yace en la naturaleza misma de como Node.js trabaja:
         Está orientado al evento, esa es la razón de por qué es tan
         rápido.
@@ -705,7 +704,7 @@ http.createServer(onRequest).listen(8888);
     </p>
     <p>
         Al final todo se reduce al hecho que Node.js trabaja orientado
-        al evento. Ah, y sí, Yo tampoco sé exactamente qué significa eso.
+        al evento. Ah, y sí, yo tampoco sé exactamente qué significa eso.
         Pero voy a hacer un intento de explicar, el porqué esto tiene
         sentido para nosotros, que queremos escribir aplicaciones
         web en Node.js.            
@@ -751,7 +750,7 @@ http.createServer(onRequest).listen(8888);
         la pasamos de manera anónima.
     </p>
     <p>
-        Este concepto es llamado un <em>callback</em> (del inglés: call =
+        Este concepto es llamado un <em>callback</em> (N. del T.: del inglés: call =
         llamar; y back = de vuelta). Nosotros pasamos una función a algún
         método, y el método ocupa esta función para llamar (call) de vuelta
         (back) si un evento relacionado con este método ocurre.
@@ -795,7 +794,7 @@ console.log("Servidor Iniciado.");
         de comandos.
     </p>    
     <p>
-        Esto es JavaScript del Lado del Servidor Asincrónico y orientado al
+        Esto es JavaScript del lado del servidor asincrónico y orientado al
         evento con callbacks en acción :-)
     </p>
     <p>
@@ -809,11 +808,11 @@ console.log("Servidor Iniciado.");
     <h3>Como nuestro Servidor manipula las peticiones</h3>
         
     <p>
-        OK, Analicemos rápidamente el resto del código de nuestro servidor, 
+        OK, analicemos rápidamente el resto del código de nuestro servidor,
         esto es, el cuerpo de nuestra función de callback <em>onRequest()</em>.
     </p>
     <p>
-        Cuando la Callback es disparada y nuestra función <em>onRequest()</em> es
+        Cuando la callback es disparada y nuestra función <em>onRequest()</em> es
         gatillada, dos parámetros son pasados a ella: <em>request</em> y <em>response</em>.
     </p>
     <p>
@@ -822,16 +821,16 @@ console.log("Servidor Iniciado.");
         enviar algo de vuelta al browser que hizo la petición a tu servidor).
     </p>
     <p>
-        Y eso es lo que nuestro código hace: Cada vez que una petición
+        Y eso es lo que nuestro código hace: cada vez que una petición
         es recibida, usa la función <em>response.writeHead()</em> para 
         enviar un estatus HTTP 200 y un content-type (parámetro que define
         que tipo de contenido es) en el encabezado de la respuesta HTTP,
         y la función <em>response.write()</em> para enviar el texto
-        "Hola Mundo" en el cuerpo de la respuesta,
+        "Hola Mundo" en el cuerpo de la respuesta.
     </p>
     <p>
         Por último, nosotros llamamos <em>response.end()</em> para finalizar
-        nuestra respuesta
+        nuestra respuesta.
     </p>
     <p>
         Hasta el momento, no nos hemos interesado por los detalles de la
@@ -900,7 +899,7 @@ foo.createServer(...);
         simple: Permitir a los scripts que utilicen este módulo arrancar el servidor.
     </p>
     <p>
-        Para hacer esto posible, Dotaremos al código de nuestro servidor de una
+        Para hacer esto posible, dotaremos al código de nuestro servidor de una
         función llamada <em>inicio</em>, y exportaremos esta función:
     <p>
 <pre class="prettyprint lang-js">var http = require("http");
@@ -961,8 +960,8 @@ server.iniciar();
     </p>
     <p>
         Hacer diferentes peticiones HTTP ir a partes diferentes de nuestro 
-        código se llama "ruteo" (routing, en inglés) - bueno, entonces, creémos
-        un módulo llamado <em>router</em>.
+        código se llama "ruteo" (N. del T.: routing, en inglés) - bueno,
+        entonces, creémos un módulo llamado <em>router</em>.
     </p>
         
     <h3>¿Qué se necesita para "rutear" peticiones?</h3>
@@ -1040,8 +1039,8 @@ exports.iniciar = iniciar;
         basadas en la ruta URL requerida - esto nos permite mapear
         peticiones hacia nuestro manipuladores de peticiones, basándonos
         en la ruta URL usando nuestro (pronto a ser escrito) router. Luego, 
-        podemos construir nuestra aplicación en una forma REST (RESTful way
-        en Inglés), ya que ahora podemos implementar una interfaz que 
+        podemos construir nuestra aplicación en una forma REST (N. del T.:
+        RESTful way en Inglés), ya que ahora podemos implementar una interfaz que
         sigue los principios que guían a la <em>Identificación de Recursos</em>
         (ve por favor <a href="http://es.wikipedia.org/wiki/Representational_State_Transfer">el artículo de Wikipedia acerca de la Transferencia del Estado Representacional</a> para información de trasfondo.
     </p>
@@ -1133,7 +1132,7 @@ A punto de rutear una peticion para /foo
         funcional de nuevo?
     </p>
     <p>
-        Pasar funciones no es sólo una consideración Técnica. Con respecto al diseño
+        Pasar funciones no es sólo una consideración técnica. Con respecto al diseño
         de software, esto es casi filosófico. Tan solo piensa en ello: en nuestro
         archivo de index, podríamos haber entregado el objeto <em>router</em> al
         servidor, y el servidor hubiese llamado a la función <em>route</em>
@@ -1185,7 +1184,7 @@ A punto de rutear una peticion para /foo
     </p>
     <p>
         Nueva parte de la aplicación, significa nuevo módulo - no creo que haya
-        sorpresa acá. Creemos un módulo llamado requestHandlers (por manipuladores
+        sorpresa acá. Creemos un módulo llamado requestHandlers (N. del T.: por manipuladores
         de petición), agreguemos un función de ubicación para cada manipulador de
         petición, y exportemos estos como métodos para el módulo:
     </p>
@@ -1216,7 +1215,7 @@ exports.subir = subir;
     <p>
         Esto significa que necesitamos pasar los manipuladores de petición
         desde nuestro server al router, pero esto se siente equivocado, dado
-        que, ¿Por Qué tenemos que hacer el camino largo y entregar los manipuladores
+        que, ¿Por qué tenemos que hacer el camino largo y entregar los manipuladores
         desde el archivo principal al servidor y de ahí al router?
     </p>
     <p>
@@ -1259,7 +1258,7 @@ exports.subir = subir;
         números, etc... ¡O Funciones!
     </p>
     <p>
-        OK, Ahora, volviendo finalmente al código. Hemos decidido que queremos
+        OK, ahora, volviendo finalmente al código. Hemos decidido que queremos
         pasar la lista de requestHandlers (manipuladores de petición) como un 
         objeto, y para lograr este acoplamiento débil, necesitamos usar la técnica
         de inyectar este objeto en la <em>route()</em> (ruta).
@@ -1284,7 +1283,7 @@ server.iniciar(router.route, handle);
     </p>
     <p>
         Aunque <em>handle</em> es más una "cosa" (una colección de manipuladores
-        de petición), Propongo que lo nombremos como un verbo, ya que esto 
+        de petición), propongo que lo nombremos como un verbo, ya que esto
         resultará en una expresión fluida en nuestro router, como veremos a
         continuación:
     </p>
@@ -1318,7 +1317,7 @@ function iniciar(route, handle) {
   }
 
   http.createServer(onRequest).listen(8888);
-  console.log("Servidor Iniciar.");
+  console.log("Servidor Iniciado.");
 }
 
 exports.iniciar = iniciar;
@@ -1365,7 +1364,7 @@ Manipulador de peticion 'iniciar' ha sido llamado.
     <p>
         La aproximación directa que nosotros - desarrolladores con un trasfondo
         en PHP o Ruby - quisieramos seguir es de hecho conducente a errores:
-        Trabaja de manera espectacular al principio y parece tener mucho sentido, 
+        trabaja de manera espectacular al principio y parece tener mucho sentido,
         y de pronto, las cosas se arruinan en el momento menos esperado.
     </p>
     <p>
@@ -1445,13 +1444,13 @@ exports.iniciar = iniciar;
     <p>
         Si nosotros arrancamos nuestra aplicación re-escrita, todo va
         a funcionar a las mil maravillas:
-        Hacerle una petición a <a href="http://localhost:8888/iniciar" rel="nofollow">http://localhost:8888/iniciar</a>
+        hacerle una petición a <a href="http://localhost:8888/iniciar" rel="nofollow">http://localhost:8888/iniciar</a>
         resulta en "Hola Iniciar" siendo desplegado en el browser, hacerle una
         petición a <a href="http://localhost:8888/subir" rel="nofollow">http://localhost:8888/subir</a> nos da "Hola Subir", y la petición a <a href="http://localhost:8888/foo" rel="nofollow">http://localhost:8888/foo</a> produce
         "404 No Encontrado".
     </p>
     <p>
-        OK, entonces ¿Por Qué esto es un problema? La respuesta corta es:
+        OK, entonces ¿Por qué esto es un problema? La respuesta corta es:
         debido a que si uno de los manipuladores de petición quisiera hacer 
         uso de una operación <em>no-bloqueante</em> (non-blocking) en el futuro, 
         entonces esta configuración, como la tenemos, sería problemática.
@@ -1504,7 +1503,7 @@ exports.iniciar = iniciar;
 exports.subir = subir;
 </pre>
     <p>
-        Dejemos claros que es lo que esto hace: Cuando la función
+        Dejemos claros que es lo que esto hace: cuando la función
         <em>iniciar()</em> es llamada, Node.js espera 10 segundos y sólo ahí
         retorna "Hola Iniciar". Cuando está llamando a <em>subir()</em>,
         retorna inmediatamente, la misma manera que antes.
@@ -1515,14 +1514,13 @@ exports.subir = subir;
         como algún tipo de calculo de largo aliento.)
     </p>
     <p>
-        Veámos qu{e es lo que este cambio hace.
+        Veámos qué es lo que este cambio hace.
     </p>
     <p>
         Como siempre, necesitamos reiniciar nuestro servidor. Esta vez, te pido
         sigas un "protocolo" un poco más complejo de manera de ver que sucede:
         Primero, abre dos ventanas de browser o tablas. En la primera ventana, 
-        por favor ingresa <a href="http://localhost:8888/iniciar" rel="nofollow">http://localhost:8888/iniciar</a> en la barra de direcciones, pero no abras aún
-        esta url!
+        por favor ingresa <a href="http://localhost:8888/iniciar" rel="nofollow">http://localhost:8888/iniciar</a> en la barra de direcciones, pero no abras aún esta url!
     </p>
     <p>
         En la barra de direcciones de la segunda ventana de browser, ingresa
@@ -1535,12 +1533,12 @@ exports.subir = subir;
     </p>
     <p>
         Lo que veremos será lo siguiente: La URL /inicio toma 10 segundos
-        en cargar, tal cual esperamos. pero la URL /subir <em>también</em>
+        en cargar, tal cual esperamos. Pero la URL /subir <em>también</em>
         toma 10 segundos para cargar, ¡Aunque no hay definido un <em>sleep()</em>
         en el manipulador de peticiones correspondiente!
     </p>
     <p>
-        ¿Por Qué? simple, porque <em>inicio()</em> contiene una operación
+        ¿Por qué? simple, porque <em>inicio()</em> contiene una operación
         bloqueante. En otras palabras "Está bloqueando el trabajo de cualquier otra
         cosa".
     </p>
@@ -1564,7 +1562,7 @@ exports.subir = subir;
         usuario que este peticionando la URL <em>/inicio</em>.
     </p>
     <p>
-        Lo que el código hace es claro: Crea una nueva variable <em>content()</em>
+        Lo que el código hace es claro: crea una nueva variable <em>content()</em>
         (con el valor incial de "vacio"), ejecuta "ls -lah", llena la variable con
         el resultado, y lo retorna.
     </p>
@@ -1608,7 +1606,7 @@ exports.subir = subir;
 }
 </pre>
     <p>
-        Y aquí yace la raíz de nuestro problema: Nuestro código es 
+        Y aquí yace la raíz de nuestro problema: nuestro código es
         ejecutado de manera sincrónica, lo que significa que inmediatamente
         después de llamar a <em>exec()</em>, Node.js continúa ejecutando
         <em>return content;</em>. En este punto, <em>content</em> todavía
@@ -1634,7 +1632,7 @@ exports.subir = subir;
         correr.
     </p>
     <p>
-        Pero, ¿Cómo podemos alcanzar nuestra meta, la de mostrarle al usuario
+        Pero, ¿cómo podemos alcanzar nuestra meta, la de mostrarle al usuario
         una lista de archivos del directorio actual?
     </p>
     <p>
@@ -1642,10 +1640,9 @@ exports.subir = subir;
         cómo hacer que nuestros manipuladores de petición respondan a los
         requirimientos del browser de la manera correcta.
     </p>
-    <h4>Respondiendo a los Manipuladores de Petición con Operaciones
-            No Bloqueantes</h4>
+    <h4>Respondiendo a los Manipuladores de Petición con Operaciones No Bloqueantes</h4>
     <p>
-        Acabo de usar la frase "la manera correcta". Cosa Peligrosa.
+        Acabo de usar la frase "la manera correcta". Cosa peligrosa.
         Frecuentemente, no existe una única "manera correcta".
     </p>
     <p>
@@ -1680,7 +1677,7 @@ var url = require("url");
 function iniciar(route, handle) {
   function onRequest(request, response) {
     var pathname = url.parse(request.url).pathname;
-    console.log("Request for " + pathname + " received.");
+    console.log("Peticion para " + pathname + " recibida.");
 
     route(handle, pathname, response);
   }
@@ -1702,13 +1699,13 @@ exports.iniciar = iniciar;
         Ahora viene <em>router.js</em>:
     </p>
 <pre class="prettyprint lang-js">function route(handle, pathname, response) {
-  console.log("About to route a request for " + pathname);
+  console.log("A punto de rutear una peticion para " + pathname);
   if (typeof handle[pathname] === 'function') {
     handle[pathname](response);
   } else {
-    console.log("No request handler found for " + pathname);
+    console.log("No hay manipulador de peticion para " + pathname);
     response.writeHead(404, {"Content-Type": "text/html"});
-    response.write("404 Not found");
+    response.write("404 No Encontrado");
     response.end();
   }
 }
@@ -1742,7 +1739,7 @@ function iniciar(response) {
   });
 }
 
-function upload(response) {
+function subir(response) {
   console.log("Manipulador de petición 'subir' fue llamado.");
   response.writeHead(200, {"Content-Type": "text/html"});
   response.write("Hola Subir");
@@ -1823,7 +1820,7 @@ exports.subir = subir;
         tiempo.
     </p>
     <p>
-        Aquí, paso a paso significa a grandes razgos dos pasos: Vamos a ver
+        Aquí, paso a paso significa a grandes razgos dos pasos: vamos a ver
         primero como manejar peticiones POST entrantes (pero no subidas de
         archivos), y en un segundo paso, haremos uso de un modulo externo
         de Node.js para la manipulación de subida de archivos. He escogido
@@ -1843,7 +1840,7 @@ exports.subir = subir;
     
     <h4>Manejando Peticiones POST</h4>
     <p>
-        Mantengamos esto ridículamente simple: Presentaremos un área de
+        Mantengamos esto ridículamente simple: presentaremos un área de
         texto que pueda ser llenada por el usuario y luego enviada al servidor
         en una petición POST. Una vez recibida y manipulada esta petición, 
         despliegaremos el contenido del área de texto.
@@ -1865,7 +1862,7 @@ exports.subir = subir;
     '&lt;body&gt;'+
     '&lt;form action="/subir" method="post"&gt;'+
     '&lt;textarea name="text" rows="20" cols="60"&gt;&lt;/textarea&gt;'+
-    '&lt;input type="submit" value="Submit text" /&gt;'+
+    '&lt;input type="submit" value="Enviar texto" /&gt;'+
     '&lt;/form&gt;'+
     '&lt;/body&gt;'+
     '&lt;/html&gt;';
@@ -1875,7 +1872,7 @@ exports.subir = subir;
     response.end();
 }
 
-function upload(response) {
+function subir(response) {
   console.log("Manipulador de peticiones 'subir' fue llamado.");
   response.writeHead(200, {"Content-Type": "text/html"});
   response.write("Hola Subir");
@@ -1893,7 +1890,7 @@ exports.subir = subir;
         probablemente no has reiniciado la aplicación.
     </p>
     <p>
-        Te estoy escuchando: Tener contenido de vista justo en el manipulador
+        Te estoy escuchando: tener contenido de vista justo en el manipulador
         de petición es feo. Sin embargo, he decidido no incluir ese nivel
         extra de abstracción (esto es, separar la lógica de vista y controlador)
         en este tutorial, ya que pienso que es no nos enseña nada que valga la
@@ -1926,7 +1923,7 @@ exports.subir = subir;
     <p>
         Necesitamos decirle a Node.js que funciones llamar de vuelta cuando
         estos eventos ocurran. Esto es hecho agregando <em>listeners</em>
-        (N. del T.: Del verbo <em>listen</em> - escuchar) al objeto de
+        (N. del T.: del verbo <em>listen</em> - escuchar) al objeto de
         petición (<em>request</em>) que es pasado a nuestro callback 
         <em>onRequest</em> cada vez que una petición HTTP es recibida.
     </p>
@@ -1998,7 +1995,7 @@ function iniciar(route, handle) {
 exports.iniciar = iniciar;
 </pre>
     <p>
-        Básicamente hicimos tres cosas aquí: Primero, definimos que
+        Básicamente hicimos tres cosas aquí: primero, definimos que
         esperamos que la codificación de la información recibida sea
         UTF-8, agregamos un listener de eventos para el evento "data" el
         cual llena paso a paso nuestra variable <em>dataPosteada</em> cada
@@ -2051,7 +2048,7 @@ exports.route = route;
     '&lt;body&gt;'+
     '&lt;form action="/subir" method="post"&gt;'+
     '&lt;textarea name="text" rows="20" cols="60"&gt;&lt;/textarea&gt;'+
-    '&lt;input type="submit" value="Submit text" /&gt;'+
+    '&lt;input type="submit" value="Enviar texto" /&gt;'+
     '&lt;/form&gt;'+
     '&lt;/body&gt;'+
     '&lt;/html&gt;';
@@ -2068,8 +2065,8 @@ function subir(response, dataPosteada) {
   response.end();
 }
 
-exports.start = start;
-exports.upload = upload;
+exports.iniciar = iniciar;
+exports.subir = subir;
 </pre>
 
     <p>
@@ -2077,7 +2074,7 @@ exports.upload = upload;
         y usarla en nuestros manipuladores de petición.
     </p>
     <p>
-        Una última cosa para este tema: Lo que le estamos pasando al
+        Una última cosa para este tema: lo que le estamos pasando al
         router y los manipuladores de petición es el cuerpo (<em>body</em>)
         de nuestra petición POST. Probablemente necesitemos consumir los
         campos individuales que conforman la información POST, en este
@@ -2108,17 +2105,17 @@ function iniciar(response, postData) {
     '&lt;/html&gt;';
 
     response.writeHead(200, {"Content-Type": "text/html"});
-        response.write(body);
-        response.end();
-    }
+    response.write(body);
+    response.end();
+}
 
-    function subir(response, dataPosteada) {
-          console.log("Manipulador de peticion 'subir' fue llamado.");
-          response.writeHead(200, {"Content-Type": "text/html"});
-        response.write("Tu enviaste el texto: : " + 
-            querystring.parse(dataPosteada)["text"]);
-          response.end();
-        }
+function subir(response, dataPosteada) {
+    console.log("Manipulador de peticion 'subir' fue llamado.");
+    response.writeHead(200, {"Content-Type": "text/html"});
+    response.write("Tu enviaste el texto: : " +
+    querystring.parse(dataPosteada)["text"]);
+    response.end();
+}
 
 exports.iniciar = iniciar;
 exports.subir = subir;
