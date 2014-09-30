@@ -63,9 +63,9 @@
                     <p>
                         The perfect introduction and its follow-up plus the perfect reference in one bundle!
                     </p>
-                    <a href="buy-bundle/index.html"><img src="the_node_beginner_book_cover_small.png" height="86" width="57" /></a>
-                    <a href="buy-bundle/index.html"><img src="the_node_craftsman_book_cover_small.png" height="86" width="57" /></a>
-                    <a href="buy-bundle/index.html"><img src="hands-on_node.js_cover.png" height="86" width="57" /></a>
+                    <a class="salelink" href="buy-bundle/index.html"><img src="the_node_beginner_book_cover_small.png" height="86" width="57" /></a>
+                    <a class="salelink" href="buy-bundle/index.html"><img src="the_node_craftsman_book_cover_small.png" height="86" width="57" /></a>
+                    <a class="salelink" href="buy-bundle/index.html"><img src="hands-on_node.js_cover.png" height="86" width="57" /></a>
                 </div>
                 <div class="description">
                     <p>
@@ -98,7 +98,7 @@
                         <br />
                         Free updates
                     </p>
-                    <a class="buttonlink" href="buy-bundle/index.html">
+                    <a class="buttonlink salelink" href="buy-bundle/index.html">
                         <div class="button">Buy this<br />bundle now</div>
                     </a>
                 </div>
@@ -1568,7 +1568,7 @@ About to route a request for /foo</pre>
             <img id="authorimage" src="manuelkiessling.jpg" width="160" height="160"/>
             <p>
               <br/>
-              Hi there! Sorry to interrupt you.
+              Hi there! <span id="freeab-text-block">Sorry to interrupt you</span>.
             </p>
             <p>
               My name is Manuel Kiessling, I'm the author of this book.
@@ -1628,13 +1628,13 @@ About to route a request for /foo</pre>
               receive any future updates to all three books for free.
             </p>
             <div class="box">
-              <a class="buttonlink" href="buy-bundle/salespitch.html">
+              <a class="buttonlink salelink" href="buy-bundle/salespitch.html">
                 <div class="button">Buy this<br />bundle now</div>
               </a>
               <p></p>
-              <a href="buy-bundle/salespitch.html"><img src="the_node_beginner_book_cover_small.png" height="86" width="57" /></a>
-              <a href="buy-bundle/salespitch.html"><img src="the_node_craftsman_book_cover_small.png" height="86" width="57" /></a>
-              <a href="buy-bundle/salespitch.html"><img src="hands-on_node.js_cover.png" height="86" width="57" /></a>
+              <a class="salelink" href="buy-bundle/salespitch.html"><img src="the_node_beginner_book_cover_small.png" height="86" width="57" /></a>
+              <a class="salelink" href="buy-bundle/salespitch.html"><img src="the_node_craftsman_book_cover_small.png" height="86" width="57" /></a>
+              <a class="salelink" href="buy-bundle/salespitch.html"><img src="hands-on_node.js_cover.png" height="86" width="57" /></a>
               <br/>
               <div class="subinfo">
                 291 pages in total<br/>
@@ -1722,21 +1722,22 @@ About to route a request for /foo</pre>
             </p>
         </div>
 
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-2127388-6', {
+            cookieDomain: '.nodebeginner.org',
+        	legacyCookieDomain: 'www.nodebeginner.org',
+			allowLinker: true
+          });
+          ga('require', 'displayfeatures');
+          ga('send', 'pageview');
+        </script>
+
         <script type="text/javascript">
-            // Google Analytics
-            var _gaq = _gaq || [];
-            _gaq.push(['_setAccount', 'UA-2127388-6']);
-			_gaq.push(['_setDomainName', 'www.nodebeginner.org']);
-			_gaq.push(['_setAllowLinker', true]);
-            _gaq.push(['_trackPageview']);
-
-            (function() {
-                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-            })();
-
-
             // Disqus
             var disqus_shortname = 'nodebeginner';
             var disqus_identifier = 'nodebeginner-book';
@@ -1766,6 +1767,5 @@ About to route a request for /foo</pre>
 				<img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/1018569018/?value=0&amp;guid=ON&amp;script=0"/>
 			</div>
 		</noscript>
-        
     </body>
 </html>
