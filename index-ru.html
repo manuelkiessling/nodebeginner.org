@@ -869,18 +869,18 @@
 			Модуль <em>url</em> поддерживает методы, которые позволяют нам извлекать различные части URL (такие как запрошенный путь (URL path) и строка параметров запроса (query string)), а <em>querystring</em> в свою очередь, используется для парсинга строки параметров запроса (query string):
 		</p>
 <pre>                               url.parse(string).query
-                                       |
-       url.parse(string).pathname      |
-                   |                   |
-                   |                   |
-                 ------ -------------------
+                                           |
+           url.parse(string).pathname      |
+                       |                   |
+                       |                   |
+                     ------ -----------------------
 http://localhost:8888/start?foo=bar&amp;hello=world
-                            ---       -----
-                             |          |
-                             |          |
-          querystring(string)["foo"]    |
-                                        |
-                     querystring(string)["hello"]
+                                ---           -----
+                                 |              |
+                                 |              |
+              querystring(string)["foo"]        |
+                                                |
+                                querystring(string)["hello"]
 </pre>
 		<p>
 			Конечно, мы также можем использовать <em>querystring</em> для парсинга тела POST-запроса, как мы увидим далее.
