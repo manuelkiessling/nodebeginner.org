@@ -150,7 +150,7 @@
         </p>
 
         <p>
-            本書中的代碼案例都在Node.js 0.6.11版本中測試過，可以正確工作。
+            本書中的程式碼範例都在Node.js 0.6.11版本中測試過，可以正確工作。
         </p>
 
         <a name="intended-audience"></a>
@@ -178,7 +178,7 @@
         </p>
 
         <p>
-            當然了，應用本身並沒有什麼了不起的，相比為了實現該功能書寫的代碼本身，我們更關注的是如何建立一個框架來對我們應用的不同模組進行乾淨地剝離。 是不是很玄乎？稍後你就明白了。
+            當然了，應用本身並沒有什麼了不起的，相比為了實現該功能書寫的程式碼本身，我們更關注的是如何建立一個框架來對我們應用的不同模組進行乾淨地剝離。 是不是很玄乎？稍後你就明白了。
         </p>
 
         <p>
@@ -284,7 +284,7 @@
         </p>
 
         <p>
-            而你真正想要的是 &quot;實用的東西&quot; ，你想要知道如何建構復雜的web站點 —— 於是，你學習了一種諸如PHP、Ruby、Java這樣的程式語言，並開始書寫 &quot;後端&quot; 代碼。
+            而你真正想要的是 &quot;實用的東西&quot; ，你想要知道如何建構複雜的Web站台 —— 於是，你學習了一種諸如PHP、Ruby、Java這樣的程式語言，並開始書寫 &quot;後端&quot; 程式碼。
         </p>
 
         <p>
@@ -348,11 +348,11 @@
         </p>
 
         <p>
-            Node.js事實上就是另外一種上下文，它允許在後端（脫離瀏覽器環境）運行JavaScript代碼。
+            Node.js事實上就是另外一種上下文，它允許在後端（脫離瀏覽器環境）運行JavaScript程式碼。
         </p>
 
         <p>
-            要實現在後台運行JavaScript代碼，代碼需要先被解釋然後正確的執行。Node.js的原理正是如此，它使用了Google的V8虛擬機（Google的Chrome瀏覽器使用的JavaScript執行環境），來解釋和執行JavaScript代碼。
+            要實現在後台運行JavaScript程式碼，程式碼需要先被解釋然後正確的執行。Node.js的原理正是如此，它使用了Google的V8虛擬機（Google的Chrome瀏覽器使用的JavaScript執行環境），來解釋和執行JavaScript程式碼。
         </p>
 
         <p>
@@ -376,7 +376,7 @@
         </p>
 
         <p>
-            打開你最喜歡的編輯器，建立一個<em>helloworld.js</em>檔案。我們要做就是向STDOUT輸出 &quot;Hello World&quot; ，如下是實現該功能的代碼：
+            打開你最喜歡的編輯器，建立一個<em>helloworld.js</em>檔案。我們要做就是向STDOUT輸出 &quot;Hello World&quot; ，如下是實現該功能的程式碼：
         </p>
         <pre class="prettyprint lang-js"><span class="pln">console</span><span class="pun">.</span><span
                 class="pln">log</span><span class="pun">(</span><span class="str">"Hello World"</span><span class="pun">);</span></pre>
@@ -413,7 +413,7 @@
 
         <p>差不多了，你現在也可以去Google一下，找點東西亂搞一下來完成功能。但是我們現在先不做這個。</p>
 
-        <p>更進一步地說，在完成這一目標的過程中，我們不僅僅需要基礎的代碼而不管代碼是否優雅。我們還要對此進行抽象，來尋找一種適合建構更為復雜的Node.js應用的方式。</p>
+        <p>更進一步地說，在完成這一目標的過程中，我們不僅僅需要基礎的程式碼而不管程式碼是否優雅。我們還要對此進行抽象，來尋找一種適合建構更為複雜的Node.js應用的方式。</p>
 
         <h3>應用不同模組分析</h3>
 
@@ -445,14 +445,14 @@
         <h3>一個基礎的HTTP伺服器</h3>
 
         <p>
-            當我準備開始寫我的第一個 &quot;真正的&quot; Node.js應用的時候，我不但不知道怎麼寫Node.js代碼，也不知道怎麼組織這些代碼。
+            當我準備開始寫我的第一個 &quot;真正的&quot; Node.js應用的時候，我不但不知道怎麼寫Node.js程式碼，也不知道怎麼組織這些程式碼。
             <br>
-            我應該把所有東西都放進一個檔案裡嗎？網上有很多教學課程都會教你把所有的邏輯都放進一個用Node.js寫的基礎HTTP伺服器裡。但是如果我想加入更多的內容，同時還想保持代碼的可讀性呢？
+            我應該把所有東西都放進一個檔案裡嗎？網上有很多教學課程都會教你把所有的邏輯都放進一個用Node.js寫的基礎HTTP伺服器裡。但是如果我想加入更多的內容，同時還想保持程式碼的可讀性呢？
         </p>
 
         <p>
 
-            實際上，只要把不同功能的代碼放入不同的模組中，保持代碼分離還是相當簡單的。
+            實際上，只要把不同功能的程式碼放入不同的模組中，保持程式碼分離還是相當簡單的。
         </p>
 
         <p>
@@ -460,7 +460,7 @@
         </p>
 
         <p>
-            那麼，現在我們來建立一個用於啟動我們的應用的主檔案，和一個儲存著我們的HTTP伺服器代碼的模組。
+            那麼，現在我們來建立一個用於啟動我們的應用的主檔案，和一個儲存著我們的HTTP伺服器程式碼的模組。
         </p>
 
         <p>
@@ -469,7 +469,7 @@
         </p>
 
         <p>
-            讓我們先從伺服器模組開始。在你的項目的根目錄下建立一個叫<em>server.js</em>的檔案，並寫入以下代碼：
+            讓我們先從伺服器模組開始。在你的項目的根目錄下建立一個叫<em>server.js</em>的檔案，並寫入以下程式碼：
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
@@ -489,7 +489,7 @@
                 class="pun">);</span></pre>
 
         <p>
-            搞定！你剛剛完成了一個可以工作的HTTP伺服器。為了證明這一點，我們來運行並且測試這段代碼。首先，用Node.js執行你的腳本：
+            搞定！你剛剛完成了一個可以工作的HTTP伺服器。為了證明這一點，我們來運行並且測試這段程式碼。首先，用Node.js執行你的腳本：
         </p>
         <pre>node server.js</pre>
         <p>
@@ -522,7 +522,7 @@
         </p>
 
         <p>
-            我們本來可以用這樣的代碼來啟動伺服器並偵聽8888埠號：
+            我們本來可以用這樣的程式碼來啟動伺服器並監聽8888埠號：
         </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
@@ -533,7 +533,7 @@
                 class="lit">8888</span><span class="pun">);</span></pre>
 
         <p>
-            這段代碼只會啟動一個偵聽8888埠號的伺服器，它不做任何別的事情，甚至連請求都不會應答。
+            這段程式碼只會啟動一個監聽8888埠號的伺服器，它不做任何別的事情，甚至連請求都不會應答。
         </p>
 
         <p>
@@ -565,7 +565,7 @@
                 class="pln"> </span><span class="str">"Hello"</span><span class="pun">);</span></pre>
 
         <p>
-            請仔細閱讀這段代碼！在這裡，我們把 <em>say</em> 函數作為<em>execute</em>函數的第一個變數進行了傳遞。這裡回傳的不是 <em>say</em> 的回傳值，而是 <em>say</em> 本身！
+            請仔細閱讀這段程式碼！在這裡，我們把 <em>say</em> 函數作為<em>execute</em>函數的第一個變數進行了傳遞。這裡回傳的不是 <em>say</em> 的回傳值，而是 <em>say</em> 本身！
         </p>
 
         <p>
@@ -627,7 +627,7 @@
 
         <p>現在它看上去應該清晰了很多：我們向 <em>createServer</em> 函數傳遞了一個匿名函數。  </p>
 
-        <p>用這樣的代碼也可以達到同樣的目的：  </p>
+        <p>用這樣的程式碼也可以達到同樣的目的：  </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
                 class="str">"http"</span><span class="pun">);</span><span class="pln"><br><br></span><span class="kwd">function</span><span
@@ -658,7 +658,7 @@
 
         <p>這一切都歸結於 &quot;Node.js是事件驅動的&quot; 這一事實。好吧，其實我也不是特別確切的了解這句話的意思。不過我會試著解釋，為什麼它對我們用Node.js寫網絡應用（Web based application）是有意義的。  </p>
 
-        <p>當我們使用 <em>http.createServer</em> 方法的時候，我們當然不只是想要一個偵聽某個埠號的伺服器，我們還想要它在伺服器收到一個HTTP請求的時候做點什麼。  </p>
+        <p>當我們使用 <em>http.createServer</em> 方法的時候，我們當然不只是想要一個監聽某個埠號的伺服器，我們還想要它在伺服器收到一個HTTP請求的時候做點什麼。  </p>
 
         <p>問題是，這是非同步的：請求任何時候都可能到達，但是我們的伺服器卻跑在一個單程序中。  </p>
 
@@ -676,7 +676,7 @@
 
         <p>至少對我來說，需要一些功夫才能弄懂它。你如果還是不太確定的話就再去讀讀Felix的部落格文章。  </p>
 
-        <p>讓我們再來琢磨琢磨這個新概念。我們怎麼證明，在建立完伺服器之後，即使沒有HTTP請求進來、我們的回呼(callback)函數也沒有被執行的情況下，我們的代碼還繼續有效呢？我們試試這個：  </p>
+        <p>讓我們再來琢磨琢磨這個新概念。我們怎麼證明，在建立完伺服器之後，即使沒有HTTP請求進來、我們的回呼(callback)函數也沒有被執行的情況下，我們的程式碼還繼續有效呢？我們試試這個：  </p>
 
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
@@ -713,13 +713,13 @@
 
         <h3>伺服器是如何處理請求的</h3>
 
-        <p>好的，接下來我們簡單分析一下我們伺服器代碼中剩下的部分，也就是我們的回呼(callback)函數 <em>onRequest()</em> 的主體部分。  </p>
+        <p>好的，接下來我們簡單分析一下我們伺服器程式碼中剩下的部分，也就是我們的回呼(callback)函數 <em>onRequest()</em> 的主體部分。  </p>
 
         <p>當回呼(callback)啟動，我們的 <em>onRequest()</em> 函數被觸發的時候，有兩個參數被傳入： <em>request</em> 和 <em>response</em> 。  </p>
 
         <p>它們是物件，你可以使用它們的方法來處理HTTP請求的細節，並且回應請求（比如向發出請求的瀏覽器發回一些東西）。  </p>
 
-        <p>所以我們的代碼就是：當收到請求時，使用 <em>response.writeHead()</em> 函數發送一個HTTP狀態200和HTTP頭的內容類型（content-type），使用 <em>response.write()</em> 函數在HTTP相應主體中發送文字 &quot;Hello World"。  </p>
+        <p>所以我們的程式碼就是：當收到請求時，使用 <em>response.writeHead()</em> 函數發送一個HTTP狀態200和HTTP頭的內容類型（content-type），使用 <em>response.write()</em> 函數在HTTP相應主體中發送文字 &quot;Hello World"。  </p>
 
         <p>最後，我們執行 <em>response.end()</em> 完成回應。  </p>
 
@@ -729,18 +729,18 @@
 
         <h3>伺服器端的模組放在哪裡</h3>
 
-        <p>OK，就像我保證過的那樣，我們現在可以回到我們如何組織應用這個問題上了。我們現在在 <em>server.js</em> 檔案中有一個非常基礎的HTTP伺服器代碼，而且我提到通常我們會有一個叫 <em>index.js</em> 的檔案去執行應用的其他模組（比如 <em>server.js</em> 中的HTTP伺服器模組）來引導和啟動應用。  </p>
+        <p>OK，就像我保證過的那樣，我們現在可以回到我們如何組織應用這個問題上了。我們現在在 <em>server.js</em> 檔案中有一個非常基礎的HTTP伺服器程式碼，而且我提到通常我們會有一個叫 <em>index.js</em> 的檔案去執行應用的其他模組（比如 <em>server.js</em> 中的HTTP伺服器模組）來引導和啟動應用。  </p>
 
         <p>我們現在就來談談怎麼把server.js變成一個真正的Node.js模組，使它可以被我們（還沒動工）的 <em>index.js</em> 主檔案使用。</p>
 
-        <p>也許你已經注意到，我們已經在代碼中使用了模組了。像這樣：  </p>
+        <p>也許你已經注意到，我們已經在程式碼中使用了模組了。像這樣：  </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
                 class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
                 class="str">"http"</span><span class="pun">);</span><span class="pln"><br><br></span><span class="pun">...</span><span
                 class="pln"><br><br>http</span><span class="pun">.</span><span class="pln">createServer</span><span
                 class="pun">(...);</span></pre>
 
-        <p>Node.js中自帶了一個叫做 &quot;http&quot; 的模組，我們在我們的代碼中請求它並把回傳值賦給一個區域變數。  </p>
+        <p>Node.js中自帶了一個叫做 &quot;http&quot; 的模組，我們在我們的程式碼中請求它並把回傳值賦給一個區域變數。  </p>
 
         <p>這把我們的區域變數變成了一個擁有所有 <em>http</em> 模組所提供的公共方法的物件。</p>
 
@@ -755,7 +755,7 @@
 
         <p>等我們把 <em>server.js</em> 變成一個真正的模組，你就能搞明白了。  </p>
 
-        <p>事實上，我們不用做太多的修改。把某段代碼變成模組意味著我們需要把我們希望提供其功能的部分 <em>匯出</em> 到請求這個模組的腳本。  </p>
+        <p>事實上，我們不用做太多的修改。把某段程式碼變成模組意味著我們需要把我們希望提供其功能的部分 <em>匯出</em> 到請求這個模組的腳本。  </p>
 
         <p>目前，我們的HTTP伺服器需要匯出的功能非常簡單，因為請求伺服器模組的腳本僅僅是需要啟動伺服器而已。  </p>
 
@@ -785,7 +785,7 @@
                 class="pun">.</span><span class="pln">start </span><span class="pun">=</span><span
                 class="pln"> start</span><span class="pun">;</span></pre>
 
-        <p>這樣，我們現在就可以建立我們的主檔案 <em>index.js</em> 並在其中啟動我們的HTTP了，雖然伺服器的代碼還在 <em>server.js</em> 中。  </p>
+        <p>這樣，我們現在就可以建立我們的主檔案 <em>index.js</em> 並在其中啟動我們的HTTP了，雖然伺服器的程式碼還在 <em>server.js</em> 中。  </p>
 
         <p>建立 <em>index.js</em> 檔案並寫入以下內容：  </p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> server </span><span class="pun">=</span><span
@@ -804,13 +804,13 @@
 
         <p>對於一個非常簡單的應用來說，你可以直接在回呼(callback)函數 <em>onRequest()</em> 中做這件事情。不過就像我說過的，我們應該加入一些抽象的元素，讓我們的例子變得更有趣一點兒。  </p>
 
-        <p>處理不同的HTTP請求在我們的代碼中是一個不同的部分，叫做 &quot;路由選擇&quot; ——那麼，我們接下來就創造一個叫做 <em>路由</em> 的模組吧。  </p>
+        <p>處理不同的HTTP請求在我們的程式碼中是一個不同的部分，叫做 &quot;路由選擇&quot; ——那麼，我們接下來就創造一個叫做 <em>路由</em> 的模組吧。  </p>
 
         <a name="whats-needed-to-route-requests"></a>
 
         <h3>如何來進行請求的 &quot;路由&quot; </h3> 
 
-         <p>我們要為路由提供請求的URL和其他需要的GET及POST參數，隨後路由需要根據這些資料來執行相應的代碼（這裡 &quot;代碼&quot; 對應整個應用的第三部分：一系列在接收到請求時真正工作的處理程序）。</p>
+         <p>我們要為路由提供請求的URL和其他需要的GET及POST參數，隨後路由需要根據這些資料來執行相應的程式碼（這裡 &quot;程式碼&quot; 對應整個應用的第三部分：一系列在接收到請求時真正工作的處理程序）。</p>
 
         <p>因此，我們需要查看HTTP請求，從中提取出請求的URL以及GET/POST參數。這一功能應當屬於路由還是伺服器（甚至作為一個模組自身的功能）確實值得探討，但這裡暫定其為我們的HTTP伺服器的功能。</p>
 
@@ -869,7 +869,7 @@ http://localhost:8888/start?foo=bar&amp;hello=world
 
         <p>好了，我們的應用現在可以透過請求的URL路徑來區別不同請求了--這使我們得以使用路由（還未完成）來將請求以URL路徑為基準映射到處理程序上。</p>
 
-        <p>在我們所要建構的應用中，這意味著來自<em>/start</em>和<em>/upload</em>的請求可以使用不同的代碼來處理。稍後我們將看到這些內容是如何整合到一起的。</p>
+        <p>在我們所要建構的應用中，這意味著來自<em>/start</em>和<em>/upload</em>的請求可以使用不同的程式碼來處理。稍後我們將看到這些內容是如何整合到一起的。</p>
 
         <p>現在我們可以來編寫路由了，建立一個名為<em>router.js</em>的檔案，增加以下內容：</p>
         <pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> route</span><span
@@ -881,7 +881,7 @@ http://localhost:8888/start?foo=bar&amp;hello=world
                 class="pun">.</span><span class="pln">route </span><span class="pun">=</span><span
                 class="pln"> route</span><span class="pun">;</span></pre>
 
-        <p>如你所見，這段代碼什麼也沒幹，不過對於現在來說這是應該的。在增加更多的邏輯以前，我們先來看看如何把路由和伺服器整合起來。</p>
+        <p>如你所見，這段程式碼什麼也沒幹，不過對於現在來說這是應該的。在增加更多的邏輯以前，我們先來看看如何把路由和伺服器整合起來。</p>
 
         <p>我們的伺服器應當知道路由的存在並加以有效利用。我們當然可以透過硬編碼的方式將這一依賴項綁定到伺服器上，但是其它語言的編程經驗告訴我們這會是一件非常痛苦的事，因此我們將使用依賴注入的方式較松散地增加路由模組（你可以讀讀<a href="http://martinfowler.com/articles/injection.html">Martin Fowlers關於依賴注入的大作</a>來作為背景知識）。</p>
 
@@ -967,7 +967,7 @@ About to route a request for /foo</pre>
 
         <p>當然這還遠遠不夠，路由，顧名思義，是指我們要針對不同的URL有不同的處理方式。例如處理<em>/start</em>的 &quot;業務邏輯&quot; 就應該和處理<em>/upload</em>的不同。</p>
 
-        <p>在現在的實現下，路由過程會在路由模組中 &quot;結束&quot; ，並且路由模組並不是真正針對請求 &quot;采取行動&quot; 的模組，否則當我們的應用程式變得更為復雜時，將無法很好地擴充。</p>
+        <p>在現在的實現下，路由過程會在路由模組中 &quot;結束&quot; ，並且路由模組並不是真正針對請求 &quot;採取行動&quot; 的模組，否則當我們的應用程式變得更為複雜時，將無法很好地擴充。</p>
 
         <p>我們暫時把作為路由目標的函數稱為請求處理程序。現在我們不要急著來開發路由模組，因為如果請求處理程序沒有就緒的話，再怎麼完善路由模組也沒有多大意義。</p>
 
@@ -986,7 +986,7 @@ About to route a request for /foo</pre>
                 class="pun">.</span><span class="pln">upload </span><span class="pun">=</span><span
                 class="pln"> upload</span><span class="pun">;</span></pre>
 
-        <p>這樣我們就可以把請求處理程序和路由模組連接起來，讓路由 &quot;有路可尋&quot; 。</p>
+        <p>這樣我們就可以把請求處理程序和路由模組連接起來，讓路由 &quot;有路可尋&quot;。</p>
 
         <p>在這裡我們得做個決定：是將requestHandlers模組硬編碼到路由裡來使用，還是再增加一點依賴注入？雖然和其他模式一樣，依賴注入不應該僅僅為使用而使用，但在現在這個情況下，使用依賴注入可以讓路由和請求處理程序之間的耦合更加松散，也因此能讓路由的重用性更高。</p>
 
@@ -1006,7 +1006,7 @@ About to route a request for /foo</pre>
 
         <p>但如果JavaScript的物件僅僅是鍵/值對的集合，它又怎麼會擁有方法呢？好吧，這裡的值可以是字串、數字或者……函數！</p>
 
-        <p>好了，最後再回到代碼上來。現在我們已經確定將一系列請求處理程序透過一個物件來傳遞，並且需要使用松耦合的方式將這個物件注入到<em>route()</em>函數中。</p>
+        <p>好了，最後再回到程式碼上來。現在我們已經確定將一系列請求處理程序透過一個物件來傳遞，並且需要使用松耦合的方式將這個物件注入到<em>route()</em>函數中。</p>
 
         <p>我們先將這個物件引入到主檔案<em>index.js</em>中：</p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> server </span><span class="pun">=</span><span
@@ -1099,7 +1099,7 @@ About to route a request for /foo</pre>
                 class="pun">.</span><span class="pln">route </span><span class="pun">=</span><span
                 class="pln"> route</span><span class="pun">;</span></pre>
 
-       <p>透過以上代碼，我們首先檢查給定的路徑對應的請求處理程序是否存在，如果存在的話直接執行相應的函數。我們可以用從關聯陣列中取得元素一樣的方式從傳遞的物件中取得請求處理函數，因此就有了簡潔流暢的形如<em>handle&#91;pathname&#93;();</em>的表達式，這個感覺就像在前方中提到的那樣： &quot;嗨，請幫我處理了這個路徑&quot; 。</p>
+       <p>透過以上程式碼，我們首先檢查給定的路徑對應的請求處理程序是否存在，如果存在的話直接執行相應的函數。我們可以用從關聯陣列中取得元素一樣的方式從傳遞的物件中取得請求處理函數，因此就有了簡潔流暢的形如<em>handle&#91;pathname&#93;();</em>的表達式，這個感覺就像在前方中提到的那樣： &quot;嗨，請幫我處理了這個路徑&quot; 。</p>
 
         <p>有了這些，我們就把伺服器、路由和請求處理程序在一起了。現在我們啟動應用程式並在瀏覽器中存取<em>http://localhost:8888/start</em>，以下日志可以說明系統執行了正確的請求處理程序：</p>
 
@@ -1192,7 +1192,7 @@ Request handler 'start' was called.</pre>
                 class="pun">.</span><span class="pln">route </span><span class="pun">=</span><span
                 class="pln"> route</span><span class="pun">;</span></pre>
         <p>
-            正如上述代碼所示，當請求無法路由的時候，我們也回傳了一些相關的錯誤訊息。
+            正如上述程式碼所示，當請求無法路由的時候，我們也回傳了一些相關的錯誤訊息。
         </p>
 
         <p>
@@ -1299,7 +1299,7 @@ Request handler 'start' was called.</pre>
                 class="pln"> upload</span><span class="pun">;</span></pre>
 
         <p>
-            上述代碼中，當函數<em>start()</em>被執行的時候，Node.js會先等待10秒，之後才會回傳 &quot;Hello Start&quot; 。當執行<em>upload()</em>的時候，會和此前一樣立即回傳。
+            上述程式碼中，當函數<em>start()</em>被執行的時候，Node.js會先等待10秒，之後才會回傳 &quot;Hello Start&quot; 。當執行<em>upload()</em>的時候，會和此前一樣立即回傳。
         </p>
 
         <p>
@@ -1311,7 +1311,7 @@ Request handler 'start' was called.</pre>
         </p>
 
         <p>
-            如往常一樣，我們先要重啟下伺服器。為了看到效果，我們要進行一些相對復雜的操作（跟著我一起做）： 首先，打開兩個瀏覽器窗口或者標簽頁。在第一個瀏覽器窗口的地址欄中輸入<a href="http://localhost:8888/start" rel="nofollow">http://localhost:8888/start</a>， 但是先不要打開它！
+            如往常一樣，我們先要重啟下伺服器。為了看到效果，我們要進行一些相對複雜的操作（跟著我一起做）： 首先，打開兩個瀏覽器窗口或者標簽頁。在第一個瀏覽器窗口的地址欄中輸入<a href="http://localhost:8888/start" rel="nofollow">http://localhost:8888/start</a>， 但是先不要打開它！
         </p>
 
         <p>
@@ -1331,7 +1331,7 @@ Request handler 'start' was called.</pre>
         </p>
 
         <p>
-            這顯然是個問題，因為Node一向是這樣來標榜自己的：<em> &quot;在node中除了代碼，所有一切都是並行執行的&quot; </em>。
+            這顯然是個問題，因為Node一向是這樣來標榜自己的：<em> &quot;在node中除了程式碼，所有一切都是並行執行的&quot; </em>。
         </p>
 
         <p>
@@ -1343,7 +1343,7 @@ Request handler 'start' was called.</pre>
         </p>
 
         <p>
-            對於Node.js來說，它是這樣處理的：<em> &quot;嘿，probablyExpensiveFunction()（譯者注：這裡指的就是需要花時間處理的函數），你繼續處理你的事情，我（Node.js執行緒）先不等你了，我繼續去處理你後面的代碼，請你提供一個callbackFunction()，等你處理完之後我會去執行該回呼(callback)函數的，謝謝！&quot; </em>
+            對於Node.js來說，它是這樣處理的：<em> &quot;嘿，probablyExpensiveFunction()（譯者注：這裡指的就是需要花時間處理的函數），你繼續處理你的事情，我（Node.js執行緒）先不等你了，我繼續去處理你後面的程式碼，請你提供一個callbackFunction()，等你處理完之後我會去執行該回呼(callback)函數的，謝謝！&quot; </em>
         </p>
 
         <p>
@@ -1390,7 +1390,7 @@ Request handler 'start' was called.</pre>
                 class="pln"> upload</span><span class="pun">;</span></pre>
 
         <p>
-            上述代碼中，我們引入了一個新的Node.js模組，<em>child_process</em>。之所以用它，是為了實現一個既簡單又實用的Non-Blocking操作：<em>exec()</em>。
+            上述程式碼中，我們引入了一個新的Node.js模組，<em>child_process</em>。之所以用它，是為了實現一個既簡單又實用的Non-Blocking操作：<em>exec()</em>。
         </p>
 
         <p>
@@ -1398,7 +1398,7 @@ Request handler 'start' was called.</pre>
         </p>
 
         <p>
-            上述代碼是非常直觀的： 建立了一個新的變數<em>content</em>（初始值為 &quot;empty&quot; ），執行 &quot;ls -lah&quot; 命令，將結果賦值給content，最後將content回傳。
+            上述程式碼是非常直觀的： 建立了一個新的變數<em>content</em>（初始值為 &quot;empty&quot; ），執行 &quot;ls -lah&quot; 命令，將結果賦值給content，最後將content回傳。
         </p>
 
         <p>
@@ -1440,7 +1440,7 @@ Request handler 'start' was called.</pre>
                 class="pln"><br></span><span class="pun">}</span></pre>
 
         <p>
-            現在就到了問題根源所在了：我們的代碼是同步執行的，這就意味著在執行<em>exec()</em>之後，Node.js會立即執行 <em>return content</em> ；在這個時候，<em>content</em>仍然是 &quot;empty&quot; ，因為傳遞給<em>exec()</em>的回呼(callback)函數還未執行到——因為<em>exec()</em>的操作是非同步的。
+            現在就到了問題根源所在了：我們的程式碼是同步執行的，這就意味著在執行<em>exec()</em>之後，Node.js會立即執行 <em>return content</em> ；在這個時候，<em>content</em>仍然是 &quot;empty&quot; ，因為傳遞給<em>exec()</em>的回呼(callback)函數還未執行到——因為<em>exec()</em>的操作是非同步的。
         </p>
 
         <p>
@@ -1448,7 +1448,7 @@ Request handler 'start' was called.</pre>
         </p>
 
         <p>
-            為了讓效果更加明顯，我們想象一個更耗時的命令：  &quot;find /&quot; ，它在我機器上需要執行1分鐘左右的時間，然而，盡管在請求處理程序中，我把 &quot;ls -lah&quot; 換成 &quot;find /&quot; ，當打開/start URL的時候，依然能夠立即獲得HTTP回應 —— 很明顯，當<em>exec()</em>在後台執行的時候，Node.js自身會繼續執行後面的代碼。並且我們這裡假設傳遞給<em>exec()</em>的回呼(callback)函數，只會在 &quot;find /&quot; 命令執行完成之後才會被執行。
+            為了讓效果更加明顯，我們想象一個更耗時的命令：  &quot;find /&quot; ，它在我機器上需要執行1分鐘左右的時間，然而，盡管在請求處理程序中，我把 &quot;ls -lah&quot; 換成 &quot;find /&quot; ，當打開/start URL的時候，依然能夠立即獲得HTTP回應 —— 很明顯，當<em>exec()</em>在後台執行的時候，Node.js自身會繼續執行後面的程式碼。並且我們這裡假設傳遞給<em>exec()</em>的回呼(callback)函數，只會在 &quot;find /&quot; 命令執行完成之後才會被執行。
         </p>
 
         <p>
@@ -1686,7 +1686,7 @@ Request handler 'start' was called.</pre>
         <p>
             第一，盡管在Node.js中處理基礎的POST請求相對比較簡單，但在這過程中還是能學到很多。
             <br>
-            第二，用Node.js來處理檔案上傳（multipart POST請求）是比較復雜的，它<em>不</em>在本書的范疇，但，如何使用外部模組卻是在本書涉獵內容之內。
+            第二，用Node.js來處理檔案上傳（multipart POST請求）是比較複雜的，它<em>不</em>在本書的范疇，但，如何使用外部模組卻是在本書涉獵內容之內。
         </p>
 
         <a name="handling-post-requests"></a>
@@ -1857,11 +1857,11 @@ Request handler 'start' was called.</pre>
                 class="pln"> start</span><span class="pun">;</span></pre>
 
         <p>
-            上述代碼做了三件事情： 首先，我們設定了接收資料的編碼格式為UTF-8，然後註冊了 &quot;data&quot; 事件的監聽器，用於收集每次接收到的新資料區塊，並將其賦值給<em>postData</em> 變數，最後，我們將請求路由的執行移到<em>end</em>事件處理程序中，以確保它只會當所有資料接收完畢後才觸發，並且只觸發一次。我們同時還把POST資料傳遞給請求路由，因為這些資料，請求處理程序會用到。
+            上述程式碼做了三件事情： 首先，我們設定了接收資料的編碼格式為UTF-8，然後註冊了 &quot;data&quot; 事件的監聽器，用於收集每次接收到的新資料區塊，並將其賦值給<em>postData</em> 變數，最後，我們將請求路由的執行移到<em>end</em>事件處理程序中，以確保它只會當所有資料接收完畢後才觸發，並且只觸發一次。我們同時還把POST資料傳遞給請求路由，因為這些資料，請求處理程序會用到。
         </p>
 
         <p>
-            上述代碼在每個資料區塊到達的時候輸出了日志，這對於最終生產環境來說，是很不好的（資料量可能會很大，還記得吧？），但是，在開發階段是很有用的，有助於讓我們看到發生了什麼。
+            上述程式碼在每個資料區塊到達的時候輸出了日志，這對於最終生產環境來說，是很不好的（資料量可能會很大，還記得吧？），但是，在開發階段是很有用的，有助於讓我們看到發生了什麼。
         </p>
 
         <p>
@@ -2125,7 +2125,7 @@ Request handler 'start' was called.</pre>
                 class="pun">(</span><span class="lit">8888</span><span class="pun">);</span></pre>
 
         <p>
-            如果我們將上述代碼，儲存到一個檔案中，並透過<em>node</em>來執行，就可以進行簡單的表單送出了，包括檔案上傳。然後，可以看到透過執行<em>form.parse</em>傳遞給回呼(callback)函數的<em>files</em>物件的內容，如下所示：
+            如果我們將上述程式碼，儲存到一個檔案中，並透過<em>node</em>來執行，就可以進行簡單的表單送出了，包括檔案上傳。然後，可以看到透過執行<em>form.parse</em>傳遞給回呼(callback)函數的<em>files</em>物件的內容，如下所示：
         </p>
         <pre class="lang-js">received upload:
 
@@ -2143,7 +2143,7 @@ Request handler 'start' was called.</pre>
         mime: [Getter] } } }</pre>
 
         <p>
-            為了實現我們的功能，我們需要將上述代碼應用到我們的應用中，另外，我們還要考慮如何將上傳檔案的內容（儲存在<em>/tmp</em>目錄中）顯示到瀏覽器中。
+            為了實現我們的功能，我們需要將上述程式碼應用到我們的應用中，另外，我們還要考慮如何將上傳檔案的內容（儲存在<em>/tmp</em>目錄中）顯示到瀏覽器中。
         </p>
 
         <p>
@@ -2401,7 +2401,7 @@ Request handler 'start' was called.</pre>
                 class="pln"> show</span><span class="pun">;</span></pre>
 
         <p>
-            很好。下一步相對比較復雜。這裡有這樣一個問題： 我們需要在<em>upload</em>處理程序中對上傳的檔案進行處理，這樣的話，我們就需要將<em>request</em>物件傳遞給node-formidable的<em>form.parse</em>函數。
+            很好。下一步相對比較複雜。這裡有這樣一個問題： 我們需要在<em>upload</em>處理程序中對上傳的檔案進行處理，這樣的話，我們就需要將<em>request</em>物件傳遞給node-formidable的<em>form.parse</em>函數。
         </p>
 
         <p>
