@@ -6,7 +6,7 @@
 
 		<title>Node.js для начинающих » Подробный учебник по Node.js </title>
 		<meta name="description" content="Подробный учебник по Node.js для начинающих: Научитесь создавать полномасштабные веб-приложения с серверными JavaScript" />
-		
+
 		<link rel="icon" href="favicon.png" type="image/png" />
 		<link rel="stylesheet" type="text/css" href="olddefault-ru.css" />
 
@@ -15,7 +15,7 @@
 		<div id="forkmeongithub">
 			<a href="https://github.com/ManuelKiessling/NodeBeginnerBook"><img src="fork_me_on_github.png" width="149" height="149" alt="Fork me on GitHub" /></a>
 		</div>
-		
+
 		<div id="translations">
 			<table>
 				<tr>
@@ -75,8 +75,8 @@
                     </td>
                 </tr>
 			</table>
-		</div>		
-		
+		</div>
+
 		<div id="book">
 		<h1>Node.js для начинающих</h1>
 
@@ -84,46 +84,46 @@
 		<div style="color:#888; font-family:'Helvetica Neue', sans-serif; font-size:75%; margin-left:279px; margin-top:5px;"><a href="http://www.nodebeginner.ru/">Перевод</a>: <a href="http://artod.ru/">Artod</a>, правка 2013-03-24, spmbt</div>
 
 		<a name="about"></a>
-		
+
 		<h2>О проекте</h2>
 
 		<p>
 			Цель данного документа &mdash; помочь вам начать разработку приложений на Node.js и научить всему, что необходимо знать о «продвинутом» JavaScript.
 			Это больше, чем обычный «Hello world»-туториал.
 		</p>
-		
+
 		<a name="status"></a>
 
 		<h3>Статус</h3>
 
 		<p>
-			Вы читаете финальную версию этой книги, в обновлениях исправляются только ошибки или отражаются изменения в новых версиях Node.js. Последнее обновление 12 Февраля 2012.
+			Вы читаете финальную версию этой книги, в обновлениях исправляются только ошибки или отражаются изменения в новых версиях Node.js. Последнее обновление 10 Марта 2014.
 		</p>
 
 		<p>
-			Код примеров этой книги тестировался на <u><b>Node.js версии 0.8.8</b></u> <i style="color:#999">(проверено по англ. версии --прим.перев.)</i>.
+			Код примеров этой книги тестировался на <u><b>Node.js версии 0.10.25</b></u> <i style="color:#999">(проверено по англ. версии --прим.перев.)</i>.
 		</p>
 
 		<a name="intended-audience"></a>
-		
+
 		<h3>Целевая аудитория</h3>
-		
+
 		<p>
 			Вероятно, документ будет полезен читателям с базовыми знаниями, примерно, как у меня: опыт работы хотя бы с одним объектно-ориентированным языком, таким как Ruby, Python, PHP или Java, небольшой опыт в Javascript и полный новичок в Node.js.
 		</p>
 		<p>
 			Документ рассчитан на разработчиков, уже знакомых с другими языками программирования.
 			Это значит, что здесь не приводится объяснение действительно базовых вещей, таких как типы данных, переменные, управляющие структуры и т. д.
-			Вы должные разбираться в этих понятиях, чтобы понимать эту книгу.
+			Вы должны разбираться в этих понятиях, чтобы понимать эту книгу.
 		</p>
 		<p>
 			Однако, поскольку функции и объекты в JavaScript отличаются от своих аналогов в других языках, они будут описаны достаточно подробно.
 		</p>
 
 		<a name="structure"></a>
-		
+
 		<h3>Структура учебника</h3>
-		
+
 		<p>
 			Прочитав данный документ до конца, вы сможете создать веб-приложение, которое позволит пользователям просматривать веб-страницы и загружать файлы.
 		</p>
@@ -144,8 +144,8 @@
 			Как и было обещано, по пути мы узнаем о некоторых продвинутых понятиях JavaScript, о том как их использовать и посмотрим, почему разумно использовать эти понятия вместо привычных нам в других языках программирования.
 		</p>
 		<p>
-			Исходный код законченного приложения доступен в
-			<a href="https://github.com/ManuelKiessling/NodeBeginnerBook/tree/master/code/application">the NodeBeginnerBook Github репозитории</a>.
+			Исходный код законченного приложения доступен в Github репозитории
+			<a href="https://github.com/ManuelKiessling/NodeBeginnerBook/tree/master/code/application">the NodeBeginnerBook</a>.
 		</p>
 
 		<div id="table-of-contents-headline">Содержание</div>
@@ -211,9 +211,9 @@
 					</ul>
 				</li>
 			</ul>
-		
+
 		</div>
-		
+
 		<a name="javascript-and-nodejs"></a>
 
 		<h2>JavaScript и Node.js</h2>
@@ -225,7 +225,7 @@
 		</p>
 		<p>
 			Скорее всего, как и в моем случае, вы начали свой путь в веб-разработке с написания простых статических HTML-документов.
-			Вместе с этим, вы познакомились с веселой штукой, называемой JavaScript, но использовали его исключительно в простых случаях, добавляя интерактивности на ваши веб-странички.
+			Вместе с этим, вы познакомились с веселой штукой, называемой JavaScript, но использовали его исключительно в простых случаях, добавляя интерактивности вашим веб-страничкам.
 		</p>
 		<p>
 			Что вы хотели узнать &mdash; так это действительно полезные вещи; вы хотели знать, как создать сложный сайт.
@@ -262,11 +262,11 @@
 		<p>
 			Моя цель заключается в обеспечении вас руководством.
 		</p>
-		
+
 		<a name="a-word-of-warning"></a>
 
 		<h3>Предупреждение</h3>
-		
+
 		<p>
 			Существуют действительно отличные специалисты в области JavaScript. Я не из их числа.
 		</p>
@@ -284,9 +284,9 @@
 		</p>
 
 		<a name="server-side-javascript"></a>
-		
+
 		<h3>Server-side JavaScript</h3>
-		
+
 		<p>
 			Первая инкарнация JavaScript жила в теле браузера.
 			Но это всего лишь контекст.
@@ -313,7 +313,7 @@
 		</p>
 
 		<a name="hello-world"></a>
-		
+
 		<h3>«Hello world»</h3>
 		<p>
 			Хорошо, давайте пойдём сразу с места в карьер и напишем наше первое Node.js-приложение: «Hello world».
@@ -327,9 +327,9 @@
 		<p>
 			Сохраняем файл и выполняем его посредством Node.js:
 		</p>
-		
+
 		<pre>node helloworld.js</pre>
-		
+
 		<p>
 			Это должно вывести <em>Hello World</em> на наш терминал.
 		</p>
@@ -338,11 +338,11 @@
 		</p>
 
 		<a name="a-full-blown-web-application-with-nodejs"></a>
-		
+
 		<h2>Полномасштабное веб-приложение с Node.js</h2>
-		
+
 		<a name="the-use-cases"></a>
-		
+
 		<h3>Что должно делать наше приложение</h3>
 		<p>
 			Возьмём что-нибудь попроще, но приближенное к реальности:
@@ -359,7 +359,7 @@
 			</li>
 		</ul>
 		<p>
-			Вполне достаточно. Конечно, вы могли бы достичь этой цели, немного погуглив и поговнокодив. Но это не то, что нам нужно.
+			Вполне достаточно. Конечно, вы могли бы достичь этой цели, немного "погуглив" и "поговнокодив". Но это не то, что нам нужно.
 		</p>
 		<p>
 			Кроме того, мы не хотим писать только простой код для достижения цели, каким бы он элегантным и корректным ни был.
@@ -367,16 +367,16 @@
 		</p>
 
 		<a name="the-application-stack"></a>
-		
+
 		<h3>Задачи</h3>
-		
+
 		<p>
 			Давайте проанализируем наше приложение.
 			Что нужно, чтобы его реализовать:
 		</p>
 		<ul>
 			<li>
-				У нас &mdash; онлайн веб-приложение, поэтому нам нужен <strong>HTTP-сервер</strong>;
+				Мы хотим обслуживать веб-страницы, для этого нам нужен <strong>HTTP-сервер</strong>;
 			</li>
 			<li>
 				Нашему серверу необходимо обслуживать различные запросы в зависимости от URL, по которому был сделан запрос. Для этого нам нужен какой-нибудь роутер (маршрутизатор), чтобы иметь возможность направлять запросы определенным обработчикам;
@@ -413,13 +413,13 @@
 		</p>
 
 		<a name="building-the-application-stack"></a>
-		
+
 		<h2>Реализация приложения</h2>
-		
+
 		<a name="a-basic-http-server"></a>
-		
+
 		<h3>Простой HTTP-сервер</h3>
-		
+
 		<p>
 			Когда я подошел к моменту создания своего первого «реального» Node.js-приложения, я задался вопросом, как организовать мой код.
 			<br/>
@@ -444,7 +444,7 @@
 			Давайте начнём с модуля сервера.
 			Создайте файл <em>server.js</em> в корневой директории вашего проекта и поместите туда следующий код:
 		</p>
-		
+
 		<pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
 				class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
 				class="str">"http"</span><span class="pun">);</span><span class="pln"><br><br>http</span><span
@@ -461,16 +461,16 @@
 				class="pun">();</span><span class="pln"><br></span><span class="pun">}).</span><span
 				class="pln">listen</span><span class="pun">(</span><span class="lit">8888</span><span
 				class="pun">);</span></pre>
-				
+
 		<p>
 			И всё!
 			Вы написали работающий HTTP-сервер.
 			Давайте проверим его, запустив и протестировав.
 			Во-первых, выполните ваш скрипт в Node.js:
 		</p>
-		
+
 		<pre>node server.js</pre>
-		
+
 		<p>
 			Теперь откройте ваш браузер и перейдите по адресу <a href="http://localhost:8888/" rel="nofollow">http://localhost:8888/</a>.
 			Должна вывестись веб-страница со строкой «Hello world».
@@ -482,9 +482,9 @@
 		</p>
 
 		<a name="analyzing-our-http-server"></a>
-		
+
 		<h3>Анализ нашего HTTP-сервера</h3>
-		
+
 		<p>
 			Хорошо, тогда давайте проанализируем, что здесь действительно происходит.
 		</p>
@@ -519,15 +519,15 @@
 			Оказывается, эта определяемая функции и есть первый (и только) параметр, который мы передаём в <em>createServer()</em> при вызове.
 			Потому что в JavaScript функции могут быть переданы как параметр в другую функцию.
 		</p>
-		
+
 		<a name="passing-functions-around"></a>
-		
+
 		<h3>Передача функций в качестве параметра</h3>
-		
+
 		<p>
 			Вы можете в качестве примера сделать что-то подобное:
 		</p>
-		
+
 		<pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> say</span><span
 				class="pun">(</span><span class="pln">word</span><span class="pun">)</span><span
 				class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; console</span><span
@@ -540,7 +540,7 @@
 				class="pln"><br></span><span class="pun">}</span><span class="pln"><br><br>execute</span><span
 				class="pun">(</span><span class="pln">say</span><span class="pun">,</span><span
 				class="pln"> </span><span class="str">"Hello"</span><span class="pun">);</span></pre>
-				
+
 		<p>
 			Разберите пример внимательно! Здесь мы передаём функцию <em>say</em> как первый параметр функции <em>execute</em>.
 			Не значение, которое возвращает функция <em>say</em>, а саму функцию <em>say</em>!
@@ -556,7 +556,7 @@
 			Но мы не обязаны применять этот косвенный способ, когда сначала определяется функция, а потом передаётся как параметр.
 			Мы можем определить и передать функцию как параметр в другую функцию прямо на месте:
 		</p>
-		
+
 		<pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> execute</span><span
 				class="pun">(</span><span class="pln">someFunction</span><span class="pun">,</span><span class="pln"> value</span><span
 				class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; someFunction</span><span
@@ -568,7 +568,7 @@
 				class="pln">word</span><span class="pun">)</span><span class="pln"> </span><span
 				class="pun">},</span><span class="pln"> </span><span class="str">"Hello"</span><span
 				class="pun">);</span></pre>
-				
+
 		<p>
 			Мы определяем функцию, которую хотим передать в <em>execute</em>, прямо там, где у <em>execute</em> должен быть первый параметр.
 		</p>
@@ -584,11 +584,11 @@
 		<a name="how-function-passing-makes-our-http-server-work"></a>
 
 		<h3>Как анонимная функция делает наш HTTP-сервер рабочим</h3>
-		
+
 		<p>
 			С этими знаниями давайте вернемся назад к нашему минималистичному HTTP-серверу:
 		</p>
-		
+
 		<pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
 				class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
 				class="str">"http"</span><span class="pun">);</span><span class="pln"><br><br>http</span><span
@@ -605,7 +605,7 @@
 				class="pun">();</span><span class="pln"><br></span><span class="pun">}).</span><span
 				class="pln">listen</span><span class="pun">(</span><span class="lit">8888</span><span
 				class="pun">);</span></pre>
-				
+
 		<p>
 			Сейчас должно быть ясно, что мы здесь делаем: передаём в функцию <em>createServer</em> анонимную функцию.
 		</p>
@@ -630,15 +630,15 @@
 				class="pun">.</span><span class="pln">createServer</span><span class="pun">(</span><span class="pln">onRequest</span><span
 				class="pun">).</span><span class="pln">listen</span><span class="pun">(</span><span
 				class="lit">8888</span><span class="pun">);</span></pre>
-				
+
 		<p>
 			Может сейчас самое время спросить: Почему мы это делаем так?
 		</p>
 
 		<a name="event-driven-callbacks"></a>
-		
+
 		<h3>Событийно-ориентированные обратные вызовы</h3>
-		
+
 		<p>
 			Ответ на вопрос a) не так легко дать (по крайней мере для меня), и b) кроется в самой природе работы Node.js — это событийно-ориентированность, то, благодаря чему он работает так быстро.
 		</p>
@@ -672,7 +672,7 @@
 			Всякий раз, когда наш сервер получает запрос, переданная нами функция будет вызываться.
 		</p>
 		<p>
-			Мы не знаем, когда это произойдет, но у нас теперь есть место, где можем обрабатывать входящий запрос.
+			Мы не знаем, когда это произойдет, но у нас теперь есть место, где мы сможем обрабатывать входящий запрос.
 			Это наша переданная функция и не имеет значения, определили ли мы её сначала или передали анонимно.
 		</p>
 		<p>
@@ -709,7 +709,7 @@
 				class="pun">(</span><span class="lit">8888</span><span class="pun">);</span><span class="pln"><br><br>console</span><span
 				class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Server has started."</span><span
 				class="pun">);</span></pre>
-				
+
 		<p>
 			Обратите внимание, что я использую <em>console.log</em> для вывода текста «Request received.», когда срабатывает функция <em>onRequest</em> (наш callback), а текст «Server has started.» &mdash; сразу <em>после</em> запуска HTTP-сервера.
 		</p>
@@ -726,9 +726,9 @@
 		</p>
 
 		<a name="how-our-server-handles-requests"></a>
-		
+
 		<h3>Как наш сервер обрабатывает запросы</h3>
-		
+
 		<p>
 			Хорошо, давайте быстро проанализируем остальной код сервера внутри тела нашей callback-функции <em>onRequest()</em>.
 		</p>
@@ -749,9 +749,9 @@
 		</p>
 
 		<a name="finding-a-place-for-our-server-module"></a>
-		
+
 		<h3>Выбор места для нашего серверного модуля</h3>
-		
+
 		<p>
 			Я обещал, что мы вернёмся к организации нашего приложения.
 			У нас есть код очень простого HTTP-сервера в файле <em>server.js</em> и я упоминал, что общепринято иметь главный файл с названием <em>index.js</em>, который используется для начальной загрузки и запуска нашего приложения, путём использования других модулей приложения (таких как наш модуль HTTP-сервера в <em>server.js</em>).
@@ -762,13 +762,13 @@
 		<p>
 			Как вы могли заметить, мы уже использовали модули в нашем коде:
 		</p>
-		
+
 		<pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
 				class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
 				class="str">"http"</span><span class="pun">);</span><span class="pln"><br><br></span><span class="pun">...</span><span
 				class="pln"><br><br>http</span><span class="pun">.</span><span class="pln">createServer</span><span
 				class="pun">(...);</span></pre>
-				
+
 		<p>
 			Где-то внутри Node.js живёт модуль под названием «http» и мы можем использовать его в нашем коде, путём подключения и присвоения его результата локальной переменной.
 		</p>
@@ -778,13 +778,13 @@
 		<p>
 			Общепринитая практика &mdash; использовать имя модуля для имени локальной переменной, но мы свободны в своём выборе делать, как нам нравится:
 		</p>
-		
+
 		<pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> foo </span><span
 				class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
 				class="str">"http"</span><span class="pun">);</span><span class="pln"><br><br></span><span class="pun">...</span><span
 				class="pln"><br><br>foo</span><span class="pun">.</span><span class="pln">createServer</span><span
 				class="pun">(...);</span></pre>
-				
+
 		<p>
 			Теперь понятно, как использовать внутренние модули Node.js.
 			А как создать свой собственный модуль и как его использовать?
@@ -797,12 +797,12 @@
 			Создание модуля означает, что нам нужно <em>экспортировать</em> какую-либо функциональность этого модуля в скрипт, который его вызывает.
 		</p>
 		<p>
-			Сейчас функционал нашего HTTP-сервера надо экспортировать, что довольно просто: скрипты, подключающие наш модуль сервера, просто запускают сервер. 
+			Сейчас функционал нашего HTTP-сервера надо экспортировать, что довольно просто: скрипты, подключающие наш модуль сервера, просто запускают сервер.
 		</p>
 		<p>
 			Чтобы сделать это возможным, поместим код нашего сервера в функцию под название <em>start</em> и будем экспортировать эту функцию:
 		</p>
-		
+
 		<pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
 				class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
 				class="str">"http"</span><span class="pun">);</span><span class="pln"><br><br></span><span class="kwd">function</span><span
@@ -827,32 +827,32 @@
 				class="pun">);</span><span class="pln"><br></span><span class="pun">}</span><span class="pln"><br><br>exports</span><span
 				class="pun">.</span><span class="pln">start </span><span class="pun">=</span><span
 				class="pln"> start</span><span class="pun">;</span></pre>
-				
+
 		<p>
 			Теперь мы можем создать наш основной файл <em>index.js</em>, и запускать наш HTTP-сервер там, хотя код для сервера находится всё ещё в файле <em>server.js</em>.
 		</p>
 		<p>
 			Создаём файл <em>index.js</em> со следующим содержимым:
 		</p>
-		
+
 		<pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> server </span><span class="pun">=</span><span
 				class="pln"> require</span><span class="pun">(</span><span class="str">"./server"</span><span
 				class="pun">);</span><span class="pln"><br><br>server</span><span class="pun">.</span><span class="pln">start</span><span
 				class="pun">();</span></pre>
-				
+
 		<p>
 			Как вы могли видеть, мы можем использовать модуль сервера просто как внешний модуль: вызвав этот файл и определив для него переменную, экспортированные функции становятся доступны нам.
 		</p>
 		<p>
 			Вот и всё. Сейчас мы можем запустить наше приложение через главный скрипт и он будет делать всё то же самое, что и раньше:
 		</p>
-<pre>node index.js</pre>
+		<pre>node index.js</pre>
 		<p>
 			Великолепно &mdash; сейчас мы можем помещать различные части нашего приложения в разные файлы и связывать их вместе, посредством превращения их в модули.
 		</p>
 		<p>
 			До сих пор мы работали только с первой частью нашего приложения: получение HTTP-запроса.
-			Но нам надо что-нибудь с ним делать. 
+			Но нам надо что-нибудь с ним делать.
 			В зависимости от URL, запрошенного браузером у нашего сервера, мы должны реагировать по-разному.
 		</p>
 		<p>
@@ -865,11 +865,11 @@
 		</p>
 
 		<a name="whats-needed-to-route-requests"></a>
-		
+
 		<h3>Что необходимо для «роутера»?</h3>
-		
+
 		<p>
-			Нам нужно иметь возможность скармливать запрошенный URL и возможные добавочные GET- и POST-параметры нашему роутеру и, с учётом этого, роутер должен определять, какой код выполнять (этот код есть третья составляющая нашего приложения: коллекция обработчиков запросов, делающие необходимую работу по определённому запросу).
+			Нам нужно иметь возможность "скармливать" запрошенный URL и возможные добавочные GET/POST-параметры нашему роутеру и, с учётом этого, роутер должен определять, какой код выполнять (этот код есть третья составляющая нашего приложения: коллекция обработчиков запросов, делающие необходимую работу по определённому запросу).
 		</p>
 		<p>
 			Итак, нам надо рассматривать HTTP-запрос и извлекать запрошенный URL, а также GET/POST-параметры.
@@ -894,15 +894,14 @@ http://localhost:8888/start?foo=bar&amp;hello=world
                                  |              |
               querystring(string)["foo"]        |
                                                 |
-                                querystring(string)["hello"]
-</pre>
+                                querystring(string)["hello"]</pre>
 		<p>
 			Конечно, мы также можем использовать <em>querystring</em> для парсинга тела POST-запроса, как мы увидим далее.
 		</p>
 		<p>
 			Давайте сейчас добавим в нашу функцию <em>onRequest()</em> логику, необходимую для извлечения пути URL (pathname), запрошенного браузером:
 		</p>
-		
+
 		<pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
 				class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
 				class="str">"http"</span><span class="pun">);</span><span class="pln"><br></span><span
@@ -936,20 +935,20 @@ http://localhost:8888/start?foo=bar&amp;hello=world
 				class="pun">);</span><span class="pln"><br></span><span class="pun">}</span><span class="pln"><br><br>exports</span><span
 				class="pun">.</span><span class="pln">start </span><span class="pun">=</span><span
 				class="pln"> start</span><span class="pun">;</span></pre>
-				
+
 		<p>
-			Замечательно. 
+			Замечательно.
 			Теперь наше приложение может различать запросы на основе запрошенного пути URL.
 			Это позволяет нам направлять запросы нашим обработчикам запросов в зависимости от пути URL, используя наш роутер.
 			Таким образом, мы можем строить наше приложение RESTful-путём, потому что теперь можем реализовать интерфейс, следующий принципам <em>Идентификации ресурсов</em> (смотри статью в википедии <a href="http://ru.wikipedia.org/wiki/REST">REST</a> для справки).
-			
+
 		</p>
 		<p>
-			В контексте нашего приложения, это означает, что мы сможем обрабатывать запросы с URL <em>/start</em> и <em>/upload</em> разными частями нашего кода. 
+			В контексте нашего приложения, это означает, что мы сможем обрабатывать запросы с URL <em>/start</em> и <em>/upload</em> разными частями нашего кода.
 			Скоро мы увидим, как всё соединяется вместе.
 		</p>
 		<p>
-			Теперь самое время написать наш роутер. 
+			Теперь самое время написать наш роутер.
 			Создаём новый файл под названием <em>router.js</em> со следующим содержимым:
 		</p>
 
@@ -1010,7 +1009,7 @@ http://localhost:8888/start?foo=bar&amp;hello=world
 				class="pun">);</span><span class="pln"><br></span><span class="pun">}</span><span class="pln"><br><br>exports</span><span
 				class="pun">.</span><span class="pln">start </span><span class="pun">=</span><span
 				class="pln"> start</span><span class="pun">;</span></pre>
-				
+
 		<p>
 			Теперь расширим наш <em>index.js</em> соответственно, то есть внедрим функцию <em>route()</em> нашего роутера в сервер:
 		</p>
@@ -1023,7 +1022,7 @@ http://localhost:8888/start?foo=bar&amp;hello=world
 				class="pun">.</span><span class="pln">start</span><span class="pun">(</span><span
 				class="pln">router</span><span class="pun">.</span><span class="pln">route</span><span
 				class="pun">);</span><span class="pln"><br></span></pre>
-				
+
 		<p>
 			Мы опять передаём функцию, которая не является чем-то новым для нас.
 		</p>
@@ -1040,9 +1039,9 @@ About to route a request for /foo</pre>
 		</p>
 
 		<a name="execution-in-the-kongdom-of-verbs"></a>
-		
+
 		<h3>Исполнение королевских постановлений в царстве глаголов</h3>
-		
+
 		<p>
 			Позвольте мне ещё раз побродить вокруг и около и снова поговорить о функциональном программировании.
 		</p>
@@ -1056,7 +1055,7 @@ About to route a request for /foo</pre>
 			Эй, роутер, не могли бы вы показать мне маршрут?
 		</p>
 		<p>
-			Но серверу не нужно нечто. 
+			Но серверу не нужно нечто.
 			Ему нужно только получить что-то <em>сделанное</em>, а чтоб получить уже что-то сделанное, вам не нужно нечто совсем, вам необходимо <em>действие</em>.
 			Вам не нужно <em>существительное</em>, вам нужен <em>глагол</em>.
 		</p>
@@ -1067,9 +1066,9 @@ About to route a request for /foo</pre>
 			Я понял это, когда читал шедевр Стива Йегге <a href="http://steve-yegge.blogspot.com/2006/03/execution-in-kingdom-of-nouns.html">Execution in the Kingdom of Nouns</a> (частичный перевод на русский <a href="http://ru-declarative.livejournal.com/64216.html">Исполнение королевских постановлений в царстве существительных</a>).
 			Почитайте это обязательно. Это одно из лучших произведений о программировании, которое я когда-либо имел удовольствие встречать.
 		</p>
-		
+
 		<a name="routing-to-real-request-handlers"></a>
-		
+
 		<h3>Роутинг реальных обработчиков запроса</h3>
 		<p>
 			Вернёмся к делу.
@@ -1081,11 +1080,11 @@ About to route a request for /foo</pre>
 			Мы хотели бы иметь «бизнес-логику» для запросов к <em>/start</em> в одной функции, а для запросов к <em>/upload</em> в другой.
 		</p>
 		<p>
-			Прямо сейчас мы закончим с нашим роутером. Роутер не место на самом деле, чтобы делать что-то с запросами, потому что будет плохо масштабироваться, а наше приложение будет становиться сложнее.
+			Прямо сейчас мы закончим с нашим роутером. Роутер, на самом деле, не место, чтобы делать что-то с запросами, потому что тогда он будет плохо масштабироваться, а наше приложение будет становиться сложнее.
 		</p>
 		<p>
 			Давайте эти функции, в которые направляются запросы, назовём <em>обработчиками запросов</em>.
-			И давайте возьмёмся за них сейчас, потому что делать что-либо с роутером сейчас пока не имеет смысла.
+			И давайте возьмёмся за них сейчас, потому что делать что-либо сейчас с роутером не имеет смысла.
 		</p>
 		<p>
 			Новая часть приложения, новый модуль &mdash; здесь никаких сюрпризов.
@@ -1120,7 +1119,7 @@ About to route a request for /foo</pre>
 			И какие-нибудь <em>if запрос == x then вызвать обработчик y</em> в роутере будут более чем убоги.
 		</p>
 		<p>
-			Переменное число элементов и каждому соответствует строка (запрашиваемый URL)? 
+			Переменное число элементов и каждому соответствует строка (запрашиваемый URL)?
 			Так, похоже на ассоциативный массив, это наиболее подходящее.
 		</p>
 		<p>
@@ -1149,29 +1148,29 @@ About to route a request for /foo</pre>
 		<p>
 			Начнём с добавления объекта в наш главный файл <em>index.js</em>:
 		</p>
-<pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> server </span><span class="pun">=</span><span
-		class="pln"> require</span><span class="pun">(</span><span class="str">"./server"</span><span
-		class="pun">);</span><span class="pln"><br></span><span class="kwd">var</span><span
-		class="pln"> router </span><span class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
-		class="str">"./router"</span><span class="pun">);</span><span class="pln"><br></span><span class="kwd">var</span><span
-		class="pln"> requestHandlers </span><span class="pun">=</span><span class="pln"> require</span><span
-		class="pun">(</span><span class="str">"./requestHandlers"</span><span class="pun">);</span><span
-		class="pln"><br><br></span><span class="kwd">var</span><span class="pln"> handle </span><span
-		class="pun">=</span><span class="pln"> </span><span class="pun">{}</span><span
-		class="pln"><br>handle</span><span class="pun">[</span><span class="str">"/"</span><span
-		class="pun">]</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> requestHandlers</span><span
-		class="pun">.</span><span class="pln">start</span><span class="pun">;</span><span class="pln"><br>handle</span><span
-		class="pun">[</span><span class="str">"/start"</span><span class="pun">]</span><span
-		class="pln"> </span><span class="pun">=</span><span class="pln"> requestHandlers</span><span
-		class="pun">.</span><span class="pln">start</span><span class="pun">;</span><span class="pln"><br>handle</span><span
-		class="pun">[</span><span class="str">"/upload"</span><span class="pun">]</span><span
-		class="pln"> </span><span class="pun">=</span><span class="pln"> requestHandlers</span><span
-		class="pun">.</span><span class="pln">upload</span><span class="pun">;</span><span class="pln"><br><br>server</span><span
-		class="pun">.</span><span class="pln">start</span><span class="pun">(</span><span
-		class="pln">router</span><span class="pun">.</span><span class="pln">route</span><span
-		class="pun">,</span><span class="pln"> handle</span><span class="pun">);</span></pre>
+		<pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> server </span><span class="pun">=</span><span
+			class="pln"> require</span><span class="pun">(</span><span class="str">"./server"</span><span
+			class="pun">);</span><span class="pln"><br></span><span class="kwd">var</span><span
+			class="pln"> router </span><span class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
+			class="str">"./router"</span><span class="pun">);</span><span class="pln"><br></span><span class="kwd">var</span><span
+			class="pln"> requestHandlers </span><span class="pun">=</span><span class="pln"> require</span><span
+			class="pun">(</span><span class="str">"./requestHandlers"</span><span class="pun">);</span><span
+			class="pln"><br><br></span><span class="kwd">var</span><span class="pln"> handle </span><span
+			class="pun">=</span><span class="pln"> </span><span class="pun">{}</span><span
+			class="pln"><br>handle</span><span class="pun">[</span><span class="str">"/"</span><span
+			class="pun">]</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> requestHandlers</span><span
+			class="pun">.</span><span class="pln">start</span><span class="pun">;</span><span class="pln"><br>handle</span><span
+			class="pun">[</span><span class="str">"/start"</span><span class="pun">]</span><span
+			class="pln"> </span><span class="pun">=</span><span class="pln"> requestHandlers</span><span
+			class="pun">.</span><span class="pln">start</span><span class="pun">;</span><span class="pln"><br>handle</span><span
+			class="pun">[</span><span class="str">"/upload"</span><span class="pun">]</span><span
+			class="pln"> </span><span class="pun">=</span><span class="pln"> requestHandlers</span><span
+			class="pun">.</span><span class="pln">upload</span><span class="pun">;</span><span class="pln"><br><br>server</span><span
+			class="pun">.</span><span class="pln">start</span><span class="pun">(</span><span
+			class="pln">router</span><span class="pun">.</span><span class="pln">route</span><span
+			class="pun">,</span><span class="pln"> handle</span><span class="pun">);</span></pre>
 		<p>
-			Хотя <em>handle</em> &mdash; это больше из разряда «нечто» (коллекция обработчиков запроса), я, всё-таки, предлагаю называть его глаголом, потому что в результате это будет функциональное выражение в нашем роутере, как вы скоро увидите. 
+			Хотя <em>handle</em> &mdash; это больше из разряда «нечто» (коллекция обработчиков запроса), я, всё-таки, предлагаю называть его глаголом, потому что в результате это будет функциональное выражение в нашем роутере, как вы скоро увидите.
 		</p>
 		<p>
 			Как вы можете видеть, это действительно просто &mdash; назначать различные URL соответствующему обработчику запроса: просто добавляя пару ключ/значение из <em>«/»</em> и <em>requestHandlers.start</em>, мы можем выразить красивым и аккуратным способом, что не только запросы к <em>«/start»</em>, но также и запросы к <em>«/»</em> должны быть обработаны обработчиком <em>start</em>.
@@ -1180,7 +1179,7 @@ About to route a request for /foo</pre>
 			После определения объекта мы передали его в сервер как дополнительный параметр.
 			Изменим наш <em>server.js</em>, чтобы использовать его:
 		</p>
-		
+
 		<pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
 				class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
 				class="str">"http"</span><span class="pun">);</span><span class="pln"><br></span><span
@@ -1218,7 +1217,7 @@ About to route a request for /foo</pre>
 				class="pun">);</span><span class="pln"><br></span><span class="pun">}</span><span class="pln"><br><br>exports</span><span
 				class="pun">.</span><span class="pln">start </span><span class="pun">=</span><span
 				class="pln"> start</span><span class="pun">;</span></pre>
-				
+
 		<p>
 			Мы добавили параметр <em>handle</em> в функцию <em>start()</em> и передаём объект handle в callback-функцию <em>route()</em> в качестве перового параметра.
 		</p>
@@ -1247,7 +1246,7 @@ About to route a request for /foo</pre>
 				class="pln"><br></span><span class="pun">}</span><span class="pln"><br><br>exports</span><span
 				class="pun">.</span><span class="pln">route </span><span class="pun">=</span><span
 				class="pln"> route</span><span class="pun">;</span></pre>
-				
+
 		<p>
 			Что мы здесь делаем &mdash; мы проверяем, существует ли обработчик запроса для данного пути, и если существует, просто вызываем соответствующую функцию.
 			Из-за того, что мы имеем доступ к нашим функциям обработчиков запроса из нашего объекта просто, как если бы имели доступ к элементу ассоциативного массива, у нас есть это прекрасное выражение <em>handle[pathname]();</em>, о котором говорилось ранее: «Пожалуйста, <em>handle</em> этот <em>pathname</em>».
@@ -1259,20 +1258,18 @@ About to route a request for /foo</pre>
 <pre>Server has started.
 Request for /start received.
 About to route a request for /start
-Request handler 'start' was called.
-</pre>
+Request handler 'start' was called.</pre>
 		<p>
 			Так же открываем <a href="http://localhost:8888/" rel="nofollow">http://localhost:8888/</a> в нашем браузере и убеждаемся, что эти запросы в самом деле обрабатываются обработчиком запросов <em>start</em>:
 		</p>
 <pre>Request for / received.
 About to route a request for /
-Request handler 'start' was called.
-</pre>
+Request handler 'start' was called.</pre>
 
 		<a name="making-the-request-handlers-respond"></a>
-		
+
 		<h3>Создание ответа обработчиков запроса</h3>
-		
+
 		<p>
 			Замечательно. Вот только если бы обработчики запроса могли отправлять что-нибудь назад браузеру, было бы ещё лучше, правильно?
 		</p>
@@ -1284,9 +1281,9 @@ Request handler 'start' was called.
 		</p>
 
 		<a name="how-to-not-do-it"></a>
-		
+
 		<h4>Как делать не надо</h4>
-		
+
 		<p>
 			Прямой подход, который мы захотим использовать как разработчики с опытом в PHP или Ruby, на самом деле ложный: он может прекрасно работать, иметь большой смысл, а потом, когда мы этого не ждём, неожиданно всё развалится.
 		</p>
@@ -1317,7 +1314,7 @@ Request handler 'start' was called.
 				class="pun">=</span><span class="pln"> start</span><span class="pun">;</span><span class="pln"><br>exports</span><span
 				class="pun">.</span><span class="pln">upload </span><span class="pun">=</span><span
 				class="pln"> upload</span><span class="pun">;</span></pre>
-				
+
 		<p>
 			Хорошо. Также, роутер должен вернуть серверу то, что обработчики запроса вернули ему.
 			Поэтому надо отредактировать <em>router.js</em> так:
@@ -1346,7 +1343,7 @@ Request handler 'start' was called.
 				class="pun">}</span><span class="pln"><br></span><span class="pun">}</span><span class="pln"><br><br>exports</span><span
 				class="pun">.</span><span class="pln">route </span><span class="pun">=</span><span
 				class="pln"> route</span><span class="pun">;</span></pre>
-				
+
 		<p>
 			Как видим, возвращается некоторый текст «404 Not found», если запрос не может быть маршрутизирован.
 		</p>
@@ -1393,7 +1390,7 @@ Request handler 'start' was called.
 				class="pun">);</span><span class="pln"><br></span><span class="pun">}</span><span class="pln"><br><br>exports</span><span
 				class="pun">.</span><span class="pln">start </span><span class="pun">=</span><span
 				class="pln"> start</span><span class="pun">;</span></pre>
-				
+
 		<p>
 			Если запустим наше написаное приложение, всё будет работать замечательно: запрос <a href="http://localhost:8888/start" rel="nofollow">http://localhost:8888/start</a> выдаст в браузере результат «Hello Start», запрос <a href="http://localhost:8888/upload" rel="nofollow">http://localhost:8888/upload</a> даст нам «Hello Upload», а <a href="http://localhost:8888/foo" rel="nofollow">http://localhost:8888/foo</a> выведет «404 Not found».
 		</p>
@@ -1404,14 +1401,14 @@ Request handler 'start' was called.
 		<p>
 			Подробный ответ займёт немного больше времени.
 		</p>
-		
+
 		<a name="blocking-and-non-blocking"></a>
-		
+
 		<h4>Блокирование и неблокирование</h4>
-		
+
 		<p>
 			Как было сказано, проблемы будут возникать, когда мы добавим неблокирующие операции в обработчики запроса.
-			Давайте сначала поговорим о блокирующих, а потом уже о неблокирующих операциях.				
+			Давайте сначала поговорим о блокирующих, а потом уже о неблокирующих операциях.
 		</p>
 		<p>
 			Вместо того, чтобы объяснять, что такое «блокирование» и «неблокирование», давайте продемонстрируем себе, что произойдёт, если мы добавим блокирующую операцию в наши обработчики запроса.
@@ -1453,7 +1450,7 @@ Request handler 'start' was called.
 				class="pun">=</span><span class="pln"> start</span><span class="pun">;</span><span class="pln"><br>exports</span><span
 				class="pun">.</span><span class="pln">upload </span><span class="pun">=</span><span
 				class="pln"> upload</span><span class="pun">;</span></pre>
-				
+
 		<p>
 			Просто объясню, что этот код делает: когда функция <em>start()</em> вызвана, Node.js ожидает 10 секунд и только тогда возвращает «Hello Start».
 			Когда вызывается <em>upload()</em>, она выполняется немедленно, как и раньше.
@@ -1465,10 +1462,10 @@ Request handler 'start' was called.
 			Давайте посмотрим, что поменялось.
 		</p>
 		<p>
-			Как обычно, нам надо перезапустить сервер. 
+			Как обычно, нам надо перезапустить сервер.
 			На этот раз я попрошу вас следовать немного более сложному «протоколу», чтобы увидеть, что произошло: во-первых, откройте браузер или таб.
 			В первом окне браузера, введите, пожалуйста, <a href="http://localhost:8888/start" rel="nofollow">http://localhost:8888/start</a> в адресную строку, но не переходите пока по этому адресу!
-			
+
 		</p>
 		<p>
 			В адресную строку второго окна браузера введите <a href="http://localhost:8888/upload" rel="nofollow">http://localhost:8888/upload</a> и снова не переходите по адресу.
@@ -1481,10 +1478,7 @@ Request handler 'start' was called.
 			Но URL /upload <em>так же</em> потребуется 10 секунд на загрузку, хотя в соответствующем обработчике запроса нет <em>sleep()</em>!
 		</p>
 		<p>
-			Почему? Потому что <em>start()</em> содержит блокирующую операцию.
-			Like in "it's blocking everything else from working".
-		</p>
-		<p>
+			Почему так происходит? Потому что <em>start()</em> содержит блокирующую операцию.
 			И в этом проблема, потому что, как говорят: <em>«В node всё работает параллельно, за исключением вашего кода»</em>.
 		</p>
 		<p>
@@ -1504,7 +1498,7 @@ Request handler 'start' was called.
 			И мы сейчас увидим, почему способ, которым мы создали «обработчик запроса обрабатывающий ответ» в нашем приложении не позволит правильно использовать неблокирующие операции.
 		</p>
 		<p>
-			Ещё раз давайте попробуем испытать проблему на своей шкуре, модифицировав наше приложение. 
+			Ещё раз давайте попробуем испытать проблему на своей шкуре, модифицировав наше приложение.
 		</p>
 		<p>
 			Мы снова используем наш обработчик запроса <em>start</em>. Пожалуйста, измените его следующим образом (файл <em>requestHandlers.js</em>)
@@ -1537,7 +1531,7 @@ Request handler 'start' was called.
 				class="pln"> start</span><span class="pun">;</span><span class="pln"><br>exports</span><span
 				class="pun">.</span><span class="pln">upload </span><span class="pun">=</span><span
 				class="pln"> upload</span><span class="pun">;</span></pre>
-				
+
 		<p>
 			Как можно видеть, мы просто внедрили новый модуль Node.js <em>child_process</em>.
 			Мы сделали так, потому что это позволит нам использовать очень простую, но полезную неблокирующую операцию: <em>exec()</em>.
@@ -1581,7 +1575,7 @@ Request handler 'start' was called.
 				class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br>&nbsp; content </span><span
 				class="pun">=</span><span class="pln"> stdout</span><span class="pun">;</span><span
 				class="pln"><br></span><span class="pun">}</span></pre>
-				
+
 		<p>
 			И здесь лежит корень нашей проблемы: наш собственный код исполняется синхронно, что означает, что сразу после вызова <em>exec()</em>, Node.js продолжит выполнять <em>return content;</em>.
 			К этому моменту <em>content</em> ещё "empty", из-за того, что callback-функция, переданная в <em>exec()</em>, до сих пор не вызвана &mdash; потому что операция <em>exec()</em> асинхронная.
@@ -1602,22 +1596,22 @@ Request handler 'start' was called.
 		</p>
 
 		<a name="responding-request-handlers-with-non-blocking-operations"></a>
-		
+
 		<h4>Ответ обработчиков запроса с неблокирующими операциями.</h4>
 		<p>
-			Я употребил фразу «правильный способ». 
-			Опасная вещь. 
+			Я употребил фразу «правильный способ».
+			Опасная вещь.
 			Довольно часто не существует единого «правильного способа».
 		</p>
 		<p>
-			Но одним из возможных решений для этого является, как это часто бывает с Node.js, передача функции внутри. 
+			Но одним из возможных решений для этого является, как это часто бывает с Node.js, передача функции внутри.
 			Давайте рассмотрим это.
 		</p>
 		<p>
 			Сейчас наше приложение способно транспортировать контент (который обработчики запроса хотели бы показать пользователю) от обработчиков запроса к HTTP-серверу, возвращая его через слои приложения (обработчик запроса -&gt; роутер -&gt; сервер).
 		</p>
 		<p>
-			Наш новый подход заключается в следующем: вместо доставки контента серверу мы будем сервер доставлять к контенту. 
+			Наш новый подход заключается в следующем: вместо доставки контента серверу мы будем сервер доставлять к контенту.
 			Чтобы быть более точным, мы будем внедрять объект <em>response</em> (из серверной callback-функции <em>onRequest()</em>) через роутер в обработчики запроса.
 			Обработчики смогут тогда использовать функции этого объекта для ответа на сами запросы.
 		</p>
@@ -1658,7 +1652,7 @@ Request handler 'start' was called.
 				class="pun">);</span><span class="pln"><br></span><span class="pun">}</span><span class="pln"><br><br>exports</span><span
 				class="pun">.</span><span class="pln">start </span><span class="pun">=</span><span
 				class="pln"> start</span><span class="pun">;</span></pre>
-				
+
 		<p>
 			Вместо ожидания возврата значения от функции <em>route()</em>, мы передаём наш объект <em>response</em> в качестве третьего параметра.
 			Кроме того, мы удалили всякие вызовы методов <em>response</em> из обработчика <em>onRequest()</em>, потому что мы рассчитываем, что <em>route</em> позаботится об этом.
@@ -1666,7 +1660,7 @@ Request handler 'start' was called.
 		<p>
 			Далее идёт <em>router.js</em>:
 		</p>
-		
+
 		<pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> route</span><span
 				class="pun">(</span><span class="pln">handle</span><span class="pun">,</span><span
 				class="pln"> pathname</span><span class="pun">,</span><span class="pln"> response</span><span
@@ -1696,7 +1690,7 @@ Request handler 'start' was called.
 				class="pln"><br></span><span class="pun">}</span><span class="pln"><br><br>exports</span><span
 				class="pun">.</span><span class="pln">route </span><span class="pun">=</span><span
 				class="pln"> route</span><span class="pun">;</span></pre>
-				
+
 		<p>
 			Та же схема: вместо ожидания возврата значения от наших обработчиков события, мы передаём объект <em>respond</em>.
 		</p>
@@ -1743,7 +1737,7 @@ Request handler 'start' was called.
 				class="pun">=</span><span class="pln"> start</span><span class="pun">;</span><span class="pln"><br>exports</span><span
 				class="pun">.</span><span class="pln">upload </span><span class="pun">=</span><span
 				class="pln"> upload</span><span class="pun">;</span></pre>
-				
+
 		<p>
 			Наши функции-обработчики должны принять параметр response и использовать его, чтобы ответить на запрос напрямую.
 		</p>
@@ -1798,15 +1792,15 @@ Request handler 'start' was called.
 				class="pun">=</span><span class="pln"> start</span><span class="pun">;</span><span class="pln"><br>exports</span><span
 				class="pun">.</span><span class="pln">upload </span><span class="pun">=</span><span
 				class="pln"> upload</span><span class="pun">;</span></pre>
-				
+
 		<p>
 			Благодаря этому, HTTP-запросы к <a href="http://localhost:8888/start" rel="nofollow">http://localhost:8888/start</a> будут занимать не менее 10 секунд, но запросы к <a href="http://localhost:8888/upload" rel="nofollow">http://localhost:8888/upload</a> будут получать ответ немедленно, даже если /start всё ещё занят вычислениями.
 		</p>
 
 		<a name="serving-something-useful"></a>
-		
+
 		<h3>Сделаем что-нибудь полезное</h3>
-		
+
 		<p>
 			До сих пор мы делали всё прекрасно и изысканно, но мы не создали ничего значимого для клиентов нашего супер-сайта.
 		</p>
@@ -1815,7 +1809,8 @@ Request handler 'start' was called.
 			Для простоты будем полагать, что через наше приложение будут загружаться и показываться только файлы картинок.
 		</p>
 		<p>
-			OK, давайте шаг за шагом, но с разъяснением больших техник и принципов JavaScript, и в то же время, давайте немного ускоримся.
+			Мы постараемся выполнить это шаг за шагом, с разъяснением сложных техник и принципов JavaScript.
+			Но в то же время, давайте немного ускоримся.
 			Автору слишком нравится слушать самого себя.
 		</p>
 		<p>
@@ -1829,9 +1824,9 @@ Request handler 'start' was called.
 		</p>
 
 		<a name="handling-post-requests"></a>
-		
+
 		<h4>Обработка POST-запросов</h4>
-		
+
 		<p>
 			Давайте сделаем попроще: предоставим текcтовое поле, которое может быть заполнено пользователем и отправлено на сервер в POST-запросе.
 			После получения и обработки этого запроса мы отобразим содержимое текстового поля.
@@ -1885,7 +1880,7 @@ Request handler 'start' was called.
 				class="pun">=</span><span class="pln"> start</span><span class="pun">;</span><span class="pln"><br>exports</span><span
 				class="pun">.</span><span class="pln">upload </span><span class="pun">=</span><span
 				class="pln"> upload</span><span class="pun">;</span></pre>
-				
+
 		<p>
 			Если теперь этот код не выиграет Webby Awards, то я не знаю, какой сможет.
 			Вы должны увидеть эту очень простую форму, когда запросите <a href="http://localhost:8888/start" rel="nofollow">http://localhost:8888/start</a> в вашем браузере.
@@ -1929,16 +1924,16 @@ Request handler 'start' was called.
 				class="pln"><br>&nbsp; </span><span
 				class="com">// called when all chunks of data have been received</span><span
 				class="pln"><br></span><span class="pun">});</span></pre>
-				
-		<p> 
+
+		<p>
 			Возникает вопрос, где реализовать эту логику.
 			В настоящее время мы можем получить доступ к объекту <em>request</em> только в нашем сервере &mdash; мы не передаём его в роутер и в обработчики запроса, как делаем это с объектом <em>response</em>.
-		</p> 
-		<p> 
+		</p>
+		<p>
 			На мой взгляд, это работа HTTP-сервера &mdash; предоставлять приложению все данные из запросов.
 			Поэтому я предлагаю обрабатывать POST-данные прямо в сервере и передавать конечные данные в роутер и обработчики запроса, которые сами решат, что с ними делать.
 		</p>
-		<p> 
+		<p>
 			Таким образом, идея &mdash; в том, чтобы поместить обратные вызовы событий <em>data</em> и <em>end</em> в сервер, собирать все куски POST-данных в <em>data</em> и вызывать роутер при получении события <em>end</em>, пока идёт передача собранных порций данных в роутер, который в свою очередь передаёт их в обработчики запроса.
 		</p>
 		<p>
@@ -1995,7 +1990,7 @@ Request handler 'start' was called.
 				class="pun">);</span><span class="pln"><br></span><span class="pun">}</span><span class="pln"><br><br>exports</span><span
 				class="pun">.</span><span class="pln">start </span><span class="pun">=</span><span
 				class="pln"> start</span><span class="pun">;</span></pre>
-		
+
 		<p>
 			Здесь, в основном, мы сделали три вещи: во-первых, определили, что ожидаем полученные данные в кодировке UTF-8, затем добавили слушатель для события «data», который шаг за шагом заполняет нашу новую переменную <em>postData</em> всякий раз, когда прибывает новая порция POST-данных, и далее &mdash; переходим к вызову нашего роутера в обратном вызове события <em>end</em>, чтобы убедиться, что вызов происходит, когда все POST-данные собраны.
 			Мы также передаём POST-данные в роутере, потому что они нам понадобятся в обработчиках запроса.
@@ -2043,7 +2038,7 @@ Request handler 'start' was called.
 				class="pln"><br></span><span class="pun">}</span><span class="pln"><br><br>exports</span><span
 				class="pun">.</span><span class="pln">route </span><span class="pun">=</span><span
 				class="pln"> route</span><span class="pun">;</span></pre>
-				
+
 		<p>
 			И в <em>requestHandlers.js</em> мы включаем эти данные в нашем ответе обработчика запроса <em>upload</em>:
 		</p>
@@ -2157,7 +2152,7 @@ Request handler 'start' was called.
 				class="pln"> start</span><span class="pun">;</span><span class="pln"><br>exports</span><span
 				class="pun">.</span><span class="pln">upload </span><span class="pun">=</span><span
 				class="pln"> upload</span><span class="pun">;</span></pre>
-				
+
 		<p>
 			Это всё, что можно сказать про обработку POST-данных в рамках учебника для начинающих.
 		</p>
@@ -2172,7 +2167,7 @@ Request handler 'start' was called.
 		</p>
 
 		<p>
-			В 90-х это могло бы быть квалифицировано как бизнес модель для IPO, сейчас же этого достаточно, чтобы научить нас двум вещам: как установливать внешнии библиотки Node.js и как их использовать в нашем коде.
+			В 90-х это могло бы быть квалифицировано как бизнес модель для IPO, сейчас же этого достаточно, чтобы научить нас двум вещам: как установливать внешние библиотки Node.js и как их использовать в нашем коде.
 		</p>
 
 		<p>
@@ -2185,15 +2180,15 @@ Request handler 'start' was called.
 			Чтобы использовать код Феликса, соответствующий модуль Node.js должен быть инсталлирован.
 			На борту Node.js есть собственный менеджер пакетов, называемый <em>NPM</em>.
 			Он позволяет нам инсталировать внешние модули Node.js в очень удобной форме.
-			С учетом установленного Node.js, всё сводится к			
+			С учетом установленного Node.js, всё сводится к
 		</p>
-		
+
 		<pre class="prettyprint lang-bash"><span class="pln">npm install formidable</span></pre>
 
 		<p>
 			в нашей командной строке. Если вы в конце увидели следующее:
 		</p>
-		
+
 		<pre class="prettyprint lang-bash"><span class="pln">npm info build </span><span class="typ">Success</span><span
 				class="pun">:</span><span class="pln"> formidable@1</span><span class="pun">.</span><span class="lit">0.9</span><span
 				class="pln"><br>npm ok</span></pre>
@@ -2211,13 +2206,13 @@ Request handler 'start' was called.
 
 		<p>
 			По сути, <em>formidable</em> делает форму, отправленную через HTTP POST, доступной для парсинга в Node.js.
-			Всё, что нам надо &mdash; это создать новый экземпляр объекта <em>IncomingForm</em>, который является абстракцией отправленной формы и может быть использован для парсинга объекта <em>request</em> нашего HTTP-сервера, для полей и файлов, отправленных через эту форму.		
+			Всё, что нам надо &mdash; это создать новый экземпляр объекта <em>IncomingForm</em>, который является абстракцией отправленной формы и может быть использован для парсинга объекта <em>request</em> нашего HTTP-сервера, для полей и файлов, отправленных через эту форму.
 		</p>
 
 		<p>
 			Пример кода со страницы проекта node-formidable показывает, как разные части сочетаются друг с другом:
 		</p>
-		
+
 		<pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> formidable </span><span
 				class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">'formidable'</span><span
 				class="pun">),</span><span class="pln"><br>&nbsp; &nbsp; http </span><span class="pun">=</span><span
@@ -2279,21 +2274,21 @@ Request handler 'start' was called.
 		<p>
 			Если вы поместите этот код в файл и исполните его посредством <em>node</em>, вы сможете отправлять простые формы, включая загрузку фото, и увидите, как организован объект <em>files</em>, который передавался в callback, определенном в вызове <em>form.parse</em>.
 		</p>
-		
+
 		<pre class="lang-js">received upload:
 
 { fields: { title: 'Hello World' },
   files:
-   { upload:
-	  { size: 1558,
-		path: '/tmp/1c747974a27a6292743669e91f29350b',
-		name: 'us-flag.png',
-		type: 'image/png',
-		lastModifiedDate: Tue, 21 Jun 2011 07:02:41 GMT,
-		_writeStream: [Object],
-		length: [Getter],
-		filename: [Getter],
-		mime: [Getter] } } }</pre>
+    { upload:
+      { size: 1558,
+        path: '/tmp/1c747974a27a6292743669e91f29350b',
+        name: 'us-flag.png',
+        type: 'image/png',
+        lastModifiedDate: Tue, 21 Jun 2011 07:02:41 GMT,
+        _writeStream: [Object],
+        length: [Getter],
+        filename: [Getter],
+        mime: [Getter] } } }</pre>
 
 		<p>
 			Чтобы выполнить последний пункт нашей задачи, мы должны включить логику парсинга форм модуля <em>formidable</em> в структуру нашего кода, плюс ко всему, надо разобраться, как отдавать контент загруженного файла (который сохранен в директории <em>/tmp</em>) браузеру.
@@ -2441,7 +2436,7 @@ Request handler 'start' was called.
 		<p>
 			Хорошо. Всё, что нам надо теперь &mdash; это:
 		</p>
-		
+
 		<p>
 			<ul>
 				<li>
@@ -2450,7 +2445,7 @@ Request handler 'start' was called.
 				<li>
 					интегрировать <em>node-formidable</em> в обработчик запроса <em>upload</em>, чтобы сохранять загруженные файлы в <em>/tmp/test.png</em>,
 				</li>
-		
+
 				<li>
 					внедрить загруженную картинку в HTML, отдаваемый по URL <em>/upload</em>.
 				</li>
@@ -2572,7 +2567,7 @@ Request handler 'start' was called.
 		</p>
 
 		<p>
-			Начнём с <em>server.js</em> — удалим обработку postData и строку с <em>request.setEncoding</em> (node-formidable сам всё сделает) и передадим <em>request</em> в роутер:			
+			Начнём с <em>server.js</em> — удалим обработку postData и строку с <em>request.setEncoding</em> (node-formidable сам всё сделает) и передадим <em>request</em> в роутер:
 		</p>
 		<pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
 				class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span
@@ -2609,7 +2604,7 @@ Request handler 'start' was called.
 		<p>
 			Следующий &mdash; <em>router.js</em> — мы больше не передаём <em>postData</em>, а вместо этого передаём <em>request</em>:
 		</p>
-		
+
 		<pre class="prettyprint lang-js"><span class="kwd">function</span><span class="pln"> route</span><span
 				class="pun">(</span><span class="pln">handle</span><span class="pun">,</span><span
 				class="pln"> pathname</span><span class="pun">,</span><span class="pln"> response</span><span
@@ -2652,7 +2647,7 @@ Request handler 'start' was called.
 		</p>
 
 		<p>
-			Давайте добавим в <em>requestHandlers.js</em> код управления загрузкой файла и переименованием:			
+			Давайте добавим в <em>requestHandlers.js</em> код управления загрузкой файла и переименованием:
 		</p>
 		<pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> querystring </span><span class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">"querystring"</span><span class="pun">),</span><span class="pln">
 	fs </span><span class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">"fs"</span><span class="pun">),</span><span class="pln">
