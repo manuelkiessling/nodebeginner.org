@@ -395,12 +395,16 @@ pre.prettyprint {
     font-size: 14px;
 }
 
-#book p ul {
+#book div ul {
     margin-top: -24px;
-    margin-bottom: 64px;
+    margin-bottom: 48px;
 }
 
-#book p ul li {
+#salespitch div ul {
+    margin-top: 22px;
+}
+
+#book div ul li {
     margin-bottom: 12px;
     font-size: 110%;
 }

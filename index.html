@@ -508,25 +508,27 @@
         <p>
             Let's keep it simple, but realistic:
         </p>
-        <ul>
 
-            <li>
-                The user should be able to use our application with
-                a web browser
-            </li>
-            <li>
-                The user should see a welcome page when
-                requesting http://<em>domain</em>/start which displays a
-                file upload form
-            </li>
-            <li>
-                By choosing an image file to upload and submitting the
-                form, this image should then be uploaded to
-                http://<em>domain</em>/upload, where it is displayed once
-                the upload is finished
-            </li>
+        <div>
+          <ul>
+              <li>
+                  The user should be able to use our application with
+                  a web browser
+              </li>
+              <li>
+                  The user should see a welcome page when
+                  requesting http://<em>domain</em>/start which displays a
+                  file upload form
+              </li>
+              <li>
+                  By choosing an image file to upload and submitting the
+                  form, this image should then be uploaded to
+                  http://<em>domain</em>/upload, where it is displayed once
+                  the upload is finished
+              </li>
+          </ul>
+        </div>
 
-        </ul>
         <p>
             Fair enough. Now, you could achieve this goal by googling
             and hacking together <em>something</em>. But that's not
@@ -550,46 +552,48 @@
             implemented in order to fulfill the use cases?
         </p>
 
-        <ul>
-            <li>
-                We want to serve web pages, therefore we need an
-                <strong>HTTP server</strong>
-            </li>
-
-            <li>
-                Our server will need to answer differently to
-                requests, depending on which URL the request was
-                asking for, thus we need some kind of
-                <strong>router</strong> in order to map requests
-                to request handlers
-            </li>
-            <li>
-                To fulfill the requests that arrived at the server
-                and have been routed using the router, we need
-                actual <strong>request handlers</strong>
-            </li>
-            <li>
-
-                The router probably should also treat any incoming
-                POST data and give it to the request handlers in
-                a convenient form, thus we need <strong>request
-                data handling</strong>
-            </li>
-            <li>
-                We not only want to handle requests for URLs, we
-                also want to display content when these URLs are
-                requested, which means we need some kind of
-                <strong>view logic</strong> the request handlers
-                can use in order to send content to the user's
-                browser
-            </li>
-            <li>
-                Last but not least, the user will be able to upload
-                images, so we are going to need some kind of
-                <strong>upload handling</strong> which takes care of
-                the details
-            </li>
-        </ul>
+        <div>
+          <ul>
+              <li>
+                  We want to serve web pages, therefore we need an
+                  <strong>HTTP server</strong>
+              </li>
+  
+              <li>
+                  Our server will need to answer differently to
+                  requests, depending on which URL the request was
+                  asking for, thus we need some kind of
+                  <strong>router</strong> in order to map requests
+                  to request handlers
+              </li>
+              <li>
+                  To fulfill the requests that arrived at the server
+                  and have been routed using the router, we need
+                  actual <strong>request handlers</strong>
+              </li>
+              <li>
+  
+                  The router probably should also treat any incoming
+                  POST data and give it to the request handlers in
+                  a convenient form, thus we need <strong>request
+                  data handling</strong>
+              </li>
+              <li>
+                  We not only want to handle requests for URLs, we
+                  also want to display content when these URLs are
+                  requested, which means we need some kind of
+                  <strong>view logic</strong> the request handlers
+                  can use in order to send content to the user's
+                  browser
+              </li>
+              <li>
+                  Last but not least, the user will be able to upload
+                  images, so we are going to need some kind of
+                  <strong>upload handling</strong> which takes care of
+                  the details
+              </li>
+          </ul>
+        </div>
 
         <p>
             Let's think a moment about how we would build this stack
