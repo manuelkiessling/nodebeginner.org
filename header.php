@@ -6,23 +6,6 @@ $httpHost = $_SERVER['HTTP_HOST'];
 $requestUri = $_SERVER['REQUEST_URI'];
 $queryString = $_SERVER['QUERY_STRING'];
 
-if ($httpHost === 'nodebeginner.org') {
-  $location = 'http://www.nodebeginner.org'.$requestUri;
-  header('HTTP/1.1 301 Moved Permanently');
-  header('Location: '.$location);
-  die();
-}
-
-if (substr($requestUri, 0, 11) === '/index.html') {
-  $location = 'http://'.$httpHost.'/';
-  if ($queryString !== '') {
-    $location .= '?'.$queryString;
-  }
-  header('HTTP/1.1 301 Moved Permanently');
-  header('Location: '.$location);
-  die();
-}
-
 $pathinfo = pathinfo($_ENV['SCRIPT_FILENAME']);
 $extension = $pathinfo['extension'];
 
