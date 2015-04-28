@@ -478,43 +478,6 @@ li.L1, li.L3, li.L5, li.L7, li.L9 {
     }
 }
 
-@media only screen and (max-width: 1024px) {
-    body {
-        font-size: 165%;
-        background-color: #fff;
-    }
-
-    h1 {
-        font-size: 250%;
-        margin-left: -33px;
-    }
-
-    #book, #disqus_thread, #footer {
-        width: 90%;
-        max-width: 90%;
-        padding: 32px;
-        box-shadow: none;
-        border: none;
-    }
-
-    .buy-the-bundle, #forkmeongithub, #praise {
-        display: none;
-    }
-
-    #translations {
-        display: none;
-    }
-    
-    #translations td {
-        text-align: center;
-    }
-
-    #translations img {
-        display: none;
-    }
-}
-
-
 @media only print {
     #book {
         margin-top: 60px;
