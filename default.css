@@ -151,6 +151,11 @@ body {
     font-weight: normal;
 }
 
+.price sup {
+    font-size: 10pt;
+    font-weight: normal;
+}
+
 .buy-the-bundle .buy {
     display: table-cell;
     vertical-align: top;
