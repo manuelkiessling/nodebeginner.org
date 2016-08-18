@@ -762,7 +762,7 @@
                 class="pln"> </span><span class="str">"Hello"</span><span class="pun">);</span></pre>
 
         <p>
-            Read this carefully! What we are doing here is, we pass the
+            Read this carefully! We pass the
             function <em>say</em> as the first parameter to the
             <em>execute</em> function. Not the return value of
             <em>say</em>, but <em>say</em> itself!
@@ -999,10 +999,10 @@ console.log("Hello World");</pre>
             It's important to note that this asynchronous, single-threaded,
             event-driven execution model isn't an infinitely scalable
             performance unicorn with silver bullets attached. It is just one
-            of several models, and it has its limitations, one being that as
-            of now, Node.js is just one single process, and it can run on only
+            of several models, and it has its limitations. One being that as
+            of now, Node.js is just one single process and it can run on only
             one single CPU core. Personally, I find this model quite
-            approachable, because it allows to write applications that have to
+            approachable, because it allows you to write applications that have to
             deal with concurrency in an efficient and relatively
             straightforward manner.
         </p>
