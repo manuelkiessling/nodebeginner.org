@@ -893,7 +893,7 @@ http://localhost:8888/start?foo=bar&amp;hello=world
 
         <p>如你所見，這段程式碼什麼也沒幹，不過對於現在來說這是應該的。在增加更多的邏輯以前，我們先來看看如何把路由和伺服器整合起來。</p>
 
-        <p>我們的伺服器應當知道路由的存在並加以有效利用。我們當然可以透過硬編碼的方式將這一依賴項綁定到伺服器上，但是其它語言的編程經驗告訴我們這會是一件非常痛苦的事，因此我們將使用依賴注入的方式較松散地增加路由模組（你可以讀讀<a href="http://martinfowler.com/articles/injection.html">Martin Fowlers關於依賴注入的大作</a>來作為背景知識）。</p>
+        <p>我們的伺服器應當知道路由的存在並加以有效利用。我們當然可以透過硬編碼的方式將這一依賴項綁定到伺服器上，但是其它語言的編程經驗告訴我們這會是一件非常痛苦的事，因此我們將使用依賴注入的方式較鬆散地增加路由模組（你可以讀讀<a href="http://martinfowler.com/articles/injection.html">Martin Fowlers關於依賴注入的大作</a>來作為背景知識）。</p>
 
         <p>首先，我們來擴充一下伺服器的<em>start()</em>函數，以便將路由函數作為參數傳遞過去：</p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> http </span><span
@@ -998,7 +998,7 @@ About to route a request for /foo</pre>
 
         <p>這樣我們就可以把請求處理程序和路由模組連接起來，讓路由 &quot;有路可尋&quot;。</p>
 
-        <p>在這裡我們得做個決定：是將requestHandlers模組硬編碼到路由裡來使用，還是再增加一點依賴注入？雖然和其他模式一樣，依賴注入不應該僅僅為使用而使用，但在現在這個情況下，使用依賴注入可以讓路由和請求處理程序之間的耦合更加松散，也因此能讓路由的重用性更高。</p>
+        <p>在這裡我們得做個決定：是將requestHandlers模組硬編碼到路由裡來使用，還是再增加一點依賴注入？雖然和其他模式一樣，依賴注入不應該僅僅為使用而使用，但在現在這個情況下，使用依賴注入可以讓路由和請求處理程序之間的耦合更加鬆散，也因此能讓路由的重用性更高。</p>
 
         <p>這意味著我們得將請求處理程序從伺服器傳遞到路由中，但感覺上這麼做更離譜了，我們得一路把這堆請求處理程序從我們的主檔案傳遞到伺服器中，再將之從伺服器傳遞到路由。</p>
 
@@ -1016,7 +1016,7 @@ About to route a request for /foo</pre>
 
         <p>但如果JavaScript的物件僅僅是鍵/值對的集合，它又怎麼會擁有方法呢？好吧，這裡的值可以是字串、數字或者……函數！</p>
 
-        <p>好了，最後再回到程式碼上來。現在我們已經確定將一系列請求處理程序透過一個物件來傳遞，並且需要使用松耦合的方式將這個物件注入到<em>route()</em>函數中。</p>
+        <p>好了，最後再回到程式碼上來。現在我們已經確定將一系列請求處理程序透過一個物件來傳遞，並且需要使用鬆耦合的方式將這個物件注入到<em>route()</em>函數中。</p>
 
         <p>我們先將這個物件引入到主檔案<em>index.js</em>中：</p>
         <pre class="prettyprint lang-js"><span class="kwd">var</span><span class="pln"> server </span><span class="pun">=</span><span
@@ -2526,7 +2526,7 @@ Request handler 'start' was called.</pre>
                 class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="str">'&lt;form action="/upload" enctype="multipart/form-data" '</span><span
                 class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span
                 class="str">'method="post"&gt;'</span><span class="pun">+</span><span
-                class="pln"><br>&nbsp; &nbsp; </span><span class="str">'&lt;input type="file" name="upload" multiple="multiple"&gt;'</span><span
+                class="pln"><br>&nbsp; &nbsp; </span><span class="str">'&lt;input type="file" name="upload" multiple="multiple" /&gt;'</span><span
                 class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="str">'&lt;input type="submit" value="Upload file" /&gt;'</span><span
                 class="pun">+</span><span class="pln"><br>&nbsp; &nbsp; </span><span
                 class="str">'&lt;/form&gt;'</span><span class="pun">+</span><span
