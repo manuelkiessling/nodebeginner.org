@@ -240,24 +240,31 @@ body {
 }
 
 #table-of-contents-headline {
-    margin-top: 48px;
     color: #700;
     font-size: 160%;
     font-weight: bold;
+    margin-bottom: 20px;
+    margin-left: 10px;
 }
 
 #book #table-of-contents {
-    margin-left: -24px;
+    font-family: tahoma;
+    border-radius: 8px;
+    border-color: #E5E5E5;
+    border-top-width: 5px;
+    border-top-style: solid;
+    background-color: #F1F1F1;
+    padding: 10px 10px 1px 10px;
 }
 
 #book #table-of-contents ul li {
     font-size: 100%;
     margin-left: 0;
-    list-style-type: none;
+    list-style-type: upper-roman;
 }
 
 #book #table-of-contents ul {
-    padding-left: 24px;
+    padding-left: 40px;
     margin-top: 12px;
     margin-left: 0;
     margin-bottom: 36px;
