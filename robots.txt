@@ -1,2 +1,5 @@
 User-agent: *
-Allow: /
+Disallow:
+
+Sitemap: https://www.nodebeginner.org/blog/sitemap.xml
+Sitemap: https://www.nodebeginner.org/web-development-beginner-tutorial/sitemap.xml
