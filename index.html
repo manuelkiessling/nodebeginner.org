@@ -2,12 +2,10 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <?php require_once('_defaultheaders.php'); ?>
 
         <title>The Node Beginner Book » A comprehensive Node.js tutorial</title>
         <meta name="description" content="A comprehensive Node.js tutorial for beginners: Learn how to build a full blown web application with server-side JavaScript" />
-        
-        <link rel="icon" href="favicon.png" type="image/png" />
         <link rel="stylesheet" type="text/css" href="default.css" />
 		<link rel="canonical" href="https://www.nodebeginner.org/" />
 
@@ -76,7 +74,7 @@
         <div>
         <h1>The Node Beginner Book</h1>
 
-        <div id="author">A Node.js tutorial by <a href="http://twitter.com/manuelkiessling">Manuel Kiessling</a></div>
+        <div id="author">A Node.js tutorial by <a href="https://twitter.com/manuelkiessling">Manuel Kiessling</a></div>
 
         <a name="about"></a>
 
@@ -1273,19 +1271,19 @@
         <?php require_once('_googleanalytics.php'); ?>
 
         <script type="text/javascript">
-            // Disqus
-            var disqus_shortname = 'nodebeginner';
-            var disqus_identifier = 'nodebeginner-book';
-            var disqus_url = 'https://www.nodebeginner.org/';
-            (function() {
-                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            var disqus_config = function () {
+                this.page.url = 'https://www.nodebeginner.org/';
+                this.page.identifier = 'nodebeginner-book';
+            };
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document, s = d.createElement('script');
+                s.src = 'https://nodebeginner.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
             })();
 
             // CSS browser select
             function css_browser_selector(u){var ua=u.toLowerCase(),is=function(t){return ua.indexOf(t)>-1},g='gecko',w='webkit',s='safari',o='opera',m='mobile',h=document.documentElement,b=[(!(/opera|webtv/i.test(ua))&&/msie\s(\d)/.test(ua))?('ie ie'+RegExp.$1):is('firefox/2')?g+' ff2':is('firefox/3.5')?g+' ff3 ff3_5':is('firefox/3.6')?g+' ff3 ff3_6':is('firefox/3')?g+' ff3':is('gecko/')?g:is('opera')?o+(/version\/(\d+)/.test(ua)?' '+o+RegExp.$1:(/opera(\s|\/)(\d+)/.test(ua)?' '+o+RegExp.$2:'')):is('konqueror')?'konqueror':is('blackberry')?m+' blackberry':is('android')?m+' android':is('chrome')?w+' chrome':is('iron')?w+' iron':is('applewebkit/')?w+' '+s+(/version\/(\d+)/.test(ua)?' '+s+RegExp.$1:''):is('mozilla/')?g:'',is('j2me')?m+' j2me':is('iphone')?m+' iphone':is('ipod')?m+' ipod':is('ipad')?m+' ipad':is('mac')?'mac':is('darwin')?'mac':is('webtv')?'webtv':is('win')?'win'+(is('windows nt 6.0')?' vista':''):is('freebsd')?'freebsd':(is('x11')||is('linux'))?'linux':'','js'];c=b.join(' ');h.className+=' '+c;return c;};css_browser_selector(navigator.userAgent);
         </script>
-
     </body>
 </html>
