@@ -1,5 +1,14 @@
 <?php
 
+if (!isset($_SERVER['HTTPS'])) {
+    header('HTTP/1.1 301 Moved Permanently');
+    header(
+        'Location: https://www.nodebeginner.org'
+        . $_SERVER['REQUEST_URI']
+    );
+    die();
+}
+
 ob_start();
 
 $httpHost = $_SERVER['HTTP_HOST'];

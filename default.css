@@ -63,6 +63,29 @@ body {
     background-color: #555;
 }
 
+#sitenav {
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+#sitenav-inner {
+    text-align: center;
+    margin: 0 auto;
+    font-family: "Helvetica Neue", sans-serif;
+    font-size: 13px;
+}
+
+#sitenav-inner a {
+    padding: 8px;
+    text-decoration: none;
+}
+
+#sitenav-inner a:hover {
+    text-decoration: none;
+    color: #eee;
+    background-color: #555;
+}
+
 #translations {
     width: 900px;
 }
