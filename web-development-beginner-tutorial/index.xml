@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>The Web Development Beginner Tutorial</title>
+    <link>https://www.nodebeginner.org/web-development-beginner-tutorial/</link>
+    <description>Recent content on The Web Development Beginner Tutorial</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 19 Jun 2017 16:02:59 +0200</lastBuildDate>
+    
+	<atom:link href="https://www.nodebeginner.org/web-development-beginner-tutorial/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>1 ◌ Preparations</title>
+      <link>https://www.nodebeginner.org/web-development-beginner-tutorial/post/preparations/</link>
+      <pubDate>Mon, 19 Jun 2017 16:02:59 +0200</pubDate>
+      
+      <guid>https://www.nodebeginner.org/web-development-beginner-tutorial/post/preparations/</guid>
+      <description>&lt;p&gt;Before we can start with anything, we need to prepare an environment to work in over the course of this book. In order to give you correct advice and useful instructions at all times, I need to know your work environment as
+precisely as possible. But because I&amp;rsquo;m not exactly sitting next to you, this is a challenge. Fortunately, there is a very simple solution for this.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>2. a ◌ A close look at the WWW</title>
+      <link>https://www.nodebeginner.org/web-development-beginner-tutorial/post/a-close-look-at-the-www/introduction/</link>
+      <pubDate>Mon, 19 Jun 2017 16:02:59 +0200</pubDate>
+      
+      <guid>https://www.nodebeginner.org/web-development-beginner-tutorial/post/a-close-look-at-the-www/introduction/</guid>
+      <description>&lt;p&gt;What happens when you open a web page in your browser? On the surface, your browser (the &lt;em&gt;client&lt;/em&gt;) loads a page from a
+remote system (the &lt;em&gt;server&lt;/em&gt;) and displays its content. What exactly is displayed, and how it is presented to us, is
+defined by the HTML, CSS and JavaScript code which the server sends back to our client.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>2. b ◌ The building blocks of the World Wide Web</title>
+      <link>https://www.nodebeginner.org/web-development-beginner-tutorial/post/a-close-look-at-the-www/the-building-blocks-of-the-world-wide-web/</link>
+      <pubDate>Mon, 19 Jun 2017 16:02:59 +0200</pubDate>
+      
+      <guid>https://www.nodebeginner.org/web-development-beginner-tutorial/post/a-close-look-at-the-www/the-building-blocks-of-the-world-wide-web/</guid>
+      <description>&lt;p&gt;The bad news is that even for a seemingly simple and innocent operation - like a browser requesting a single web page
+from a server - there are so many moving parts involved that you could fill multiple books explaining them all. The good news, however, is that in order to become a productive web developer, we do not need to know all the atomic details.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>2. c ◌ How web browsers find web servers</title>
+      <link>https://www.nodebeginner.org/web-development-beginner-tutorial/post/a-close-look-at-the-www/how-web-browsers-find-web-servers/</link>
+      <pubDate>Mon, 19 Jun 2017 16:02:59 +0200</pubDate>
+      
+      <guid>https://www.nodebeginner.org/web-development-beginner-tutorial/post/a-close-look-at-the-www/how-web-browsers-find-web-servers/</guid>
+      <description>&lt;p&gt;Web browsers and web servers talk to each other over the Internet. It is the client - the browser - which initiates the
+exchange. What triggers a browser to do so is the user who enters a URL into the address bar, for example:
+&lt;code&gt;http://www.example.com&lt;/code&gt;.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>2. d ◌ How computers on the Internet establish a network connection</title>
+      <link>https://www.nodebeginner.org/web-development-beginner-tutorial/post/a-close-look-at-the-www/how-computers-on-the-internet-establish-a-network-connection/</link>
+      <pubDate>Mon, 19 Jun 2017 16:02:59 +0200</pubDate>
+      
+      <guid>https://www.nodebeginner.org/web-development-beginner-tutorial/post/a-close-look-at-the-www/how-computers-on-the-internet-establish-a-network-connection/</guid>
+      <description>&lt;p&gt;What happens next? Using the IP address it looked up, the browser can now attempt to establish a network connection to the target server.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>2. e ◌ How computer programs talk to each other over the Internet</title>
+      <link>https://www.nodebeginner.org/web-development-beginner-tutorial/post/a-close-look-at-the-www/how-computer-programs-talk-to-each-other-over-the-internet/</link>
+      <pubDate>Mon, 19 Jun 2017 16:02:59 +0200</pubDate>
+      
+      <guid>https://www.nodebeginner.org/web-development-beginner-tutorial/post/a-close-look-at-the-www/how-computer-programs-talk-to-each-other-over-the-internet/</guid>
+      <description>&lt;p&gt;By now, we have established a general understanding of how computers find other computers on the Internet, and how they
+can establish a network connection via IP addresses and data packet routing using these addresses.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
