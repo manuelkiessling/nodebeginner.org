@@ -6,4 +6,5 @@
 <link rel="alternate" hreflang="vi" href="/index-vi.html">
 <link rel="alternate" hreflang="zh-Hant" href="/index-zh-cn.html">
 <link rel="alternate" hreflang="zh-Hans" href="/index-zh-tw.html">
+<link rel="alternate" hreflang="fa" href="http://msud.ir/nbpersian/online/">
 <link rel="alternate" hreflang="ru" href="http://www.nodebeginner.ru">
