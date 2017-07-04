@@ -11,6 +11,50 @@
     <?php require_once('_hreflang.php'); ?>
 
     <?php require_once('_googleanalytics.php'); ?>
+
+    <script type="application/ld+json">
+        {
+          "@context": "http://schema.org",
+          "@type": "Book",
+          "name": "The Node Beginner Book",
+          "author": {
+            "@type": "Person",
+            "name": "Manuel Kiessling"
+          },
+          "url": "https://www.nodebeginner.org",
+          "workExample":
+          [
+            {
+              "@type": "Book",
+              "isbn": "9781471628443",
+              "bookFormat": "http://schema.org/EBook",
+              "potentialAction": {
+                "@type": "ReadAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://leanpub.com/b/node-beginner-and-craftsman-bundle",
+                  "actionPlatform": [
+                    "http://schema.org/DesktopWebPlatform",
+                    "http://schema.org/IOSPlatform",
+                    "http://schema.org/AndroidPlatform"
+                  ]
+                },
+                "expectsAcceptanceOf": {
+                  "@type": "Offer",
+                  "Price": 9.00,
+                  "priceCurrency": "USD",
+                  "eligibleRegion": {
+                    "@type": "Country",
+                    "name": "US"
+                  },
+                  "availability": "http://schema.org/InStock"
+                }
+              }
+            }
+          ]
+        }
+    </script>
+
 </head>
 
 <body>
