@@ -28,7 +28,7 @@ $pathinfo = pathinfo($_ENV['SCRIPT_FILENAME']);
 $extension = $pathinfo['extension'];
 
 if ($extension != 'html') {
-    header('Cache-Control: max-age=604800'); // 1 week
+    header('Expires: ' . gmdate('D, d M Y H:i:s T', time() + 604800)); // 1 week
 }
 
 if ($extension == 'html') {
@@ -54,3 +54,6 @@ if ($extension == 'jpg') {
 if ($extension == 'gif') {
     header('Content-type: image/gif');
 }
+
+
+header('X-Went-Through-Header-File: yes');

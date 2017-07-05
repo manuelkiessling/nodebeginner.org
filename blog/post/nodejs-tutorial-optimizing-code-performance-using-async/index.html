@@ -93,9 +93,10 @@ control flow.</p>
 <p>Let&rsquo;s consider an example where our application queries several different remote web
 services, presenting the retrieved data on the console.</p>
 
-<p>We are not going to query real remote web services, instead we will write a very
-simple Node.js HTTP server that will serve as a dummy web service. Our web server
-doesn&rsquo;t really do anything significant, and therefore we will make it react to
+<p>We are not going to query real remote web services, instead we will
+<a class="internal" href="https://www.nodebeginner.org/#a-basic-http-server">write a very simple Node.js HTTP server</a>
+that will serve as a dummy web service.
+Our web server doesn&rsquo;t really do anything significant, and therefore we will make it react to
 requests a bit slower than neccessary, in order to simulate a real web service that
 has a certain workload - as you will see, this makes it easier for us to show the
 performance gain in our own code optimizations.</p>
@@ -137,7 +138,7 @@ http.createServer(function(request, response) {
 <p>This gives us a very simple &ldquo;echo&rdquo; server - if we request the URL
 <a href="http://localhost:8080/getUser?id=4">http://localhost:8080/getUser?id=4</a>, we receive
 <code>{&quot;pathname&quot;:&quot;/getUser&quot;,&quot;id&quot;:&quot;4&quot;,&quot;value&quot;:67}</code> as the response. This is good enough to
-give us the simulation of a remote webservice API to play around with.</p>
+give us the simulation of a <a class="internal" href="https://www.nodebeginner.org/">remote webservice API</a> to play around with.</p>
 
 <p>But alas, it&rsquo;s a slow webservice! Someone didn&rsquo;t do his optimization homework, and we
 now have to deal with an API where every response takes between 2 to 3 seconds
@@ -146,7 +147,7 @@ now have to deal with an API where every response takes between 2 to 3 seconds
 <p>This allows to show how different request patterns will result in different runtime
 characteristics.</p>
 
-<p>We will now write a Node.js client for this webserver. This client will make two
+<p>We will now <a class="internal" href="https://www.nodebeginner.org/">write a Node.js client</a> for this webserver. This client will make two
 consecutive requests to the server, and print the output for both requests on the
 command line:</p>
 
@@ -376,7 +377,7 @@ same time.</p>
 
 <h2 id="optimizing-code-structure-with-async">Optimizing code structure with <em>async</em></h2>
 
-<p><em>async</em> offers several other mechanisms for managing the control flow of our code.
+<p><em>async</em> offers several other mechanisms for <a class="internal" href="https://www.nodebeginner.org/">managing the control flow</a> of our code.
 These are interesting even if our concern isn&rsquo;t performance optimization. Let&rsquo;s
 investigate them.</p>
 
@@ -607,14 +608,14 @@ all aspects of real-world application building with Node.js, for example:</p>
 
 <ul>
 <li>Working with NPM and Packages</li>
-<li>Object-oriented JavaScript</li>
+<li><a class="internal" href="https://www.nodebeginner.org/">Object-oriented JavaScript</a></li>
 <li>Test-Driven Node.js Development</li>
 <li>Synchronous and Asynchronous operations explained</li>
 <li>Using and creating Event Emitters</li>
 <li>Node.js and MySQL</li>
 <li>Node.js and MongoDB</li>
 <li>Writing fast and efficient code</li>
-<li>Writing a REST webservice application</li>
+<li><a class="internal" href="https://www.nodebeginner.org/">Writing a REST webservice application</a></li>
 <li>Combining Node.js and AngularJS</li>
 <li>Setting up a continuous deployment workflow</li>
 </ul>
