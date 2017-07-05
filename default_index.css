@@ -547,6 +547,12 @@ li.L1, li.L3, li.L5, li.L7, li.L9 {
     #praise {
         display: none;
     }
+}
+
+@media only screen and (max-width: 960px) {
+    #praise {
+        display: none;
+    }
 
     #outermost {
         max-width: 720px;
