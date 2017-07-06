@@ -1,5 +1,10 @@
 User-agent: *
-Disallow:
+Disallow: /blog/categories/
+Disallow: /blog/tags/
+Disallow: /blog/page/
+Disallow: /web-development-beginner-tutorial/categories/
+Disallow: /web-development-beginner-tutorial/tags/
+Disallow: /web-development-beginner-tutorial/page/
 
 Sitemap: https://www.nodebeginner.org/sitemap.xml
 Sitemap: https://www.nodebeginner.org/blog/sitemap.xml

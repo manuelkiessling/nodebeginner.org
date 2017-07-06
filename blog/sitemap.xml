@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://www.nodebeginner.org/blog/post/nodejs-tutorial-what-are-node.js-modules/</loc>
+    <lastmod>2017-07-05T21:52:56+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.nodebeginner.org/blog/post/nodejs-tutorial-optimizing-code-performance-using-async/</loc>
     <lastmod>2017-06-06T08:22:42+02:00</lastmod>
   </url>
@@ -24,7 +29,7 @@
   
   <url>
     <loc>https://www.nodebeginner.org/blog/post/</loc>
-    <lastmod>2017-06-06T08:22:42+02:00</lastmod>
+    <lastmod>2017-07-05T21:52:56+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -35,7 +40,7 @@
   
   <url>
     <loc>https://www.nodebeginner.org/blog/</loc>
-    <lastmod>2017-06-06T08:22:42+02:00</lastmod>
+    <lastmod>2017-07-05T21:52:56+02:00</lastmod>
     <priority>0</priority>
   </url>
   

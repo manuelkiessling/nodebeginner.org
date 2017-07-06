@@ -80,7 +80,7 @@ calculation.on('done', function(result) {
 </code></pre>
 
 <p>Handling expensive operations asynchronously in the background, especially if they are
-IO-bound, is an important key to making Node.js applications perform efficiently -
+IO-bound, is an important key to <a href="https://www.nodebeginner.org/#passing-functions-around">making Node.js applications perform efficiently</a> -
 reading a large file or writing a lot of records to a database will always be a costly
 procedure, but handling it asynchronously at least ensures that the other parts of our
 application won&rsquo;t be blocked while that procedure is going on.</p>
@@ -136,7 +136,7 @@ http.createServer(function(request, response) {
 </code></pre>
 
 <p>This gives us a very simple &ldquo;echo&rdquo; server - if we request the URL
-<a href="http://localhost:8080/getUser?id=4">http://localhost:8080/getUser?id=4</a>, we receive
+h&#8291;ttp://localhost:8080/getUser?id=4, we receive
 <code>{&quot;pathname&quot;:&quot;/getUser&quot;,&quot;id&quot;:&quot;4&quot;,&quot;value&quot;:67}</code> as the response. This is good enough to
 give us the simulation of a <a class="internal" href="https://www.nodebeginner.org/">remote webservice API</a> to play around with.</p>
 
@@ -309,7 +309,7 @@ operation&hellip; no, this whole thing doesn&rsquo;t feel right.</p>
 <p><em>async</em> is a clever little module that makes managing complex control flows in our
 code a breeze.</p>
 
-<p>After installing the module via <code>npm install async@2.1.4</code>, we can write our client like
+<p>After <a href="/blog/post/nodejs-tutorial-what-are-node.js-modules/">installing the module</a> via <code>npm install async@2.1.4</code>, we can write our client like
 this:</p>
 
 <pre><code>'use strict';
@@ -381,7 +381,7 @@ same time.</p>
 These are interesting even if our concern isn&rsquo;t performance optimization. Let&rsquo;s
 investigate them.</p>
 
-<p>For these cases, let&rsquo;s remove the artificial slowness from the API server
+<p>For these cases, let&rsquo;s remove the artificial slowness from our <a href="Node.js API server">https://www.nodebeginner.org/#a-basic-http-server</a>
 by removing the <em>setTimeout</em> operation on line 19 and 22, making the server respond
 immediately:</p>
 
@@ -624,8 +624,13 @@ all aspects of real-world application building with Node.js, for example:</p>
 to Node.js development</a>, and both books together are <a href="https://leanpub.com/b/node-beginner-and-craftsman-bundle/">available from Leanpub for only $9.00</a>.</p>
           </div>
         </div>
-        <div class="pagination"> 
-          <a class="btn next " href="https://www.nodebeginner.org/blog/post/nodejs-tutorial-whatwg-url-parser/"> Next</a> 
+        <div class="pagination">
+          
+            <a class="btn next " href="https://www.nodebeginner.org/blog/post/nodejs-tutorial-what-are-node.js-modules/">Next</a>
+          
+          
+            <a class="btn previous " href="https://www.nodebeginner.org/blog/post/nodejs-tutorial-whatwg-url-parser/">Prev</a>
+          
         </div>
       </div>
     </div>

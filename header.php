@@ -18,6 +18,25 @@ if ($_SERVER['HTTP_HOST'] == 'nodebeginner.org') {
     die();
 }
 
+if (   $_SERVER['REQUEST_URI'] === '/blog/post/'
+    || $_SERVER['REQUEST_URI'] === '/blog/post'
+    || $_SERVER['REQUEST_URI'] === '/blog/post/index.html')
+{
+    header('HTTP/1.1 301 Moved Permanently');
+    header('Location: https://www.nodebeginner.org/blog/');
+    die();
+}
+
+if (   $_SERVER['REQUEST_URI'] === '/web-development-beginner-tutorial/post/'
+    || $_SERVER['REQUEST_URI'] === '/web-development-beginner-tutorial/post'
+    || $_SERVER['REQUEST_URI'] === '/web-development-beginner-tutorial/post/index.html')
+{
+    header('HTTP/1.1 301 Moved Permanently');
+    header('Location: https://www.nodebeginner.org/web-development-beginner-tutorial/');
+    die();
+}
+
+
 ob_start();
 
 $httpHost = $_SERVER['HTTP_HOST'];
