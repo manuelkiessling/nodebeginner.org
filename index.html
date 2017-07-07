@@ -7,8 +7,6 @@
     <meta name="description" content="A comprehensive Node.js tutorial for beginners: Learn how to build a full blown web application with server-side JavaScript" />
 
     <style>
-        @import url('https://fonts.googleapis.com/css?family=Open+Sans&subset=latin-ext');
-
         body {
             font-family: 'Georgia', serif;
             background-color: #eee;
@@ -96,7 +94,6 @@
         }
 
         #sitenav-inner a {
-            padding: 8px;
             text-decoration: none;
         }
 
@@ -159,7 +156,7 @@
         }
 
         #buybox-inner .cover {
-            width: 200px;
+            width: 170px;
             display: table-cell;
             padding-right: 0px;
             padding-left: 16px;
@@ -655,7 +652,7 @@
             }
 
             #buybox, #buybox-inner, #translations {
-                font-size: 18px;
+                font-size: 17px;
             }
 
             #sitenav-inner a {
@@ -724,15 +721,6 @@
 <body>
 
 <div id="outermost">
-
-    <nav id="sitenav">
-        <div id="sitenav-inner">
-            <a href="blog/">More Node.js tutorials: <strong>The Node Beginner Blog</strong></a><br>
-            <a href="web-development-beginner-tutorial/">New tutorial: <strong>Software development for the web from the ground up</strong></a><br>
-            <a href="http://beginning-mobile-app-development-with-react-native.com/">New eBook: <strong>Write mobile apps using React Native</strong></a><br>
-        </div>
-    </nav>
-
 
     <aside id="buybox">
         <div id="buybox-inner">
@@ -1811,6 +1799,13 @@
         </div>
     </aside>
 
+    <nav id="sitenav">
+        <div id="sitenav-inner">
+            <p><a href="blog/">More Node.js tutorials: <strong>The Node Beginner Blog</strong></a></p>
+            <p><a href="web-development-beginner-tutorial/">New tutorial: <strong>Software development for the web from the ground up</strong></a></p>
+            <p><a href="http://beginning-mobile-app-development-with-react-native.com/">New eBook: <strong>Write mobile apps using React Native</strong></a></p>
+        </div>
+    </nav>
 
     <aside id="disqus_thread"></aside>
 
@@ -1934,6 +1929,10 @@
     </script>
 
 </div>
+
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Open+Sans&subset=latin-ext');
+</style>
 
 </body>
 </html>
