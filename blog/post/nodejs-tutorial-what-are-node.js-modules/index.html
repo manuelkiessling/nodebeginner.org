@@ -126,8 +126,8 @@ console.log(myRandom.between1and10());
 case, the <code>between1and10</code> function.</p>
 
 <p>Note: While the module system allows to <em>expose</em> functionality of a module, it also allows to <em>hide</em> functionality which
-is not needed outside of the module, simply by not exporting the functionality via <code>export</code>. Even though the <code>index.js</code>
-file has required the <code>myRandom.js</code> file, it cannot access the non-exported <code>getRandom</code> function:</p>
+is not needed outside of the module, simply by not exporting the functionality via <code>exports</code>. Even though the <code>index.js</code>
+file has required the <code>myRandom.js</code> file, it cannot access its non-exported <code>getRandom</code> function:</p>
 
 <pre><code>var myRandom = require('./myRandom.js');
 
