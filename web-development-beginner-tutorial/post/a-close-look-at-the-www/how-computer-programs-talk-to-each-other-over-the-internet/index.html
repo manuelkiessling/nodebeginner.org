@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title> 2. e ◌ How computer programs talk to each other over the Internet</title>
+
+
+<link rel="stylesheet" href="https://www.nodebeginner.org/web-development-beginner-tutorial/css/slim.css">
+<link rel="stylesheet" href="https://www.nodebeginner.org/web-development-beginner-tutorial/css/highlight.min.css">
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+<link rel="shortcut icon" href="/favicon.ico">
+
+
+<link href="" rel="alternate" type="application/rss+xml" title="The Web Development Beginner Tutorial" />
+
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+  <h1 class="site-title"><a href="https://www.nodebeginner.org/web-development-beginner-tutorial/">The Web Development Beginner Tutorial</a></h1>
+  <p class="site-tagline">Learn software development for the web - from the ground up.</p>
+
+  
+</div>
+    <div class="content">
+      <div class="posts">
+        <div class="post">
+          <h2 class="post-title"><a href="https://www.nodebeginner.org/web-development-beginner-tutorial/post/a-close-look-at-the-www/how-computer-programs-talk-to-each-other-over-the-internet/">2. e ◌ How computer programs talk to each other over the Internet</a></h2>
+          
+          <div class="post-content">
+            <p>By now, we have established a general understanding of how computers find other computers on the Internet, and how they
+can establish a network connection via IP addresses and data packet routing using these addresses.</p>
+
+<p>We now need to zoom in even closer, and have a look at how exactly data is exchanged between a client and a server.</p>
+
+<p>First of all, it&rsquo;s important to note that it is not <em>computers</em> which exchange data through the Internet, it is
+<em>applications</em> which do.</p>
+
+<p>Our computers are just the physical shell in which our applications live, providing the physical means like network
+cards and network cables (or radio signals) which enable remote applications to talk to each other.</p>
+
+<p>In our case, the two applications talking to each other are the web browser application and the web server application.</p>
+
+<p>Let&rsquo;s update a diagram we have used before with more details:</p>
+
+<pre><code>Your computer system                      Web server system
+┌───────────────────┐                     ┌───────────────────┐
+│                   │                     │                   │
+│  Web browser      │                     │  Web server       │
+│  application      │                     │  application      │
+│  ┌────────────┐   │ requests content    │  ┌────────────┐   │
+│  │          --│---│---------------------│--│--&gt;         │   │
+│  │            │   │                     │  │            │   │
+│  │            │   │                     │  │            │   │
+│  │            │   │                     │  │            │   │
+│  │            │   │                     │  │            │   │
+│  │         &lt;--│---│---------------------│--│--          │   │
+│  └────────────┘   │       responds with │  └────────────┘   │
+│                   │             content │                   │
+│                   │                     │                   │
+└───────────────────┘                     └───────────────────┘
+</code></pre>
+
+<p>As you can see, the word <em>server</em> is used ambigously: it can mean the physical machine - the <em>hardware</em> - which is
+connected to a network like the Internet in order to <em>serve</em> data (e.g. a web server for web pages, a file server for
+files, a mail server for mails), but it can also mean the application - the <em>software</em> - which does the serving of web
+pages, files, or mails.</p>
+
+<p>To distinguish between these two, I&rsquo;m more precise in this text: I will talk about the server <em>application</em> when talking
+about the piece of software which serves web pages, and about the server <em>system</em> when talking about the computer which
+runs the server application.</p>
+
+<p>The Internet mechanisms we have seen so far - DNS, IP addressing, and routing - are sufficient to establish a general
+network connection between two computer systems, but not for making their applications talk to each other.</p>
+
+<p>We need another building block, another protocol which allows to link two applications together over an IP-based
+Internet connection, making reliable data exchange between two applications possible: TCP, the <em>Transmission Control
+Protocol</em>.</p>
+
+<p>Again: the IP protocol allows two computers to establish a connection, and TCP allows two applications, one on each
+computer, to exchange data. The metaphor here would be that a computer is a street, and an application on a computer is
+one house on the street.</p>
+
+<p>Thus</p>
+          </div>
+        </div>
+        <div class="pagination">
+          <a class="btn previous " href="https://www.nodebeginner.org/web-development-beginner-tutorial/post/a-close-look-at-the-www/how-computers-on-the-internet-establish-a-network-connection/"> Prev</a>  
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer">
+  
+  <p>Copyright (c) 2017 Manuel Kiessling</p>
+  
+</div>
+
+  </div>
+  <script src="https://www.nodebeginner.org/web-development-beginner-tutorial/js/slim.js"></script>
+  <script src="https://www.nodebeginner.org/web-development-beginner-tutorial/js/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+  <script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-2127388-6', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+</body>
+
+</html>

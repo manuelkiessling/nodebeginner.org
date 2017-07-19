@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://www.nodebeginner.org/web-development-beginner-tutorial/post/preparations/</loc>
+    <lastmod>2017-06-19T16:02:59+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.nodebeginner.org/web-development-beginner-tutorial/post/a-close-look-at-the-www/introduction/</loc>
+    <lastmod>2017-06-19T16:02:59+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.nodebeginner.org/web-development-beginner-tutorial/post/a-close-look-at-the-www/the-building-blocks-of-the-world-wide-web/</loc>
+    <lastmod>2017-06-19T16:02:59+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.nodebeginner.org/web-development-beginner-tutorial/post/a-close-look-at-the-www/how-web-browsers-find-web-servers/</loc>
+    <lastmod>2017-06-19T16:02:59+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.nodebeginner.org/web-development-beginner-tutorial/post/a-close-look-at-the-www/how-computers-on-the-internet-establish-a-network-connection/</loc>
+    <lastmod>2017-06-19T16:02:59+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.nodebeginner.org/web-development-beginner-tutorial/post/a-close-look-at-the-www/how-computer-programs-talk-to-each-other-over-the-internet/</loc>
+    <lastmod>2017-06-19T16:02:59+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.nodebeginner.org/web-development-beginner-tutorial/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.nodebeginner.org/web-development-beginner-tutorial/post/</loc>
+    <lastmod>2017-06-19T16:02:59+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.nodebeginner.org/web-development-beginner-tutorial/tags/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.nodebeginner.org/web-development-beginner-tutorial/</loc>
+    <lastmod>2017-06-19T16:02:59+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+</urlset>

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title> 2. c ◌ How web browsers find web servers</title>
+
+
+<link rel="stylesheet" href="https://www.nodebeginner.org/web-development-beginner-tutorial/css/slim.css">
+<link rel="stylesheet" href="https://www.nodebeginner.org/web-development-beginner-tutorial/css/highlight.min.css">
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+<link rel="shortcut icon" href="/favicon.ico">
+
+
+<link href="" rel="alternate" type="application/rss+xml" title="The Web Development Beginner Tutorial" />
+
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+  <h1 class="site-title"><a href="https://www.nodebeginner.org/web-development-beginner-tutorial/">The Web Development Beginner Tutorial</a></h1>
+  <p class="site-tagline">Learn software development for the web - from the ground up.</p>
+
+  
+</div>
+    <div class="content">
+      <div class="posts">
+        <div class="post">
+          <h2 class="post-title"><a href="https://www.nodebeginner.org/web-development-beginner-tutorial/post/a-close-look-at-the-www/how-web-browsers-find-web-servers/">2. c ◌ How web browsers find web servers</a></h2>
+          
+          <div class="post-content">
+            <p>Web browsers and web servers talk to each other over the Internet. It is the client - the browser - which initiates the
+exchange. What triggers a browser to do so is the user who enters a URL into the address bar, for example:
+<code>http://www.example.com</code>.</p>
+
+<p>The Internet is a network of millions of servers distributed all over the world. One of this million of servers serves
+the <em>www.example.com</em> website. How does your browser connect to exactly this one server?</p>
+
+<p>The first thing the browser needs to do to in its quest to find the right server is to translate the domain name you
+gave it - <em>www.example.com</em> - into an actual Internet address, which is a number, not a name.</p>
+
+<p>To do so, the browser utilizes an Internet component which is not a part of the World Wide Web itself, but plays a
+crucial role in making it more comfortable to use: the Domain Name System, or DNS.</p>
+
+<p>You can think of the DNS as a huge telephone book. You know the name of a person, and you use it to look up their
+telephone number. The DNS offers the same service for browsers - the browser queries the DNS with a domain name like
+<em>www.example.com</em>, and the DNS tells the browser the Internet address.</p>
+
+<p>You can also query the Domain Name System yourself, from the command line of your virtual Linux box.</p>
+
+<p>To get to a command line, you need to start a Terminal application. To do so, simply click on the Ubuntu symbol in the
+upper left corner of your Linux desktop. In the search dialogue which opens, type <em>terminal</em>.</p>
+
+<p>You will get a list of three or four applications as the search result - simply click on the first result which is
+name &ldquo;Terminal&rdquo;, the one with the black and white icon of a window with a <em>&gt;_</em> symbol in it.</p>
+
+<p>A new application window opens which provides a text-based interface - a command line.</p>
+
+<p>At the so-called prompt, which probably looks like this:</p>
+
+<pre><code>﻿yourname@ubuntu:~$
+</code></pre>
+
+<p>you are able to type commands which the Linux system then executes.</p>
+
+<p>One of this commands is called <em>dig</em>. We can use dig to ask the Domain Name System for the Internet address of
+<em>www.example.com</em> like so:</p>
+
+<pre><code>﻿yourname@ubuntu:~$ dig www.example.com A
+</code></pre>
+
+<p>Enter this command, and then hit enter. With this, you start the command line application <em>dig</em> with two parameters: the
+name for which to look up information from the DNS, and the type of information you want to look up, in this case <em>A</em>,
+which stands for <em>Internet Protocol address version 4</em>, or <em>IPv4 address</em>, or, as version 4 is still the predominant
+Internet Protocol version, simply <em>IP address</em>.</p>
+
+<p>As a result, your terminal window will output a text block similar to this one:</p>
+
+<pre><code>; &lt;&lt;&gt;&gt; DiG 9.10.3-P4-Ubuntu &lt;&lt;&gt;&gt; www.example.com A
+;; global options: +cmd
+;; Got answer:
+;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: NOERROR, id: 51563
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
+;; QUESTION SECTION:
+;www.example.com.       IN  A
+
+;; ANSWER SECTION:
+www.example.com.    7157    IN  A   93.184.216.34
+
+;; Query time: 12 msec
+;; SERVER: 127.0.1.1#53(127.0.1.1)
+;; WHEN: Tue May 30 08:30:17 CEST 2017
+;; MSG SIZE  rcvd: 60
+</code></pre>
+
+<p>While there is a lot of additional information here which we will ignore for now, we also get the information we asked
+for, on line 13: The IPv4 address of www.example.com is <em>93.184.216.34</em>.</p>
+
+<p>When you ask your browser to open <em>www.example.com</em>, it does the same - it tries to retrieve this numeric address via
+the DNS.</p>
+
+<p>It doesn&rsquo;t start the <em>dig</em> command in the background - that command is for human users. Instead, it issues the query
+directly, using its own program code. The details of this do not matter to us.</p>
+
+<p>You can sometimes even see the browser doing this step - especially if your internet connection is not the fastest, you
+can see for a brief moment a status message in the lower left corner of the browser window, stating something similar to
+&ldquo;Looking up www.example.com&hellip;&rdquo;.</p>
+
+<p>So, you have entered the address <em>www.example.com</em> into the address bar of your browser, you hit enter, and your browser
+uses the Domain Name System to look up the IP address of the server system which serves the <em>www.example.com</em> website.</p>
+
+<h2 id="how-computers-on-the-internet-establish-a-network-connection">How computers on the Internet establish a network connection</h2>
+
+<p>What happens next?</p>
+
+<p>Using the IP address it looked up, the browser can now attempt to establish a network connection to the target server.</p>
+
+<p>To do so, the browser uses the mechanisms of the Internet Protocol, whose job is to make network connections between
+computer systems possible. The most important mechanism for this is called <em>routing</em>. Routing is the process of creating
+a path between a source node on the Internet (your computer) and a target node on the Internet (the computer system with
+IP address <em>93.184.216.34</em>, in our example).</p>
+
+<p>The beauty of this routing mechanism is that while your computer needs to know the exact target address it wants to talk
+to, it doesn&rsquo;t need to bother how to get its data to this target address.</p>
+
+<p>Again, a metaphor from real life comes to mind.</p>
+
+<p>Let&rsquo;s assume you want to write a letter to, say, the <em>European Organization for Nuclear Research</em> in Switzerland, also
+known as <em>CERN</em>. In order to do so, you need a target postal address, and you need to know the next post station where
+you can mail the letter - and nothing more. The postal system takes care of the rest, and the exact route of the letter
+and the intermediary post stations involved is neither known to you nor important to you. You can rest assured that the
+system will route your letter correctly to its destination.</p>
+
+<p>With Internet Protocol routing, it&rsquo;s the same: Your computer knows the target address, plus it knows the address of its
+own &ldquo;next&rdquo; Internet &ldquo;station&rdquo; - this is called the <em>default gateway</em>. When you connect your computer to the Wifi box in
+your home, the IP address of the Wifi box becomes the default gateway of your computer, and a server system from your
+Internet provider is in turn the default gateway of your Wifi box.</p>
+
+<p>By delivering data to this default gateway, the data packet starts to travel through the Internet towards its
+destination through many different systems - or &ldquo;nodes&rdquo; - on the Internet, bringing it closer to its target with each
+step.</p>
+
+<p>Each node simply handing over the data packet to its one &ldquo;next&rdquo; node of course isn&rsquo;t enough, because that would
+only work if all nodes, including your source and target node, were connected serially on the Internet. But the Internet
+is a network of many nodes interconnected with each other.</p>
+
+<p>Thus, for routing to be useful, several nodes on the Internet have <em>multiple</em> &ldquo;next nodes&rdquo; configured, and depending
+on the IP address of the target system, will decide to route the data packet in one direction or the other:</p>
+
+<pre><code>                                                                   NodeJ  
+                                                                    ^     
+                                                                   /      
+                                                                  /       
+                             NodeC  --&gt;  NodeG  --&gt;  NodeI  --&gt;  NodeK
+                              ^            \                                 
+                             /              \                                
+                            /                \                               
+                           /                  v                              
+Source  --&gt;  NodeA  --&gt;  NodeB              NodeH                           
+                          /\
+                         /  \
+                        /    \
+                       v      \
+                     NodeD     v
+                             NodeE  --&gt;  Target
+                                         (93.184.216.34)
+</code></pre>
+
+<p>The above diagram is meant to be a very simplified illustration of the logical structure of a very tiny part of the
+Internet.</p>
+
+<p>The <em>Source</em> node could be your computer, which has <em>NodeA</em> (probably your DSL router) as its default gateway. When
+your computer tries to reach the node with IP 93.184.216.34, it has no choice but to hand over data to the only node it
+knows, <em>NodeA</em>. NodeA also only has one default gateway (probably a system operated by your Internet provider), <em>NodeB</em>.</p>
+
+<p><em>NodeB</em>, however, has routes to multiple other nodes, <em>NodeC</em>, <em>NodeD</em> and <em>NodeE</em>, and it also knows which of these
+nodes is the best next hop for a data packet addressed to <em>93.184.216.34</em>.</p>
+
+<p><em>NodeE</em>, then, has a direct route to the target node, and can deliver the data packet.</p>
+
+<p>Thus, <em>Source -&gt; A -&gt; B -&gt; E -&gt; Target</em> is the route over which your computer and the target system can establish a
+connection.</p>
+
+<p>This routing capability is the foundation of the Internet - it allows two computer systems to exchange data with each
+other.</p>
+
+<h2 id="how-computer-programs-talk-to-each-other-over-the-internet">How computer programs talk to each other over the Internet</h2>
+
+<p>By now, we have established a general understanding of how computers find other computers on the Internet, and how they
+can establish a network connection via IP addresses and data packet routing using these addresses.</p>
+
+<p>We now need to zoom in even closer, and have a look at how exactly data is exchanged between a client and a server.</p>
+
+<p>First of all, it&rsquo;s important to note that it is not <em>computers</em> which exchange data through the Internet, it is
+<em>applications</em> which do.</p>
+
+<p>Our computers are just the physical shell in which our applications live, providing the physical means like network
+cards and network cables (or radio signals) which enable remote applications to talk to each other.</p>
+
+<p>In our case, the two applications talking to each other are the web browser application and the web server application.</p>
+
+<p>Let&rsquo;s update a diagram we have used before with more details:</p>
+
+<pre><code>Your computer system                      Web server system
+┌───────────────────┐                     ┌───────────────────┐
+│                   │                     │                   │
+│  Web browser      │                     │  Web server       │
+│  application      │                     │  application      │
+│  ┌────────────┐   │ requests content    │  ┌────────────┐   │
+│  │          --│---│---------------------│--│--&gt;         │   │
+│  │            │   │                     │  │            │   │
+│  │            │   │                     │  │            │   │
+│  │            │   │                     │  │            │   │
+│  │            │   │                     │  │            │   │
+│  │         &lt;--│---│---------------------│--│--          │   │
+│  └────────────┘   │       responds with │  └────────────┘   │
+│                   │             content │                   │
+│                   │                     │                   │
+└───────────────────┘                     └───────────────────┘
+</code></pre>
+
+<p>As you can see, the word <em>server</em> is used ambigously: it can mean the physical machine - the <em>hardware</em> - which is
+connected to a network like the Internet in order to <em>serve</em> data (e.g. a web server for web pages, a file server for
+files, a mail server for mails), but it can also mean the application - the <em>software</em> - which does the serving of web
+pages, files, or mails.</p>
+
+<p>To distinguish between these two, I&rsquo;m more precise in this text: I will talk about the server <em>application</em> when talking
+about the piece of software which serves web pages, and about the server <em>system</em> when talking about the computer which
+runs the server application.</p>
+
+<p>The Internet mechanisms we have seen so far - DNS, IP addressing, and routing - are sufficient to establish a network
+connection between two computer systems, but not for making their applications talk to each other. If that was the case</p>
+
+<h2 id="how-web-browsers-and-web-servers-talk-to-each-other">How web browsers and web servers talk to each other</h2>
+
+<p>Let&rsquo;s zoom even further in. We have learned how your web browser is able to find the IP address of the web server it
+wants to request using the Domain Name System, and we have learned how your web browser can establish a connection to
+the web server system available under this IP address using the routing mechanisms of the Internet.</p>
+
+<p>Now that a connection is established, we will have a look at the actual data exchange.</p>
+          </div>
+        </div>
+        <div class="pagination">
+          <a class="btn previous " href="https://www.nodebeginner.org/web-development-beginner-tutorial/post/a-close-look-at-the-www/the-building-blocks-of-the-world-wide-web/"> Prev</a>  
+          <a class="btn next " href="https://www.nodebeginner.org/web-development-beginner-tutorial/post/a-close-look-at-the-www/how-computers-on-the-internet-establish-a-network-connection/"> Next</a> 
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer">
+  
+  <p>Copyright (c) 2017 Manuel Kiessling</p>
+  
+</div>
+
+  </div>
+  <script src="https://www.nodebeginner.org/web-development-beginner-tutorial/js/slim.js"></script>
+  <script src="https://www.nodebeginner.org/web-development-beginner-tutorial/js/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+  <script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-2127388-6', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+</body>
+
+</html>

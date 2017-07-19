@@ -1,44 +1,36 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-Hant" xml:lang="zh-Hant">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <?php require_once('_defaultheaders.php'); ?>
 
         <title>Node入门 » 一本全面的Node.js教程</title>
         <meta name="description" content="一本适合Node.js初学者的全面教程：教你如何使用服务端JavaScript来构建一个完整的web应用" />
 
-        <link rel="icon" href="favicon.png" type="image/png" />
         <link rel="stylesheet" type="text/css" href="olddefault.css" />
-		<link rel="canonical" href="http://www.nodebeginner.org/index-zh-cn.html" />
-		
+		<link rel="canonical" href="https://www.nodebeginner.org/index-zh-cn.html" />
+
+        <?php require_once('_hreflang.php'); ?>
+
         <style>
             #book p {
                 text-align: left;
             }
         </style>
-        
-        <script>
-          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-          ga('create', 'UA-2127388-6', 'auto');
-          ga('send', 'pageview');
-
-        </script>
 
         <script type="text/javascript">
             // Disqus
             var disqus_shortname = 'nodebeginner';
             var disqus_identifier = 'nodebeginner-book-chinese';
-            var disqus_url = 'http://www.nodebeginner.org/index-zh-cn.html';
+            var disqus_url = 'https://www.nodebeginner.org/index-zh-cn.html';
             (function() {
                 var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
                 (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
             })();
         </script>
+
+        <?php require_once('_googleanalytics.php'); ?>
     </head>
     <body>
         <img style="display: none;" src="the_node_beginner_book_cover_medium.png" height="256" width="171" />
@@ -136,10 +128,10 @@
         <div id="book">
         <h1>Node入门</h1>
 
-        <div id="author">作者： <a href="http://twitter.com/manuelkiessling">Manuel Kiessling</a><br />
-                         翻译： <a href="http://weibo.com/goddyzhao">goddyzhao</a> & 
-                               <a href="http://www.otakustay.com">GrayZhang</a> & 
-                               <a href="http://weibo.com/cmonday">MondayChen</a></div>
+        <div id="author">作者： <a href="https://twitter.com/manuelkiessling">Manuel Kiessling</a><br />
+                         翻译： <a href="https://weibo.com/goddyzhao">goddyzhao</a> &
+                               <a href="https://www.otakustay.com">GrayZhang</a> &
+                               <a href="https://weibo.com/cmonday">MondayChen</a></div>
 
         <a name="about"></a>
 
@@ -545,7 +537,7 @@
         </p>
 
         <p>
-            最有趣（而且，如果你之前习惯使用一个更加保守的语言，比如PHP，它还很奇怪）的部分是 <em>createSever()</em> 的第一个参数，一个函数定义。
+            最有趣（而且，如果你之前习惯使用一个更加保守的语言，比如PHP，它还很奇怪）的部分是 <em>createServer()</em> 的第一个参数，一个函数定义。
         </p>
 
         <p>
@@ -715,7 +707,7 @@
 
         <p>这就是事件驱动的异步服务器端JavaScript和它的回调啦！</p>
 
-        <p>（请注意，当我们在服务器访问网页时，我们的服务器可能会输出两次“Request received.”。那是因为大部分服务器都会在你访问 http://localhost:8888 /时尝试读取 http://localhost:8888/favicon.ico )</p>
+        <p>（请注意，当我们在服务器访问网页时，我们的服务器可能会输出两次“Request received.”。那是因为大部分浏览器都会在你访问 http://localhost:8888/ 时尝试读取 http://localhost:8888/favicon.ico )</p>
 
         <a name="how-our-server-handles-requests"></a>
 
@@ -2699,6 +2691,9 @@ Request handler 'start' was called.</pre>
                 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</a>.
                 <br />
                 Permissions beyond the scope of this license may be available at <a xmlns:cc="http://creativecommons.org/ns#" href="mailto:manuel@kiessling.net" rel="cc:morePermissions">manuel@kiessling.net</a>.
+                <br/>
+                <br/>
+                <a href="imprint.html">Imprint / Impressum / Datenschutz / Haftung</a>
             </p>
         </div>
     </body>

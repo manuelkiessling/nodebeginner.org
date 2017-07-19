@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://www.nodebeginner.org/</loc>
+    <lastmod>2017-07-04T21:18:00+02:00</lastmod>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://www.nodebeginner.org/index-br.html</loc>
+    <lastmod>2017-06-23T11:16:00+02:00</lastmod>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://www.nodebeginner.org/index-es.html</loc>
+    <lastmod>2017-06-23T11:16:00+02:00</lastmod>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://www.nodebeginner.org/index-jp.html</loc>
+    <lastmod>2017-06-23T11:16:00+02:00</lastmod>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://www.nodebeginner.org/index-kr.html</loc>
+    <lastmod>2017-06-23T11:16:00+02:00</lastmod>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://www.nodebeginner.org/index-vi.html</loc>
+    <lastmod>2017-06-23T11:16:00+02:00</lastmod>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://www.nodebeginner.org/index-zh-cn.html</loc>
+    <lastmod>2017-06-23T11:16:00+02:00</lastmod>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://www.nodebeginner.org/index-zh-tw.html</loc>
+    <lastmod>2017-06-23T11:16:00+02:00</lastmod>
+    <priority>0.5</priority>
+  </url>
+
+</urlset>

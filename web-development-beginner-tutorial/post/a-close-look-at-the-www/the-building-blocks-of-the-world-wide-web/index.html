@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title> 2. b ◌ The building blocks of the World Wide Web</title>
+
+
+<link rel="stylesheet" href="https://www.nodebeginner.org/web-development-beginner-tutorial/css/slim.css">
+<link rel="stylesheet" href="https://www.nodebeginner.org/web-development-beginner-tutorial/css/highlight.min.css">
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+<link rel="shortcut icon" href="/favicon.ico">
+
+
+<link href="" rel="alternate" type="application/rss+xml" title="The Web Development Beginner Tutorial" />
+
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+  <h1 class="site-title"><a href="https://www.nodebeginner.org/web-development-beginner-tutorial/">The Web Development Beginner Tutorial</a></h1>
+  <p class="site-tagline">Learn software development for the web - from the ground up.</p>
+
+  
+</div>
+    <div class="content">
+      <div class="posts">
+        <div class="post">
+          <h2 class="post-title"><a href="https://www.nodebeginner.org/web-development-beginner-tutorial/post/a-close-look-at-the-www/the-building-blocks-of-the-world-wide-web/">2. b ◌ The building blocks of the World Wide Web</a></h2>
+          
+          <div class="post-content">
+            <p>The bad news is that even for a seemingly simple and innocent operation - like a browser requesting a single web page
+from a server - there are so many moving parts involved that you could fill multiple books explaining them all. The good news, however, is that in order to become a productive web developer, we do not need to know all the atomic details.</p>
+
+<p>We do not need to know how a CPU works on the transistor level and we do not need to chase every zero and every
+one that travels through a network cable in order to build a fast, reliable and useful web application.</p>
+
+<p>It is useful to know and understand - at least conceptually - the most important parts and the mechanisms which make
+them work together.</p>
+
+<p>To achieve this, we will build a mental model of how the world wide web works over the course of this chapter. As we
+will see, there is no magic involved, and while it&rsquo;s a complex ecosystem which is put into motion each time you click
+on a link in a web browser, it&rsquo;s not complicated to grasp what happens conceptually.</p>
+
+<p>Let&rsquo;s start by clarifying the scope we are talking about. When you use your browser, you are surfing &ldquo;the web&rdquo;. More
+precisely, you are interacting with a system of different components which together form the <em>World Wide Web</em>.</p>
+
+<p>A&gt; This name is the reason why the domain names of most websites begin with the prefix (or rather <em>subdomain</em>, which is
+A&gt; the correct technical term) <code>www</code>, like <code>www.google.com</code>. It&rsquo;s just a matter of habit to use this prefix - technically,
+A&gt; it doesn&rsquo;t matter at all, so feel free to set up a web site at <code>qqq.yournamehere.com</code>.</p>
+
+<p>The World Wide Web is not one single piece of technology. Instead, it&rsquo;s a collection of open standards which define how
+certain pieces of technology can work together; plus, it builds on top of other standards and technologies which are
+much older and allow the World Wide Web to work without reinventing <em>all</em> the wheels.</p>
+
+<p>Thus, from a bird&rsquo;s eye view, the World Wide Web landscape looks a bit like this:</p>
+
+<pre><code>The World Wide Web building set...
+┌───────────────────────────────────────┐
+│                                       │
+│    HTML, CSS, JavaScript              │
+│                                       │
+│    HTTP                               │
+│                                       │
+│    Browser                            │
+│                                       │
+│    Web server                         │
+│                                       │
+└───────────────────────────────────────┘
+...builds on the Internet building set...
+┌───────────────────────────────────────┐
+│                                       │
+│  BGP, DNS, TCP, IP, MIME, URI...      │
+│                                       │
+└───────────────────────────────────────┘
+...which builds on different network building sets.
+┌───────────────────────────────────────┐
+│                                       │
+│ Ethernet, ATM, IEEE 802.11...         │
+│                                       │
+└───────────────────────────────────────┘
+</code></pre>
+
+<p>Which is another way to say that you browser uses Internet technology like IP and TCP, which allows it to send and
+receive data over network technology like Ethernet or ATM, to talk to a web server using the HTTP protocol, enabling the
+browser to request and download the collection of HTML, CSS and JavaScript that make up the web page which appears in
+your browser window.</p>
+
+<p>Ok, but how does that look in practice?</p>
+
+<p>The first thing to understand is that the web browser and the web server are two computer programs, running on different
+computer systems, which need to find each other, establish a network connection, and exchange data over this connection
+in a meaningful way.</p>
+
+<p>Let&rsquo;s tackle this process step by step.</p>
+          </div>
+        </div>
+        <div class="pagination">
+          <a class="btn previous " href="https://www.nodebeginner.org/web-development-beginner-tutorial/post/a-close-look-at-the-www/introduction/"> Prev</a>  
+          <a class="btn next " href="https://www.nodebeginner.org/web-development-beginner-tutorial/post/a-close-look-at-the-www/how-web-browsers-find-web-servers/"> Next</a> 
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer">
+  
+  <p>Copyright (c) 2017 Manuel Kiessling</p>
+  
+</div>
+
+  </div>
+  <script src="https://www.nodebeginner.org/web-development-beginner-tutorial/js/slim.js"></script>
+  <script src="https://www.nodebeginner.org/web-development-beginner-tutorial/js/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+  <script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-2127388-6', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title> 2. a ◌ A close look at the WWW</title>
+
+
+<link rel="stylesheet" href="https://www.nodebeginner.org/web-development-beginner-tutorial/css/slim.css">
+<link rel="stylesheet" href="https://www.nodebeginner.org/web-development-beginner-tutorial/css/highlight.min.css">
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+<link rel="shortcut icon" href="/favicon.ico">
+
+
+<link href="" rel="alternate" type="application/rss+xml" title="The Web Development Beginner Tutorial" />
+
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+  <h1 class="site-title"><a href="https://www.nodebeginner.org/web-development-beginner-tutorial/">The Web Development Beginner Tutorial</a></h1>
+  <p class="site-tagline">Learn software development for the web - from the ground up.</p>
+
+  
+</div>
+    <div class="content">
+      <div class="posts">
+        <div class="post">
+          <h2 class="post-title"><a href="https://www.nodebeginner.org/web-development-beginner-tutorial/post/a-close-look-at-the-www/introduction/">2. a ◌ A close look at the WWW</a></h2>
+          
+          <div class="post-content">
+            <p>What happens when you open a web page in your browser? On the surface, your browser (the <em>client</em>) loads a page from a
+remote system (the <em>server</em>) and displays its content. What exactly is displayed, and how it is presented to us, is
+defined by the HTML, CSS and JavaScript code which the server sends back to our client.</p>
+
+<pre><code>Web browser                     Web server
+┌─────────┐                     ┌─────────┐
+│         │   requests content  │         │
+│ shows   │--------------------&gt;│ provides│
+│ page    │                     │ page    │
+│ content │                     │ content │
+│         │&lt;--------------------│         │
+└─────────┘    responds with    └─────────┘
+                  content
+</code></pre>
+
+<p>This is the content of the web page, and this is what the end user is interested in in the first place. But I would like
+to zoom in and not talk about the content of a web page yet. Instead, I would like to focus on the processes which take
+place &ldquo;under the hood&rdquo; when a browser opens a web page - the stuff that happens before we even see the first content
+appear on the screen.</p>
+
+<p>How does the browser <em>actually</em> ask the server for its content? How does the server <em>actually</em> respond with the content?</p>
+
+<p>How do browser and server find each other, and how do they exchange information and data?</p>
+
+<p>This is what this chapter is about.</p>
+          </div>
+        </div>
+        <div class="pagination">
+          <a class="btn previous " href="https://www.nodebeginner.org/web-development-beginner-tutorial/post/preparations/"> Prev</a>  
+          <a class="btn next " href="https://www.nodebeginner.org/web-development-beginner-tutorial/post/a-close-look-at-the-www/the-building-blocks-of-the-world-wide-web/"> Next</a> 
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer">
+  
+  <p>Copyright (c) 2017 Manuel Kiessling</p>
+  
+</div>
+
+  </div>
+  <script src="https://www.nodebeginner.org/web-development-beginner-tutorial/js/slim.js"></script>
+  <script src="https://www.nodebeginner.org/web-development-beginner-tutorial/js/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+  <script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-2127388-6', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+</body>
+
+</html>

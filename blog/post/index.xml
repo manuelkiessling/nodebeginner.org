@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on The Node Beginner Blog</title>
+    <link>https://www.nodebeginner.org/blog/post/</link>
+    <description>Recent content in Posts on The Node Beginner Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 05 Jul 2017 21:52:56 +0200</lastBuildDate>
+    
+	<atom:link href="https://www.nodebeginner.org/blog/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Explained: What are Node.js modules?</title>
+      <link>https://www.nodebeginner.org/blog/post/nodejs-tutorial-what-are-node.js-modules/</link>
+      <pubDate>Wed, 05 Jul 2017 21:52:56 +0200</pubDate>
+      
+      <guid>https://www.nodebeginner.org/blog/post/nodejs-tutorial-what-are-node.js-modules/</guid>
+      <description>&lt;p&gt;When you write Node.js applications, you could actually put all your code into one huge &lt;em&gt;index.js&lt;/em&gt; file, no matter
+how large or complex your application is. The Node.js interpreter doesn&amp;rsquo;t care. But in terms of code organization,
+you would end up with a hard to understand and hard to debug mess quite quickly. So as a human being, you should care
+about how to structure your code. This is where modules come in. &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Node.js tutorial: Optimizing code performance using async</title>
+      <link>https://www.nodebeginner.org/blog/post/nodejs-tutorial-optimizing-code-performance-using-async/</link>
+      <pubDate>Tue, 06 Jun 2017 08:22:42 +0200</pubDate>
+      
+      <guid>https://www.nodebeginner.org/blog/post/nodejs-tutorial-optimizing-code-performance-using-async/</guid>
+      <description>&lt;p&gt;The more complex your Node.js applications become, the more you need to think about the so-called
+&lt;em&gt;control-flow&lt;/em&gt; of your code. Especially when the need arises to optimize operations in terms of
+efficiency and performance by introducing background operations and parallelity, the code can
+quickly become a mess. Let&amp;rsquo;s see what that means and what we can do about it. &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Node.js tutorial: The WHATWG URL parser</title>
+      <link>https://www.nodebeginner.org/blog/post/nodejs-tutorial-whatwg-url-parser/</link>
+      <pubDate>Sun, 04 Jun 2017 17:55:56 +0200</pubDate>
+      
+      <guid>https://www.nodebeginner.org/blog/post/nodejs-tutorial-whatwg-url-parser/</guid>
+      <description>&lt;p&gt;The &lt;a href=&#34;https://www.nodebeginner.org/blog/blog/post/node-v8_0_0-released/&#34;&gt;recently released version 8.0.0&lt;/a&gt; of Node.js made the experimental implementation of the WHATWG URL parser from Node.js v7.0.0 non-experimental and fully supported. Here&amp;rsquo;s what you can use it for.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Node.js 8.0.0 has been released</title>
+      <link>https://www.nodebeginner.org/blog/post/node-v8_0_0-released/</link>
+      <pubDate>Sun, 04 Jun 2017 17:29:27 +0200</pubDate>
+      
+      <guid>https://www.nodebeginner.org/blog/post/node-v8_0_0-released/</guid>
+      <description>&lt;p&gt;The Node.js team has recently released a new major version of Node.js - Node v8.0.0.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,47 +1,39 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <?php require_once('_defaultheaders.php'); ?>
 
         <title>Nodeビギナーズブック » Node.jsチュートリアル » Node.js 教程</title>
         <meta name="description" content="本書は、Node.jsでのアプリケーション開発を始めようとする皆さんに、”高度な”JavaScriptについて知るべきあらゆることを解説します。よくある”Hello World”チュートリアルの、はるか上をいくものです。" />
         
-        <link rel="icon" href="favicon.png" type="image/png" />
         <link rel="stylesheet" type="text/css" href="olddefault.css" />
-		<link rel="canonical" href="http://www.nodebeginner.org/index-jp.html" />
-		
+		<link rel="canonical" href="https://www.nodebeginner.org/index-jp.html" />
+
+        <?php require_once('_hreflang.php'); ?>
+
         <style type="text/css">
             body {
                 font-family: "MS P明朝", "ヒラギノ明朝 ProN W3","Hiragino Mincho ProN", Georgia, serif;
             }
         </style>
-        
-        <script>
-          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-          ga('create', 'UA-2127388-6', 'auto');
-          ga('send', 'pageview');
-
-        </script>
 
         <script type="text/javascript">
             // Disqus
             var disqus_shortname = 'nodebeginner';
-            var disqus_identifier = 'nodebeginner-book';
-            var disqus_url = 'http://www.nodebeginner.org/';
+            var disqus_identifier = 'nodebeginner-book-japanese';
+            var disqus_url = 'https://www.nodebeginner.org/index-jp.html';
             (function() {
                 var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
                 (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
             })();
 
             // CSS browser select
             function css_browser_selector(u){var ua=u.toLowerCase(),is=function(t){return ua.indexOf(t)>-1},g='gecko',w='webkit',s='safari',o='opera',m='mobile',h=document.documentElement,b=[(!(/opera|webtv/i.test(ua))&&/msie\s(\d)/.test(ua))?('ie ie'+RegExp.$1):is('firefox/2')?g+' ff2':is('firefox/3.5')?g+' ff3 ff3_5':is('firefox/3.6')?g+' ff3 ff3_6':is('firefox/3')?g+' ff3':is('gecko/')?g:is('opera')?o+(/version\/(\d+)/.test(ua)?' '+o+RegExp.$1:(/opera(\s|\/)(\d+)/.test(ua)?' '+o+RegExp.$2:'')):is('konqueror')?'konqueror':is('blackberry')?m+' blackberry':is('android')?m+' android':is('chrome')?w+' chrome':is('iron')?w+' iron':is('applewebkit/')?w+' '+s+(/version\/(\d+)/.test(ua)?' '+s+RegExp.$1:''):is('mozilla/')?g:'',is('j2me')?m+' j2me':is('iphone')?m+' iphone':is('ipod')?m+' ipod':is('ipad')?m+' ipad':is('mac')?'mac':is('darwin')?'mac':is('webtv')?'webtv':is('win')?'win'+(is('windows nt 6.0')?' vista':''):is('freebsd')?'freebsd':(is('x11')||is('linux'))?'linux':'','js'];c=b.join(' ');h.className+=' '+c;return c;};css_browser_selector(navigator.userAgent);
         </script>
+
+        <?php require_once('_googleanalytics.php'); ?>
     </head>
     <body>
         <img style="display: none;" src="the_node_beginner_book_cover_medium.png" height="256" width="171" />
@@ -114,8 +106,8 @@
                     <p>
                         The perfect introduction plus the perfect reference in one bundle!
                     </p>
-                    <a href="buy-bundle/index.html"><img src="the_node_beginner_book_cover_small.png" height="86" width="57" /></a>
-                    <a href="buy-bundle/index.html"><img src="hands-on_node.js_cover.png" height="86" width="57" /></a>
+                    <a href="https://leanpub.com/b/node-beginner-and-craftsman-bundle"><img src="the_node_beginner_book_cover_small.png" height="86" width="57" /></a>
+                    <a href="https://leanpub.com/b/node-beginner-and-craftsman-bundle"><img src="hands-on_node.js_cover.png" height="86" width="57" /></a>
                 </div>
                 <div class="description">
                     <p>
@@ -144,7 +136,7 @@
                         <br />
                         Free updates
                     </p>
-                    <a class="buttonlink" href="buy-bundle/index.html">
+                    <a class="buttonlink" href="https://leanpub.com/b/node-beginner-and-craftsman-bundle">
                         <div class="button">Buy this<br />bundle now</div>
                     </a>
                 </div>
@@ -155,7 +147,7 @@
         <h1>Nodeビギナーズブック</h1>
 
         <div id="author">
-            A Node.js tutorial by <a href="http://twitter.com/manuelkiessling">Manuel Kiessling</a>
+            A Node.js tutorial by <a href="https://twitter.com/manuelkiessling">Manuel Kiessling</a>
             <br>
             Translated by <a href="http://il-all.blogspot.com/">Yuki Kawashima</a>
         </div>
@@ -3355,8 +3347,8 @@ exports</span><span class="pun">.</span><span class="pln">show </span><span clas
                     <p>
                         The perfect introduction plus the perfect reference in one bundle!
                     </p>
-                    <a href="buy-bundle/index.html"><img src="the_node_beginner_book_cover_small.png" height="86" width="57" /></a>
-                    <a href="buy-bundle/index.html"><img src="hands-on_node.js_cover.png" height="86" width="57" /></a>
+                    <a href="https://leanpub.com/b/node-beginner-and-craftsman-bundle"><img src="the_node_beginner_book_cover_small.png" height="86" width="57" /></a>
+                    <a href="https://leanpub.com/b/node-beginner-and-craftsman-bundle"><img src="hands-on_node.js_cover.png" height="86" width="57" /></a>
                 </div>
                 <div class="description">
                     <p>
@@ -3385,7 +3377,7 @@ exports</span><span class="pun">.</span><span class="pln">show </span><span clas
                         <br />
                         Free updates
                     </p>
-                    <a class="buttonlink" href="buy-bundle/index.html">
+                    <a class="buttonlink" href="https://leanpub.com/b/node-beginner-and-craftsman-bundle">
                         <div class="button">Buy this<br />bundle now</div>
                     </a>
                 </div>
@@ -3457,24 +3449,10 @@ exports</span><span class="pun">.</span><span class="pln">show </span><span clas
                 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons 表示 - 非営利 - 継承 3.0 非移植 ライセンス</a>に従うものとします。
                 <br />
                 このライセンスを超えた範囲での許諾については次の連絡先に問い合わせて下さい <a xmlns:cc="http://creativecommons.org/ns#" href="mailto:manuel@kiessling.net" rel="cc:morePermissions">manuel@kiessling.net</a>.
+                <br/>
+                <br/>
+                <a href="imprint.html">Imprint / Impressum / Datenschutz / Haftung</a>
             </p>
         </div>
-
-        <script type="text/javascript">
-            (function() {
-                var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-                po.src = 'https://apis.google.com/js/plusone.js';
-                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-            })();
-        </script>
-        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-        <div id="fb-root"></div>
-        <script>(function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/de_DE/all.js#xfbml=1&appId=199413993412439";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));</script>
     </body>
 </html>

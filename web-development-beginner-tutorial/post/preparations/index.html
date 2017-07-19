@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title> 1 ◌ Preparations</title>
+
+
+<link rel="stylesheet" href="https://www.nodebeginner.org/web-development-beginner-tutorial/css/slim.css">
+<link rel="stylesheet" href="https://www.nodebeginner.org/web-development-beginner-tutorial/css/highlight.min.css">
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+<link rel="shortcut icon" href="/favicon.ico">
+
+
+<link href="" rel="alternate" type="application/rss+xml" title="The Web Development Beginner Tutorial" />
+
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+  <h1 class="site-title"><a href="https://www.nodebeginner.org/web-development-beginner-tutorial/">The Web Development Beginner Tutorial</a></h1>
+  <p class="site-tagline">Learn software development for the web - from the ground up.</p>
+
+  
+</div>
+    <div class="content">
+      <div class="posts">
+        <div class="post">
+          <h2 class="post-title"><a href="https://www.nodebeginner.org/web-development-beginner-tutorial/post/preparations/">1 ◌ Preparations</a></h2>
+          
+          <div class="post-content">
+            <p>Before we can start with anything, we need to prepare an environment to work in over the course of this book. In order to give you correct advice and useful instructions at all times, I need to know your work environment as
+precisely as possible. But because I&rsquo;m not exactly sitting next to you, this is a challenge. Fortunately, there is a very simple solution for this.</p>
+
+<p>Instead of working directly in the environment you already have (which might be a Windows desktop, a Mac laptop, a Linux
+system, or something else I cannot anticipate), we are setting up a clearly defined work environment on not clearly
+defined computer, and voila, the problem is solved.</p>
+
+<p>We do this by setting up a virtual machine which is going to run a Linux desktop environment, and by doing all the work
+within this virtual machine. By following the installation instructions below, you will end up with a virtual machine,
+and therefore a work environment, which is clearly defined and which is therefore guaranteed to be the optimal
+environment for working through this book.</p>
+
+<h2 id="installing-virtualbox">Installing VirtualBox</h2>
+
+<p>The very first step we need to do is to download and install VirtualBox. VirtualBox is a virtual machine
+host software which is provided free of charge. It allows to run virtual machines on physical computers which run
+Microsoft Windows, macOS, or Linux.</p>
+
+<p>Your physical computer is called the host system - it <em>hosts</em> the virtual machine which we will use for this book.</p>
+
+<p>Please download the <em>platform package</em> version matching the operating system of your host from
+<a href="https://www.virtualbox.org/wiki/Downloads">https://www.virtualbox.org/wiki/Downloads</a>.</p>
+
+<p>As of this writing, VirtualBox is at version 5.1.22, but downloading and installing a newer version probably doesn&rsquo;t
+hurt.</p>
+
+<p>After downloading the installation file, run it to set up VirtualBox on your system.</p>
+
+<h2 id="downloading-the-linux-installation-image">Downloading the Linux installation image</h2>
+
+<p>With VirtualBox installed, we do not yet have a virtual machine running Linux. We need to create it first.</p>
+
+<p>To do so, we need the installation medium of the Linux distribution we are going to use. In our case, that&rsquo;s Ubuntu,
+the most widely used Linux desktop distribution available.</p>
+
+<p>In order to allow me to know your work system as precisely as possible, it is neccessary that you download the
+installation medium for version 16.04 of Ubuntu Desktop for amd64 platforms - even if newer version may already be
+available!</p>
+
+<p>Please download the ISO file containing the installation image from
+<a href="http://releases.ubuntu.com/16.04/ubuntu-16.04.2-desktop-amd64.iso">http://releases.ubuntu.com/16.04/ubuntu-16.04.2-desktop-amd64.iso</a>.</p>
+
+<h2 id="creating-a-new-virtual-machine">Creating a new virtual machine</h2>
+
+<p>Before we can install Ubuntu from its installation ISO, we need to create a new virtual machine in VirtualBox.</p>
+
+<p>To do so, launch VirtualBox, and choose <em>New&hellip;</em> from the <em>Machine</em> menu.</p>
+
+<p>Give it a name of your choice (maybe something like &ldquo;Ubuntu for PHP book&rdquo;), and define its type as <em>Linux</em> and its
+version as <em>Ubuntu (64-bit)</em>.</p>
+
+<p>Hit <em>Continue</em>.</p>
+
+<p>On the next screen, you set the memory size. You can always change this later, and the default of 1024 MB is just fine.</p>
+
+<p>Hit <em>Continue</em> again.</p>
+
+<p>You are now asked to create a hard disk for you virtual machine. This hard disk is also &ldquo;virtual&rdquo; in the sense that it
+is in fact just a file on the physical hard disk of your physical host system.</p>
+
+<p>Choose &ldquo;Create a virtual hard disk now&rdquo; and hit <em>Create</em>.</p>
+
+<p>The upcoming dialogue asks for the hard disk file type. The default of &ldquo;VDI&rdquo; is fine.</p>
+
+<p>Hit <em>Continue</em> again.</p>
+
+<p>You are now asked if you want the storage for your hard disk to be allocated dynamically, which is indeed what we want.</p>
+
+<p>Hit <em>Continue</em> again.</p>
+
+<p>Now you can set the size of the virtual hard disk and the location of the file which represents the hard disk. Please
+choose <em>15,00 GB</em> for the size and keep the location unchanged.</p>
+
+<p>Hit <em>Create</em>.</p>
+
+<p>With this, the dialogue closes, and you now have a virtual machine. It should show up in the list of virtual machines
+on the main screen of VirtualBox</p>
+
+<p>It is powered off, and also, its hard disk is completely empty, because nothing has been installed onto this machine
+yet. It&rsquo;s like having a brand new physical computer from the store with an empty physical hard drive.</p>
+
+<p>Next, we need to install Ubuntu onto the virtual machine by using the downloaded ISO installation image.</p>
+
+<h2 id="installing-ubuntu-on-the-virtual-machine">Installing Ubuntu on the virtual machine</h2>
+
+<p>To start installation, simply boot the virtual machine by hitting the <em>Start</em> button on the VirtualBox main screen.</p>
+
+<p>VirtualBox will immediately present a dialogue which allows to select the installation medium. Choose the Ubuntu ISO
+file you have downloaded. To open a file browser, click on the small yellow folder symbol with the green arrow.</p>
+          </div>
+        </div>
+        <div class="pagination"> 
+          <a class="btn next " href="https://www.nodebeginner.org/web-development-beginner-tutorial/post/a-close-look-at-the-www/introduction/"> Next</a> 
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer">
+  
+  <p>Copyright (c) 2017 Manuel Kiessling</p>
+  
+</div>
+
+  </div>
+  <script src="https://www.nodebeginner.org/web-development-beginner-tutorial/js/slim.js"></script>
+  <script src="https://www.nodebeginner.org/web-development-beginner-tutorial/js/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+  <script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-2127388-6', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+</body>
+
+</html>

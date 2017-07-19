@@ -1,39 +1,32 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <?php require_once('_defaultheaders.php'); ?>
+
         <link href="prettify/prettify.css" type="text/css" rel="stylesheet" />
 
         <title>El Libro para Principiantes en Node.js» Un tutorial completo de node.js</title>
         <meta name="description" content="Un tutorial completo de Node.js para principiantes: Aprende como construir una aplicación web completa con Javascript del lado del servidor" />
 
-        <link rel="icon" href="favicon.png" type="image/png" />
 		<link rel="stylesheet" type="text/css" href="olddefault.css" />
-		<link rel="canonical" href="http://www.nodebeginner.org/index-es.html" />
-        
-        <script>
-          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		<link rel="canonical" href="https://www.nodebeginner.org/index-es.html" />
 
-          ga('create', 'UA-2127388-6', 'auto');
-          ga('send', 'pageview');
-
-        </script>
+        <?php require_once('_hreflang.php'); ?>
 
         <script type="text/javascript">
             // Disqus
             var disqus_shortname = 'nodebeginner';
-            var disqus_identifier = 'nodebeginner-book';
-            var disqus_url = 'http://www.nodebeginner.org/index-es.html';
+            var disqus_identifier = 'nodebeginner-book-spanish';
+            var disqus_url = 'https://www.nodebeginner.org/index-es.html';
             (function() {
                 var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
                 (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
             })();
         </script>
+
+        <?php require_once('_googleanalytics.php'); ?>
     </head>
     <body>
         <img style="display: none;" src="the_node_beginner_book_cover_medium.png" height="256" width="171" />
@@ -106,8 +99,8 @@
                     <p>
                         The perfect introduction plus the perfect reference in one bundle!
                     </p>
-                    <a href="buy-bundle/index.html"><img src="the_node_beginner_book_cover_small.png" height="86" width="57" /></a>
-                    <a href="buy-bundle/index.html"><img src="hands-on_node.js_cover.png" height="86" width="57" /></a>
+                    <a href="https://leanpub.com/b/node-beginner-and-craftsman-bundle"><img src="the_node_beginner_book_cover_small.png" height="86" width="57" /></a>
+                    <a href="https://leanpub.com/b/node-beginner-and-craftsman-bundle"><img src="hands-on_node.js_cover.png" height="86" width="57" /></a>
                 </div>
                 <div class="description">
                     <p>
@@ -136,7 +129,7 @@
                         <br />
                         Free updates
                     </p>
-                    <a class="buttonlink" href="buy-bundle/index.html">
+                    <a class="buttonlink" href="https://leanpub.com/b/node-beginner-and-craftsman-bundle">
                         <div class="button">Buy this<br />bundle now</div>
                     </a>
                 </div>
@@ -145,7 +138,7 @@
         
         <div id="book">
             <h1>El Libro para Principiantes en Node.js</h1>
-            <div id="author">Un tutorial de Node.js por: <a href="http://twitter.com/manuelkiessling">Manuel Kiessling</a> &amp; <a href="http://twitter.com/hermanjunge">Herman A. Junge</a></div>            
+            <div id="author">Un tutorial de Node.js por: <a href="https://twitter.com/manuelkiessling">Manuel Kiessling</a> &amp; <a href="http://twitter.com/hermanjunge">Herman A. Junge</a></div>
 
     <h2>Sobre el Tutorial</h2>
     <p>                
@@ -197,8 +190,8 @@
     </p>
     <p>
         La cual, por supuesto, no va ser nada como la "aplicación que
-        va a cambiar el mundo", no obstante eso, nosotros haremos la
-        milla extra y no vamos sólo a codificar una aplicación lo
+        va a cambiar el mundo", no obstante eso, nosotros haremos algo
+        más y no vamos sólo a codificar una aplicación lo
         "suficientemente simple" para hacer estos casos de uso posible,
         sino que crearemos un framework sencillo, pero completo, a fin de 
         poder separar los distintos aspectos de nuestra aplicación.
@@ -220,9 +213,9 @@
         trabajando en cada una de estas partes paso a paso.
     </p>
     <p>
-        Tal y cual lo prometido, aprenderemos sobre la marcha acerca
+        Según lo prometido, aprenderemos sobre la marcha acerca
         de algunos de los muchos conceptos avanzados de JavaScript,
-        como hacer uso de ellos, y ver el porqué tiene sentido el hacer
+        como hacer uso de ellos, y ver el por qué tiene sentido el hacer
         uso de estos conceptos en vez de los que ya conocemos por
         otros lenguajes de programación.
     </p>
@@ -274,7 +267,7 @@
     <p>
         Decidiste que era ya tiempo de revisar el nuevo JavaScript.
         Pero espera: Escribir aplicaciones Node.js es una cosa; Entender
-        el porqué ellas necesitan ser escritas en la manera que lo son
+        el por qué ellas necesitan ser escritas en la manera que lo son
         significa entender JavaScript! Y esta vez es en serio.
     </p>
     <p>
@@ -400,13 +393,13 @@
         <li>
             El Usuario debería ver una página de bienvenida cuando
             solicita http://<em>dominio</em>/inicio, la cual despliega
-            un formulario de súbida.
+            un formulario de subida.
         </li>
         <li>
             Eligiendo un archivo de imagen para subir y enviando
             el formulario, la imagen debería ser subida a 
             http://<em>dominio</em>/subir, donde es desplegada una
-            vez que la súbida este finalizada.                    
+            vez que la subida este finalizada.                    
         </li>
     </ul>
     <p>
@@ -721,7 +714,7 @@ http.createServer(onRequest).listen(8888);
     <p>
         Al final todo se reduce al hecho que Node.js trabaja orientado
         al evento. Ah, y sí, yo tampoco sé exactamente qué significa eso.
-        Pero voy a hacer un intento de explicar, el porqué esto tiene
+        Pero voy a hacer un intento de explicar, el por qué esto tiene
         sentido para nosotros, que queremos escribir aplicaciones
         web en Node.js.            
     </p>
@@ -732,7 +725,7 @@ http.createServer(onRequest).listen(8888);
         una petición HTTP a este servidor.
     </p>
     <p>
-        El problema es, que esto sucede de manera asincrónica: Puede
+        El problema es, que esto sucede de manera asíncrona: Puede
         suceder en cualquier momento, pero solo tenemos un único proceso
         en el cual nuestro servidor corre.
     </p>
@@ -810,7 +803,7 @@ console.log("Servidor Iniciado.");
         de comandos.
     </p>    
     <p>
-        Esto es JavaScript del lado del servidor asincrónico y orientado al
+        Esto es JavaScript del lado del servidor asíncrono y orientado al
         evento con callbacks en acción :-)
     </p>
     <p>
@@ -850,7 +843,7 @@ console.log("Servidor Iniciado.");
     </p>
     <p>
         Hasta el momento, no nos hemos interesado por los detalles de la
-        petición, y ese es el porqué no hemos ocupado el objeto <em>request</em>
+        petición, y ese es el por qué no hemos ocupado el objeto <em>request</em>
         completamente.
     </p>
         
@@ -977,7 +970,7 @@ server.iniciar();
     <p>
         Hacer diferentes peticiones HTTP ir a partes diferentes de nuestro 
         código se llama "ruteo" (N. del T.: routing, en inglés) - bueno,
-        entonces, creémos un módulo llamado <em>router</em>.
+        entonces, creemos un módulo llamado <em>router</em>.
     </p>
         
     <h3>¿Qué se necesita para "rutear" peticiones?</h3>
@@ -1243,7 +1236,7 @@ exports.subir = subir;
         el router, esto se pondría cada vez más feo.
     </p>
     <p>
-        ¿Un número variable de ítems, cada uno de ellos mapeados a un string?
+        ¿Un número variable de items, cada uno de ellos mapeados a un string?
         (en este caso la URL requerida) Bueno, esto suena como que un array asociativo
         haría el truco.
     </p>
@@ -1304,7 +1297,7 @@ server.iniciar(router.route, handle);
         continuación:
     </p>
     <p>
-        Como puedez ver, es realmente simple mapear diferentes URLs al mismo 
+        Como puedes ver, es realmente simple mapear diferentes URLs al mismo 
         manipulador de peticiones: Mediante la adición de un par llave/valor
         de <em>"/"</em> y <em>requestHandlers.iniciar</em>, podemos expresar en una
         forma agradable y limpia que no sólo peticiones a <em>/start</em>, sino 
@@ -1379,7 +1372,7 @@ Manipulador de peticion 'iniciar' ha sido llamado.
     <h4>¿Cómo no se debe hacer esto?</h4>
     <p>
         La aproximación directa que nosotros - desarrolladores con un trasfondo
-        en PHP o Ruby - quisieramos seguir es de hecho conducente a errores:
+        en PHP o Ruby - quisiéramos seguir es de hecho conducente a errores:
         trabaja de manera espectacular al principio y parece tener mucho sentido,
         y de pronto, las cosas se arruinan en el momento menos esperado.
     </p>
@@ -1434,7 +1427,7 @@ exports.route = route;
     <p>
         Por último, pero no menos importante, necesitamos refactorizar
         nuestro servidor para hacerlo responder al browser con el 
-        contenido que los manipuladores de petición le retornaron via 
+        contenido que los manipuladores de petición le retornaron vía 
         el router, transformando de esta manera a <em>server.js</em> en:
     </p>
 <pre class="prettyprint lang-js">var http = require("http");
@@ -1530,7 +1523,7 @@ exports.subir = subir;
         como algún tipo de calculo de largo aliento.)
     </p>
     <p>
-        Veámos qué es lo que este cambio hace.
+        Veamos qué es lo que este cambio hace.
     </p>
     <p>
         Como siempre, necesitamos reiniciar nuestro servidor. Esta vez, te pido
@@ -1571,7 +1564,7 @@ exports.subir = subir;
         donde sea posible, y utilizar operaciones no-bloqueantes en su lugar.
     </p>
     <p>
-        Lo que <em>exec()</em> hace, es que, ejecuta un commando de shell
+        Lo que <em>exec()</em> hace, es que, ejecuta un comando de shell
         desde dentro de Node.js. En este ejemplo, vamos a usarlo para obtener
         una lista de todos los archivos del directorio en que nos encontramos
         ("ls -lah"), permitiéndonos desplegar esta lista en el browser de un
@@ -1579,7 +1572,7 @@ exports.subir = subir;
     </p>
     <p>
         Lo que el código hace es claro: crea una nueva variable <em>content()</em>
-        (con el valor incial de "vacio"), ejecuta "ls -lah", llena la variable con
+        (con el valor incial de "vacío"), ejecuta "ls -lah", llena la variable con
         el resultado, y lo retorna.
     </p>
     <p>
@@ -1587,7 +1580,7 @@ exports.subir = subir;
         <a href="http://localhost:8888/iniciar" rel="nofollow">http://localhost:8888/iniciar</a>.
     </p>
     <p>
-        Lo que carga una bella página que despliega el string "vacio". ¿Qué es
+        Lo que carga una bella página que despliega el string "vacío". ¿Qué es
         lo que está incorrecto acá?
     </p>
     <p>
@@ -1628,13 +1621,13 @@ exports.subir = subir;
         <em>return content;</em>. En este punto, <em>content</em> todavía
         está vacío, dado el hecho que la función de callback pasada a 
         <em>exec()</em> no ha sido aún llamada - porque <em>exec()</em>
-        opera de manera asincrónica.
+        opera de manera asíncrona.
     </p>
     <p>
         Ahora, "ls -lah" es una operación sencilla y rápida (a menos, claro,
         que hayan millones de archivos en el directorio). Por lo que es
-        relativamente expedíto llamar al callback - pero de todas maneras
-        esto sucede de manera asincrónica.
+        relativamente necesario llamar al callback - pero de todas maneras
+        esto sucede de manera asíncrona.
     </p>
     <p>
         Esto se hace más obvio al tratar con un comando más costoso:
@@ -1644,7 +1637,7 @@ exports.subir = subir;
         está claro que <em>exec()</em> hace algo en el trasfondo, mientras
         que Node.js mismo continúa con el flujo de la aplicación, y podemos
         asumir que la función de callback que le entregamos a <em>exec()</em>
-        será llamada sósolo cuando el comando "find /" haya terminado de
+        será llamada sólo cuando el comando "find /" haya terminado de
         correr.
     </p>
     <p>
@@ -1654,7 +1647,7 @@ exports.subir = subir;
     <p>
         Bueno, después de aprender como <em>no</em> hacerlo, discutamos
         cómo hacer que nuestros manipuladores de petición respondan a los
-        requirimientos del browser de la manera correcta.
+        requerimientos del browser de la manera correcta.
     </p>
     <h4>Respondiendo a los Manipuladores de Petición con Operaciones No Bloqueantes</h4>
     <p>
@@ -1827,7 +1820,7 @@ exports.subir = subir;
         así que ahora podemos empezar a agregar contenido a nuestro sitio que
         permitirá a nuestros usuarios interactuar y andar a través de los casos
         de uso de elegir un archivo, subir este archivo, y ver el archivo
-        subido en el browser. Por simplicidad asumiremos que sòlo los archivos
+        subido en el browser. Por simplicidad asumiremos que sólo los archivos
         de imagen van a ser subidos y desplegados a través de la aplicación.
     </p>
     <p>
@@ -1836,7 +1829,7 @@ exports.subir = subir;
         tiempo.
     </p>
     <p>
-        Aquí, paso a paso significa a grandes razgos dos pasos: vamos a ver
+        Aquí, paso a paso significa a grandes rasgos dos pasos: vamos a ver
         primero como manejar peticiones POST entrantes (pero no subidas de
         archivos), y en un segundo paso, haremos uso de un modulo externo
         de Node.js para la manipulación de subida de archivos. He escogido
@@ -1851,7 +1844,7 @@ exports.subir = subir;
         multiparte) <em>no es </em> simple con Node.js, consecuentemente
         está más allá del alcance de este tutorial, pero el aprender a usar 
         un modulo externo es una lección en sí misma que tiene sentido de
-        ser incluída en un tutorial de principiantes.
+        ser incluida en un tutorial de principiantes.
     </p>
     
     <h4>Manejando Peticiones POST</h4>
@@ -1859,7 +1852,7 @@ exports.subir = subir;
         Mantengamos esto ridículamente simple: presentaremos un área de
         texto que pueda ser llenada por el usuario y luego enviada al servidor
         en una petición POST. Una vez recibida y manipulada esta petición, 
-        despliegaremos el contenido del área de texto.
+        desplegaremos el contenido del área de texto.
     </p>
     <p>
         El HTML para el formulario de esta área de texto necesita ser 
@@ -1921,7 +1914,7 @@ exports.subir = subir;
     <p>
         Ahora que nos estamos convirtiendo en "novicios expertos", ya no nos
         sorprende el hecho que manipular información de POST este hecho de una
-        manera no bloqueante, mediante el uso de llamadas asincrónicas.
+        manera no bloqueante, mediante el uso de llamadas asíncronas.
     </p>
     <p>
         Lo que tiene sentido, ya que las peticiones POST pueden ser potencialmente
@@ -2023,7 +2016,7 @@ exports.iniciar = iniciar;
         de eventos.
     </p>
     <p>
-        Agregar un loggueo de consola cada vez que un trozo es recibido es
+        Agregar un logueo de consola cada vez que un trozo es recibido es
         una mala idea para código de producción (megabytes de información
         POST, ¿recuerdan?, pero tiene sentido para que veamos que pasa.
     </p>
@@ -2049,7 +2042,7 @@ exports.route = route;
 </pre>
 
     <p>
-        Y en <em>requestHandlers.js</em>, incluímos la información de
+        Y en <em>requestHandlers.js</em>, incluimos la información de
         nuestro manipulador de petición <em>subir</em>:
     </p>
 
@@ -2153,8 +2146,8 @@ exports.subir = subir;
                     <p>
                         The perfect introduction plus the perfect reference in one bundle!
                     </p>
-                    <a href="buy-bundle/index.html"><img src="the_node_beginner_book_cover_small.png" height="86" width="57" /></a>
-                    <a href="buy-bundle/index.html"><img src="hands-on_node.js_cover.png" height="86" width="57" /></a>
+                    <a href="https://leanpub.com/b/node-beginner-and-craftsman-bundle"><img src="the_node_beginner_book_cover_small.png" height="86" width="57" /></a>
+                    <a href="https://leanpub.com/b/node-beginner-and-craftsman-bundle"><img src="hands-on_node.js_cover.png" height="86" width="57" /></a>
                 </div>
                 <div class="description">
                     <p>
@@ -2183,7 +2176,7 @@ exports.subir = subir;
                         <br />
                         Free updates
                     </p>
-                    <a class="buttonlink" href="buy-bundle/index.html">
+                    <a class="buttonlink" href="https://leanpub.com/b/node-beginner-and-craftsman-bundle">
                         <div class="button">Buy this<br />bundle now</div>
                     </a>
                 </div>
@@ -2240,7 +2233,7 @@ exports.subir = subir;
                     finish it!"
                 </div>
                 <div class="author">
-                    Seth McLaughlin, via eMail
+                    Seth McLaughlin, vía eMail
                 </div>
             </div>
         </div>
@@ -2260,6 +2253,9 @@ exports.subir = subir;
                 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</a>.
                 <br />
                 Permissions beyond the scope of this license may be available at <a xmlns:cc="http://creativecommons.org/ns#" href="mailto:manuel@kiessling.net" rel="cc:morePermissions">manuel@kiessling.net</a>.
+                <br/>
+                <br/>
+                <a href="imprint.html">Imprint / Impressum / Datenschutz / Haftung</a>
             </p>
         </div>
     </body>
