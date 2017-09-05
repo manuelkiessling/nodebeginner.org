@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title>Node.js tutorial: Super-fast web applications with the WebSocket protocol - The Node Beginner Blog</title>
+
+<meta property="og:site_name" content="The Node Beginner Blog">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="fb:profile_id" content="1144782312">
+<meta property="fb:app_id" content="150404395523663">
+<meta property="article:author" content="https://www.facebook.com/NodeBeginner/">
+<meta property="article:tag" content="Node.js">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="Programming">
+<meta property="article:tag" content="Software">
+<meta property="article:tag" content="Tutorial">
+<meta property="fb:pages" content="319963981788483">
+<meta property="og:url" content="https://www.nodebeginner.org/blog/post/nodejs-tutorial-how-to-work-with-websockets/">
+<meta property="og:title" content="Node.js tutorial: Super-fast web applications with the WebSocket protocol">
+<meta property="og:image" content='https://www.nodebeginner.org/blog/images/nodejs-tutorial-super-fast-web-applications-with-the-websocket-protocol.png'>
+<meta property="og:image:secure_url" content='https://www.nodebeginner.org/blog/images/nodejs-tutorial-super-fast-web-applications-with-the-websocket-protocol.png'>
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:description" content='Your regularly updated tutorial resource for all things Node.js.'>
+
+
+<link rel="stylesheet" href="https://www.nodebeginner.org/blog/css/slim.css">
+<link rel="stylesheet" href="https://www.nodebeginner.org/blog/css/highlight.min.css">
+
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+<link rel="shortcut icon" href="/favicon.ico">
+
+
+<link href="" rel="alternate" type="application/rss+xml" title="The Node Beginner Blog" />
+
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+  <h1 class="site-title"><a href="https://www.nodebeginner.org/blog/">The Node Beginner Blog</a></h1>
+  <p class="site-tagline">Your regularly updated tutorial resource for all things Node.js.</p>
+
+  
+</div>
+    <div class="content">
+      <div class="posts">
+        <div class="post">
+          <h2 class="post-title"><a href="https://www.nodebeginner.org/blog/post/nodejs-tutorial-how-to-work-with-websockets/">Node.js tutorial: Super-fast web applications with the WebSocket protocol</a></h2>
+          <span class="post-date">Jul 18, 2017 </span>
+          <div class="post-content">
+            <p>The WebSocket protocol is an extension to the HTTP ecosystem which allows to create live connections between a
+web server and a web browser, enabling web applications to efficiently exchange data in real-time without the overhead
+of conventional HTTP connections. Node.js is perfectly suited for writing WebSocket applications, and this tutorial
+explains how it all works.</p>
+
+<h2 id="where-websocket-connections-beat-http-connections">Where WebSocket connections beat HTTP connections</h2>
+
+<p>The HTTP protocol obviously does a great job at enabling data exchange between a webserver and a browser, hence the
+extraordinary success of the World Wide Web. So why does the Web need another protocol? It&rsquo;s two aspects that are
+relevant here: bi-directionality and real-time.</p>
+
+<h3 id="http-connections-neither-bi-directional-nor-real-time">HTTP connections: neither bi-directional nor real-time</h3>
+
+<p>The &ldquo;conventional&rdquo; Web, built on HTTP, is based on a client-server model with the client (the web browser) in the lead.</p>
+
+<p>Conventional HTTP web servers do nothing on their own without being explicitly asked by a client. Getting some kind
+of information - for example, the current price of a stock, in the form of a web page with stock market information -
+requires the browser to actively ask the server for that information, e.g. by issueing a <code>GET</code> request to the web page
+at, say, <code>http://stocks.example.com/company/apple-inc</code>.</p>
+
+<p>This is only triggered by a human user who decides to visit this page. If this user wants to learn the most recent stock
+price again at a later point in time, he or she has to reload the page.</p>
+
+<p>If the webpage wants to supply the most recent stock price to the user regularly without requiring the user to manually
+reload the page, then workarounds exist. The most common workaround is to run some JavaScript code in the webpage which
+regularly &ldquo;polls&rdquo; a webservice from the server which responds with the current stock price, via AJAX. If the new stock
+price is different from the one on the page, then the client-side JavaScript code can update the webpage content and
+present the new price to the user.</p>
+
+<p>This improves the interactivity of the site, but it is not optimal: If stock price updates need to be reported to the
+user as soon as possible, the JavaScript code needs to query the webservice with high frequency - for example, every
+5 seconds. And if the requirement is to inform the user about a stock price change no later than 1 second after the
+change occured, then a new request must be send to the server every second.</p>
+
+<p>But that&rsquo;s not a real solution to the requirement of getting the info from the server proactively - you are just asking
+very often, which isn&rsquo;t exactly efficient. Imagine that there is no stock price change for 10 minutes. That&rsquo;s 600 HTTP
+requests from the client to the webserver with no useful results at all. That is wasting a lot of traffic and computing
+resources on both the client and the server.</p>
+
+<p>Also, there&rsquo;s a limit to the frequency at which the client can ask the server for new content. Using AJAX, you can get
+near-time updates from the server to the client, but doing real-time updates efficiently is out of the question.</p>
+
+<p>This is why until now, complex applications which update many different information on the screen fluidly and in
+real-time are seldom seen on the web and are usually implemented as full-fledged desktop applications. But the WebSocket
+protocol is about to change this.</p>
+
+<h3 id="websocket-connections-putting-the-webserver-in-the-lead">WebSocket connections: putting the webserver in the lead</h3>
+
+<p>The important conceptual change that the WebSocket protocol brings to the table is that it allows the client
+to establish a connection with the web server which a) stays open as long as the web page is opened in the browser, and
+which b) the web server can actively use to send data to the client whenever the server wants to, without being asked by
+the client to do so.</p>
+
+<p>Thus, in addition to the client-server model of HTTP, we now have a model of a truly bi-directional connection, with
+both partners of the connection being equal.</p>
+
+<p>As a result, this allows for data exchange that is much more efficient and happens real-time. In our stock price
+example, the server can &ldquo;push&rdquo; a stock price update over the connection as soon as it occurs, and only if and when it
+occurs. If there is no stock price update for 10 minutes, then the exchanged data during these 10 minutes is zero. And
+when the update finally occurs, the client learns about it immediately, and not when it happens to ask.</p>
+
+<h2 id="how-websocket-connections-work">How WebSocket connections work</h2>
+
+<p>Conceptually, the WebSocket protocol is an extension to HTTP which allows clients to &ldquo;upgrade&rdquo; an HTTP connection with
+an additional bi-directional connection which remains established, like this:</p>
+
+<ul>
+<li>Client opens HTTP connection to server and asks for document</li>
+<li>Server responds with an HTML document</li>
+<li>HTTP connection is closed</li>
+<li>JavaScript code in the HTML document opens another HTTP connection in which it asks the server to upgrade this
+connection to a WebSocket connection</li>
+<li>A WebSocket connection between client and server is established and remains open for sending and receiving data in
+both directions</li>
+</ul>
+
+<p>Technically, a WebSocket connection is simply a TCP connection on port 80, just like normal HTTP connections are -
+with the difference that client and server treat the connection in a special way.</p>
+
+<p>Creating a WebSocket connection from an HTTP connection requires knowledge about the details of the HTTP and WebSocket
+protocols, but luckily, easy-to-use libraries exist which provide a nice and straightforward abstraction of these
+details both on the server and the client side. We will look at how to use these in Node.js now.</p>
+
+<h2 id="how-to-use-websocket-connections-in-your-web-application">How to use WebSocket connections in your web application</h2>
+
+<p>By now we learned that the client-side JavaScript code on a webpage needs to intitiate a WebSocket connection, and
+the server-side code needs to handle such a request accordingly. Thus, specialised client and server code is neccessary.</p>
+
+<p>How do we get there?</p>
+
+<p>When <a href="https://www.nodebeginner.org/">working with Node.js</a>, it&rsquo;s not difficult at all. The most straightforward and
+efficient approach is to use a JavaScript library which provides the neccessary methods for both sides - a client part
+which is executed by the user&rsquo;s web browser, and a server part which runs within an existing Node.js HTTP server.</p>
+
+<p>The most mature and most popular library for this is <a href="https://socket.io/">Socket.io</a>. Let&rsquo;s use this to write a simple
+WebSocket stock price ticker application.</p>
+
+<p>As said, we need to take care of both the client side and the server side to get a WebSocket application up and running.
+We start with the server side, which we&rsquo;ll of course implement <a href="https://www.nodebeginner.org/">using Node.js</a>.</p>
+
+<p>From a Node.js perspective, Socket.io is simply an NPM library. However, we are not going to install it just yet.
+Socket.io doesn&rsquo;t work on it&rsquo;s own - it is not a full-fledged Node.js webserver or web application framework. It needs
+a webserver or framework to integrate with, and we&rsquo;ll set that up first, using the popular Node.js web framework
+<em>Express.js</em>.</p>
+
+<p>To do so, create a new project folder called <code>websocket-test</code>, and create the following <code>package.json</code> inside:</p>
+
+<pre><code>{
+  &quot;name&quot;: &quot;websocket-stock-ticker&quot;,
+  &quot;version&quot;: &quot;0.0.1&quot;,
+  &quot;description&quot;: &quot;WebSocket Stock Ticker&quot;,
+  &quot;dependencies&quot;: {}
+}
+</code></pre>
+
+<p>Then, pull in <em>Express.js</em> via NPM: <code>npm install --save express</code>.</p>
+
+<p>You can now create a very basic Express.js based HTTP webserver, in file <code>index.js</code>:</p>
+
+<pre><code>var app = require('express')();
+var http = require('http').Server(app);
+
+app.get('/', function(req, res) {
+  res.sendFile(__dirname + '/index.html');
+});
+
+http.listen(8000, function() {
+  console.log('Listening on *:8000');
+});
+</code></pre>
+
+<p>This creates an HTTP webserver listening on port <em>8000</em>, which serves file <code>index.html</code> through the Express.js route
+handler when requested at path <code>/</code>.</p>
+
+<p>However, file <code>index.html</code> does not yet exist, so let&rsquo;s create that in the same folder:</p>
+
+<pre><code>&lt;!doctype html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Live stock price ticker&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    Stock price: &lt;span id=&quot;stockprice&quot;&gt;no data yet&lt;/span&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>If you start the application with <code>node index.js</code> and open address <code>http://localhost:8000</code> in your browser, you are
+going to see a very basic web page which shows <code>Stock price: no data yet</code> as its content.</p>
+
+<p>We have laid the foundation for our live stock price ticker application, but that <code>no data yet</code> part of the web page
+needs to be updated regularly with the most current stock price, and this of course will be done through a WebSocket
+connection between the page on the client side and our Node.js server.</p>
+
+<p>As stated above, it is the client that has to initiate a WebSocket connection. Right now, we do not yet have any
+JavaScript in our web page which could do that, so let&rsquo;s change that.</p>
+
+<p>To do so, we need to integrate the client-side part of Socket.io into our page. For a real and production-ready
+environment, we would probably want to download and integrate this library - called <code>socket.io-client</code> - ourselves, but
+for getting a quick prototype of our application up and running, it&rsquo;s sufficient to let our server-side code serve the
+client-side library automatically.</p>
+
+<p>This is achieved by installing and integrating the server-side part of Socket.io into our Node.js application.</p>
+
+<p>Installation is done by running <code>npm install --save socket.io</code>, and afterwards, we can integrate it with our Express.js
+server:</p>
+
+<pre><code>var app = require('express')();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+
+app.get('/', function(req, res) {
+  res.sendFile(__dirname + '/index.html');
+});
+
+io.on('connection', function(socket){
+  console.log('A new WebSocket connection has been established');
+});
+
+http.listen(8000, function() {
+  console.log('Listening on *:8000');
+});
+</code></pre>
+
+<p>This pulls a Socket.io object into our code in variable <code>io</code>. It is immediately integrated with our Express <code>http</code>
+server object - Socket.io knows how to hook into an Express.js server out of the box, so we don&rsquo;t need to do any
+integration work ourselves.</p>
+
+<p>This integration also results in the creation of a new Express.js route - when our webserver is requested at
+<code>http://localhost:8000/socket.io/socket.io.js</code>, it serves the client-side Socket.io library. Again, this is nothing we
+have to do ourselves in our own code. The line <code>var io = require('socket.io')(http);</code> takes care of this automatically
+and behind the scenes.</p>
+
+<p>What we <em>do</em> have to code ourselves is to add an event listener which handles events from the WebSocket connection.</p>
+
+<p>For now, we only react to the event that is triggered when a new client establishes a WebSocket connection. To do so,
+we attach an anonymous function to the <code>connection</code> event emitted my the <code>io</code> object. We use it to generate log output.</p>
+
+<blockquote>
+<p>Learn all about <a href="https://leanpub.com/nodecraftsman/">Event Listeners and Event Emitters</a> from my new book,
+<a href="https://leanpub.com/nodecraftsman/"><em>The Node Craftsman Book</em></a>. It comes
+<a href="https://leanpub.com/b/node-beginner-and-craftsman-bundle">bundled with <em>The Node Beginner Book</em></a>, and both together are
+now available via Leanpub for only $9.</p>
+</blockquote>
+
+<p>If you restart the Node.js server and again load page <code>http://localhost:8000</code> in your browser, nothing new happens.</p>
+
+<p>This is because our web page does not yet open up a WebSocket connection. We need to code this now, in file
+<code>index.html</code>:</p>
+
+<pre><code>&lt;!doctype html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Live stock price ticker&lt;/title&gt;
+
+    &lt;script src=&quot;/socket.io/socket.io.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://code.jquery.com/jquery-3.2.1.min.js&quot;&gt;&lt;/script&gt;
+
+    &lt;script&gt;
+      $(function () {
+        var socket = io();
+      });
+    &lt;/script&gt;
+
+  &lt;/head&gt;
+  &lt;body&gt;
+    Stock price: &lt;span id=&quot;stockprice&quot;&gt;no data yet&lt;/span&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>As you can see, we load the Socket.io client library which is now provided by the Socket.io server library. Note that we
+also pull in jQuery - this is not strictly neccessary, but it makes it easier to manipulate the web page content.</p>
+
+<p>If again you reload the web page (no need to restart the server here), you will now see
+&ldquo;A new WebSocket connection has been established&rdquo; being outputted by the server.</p>
+
+<p>With this, everything is in place to actively push data from the server to the web page. Let&rsquo;s do this now.</p>
+
+<p>Again, we start on the server side. We do not have real stock prices, so we will just generate a new random stock price
+value every second for each client that connects, and push it out to all connected clients:</p>
+
+<pre><code>var app = require('express')();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+
+app.get('/', function(req, res) {
+    res.sendFile(__dirname + '/index.html');
+});
+
+io.on('connection', function(socket) {
+    console.log('A new WebSocket connection has been established');
+});
+
+setInterval(function() {
+  var stockprice = Math.floor(Math.random() * 1000);
+  io.emit('stock price update', stockprice);
+}, 1000);
+
+http.listen(8000, function() {
+    console.log('Listening on *:8000');
+});
+</code></pre>
+
+<p>The key function here is <code>io.emit</code> - Socket.io tracks all client connections internally, and <code>emit</code> sends out a message
+to all these clients. This is the most simple way to get data from the WebSocket server to the WebSocket clients, but
+for our demo application it&rsquo;s good enough.</p>
+
+<p>Each message sent via <code>emit</code> has an event name - in our case, that&rsquo;s <code>stock price update</code> - and a value, which is the
+new stock price we calculated. We can make up event names on the fly - we just need to make sure that clients work with
+the same event names to make them useful. And we can send any basic JavaScript values, like strings, booleans, numbers,
+arrays, objects etc.</p>
+
+<p>We don&rsquo;t need to do anything on the client side to make the WebSocket client receive these messages, but we need to
+extend our code if we want to make the client do anything useful with it. In this case, let&rsquo;s update the stock price
+display whenever a new message arrives. By combining Socket.io and jQuery, this is difficult:</p>
+
+<pre><code>&lt;!doctype html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Live stock price ticker&lt;/title&gt;
+
+    &lt;script src=&quot;/socket.io/socket.io.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://code.jquery.com/jquery-3.2.1.min.js&quot;&gt;&lt;/script&gt;
+
+    &lt;script&gt;
+      $(function () {
+        var socket = io();
+
+        socket.on('stock price update', function(stockprice) {
+          $('#stockprice').text(stockprice);
+        });
+
+      });
+    &lt;/script&gt;
+
+  &lt;/head&gt;
+  &lt;body&gt;
+    Stock price: &lt;span id=&quot;stockprice&quot;&gt;no data yet&lt;/span&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>As you can see, we have added an event listener on the <code>socket</code> object right after we created it. This listener reacts
+to all received messages whose event name is <code>stock price update</code>. Attached to the event listener is an anonymous
+function which receives the value part of the message whenever the listener triggers it - in our case, we know that this
+value is the latest stock price.</p>
+
+<p>We then use this value to update the text content of the <code>&lt;span&gt;</code> element with id <code>stockprice</code>, using jQuery.</p>
+
+<p>If you reload the updated page, you still see the <code>no data yet</code> text for a moment, but then the stock price updates are
+reflected on the page each seconds. If you open multiple browser windows or tabs, you should see the same stock price
+value being displayed and updated at the same time.</p>
+
+<p>An update cycle of 1000 ms still feels very &ldquo;normal HTTP-ish&rdquo; - let&rsquo;s prove how WebSocket connections can really make
+server-side updates to web page contents feel much smoother, by changing our server code to this:</p>
+
+<pre><code>var app = require('express')();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+
+app.get('/', function(req, res) {
+    res.sendFile(__dirname + '/index.html');
+});
+
+io.on('connection', function(socket) {
+    console.log('A new WebSocket connection has been established');
+});
+
+setInterval(function() {
+  var stockprice = Math.floor(Math.random() * 1000);
+  io.emit('stock price update', stockprice);
+}, 50);
+
+http.listen(8000, function() {
+    console.log('Listening on *:8000');
+});
+</code></pre>
+
+<p>The only change is the <code>setInterval</code> timing, from 1000 ms to 50 ms. When you restart the server and again open the web
+page in multiple browser windows, you can see the efficiency and performance of WebSocket applications in action.</p>
+
+<hr />
+
+<blockquote>
+<p>Learn more about <a href="https://www.nodebeginner.org/#a-basic-http-server">writing web applications using Node.js</a>
+with <strong>The Node Beginner Book</strong> - the first part of this <a href="https://www.nodebeginner.org/">step-by-step Node.js tutorial</a>
+is available for free!</p>
+</blockquote>
+          </div>
+        </div>
+        <div class="pagination">
+          
+          
+            <a class="btn previous " href="https://www.nodebeginner.org/blog/post/nodejs-tutorial-what-are-node.js-modules/">Prev</a>
+          
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer">
+  
+  <p>Copyright (c) 2017 Manuel Kiessling</p>
+  
+</div>
+
+  </div>
+  <script src="https://www.nodebeginner.org/blog/js/slim.js"></script>
+  <script src="https://www.nodebeginner.org/blog/js/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+  <script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-2127388-6', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+</body>
+
+</html>

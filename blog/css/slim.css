@@ -135,6 +135,7 @@ blockquote {
     padding: 0.5rem 1rem;
     margin: 0.8rem 0 0.8rem -1.5rem;
     color: #7a7a7a;
+    background-color: #eee;
     border-left: 0.3rem solid #e5e5e5; }
 blockquote p:last-child {
     margin-bottom: 0; }
