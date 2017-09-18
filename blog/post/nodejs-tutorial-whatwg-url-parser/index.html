@@ -76,15 +76,15 @@ console.log(myURL.host);
 
 <p>Here is an overview of all the different parts of an URL and how the according <code>URL</code> object attribute is named:</p>
 
-<pre><code>&quot;  https:   //    user   :   pass   @ sub.host.com : 8080   /p/a/t/h  ?  query=string   #hash &quot;
-│          │  │          │          │   hostname   │ port │          │                │       │
-│          │  │          │          ├──────────────┴──────┤          │                │       │
-│ protocol │  │ username │ password │        host         │          │                │       │
-├──────────┴──┼──────────┴──────────┼─────────────────────┤          │                │       │
-│   origin    │                     │       origin        │ pathname │     search     │ hash  │
-├─────────────┴─────────────────────┴─────────────────────┴──────────┴────────────────┴───────┤
-│                                            href                                             │
-└─────────────────────────────────────────────────────────────────────────────────────────────┘
+<pre><code>&quot;  https:   //  user : pass @ sub.host.com : 80   /p/a/t/h  ?  query=string   #hash &quot;
+│          │  │      │      │   hostname   │port│          │                │       │
+│          │  │ user-│ pass-├──────────────┴────┤          │                │       │
+│ protocol │  │ name │ word │        host       │          │                │       │
+├──────────┴──┼──────┴──────┼───────────────────┤          │                │       │
+│   origin    │             │       origin      │ pathname │     search     │ hash  │
+├─────────────┴─────────────┴───────────────────┴──────────┴────────────────┴───────┤
+│                                    href                                           │
+└───────────────────────────────────────────────────────────────────────────────────┘
 </code></pre>
 
 <p>The <code>URL</code> object representation of a URL can also be used to change those parts:</p>
