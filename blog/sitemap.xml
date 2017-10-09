@@ -3,8 +3,18 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://www.nodebeginner.org/blog/post/setting-up-a-javascript-project-for-es6-development-with-babel-and-webpack/</loc>
+    <lastmod>2017-10-08T09:18:00+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.nodebeginner.org/blog/post/javascript-news-and-resources-october-2017/</loc>
+    <lastmod>2017-10-07T17:34:00+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.nodebeginner.org/blog/post/nodejs-tutorial-how-to-work-with-websockets/</loc>
-    <lastmod>2017-07-18T18:21:17+02:00</lastmod>
+    <lastmod>2017-09-18T18:21:17+02:00</lastmod>
   </url>
   
   <url>
@@ -34,7 +44,7 @@
   
   <url>
     <loc>https://www.nodebeginner.org/blog/post/</loc>
-    <lastmod>2017-07-18T18:21:17+02:00</lastmod>
+    <lastmod>2017-10-08T09:18:00+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -45,7 +55,7 @@
   
   <url>
     <loc>https://www.nodebeginner.org/blog/</loc>
-    <lastmod>2017-07-18T18:21:17+02:00</lastmod>
+    <lastmod>2017-10-08T09:18:00+02:00</lastmod>
     <priority>0</priority>
   </url>
   

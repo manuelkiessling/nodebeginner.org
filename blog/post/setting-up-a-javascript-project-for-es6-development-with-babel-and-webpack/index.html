@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title>Setting up a JavaScript project for ES6 development with Babel and Webpack - The Node Beginner Blog</title>
+
+<meta property="og:site_name" content="The Node Beginner Blog">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="fb:profile_id" content="1144782312">
+<meta property="fb:app_id" content="150404395523663">
+<meta property="article:author" content="https://www.facebook.com/NodeBeginner/">
+<meta property="article:tag" content="Node.js">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="Programming">
+<meta property="article:tag" content="Software">
+<meta property="article:tag" content="Tutorial">
+<meta property="fb:pages" content="319963981788483">
+<meta property="og:url" content="https://www.nodebeginner.org/blog/post/setting-up-a-javascript-project-for-es6-development-with-babel-and-webpack/">
+<meta property="og:title" content="Setting up a JavaScript project for ES6 development with Babel and Webpack">
+<meta property="og:image" content='https://www.nodebeginner.org/blog/images/setting-up-a-javascript-project-for-es6-development-with-babel-and-webpack.png'>
+<meta property="og:image:secure_url" content='https://www.nodebeginner.org/blog/images/setting-up-a-javascript-project-for-es6-development-with-babel-and-webpack.png'>
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:description" content='How to set up a project with Babel and Webpack, which allows to write ES6 JavaScript code for the browser and the server.'>
+
+
+<link rel="stylesheet" href="https://www.nodebeginner.org/blog/css/slim.css">
+<link rel="stylesheet" href="https://www.nodebeginner.org/blog/css/highlight.min.css">
+
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+<link rel="shortcut icon" href="/favicon.ico">
+
+
+<link href="" rel="alternate" type="application/rss+xml" title="The Node Beginner Blog" />
+
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+  <h1 class="site-title"><a href="https://www.nodebeginner.org/blog/">The Node Beginner Blog</a></h1>
+  <p class="site-tagline">Your regularly updated tutorial resource for all things Node.js.</p>
+
+  
+</div>
+    <div class="content">
+      <div class="posts">
+        <div class="post">
+          <h2 class="post-title"><a href="https://www.nodebeginner.org/blog/post/setting-up-a-javascript-project-for-es6-development-with-babel-and-webpack/">Setting up a JavaScript project for ES6 development with Babel and Webpack</a></h2>
+          <span class="post-date">Oct 8, 2017 </span>
+          <div class="post-content">
+            <p>JavaScript is a language and an ecosystem which constantly evolves. This changes the way we can write JavaScript and
+Node.js code, and it often demands special tooling to be able to do so. This tutorial shows how to set up a project
+with Babel and Webpack, which allows you to write modern ES6 JavaScript code for the browser and the server. </p>
+
+<h1 id="the-example-project-setup">The example project setup</h1>
+
+<p>In the course of this tutorial, we are going to create a Node.js HTTP server with ES6 JavaScript code, and this server
+in turn serves a web page which loads a ES6 JavaScript application in the browser. Together, it&rsquo;s not much more than a
+&ldquo;Hello World&rdquo; application, but it&rsquo;s enough to force us to go full circle with our ES6 development setup.</p>
+
+<p>Now, it&rsquo;s not enough to write ES6-level JavaScript code to get this demo application running. That&rsquo;s because neither
+Node.js nor our browser will support all ES6 features of the code we are going write.</p>
+
+<p>This is why we need extra tooling, namely Babel and Webpack.</p>
+
+<p>Instead of explaining what these do in detail beforehand, we will write our server and client application code using ES6
+syntax, see how that fails to work out of the box, and then bring in Babel and Webpack to save the day - while also
+explaining how they work.</p>
+
+<p>In the course of this tutorial, we will create the following project structure:</p>
+
+<pre><code class="language-text">es6-demo
+├── .babelrc
+├── package.json
+├── webpack.config.js
+├── src
+│   ├── backend
+│   │   └── server.js
+│   └── frontend
+│       └── index.js
+└── dist
+    ├── index.html
+    └── build.js
+</code></pre>
+
+<p>The famous <em>node_modules</em> folder is not shown here, but will of course be created once we start installing packages
+with NPM.</p>
+
+<h2 id="building-the-app">Building the app</h2>
+
+<p>We start on the server-side. Create the following folders:</p>
+
+<pre><code class="language-bash">mkdir -p es6-demo/src/backend
+mkdir -p es6-demo/src/frontend
+mkdir -p es6-demo/dist
+</code></pre>
+
+<p>Within project root folder <code>es6-demo</code>, run <code>npm init</code>, and answer all question with the default.</p>
+
+<p>Then, within <code>es6-demo/dist</code>, create file <code>index.html</code> with the following content:</p>
+
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;UTF-8&quot;&gt;
+        &lt;title&gt;ES6 Demo Application&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;div id=&quot;content&quot;&gt;Client code has not yet replaced the content.&lt;/div&gt;
+
+        &lt;script src=&quot;bundle.js&quot;&gt;&lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>We need to serve this file when someone opens our application at <code>http://127.0.0.1:8080</code>. For this, we write a small
+Node.js HTTP server in file <code>es6-demo/src/backend/server.js</code> - and we do so using ES6 JavaScript:</p>
+
+<pre><code class="language-javascript">import http from 'http';
+import fs from 'fs';
+import path from 'path';
+
+const indexHtmlContent = fs.readFileSync(path.join(__dirname, '/../../dist/index.html'));
+
+http.createServer((req, res) =&gt; {
+  if (req.url === '/') {
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.end(indexHtmlContent);
+  } else {
+    res.writeHead(404, { 'Content-Type': 'text/plain' });
+    res.end('Not found');
+  }
+}).listen(8080);
+
+console.log('Server running at http://127.0.0.1:8080/');
+</code></pre>
+
+<p>This looks a lot like the JavaScript code we know, but we can spot several ES6-specific parts:</p>
+
+<h3 id="import-instead-of-require"><code>import</code> instead of <code>require</code></h3>
+
+<p>Out of the box, the Node.js module system is based on <em>CommonJS</em>, a very straightforward module loader which utilizes
+the <code>require</code> keyword - thus, pre-ES6 code would look like this:</p>
+
+<pre><code class="language-javascript">var http = require('http'); 
+var fs = require('fs'); 
+var path = require('path'); 
+</code></pre>
+
+<p>ES6, on the other hand, works with the <code>import</code> keyword.</p>
+
+<h3 id="const-variable-desclaration"><code>const</code> variable desclaration</h3>
+
+<p>Whereas pre-ES6 JavaScript only knows variable name declarations using <code>var</code>, ES6 supports the keyword <code>const</code> - it
+should be used to declare a variable that is assigned a value only once, and then not changed or reassigned again.</p>
+
+<h3 id="arrow-function-expression-using">Arrow function expression using <code>=&gt;</code></h3>
+
+<p>When we create an HTTP server in Node.js using the <code>createServer</code> method of the <code>http</code> object, we need to pass a
+function that will be triggered whenever an HTTP request is received by our server.</p>
+
+<p>Pre-ES6, the notation for this looks as follows:</p>
+
+<pre><code class="language-javascript">http.createServer(function(req, res) {
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
+  res.end('Hello, World.');
+}).listen(8080);
+</code></pre>
+
+<p>With the new ES6 arrow function expression, we can be more concise:</p>
+
+<pre><code class="language-javascript">http.createServer((req, res) =&gt; {
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
+  res.end('Hello, World.');
+}).listen(8080);
+</code></pre>
+
+<h2 id="running-the-es6-server">Running the ES6 server</h2>
+
+<p>The interesting question is: will this code run using the default Node.js interpreter (v8.6.0 as of this writing)?</p>
+
+<p>Let&rsquo;s give it a try:</p>
+
+<pre><code class="language-text">$ &gt; node ./src/backend/server.js
+es6-demo/src/backend/server.js:1
+(function (exports, require, module, __filename, __dirname) { import http from 'http';
+                                                              ^^^^^^
+
+SyntaxError: Unexpected token import
+    at createScript (vm.js:74:10)
+    ...
+</code></pre>
+
+<p>No, it doesn&rsquo;t. Node.js does not (yet) support the new ES6 module system, and bails out at the <code>import</code> keyword which it
+simply doesn&rsquo;t know.</p>
+
+<p>We now need to introduce Babel into the mix to make this code run. Babel helps us because it is a transpiler. Let&rsquo;s
+first clarify what that does NOT mean: Babel is NOT an extension to Node.js - it doesn&rsquo;t &ldquo;enhance&rdquo; our Node.js
+installation by teaching it ES6. Instead of changing Node.js, Babel changes our code. It <em>transpiles</em> our ES6 code into
+code that follows the JavaScript language level that Node.js knows, that is, the ES6 predecessor (which is called
+<em>ECMAScript 5th edition</em>, or ES5).</p>
+
+<p>Here is how our ES6 <code>server.js</code> file content looks after it went through Babel&rsquo;s transpiling process:</p>
+
+<pre><code class="language-javascript">'use strict';
+
+var _http = require('http');
+
+var _http2 = _interopRequireDefault(_http);
+
+var _fs = require('fs');
+
+var _fs2 = _interopRequireDefault(_fs);
+
+var _path = require('path');
+
+var _path2 = _interopRequireDefault(_path);
+
+function _interopRequireDefault(obj) { return obj &amp;&amp; obj.__esModule ? obj : { default: obj }; }
+
+var indexHtmlContent = _fs2.default.readFileSync(_path2.default.join(__dirname, '/../../dist/index.html'));
+
+_http2.default.createServer(function (req, res) {
+  if (req.url === '/') {
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.end(indexHtmlContent);
+  } else {
+    res.writeHead(404, { 'Content-Type': 'text/plain' });
+    res.end('Not found');
+  }
+}).listen(8080);
+
+console.log('Server running at http://127.0.0.1:8080/');
+</code></pre>
+
+<p>While not looking exactly like the pre-ES6 code we would write by hand, we can clearly see how the <code>import</code> and <code>const</code>
+keywords are gone, and the fancy arrow function syntax is transpiled back into a good old anonymous <code>function</code>
+declaration.</p>
+
+<p>This code can then be interpreted by Node.js.</p>
+
+<p>How do we get there? We start by installing some Babel-related NPM modules:</p>
+
+<pre><code class="language-bash">npm install --save-dev babel-cli babel-preset-env
+</code></pre>
+
+<p><code>babel-cli</code> is just a command line tool and some basic stuff that doesn&rsquo;t do any actual transpilation. We need
+<code>babel-preset-env</code>, which is a bundle of several different <a href="https://babeljs.io/docs/plugins">Babel plugins</a> which, at
+its core, gives us ES6-to-ES5 transpilation.</p>
+
+<p>We need to configure Babel by creating the following <code>.babelrc</code> file in the root folder of our project:</p>
+
+<pre><code class="language-json">{
+  &quot;presets&quot;: [&quot;env&quot;]
+}
+</code></pre>
+
+<p>One way to use Babel in our project would be to simply transpile each ES6 code file we write by hand into its ES5
+equivalent, and then start the transpiled file with Node.js, like this:</p>
+
+<pre><code class="language-bash">$&gt; ./node_modules/.bin/babel src/backend/server.js &gt; src/backend/server.es5.js
+$&gt; node src/backend/server.es5.js
+Server running at http://127.0.0.1:8080/
+</code></pre>
+
+<p>This works, but is tiresome and error-prone. Babel makes this a lot easier for us by providing <code>babel-node</code>, a
+command-line tool which we can use directly to launch Node.js with our ES6 code file. Behind the scenes, Babel
+transpiles our code and feeds the result to Node.js:</p>
+
+<pre><code class="language-bash">$&gt; ./node_modules/.bin/babel-node src/backend/server.js
+Server running at http://127.0.0.1:8080/
+</code></pre>
+
+<p>So, Node.js backend server code and ES6: Check. On to the frontend!</p>
+
+<h2 id="building-and-serving-the-frontend-code-for-the-browser">Building and serving the frontend code for the browser</h2>
+
+<p>Next, we need to write, build, and serve some ES6 JavaScript code for the browser.</p>
+
+<p>Our <code>index.html</code> file, which is now served by our Node.js backend server code, already has the line needed to kick off
+a JavaScript application in the client:</p>
+
+<pre><code class="language-html">&lt;script src=&quot;bundle.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+
+<p>However, there is no <code>bundle.js</code> file yet - and actually, we are not going to write it. Instead, we write our own ES6
+client code in file <code>frontend/index.js</code>, and the content of this file, transpiled where needed and bundled together with
+other JavaScript code it might need, will then be <em>built</em> using Webpack, resulting in file <code>dist/bundle.js</code>.</p>
+
+<p>We will see what that means and how it works in a moment. Now, however, we need to get back to our server code and teach
+it to serve not only file <code>index.html</code>, but also file <code>dist/bundle.js</code> when it is asked for
+<code>http://127.0.0.1:8080/bundle.js</code>:</p>
+
+<pre><code class="language-javascript">import http from 'http';
+import fs from 'fs';
+import path from 'path';
+
+const indexHtmlContent = fs.readFileSync(path.join(__dirname, '/../../dist/index.html'));
+
+http.createServer((req, res) =&gt; {
+  if (req.url === '/') {
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.end(indexHtmlContent);
+  } else if (req.url === '/bundle.js') {
+    const bundleJsContent = fs.readFileSync(path.join(__dirname, '/../../dist/bundle.js'));
+    res.writeHead(200, { 'Content-Type': 'application/javascript' });
+    res.end(bundleJsContent);
+  } else {
+    res.writeHead(404, { 'Content-Type': 'text/plain' });
+    res.end('Not found');
+  }
+}).listen(8080);
+
+console.log('Server running at http://127.0.0.1:8080/');
+</code></pre>
+
+<p>Because we expect file <code>dist/bundle.js</code> to change regularly, we read it anew from disk every time it is requested - this
+way, we don&rsquo;t need to restart our Node.js server everytime the file changes.</p>
+
+<p>Do not (re)start the server just yet, though - file <code>dist/bundle.js</code> still doesn&rsquo;t exist, and because we have not added
+any error handling to our server as this is just a demo, it would completely crash with
+<code>Error: ENOENT: no such file or directory</code> as soon as we request the webpage.</p>
+
+<p>Next, we create our own frontend code. In file <code>src/frontend/index.js</code>, we write a very minimalistic application that
+simply replaces the text in our <code>content</code> div with &ldquo;Hello, World!&rdquo;, using jQuery:</p>
+
+<pre><code class="language-javascript">import $ from 'jquery';
+
+$('#content').html('Hello, World!');
+</code></pre>
+
+<p>Let&rsquo;s find out what we need to get that working.</p>
+
+<p>First of all, we use jQuery, which means we need to pull that in. Instead of requesting it from a CDN or manually
+downloading it into our <code>dist</code> folder, we do something counter-intuitive. We install it via NPM:</p>
+
+<pre><code class="language-bash">npm install --save jquery
+</code></pre>
+
+<p>This pulls in the latest version of jQuery into our <code>node_modules</code> folder. As you can see in our <code>index.js</code> code, we use
+the ES6 <code>import</code> module loader to make jQuery available under identifier <code>$</code> in our application. But how can we load
+jQuery into the browser without a <code>&lt;script src=&quot;...&quot;&gt;</code> tag in our <code>index.html</code> file, and how can we resolve the <code>import</code>
+statement although browsers do not yet support ES6 JavaScript?</p>
+
+<p>Again, we need Babel, but now we also need Webpack.</p>
+
+<p>Webpack describes itself as &ldquo;<em>a bundler for javascript and friends</em>&rdquo;. The reason it exists is that the way we want to
+organize our own code and its external dependencies, and the way that JavaScript and other assets are best served to a
+browser, are often very different, and this difference can be cumbersome to manage.</p>
+
+<p>Webpack makes this a lot easier: we organize and write our own code the way we want, we refer to external dependencies
+like the NPM-installed jQuery library the way we want, and we have Webpack bundle it all together in one single
+<code>bundle.js</code> file which has all the content the browser needs, served in the format it likes. Because Webpack integrates
+with Babel, the bundled file is guaranteed to only contain browser-friendly ES5 code.</p>
+
+<p>The price we pay for this is some setup work that we need to do, but which isn&rsquo;t that complicated.</p>
+
+<p>We start by installing Webpack and a plugin it needs to work together with Babel:</p>
+
+<pre><code class="language-bash">npm install webpack babel-loader --save-dev
+</code></pre>
+
+<p>Then, we put the following configuration in file <code>webpack.config.js</code> in the <code>es6-demo</code> root folder:</p>
+
+<pre><code class="language-javascript">const path = require('path');
+
+module.exports = {
+  entry: {
+    app: path.resolve(__dirname, 'src/frontend/index.js'),
+  },
+  module: {
+    loaders: [
+      {
+        loader: &quot;babel-loader&quot;,
+        
+        // Skip any files outside of your project's `src/frontend` directory
+        include: [
+          path.resolve(__dirname, 'src/frontend'),
+        ],
+        
+        // Only run `.js` files through Babel
+        test: /\.js?$/,
+      },
+    ],
+  },
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+  },
+};
+</code></pre>
+
+<p>This tells Webpack several things:</p>
+
+<ul>
+<li>the entry file of our frontend application is <code>src/frontend/index.js</code></li>
+<li>we want to use the loader <code>babel-loader</code></li>
+<li>this loader shall only transpile files in <code>src/frontend</code> - with jQuery, we are only using libraries in <code>node_modules</code>
+which are already ES5, so we don&rsquo;t need to transpile these</li>
+<li>we also want Babel to ignore any files that don&rsquo;t end in <code>.js</code></li>
+<li>last but not least, we want Webpack to generate the final result into file <code>bundle.js</code> in folder <code>dist</code></li>
+</ul>
+
+<p>With this, we are all set to experience our final application.</p>
+
+<p>First, (re)start the backend server in one terminal session:</p>
+
+<pre><code class="language-bash">./node_modules/.bin/babel-node src/backend/server.js
+</code></pre>
+
+<p>Next, in another terminal session, have Webpack build our frontend application bundle:</p>
+
+<pre><code class="language-bash">./node_modules/.bin/webpack
+</code></pre>
+
+<p>Finally, open a browser window at <code>http://127.0.0.1:8080/</code> and enjoy the beauty of your first back-to-front ES6
+application - that is, you should see a very spartan page that greets you with <em>Hello, World!</em>.</p>
+
+<p>Let&rsquo;s dissect what exactly happens.</p>
+
+<p>As before, opening the page in your browser sends a request to the running Node.js backend server. The server code
+(which has been transpiled on-the-fly from ES6 to ES5 via <code>babel-node</code>) receives the request for URL <code>/</code>, and responds
+with the content of file <code>dist/index.html</code>.</p>
+
+<p>This HTML file is rendered by the browser. The browser encounters the <code>&lt;script src=&quot;bundle.js&quot;&gt;&lt;/script&gt;</code> line, and as
+a result, it sends another request to <code>http://127.0.0.1:8080/bundle.js</code>.</p>
+
+<p>Again, our server receives that request, and responds with the contents of file <code>dist/bundle.js</code>. This file has been
+generated by Webpack.</p>
+
+<p>Running <code>./node_modules/.bin/webpack</code> made Webpack look at our main frontend code file in
+<code>src/frontend/index.js</code>, which it knows about because it is defined as the application entry point in
+<code>webpack.config.js</code>.</p>
+
+<p>Because Webpack is configured to run all <code>.js</code> files in folder <code>src/frontend</code> through its <code>babel-loader</code>, our code is
+interpreted and transpiled via Babel. While doing so, Webpack recognizes that our code <code>import</code>s a library named
+<em>jquery</em>. In order to make the code of this library available to our own code, Webpack pulls in the contents of file
+<code>node_modules/jquery/dist/jquery.js</code> and adds it to file <code>dist/bundle.js</code>. Our own code is bundled into the file, too.</p>
+
+<p>Finally, our browser receives the response from our server containing the contents of file <code>bundle.js</code>, and runs
+the contained JavaScript code, resulting in the <em>Hello, World!</em> page.</p>
+
+<hr />
+
+<blockquote>
+<p>Learn more about <a href="https://www.nodebeginner.org/#a-basic-http-server">writing web applications using Node.js</a>
+with <strong>The Node Beginner Book</strong> - the first part of this <a href="https://www.nodebeginner.org/">step-by-step Node.js tutorial</a>
+is available for free!</p>
+</blockquote>
+          </div>
+        </div>
+        <div class="pagination">
+          
+          
+            <a class="btn previous " href="https://www.nodebeginner.org/blog/post/javascript-news-and-resources-october-2017/">Prev</a>
+          
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer">
+  
+  <p>Copyright (c) 2017 Manuel Kiessling</p>
+  
+</div>
+
+  </div>
+  <script src="https://www.nodebeginner.org/blog/js/slim.js"></script>
+  <script src="https://www.nodebeginner.org/blog/js/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+  <script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-2127388-6', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+</body>
+
+</html>
