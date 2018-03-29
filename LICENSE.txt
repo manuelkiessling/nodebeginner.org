@@ -1,0 +1,5 @@
+Copyright 2011-2018 Manuel Kiessling
+
+The contents in this repository are free for personal use.
+
+It is not permitted to copy (with the exception of Github forks), distribute, display, and perform the work, as well as make and distribute derivative works based on it, unless specifically granted.
