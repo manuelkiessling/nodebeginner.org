@@ -1,0 +1,96 @@
+body, .title, h1, h2, h3, h4, h5, h6 {
+    font-family: "Helvetica Neue", HelveticaNeue, "TeX Gyre Heros", TeXGyreHeros, FreeSans, "Nimbus Sans L", "Liberation Sans", Arimo, Helvetica, Arial, sans-serif;
+}
+
+.title, h1, h2, h3, h4, h5, h6 {
+    font-family: "Helvetica Neue", HelveticaNeue, "TeX Gyre Heros", TeXGyreHeros, FreeSans, "Nimbus Sans L", "Liberation Sans", Arimo, Helvetica, Arial, sans-serif;
+    font-weight: lighter;
+}
+
+h1.title {
+    font-weight: normal;
+}
+
+#header {
+    background: #40E0D0;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #FF0080, #FF8C00, #40E0D0);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #FF0080, #FF8C00, #40E0D0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+#header nav, #header .header-info, #header .title, #header a {
+    color: #fff;
+}
+
+.header-info .title {
+    margin-bottom: 0;
+    text-transform: none;
+}
+
+#header h1.site-title {
+    font-weight: lighter;
+    /*text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.4);*/
+}
+
+p.site-description {
+    text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.9);
+}
+
+.home-section > p {
+    color: #777;
+    font-weight: lighter;
+}
+
+.header-info .subtitle, .header-info .taxonomy-type {
+    font-style: normal;
+}
+
+.list-item .meta span > time {
+    color: #777;
+}
+
+#main {
+    margin-top: 2em;
+    min-height: 50vh;
+}
+
+.entry .meta span, .entry .meta span a {
+    font-style: normal;
+    color: #444;
+    font-weight: lighter;
+}
+
+footer.entry-footer-container {
+    display: none;
+}
+
+#footer {
+    margin-top: 2em;
+    background-color: #eee;
+}
+
+#footer, footer a {
+    color: #777;
+}
+
+.header::after {
+    margin-top: 2em;
+    margin-bottom: 2.5em;
+    opacity: 0;
+}
+
+.footer::before {
+    border: none;
+}
+
+span.filename.beforecode {
+    font-family: Menlo,Consolas,Monaco,Ubuntu Mono,Liberation Mono,Lucida Console,monospace;;
+    color: #777;
+    font-size: 0.75em;
+    margin-bottom: 0;
+    background: #212121;
+    padding: 8px 20px 8px 22px;
+}
+
+pre {
+    margin-top: -22px;
+}

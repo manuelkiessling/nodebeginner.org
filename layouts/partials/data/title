@@ -1,0 +1,28 @@
+{{- $title := ( .Title ) -}}
+{{- $siteTitle := ( .Site.Title ) -}}
+{{- $siteSubtitle := ( .Site.Params.info.subtitle ) -}}
+{{- $sep := ( .Site.Params.seo.titleSeparator | default "•" ) -}}
+{{- $title404 := ( .Site.Params.info.title404 | default $title ) -}}
+
+{{- if .IsHome -}}
+  {{ $siteTitle }} - {{ $siteSubtitle }}
+{{- else if eq .Kind "404" -}}
+  {{ $title404 }} {{ $sep }} {{ $siteTitle }}
+{{- else if eq .Kind "taxonomy" -}}
+  {{- ( ( i18n .Data.Singular 1 ) | default .Data.Singular ) | title -}}
+  {{- print ": " -}}
+  {{- if eq .Data.Singular "author" -}}
+    {{- partial "data/author/displayName" . -}}
+  {{- else -}}
+    {{- $title -}}
+  {{- end -}}
+  {{- print " " $sep " " $siteTitle -}}
+{{- else if ( or .IsNode ( eq .Section "page" ) ) -}}
+  {{ $title }} {{ $sep }} {{ $siteTitle }}
+{{- else -}}
+  {{- if .Params.authors -}}
+    {{ $title }} {{ $sep }} {{ partial "data/author/displayName" . }}
+  {{- else -}}
+    {{ $title }} {{ $sep }} {{ $siteTitle }}
+  {{- end -}}
+{{- end -}}

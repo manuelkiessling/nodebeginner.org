@@ -1,0 +1,35 @@
+<section id='recent-posts' class='home-section'>
+    <header>
+        <h2 class='home-section-title title'>
+            {{- i18n "recentPosts" -}}
+        </h2>
+    </header>
+
+    <div class='list-container'>
+        <ul class='list'>
+            {{ range ( first .Site.Params.settings.recentPostsLength ( where .Data.Pages "Section" "tutorials" ) ) }}
+            {{ .Render "li" }}
+            {{ end }}
+        </ul>
+    </div>
+</section>
+
+<section id='archived-posts' class='home-section'>
+    <header>
+        <h2 class='home-section-title title'>
+            {{- i18n "archivedPosts" -}}
+        </h2>
+    </header>
+
+    <p>
+        {{- i18n "archivedPostsDescription" -}}
+    </p>
+
+    <div class='list-container'>
+        <ul class='list'>
+            {{ range ( first .Site.Params.settings.recentPostsLength ( where .Data.Pages "Section" "archived" ) ) }}
+            {{ .Render "li" }}
+            {{ end }}
+        </ul>
+    </div>
+</section>

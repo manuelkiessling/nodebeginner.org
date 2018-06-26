@@ -1,0 +1,81 @@
+[author]
+one = "Author"
+other = "Authors"
+
+[by]
+other = "by"
+
+[category]
+one = "Category"
+other = "Categories"
+
+[contactViaEmail]
+other = "Contact via Email"
+
+[currentPage]
+other = "Current page"
+
+[gopher]
+other = "Gopher"
+
+[goHome]
+other = "Go Home..."
+
+[mainMenu]
+other = "Main Menu"
+
+[next]
+other = "Next"
+
+[nextPage]
+other = "Next page"
+
+[nextPost]
+other = "Next post"
+
+[noTerm]
+other = "Not a single {{ .Term }}!"
+
+[openAccountInNewTab]
+other = "Open {{ .Platform }} account in new tab"
+
+[page]
+other = "Page"
+
+[previous]
+other = "Previous"
+
+[previousPage]
+other = "Previous page"
+
+[previousPost]
+other = "Previous post"
+
+[postedOn]
+other = "Posted on"
+
+[readingTime]
+one = "One min read"
+other = "{{ .Count }} mins read"
+
+[recentPosts]
+other = "Recent Posts"
+
+[archivedPosts]
+other = "Archived Content"
+
+[archivedPostsDescription]
+other = "Archived posts do not neccessarily represent the current state-of-the-art approach teached by this project, but nevertheless provide valuable insights."
+
+[skipToContent]
+other = "Skip to Content"
+
+[socialMenu]
+other = "Social Menu"
+
+[tableOfContents]
+other = "Table of Contents"
+
+[tag]
+one = "Tag"
+other = "Tags"

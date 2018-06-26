@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang='{{ if isset .Params "lang" }}{{ .Params.lang }}{{else}}en{{ end }}'>
+
+{{ partial "head/head" . }}
+
+<body class='{{ partial "header/bodyClasses" . }}'>
+<div class='site'>
+
+    <a class='screen-reader' href='#main'>{{ i18n "skipToContent" }}</a>
+
+    <header id='header' class='header-container'>
+        <div class='header site-header'>
+            {{ partial "nav/menus/main" . }}
+            <div class='header-info'>
+                {{ if eq .Kind "home" }}
+                <h1 class='site-title title'>{{ .Site.Title }}</h1>
+                {{ else }}
+                <p class='site-title title'>{{ .Site.Title }}</p>
+                {{ end }}
+                <p class='site-description subtitle'>{{ .Site.Params.info.description }}</p>
+            </div>
+        </div>
+    </header>
