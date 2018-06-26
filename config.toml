@@ -61,7 +61,7 @@ titleSeparator = "•"
 
 [params.social]
 email = "manuel@kiessling.net"
-github = "manuelkiessling"
+github = "manuelkiessling/nodebeginner.org"
 twitter = "manuelkiessling"
 
 [params.social.config]
