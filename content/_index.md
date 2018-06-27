@@ -62,7 +62,7 @@ And then came Node.js. JavaScript on the server, how cool is that?
 
 You decided that it's about time to check out the old, new JavaScript. But wait, writing Node.js applications is one thing; understanding why they need to be written the way they are written means - understanding JavaScript. And this time for real.
 
-Here is the problem: Because JavaScript really lives two, maybe even three lives (the funny little DHTML helper from the mid-90's, the more serious frontend stuff like jQuery and the likes, and now server-side), it's not that easy to find information that helps you to learn JavaScript the "right" way, in order to write Node.js applications in a fashion that makes you feel you are not just using JavaScript, you are actually developing it.
+Here is the problem: Because JavaScript really lives two, maybe even three lives (the funny little DHTML helper from the mid-90's, the more serious frontend stuff like jQuery and the likes, and now Node.js on the server-side), it's not that easy to find information that helps you to learn JavaScript the "right" way, in order to write Node.js applications in a fashion that makes you feel you are not just *using* JavaScript, you are actually *developing* it.
 
 Because that's the catch: you already are an experienced developer, you don't want to learn a new technique by just hacking around and mis-using it; you want to be sure that you are approaching it from the right angle.
 
@@ -71,3 +71,8 @@ There is, of course, excellent documentation out there. But documentation alone 
 My goal is to provide a guide for you.
 
 
+# So many JavaScript flavors, so little time...
+
+Before we even start to write the first line of Node.js code, we need to have a look at the current state of affairs in the JavaScript world and decide on *which* JavaScript flavor we actually want to use. Sounds irritating? Let's clear things up.
+
+JavaScript is an ever-evolving language, and new features and new language constructs are added regularly. What makes things complicated is the fact that "JavaScript the language" is a purely theoretical construct, while the runtime environments - that is, applications like browsers and interpreters like Node.js - aren't purely theoretical, but instead are very concrete implementations that need to handle 
