@@ -94,3 +94,11 @@ span.filename.beforecode {
 pre {
     margin-top: -22px;
 }
+
+.entry-content a {
+    border-bottom: .1em dotted #ff8c00;
+}
+
+.entry-content a:hover, .entry-content a:visited {
+    border-bottom: .1em dotted #ff0080;
+}

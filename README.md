@@ -13,3 +13,4 @@ You need to have Hugo v0.42.1 or later installed locally. git clone this reposit
 
     git clone --recurse-submodules git@github.com:manuelkiessling/nodebeginner.org.git
     
+Run `git submodule update --init` if you have already cloned the repo without `--recurse-submodules`.

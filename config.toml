@@ -86,3 +86,5 @@ hrefTargetBlank = true
 lang = "en"
 languageName = "English"
 weight = 1
+
+ignorefiles = [ "code/.*" ]

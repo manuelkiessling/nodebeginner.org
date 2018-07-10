@@ -76,3 +76,6 @@ My goal is to provide a guide for you.
 Before we even start to write the first line of Node.js code, we need to have a look at the current state of affairs in the JavaScript world and decide on *which* JavaScript flavor we actually want to use. Sounds irritating? Let's clear things up.
 
 JavaScript is an ever-evolving language, and new features and new language constructs are added regularly. What makes things complicated is the fact that "JavaScript the language" is a purely theoretical construct, while the runtime environments - that is, applications like browsers and interpreters like Node.js - aren't purely theoretical, but instead are very concrete implementations that need to handle 
+
+
+- [Write ES6, don't use Babel](http://vancelucas.com/blog/dont-transpile-javascript-for-node-js/)
