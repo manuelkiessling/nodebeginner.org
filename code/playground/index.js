@@ -7,7 +7,7 @@ class Thing {
 
 let foo = () => {
     console.log('bar');
-}
+};
 
 let thing = new Thing();
 thing.do((msg) => { console.log(msg) });
