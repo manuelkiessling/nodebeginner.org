@@ -6,7 +6,7 @@
 - https://www.valentinog.com/blog/react-webpack-babel/
 - `npm init -y`
 - `mkdir src`
-- `npm install react webpack webpack-cli --save-dev`
+- `npm install react webpack webpack-cli html-webpack-plugin html-loader --save-dev`
 
 webpack.config.js:
 ```
