@@ -4,9 +4,10 @@
 - Node.js 10
 - `npm -g update npm`
 - https://www.valentinog.com/blog/react-webpack-babel/
+- https://www.valentinog.com/blog/react-redux-tutorial-beginners/
 - `npm init -y`
 - `mkdir src`
-- `npm install react webpack webpack-cli html-webpack-plugin html-loader --save-dev`
+- `npm install react webpack webpack-cli babel-plugin-transform-object-rest-spread html-webpack-plugin html-loader --save-dev`
 
 webpack.config.js:
 ```
@@ -37,7 +38,8 @@ package.json:
 .babelrc:
 ```
     {
-      "presets": ["env", "react"]
+      "presets": ["env", "react"],
+      "plugins": ["transform-object-rest-spread"]
     }
 ```
 
@@ -45,6 +47,8 @@ package.json:
 
 - `mkdir -p src/{backend,frontend}`
 - `mkdir -p src/frontend/components/{container,presentational}`
+
+- `npm install redux react-redux uuid --save-dev`
 
 
 
@@ -55,7 +59,7 @@ package.json:
 - nodemon?
 - https://medium.com/@learnreact/container-components-c0e67432e005, https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0
 - https://facebook.github.io/react/docs/thinking-in-react.html
-
+- `npm update --dev`
 
 
     In the simplest terms, the tilde matches the most recent minor version (the middle number). ~1.2.3 will match all 1.2.x versions but will miss 1.3.0.
