@@ -1,18 +1,18 @@
 import React from "react";
-import List from "./List";
-import Form from "./Form";
+import ListContainer from "./ListContainer";
+import FormContainer from "./FormContainer";
 
-const App = () => (
+const AppContainer = () => (
     <div className="row mt-5">
         <div className="col-md-4 offset-md-1">
             <h2>Articles</h2>
-            <List />
+            <ListContainer />
         </div>
         <div className="col-md-4 offset-md-1">
             <h2>Add a new article</h2>
-            <Form />
+            <FormContainer />
         </div>
     </div>
 );
 
-export default App;
+export default AppContainer;
