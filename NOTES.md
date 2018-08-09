@@ -46,12 +46,15 @@ package.json:
 - `mkdir -p src/{backend,frontend}`
 - `mkdir -p src/frontend/components/{container,presentational}`
 
+
+
 - Babel only for React/JSX, not for Node.js
 - Write ES6
 - Always `'use strict';`
 - https://reactjs.org/docs/typechecking-with-proptypes.html
 - nodemon?
 - https://medium.com/@learnreact/container-components-c0e67432e005, https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0
+- https://facebook.github.io/react/docs/thinking-in-react.html
 
 
 
