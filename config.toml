@@ -1,5 +1,5 @@
 baseURL = "https://nodebeginner.org"
-title = "The Node Beginner Book"
+title = "The Node.js and React Beginner Book"
 # for smart copyright line, leave this blank and check [params.copyright]
 copyright = ""
 
@@ -20,8 +20,8 @@ pygmentsCodefences = true
 defaultContentLanguage = "en"
 
 [params.info]
-subtitle = "A comprehensive Node.js tutorial"
-description = "A comprehensive Node.js tutorial for beginners: Learn how to build a full blown web application with server-side JavaScript"
+subtitle = "A comprehensive Node.js and React tutorial"
+description = "A comprehensive Node.js and React tutorial for beginners: Learn how to build a full blown web application using JavaScript on the server and the client."
 title404 = "Nothing's here!"
 
 [params.assets]
@@ -33,7 +33,7 @@ gopher = "" # used in 404 template ( Generator: https://gopherize.me )
 [params.copyright]
 prefix = ""
 holder = "Manuel Kießling"
-startYear = "2011"
+startYear = "2018"
 suffix = ""
 
 [params.settings]
@@ -53,7 +53,7 @@ appID = ""
 pageID = ""
 
 [params.opengraph.twitter]
-page = "" # Twitter page username
+page = "manuelkiessling" # Twitter page username
 
 [params.seo]
 # Title Separator: - – — · • * ⋆ | ~ « » < >
