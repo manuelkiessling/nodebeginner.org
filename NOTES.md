@@ -50,6 +50,10 @@ package.json:
 
 - `npm install redux react-redux uuid --save-dev`
 
+- Redux actions are either events or commands
+- Events are past tense
+- Commands are present tense
+- Commands can be sync or async (thunks), events are always sync and never thunks
 
 
 - Babel only for React/JSX, not for Node.js
@@ -60,7 +64,7 @@ package.json:
 - https://medium.com/@learnreact/container-components-c0e67432e005, https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0
 - https://facebook.github.io/react/docs/thinking-in-react.html
 - `npm update --dev`
-
+- `npm install --no-save` -> avoids "optional: true" changes in package-lock.json
 
     In the simplest terms, the tilde matches the most recent minor version (the middle number). ~1.2.3 will match all 1.2.x versions but will miss 1.3.0.
 
