@@ -69,3 +69,8 @@ package.json:
 https://semver.npmjs.com/
   
 https://github.com/npm/node-semver#tilde-ranges-123-12-1
+
+
+Only reducers change the store, by dispatching action. Actions can be dispatched from two places: React Components or Thunks. Thunks can be triggered by React Components, intervals, other thunks.
+
+Actions never call thunks, reducers never call thunks.
