@@ -1,16 +1,22 @@
+import { combineReducers } from 'redux'
 import { COMMAND_ARTICLE_ADD } from "./actions";
 
 const initialState = {
     articles: []
 };
-  
-const rootReducer = (state = initialState, action) => {
+
+// We get a part of the state, the "articles" array
+const articles = (state = [], action) => {
     switch (action.type) {
         case COMMAND_ARTICLE_ADD:
-            return { ...state, articles: state.articles.concat(action.article) };
+            return state.concat(action.article);
         default:
             return state;
       }
-  };
+}
+
+const rootReducer = combineReducers({
+    articles
+});
   
-  export default rootReducer;
+export default rootReducer;
