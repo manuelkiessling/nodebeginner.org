@@ -11,22 +11,12 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 class ConnectedAppContainer extends Component {
-    constructor() {
-        super();
-        this.handleFetch = this.handleFetch.bind(this);
-    }
-
-    handleFetch(event) {
-        event.preventDefault();
-        this.props.dispatchFetchArticles();
-    }
-    
     render() {
         return (
             <div className="row mt-5">
                 <div className="col-md-4 offset-md-1">
                     <h2>Articles</h2>
-                    <button type="submit" className="btn btn-success btn-lg" onClick={this.handleFetch}>
+                    <button type="submit" className="btn btn-success btn-lg" onClick={this.props.dispatchFetchArticles}>
                         FETCH
                     </button>
                     <ListContainer />
