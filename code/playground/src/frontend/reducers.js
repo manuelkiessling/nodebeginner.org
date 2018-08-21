@@ -1,4 +1,4 @@
-import { ADD_ARTICLE } from "./actionTypes";
+import { COMMAND_ARTICLE_ADD } from "./actions";
 
 const initialState = {
     articles: []
@@ -6,8 +6,8 @@ const initialState = {
   
 const rootReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_ARTICLE:
-            return { ...state, articles: state.articles.concat(action.payload) };
+        case COMMAND_ARTICLE_ADD:
+            return { ...state, articles: state.articles.concat(action.article) };
         default:
             return state;
       }

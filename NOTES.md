@@ -48,12 +48,25 @@ package.json:
 - `mkdir -p src/{backend,frontend}`
 - `mkdir -p src/frontend/components/{container,presentational}`
 
-- `npm install redux react-redux uuid --save-dev`
+- `npm install redux react-redux redux-thunk uuid --save-dev`
+
 
 - Redux actions are either events or commands
-- Events are past tense
-- Commands are present tense
-- Commands can be sync or async (thunks), events are always sync and never thunks
+- Events are past tense ("succededFetchArticles")
+- Commands are present tense ("addArticle")
+- Thunks can trigger events ("succededFetchArticles")
+
+App state semantics can be either "atomic" or "expressive". Atomic means that a thunk which fetches articles then atomically dispatches the actions that change the state step-by-step, in form of commands:
+- dispatch(stopFetchSpinner)
+- dispatch(addArticles)
+
+If using the expressive approach, thunks dispatches only one action, of type event, e.g. "succeededFetchArticles", and the reducer then changes the state all at one (stop the spinner, add the articles etc.)
+Boils down to personal taste, but I like the expressive approach better.
+
+Action names: `<COMMAND|EVENT>_<ENTITY[S]>_<OPERATION>[_<EVENTNAME>]` -> `COMMAND_ARTICLE_ADD`, `EVENT_ARTICLES_FETCHING_SUCCEEDED`
+Action creator names: `[<eventname>]<operation|Operation><Entity><Command|Event>` -> `addArticleCommand`, `startedFetchingArticlesEvent`
+Thunk names: `<operation><Entity>Command` -> `fetchArticlesCommand`
+
 
 
 - Babel only for React/JSX, not for Node.js
