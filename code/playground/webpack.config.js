@@ -29,5 +29,9 @@ module.exports = {
         filename: "./index.html"
       })
     ],
-    entry: './src/frontend/index.js'
+    entry: './src/frontend/index.js',
+    devtool: 'inline-source-map',
+    devServer: {
+      contentBase: './dist'
+    }
   };
