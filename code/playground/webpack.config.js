@@ -32,6 +32,12 @@ module.exports = {
     entry: './src/frontend/index.js',
     devtool: 'inline-source-map',
     devServer: {
-      contentBase: './dist'
+      contentBase: './dist',
+      proxy: {
+        '/api': {
+            target: 'http://localhost:3000',
+            secure: false
+        }
+      }  
     }
   };

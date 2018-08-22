@@ -1,0 +1,6 @@
+{
+  "articles": [
+    {"title": "Hello, World."},
+    {"title": "Foo bar!"}
+  ]
+}
