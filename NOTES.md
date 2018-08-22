@@ -51,21 +51,21 @@ package.json:
 - `npm install redux react-redux redux-thunk uuid --save-dev`
 
 
-- Redux actions are either events or commands
-- Events are past tense ("succededFetchArticles")
-- Commands are present tense ("addArticle")
-- Thunks can trigger events ("succededFetchArticles")
+- Redux Actions are either simple and serializable objects, or functions
+- Redux action creators create either event actions (type object), command actions (type object), or thunk actions (type function)
+- Event action creators are past tense ("succededFetchArticles")
+- Command and thunk action creators are present tense ("addArticle")
+- Commands and events are synchronous, while thunks are asynchronous and can have side effects like API calls, and dispatch other actions
 
-App state semantics can be either "atomic" or "expressive". Atomic means that a thunk which fetches articles then atomically dispatches the actions that change the state step-by-step, in form of commands:
+App state semantics can be either "atomic" or "expressive". Atomic e.g. means that a thunk which fetches articles then atomically dispatches the actions that change the state step-by-step, in form of commands:
 - dispatch(stopFetchSpinner)
 - dispatch(addArticles)
 
-If using the expressive approach, thunks dispatches only one action, of type event, e.g. "succeededFetchArticles", and the reducer then changes the state all at one (stop the spinner, add the articles etc.)
+If using the expressive approach, thunks dispatch only one action instead of multiple steps, of type event, e.g. "succeededFetchArticles", and the reducer then changes the state all at one (stop the spinner, add the articles etc.)
 Boils down to personal taste, but I like the expressive approach better.
 
 Action names: `<COMMAND|EVENT>_<ENTITY[S]>_<OPERATION>[_<EVENTNAME>]` -> `COMMAND_ARTICLE_ADD`, `EVENT_ARTICLES_FETCHING_SUCCEEDED`
-Action creator names: `[<eventname>]<operation|Operation><Entity><Command|Event>` -> `addArticleCommand`, `startedFetchingArticlesEvent`
-Thunk names: `<operation><Entity>Command` -> `fetchArticlesCommand`
+Action creator names: `[<eventname>]<operation|Operation><Entity><Command|Event|Thunk>` -> `addArticleCommand`, `startedFetchingArticlesEvent`, `fetchArticlesThunk`
 
 
 

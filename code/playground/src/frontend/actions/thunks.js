@@ -1,6 +1,6 @@
-import { startedFetchingArticlesEvent, succeededFetchingArticlesEvent } from "./actions"
+import { startedFetchingArticlesEvent, succeededFetchingArticlesEvent } from "../actions/events";
 
-export const fetchArticlesCommand = () => {
+export const fetchArticlesThunk = () => {
     return (dispatch) => {
         dispatch(startedFetchingArticlesEvent());
         return fetch(`https://www.reddit.com/r/react.json`)

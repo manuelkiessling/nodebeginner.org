@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import ListContainer from "./ListContainer";
 import FormContainer from "./FormContainer";
-import { fetchArticlesCommand } from "../../thunks"
+import { fetchArticlesThunk } from "../../actions/thunks"
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        dispatchFetchArticles: () => dispatch(fetchArticlesCommand())
+        dispatchFetchArticles: () => dispatch(fetchArticlesThunk())
     };
 };
 

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import uuidv1 from "uuid";
-import { addArticleCommand } from "../../actions";
+import { addArticleCommand } from "../../actions/commands";
 
 const mapDispatchToProps = (dispatch) => {
     return {
