@@ -12,6 +12,8 @@ const articles = (state = initialState.articles, action) => {
     switch (action.type) {
         case COMMAND_ARTICLE_ADD:
             return state.concat(action.article);
+        case EVENT_ARTICLES_FETCHING_SUCCEEDED:
+            return state.concat(action.json);
         default:
             return state;
       }
