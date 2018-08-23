@@ -3,7 +3,7 @@ import { startedFetchingArticlesEvent, succeededFetchingArticlesEvent } from "..
 export const fetchArticlesThunk = () => {
     return (dispatch) => {
         dispatch(startedFetchingArticlesEvent());
-        return fetch(`/api/articles`)
+        return fetch("/api/articles")
             .then(response => response.json())
             .then(json => dispatch(succeededFetchingArticlesEvent(json)));
     }
