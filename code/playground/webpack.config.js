@@ -1,5 +1,6 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
 
 module.exports = {
   module: {
@@ -61,6 +62,28 @@ module.exports = {
   entry: "./src/frontend/index.js",
   output: {
     filename: "app.[chunkhash].js"
+  },
+  optimization: {
+    minimizer: [
+      new UglifyJSPlugin({
+        uglifyOptions: {
+          sourceMap: true,
+          compress: {
+            drop_console: true,
+            conditionals: true,
+            unused: true,
+            comparisons: true,
+            dead_code: true,
+            if_return: true,
+            join_vars: true,
+            warnings: false
+          },
+          output: {
+            comments: false
+          }
+        }
+      })
+    ]
   },
   devtool: "inline-source-map",
   devServer: {
