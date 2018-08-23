@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --open --mode development",
-    "build": "webpack --mode production"
+    "start-frontend": "webpack-dev-server --open --mode development",
+    "build-frontend": "webpack --mode production",
+    "start-backend": "node src/backend/dev-server.js"
   },
   "author": "",
   "license": "ISC",
