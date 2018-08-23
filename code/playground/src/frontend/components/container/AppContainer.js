@@ -26,7 +26,7 @@ class ConnectedAppContainer extends Component {
                         FETCH
                     </button>
                     <ListContainer />
-                    <pre>{this.props.debugInfo.toSource()}</pre>
+                    <pre>{JSON.stringify(this.props.debugInfo)}</pre>
                 </div>
                 <div className="col-md-4 offset-md-1">
                     <h2>Add a new article</h2>
