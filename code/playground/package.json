@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "frontend:devserver:start": "webpack-dev-server --open --mode development",
     "frontend:build:production": "webpack --mode production",
     "backend:server:start": "node src/backend/dev-server.js"
@@ -15,6 +15,7 @@
   "devDependencies": {
     "autoprefixer": "^9.1.3",
     "babel-core": "^6.26.3",
+    "babel-jest": "^23.4.2",
     "babel-loader": "^7.1.5",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.7.0",
@@ -22,8 +23,10 @@
     "bootstrap": "^4.1.3",
     "css-loader": "^1.0.0",
     "cssnano": "^4.0.5",
+    "fetch-mock": "^6.5.2",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
+    "jest": "^23.5.0",
     "json-server": "^0.14.0",
     "mini-css-extract-plugin": "^0.4.2",
     "node-sass": "^4.9.3",
@@ -32,6 +35,7 @@
     "react-dom": "^16.4.2",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
+    "redux-mock-store": "^1.5.3",
     "redux-thunk": "^2.3.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.22.1",
