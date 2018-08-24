@@ -62,7 +62,7 @@ module.exports = {
   output: {
     filename: "app.[chunkhash].js"
   },
-  devtool: "inline-source-map",
+  devtool: "source-map",
   devServer: {
     contentBase: "./dist",
     proxy: {
