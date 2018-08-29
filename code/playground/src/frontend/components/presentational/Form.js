@@ -13,7 +13,7 @@ const Form = ({ handleSubmit, handleChange, title }) => (
                 onChange={handleChange}
             />
         </div>
-        <Button variant="contained" color="primary">
+        <Button type="submit" variant="contained" color="primary">
             SAVE
         </Button>
     </form>
