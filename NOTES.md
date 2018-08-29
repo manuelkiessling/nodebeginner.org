@@ -96,3 +96,6 @@ Action creators never dispatch thunks, reducers never dispatch thunks.
 Regularly dispatch an action ir 
 
 mapStateToProps -> maps (part of) the Redux store state to the props of a presentational React component.
+
+
+Presentational components should always be functional, not class-based: https://reactjs.org/blog/2015/10/07/react-v0.14.html#stateless-functional-components

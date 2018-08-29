@@ -7,6 +7,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-const ListContainer = connect(mapStateToProps, null)(List);
+const ConnectedListContainer = connect(mapStateToProps, null)(List);
 
-export default ListContainer;
+export default ConnectedListContainer;

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import ListContainer from "./ListContainer";
-import FormContainer from "./FormContainer";
+import ConnectedListContainer from "./ListContainer";
+import ConnectedFormContainer from "./FormContainer";
 import { fetchArticlesThunk } from "../../actions/thunks"
 
 const mapStateToProps = (state) => {
@@ -16,7 +16,7 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-class ConnectedAppContainer extends Component {
+class AppContainer extends Component {
     render() {
         return (
             <div className="row mt-5">
@@ -25,18 +25,18 @@ class ConnectedAppContainer extends Component {
                     <button type="submit" className="btn btn-success btn-lg" onClick={this.props.dispatchFetchArticles}>
                         FETCH
                     </button>
-                    <ListContainer />
+                    <ConnectedListContainer />
                     <pre>{JSON.stringify(this.props.debugInfo)}</pre>
                 </div>
                 <div className="col-md-4 offset-md-1">
                     <h2>Add a new article</h2>
-                    <FormContainer />
+                    <ConnectedFormContainer />
                 </div>
             </div>
         );
     }
 }
 
-const AppContainer = connect(mapStateToProps, mapDispatchToProps)(ConnectedAppContainer);
+const ConnectedAppContainer = connect(mapStateToProps, mapDispatchToProps)(AppContainer);
 
-export default AppContainer;
+export default ConnectedAppContainer;

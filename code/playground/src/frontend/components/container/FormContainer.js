@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import uuidv1 from "uuid";
 import { addArticleCommand } from "../../actions/commands";
+import Form from "../presentational/Form"
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -9,7 +10,7 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-class ConnectedFormContainer extends Component {
+class FormContainer extends Component {
     constructor() {
         super();
         this.state = {
@@ -34,25 +35,11 @@ class ConnectedFormContainer extends Component {
     render() {
         const { title } = this.state;
         return (
-            <form onSubmit={this.handleSubmit}>
-                <div className="form-group">
-                    <label htmlFor="title">Title</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        id="title"
-                        value={title}
-                        onChange={this.handleChange}
-                    />
-                </div>
-                <button type="submit" className="btn btn-success btn-lg">
-                    SAVE
-                </button>
-            </form>
+            <Form handleSubmit={this.handleSubmit} handleChange={this.handleChange} title="{title}"></Form>
         );
     }
 }
 
-const FormContainer = connect(null, mapDispatchToProps)(ConnectedFormContainer);
+const ConnectedFormContainer = connect(null, mapDispatchToProps)(FormContainer);
 
-export default FormContainer;
+export default ConnectedFormContainer;

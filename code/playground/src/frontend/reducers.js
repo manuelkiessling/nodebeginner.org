@@ -3,6 +3,9 @@ import { COMMAND_ARTICLE_ADD } from "./actions/commands";
 import { EVENT_ARTICLES_FETCHING_SUCCEEDED } from "./actions/events";
 
 const initialState = {
+    ui: {
+        indicateArticlesFetching: false
+    },
     articles: [],
     debugInfo: ""
 };
