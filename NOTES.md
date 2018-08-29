@@ -99,3 +99,6 @@ mapStateToProps -> maps (part of) the Redux store state to the props of a presen
 
 
 Presentational components should always be functional, not class-based: https://reactjs.org/blog/2015/10/07/react-v0.14.html#stateless-functional-components
+
+https://reactjs.org/docs/handling-events.html
+Generally, if you refer to a method without () after it, such as onClick={this.handleClick}, you should bind that method.
