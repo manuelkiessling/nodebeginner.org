@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "@material-ui/core/Button";
 
 const Form = ({ handleSubmit, handleChange, title }) => (
     <form onSubmit={handleSubmit}>
@@ -12,9 +13,9 @@ const Form = ({ handleSubmit, handleChange, title }) => (
                 onChange={handleChange}
             />
         </div>
-        <button type="submit" className="btn btn-success btn-lg">
+        <Button variant="contained" color="primary">
             SAVE
-        </button>
+        </Button>
     </form>
 );
 
