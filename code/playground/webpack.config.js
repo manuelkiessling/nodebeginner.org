@@ -46,6 +46,25 @@ module.exports = {
             }
           }
         ]
+      },
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: "style-loader"
+          },
+          MiniCssExtractPlugin.loader,
+          {
+            loader: "css-loader",
+            options: {
+              sourceMap: true
+            }
+          },
+        ]
+      },
+      {
+        test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+        use: 'url-loader?limit=100000',
       }
     ]
   },
@@ -70,6 +89,6 @@ module.exports = {
         target: "http://localhost:3000",
         secure: false
       }
-    }  
+    }
   }
 };
