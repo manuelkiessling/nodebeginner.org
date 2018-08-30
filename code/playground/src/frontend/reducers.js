@@ -19,7 +19,7 @@ const articles = (state = initialState.articles, action) => {
             return state.concat(action.json);
         default:
             return state;
-      }
+    }
 };
 
 const debugInfo = (state = initialState.debugInfo, action) => {
@@ -35,5 +35,5 @@ const rootReducer = combineReducers({
     articles,
     debugInfo
 });
-  
+
 export default rootReducer;

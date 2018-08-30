@@ -9,32 +9,32 @@ const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
 describe("thunks", () => {
-  afterEach(() => {
-    fetchMock.reset();
-    fetchMock.restore();
-  })
+    afterEach(() => {
+        fetchMock.reset();
+        fetchMock.restore();
+    });
 
-  it("creates EVENT_ARTICLES_FETCHING_SUCCEEDED when fetching articles has been done", () => {
-    
-    const responseBody = { articles: [{"id": "1", "title": "Hello, World."}] };
-    
-    fetchMock
-      .getOnce(
-        "/api/articles",
-        {
-          body: responseBody,
-          headers: { "content-type": "application/json" } 
-        }
-      );
-      
-    const expectedActions = [
-      { type: events.EVENT_ARTICLES_FETCHING_STARTED },
-      { type: events.EVENT_ARTICLES_FETCHING_SUCCEEDED, json: responseBody }
-    ]
-    const store = mockStore({ articles: [] })
+    it("creates EVENT_ARTICLES_FETCHING_SUCCEEDED when fetching articles has been done", () => {
 
-    return store.dispatch(thunks.fetchArticlesThunk()).then(() => {
-      expect(store.getActions()).toEqual(expectedActions)
+        const responseBody = { articles: [{"id": "1", "title": "Hello, World."}] };
+
+        fetchMock
+            .getOnce(
+                "/api/articles",
+                {
+                    body: responseBody,
+                    headers: { "content-type": "application/json" }
+                }
+            );
+
+        const expectedActions = [
+            { type: events.EVENT_ARTICLES_FETCHING_STARTED },
+            { type: events.EVENT_ARTICLES_FETCHING_SUCCEEDED, json: responseBody }
+        ];
+        const store = mockStore({ articles: [] });
+
+        return store.dispatch(thunks.fetchArticlesThunk()).then(() => {
+            expect(store.getActions()).toEqual(expectedActions)
+        })
     })
-  })
-})
+});
