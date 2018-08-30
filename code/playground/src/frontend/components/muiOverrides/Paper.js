@@ -3,17 +3,15 @@ import { withStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 
 const styles = (theme) => ({
-    paper: {
+    root: {
         padding: theme.spacing.unit * 1,
     },
 });
 
-function OverriddenPaper(props) {
-    return (
-        <Paper className={props.classes.paper} {...props}>
-            {props.children}
-        </Paper>
-    );
-}
+const OverriddenPaper = (props) => (
+    <Paper className={props.classes.root} {...props}>
+        {props.children}
+    </Paper>
+);
 
 export default withStyles(styles)(OverriddenPaper);
