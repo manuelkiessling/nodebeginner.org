@@ -24,9 +24,9 @@ const App = ({handleSubmit, debugInfo}) => (
                             Fetch
                         </Button>
                         <ConnectedListContainer />
-                        <Paper elevation={1}>
+                        <Paper>
                             <Typography variant={"body1"} component={"pre"}>
-                                ferjfeiojre {JSON.stringify(debugInfo)}
+                                Debug info: {JSON.stringify(debugInfo)}
                             </Typography>
                         </Paper>
                     </CardContent>
