@@ -1,49 +1,49 @@
 import React from "react";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import CardHeader from "@material-ui/core/CardHeader";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import Paper from "../muiOverrides/Paper";
+import MuiCssBaseline from "@material-ui/core/CssBaseline";
+import MuiCard from "@material-ui/core/Card";
+import MuiCardContent from "@material-ui/core/CardContent";
+import MuiCardHeader from "@material-ui/core/CardHeader";
+import MuiGrid from "@material-ui/core/Grid";
+import MuiTypography from "@material-ui/core/Typography";
+import MuiButton from "@material-ui/core/Button";
+import MuiPaper from "../muiOverrides/Paper";
 import ConnectedListContainer from "../container/ListContainer";
 import ConnectedFormContainer from "../container/FormContainer";
 
 const App = ({handleSubmit, debugInfo}) => (
     <React.Fragment>
-        <CssBaseline />
-        <Grid container spacing={24} alignItems={"flex-start"} justify={"center"}>
-            <Grid item md={6}>
-                <Card>
-                    <CardHeader
+        <MuiCssBaseline />
+        <MuiGrid container spacing={24} alignItems={"flex-start"} justify={"center"}>
+            <MuiGrid item md={6}>
+                <MuiCard>
+                    <MuiCardHeader
                         title="Articles"
                     />
-                    <CardContent>
-                        <Button type="submit" variant="contained" color="primary" onClick={handleSubmit}>
+                    <MuiCardContent>
+                        <MuiButton type="submit" variant="contained" color="primary" onClick={handleSubmit}>
                             Fetch
-                        </Button>
+                        </MuiButton>
                         <ConnectedListContainer />
-                        <Paper>
-                            <Typography variant={"body1"} component={"pre"}>
+                        <MuiPaper>
+                            <MuiTypography variant={"body1"} component={"pre"}>
                                 Debug info: {JSON.stringify(debugInfo)}
-                            </Typography>
-                        </Paper>
-                    </CardContent>
-                </Card>
-            </Grid>
+                            </MuiTypography>
+                        </MuiPaper>
+                    </MuiCardContent>
+                </MuiCard>
+            </MuiGrid>
 
-            <Grid item md={6}>
-                <Card>
-                    <CardHeader
+            <MuiGrid item md={6}>
+                <MuiCard>
+                    <MuiCardHeader
                         title="Add a new article"
                     />
-                    <CardContent>
+                    <MuiCardContent>
                         <ConnectedFormContainer />
-                    </CardContent>
-                </Card>
-            </Grid>
-        </Grid>
+                    </MuiCardContent>
+                </MuiCard>
+            </MuiGrid>
+        </MuiGrid>
     </React.Fragment>
 );
 

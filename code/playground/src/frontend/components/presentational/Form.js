@@ -1,23 +1,23 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
-import Input from "@material-ui/core/Input";
+import MuiButton from "@material-ui/core/Button";
+import MuiFormControl from "@material-ui/core/FormControl";
+import MuiInputLabel from "@material-ui/core/InputLabel";
+import MuiInput from "@material-ui/core/Input";
 
 const Form = ({ handleSubmit, handleChange, title }) => (
     <form onSubmit={handleSubmit}>
         <div>
-            <FormControl margin={"normal"}>
-                <InputLabel htmlFor="title">Title</InputLabel>
-                <Input id="title" value={title} onChange={handleChange} />
-            </FormControl>
+            <MuiFormControl margin={"normal"}>
+                <MuiInputLabel htmlFor="title">Title</MuiInputLabel>
+                <MuiInput id="title" value={title} onChange={handleChange} />
+            </MuiFormControl>
         </div>
         <div>
-            <FormControl>
-                <Button type="submit" variant="contained" color="primary">
+            <MuiFormControl>
+                <MuiButton type="submit" variant="contained" color="primary">
                     SAVE
-                </Button>
-            </FormControl>
+                </MuiButton>
+            </MuiFormControl>
         </div>
     </form>
 );
