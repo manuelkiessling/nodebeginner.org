@@ -1,13 +1,18 @@
 import React from "react";
+import MuiList from "@material-ui/core/List";
+import MuiListItem from '@material-ui/core/ListItem';
+import MuiTypography from '@material-ui/core/Typography';
 
 const List = ({ articles }) => (
-    <ul>
+    <MuiList>
         {articles.map(el => (
-            <li key={el.id}>
-                {el.id}: {el.title}
-            </li>
+            <MuiListItem key={el.id}>
+                <MuiTypography variant={"body1"}>
+                    {el.id}: {el.title}
+                </MuiTypography>
+            </MuiListItem>
         ))}
-    </ul>
+    </MuiList>
 );
 
 export default List;
