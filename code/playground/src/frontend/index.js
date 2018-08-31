@@ -5,13 +5,10 @@ import "typeface-roboto";
 import store from "./store"
 import ConnectedAppContainer from "./components/container/AppContainer";
 import "../styles/app.scss";
-import { BrowserRouter as Router, Route } from "react-router-dom";
 
 render(
     <Provider store={store}>
-        <Router>
-            <Route path="/" component={ConnectedAppContainer}/>
-        </Router>
+        <ConnectedAppContainer/>
     </Provider>,
     document.getElementById("app")
 );

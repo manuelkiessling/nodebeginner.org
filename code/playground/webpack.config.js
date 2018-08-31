@@ -89,6 +89,7 @@ module.exports = {
                 target: "http://localhost:3000",
                 secure: false
             }
-        }
+        },
+        historyApiFallback: true // required to make serving react-router routes like /foo work
     }
 };
