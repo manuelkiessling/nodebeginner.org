@@ -9,7 +9,7 @@ import MuiCardHeader from "@material-ui/core/CardHeader/CardHeader";
 import MuiCardContent from "@material-ui/core/CardContent/CardContent";
 
 const Form = ({ handleSubmit, handleChange, title }) => (
-    <MuiGrid item md={6}>
+    <MuiGrid item md="6">
         <MuiCard>
             <MuiCardHeader
                 title="Add a new article"
@@ -17,7 +17,7 @@ const Form = ({ handleSubmit, handleChange, title }) => (
             <MuiCardContent>
                 <form onSubmit={handleSubmit}>
                     <div>
-                        <MuiFormControl margin={"normal"}>
+                        <MuiFormControl margin="normal">
                             <MuiInputLabel htmlFor="title">Title</MuiInputLabel>
                             <MuiInput id="title" value={title} onChange={handleChange} />
                         </MuiFormControl>

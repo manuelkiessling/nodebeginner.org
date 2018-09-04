@@ -7,7 +7,7 @@ const List = ({ articles }) => (
     <MuiList>
         {articles.map(el => (
             <MuiListItem key={el.id}>
-                <MuiTypography variant={"body1"}>
+                <MuiTypography variant="body1">
                     {el.id}: {el.title}
                 </MuiTypography>
             </MuiListItem>

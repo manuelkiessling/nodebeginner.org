@@ -15,8 +15,8 @@ const App = ({handleSubmit, debugInfo}) => (
     <Router>
         <React.Fragment>
             <MuiCssBaseline />
-            <MuiGrid container spacing={24} alignItems={"flex-start"} justify={"center"}>
-                <MuiGrid item md={6}>
+            <MuiGrid container spacing="24" alignItems="flex-start" justify="center">
+                <MuiGrid item md="6">
                     <MuiCard>
                         <MuiCardHeader
                             title="Articles"
@@ -27,7 +27,7 @@ const App = ({handleSubmit, debugInfo}) => (
                             </MuiButton>
                             <ConnectedListContainer />
                             <MuiPaper>
-                                <MuiTypography variant={"body1"} component={"pre"}>
+                                <MuiTypography variant="body1" component="pre">
                                     Debug info: {JSON.stringify(debugInfo)}
                                 </MuiTypography>
                             </MuiPaper>
