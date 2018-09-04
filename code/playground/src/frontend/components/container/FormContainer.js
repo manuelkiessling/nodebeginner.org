@@ -35,7 +35,7 @@ class FormContainer extends Component {
     render() {
         const { title } = this.state;
         return (
-            <Form handleSubmit={this.handleSubmit} handleChange={this.handleChange} title={title}></Form>
+            <Form handleSubmit={this.handleSubmit} handleChange={this.handleChange} title={title}/>
         );
     }
 }
