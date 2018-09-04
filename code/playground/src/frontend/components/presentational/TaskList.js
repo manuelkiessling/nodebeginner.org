@@ -3,9 +3,9 @@ import MuiList from "@material-ui/core/List";
 import MuiListItem from '@material-ui/core/ListItem';
 import MuiTypography from '@material-ui/core/Typography';
 
-const List = ({ articles }) => (
+const TaskList = ({ tasks }) => (
     <MuiList>
-        {articles.map(el => (
+        {tasks.map(el => (
             <MuiListItem key={el.id}>
                 <MuiTypography variant="body1">
                     {el.id}: {el.title}
@@ -15,4 +15,4 @@ const List = ({ articles }) => (
     </MuiList>
 );
 
-export default List;
+export default TaskList;

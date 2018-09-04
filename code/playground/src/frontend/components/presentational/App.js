@@ -7,7 +7,7 @@ import MuiGrid from "@material-ui/core/Grid";
 import MuiTypography from "@material-ui/core/Typography";
 import MuiButton from "@material-ui/core/Button";
 import MuiPaper from "./muiOverrides/Paper";
-import ConnectedListContainer from "../container/ListContainer";
+import ConnectedListContainer from "../container/TaskListContainer";
 import ConnectedFormContainer from "../container/FormContainer";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 

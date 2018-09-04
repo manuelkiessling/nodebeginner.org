@@ -1,18 +1,19 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import uuidv1 from "uuid";
-import { addArticleCommand } from "../../actions/commands";
-import Form from "../presentational/Form"
+import { addTaskCommand } from "../../actions/commands";
+import AddTaskControl from "../presentational/AddTaskControl"
+import Task from "../../../common/models/Task";
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        dispatchAddArticle: (article) => dispatch(addArticleCommand(article))
+        dispatchAddTask: (task) => dispatch(addTaskCommand(task))
     };
 };
 
-class FormContainer extends Component {
+class AddTaskControlContainer extends Component {
     constructor() {
-        super();
+        super(null);
         this.state = {
             title: ""
         };
@@ -28,18 +29,16 @@ class FormContainer extends Component {
         event.preventDefault();
         const { title } = this.state;
         const id = uuidv1();
-        this.props.dispatchAddArticle({ title, id });
+        this.props.dispatchAddTask(Task(title, id));
         this.setState({ title: "" });
     }
 
     render() {
         const { title } = this.state;
         return (
-            <Form handleSubmit={this.handleSubmit} handleChange={this.handleChange} title={title} />
+            <AddTaskControl handleSubmit={this.handleSubmit} handleChange={this.handleChange} title={title} />
         );
     }
 }
 
-const ConnectedFormContainer = connect(null, mapDispatchToProps)(FormContainer);
-
-export default ConnectedFormContainer;
+export default connect(null, mapDispatchToProps)(AddTaskControlContainer);

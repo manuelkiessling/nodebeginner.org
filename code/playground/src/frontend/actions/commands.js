@@ -1,3 +1,3 @@
-export const COMMAND_ARTICLE_ADD = "COMMAND_ARTICLE_ADD";
+export const COMMAND_TASK_ADD = "COMMAND_TASK_ADD";
 
-export const addArticleCommand = (article) => ({ type: COMMAND_ARTICLE_ADD, article: article });
+export const addTaskCommand = (task) => ({ type: COMMAND_TASK_ADD, task: task });

@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { COMMAND_ARTICLE_ADD } from "./actions/commands";
+import { COMMAND_TASK_ADD } from "./actions/commands";
 import { EVENT_ARTICLES_FETCHING_SUCCEEDED } from "./actions/events";
 
 const initialState = {
@@ -13,7 +13,7 @@ const initialState = {
 // We get and handle one part of the state, the "articles" array
 const articles = (state = initialState.articles, action) => {
     switch (action.type) {
-        case COMMAND_ARTICLE_ADD:
+        case COMMAND_TASK_ADD:
             return state.concat(action.article);
         case EVENT_ARTICLES_FETCHING_SUCCEEDED:
             return state.concat(action.json);
