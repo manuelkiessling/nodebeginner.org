@@ -42,14 +42,14 @@
 
 * Route: /tasks/
 
-#### AddTasksContainer
+#### AddTaskContainer
 
-##### AddTasksForm
+##### AddTaskForm
 
 * Route: /tasks/add-form
 * REST: POST /api/tasks/
 
-#### TaskListsContainer
+#### TaskListContainer
 ##### TaskList
 ###### TaskListItem
 
@@ -57,5 +57,5 @@
 
 ####### TaskListItemDetails
 
-####### RemoveTaskElement
-######## RemoveTaskModal
+####### RemoveTaskControl
+######## RemoveTaskControlModal
