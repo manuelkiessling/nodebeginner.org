@@ -3,7 +3,8 @@ import MuiCard from "@material-ui/core/Card";
 import MuiCardContent from "@material-ui/core/CardContent";
 import MuiCardHeader from "@material-ui/core/CardHeader";
 import MuiGrid from "@material-ui/core/Grid";
-import MuiTypography from "@material-ui/core/Typography";
+import AddTaskControlContainer from "../container/AddTaskControlContainer";
+import TaskListContainer from "../container/TaskListContainer";
 
 const TasksScreen = () => (
     <MuiCard>
@@ -18,7 +19,7 @@ const TasksScreen = () => (
                 </MuiGrid>
 
                 <MuiGrid item>
-                    <TasksListContainer/>
+                    <TaskListContainer/>
                 </MuiGrid>
 
             </MuiGrid>
@@ -27,3 +28,5 @@ const TasksScreen = () => (
 
     </MuiCard>
 );
+
+export default TasksScreen;

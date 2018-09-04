@@ -2,15 +2,12 @@ import React from "react";
 import MuiList from "@material-ui/core/List";
 import MuiListItem from '@material-ui/core/ListItem';
 import MuiTypography from '@material-ui/core/Typography';
+import TaskListItem from "./TaskListItem";
 
 const TaskList = ({ tasks }) => (
     <MuiList>
-        {tasks.map(el => (
-            <MuiListItem key={el.id}>
-                <MuiTypography variant="body1">
-                    {el.id}: {el.title}
-                </MuiTypography>
-            </MuiListItem>
+        {tasks.map(tasks => (
+            <TaskListItem key={tasks.id} task={tasks} />
         ))}
     </MuiList>
 );

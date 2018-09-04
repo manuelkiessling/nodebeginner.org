@@ -53,19 +53,19 @@ package.json:
 
 - Redux Actions are either simple and serializable objects, or functions
 - Redux action creators create either event actions (type object), command actions (type object), or thunk actions (type function)
-- Event action creators are past tense ("succededFetchArticles")
-- Command and thunk action creators are present tense ("addArticle")
+- Event action creators are past tense ("succededFetchTasks")
+- Command and thunk action creators are present tense ("addTask")
 - Commands and events are synchronous, while thunks are asynchronous and can have side effects like API calls, and dispatch other actions
 
-App state semantics can be either "atomic" or "expressive". Atomic e.g. means that a thunk which fetches articles then atomically dispatches the actions that change the state step-by-step, in form of commands:
+App state semantics can be either "atomic" or "expressive". Atomic e.g. means that a thunk which fetches tasks then atomically dispatches the actions that change the state step-by-step, in form of commands:
 - dispatch(stopFetchSpinner)
-- dispatch(addArticles)
+- dispatch(addTasks)
 
-If using the expressive approach, thunks dispatch only one action instead of multiple steps, of type event, e.g. "succeededFetchArticles", and the reducer then changes the state all at one (stop the spinner, add the articles etc.)
+If using the expressive approach, thunks dispatch only one action instead of multiple steps, of type event, e.g. "succeededFetchTasks", and the reducer then changes the state all at one (stop the spinner, add the tasks etc.)
 Boils down to personal taste, but I like the expressive approach better.
 
-Action names: `<COMMAND|EVENT>_<ENTITY[S]>_<OPERATION>[_<EVENTNAME>]` -> `COMMAND_ARTICLE_ADD`, `EVENT_ARTICLES_FETCHING_SUCCEEDED`
-Action creator names: `[<eventname>]<operation|Operation><Entity><Command|Event|Thunk>` -> `addArticleCommand`, `startedFetchingArticlesEvent`, `fetchArticlesThunk`
+Action names: `<COMMAND|EVENT>_<ENTITY[S]>_<OPERATION>[_<EVENTNAME>]` -> `COMMAND_TASK_ADD`, `EVENT_TASKS_FETCHING_SUCCEEDED`
+Action creator names: `[<eventname>]<operation|Operation><Entity><Command|Event|Thunk>` -> `addTaskCommand`, `startedFetchingTasksEvent`, `fetchTasksThunk`
 
 
 
@@ -102,10 +102,13 @@ Presentational components should always be functional, not class-based: https://
 
 Component semantics:
 - Every component is either a container (in this case it ends with `Container`), or it is a presentational (no special ending)
-- All components are one of: Screen (represents one routable location that makes up the main view of the client), List, Item, Control (any form or form-element which the user can interact with to change the state), Modal
+- All components are one of: Screen (represents one routable location that makes up the main view of the client), List, Item, Control (any form or form-element which the user can interact with to change the state), Modal - the only exception is `App`.
 
 
 https://reactjs.org/docs/handling-events.html
 Generally, if you refer to a method without () after it, such as onClick={this.handleClick}, you should bind that method.
 
 https://github.com/combine/universal-react-redux/blob/master/server/renderer/handler.js#L110
+
+
+The React app server part is used to server-side render the initial view of a given React route, and it *can* also serve the backend API, but it doesn't have to - it is sufficient if it resolves data for the initial state during SSR, by requesting the API, even if the API is provided by another service. This way, the app server part is only occupied with delivering the client-side of the app via SSR, and nothing else.

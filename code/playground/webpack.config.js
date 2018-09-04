@@ -8,7 +8,7 @@ module.exports = {
                 test: /\.js$/,
                 exclude: [
                     "/node_modules/",
-                    "/src/backend/"
+                    "/src/server/"
                 ],
                 use: {
                     loader: "babel-loader"
@@ -41,7 +41,7 @@ module.exports = {
                     {
                         loader: "sass-loader",
                         options: {
-                            includePaths: ["/src/styles"],
+                            includePaths: ["/src/universal/styles"],
                             sourceMap: true
                         }
                     }
@@ -70,14 +70,14 @@ module.exports = {
     },
     plugins: [
         new HtmlWebPackPlugin({
-            template: "./src/frontend/index.html",
+            template: "./src/universal/html-templates/index.html",
             filename: "./index.html"
         }),
         new MiniCssExtractPlugin({
             filename: "app.[contenthash].css",
         })
     ],
-    entry: "./src/frontend/index.js",
+    entry: "./src/client/index.js",
     output: {
         filename: "app.[chunkhash].js"
     },

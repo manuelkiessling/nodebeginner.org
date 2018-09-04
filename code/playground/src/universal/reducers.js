@@ -1,21 +1,21 @@
 import { combineReducers } from "redux";
-import { COMMAND_TASK_ADD } from "./actions/commands";
-import { EVENT_ARTICLES_FETCHING_SUCCEEDED } from "./actions/events";
+import { COMMAND_TASK_ADD } from "./redux-actions/commands";
+import { EVENT_TASKS_FETCHING_SUCCEEDED } from "./redux-actions/events";
 
 const initialState = {
     ui: {
-        indicateArticlesFetching: false
+        indicateTasksFetching: false
     },
-    articles: [],
+    tasks: [],
     debugInfo: ""
 };
 
-// We get and handle one part of the state, the "articles" array
-const articles = (state = initialState.articles, action) => {
+// We get and handle one part of the state, the "tasks" array
+const tasks = (state = initialState.tasks, action) => {
     switch (action.type) {
         case COMMAND_TASK_ADD:
-            return state.concat(action.article);
-        case EVENT_ARTICLES_FETCHING_SUCCEEDED:
+            return state.concat(action.task);
+        case EVENT_TASKS_FETCHING_SUCCEEDED:
             return state.concat(action.json);
         default:
             return state;
@@ -24,7 +24,7 @@ const articles = (state = initialState.articles, action) => {
 
 const debugInfo = (state = initialState.debugInfo, action) => {
     switch (action.type) {
-        case EVENT_ARTICLES_FETCHING_SUCCEEDED:
+        case EVENT_TASKS_FETCHING_SUCCEEDED:
             return action.json;
         default:
             return state;
@@ -32,7 +32,7 @@ const debugInfo = (state = initialState.debugInfo, action) => {
 };
 
 const rootReducer = combineReducers({
-    articles,
+    tasks,
     debugInfo
 });
 

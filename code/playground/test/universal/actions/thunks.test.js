@@ -1,7 +1,7 @@
 import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
-import * as thunks from "../../../src/frontend/actions/thunks";
-import * as events from "../../../src/frontend/actions/events";
+import * as thunks from "../../../src/universal/redux-actions/thunks";
+import * as events from "../../../src/universal/redux-actions/events";
 import fetchMock from "fetch-mock";
 
 const middlewares = [thunk];
@@ -14,13 +14,13 @@ describe("thunks", () => {
         fetchMock.restore();
     });
 
-    it("creates EVENT_ARTICLES_FETCHING_SUCCEEDED when fetching articles has been done", () => {
+    it("creates EVENT_TASKS_FETCHING_SUCCEEDED when fetching tasks has been done", () => {
 
-        const responseBody = { articles: [{"id": "1", "title": "Hello, World."}] };
+        const responseBody = { tasks: [{"id": "1", "title": "Hello, World."}] };
 
         fetchMock
             .getOnce(
-                "/api/articles",
+                "/api/tasks",
                 {
                     body: responseBody,
                     headers: { "content-type": "application/json" }
@@ -28,12 +28,12 @@ describe("thunks", () => {
             );
 
         const expectedActions = [
-            { type: events.EVENT_ARTICLES_FETCHING_STARTED },
-            { type: events.EVENT_ARTICLES_FETCHING_SUCCEEDED, json: responseBody }
+            { type: events.EVENT_TASKS_FETCHING_STARTED },
+            { type: events.EVENT_TASKS_FETCHING_SUCCEEDED, json: responseBody }
         ];
-        const store = mockStore({ articles: [] });
+        const store = mockStore({ tasks: [] });
 
-        return store.dispatch(thunks.fetchArticlesThunk()).then(() => {
+        return store.dispatch(thunks.fetchTasksThunk()).then(() => {
             expect(store.getActions()).toEqual(expectedActions)
         })
     })

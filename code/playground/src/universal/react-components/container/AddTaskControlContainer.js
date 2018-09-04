@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import uuidv1 from "uuid";
-import { addTaskCommand } from "../../actions/commands";
+import { addTaskCommand } from "../../redux-actions/commands";
 import AddTaskControl from "../presentational/AddTaskControl"
-import Task from "../../../common/models/Task";
+import Task from "../../models/Task";
 
 const mapDispatchToProps = (dispatch) => {
     return {
