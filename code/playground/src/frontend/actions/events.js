@@ -2,6 +2,6 @@ export const EVENT_ARTICLES_FETCHING_STARTED = "EVENT_ARTICLES_FETCHING_STARTED"
 export const EVENT_ARTICLES_FETCHING_SUCCEEDED = "EVENT_ARTICLES_FETCHING_SUCCEEDED";
 export const EVENT_ARTICLES_FETCHING_ERRORED = "EVENT_ARTICLES_FETCHING_ERRORED";
 
-export const startedFetchingArticlesEvent = () => ({ type: EVENT_ARTICLES_FETCHING_STARTED })
+export const startedFetchingArticlesEvent = () => ({ type: EVENT_ARTICLES_FETCHING_STARTED });
 
-export const succeededFetchingArticlesEvent = (json) => ({ type: EVENT_ARTICLES_FETCHING_SUCCEEDED, json: json })
+export const succeededFetchingArticlesEvent = (json) => ({ type: EVENT_ARTICLES_FETCHING_SUCCEEDED, json: json });
