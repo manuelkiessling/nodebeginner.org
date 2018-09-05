@@ -1,3 +1,5 @@
+import fetch from "cross-fetch";
+
 import { startedFetchingTasksEvent, succeededFetchingTasksEvent } from "./events";
 
 export const fetchTasksThunk = () => {
