@@ -1,3 +1,4 @@
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import TaskList from "../presentational/TaskList"
 import { fetchTasksThunk } from "../../redux-actions/thunks";
@@ -14,4 +15,14 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TaskList);
+class TaskListContainer extends Component {
+    componentWillMount() {
+        this.props.dispatchFetchTasks();
+    }
+
+    render() {
+        return <TaskList tasks={this.props.tasks} />;
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TaskListContainer);

@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "frontend:devserver:start": "webpack-dev-server --open --mode development",
-    "frontend:build:production": "webpack --mode production",
-    "backend:server:start": "node src/backend/dev-server.js"
+    "client:devserver:start": "webpack-dev-server --open --mode development",
+    "client:build:production": "webpack --mode production",
+    "server:mock-api:start": "node src/server/mock-api-server"
   },
   "author": "",
   "license": "ISC",
