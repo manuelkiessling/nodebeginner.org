@@ -1,0 +1,24 @@
+import React from "react";
+import MuiCard from "@material-ui/core/Card";
+import MuiCardContent from "@material-ui/core/CardContent";
+import MuiCardHeader from "@material-ui/core/CardHeader";
+import MuiButton from "@material-ui/core/Button";
+import MuiTypography from "@material-ui/core/Typography";
+import { Link } from "react-router-dom";
+
+const LoginScreen = () => (
+    <MuiCard>
+        <MuiCardHeader title="Login" />
+            <MuiCardContent>
+                <MuiButton
+                    component={Link}
+                    to="/tasks"
+                    color="primary"
+                >
+                    Log in
+                </MuiButton>
+            </MuiCardContent>
+    </MuiCard>
+);
+
+export default LoginScreen;

@@ -1,13 +1,19 @@
 import React from "react";
 import MuiCssBaseline from "@material-ui/core/CssBaseline";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import TasksScreen from "./TasksScreen";
+import LoginScreen from "./LoginScreen";
 
 const App = () => (
     <Router>
         <React.Fragment>
+
             <MuiCssBaseline />
-            <TasksScreen />
+
+            <Route exact path="/" component={LoginScreen} />
+
+            <Route exact path="/tasks" component={TasksScreen} />
+
         </React.Fragment>
     </Router>
 );
