@@ -25,4 +25,8 @@ class TaskListContainer extends Component {
     }
 }
 
+TaskListContainer.handleSsr = () => {
+    this.props.dispatchFetchTasks();
+};
+
 export default connect(mapStateToProps, mapDispatchToProps)(TaskListContainer);
