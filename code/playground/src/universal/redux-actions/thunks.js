@@ -1,4 +1,4 @@
-import fetch from "cross-fetch";
+import "cross-fetch/polyfill";
 
 import { startedFetchingTasksEvent, succeededFetchingTasksEvent } from "./events";
 

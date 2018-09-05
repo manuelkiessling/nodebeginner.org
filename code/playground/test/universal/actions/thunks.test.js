@@ -20,7 +20,7 @@ describe("thunks", () => {
 
         fetchMock
             .getOnce(
-                "/api/tasks",
+                "http://127.0.0.1:8000/api/tasks",
                 {
                     body: responseBody,
                     headers: { "content-type": "application/json" }
