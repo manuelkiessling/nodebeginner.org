@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import TaskList from "../presentational/TaskList"
-import { fetchTasksThunk } from "../../redux-actions/thunks";
 
 const mapStateToProps = (state) => {
     return {
@@ -9,24 +8,10 @@ const mapStateToProps = (state) => {
     };
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        dispatchFetchTasks: () => dispatch(fetchTasksThunk())
-    };
-};
-
 class TaskListContainer extends Component {
-    componentWillMount() {
-        this.props.dispatchFetchTasks();
-    }
-
     render() {
         return <TaskList tasks={this.props.tasks} />;
     }
 }
 
-TaskListContainer.handleSsr = () => {
-    this.props.dispatchFetchTasks();
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(TaskListContainer);
+export default connect(mapStateToProps, null)(TaskListContainer);

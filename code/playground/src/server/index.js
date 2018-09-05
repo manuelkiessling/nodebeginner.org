@@ -5,13 +5,13 @@ import path from "path";
 import fs from "fs";
 import React from "react";
 import { renderToString } from "react-dom/server";
-import { StaticRouter as Router } from "react-router-dom";
+import { StaticRouter as Router, matchPath } from "react-router-dom";
 import { Provider } from "react-redux";
 import AppContainer from "../universal/react-components/container/AppContainer";
 import createStore from "../universal/store";
 import manifest from "../../dist/manifest.json";
-import {initializeCommand} from "../universal/redux-actions/commands";
-import {fetchTasksThunk} from "../universal/redux-actions/thunks";
+import { initializeCommand } from "../universal/redux-actions/commands";
+import routes from "../universal/routes";
 
 
 sourceMapSupport.install();
@@ -56,18 +56,31 @@ server.get("/*", (req, res) => {
         const store = createStore();
         store.dispatch(initializeCommand);
 
-        const context = {};
-        const jsx = (
-            <Provider store={store}>
-                <Router context={context} location={req.url}>
-                    <AppContainer />
-                </Router>
-            </Provider>
-        );
-        const reactDom = renderToString(jsx);
+        const ssrDispatchHooks =
+            routes
+                .filter((route) => matchPath(req.url, route))                    // filter matching paths
+                .map((route) => route.component)                                 // map to components
+                .filter((component) => component.ssrDispatchHook)                // filter to components that have a SSR trigger
+                .map((component) => {
+                    console.debug("Triggering ssrDispatchHook on " + component.name);
+                    store.dispatch(component.ssrDispatchHook());                   // dispatch trigger
+                });
 
-        res.writeHead(200, {"Content-Type": "text/html"});
-        res.end(htmlTemplate(templateContent, reactDom, store));
+        Promise.all(ssrDispatchHooks).then(() => {
+            const context = {};
+            const jsx = (
+                <Provider store={store}>
+                    <Router context={context} location={req.url}>
+                        <AppContainer/>
+                    </Router>
+                </Provider>
+            );
+
+            const reactDom = renderToString(jsx);
+
+            res.writeHead(200, {"Content-Type": "text/html"});
+            res.end(htmlTemplate(templateContent, reactDom, store));
+        });
     });
 });
 
