@@ -14,9 +14,8 @@ import { initializeCommand } from "../universal/redux-actions/commands";
 import routes from "../universal/routes";
 import { SheetsRegistry } from "react-jss/lib/jss";
 import JssProvider from "react-jss/lib/JssProvider";
-import { MuiThemeProvider, createMuiTheme, createGenerateClassName } from "@material-ui/core/styles";
-import green from '@material-ui/core/colors/green';
-import red from '@material-ui/core/colors/red';
+import { MuiThemeProvider, createGenerateClassName } from "@material-ui/core/styles";
+import muiTheme from "../universal/mui-theme";
 
 sourceMapSupport.install();
 
@@ -78,15 +77,6 @@ server.get("/*", (req, res) => {
             // Create a sheetsManager instance.
             const sheetsManager = new Map();
 
-            // Create a theme instance.
-            const theme = createMuiTheme({
-                palette: {
-                    primary: green,
-                    accent: red,
-                    type: 'light',
-                },
-            });
-
             // Create a new class name generator.
             const generateClassName = createGenerateClassName();
 
@@ -95,7 +85,7 @@ server.get("/*", (req, res) => {
                 <Provider store={store}>
                     <Router context={context} location={req.url}>
                         <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
-                            <MuiThemeProvider theme={theme} sheetsManager={sheetsManager}>
+                            <MuiThemeProvider theme={muiTheme} sheetsManager={sheetsManager}>
                                 <AppContainer/>
                             </MuiThemeProvider>
                         </JssProvider>
@@ -103,11 +93,11 @@ server.get("/*", (req, res) => {
                 </Provider>
             );
 
-            const style = sheetsRegistry.toString();
-
             console.debug("Starting JSX rendering...");
             const reactDom = renderToString(jsx);
             console.debug("Finished JSX rendering.");
+
+            const style = sheetsRegistry.toString();
 
             res.writeHead(200, {"Content-Type": "text/html"});
             res.end(htmlTemplate(templateContent, reactDom, store, style));
@@ -146,6 +136,6 @@ const htmlTemplate = (templateContent, reactDom, store, inlineStyle) => {
             .replace('<!-- SSR style link tag placeholder -->', cssChunks.join(""))
 
             // write the inline style tag
-            .replace('<!-- SSR inline style tag placeholder -->', `<style>${ inlineStyle }</style>`)
+            .replace('<!-- SSR inline style tag placeholder -->', `<style id="ssr-inline-style">${ inlineStyle }</style>`)
     );
 };
