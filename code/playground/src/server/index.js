@@ -69,7 +69,7 @@ const extractAssets = (assets, chunks) => Object.keys(assets)
     .filter(asset => chunks.indexOf(asset.replace('.js', '')) > -1)
     .map(k => assets[k]);
 
-const extraChunks = extractAssets(manifest, ["main.js"])
+const extraChunks = extractAssets(manifest, ["main"])
     .map(c => `<script type="text/javascript" src="/${c}"></script>`);
 
 const htmlTemplate = (templateContent, reactDom) => {
