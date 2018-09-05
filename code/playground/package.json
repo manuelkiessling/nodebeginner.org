@@ -5,14 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-
     "start:client:devserver": "APP_API_BASE='' webpack-dev-server --open --mode development --config webpack.client.config.js",
-
     "build:client:dev": "webpack --mode development --config webpack.client.config.js",
     "build:server:dev": "npm run build:client:dev && webpack --mode development --config webpack.server.config.js",
     "build:production": "webpack --mode production",
-
-    "start:server:dev":      "APP_API_BASE='http://127.0.0.1:8000' node -r source-map-support/register dist/server",
+    "start:server:dev": "APP_API_BASE='http://127.0.0.1:8000' node -r source-map-support/register dist/server",
     "start:server:mock-api": "node src/server/mock-api-server"
   },
   "_moduleAliases": {
