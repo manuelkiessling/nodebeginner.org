@@ -12,7 +12,11 @@ import createStore from "../universal/store";
 import manifest from "../../dist/manifest.json";
 import { initializeCommand } from "../universal/redux-actions/commands";
 import routes from "../universal/routes";
-
+import { SheetsRegistry } from "react-jss/lib/jss";
+import JssProvider from "react-jss/lib/JssProvider";
+import { MuiThemeProvider, createMuiTheme, createGenerateClassName } from "@material-ui/core/styles";
+import green from '@material-ui/core/colors/green';
+import red from '@material-ui/core/colors/red';
 
 sourceMapSupport.install();
 
@@ -69,21 +73,44 @@ server.get("/*", (req, res) => {
         Promise.all(ssrDispatchHooks).then(() => {
             const context = {};
 
+            const sheetsRegistry = new SheetsRegistry();
+
+            // Create a sheetsManager instance.
+            const sheetsManager = new Map();
+
+            // Create a theme instance.
+            const theme = createMuiTheme({
+                palette: {
+                    primary: green,
+                    accent: red,
+                    type: 'light',
+                },
+            });
+
+            // Create a new class name generator.
+            const generateClassName = createGenerateClassName();
+
             console.debug("Building JSX");
             const jsx = (
                 <Provider store={store}>
                     <Router context={context} location={req.url}>
-                        <AppContainer/>
+                        <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
+                            <MuiThemeProvider theme={theme} sheetsManager={sheetsManager}>
+                                <AppContainer/>
+                            </MuiThemeProvider>
+                        </JssProvider>
                     </Router>
                 </Provider>
             );
+
+            const style = sheetsRegistry.toString();
 
             console.debug("Starting JSX rendering...");
             const reactDom = renderToString(jsx);
             console.debug("Finished JSX rendering.");
 
             res.writeHead(200, {"Content-Type": "text/html"});
-            res.end(htmlTemplate(templateContent, reactDom, store));
+            res.end(htmlTemplate(templateContent, reactDom, store, style));
         });
     });
 });
@@ -103,7 +130,7 @@ const cssChunks = extractAssets(manifest, ["main"], ".css")
     .map(c => `<link rel="stylesheet" href="/${c}" />`);
 
 
-const htmlTemplate = (templateContent, reactDom, store) => {
+const htmlTemplate = (templateContent, reactDom, store, inlineStyle) => {
     return (
         templateContent
             // write the rendered React app DOM
@@ -115,7 +142,10 @@ const htmlTemplate = (templateContent, reactDom, store) => {
             // write the React JS app script tag(s)
             .replace('<!-- SSR <script> placeholder -->', javascriptChunks.join(""))
 
-            // write the CSS tag(s)
-            .replace('<!-- SSR CSS tag placeholder -->', cssChunks.join(""))
+            // write the style link tag(s)
+            .replace('<!-- SSR style link tag placeholder -->', cssChunks.join(""))
+
+            // write the inline style tag
+            .replace('<!-- SSR inline style tag placeholder -->', `<style>${ inlineStyle }</style>`)
     );
 };

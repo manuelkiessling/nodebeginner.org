@@ -7,3 +7,5 @@ Warning: Prop `className` did not match. Server: "MuiFormLabel-root-203 MuiInput
 ```
 
 See https://github.com/mui-org/material-ui/issues/7836#issuecomment-333388213
+See https://material-ui.com/guides/server-rendering/
+
