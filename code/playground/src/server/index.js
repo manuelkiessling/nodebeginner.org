@@ -6,8 +6,13 @@ import fs from "fs";
 import React from "react";
 import { renderToString } from "react-dom/server";
 import { StaticRouter as Router } from "react-router-dom";
+import { Provider } from "react-redux";
 import AppContainer from "../universal/react-components/container/AppContainer";
+import createStore from "../universal/store";
 import manifest from "../../dist/manifest.json";
+import {initializeCommand} from "../universal/redux-actions/commands";
+import {fetchTasksThunk} from "../universal/redux-actions/thunks";
+
 
 sourceMapSupport.install();
 
@@ -48,16 +53,21 @@ server.get("/*", (req, res) => {
             return res.status(404).end()
         }
 
+        const store = createStore();
+        store.dispatch(initializeCommand);
+
         const context = {};
         const jsx = (
-            <Router context={context} location={req.url}>
-                <AppContainer />
-            </Router>
+            <Provider store={store}>
+                <Router context={context} location={req.url}>
+                    <AppContainer />
+                </Router>
+            </Provider>
         );
         const reactDom = renderToString(jsx);
 
         res.writeHead(200, {"Content-Type": "text/html"});
-        res.end(htmlTemplate(templateContent, reactDom));
+        res.end(htmlTemplate(templateContent, reactDom, store));
     });
 });
 
@@ -72,11 +82,14 @@ const extractAssets = (assets, chunks) => Object.keys(assets)
 const extraChunks = extractAssets(manifest, ["main"])
     .map(c => `<script type="text/javascript" src="/${c}"></script>`);
 
-const htmlTemplate = (templateContent, reactDom) => {
+const htmlTemplate = (templateContent, reactDom, store) => {
     return (
         templateContent
             // write the rendered React app DOM
             .replace('<div id="app"></div>', `<div id="app">${reactDom}</div>`)
+
+            // write the Redux store state
+            .replace("<!-- window.SSR_REDUX_STORE_STATE placeholder -->", `<script>window.SSR_REDUX_STORE_STATE = ${ JSON.stringify(store.getState()) }</script>`)
 
             // write the React JS app script tag
             .replace('<!-- SSR <script> placeholder -->', extraChunks.join(''))
