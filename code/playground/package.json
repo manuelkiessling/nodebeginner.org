@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "client:devserver:start": "webpack-dev-server --open --mode development",
+    "client:devserver:start": "webpack-dev-server --open --mode development --config webpack.client.config.js",
     "build:dev": "webpack --mode development",
     "build:production": "webpack --mode production",
     "server:dev:start": "node -r source-map-support/register dist/server",
