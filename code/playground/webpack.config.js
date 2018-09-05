@@ -1,5 +1,6 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const path = require( "path" );
 
 module.exports = {
     module: {
@@ -8,7 +9,7 @@ module.exports = {
                 test: /\.js$/,
                 exclude: [
                     "/node_modules/",
-                    "/src/server/"
+                    "/src/server/mock*"
                 ],
                 use: {
                     loader: "babel-loader"
@@ -77,9 +78,20 @@ module.exports = {
             filename: "app.[contenthash].css",
         })
     ],
-    entry: "./src/client/index.js",
+    entry: {
+        client: "./src/client/index.js",
+        server: "./src/server/index.js"
+    },
     output: {
-        filename: "app.[chunkhash].js"
+        filename: (chunkData) => {
+            return chunkData.chunk.name === 'client' ? '[name].[chunkhash].js': '[name].js';
+        },
+    },
+    resolve: {
+        modules: [
+            path.resolve( "./src" ),
+            "node_modules",
+        ],
     },
     devtool: "source-map",
     devServer: {
@@ -91,5 +103,9 @@ module.exports = {
             }
         },
         historyApiFallback: true // required to make serving react-router routes like /foo work
+    },
+    node: {
+        fs: "empty", // See https://github.com/webpack-contrib/css-loader/issues/447
+        net: "empty"
     }
 };
