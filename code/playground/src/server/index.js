@@ -1,5 +1,6 @@
 import sourceMapSupport from "source-map-support";
 import express from "express";
+import proxy from "express-http-proxy";
 import path from "path";
 import React from "react";
 import { renderToString } from "react-dom/server";
@@ -14,6 +15,22 @@ const staticPath = path.resolve(__dirname); // Webpack will store the bundled se
                                             // file into dist, where the other static stuff ends up, too
 console.info("Will serve static files from " + staticPath);
 server.use(express.static(staticPath));
+
+console.info("Will proxy requests to /api to http://127.0.0.1:8001/api");
+server.use(
+    "/api",
+    proxy(
+        "127.0.0.1:8001",
+        {
+            // The (mock) API server expects requests at /api/...
+            proxyReqPathResolver: (req) => {
+                const resolvedPath = "/api" + require("url").parse(req.url).path;
+                console.info("Proxying to " + resolvedPath);
+                return "http://127.0.0.1:8001" + resolvedPath;
+            }
+        }
+    )
+);
 
 server.get("/*", (req, res) => {
     const context = {};
