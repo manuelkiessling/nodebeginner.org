@@ -92,12 +92,16 @@ server.get("/*", (req, res) => {
 console.info("SSR server listening on http://127.0.0.1:8000");
 server.listen(8000);
 
-const extractAssets = (assets, chunks) => Object.keys(assets)
-    .filter(asset => chunks.indexOf(asset.replace('.js', '')) > -1)
+const extractAssets = (assets, chunks, ending) => Object.keys(assets)
+    .filter(asset => chunks.indexOf(asset.replace(ending, '')) > -1)
     .map(k => assets[k]);
 
-const extraChunks = extractAssets(manifest, ["main"])
+const javascriptChunks = extractAssets(manifest, ["main"], ".js")
     .map(c => `<script type="text/javascript" src="/${c}"></script>`);
+
+const cssChunks = extractAssets(manifest, ["main"], ".css")
+    .map(c => `<link rel="stylesheet" href="/${c}" />`);
+
 
 const htmlTemplate = (templateContent, reactDom, store) => {
     return (
@@ -108,7 +112,10 @@ const htmlTemplate = (templateContent, reactDom, store) => {
             // write the Redux store state
             .replace("<!-- window.SSR_REDUX_STORE_STATE placeholder -->", `<script>window.SSR_REDUX_STORE_STATE = ${ JSON.stringify(store.getState()) }</script>`)
 
-            // write the React JS app script tag
-            .replace('<!-- SSR <script> placeholder -->', extraChunks.join(''))
+            // write the React JS app script tag(s)
+            .replace('<!-- SSR <script> placeholder -->', javascriptChunks.join(""))
+
+            // write the CSS tag(s)
+            .replace('<!-- SSR CSS tag placeholder -->', cssChunks.join(""))
     );
 };
