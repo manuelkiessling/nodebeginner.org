@@ -54,7 +54,7 @@ server.get("/*", (req, res) => {
         }
 
         const store = createStore();
-        store.dispatch(initializeCommand);
+        store.dispatch(initializeCommand());
 
         const ssrDispatchHooks =
             routes
@@ -63,11 +63,13 @@ server.get("/*", (req, res) => {
                 .filter((component) => component.ssrDispatchHook)                // filter to components that have a SSR trigger
                 .map((component) => {
                     console.debug("Triggering ssrDispatchHook on " + component.name);
-                    store.dispatch(component.ssrDispatchHook());                   // dispatch trigger
+                    return store.dispatch(component.ssrDispatchHook());                 // dispatch trigger
                 });
 
         Promise.all(ssrDispatchHooks).then(() => {
             const context = {};
+
+            console.debug("Building JSX");
             const jsx = (
                 <Provider store={store}>
                     <Router context={context} location={req.url}>
@@ -76,7 +78,9 @@ server.get("/*", (req, res) => {
                 </Provider>
             );
 
+            console.debug("Starting JSX rendering...");
             const reactDom = renderToString(jsx);
+            console.debug("Finished JSX rendering.");
 
             res.writeHead(200, {"Content-Type": "text/html"});
             res.end(htmlTemplate(templateContent, reactDom, store));
