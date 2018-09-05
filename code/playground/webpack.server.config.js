@@ -1,6 +1,4 @@
-const HtmlWebPackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const path = require( "path" );
+const npm_package = require("./package.json");
 
 module.exports = {
     name: "server",
@@ -27,5 +25,8 @@ module.exports = {
         net: "empty",
         __dirname: false, // Ensure that __dirname still works as expected in server-side Node.js code
         __filename: false,
+    },
+    resolve: {
+        alias: npm_package._moduleAliases || {}
     }
 };

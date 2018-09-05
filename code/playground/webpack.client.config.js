@@ -1,6 +1,18 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const path = require( "path" );
+const ManifestPlugin = require('webpack-manifest-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const npm_package = require("./package.json");
+
+const pathsToClean = [
+    "dist"
+];
+
+const cleanOptions = {
+    exclude: ["server.js"],
+    verbose: true,
+    dry:     false
+};
 
 module.exports = {
     name: "client",
@@ -78,10 +90,12 @@ module.exports = {
         }),
         new MiniCssExtractPlugin({
             filename: "app.[contenthash].css",
-        })
+        }),
+        new ManifestPlugin(),
+        new CleanWebpackPlugin(pathsToClean, cleanOptions),
     ],
     entry: "./src/client/index.js",
-    output: { filename: "client.js" },
+    output: { filename: "client.[chunkhash].js" },
     devtool: "source-map",
     devServer: {
         contentBase: "./dist",
@@ -91,6 +105,9 @@ module.exports = {
                 secure: false
             }
         },
-        historyApiFallback: true // required to make serving react-router routes like /foo work
+        historyApiFallback: true // required to make serving react-router routes like /tasks work
+    },
+    resolve: {
+        alias: npm_package._moduleAliases || {}
     }
 };

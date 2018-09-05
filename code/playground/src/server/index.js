@@ -2,10 +2,12 @@ import sourceMapSupport from "source-map-support";
 import express from "express";
 import proxy from "express-http-proxy";
 import path from "path";
+import fs from "fs";
 import React from "react";
 import { renderToString } from "react-dom/server";
-import AppContainer from "../universal/react-components/container/AppContainer";
 import { StaticRouter as Router } from "react-router-dom";
+import AppContainer from "../universal/react-components/container/AppContainer";
+import manifest from "../../dist/manifest.json";
 
 sourceMapSupport.install();
 
@@ -33,34 +35,49 @@ server.use(
 );
 
 server.get("/*", (req, res) => {
-    const context = {};
-    const jsx = (
-        <Router context={context} location={req.url}>
-            <AppContainer />
-        </Router>
-    );
-    const reactDom = renderToString(jsx);
 
-    res.writeHead(200, {"Content-Type": "text/html"});
-    res.end(htmlTemplate(reactDom));
+    console.debug("__dirname:" + __dirname);
+    console.debug("path.resolve(__dirname):" + path.resolve(__dirname));
+
+    const templateFileName = path.resolve(__dirname, "..", "src", "universal", "html-templates", "index.html");
+
+    fs.readFile(templateFileName, "utf8", (err, templateContent) => {
+        if (err) {
+            console.error('err', err);
+            return res.status(404).end()
+        }
+
+        const context = {};
+        const jsx = (
+            <Router context={context} location={req.url}>
+                <AppContainer />
+            </Router>
+        );
+        const reactDom = renderToString(jsx);
+
+        res.writeHead(200, {"Content-Type": "text/html"});
+        res.end(htmlTemplate(templateContent, reactDom));
+    });
 });
+
 
 console.info("SSR server listening on http://127.0.0.1:8000");
 server.listen(8000);
 
-const htmlTemplate = (reactDom) => {
-    return `
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <meta charset="utf-8">
-            <title>Playground SSR</title>
-        </head>
-        
-        <body>
-            <div id="app">${ reactDom }</div>
-            <script src="./client.js"></script>
-        </body>
-        </html>
-    `;
+const extractAssets = (assets, chunks) => Object.keys(assets)
+    .filter(asset => chunks.indexOf(asset.replace('.js', '')) > -1)
+    .map(k => assets[k]);
+
+const extraChunks = extractAssets(manifest, ["main.js"])
+    .map(c => `<script type="text/javascript" src="/${c}"></script>`);
+
+const htmlTemplate = (templateContent, reactDom) => {
+    return (
+        templateContent
+            // write the rendered React app DOM
+            .replace('<div id="app"></div>', `<div id="app">${reactDom}</div>`)
+
+            // write the React JS app script tag
+            .replace('<!-- SSR <script> placeholder -->', extraChunks.join(''))
+    );
 };
