@@ -83,7 +83,7 @@ module.exports = [
             })
         ],
         entry: "./src/client/index.js",
-        output: { filename: "client.[chunkhash].js" },
+        output: { filename: "client.js" },
         devtool: "source-map",
         devServer: {
             contentBase: "./dist",
@@ -120,7 +120,9 @@ module.exports = [
         devtool: "source-map",
         node: {
             fs: "empty", // See https://github.com/webpack-contrib/css-loader/issues/447
-            net: "empty"
+            net: "empty",
+            __dirname: false, // Ensure that __dirname still works as expected in server-side Node.js code
+            __filename: false,
         }
     }
 ];

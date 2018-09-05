@@ -1,14 +1,14 @@
 import React from "react";
-import { render } from "react-dom"
-import { Provider } from "react-redux"
+import ReactDOM from "react-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import "typeface-roboto";
-import store from "../universal/store"
-import ConnectedAppContainer from "../universal/react-components/container/AppContainer";
+import AppContainer from "../universal/react-components/container/AppContainer";
 import "../universal/styles/app.scss";
 
-render(
-    <Provider store={store}>
-        <ConnectedAppContainer/>
-    </Provider>,
-    document.getElementById("app")
+const app = document.getElementById( "app" );
+ReactDOM.hydrate(
+    <Router>
+        <AppContainer />
+    </Router>,
+    app
 );
