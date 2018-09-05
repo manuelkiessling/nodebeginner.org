@@ -1,4 +1,14 @@
 const npm_package = require("./package.json");
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+
+const pathsToClean = [
+    "dist/index.html" // Because we serve static files from /dist in the server, this file is in the way
+];
+
+const cleanOptions = {
+    verbose: true,
+    dry:     false
+};
 
 module.exports = {
     name: "server",
@@ -17,6 +27,9 @@ module.exports = {
             }
         ]
     },
+    plugins: [
+        new CleanWebpackPlugin(pathsToClean, cleanOptions)
+    ],
     entry: "./src/server/index.js",
     output: { filename: "server.js" },
     devtool: "source-map",

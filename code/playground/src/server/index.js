@@ -16,6 +16,7 @@ const server = express();
 const staticPath = path.resolve(__dirname); // Webpack will store the bundled server.js
                                             // file into dist, where the other static stuff ends up, too
 console.info("Will serve static files from " + staticPath);
+
 server.use(express.static(staticPath));
 
 console.info("Will proxy requests to /api to http://127.0.0.1:8001/api");
