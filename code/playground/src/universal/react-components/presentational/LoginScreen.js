@@ -3,7 +3,6 @@ import MuiCard from "@material-ui/core/Card";
 import MuiCardContent from "@material-ui/core/CardContent";
 import MuiCardHeader from "@material-ui/core/CardHeader";
 import MuiButton from "@material-ui/core/Button";
-import MuiTypography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
 
 const LoginScreen = () => (
@@ -14,6 +13,7 @@ const LoginScreen = () => (
                     component={Link}
                     to="/tasks"
                     color="primary"
+                    variant="raised"
                 >
                     Log in
                 </MuiButton>
