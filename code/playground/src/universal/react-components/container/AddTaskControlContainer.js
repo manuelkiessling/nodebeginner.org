@@ -12,7 +12,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 class AddTaskControlContainer extends Component {
-    constructor() {
+    constructor(props) {
         super(props);
         this.state = {
             title: ""
