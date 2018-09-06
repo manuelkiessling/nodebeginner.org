@@ -29,7 +29,7 @@ class AddTaskControlContainer extends Component {
         event.preventDefault();
         const { title } = this.state;
         const id = uuidv1();
-        this.props.dispatchAddTask(Task(title, id));
+        this.props.dispatchAddTask(new Task(title, id));
         this.setState({ title: "" });
     }
 

@@ -1,6 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types";
 import MuiListItem from "@material-ui/core/ListItem";
 import MuiTypography from "@material-ui/core/Typography";
+import Task from "../../models/Task";
 
 const TaskListItem = ({ task }) => (
     <MuiListItem>
@@ -9,5 +11,9 @@ const TaskListItem = ({ task }) => (
         </MuiTypography>
     </MuiListItem>
 );
+
+TaskListItem.propTypes = {
+    task: PropTypes.instanceOf(Task)
+};
 
 export default TaskListItem;

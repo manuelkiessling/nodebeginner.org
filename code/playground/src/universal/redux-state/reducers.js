@@ -18,7 +18,7 @@ const tasks = (state = initialState.tasks, action) => {
         case COMMAND_TASK_ADD:
             return state.concat(action.task);
         case EVENT_TASKS_FETCHING_SUCCEEDED:
-            return state.concat(action.json);
+            return state.concat(new Task(action.json.id, action.json.title));
         default:
             return state;
     }
