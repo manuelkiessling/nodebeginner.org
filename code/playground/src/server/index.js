@@ -52,7 +52,7 @@ server.get("/*", (req, res) => {
 
     fs.readFile(templateFileName, "utf8", (err, templateContent) => {
         if (err) {
-            console.error('err', err);
+            console.error("err", err);
             return res.status(404).end()
         }
 
@@ -110,7 +110,7 @@ console.info("SSR server listening on http://127.0.0.1:8000");
 server.listen(8000);
 
 const extractAssets = (assets, chunks, ending) => Object.keys(assets)
-    .filter(asset => chunks.indexOf(asset.replace(ending, '')) > -1)
+    .filter(asset => chunks.indexOf(asset.replace(ending, "")) > -1)
     .map(k => assets[k]);
 
 const javascriptChunks = extractAssets(manifest, ["main"], ".js")
@@ -130,12 +130,12 @@ const htmlTemplate = (templateContent, reactDom, store, inlineStyle) => {
             .replace("<!-- window.SSR_REDUX_STORE_STATE placeholder -->", `<script>window.SSR_REDUX_STORE_STATE = ${ JSON.stringify(store.getState()) }</script>`)
 
             // write the React JS app script tag(s)
-            .replace('<!-- SSR <script> placeholder -->', javascriptChunks.join(""))
+            .replace("<!-- SSR <script> placeholder -->", javascriptChunks.join(""))
 
             // write the style link tag(s)
-            .replace('<!-- SSR style link tag placeholder -->', cssChunks.join(""))
+            .replace("<!-- SSR style link tag placeholder -->", cssChunks.join(""))
 
             // write the inline style tag
-            .replace('<!-- SSR inline style tag placeholder -->', `<style id="ssr-inline-style">${ inlineStyle }</style>`)
+            .replace("<!-- SSR inline style tag placeholder -->", `<style id="ssr-inline-style">${ inlineStyle }</style>`)
     );
 };

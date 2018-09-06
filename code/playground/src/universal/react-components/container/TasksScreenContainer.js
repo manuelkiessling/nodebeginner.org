@@ -29,5 +29,4 @@ class TasksScreenContainer extends Component {
 
 TasksScreenContainer.ssrDispatchHook = fetchTasksThunk;
 
-
 export default connect(mapStateToProps, mapDispatchToProps)(TasksScreenContainer);

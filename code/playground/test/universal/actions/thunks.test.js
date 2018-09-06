@@ -14,7 +14,7 @@ describe("thunks", () => {
         fetchMock.restore();
     });
 
-    it("creates EVENT_TASKS_FETCHING_SUCCEEDED when fetching tasks has been done", () => {
+    it ("creates EVENT_TASKS_FETCHING_SUCCEEDED when fetching tasks has been done", () => {
 
         const responseBody = { tasks: [{"id": "1", "title": "Hello, World."}] };
 
@@ -35,6 +35,6 @@ describe("thunks", () => {
 
         return store.dispatch(thunks.fetchTasksThunk()).then(() => {
             expect(store.getActions()).toEqual(expectedActions)
-        })
-    })
+        });
+    });
 });

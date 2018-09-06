@@ -1,6 +1,6 @@
 import React from "react";
-import MuiListItem from '@material-ui/core/ListItem';
-import MuiTypography from '@material-ui/core/Typography';
+import MuiListItem from "@material-ui/core/ListItem";
+import MuiTypography from "@material-ui/core/Typography";
 
 const TaskListItem = ({ task }) => (
     <MuiListItem>

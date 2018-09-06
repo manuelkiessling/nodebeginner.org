@@ -1,5 +1,4 @@
 import "cross-fetch/polyfill";
-
 import { startedFetchingTasksEvent, succeededFetchingTasksEvent } from "./events";
 
 const apiBase = typeof(process.env.APP_API_BASE) === "undefined" ? "" : process.env.APP_API_BASE;
