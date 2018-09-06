@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 import { COMMAND_INITIALIZE, COMMAND_TASK_ADD } from "../redux-actions/commands";
 import { EVENT_TASKS_FETCHING_SUCCEEDED } from "../redux-actions/events";
+import Task from "../models/Task";
 
 const initialState = {
     ui: {
@@ -18,7 +19,10 @@ const tasks = (state = initialState.tasks, action) => {
         case COMMAND_TASK_ADD:
             return state.concat(action.task);
         case EVENT_TASKS_FETCHING_SUCCEEDED:
-            return state.concat(new Task(action.json.id, action.json.title));
+            const newTasks = action.json.map( task =>
+                new Task(task.id, task.title)
+            );
+            return state.concat(newTasks);
         default:
             return state;
     }

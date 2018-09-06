@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import MuiButton from "@material-ui/core/Button";
 import MuiFormControl from "@material-ui/core/FormControl";
 import MuiInputLabel from "@material-ui/core/InputLabel";
@@ -17,5 +18,11 @@ const AddTaskControl = ({ handleSubmit, handleChange, title }) => (
         </MuiFormControl>
     </form>
 );
+
+AddTaskControl.propTypes = {
+    handleSubmit: PropTypes.func,
+    handleChange: PropTypes.func,
+    title: PropTypes.string
+};
 
 export default AddTaskControl;
