@@ -16,7 +16,7 @@ if (typeof(window.SSR_REDUX_STORE_STATE) === "undefined") {
     store = createStore(window.SSR_REDUX_STORE_STATE);
 }
 
-const app = document.getElementById( "app" );
+const app = document.getElementById("app");
 ReactDOM.hydrate(
     <Provider store={store}>
         <Router>
