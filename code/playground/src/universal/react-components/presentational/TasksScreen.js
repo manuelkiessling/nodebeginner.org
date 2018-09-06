@@ -5,7 +5,7 @@ import MuiCardHeader from "@material-ui/core/CardHeader";
 import MuiGrid from "@material-ui/core/Grid";
 import AddTaskControlContainer from "../container/AddTaskControlContainer";
 import TaskListContainer from "../container/TaskListContainer";
-import store from "../../store";
+import store from "../../redux-state/store";
 import {fetchTasksThunk} from "../../redux-actions/thunks";
 
 const TasksScreen = () => (

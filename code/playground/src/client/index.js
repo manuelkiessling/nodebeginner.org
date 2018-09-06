@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { Provider } from "react-redux";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import "typeface-roboto";
-import createStore from "../universal/store";
+import createStore from "../universal/redux-state/store";
 import AppContainer from "../universal/react-components/container/AppContainer";
 import "../universal/styles/app.scss";
 import muiTheme from "../universal/mui-theme"
