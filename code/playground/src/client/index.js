@@ -8,6 +8,7 @@ import createStore from "../universal/redux-state/store";
 import AppContainer from "../universal/react-components/container/AppContainer";
 import "../universal/styling/app.scss";
 import muiTheme from "../universal/styling/mui-theme"
+import { getEnvVar } from "../universal/utils/env";
 
 let store;
 if (typeof(window.SSR_REDUX_STORE_STATE) === "undefined") {
@@ -16,14 +17,25 @@ if (typeof(window.SSR_REDUX_STORE_STATE) === "undefined") {
     store = createStore(window.SSR_REDUX_STORE_STATE);
 }
 
-const app = document.getElementById("app");
-ReactDOM.hydrate(
+const appDom = (
     <Provider store={store}>
         <Router>
             <MuiThemeProvider theme={muiTheme}>
                 <AppContainer />
             </MuiThemeProvider>
         </Router>
-    </Provider>,
-    app
-);
+    </Provider>);
+
+const app = document.getElementById("app");
+
+if (getEnvVar("SSR", "false") === "false") {
+    ReactDOM.render(
+        appDom,
+        app
+    );
+} else {
+    ReactDOM.hydrate(
+        appDom,
+        app
+    );
+}

@@ -1,7 +1,8 @@
 import "cross-fetch/polyfill";
 import { startedFetchingTasksEvent, succeededFetchingTasksEvent } from "./events";
+import { getEnvVar } from "../utils/env";
 
-const apiBase = typeof(process.env.APP_API_BASE) === "undefined" ? "" : process.env.APP_API_BASE;
+const apiBase = getEnvVar("APP_API_BASE", "");
 
 export const fetchTasksThunk = () => (dispatch) => {
     dispatch(startedFetchingTasksEvent());
