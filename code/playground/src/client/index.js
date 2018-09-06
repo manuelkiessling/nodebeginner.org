@@ -6,8 +6,8 @@ import { MuiThemeProvider } from "@material-ui/core/styles";
 import "typeface-roboto";
 import createStore from "../universal/redux-state/store";
 import AppContainer from "../universal/react-components/container/AppContainer";
-import "../universal/styles/app.scss";
-import muiTheme from "../universal/mui-theme"
+import "../universal/styling/app.scss";
+import muiTheme from "../universal/styling/mui-theme"
 
 let store;
 if (typeof(window.SSR_REDUX_STORE_STATE) === "undefined") {
