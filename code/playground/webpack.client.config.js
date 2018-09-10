@@ -2,7 +2,10 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ManifestPlugin = require('webpack-manifest-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const SWPrecacheWebpackPlugin = require("sw-precache-webpack-plugin");
 const npm_package = require("./package.json");
+
+const PUBLIC_PATH = 'http://127.0.0.1:8000/';
 
 const pathsToClean = [
     "dist"
@@ -91,8 +94,20 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: "app.[contenthash].css",
         }),
-        new ManifestPlugin(),
+        new ManifestPlugin({
+            "fileName": "assets-manifest.json"
+        }),
         new CleanWebpackPlugin(pathsToClean, cleanOptions),
+        new SWPrecacheWebpackPlugin(
+            {
+                cacheId: 'playground',
+                dontCacheBustUrlsMatching: /\.\w{8}\./,
+                filename: 'service-worker.js',
+                minify: false,
+                navigateFallback: PUBLIC_PATH + 'index.html',
+                staticFileGlobsIgnorePatterns: [/\.map$/, /assets-manifest\.json$/],
+            }
+        )
     ],
     entry: "./src/client/index.js",
     output: { filename: "client.[chunkhash].js" },
@@ -105,7 +120,8 @@ module.exports = {
                 secure: false
             }
         },
-        historyApiFallback: true // required to make serving react-router routes like /tasks work
+        historyApiFallback: true, // required to make serving react-router routes like /tasks work
+        port: 8000
     },
     resolve: {
         alias: npm_package._moduleAliases || {}

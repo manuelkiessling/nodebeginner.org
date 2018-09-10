@@ -9,7 +9,7 @@ import { StaticRouter as Router, matchPath } from "react-router-dom";
 import { Provider } from "react-redux";
 import AppContainer from "../universal/react-components/container/AppContainer";
 import createStore from "../universal/redux-state/store";
-import manifest from "../../dist/manifest.json";
+import manifest from "../../dist/assets-manifest.json";
 import { initializeCommand } from "../universal/redux-actions/commands";
 import routes from "../universal/routes";
 import { SheetsRegistry } from "react-jss/lib/jss";

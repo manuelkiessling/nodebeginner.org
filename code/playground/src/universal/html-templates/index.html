@@ -5,6 +5,13 @@
     <title>Playground</title>
     <!-- SSR style link tag placeholder -->
     <!-- SSR inline style tag placeholder -->
+    <script>
+        (function() {
+            if ("serviceWorker" in navigator) {
+                navigator.serviceWorker.register("/service-worker.js");
+            }
+        })();
+    </script>
 </head>
 <body>
 <div class="container">
