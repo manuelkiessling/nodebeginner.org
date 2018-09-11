@@ -6,7 +6,7 @@
 
     User action triggered execution path:
         - A redux thunk is dispatched when the user wants to create/change/delete an item.
-        - The thunks triggers the syncedLocalStorage passing `dispatch`, which in turn adds the create/change/delete
+        - The thunk triggers the syncedLocalStorage passing `dispatch`, which in turn adds the create/change/delete
           event to the localStorage log of events that need to be synced into the redux state and to the backend,
           with both targets marked as not yet synced.
         - The syncedLocalStorage immediately dispatches the redux action that updates the redux state, syncs the new
@@ -14,7 +14,7 @@
         - It then returns to the thunk.
 
     Looped execution path:
-        - The loop is started as soon as the app is initialized.
+        - The loop is started as soon as the app is initialized, getting passed `dispatch`
         - It regularly iterates over the list of events in the localStorage.
         - For each event it finds that is marked as synced to redux and synced to the backend, it removes the event
           from the list.
@@ -31,3 +31,30 @@
 
 
  */
+
+
+const saveState = (state) => {
+    try {
+        const serializedState = JSON.stringify(state);
+        localStorage.setItem("state", serializedState);
+    } catch (e) {
+        console.error(e);
+    }
+};
+
+export const setUpLocalStorageStoreSubscription = (store) => {
+    store.subscribe(() => {
+        saveState(store.getState())
+    });
+};
+
+export const handleUserTriggeredChangeEvent = (event) => {
+    let events = JSON.parse(localStorage.getItem("events"));
+    console.debug(`Type of events in localStorage is ${typeof events}`);
+    console.debug(`Content of events in localStorage is ${JSON.stringify(events)}`);
+    if (events === null) {
+        events = [];
+    }
+    events.push(event);
+    localStorage.setItem("events", JSON.stringify(events));
+};

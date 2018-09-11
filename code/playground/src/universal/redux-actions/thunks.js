@@ -1,6 +1,10 @@
 import "cross-fetch/polyfill";
 import { startedFetchingTasksEvent, succeededFetchingTasksEvent } from "./events";
 import { getEnvVar } from "../utils/env";
+import {Event, EventPayloadAddTask, eventTypeAddTask} from "../models/Event";
+import uuidv1 from "uuid";
+import { addTaskCommand } from "./commands";
+import { handleUserTriggeredChangeEvent } from "../../client/syncHelpers";
 
 const apiBase = getEnvVar("APP_API_BASE", "");
 
@@ -13,4 +17,16 @@ export const fetchTasksThunk = () => (dispatch) => {
             console.debug("Done fetching tasks.");
         })
         .catch((e) => console.error(e));
+};
+
+
+export const addTaskThunk = (task) => (dispatch) => {
+    const event = new Event(
+        uuidv1(),
+        Date.now(),
+        eventTypeAddTask(),
+        new EventPayloadAddTask(task)
+    );
+    handleUserTriggeredChangeEvent(event);
+    dispatch(addTaskCommand(task));
 };

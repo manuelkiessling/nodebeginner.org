@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import uuidv1 from "uuid";
-import { addTaskCommand } from "../../redux-actions/commands";
 import AddTaskControl from "../presentational/AddTaskControl"
 import Task from "../../models/Task";
+import { addTaskThunk } from "../../redux-actions/thunks";
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        dispatchAddTask: (task) => dispatch(addTaskCommand(task))
+        dispatchAddTask: (task) => dispatch(addTaskThunk(task))
     };
 };
 
