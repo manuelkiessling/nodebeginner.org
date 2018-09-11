@@ -4,9 +4,6 @@ import { EVENT_TASKS_FETCHING_SUCCEEDED } from "../redux-actions/events";
 import Task from "../models/Task";
 
 export const emptyState = () => ({
-    ui: {
-        indicateTasksFetching: false
-    },
     tasks: [],
     debugInfo: ""
 });

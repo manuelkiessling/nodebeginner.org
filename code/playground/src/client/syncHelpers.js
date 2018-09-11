@@ -62,19 +62,23 @@ export const mergeSsrAndLocalStorageState = (ssrState, localStorageState) => {
 
     console.debug(`mergeSsrAndLocalStorageState: ssrState is ${JSON.stringify(ssrState)}, localStorageState is ${JSON.stringify(localStorageState)}`);
 
-    if (ssrState !== null && ssrState !== undefined) {
+    if (ssrState !== null && ssrState !== undefined && ssrState.tasks !== undefined) {
+        console.debug(`Checking ${ssrState.tasks.length} tasks from ssrState for merge...`);
         for (let i = 0; i < ssrState.tasks.length; i++) {
             const task = ssrState.tasks[i];
             if (!containsMoreUpToDateTask(task, mergedState)) {
+                console.debug(`Pushing task ${JSON.stringify(task)} from ssrState to mergedState.`);
                 mergedState.push(task);
             }
         }
     }
 
-    if (localStorageState !== null && localStorageState !== undefined) {
+    if (localStorageState !== null && localStorageState !== undefined && localStorageState["tasks"] !== undefined) {
+        console.debug(`Checking ${localStorageState.tasks.length} tasks from localStorageState for merge...`);
         for (let i = 0; i < localStorageState.tasks.length; i++) {
             const task = localStorageState.tasks[i];
             if (!containsMoreUpToDateTask(task, mergedState)) {
+                console.debug(`Pushing task ${JSON.stringify(task)} from localStorageState to mergedState.`);
                 mergedState.push(task);
             }
         }
@@ -83,9 +87,7 @@ export const mergeSsrAndLocalStorageState = (ssrState, localStorageState) => {
     return mergedState;
 };
 
-export const retrieveStateFromLocalStorage = () => {
-    localStorage.getItem("state");
-};
+export const retrieveStateFromLocalStorage = () => JSON.parse(localStorage.getItem("state"));
 
 const saveStateToLocalStorage = (state) => {
     try {
@@ -98,6 +100,7 @@ const saveStateToLocalStorage = (state) => {
 
 export const setUpLocalStorageStoreSubscription = (store) => {
     store.subscribe(() => {
+        console.debug(`Syncing new state to localStorage`);
         saveStateToLocalStorage(store.getState())
     });
 };
