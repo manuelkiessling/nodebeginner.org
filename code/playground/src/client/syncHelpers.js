@@ -28,12 +28,66 @@
           than the "last changed" timestamp of the item.
 
 
+    General questions: always derive state only from a timeseries of events, or use events and state?
 
+    Scenarios that need to be handled:
+
+    - App is online, a full page reload occurs, and the SSR page delivers initial state, potentially containing stuff
+      that the App not yet has. The localStorage also contains state, potentially containing stuff that the backend does
+      not yet have.
+
+      How do we get to a valid initial redux state? One solution could be to put a "last-modified"
+      timestamp onto every task in the state. When the page initializes, we take the SSR state and the localStorage
+      state, and create a resulting state containing all the tasks that occur only in one of the sources, and for tasks
+      that occur in both states, take the one with the latest "last-modified". This would require to never really delete
+      tasks, but to flag them as deleted, or else we would end up with "zombies" of a task does not occur in the SSR
+      state because the backend already knows it is deleted and therefore doesn't include it in the SSR state, and the
+      app that was offline still has it in its localStorage.
 
  */
 
+import {emptyState} from "../universal/redux-state/reducers";
 
-const saveState = (state) => {
+const containsMoreUpToDateTask = (task, arr) => {
+    for (let i=0; i < arr.length; i++) {
+        if (task.id === arr[i].id && task.lastModified >= arr[i].task) {
+            return true;
+        }
+    }
+    return false;
+};
+
+export const mergeSsrAndLocalStorageState = (ssrState, localStorageState) => {
+    const mergedState = emptyState();
+
+    console.debug(`mergeSsrAndLocalStorageState: ssrState is ${JSON.stringify(ssrState)}, localStorageState is ${JSON.stringify(localStorageState)}`);
+
+    if (ssrState !== null && ssrState !== undefined) {
+        for (let i = 0; i < ssrState.tasks.length; i++) {
+            const task = ssrState.tasks[i];
+            if (!containsMoreUpToDateTask(task, mergedState)) {
+                mergedState.push(task);
+            }
+        }
+    }
+
+    if (localStorageState !== null && localStorageState !== undefined) {
+        for (let i = 0; i < localStorageState.tasks.length; i++) {
+            const task = localStorageState.tasks[i];
+            if (!containsMoreUpToDateTask(task, mergedState)) {
+                mergedState.push(task);
+            }
+        }
+    }
+
+    return mergedState;
+};
+
+export const retrieveStateFromLocalStorage = () => {
+    localStorage.getItem("state");
+};
+
+const saveStateToLocalStorage = (state) => {
     try {
         const serializedState = JSON.stringify(state);
         localStorage.setItem("state", serializedState);
@@ -44,7 +98,7 @@ const saveState = (state) => {
 
 export const setUpLocalStorageStoreSubscription = (store) => {
     store.subscribe(() => {
-        saveState(store.getState())
+        saveStateToLocalStorage(store.getState())
     });
 };
 

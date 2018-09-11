@@ -9,13 +9,17 @@ import AppContainer from "../universal/react-components/container/AppContainer";
 import "../universal/styling/app.scss";
 import muiTheme from "../universal/styling/mui-theme"
 import { getEnvVar } from "../universal/utils/env";
-import { setUpLocalStorageStoreSubscription } from "./syncHelpers";
+import {
+    mergeSsrAndLocalStorageState,
+    retrieveStateFromLocalStorage,
+    setUpLocalStorageStoreSubscription
+} from "./syncHelpers";
 
 let store;
 if (typeof(window.SSR_REDUX_STORE_STATE) === "undefined") {
-    store = createStore();
+    store = createStore(mergeSsrAndLocalStorageState(null, retrieveStateFromLocalStorage()));
 } else {
-    store = createStore(window.SSR_REDUX_STORE_STATE);
+    store = createStore(window.SSR_REDUX_STORE_STATE, retrieveStateFromLocalStorage());
 }
 
 setUpLocalStorageStoreSubscription(store);

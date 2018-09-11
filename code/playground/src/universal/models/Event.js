@@ -1,3 +1,5 @@
+import Task from "./Task";
+
 export const eventTypeAddTask = () => "add-task";
 
 
@@ -6,7 +8,10 @@ const eventTypes = [eventTypeAddTask()];
 
 export class EventPayloadAddTask {
     constructor(task) {
-        this.payload = task;
+        if (!(task instanceof Task)) {
+            throw `Expected instance of class Task, got ${typeof task}`
+        }
+        this.task = task;
         Object.seal(this);
         Object.freeze(this);
     }
@@ -26,6 +31,7 @@ export class Event {
         this.id = id;
         this.timestamp = timestamp;
         this.type = type;
+        this.payload = payload;
         this.isSyncedWithBackend = isSyncedWithBackend;
         Object.seal(this);
     }
