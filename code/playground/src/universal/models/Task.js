@@ -18,3 +18,5 @@ export default class Task {
         Object.seal(this); // cannot add attributes in addition to id and title
     }
 }
+
+export const createFromObject = (obj) => new Task(obj.id, obj.title, obj.lastModified);

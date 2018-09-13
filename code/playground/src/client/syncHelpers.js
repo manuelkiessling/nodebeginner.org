@@ -46,7 +46,8 @@
 
  */
 
-import {emptyState} from "../universal/redux-state/reducers";
+import { emptyState } from "../universal/redux-state/reducers";
+import { createFromObject } from "../universal/models/Task";
 
 const containsMoreUpToDateTask = (task, arr) => {
     for (let i=0; i < arr.length; i++) {
@@ -65,10 +66,10 @@ export const mergeSsrAndLocalStorageState = (ssrState, localStorageState) => {
     if (ssrState !== null && ssrState !== undefined && ssrState.tasks !== undefined) {
         console.debug(`Checking ${ssrState.tasks.length} tasks from ssrState for merge...`);
         for (let i = 0; i < ssrState.tasks.length; i++) {
-            const task = ssrState.tasks[i];
+            const task = createFromObject(ssrState.tasks[i]);
             if (!containsMoreUpToDateTask(task, mergedState)) {
                 console.debug(`Pushing task ${JSON.stringify(task)} from ssrState to mergedState.`);
-                mergedState.push(task);
+                mergedState.tasks.push(task);
             }
         }
     }
@@ -76,10 +77,10 @@ export const mergeSsrAndLocalStorageState = (ssrState, localStorageState) => {
     if (localStorageState !== null && localStorageState !== undefined && localStorageState["tasks"] !== undefined) {
         console.debug(`Checking ${localStorageState.tasks.length} tasks from localStorageState for merge...`);
         for (let i = 0; i < localStorageState.tasks.length; i++) {
-            const task = localStorageState.tasks[i];
+            const task = createFromObject(localStorageState.tasks[i]);
             if (!containsMoreUpToDateTask(task, mergedState)) {
                 console.debug(`Pushing task ${JSON.stringify(task)} from localStorageState to mergedState.`);
-                mergedState.push(task);
+                mergedState.tasks.push(task);
             }
         }
     }
