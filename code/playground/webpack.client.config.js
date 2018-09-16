@@ -2,10 +2,10 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ManifestPlugin = require('webpack-manifest-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const SWPrecacheWebpackPlugin = require("sw-precache-webpack-plugin");
 const npm_package = require("./package.json");
-
-const PUBLIC_PATH = 'http://127.0.0.1:8000/';
+const SWPrecacheWebpackPlugin = require("sw-precache-webpack-plugin");
+const glob = require("glob");
+const path = require("path");
 
 const pathsToClean = [
     "dist"
@@ -100,12 +100,18 @@ module.exports = {
         new CleanWebpackPlugin(pathsToClean, cleanOptions),
         new SWPrecacheWebpackPlugin(
             {
-                cacheId: 'playground',
-                dontCacheBustUrlsMatching: /\.\w{8}\./,
-                filename: 'service-worker.js',
+                cacheId: "playground",
+                filename: "service-worker.js",
                 minify: false,
-                navigateFallback: PUBLIC_PATH + 'index.html',
+                navigateFallback: "/",
                 staticFileGlobsIgnorePatterns: [/\.map$/, /assets-manifest\.json$/],
+                maximumFileSizeToCacheInBytes: 10485760,
+                dynamicUrlToDependencies: {
+                    '/': [ // This entry is required to make *all* locations (like e.g. /tasks) available offline, not only / itself
+                        ...glob.sync(path.resolve("dist/**/*.js")),
+                        ...glob.sync(path.resolve("dist/**/*.css"))
+                    ]
+                },
             }
         )
     ],
@@ -116,12 +122,13 @@ module.exports = {
         contentBase: "./dist",
         proxy: {
             "/api": {
-                target: "http://localhost:8001",
+                target: "http://127.0.0.1:10001",
                 secure: false
             }
         },
         historyApiFallback: true, // required to make serving react-router routes like /tasks work
-        port: 8000
+        host: '127.0.0.1',
+        port: 10000
     },
     resolve: {
         alias: npm_package._moduleAliases || {}

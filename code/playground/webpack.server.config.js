@@ -28,7 +28,7 @@ module.exports = {
         ]
     },
     plugins: [
-        new CleanWebpackPlugin(pathsToClean, cleanOptions)
+        new CleanWebpackPlugin(pathsToClean, cleanOptions),
     ],
     entry: "./src/server/index.js",
     output: { filename: "server.js" },

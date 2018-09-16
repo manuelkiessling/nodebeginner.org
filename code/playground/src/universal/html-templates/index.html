@@ -7,8 +7,12 @@
     <!-- SSR inline style tag placeholder -->
     <script>
         (function() {
+            console.info("Attempting to register service worker for offline app loading...");
             if ("serviceWorker" in navigator) {
+                console.info("Registering service worker for offline app loading via /service-worker.js.");
                 navigator.serviceWorker.register("/service-worker.js");
+            } else {
+                console.info("serviceWorker capability is not available.");
             }
         })();
     </script>

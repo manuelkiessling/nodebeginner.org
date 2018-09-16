@@ -27,17 +27,17 @@ console.info("Will serve static files from " + staticPath);
 
 server.use(express.static(staticPath));
 
-console.info("Will proxy requests to /api to http://127.0.0.1:8001/api");
+console.info("Will proxy requests to /api to http://127.0.0.1:10001/api");
 server.use(
     "/api",
     proxy(
-        "127.0.0.1:8001",
+        "127.0.0.1:10001",
         {
             // The (mock) API server expects requests at /api/...
             proxyReqPathResolver: (req) => {
                 const resolvedPath = "/api" + require("url").parse(req.url).path;
                 console.info("Proxying to " + resolvedPath);
-                return "http://127.0.0.1:8001" + resolvedPath;
+                return "http://127.0.0.1:10001" + resolvedPath;
             }
         }
     )
@@ -106,8 +106,8 @@ server.get("/*", (req, res) => {
 });
 
 
-console.info("SSR server listening on http://127.0.0.1:8000");
-server.listen(8000);
+console.info("SSR server listening on http://127.0.0.1:10000");
+server.listen(10000);
 
 const extractAssets = (assets, chunks, ending) => Object.keys(assets)
     .filter(asset => chunks.indexOf(asset.replace(ending, "")) > -1)
