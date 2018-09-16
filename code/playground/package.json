@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "build:client:dev": "webpack --mode development --config webpack.client.config.js",
-    "build:client:production": "webpack --mode production --config webpack.client.config.js",
+    "build:client:dev": "rm -rf dist/* && webpack --mode development --config webpack.client.config.js",
+    "build:client:production": "rm -rf dist/* && webpack --mode production --config webpack.client.config.js",
     "build:server:dev": "npm run build:client:dev && webpack --mode development --config webpack.server.config.js",
     "build:server:production": "npm run build:client:production && webpack --mode production --config webpack.server.config.js",
     "build:production": "npm run build:server:production",
