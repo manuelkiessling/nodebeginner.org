@@ -16,10 +16,22 @@ import {
 } from "./syncHelpers";
 
 let store;
-if (typeof(window.SSR_REDUX_STORE_STATE) === "undefined") {
-    store = createStore(mergeSsrAndLocalStorageState(null, retrieveStateFromLocalStorage()));
+if (window.SSR_REDUX_STORE_STATE === undefined) {
+    console.info("Attempting to build initial store state from localStorage, without SSR state");
+    store = createStore(
+        mergeSsrAndLocalStorageState(
+            null,
+            retrieveStateFromLocalStorage()
+        )
+    );
 } else {
-    store = createStore(window.SSR_REDUX_STORE_STATE, retrieveStateFromLocalStorage());
+    console.info("Attempting to build initial store state from localStorage and SSR state");
+    store = createStore(
+        mergeSsrAndLocalStorageState(
+            window.SSR_REDUX_STORE_STATE,
+            retrieveStateFromLocalStorage()
+        )
+    );
 }
 
 setUpLocalStorageStoreSubscription(store);
