@@ -23,11 +23,16 @@ const server = express();
 
 const staticPath = path.resolve(__dirname); // Webpack will store the bundled server.js
                                             // file into dist, where the other static stuff ends up, too
-console.info("Will serve static files from " + staticPath);
+
+
+server.get(/^\/server\.(.*)/, (req, res) => {
+    res.sendStatus(404);
+    res.end("404 Not found.")
+});
 
 server.use(express.static(staticPath));
 
-console.info("Will proxy requests to /api to http://127.0.0.1:10001/api");
+
 server.use(
     "/api",
     proxy(
@@ -42,6 +47,7 @@ server.use(
         }
     )
 );
+
 
 server.get("/sw-precache-appshell", (req, res) => {
     const templateFileName = path.resolve(__dirname, "..", "src", "universal", "html-templates", "sw-precache-appshell.html");
@@ -58,7 +64,8 @@ server.get("/sw-precache-appshell", (req, res) => {
     });
 });
 
-server.get("/*", (req, res) => {
+
+server.get(/^\/(tasks|)(\?.*)*$/, (req, res) => {
 
     console.debug("__dirname:" + __dirname);
     console.debug("path.resolve(__dirname):" + path.resolve(__dirname));
@@ -121,8 +128,18 @@ server.get("/*", (req, res) => {
 });
 
 
-console.info("SSR server listening on http://127.0.0.1:10000");
+server.get("/*", (req, res) => {
+    res.sendStatus(404);
+    res.end("404 Not found.")
+});
+
+
 server.listen(10000);
+
+console.info("Will serve static files from " + staticPath);
+console.info("Will proxy requests to /api to http://127.0.0.1:10001/api");
+console.info("SSR server listening on http://127.0.0.1:10000");
+
 
 const extractAssets = (assets, chunks, ending) => Object.keys(assets)
     .filter(asset => chunks.indexOf(asset.replace(ending, "")) > -1)
