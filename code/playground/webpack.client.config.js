@@ -87,10 +87,6 @@ module.exports = {
         ]
     },
     plugins: [
-        new HtmlWebPackPlugin({
-            template: "./src/universal/html-templates/index.html",
-            filename: "./index.html"
-        }),
         new MiniCssExtractPlugin({
             filename: "app.[contenthash].css",
         }),
@@ -103,15 +99,24 @@ module.exports = {
                 cacheId: "playground",
                 filename: "service-worker.js",
                 minify: false,
-                navigateFallback: "/",
-                staticFileGlobsIgnorePatterns: [/\.map$/, /assets-manifest\.json$/],
+                navigateFallback: "/sw-precache-appshell",
                 maximumFileSizeToCacheInBytes: 10485760,
+                staticFileGlobs: [
+                    "dist/**/*.js",
+                    "dist/**/*.css"
+                ],
+                staticFileGlobsIgnorePatterns: [/\.map$/, /assets-manifest\.json$/],
+                stripPrefix: "dist/",
                 dynamicUrlToDependencies: {
-                    '/': [ // This entry is required to make *all* locations (like e.g. /tasks) available offline, not only / itself
+                    "/sw-precache-appshell": [ // This entry is required to make the navigateFallback work
                         ...glob.sync(path.resolve("dist/**/*.js")),
                         ...glob.sync(path.resolve("dist/**/*.css"))
                     ]
                 },
+                runtimeCaching: [{
+                    urlPattern: /^/,
+                    handler: "networkFirst"
+                }]
             }
         )
     ],

@@ -13,7 +13,7 @@ const AddTaskControl = ({ handleSubmit, handleChange, title }) => (
         </MuiFormControl>
         <MuiFormControl>
             <MuiButton type="submit" variant="contained" color="primary">
-                Add
+                plus
             </MuiButton>
         </MuiFormControl>
     </form>
