@@ -1,4 +1,3 @@
-const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ManifestPlugin = require('webpack-manifest-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
@@ -88,7 +87,7 @@ module.exports = {
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: "app.[contenthash].css",
+            filename: "app.css",
         }),
         new ManifestPlugin({
             "fileName": "assets-manifest.json"
@@ -111,17 +110,13 @@ module.exports = {
                     "/sw-precache-appshell": [ // This entry is required to make the navigateFallback work
                         ...glob.sync(path.resolve("dist/**/*.js")),
                         ...glob.sync(path.resolve("dist/**/*.css"))
-                    ]
+                    ],
                 },
-                runtimeCaching: [{
-                    urlPattern: /^/,
-                    handler: "networkFirst"
-                }]
             }
         )
     ],
     entry: "./src/client/index.js",
-    output: { filename: "client.[chunkhash].js" },
+    output: { filename: "client.js" },
     devtool: "source-map",
     devServer: {
         contentBase: "./dist",
