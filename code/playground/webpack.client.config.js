@@ -99,6 +99,7 @@ module.exports = {
                 filename: "service-worker.js",
                 minify: false,
                 navigateFallback: "/sw-precache-appshell",
+                navigateFallbackWhitelist: [/^\/(?!(api)).*/], // Only fall back to the app shell for requests that are not to the api
                 maximumFileSizeToCacheInBytes: 10485760,
                 staticFileGlobs: [
                     "dist/**/*.js",
