@@ -81,7 +81,7 @@ server.get("/*", (req, res) => {
                 .filter((component) => component.ssrDispatchHook)                // filter to components that have a SSR trigger
                 .map((component) => {
                     console.debug("Triggering ssrDispatchHook on " + component.name);
-                    return store.dispatch(component.ssrDispatchHook());                 // dispatch trigger
+                    return store.dispatch(component.ssrDispatchHook());          // dispatch trigger
                 });
 
         Promise.all(ssrDispatchHooks).then(() => {
