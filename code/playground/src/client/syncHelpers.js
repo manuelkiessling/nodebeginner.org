@@ -47,7 +47,7 @@
  */
 
 import { emptyState } from "../universal/redux-state/reducers";
-import { createFromObject } from "../universal/models/Task";
+import { createFromObject } from "../universal/entities/Task";
 
 const taskIsInArray = (task, arr) => {
     for (let i=0; i < arr.length; i++) {

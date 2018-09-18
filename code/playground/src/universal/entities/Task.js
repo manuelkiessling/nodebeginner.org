@@ -15,7 +15,7 @@ export default class Task {
         this.id = id;
         this.title = title;
         this.lastModified = lastModified;
-        Object.seal(this); // cannot add attributes in addition to id and title
+        Object.seal(this); // cannot add further attributes
     }
 }
 
