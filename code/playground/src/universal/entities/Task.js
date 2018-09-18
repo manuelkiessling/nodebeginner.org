@@ -1,4 +1,5 @@
 import { eventTypeCreate, eventTypeUpdate } from "./eventTypes";
+import { succeededFetchingTasksEvent } from "../redux-actions/events";
 
 class Task {
     constructor(id, title, lastModified, isDeleted) {
@@ -61,6 +62,7 @@ export const createTasksFromTaskEvents = (taskEvents) => {
             if (task == undefined) {
                 console.error(`Got an 'update' event for a task that is not yet created, unexpected event is ${taskEvent}`);
             } else {
+                task.lastModified = taskEvent.timestamp;
                 task.title = taskEvent.taskUpdates.title;
             }
         }

@@ -14,19 +14,47 @@ describe("createTasksFromTaskEvents", () => {
             taskId: fooTaskCreateEvent.taskId,
             taskUpdates: { title: "foo2" }
         });
+
+        const barTaskCreateEvent = createInitialCreateTaskEvent("bar");
+        const barTaskUpdateEvent1 = createTaskEventFromObject({
+            id: uuidv1(),
+            type: eventTypeUpdate(),
+            timestamp: Date.now(),
+            taskId: barTaskCreateEvent.taskId,
+            taskUpdates: { title: "bar2" }
+        });
+        const barTaskUpdateEvent2 = createTaskEventFromObject({
+            id: uuidv1(),
+            type: eventTypeUpdate(),
+            timestamp: Date.now(),
+            taskId: barTaskCreateEvent.taskId,
+            taskUpdates: { title: "bar3" }
+        });
+
         const taskEvents = [
             fooTaskCreateEvent,
-            fooTaskUpdateEvent
+            barTaskCreateEvent,
+            barTaskUpdateEvent1,
+            fooTaskUpdateEvent,
+            barTaskUpdateEvent2
         ];
 
         const tasks = createTasksFromTaskEvents(taskEvents);
 
-        expect(tasks).toEqual([{
-            id: fooTaskCreateEvent.taskId,
-            isDeleted: false,
-            lastModified: fooTaskUpdateEvent.timestamp,
-            title: "foo2"
-        }]);
+        expect(tasks).toEqual([
+            {
+                id: fooTaskCreateEvent.taskId,
+                isDeleted: false,
+                lastModified: fooTaskUpdateEvent.timestamp,
+                title: "foo2"
+            },
+            {
+                id: barTaskCreateEvent.taskId,
+                isDeleted: false,
+                lastModified: barTaskUpdateEvent2.timestamp,
+                title: "bar3"
+            },
+        ]);
     });
 
 });
