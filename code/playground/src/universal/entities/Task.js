@@ -46,11 +46,11 @@ export const createTasksFromTaskEvents = (taskEvents) => {
     const tasks = [];
 
     for (let i = 0; i < sortedTaskEvents.length; i++) {
-        const taskEvent = sortedTaskEvents[0];
+        const taskEvent = sortedTaskEvents[i];
 
         if (taskEvent.type === eventTypeCreate()) {
             if (tasks.find(_ => _.id === taskEvent.taskId)) {
-                console.error(`Found more than one 'create' event for task ${taskEvent.taskId} in event list, unexpected event is ${taskEvent}`);
+                console.error(`Found more than one 'create' event for task ${taskEvent.taskId} in event list, unexpected event is ${JSON.stringify(taskEvent)}`);
             } else {
                 tasks.push(createTaskFromObject({ id: taskEvent.taskId, title: taskEvent.taskTitle, lastModified: taskEvent.timestamp, isDeleted: false }));
             }
@@ -59,7 +59,7 @@ export const createTasksFromTaskEvents = (taskEvents) => {
         if (taskEvent.type === eventTypeUpdate()) {
             const task = tasks.find(_ => _.id === taskEvent.taskId);
             if (task == undefined) {
-                console.error(`Got an 'update' event for a that is not yet created, unexpected event is ${taskEvent}`);
+                console.error(`Got an 'update' event for a task that is not yet created, unexpected event is ${taskEvent}`);
             } else {
                 task.title = taskEvent.taskUpdates.title;
             }

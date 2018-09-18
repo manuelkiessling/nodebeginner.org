@@ -7,20 +7,26 @@ describe("createTasksFromTaskEvents", () => {
 
     it("creates tasks for a correct list of task events", () => {
         const fooTaskCreateEvent = createInitialCreateTaskEvent("foo");
+        const fooTaskUpdateEvent = createTaskEventFromObject({
+            id: uuidv1(),
+            type: eventTypeUpdate(),
+            timestamp: Date.now(),
+            taskId: fooTaskCreateEvent.taskId,
+            taskUpdates: { title: "foo2" }
+        });
         const taskEvents = [
             fooTaskCreateEvent,
-            createTaskEventFromObject({
-                id: uuidv1(),
-                type: eventTypeUpdate(),
-                timestamp: Date.now(),
-                taskId: fooTaskCreateEvent.id,
-                taskUpdates: { title: "foo2" }
-            })
+            fooTaskUpdateEvent
         ];
 
         const tasks = createTasksFromTaskEvents(taskEvents);
 
-        expect(tasks).toEqual([])
+        expect(tasks).toEqual([{
+            id: fooTaskCreateEvent.taskId,
+            isDeleted: false,
+            lastModified: fooTaskUpdateEvent.timestamp,
+            title: "foo2"
+        }]);
     });
 
 });

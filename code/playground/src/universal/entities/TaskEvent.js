@@ -16,7 +16,7 @@ class CreateTaskEvent {
 class UpdateTaskEvent {
     constructor(id, timestamp, taskId, taskUpdates) {
         this.id = id;
-        this.type = eventTypeCreate();
+        this.type = eventTypeUpdate();
         this.timestamp = timestamp;
         this.taskId = taskId;
         this.taskUpdates = taskUpdates;
@@ -49,7 +49,7 @@ export const createTaskEventFromObject = (obj) => {
         if (obj.taskTitle == undefined || typeof obj.taskTitle !== "string") {
             throw "Task title is not defined or of wrong type in " + JSON.stringify(obj);
         }
-        return new CreateTaskEvent(obj.id, obj.timestamp, obj.taskId)
+        return new CreateTaskEvent(obj.id, obj.timestamp, obj.taskId, obj.taskTitle)
     }
 
     if (obj.type === eventTypeUpdate()) {
