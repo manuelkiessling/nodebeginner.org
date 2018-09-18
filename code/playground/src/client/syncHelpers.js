@@ -49,17 +49,47 @@
 import { emptyState } from "../universal/redux-state/reducers";
 import { createFromObject } from "../universal/models/Task";
 
-const containsMoreUpToDateTask = (task, arr) => {
+const taskIsInArray = (task, arr) => {
     for (let i=0; i < arr.length; i++) {
-        if (task.id === arr[i].id && task.lastModified >= arr[i].task) {
+        if (task.id === arr[i].id) {
             return true;
         }
     }
     return false;
 };
 
+const taskIsInArrayAndModifiedLaterThanInArray = (task, arr) => {
+    for (let i=0; i < arr.length; i++) {
+        if (task.id === arr[i].id && task.lastModified >= arr[i].lastModified) {
+            return true;
+        }
+    }
+    return false;
+};
+
+export const taskMustBeUpsertedToArray = (task, arr) => {
+    return (!taskIsInArray(task, arr) || taskIsInArrayAndModifiedLaterThanInArray(task, arr));
+};
+
+export const upsertTaskToArray = (task, arr) => {
+    const newArr = [];
+    let updated = false;
+    for (let i=0; i < arr.length; i++) {
+        if (task.id === arr[i].id) {
+            newArr.push(task);
+            updated = true;
+        } else {
+            newArr.push(arr[i]);
+        }
+    }
+    if (!updated) {
+        newArr.push(task);
+    }
+    return newArr;
+};
+
 export const mergeSsrAndLocalStorageState = (ssrState, localStorageState) => {
-    const mergedState = emptyState();
+    let mergedState = emptyState();
 
     console.debug(`mergeSsrAndLocalStorageState: ssrState is ${JSON.stringify(ssrState)}, localStorageState is ${JSON.stringify(localStorageState)}`);
 
@@ -68,9 +98,9 @@ export const mergeSsrAndLocalStorageState = (ssrState, localStorageState) => {
         console.debug(`Checking ${ssrState.tasks.length} tasks from ssrState for merge...`);
         for (let i = 0; i < ssrState.tasks.length; i++) {
             const task = createFromObject(ssrState.tasks[i]);
-            if (!containsMoreUpToDateTask(task, mergedState)) {
+            if (taskMustBeUpsertedToArray(task, mergedState.tasks)) {
                 console.debug(`Pushing task ${JSON.stringify(task)} from ssrState to mergedState.`);
-                mergedState.tasks.push(task);
+                mergedState.tasks = upsertTaskToArray(task, mergedState.tasks);
             }
         }
     }
@@ -79,9 +109,9 @@ export const mergeSsrAndLocalStorageState = (ssrState, localStorageState) => {
         console.debug(`Checking ${localStorageState.tasks.length} tasks from localStorageState for merge...`);
         for (let i = 0; i < localStorageState.tasks.length; i++) {
             const task = createFromObject(localStorageState.tasks[i]);
-            if (!containsMoreUpToDateTask(task, mergedState)) {
+            if (taskMustBeUpsertedToArray(task, mergedState.tasks)) {
                 console.debug(`Pushing task ${JSON.stringify(task)} from localStorageState to mergedState.`);
-                mergedState.tasks.push(task);
+                mergedState.tasks = upsertTaskToArray(task, mergedState.tasks);
             }
         }
     }

@@ -1,7 +1,8 @@
 import { combineReducers } from "redux";
 import { COMMAND_INITIALIZE, COMMAND_TASK_ADD } from "../redux-actions/commands";
 import { EVENT_TASKS_FETCHING_SUCCEEDED } from "../redux-actions/events";
-import Task from "../models/Task";
+import { createFromObject } from "../models/Task";
+import { taskMustBeUpsertedToArray, upsertTaskToArray } from "../../client/syncHelpers";
 
 export const emptyState = () => ({
     tasks: [],
@@ -17,9 +18,22 @@ const tasks = (state = emptyState().tasks, action) => {
             return state.concat(action.task);
         case EVENT_TASKS_FETCHING_SUCCEEDED:
             const newTasks = action.json.map( task =>
-                new Task(task.id, task.title)
+                createFromObject(task)
             );
-            return state.concat(newTasks);
+
+            let newState = emptyState().tasks;
+
+            for (let i = 0; i < state.tasks.length; i++) {
+                newState.push(state.tasks[i]);
+            }
+
+            for (let i = 0; i < newTasks.length; i++) {
+                if (taskMustBeUpsertedToArray(newTasks[i])) {
+                    newState = upsertTaskToArray(newTasks[i], newState);
+                }
+            }
+
+            return newState;
         default:
             return state;
     }
