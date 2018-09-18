@@ -1,4 +1,4 @@
-import { eventTypeCreate, eventTypes } from "./eventTypes";
+import { eventTypeCreate, eventTypes, eventTypeUpdate } from "./eventTypes";
 import uuidv1 from "uuid";
 
 class CreateTaskEvent {
@@ -9,6 +9,19 @@ class CreateTaskEvent {
         this.taskId = taskId;
         this.taskTitle = taskTitle;
         Object.seal(this);
+        Object.freeze(this);
+    }
+}
+
+class UpdateTaskEvent {
+    constructor(id, timestamp, taskId, taskUpdates) {
+        this.id = id;
+        this.type = eventTypeCreate();
+        this.timestamp = timestamp;
+        this.taskId = taskId;
+        this.taskUpdates = taskUpdates;
+        Object.seal(this);
+        Object.freeze(this);
     }
 }
 
@@ -24,19 +37,32 @@ export const createTaskEventFromObject = (obj) => {
         throw "Event type is not defined or of wrong type or wrong value in" + JSON.stringify(obj);
     }
 
-    if (obj.timestamp == undefined || typeof obj.type !== "number") {
+    if (obj.timestamp == undefined || typeof obj.timestamp !== "number") {
         throw "Event timestamp is not defined or of wrong type in " + JSON.stringify(obj);
     }
 
+    if (obj.taskId == undefined || typeof obj.taskId !== "string") {
+        throw "Task id is not defined or of wrong type in " + JSON.stringify(obj);
+    }
+
     if (obj.type === eventTypeCreate()) {
-        if (obj.taskId == undefined || typeof obj.taskId !== "string") {
-            throw "Task id is not defined or of wrong type in " + JSON.stringify(obj);
-        }
         if (obj.taskTitle == undefined || typeof obj.taskTitle !== "string") {
             throw "Task title is not defined or of wrong type in " + JSON.stringify(obj);
         }
         return new CreateTaskEvent(obj.id, obj.timestamp, obj.taskId)
     }
+
+    if (obj.type === eventTypeUpdate()) {
+        if (obj.taskUpdates == undefined || typeof obj.taskUpdates !== "object") {
+            throw "taskUpdates is not defined or of wrong type in " + JSON.stringify(obj);
+        }
+        if (obj.taskUpdates.title == undefined || typeof obj.taskUpdates.title !== "string") {
+            throw "taskUpdates.title is not defined or of wrong type in " + JSON.stringify(obj);
+        }
+        return new UpdateTaskEvent(obj.id, obj.timestamp, obj.taskId, obj.taskUpdates)
+    }
+
+    throw "Cannot handle object " + JSON.stringify(obj);
 };
 
 export const createInitialCreateTaskEvent = (taskTitle) => {
@@ -44,8 +70,9 @@ export const createInitialCreateTaskEvent = (taskTitle) => {
         throw "taskTitle must be string";
     }
 
-    createTaskEventFromObject({
+    return createTaskEventFromObject({
         id: uuidv1(),
+        type: eventTypeCreate(),
         timestamp: Date.now(),
         taskId: uuidv1(),
         taskTitle: taskTitle
