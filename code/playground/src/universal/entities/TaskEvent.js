@@ -29,34 +29,34 @@ export const createTaskEventFromObject = (obj) => {
 
     // We intentionally compare `undefined` with ==, not with ===, to implicitly also check against `null`
 
-    if (obj.id == undefined || typeof obj.id !== "string") {
+    if (obj.id== null || typeof obj.id !== "string") {
         throw "Event id is not defined or of wrong type in " + JSON.stringify(obj);
     }
 
-    if (obj.type == undefined || typeof obj.type !== "string" || !eventTypes.includes(obj.type)) {
+    if (obj.type== null || typeof obj.type !== "string" || !eventTypes.includes(obj.type)) {
         throw "Event type is not defined or of wrong type or wrong value in" + JSON.stringify(obj);
     }
 
-    if (obj.timestamp == undefined || typeof obj.timestamp !== "number") {
+    if (obj.timestamp== null || typeof obj.timestamp !== "number") {
         throw "Event timestamp is not defined or of wrong type in " + JSON.stringify(obj);
     }
 
-    if (obj.taskId == undefined || typeof obj.taskId !== "string") {
+    if (obj.taskId== null || typeof obj.taskId !== "string") {
         throw "Task id is not defined or of wrong type in " + JSON.stringify(obj);
     }
 
     if (obj.type === eventTypeCreate()) {
-        if (obj.taskTitle == undefined || typeof obj.taskTitle !== "string") {
+        if (obj.taskTitle== null || typeof obj.taskTitle !== "string") {
             throw "Task title is not defined or of wrong type in " + JSON.stringify(obj);
         }
         return new CreateTaskEvent(obj.id, obj.timestamp, obj.taskId, obj.taskTitle)
     }
 
     if (obj.type === eventTypeUpdate()) {
-        if (obj.taskUpdates == undefined || typeof obj.taskUpdates !== "object") {
+        if (obj.taskUpdates== null || typeof obj.taskUpdates !== "object") {
             throw "taskUpdates is not defined or of wrong type in " + JSON.stringify(obj);
         }
-        if (obj.taskUpdates.title == undefined || typeof obj.taskUpdates.title !== "string") {
+        if (obj.taskUpdates.title== null || typeof obj.taskUpdates.title !== "string") {
             throw "taskUpdates.title is not defined or of wrong type in " + JSON.stringify(obj);
         }
         return new UpdateTaskEvent(obj.id, obj.timestamp, obj.taskId, obj.taskUpdates)

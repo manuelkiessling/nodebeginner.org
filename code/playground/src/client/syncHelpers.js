@@ -94,7 +94,7 @@ export const mergeSsrAndLocalStorageState = (ssrState, localStorageState) => {
     console.debug(`mergeSsrAndLocalStorageState: ssrState is ${JSON.stringify(ssrState)}, localStorageState is ${JSON.stringify(localStorageState)}`);
 
     // Intentionally not using the strict operator === because we also don't want to work with null
-    if (ssrState != undefined && ssrState.tasks != undefined) {
+    if (ssrState != null && ssrState.tasks != null) {
         console.debug(`Checking ${ssrState.tasks.length} tasks from ssrState for merge...`);
         for (let i = 0; i < ssrState.tasks.length; i++) {
             const task = createFromObject(ssrState.tasks[i]);
@@ -105,7 +105,7 @@ export const mergeSsrAndLocalStorageState = (ssrState, localStorageState) => {
         }
     }
 
-    if (localStorageState != undefined && localStorageState.tasks != undefined) {
+    if (localStorageState != null && localStorageState.tasks != null) {
         console.debug(`Checking ${localStorageState.tasks.length} tasks from localStorageState for merge...`);
         for (let i = 0; i < localStorageState.tasks.length; i++) {
             const task = createFromObject(localStorageState.tasks[i]);

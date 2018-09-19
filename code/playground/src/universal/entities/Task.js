@@ -59,7 +59,7 @@ export const createTasksFromTaskEvents = (taskEvents) => {
 
         if (taskEvent.type === eventTypeUpdate()) {
             const task = tasks.find(_ => _.id === taskEvent.taskId);
-            if (task == undefined) {
+            if (task == null) {
                 console.error(`Got an 'update' event for a task that is not yet created, unexpected event is ${taskEvent}`);
             } else {
                 task.lastModified = taskEvent.timestamp;
