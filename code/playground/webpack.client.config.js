@@ -1,20 +1,63 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ManifestPlugin = require('webpack-manifest-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const HtmlWebPackPlugin = require("html-webpack-plugin");
 const npm_package = require("./package.json");
 const SWPrecacheWebpackPlugin = require("sw-precache-webpack-plugin");
 const glob = require("glob");
 const path = require("path");
 
-const pathsToClean = [
-    "dist"
-];
-
-const cleanOptions = {
-    exclude: ["server.js"],
-    verbose: true,
-    dry:     false
+const ENV = {
+    NODE_ENV: process.env.NODE_ENV || "development",
+    SW_PREFETCH: (process.env.SW_PREFETCH || "false") === "true",
 };
+
+const plugins = [];
+
+plugins.push(
+    new MiniCssExtractPlugin({
+        filename: "app.css",
+    })
+);
+
+plugins.push(
+    new ManifestPlugin({
+        "fileName": "assets-manifest.json"
+    })
+);
+
+if (ENV.SW_PREFETCH) {
+    plugins.push(
+        new SWPrecacheWebpackPlugin(
+            {
+                cacheId: "playground",
+                filename: "service-worker.js",
+                minify: false,
+                navigateFallback: "/sw-precache-appshell",
+                navigateFallbackWhitelist: [/^\/(?!(api)).*/], // Only fall back to the app shell for requests that are not to the api
+                maximumFileSizeToCacheInBytes: 10485760,
+                staticFileGlobs: [
+                    "dist/**/*.js",
+                    "dist/**/*.css"
+                ],
+                staticFileGlobsIgnorePatterns: [/\.map$/, /assets-manifest\.json$/],
+                stripPrefix: "dist/",
+                dynamicUrlToDependencies: {
+                    "/sw-precache-appshell": [ // This entry is required to make the navigateFallback work
+                        ...glob.sync(path.resolve("dist/**/*.js")),
+                        ...glob.sync(path.resolve("dist/**/*.css"))
+                    ],
+                },
+            }
+        )
+    );
+} else {
+    plugins.push(
+        new HtmlWebPackPlugin({
+            template: "./src/universal/html-templates/index.html",
+            filename: "./index.html"
+        }),
+    );
+}
 
 module.exports = {
     name: "client",
@@ -85,37 +128,7 @@ module.exports = {
             }
         ]
     },
-    plugins: [
-        new MiniCssExtractPlugin({
-            filename: "app.css",
-        }),
-        new ManifestPlugin({
-            "fileName": "assets-manifest.json"
-        }),
-        new CleanWebpackPlugin(pathsToClean, cleanOptions),
-        new SWPrecacheWebpackPlugin(
-            {
-                cacheId: "playground",
-                filename: "service-worker.js",
-                minify: false,
-                navigateFallback: "/sw-precache-appshell",
-                navigateFallbackWhitelist: [/^\/(?!(api)).*/], // Only fall back to the app shell for requests that are not to the api
-                maximumFileSizeToCacheInBytes: 10485760,
-                staticFileGlobs: [
-                    "dist/**/*.js",
-                    "dist/**/*.css"
-                ],
-                staticFileGlobsIgnorePatterns: [/\.map$/, /assets-manifest\.json$/],
-                stripPrefix: "dist/",
-                dynamicUrlToDependencies: {
-                    "/sw-precache-appshell": [ // This entry is required to make the navigateFallback work
-                        ...glob.sync(path.resolve("dist/**/*.js")),
-                        ...glob.sync(path.resolve("dist/**/*.css"))
-                    ],
-                },
-            }
-        )
-    ],
+    plugins: plugins,
     entry: "./src/client/index.js",
     output: { filename: "client.js" },
     devtool: "source-map",

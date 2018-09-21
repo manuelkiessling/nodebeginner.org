@@ -10,7 +10,7 @@
     "build:server:dev": "npm run build:client:dev && webpack --mode development --config webpack.server.config.js",
     "build:server:production": "npm run build:client:production && webpack --mode production --config webpack.server.config.js",
     "build:production": "npm run build:server:production",
-    "start:client:devserver": "cross-env NODE_ENV=development SSR=false APP_API_BASE='' webpack-dev-server --open --mode development --config webpack.client.config.js",
+    "start:client:devserver": "cross-env NODE_ENV=development SSR=false SW_PREFETCH=false APP_API_BASE='' webpack-dev-server --open --mode development --config webpack.client.config.js",
     "start:server:dev": "cross-env NODE_ENV=development SSR=true APP_API_BASE='http://127.0.0.1:10000' node -r source-map-support/register dist/server",
     "start:server:mock-api": "node src/server/mock-api-server"
   },
