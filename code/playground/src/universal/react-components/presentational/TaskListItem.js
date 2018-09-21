@@ -8,6 +8,9 @@ const TaskListItem = ({ task }) => (
     <MuiListItem>
         <MuiTypography variant="body1">
             {task.id}: {task.title}
+            <pre>
+                {typeof task}, {task.constructor.name}
+            </pre>
         </MuiTypography>
     </MuiListItem>
 );

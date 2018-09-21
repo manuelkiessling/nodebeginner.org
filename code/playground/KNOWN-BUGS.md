@@ -6,7 +6,7 @@ We need to have the ssrDispatchHook on TasksScreenContainer to make the SSR wait
 need to dispatch the fetch thunk on componentWillMount to trigger it on the client-side.
 
 
-## Reload while offline / against sw-prefetch cache results in propType error
+## Soft-reload results in propType error
 
 ```
 checkPropTypes.js:19 Warning: Failed prop type: Invalid prop `tasks[0]` of type `Object` supplied to `TaskList`, expected instance of `Task`.
