@@ -136,14 +136,3 @@ export const setUpLocalStorageStoreSubscription = (store) => {
         saveStateToLocalStorage(store.getState())
     });
 };
-
-export const handleUserTriggeredChangeEvent = (event) => {
-    let events = JSON.parse(localStorage.getItem("events"));
-    console.debug(`Type of events in localStorage is ${typeof events}`);
-    console.debug(`Content of events in localStorage is ${JSON.stringify(events)}`);
-    if (events === null) {
-        events = [];
-    }
-    events.push(event);
-    localStorage.setItem("events", JSON.stringify(events));
-};

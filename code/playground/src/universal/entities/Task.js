@@ -1,7 +1,7 @@
 import { eventTypeCreate, eventTypeUpdate } from "./eventTypes";
 import { succeededFetchingTasksEvent } from "../redux-actions/events";
 
-class Task {
+export class Task {
     constructor(id, title, lastModified, isDeleted) {
         this.id = id;
         this.title = title;
@@ -19,7 +19,7 @@ const compareTimestamps = (a, b) => {
     return 0;
 };
 
-export const createTaskFromObject = (obj) => {
+const createTaskFromObject = (obj) => {
     if (!(typeof obj.id === "string")) {
         throw "id must be a string"
     }

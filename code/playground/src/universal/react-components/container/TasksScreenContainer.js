@@ -5,7 +5,7 @@ import TasksScreen from "../presentational/TasksScreen";
 
 const mapStateToProps = (state) => {
     return {
-        tasks: state.tasks
+        tasks: state.entities.tasks.calculatedEntities
     };
 };
 
@@ -18,7 +18,7 @@ const mapDispatchToProps = (dispatch) => {
 class TasksScreenContainer extends Component {
     componentWillMount() {
         if (this.props.tasks.length <= 0) {
-            this.props.dispatchFetchTasks();
+            //this.props.dispatchFetchTasks();
         }
     }
 
@@ -27,6 +27,6 @@ class TasksScreenContainer extends Component {
     }
 }
 
-TasksScreenContainer.ssrDispatchHook = fetchTasksThunk;
+//TasksScreenContainer.ssrDispatchHook = fetchTasksThunk;
 
 export default connect(mapStateToProps, mapDispatchToProps)(TasksScreenContainer);

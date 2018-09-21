@@ -18,15 +18,3 @@ export const fetchTasksThunk = () => (dispatch) => {
         })
         .catch((e) => console.error(e));
 };
-
-
-export const addTaskThunk = (task) => (dispatch) => {
-    const event = new TaskEvent(
-        uuidv1(),
-        Date.now(),
-        eventTypeAddTask(),
-        new EventPayloadAddTask(task)
-    );
-    handleUserTriggeredChangeEvent(event);
-    dispatch(addTaskCommand(task));
-};

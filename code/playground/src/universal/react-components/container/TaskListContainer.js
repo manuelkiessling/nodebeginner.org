@@ -4,7 +4,7 @@ import TaskList from "../presentational/TaskList"
 
 const mapStateToProps = (state) => {
     return {
-        tasks: state.tasks
+        tasks: state.entities.tasks.calculatedEntities
     };
 };
 

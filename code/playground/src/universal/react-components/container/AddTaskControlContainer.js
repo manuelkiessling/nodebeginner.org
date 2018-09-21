@@ -2,12 +2,11 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import uuidv1 from "uuid";
 import AddTaskControl from "../presentational/AddTaskControl"
-import Task from "../../entities/Task";
-import { addTaskThunk } from "../../redux-actions/thunks";
+import { addTaskCommand } from "../../redux-actions/commands"
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        dispatchAddTask: (task) => dispatch(addTaskThunk(task))
+        dispatchAddTask: (taskTitle) => dispatch(addTaskCommand(taskTitle))
     };
 };
 
@@ -29,7 +28,7 @@ class AddTaskControlContainer extends Component {
         event.preventDefault();
         const { title } = this.state;
         const id = uuidv1();
-        this.props.dispatchAddTask(new Task(id, title, Date.now()));
+        this.props.dispatchAddTask(title);
         this.setState({ title: "" });
     }
 
