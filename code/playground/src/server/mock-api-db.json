@@ -1,6 +1,7 @@
 {
-  "tasks": [
-    {"id": "74d01c2b-7fb0-4b50-a1ed-5302a1026785", "title": "Learn React", "lastModified": "1537192253"},
-    {"id": "94244957-f782-45fc-988e-d9954720667d", "title": "World domination!", "lastModified": "1537192282"}
+  "entity-events": [
+    {"id": "74d01c2b-7fb0-4b50-a1ed-5302a1026785", "entityName": "task", "taskId": "94244957-f782-45fc-988e-d9954720667d", "taskTitle": "Learn React", "type": "create", "timestamp": 1537523057377},
+    {"id": "bf02c74c-bf5f-4b67-a9bc-820abb506824", "entityName": "task", "taskId": "94244957-f782-45fc-988e-d9954720667d", "taskUpdates": { "title": "Updated: Learn React" }, "type": "update", "timestamp": 1537523057387},
+    {"id": "5302a102-4b67-4b50-a1ed-bb50a1026785", "entityName": "task", "taskId": "d9954720-f782-45fc-066f-988e4720667d", "taskTitle": "Learn JavaScript", "type": "create", "timestamp": 1537523057377}
   ]
 }

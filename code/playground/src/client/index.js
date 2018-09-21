@@ -10,16 +10,16 @@ import "../universal/styling/app.scss";
 import muiTheme from "../universal/styling/mui-theme"
 import { getEnvVar } from "../universal/utils/env";
 import {
-    mergeSsrAndLocalStorageState,
+    mergeStates,
     retrieveStateFromLocalStorage,
     setUpLocalStorageStoreSubscription
-} from "./syncHelpers";
+} from "../universal/syncHelpers";
 
 let store;
-if (window.SSR_REDUX_STORE_STATE === undefined) {
+if (window.SSR_REDUX_STORE_STATE == null) {
     console.info("Attempting to build initial store state from localStorage, without SSR state");
     store = createStore(
-        mergeSsrAndLocalStorageState(
+        mergeStates(
             null,
             retrieveStateFromLocalStorage()
         )
@@ -27,7 +27,7 @@ if (window.SSR_REDUX_STORE_STATE === undefined) {
 } else {
     console.info("Attempting to build initial store state from localStorage and SSR state");
     store = createStore(
-        mergeSsrAndLocalStorageState(
+        mergeStates(
             window.SSR_REDUX_STORE_STATE,
             retrieveStateFromLocalStorage()
         )

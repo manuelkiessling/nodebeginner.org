@@ -6,7 +6,7 @@ import MuiGrid from "@material-ui/core/Grid";
 import AddTaskControlContainer from "../container/AddTaskControlContainer";
 import TaskListContainer from "../container/TaskListContainer";
 import store from "../../redux-state/store";
-import { fetchTasksThunk } from "../../redux-actions/thunks";
+import { fetchEntityEventsThunk } from "../../redux-actions/thunks";
 
 const TasksScreen = () => (
     <MuiCard>
@@ -30,7 +30,5 @@ const TasksScreen = () => (
 
     </MuiCard>
 );
-
-TasksScreen.ssrTrigger = () => { store.dispatch(fetchTasksThunk) };
 
 export default TasksScreen;

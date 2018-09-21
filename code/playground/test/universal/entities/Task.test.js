@@ -1,9 +1,9 @@
 import uuidv1 from "uuid";
 import { eventTypeUpdate } from "../../../src/universal/entities/eventTypes";
 import { createInitialCreateTaskEvent, createTaskEventFromObject } from "../../../src/universal/entities/TaskEvent";
-import { createTasksFromTaskEvents } from "../../../src/universal/entities/Task";
+import { createTasksFromEntityEvents } from "../../../src/universal/entities/Task";
 
-describe("createTasksFromTaskEvents", () => {
+describe("createTasksFromEntityEvents", () => {
 
     it("creates tasks for a correct list of task events", () => {
         const fooTaskCreateEvent = createInitialCreateTaskEvent("foo");
@@ -39,7 +39,7 @@ describe("createTasksFromTaskEvents", () => {
             barTaskUpdateEvent2
         ];
 
-        const tasks = createTasksFromTaskEvents(taskEvents);
+        const tasks = createTasksFromEntityEvents(taskEvents);
 
         expect(tasks).toEqual([
             {
@@ -73,7 +73,7 @@ describe("createTasksFromTaskEvents", () => {
             fooTaskUpdateEvent,
         ];
 
-        const tasks = createTasksFromTaskEvents(taskEvents);
+        const tasks = createTasksFromEntityEvents(taskEvents);
 
         expect(tasks).toEqual([
             {
@@ -102,7 +102,7 @@ describe("createTasksFromTaskEvents", () => {
         ];
 
         expect(() =>
-            createTasksFromTaskEvents([
+            createTasksFromEntityEvents([
                 fooTaskCreateEvent,
                 fooTaskUpdateEvent,
             ])

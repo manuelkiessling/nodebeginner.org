@@ -65,7 +65,7 @@ If using the expressive approach, thunks dispatch only one action instead of mul
 Boils down to personal taste, but I like the expressive approach better.
 
 Action names: `<COMMAND|EVENT>_<ENTITY[S]>_<OPERATION>[_<EVENTNAME>]` -> `COMMAND_TASK_ADD`, `EVENT_TASKS_FETCHING_SUCCEEDED`
-Action creator names: `[<eventname>]<operation|Operation><Entity><Command|Event|Thunk>` -> `addTaskCommand`, `startedFetchingTasksEvent`, `fetchTasksThunk`
+Action creator names: `[<eventname>]<operation|Operation><Entity><Command|Event|Thunk>` -> `addTaskCommand`, `startedFetchingEntityEventsEvent`, `fetchTasksThunk`
 
 
 

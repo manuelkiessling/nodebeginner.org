@@ -1,5 +1,5 @@
 import { eventTypeCreate, eventTypeUpdate } from "./eventTypes";
-import { succeededFetchingTasksEvent } from "../redux-actions/events";
+import { succeededFetchingEntityEventsEvent } from "../redux-actions/events";
 
 export class Task {
     constructor(id, title, lastModified, isDeleted) {
@@ -41,31 +41,44 @@ const createTaskFromObject = (obj) => {
 
 
 
-export const createTasksFromTaskEvents = (taskEvents) => {
+export const createTasksFromEntityEvents = (entityEvents) => {
 
-    const sortedTaskEvents = (taskEvents.slice(0)).sort(compareTimestamps);
+    const sortedEntityEvents = (entityEvents.slice(0)).sort(compareTimestamps);
 
     const tasks = [];
 
-    for (let i = 0; i < sortedTaskEvents.length; i++) {
-        const taskEvent = sortedTaskEvents[i];
+    for (let i = 0; i < sortedEntityEvents.length; i++) {
+        const entityEvent = sortedEntityEvents[i];
 
-        if (taskEvent.type === eventTypeCreate()) {
-            if (tasks.find(_ => _.id === taskEvent.taskId)) {
-                console.error(`Found more than one 'create' event for task ${taskEvent.taskId} in event list, unexpected event is ${JSON.stringify(taskEvent)}`);
-            } else {
-                tasks.push(createTaskFromObject({ id: taskEvent.taskId, title: taskEvent.taskTitle, lastModified: taskEvent.timestamp, isDeleted: false }));
-            }
-        }
+        if (entityEvent.entityName === "task") {
 
-        if (taskEvent.type === eventTypeUpdate()) {
-            const task = tasks.find(_ => _.id === taskEvent.taskId);
-            if (task == null) {
-                throw `Got an 'update' event for a task that is not yet created, unexpected event is ${JSON.stringify(taskEvent)}`;
-            } else {
-                task.lastModified = taskEvent.timestamp;
-                task.title = taskEvent.taskUpdates.title;
+            if (entityEvent.type === eventTypeCreate()) {
+                if (tasks.find(_ => _.id === entityEvent.taskId)) {
+                    console.error(`Found more than one 'create' event for task ${entityEvent.taskId} in event list, unexpected event is ${JSON.stringify(entityEvent)}`);
+                } else {
+                    const task = createTaskFromObject({
+                        id: entityEvent.taskId,
+                        title: entityEvent.taskTitle,
+                        lastModified: entityEvent.timestamp,
+                        isDeleted: false
+                    });
+                    console.debug(`Creating new task ${JSON.stringify(task)} from event ${JSON.stringify(entityEvent)}`);
+                    tasks.push(task);
+                }
             }
+
+            if (entityEvent.type === eventTypeUpdate()) {
+                const task = tasks.find(_ => _.id === entityEvent.taskId);
+                if (task == null) {
+                    throw `Got an 'update' event for a task that is not yet created, unexpected event is ${JSON.stringify(entityEvent)}`;
+                } else {
+                    console.debug(`Updating task ${JSON.stringify(task)} from event ${JSON.stringify(entityEvent)}`);
+                    task.lastModified = entityEvent.timestamp;
+                    task.title = entityEvent.taskUpdates.title;
+                    console.debug(`Updated task ${JSON.stringify(task)} from event ${JSON.stringify(entityEvent)}`);
+                }
+            }
+
         }
     }
 

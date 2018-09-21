@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchTasksThunk } from "../../redux-actions/thunks";
+import { fetchEntityEventsThunk } from "../../redux-actions/thunks";
 import TasksScreen from "../presentational/TasksScreen";
 
 const mapStateToProps = (state) => {
@@ -11,15 +11,14 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        dispatchFetchTasks: () => dispatch(fetchTasksThunk())
+        dispatchFetchEntityEvents: () => dispatch(fetchEntityEventsThunk())
     };
 };
 
 class TasksScreenContainer extends Component {
     componentWillMount() {
-        if (this.props.tasks.length <= 0) {
-            this.props.dispatchFetchTasks();
-        }
+        console.debug("Dispatching fetchEntityEventsThunk on TasksScreenContainer componentWillMount.");
+        this.props.dispatchFetchEntityEvents();
     }
 
     render() {
@@ -27,6 +26,6 @@ class TasksScreenContainer extends Component {
     }
 }
 
-TasksScreenContainer.ssrDispatchHook = fetchTasksThunk;
+TasksScreenContainer.ssrDispatchHook = fetchEntityEventsThunk;
 
 export default connect(mapStateToProps, mapDispatchToProps)(TasksScreenContainer);

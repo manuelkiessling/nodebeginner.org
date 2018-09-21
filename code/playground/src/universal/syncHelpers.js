@@ -46,75 +46,59 @@
 
  */
 
-import { emptyState } from "../universal/redux-state/reducers";
-import { createFromObject } from "../universal/entities/Task";
+import { emptyState } from "./redux-state/reducers";
+import { createTasksFromEntityEvents } from "./entities/Task";
 
-const taskIsInArray = (task, arr) => {
-    for (let i=0; i < arr.length; i++) {
-        if (task.id === arr[i].id) {
-            return true;
-        }
+export const mergeEntityEventArrays = (entityEventsA, entityEventsB) => {
+    if (!Array.isArray(entityEventsA)) {
+        throw "entityEventsA must be an array, got " + JSON.stringify(entityEventsA);
     }
-    return false;
-};
 
-const taskIsInArrayAndModifiedLaterThanInArray = (task, arr) => {
-    for (let i=0; i < arr.length; i++) {
-        if (task.id === arr[i].id && task.lastModified >= arr[i].lastModified) {
-            return true;
-        }
+    if (!Array.isArray(entityEventsB)) {
+        throw "entityEventsB must be an array, got " + JSON.stringify(entityEventsB);
     }
-    return false;
-};
 
-export const taskMustBeUpsertedToArray = (task, arr) => {
-    return (!taskIsInArray(task, arr) || taskIsInArrayAndModifiedLaterThanInArray(task, arr));
-};
+    const mergedEntityEvents = entityEventsA.splice(0);
 
-export const upsertTaskToArray = (task, arr) => {
-    const newArr = [];
-    let updated = false;
-    for (let i=0; i < arr.length; i++) {
-        if (task.id === arr[i].id) {
-            newArr.push(task);
-            updated = true;
+    console.debug(`Merging entity events ${JSON.stringify(entityEventsB)} into ${JSON.stringify(mergedEntityEvents)}`);
+
+    for (let i = 0; i < entityEventsB.length; i++) {
+        if (!mergedEntityEvents.find((entityEvent) => entityEvent.id === entityEventsB[i].id)) {
+            console.debug(`Adding entity event ${JSON.stringify(entityEventsB[i])} to ${JSON.stringify(mergedEntityEvents)}`);
+            mergedEntityEvents.push(entityEventsB[i])
         } else {
-            newArr.push(arr[i]);
+            console.debug(`Entity event ${JSON.stringify(entityEventsB[i])} already in ${JSON.stringify(mergedEntityEvents)}`);
         }
     }
-    if (!updated) {
-        newArr.push(task);
-    }
-    return newArr;
+    return mergedEntityEvents;
 };
 
-export const mergeSsrAndLocalStorageState = (ssrState, localStorageState) => {
-    let mergedState = emptyState();
-
-    console.debug(`mergeSsrAndLocalStorageState: ssrState is ${JSON.stringify(ssrState)}, localStorageState is ${JSON.stringify(localStorageState)}`);
-
-    // Intentionally not using the strict operator === because we also don't want to work with null
-    if (ssrState != null && ssrState.tasks != null) {
-        console.debug(`Checking ${ssrState.tasks.length} tasks from ssrState for merge...`);
-        for (let i = 0; i < ssrState.tasks.length; i++) {
-            const task = createFromObject(ssrState.tasks[i]);
-            if (taskMustBeUpsertedToArray(task, mergedState.tasks)) {
-                console.debug(`Pushing task ${JSON.stringify(task)} from ssrState to mergedState.`);
-                mergedState.tasks = upsertTaskToArray(task, mergedState.tasks);
-            }
-        }
+export const mergeStates = (stateA, stateB) => {
+    if (stateA == null) {
+        console.debug("stateA is null, not merging.");
+        return stateB;
     }
 
-    if (localStorageState != null && localStorageState.tasks != null) {
-        console.debug(`Checking ${localStorageState.tasks.length} tasks from localStorageState for merge...`);
-        for (let i = 0; i < localStorageState.tasks.length; i++) {
-            const task = createFromObject(localStorageState.tasks[i]);
-            if (taskMustBeUpsertedToArray(task, mergedState.tasks)) {
-                console.debug(`Pushing task ${JSON.stringify(task)} from localStorageState to mergedState.`);
-                mergedState.tasks = upsertTaskToArray(task, mergedState.tasks);
-            }
-        }
+    if (stateB == null) {
+        console.debug("stateB is null, not merging.");
+        return stateA;
     }
+
+    const mergedState = emptyState();
+
+    console.debug(`mergeStates: stateA is ${JSON.stringify(stateA)}, stateB is ${JSON.stringify(stateB)}`);
+
+    mergedState.entities.tasks.allEvents = mergeEntityEventArrays(
+        stateA.entities.tasks.allEvents,
+        stateB.entities.tasks.allEvents
+    );
+
+    mergedState.entities.tasks.unsyncedEvents = mergeEntityEventArrays(
+        stateA.entities.tasks.unsyncedEvents,
+        stateB.entities.tasks.unsyncedEvents
+    );
+
+    mergedState.entities.tasks.calculatedEntities = createTasksFromEntityEvents(mergedState.entities.tasks.allEvents);
 
     return mergedState;
 };
@@ -124,6 +108,7 @@ export const retrieveStateFromLocalStorage = () => JSON.parse(localStorage.getIt
 const saveStateToLocalStorage = (state) => {
     try {
         const serializedState = JSON.stringify(state);
+        console.debug(`Writing ${serializedState} to localStorage at "state"`);
         localStorage.setItem("state", serializedState);
     } catch (e) {
         console.error(e);

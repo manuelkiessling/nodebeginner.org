@@ -14,13 +14,20 @@ describe("thunks", () => {
         fetchMock.restore();
     });
 
-    it ("creates EVENT_TASKS_FETCHING_SUCCEEDED when fetching tasks has been done", () => {
+    it ("creates EVENT_ENTITY_EVENTS_FETCHING_SUCCEEDED when fetching entity events has been done", () => {
 
-        const responseBody = { tasks: [{"id": "1", "title": "Hello, World."}] };
+        const responseBody = {
+                "entity-events": [
+                    {"id": "74d01c2b-7fb0-4b50-a1ed-5302a1026785", "entityName": "task", "taskId": "94244957-f782-45fc-988e-d9954720667d", "taskTitle": "Learn React", "type": "create", "timestamp": "1537523057377"},
+                    {"id": "bf02c74c-bf5f-4b67-a9bc-820abb506824", "entityName": "task", "taskId": "94244957-f782-45fc-988e-d9954720667d", "taskUpdates": { "taskTitle": "Updated: Learn React" }, "type": "update", "timestamp": "1537523057387"},
+                    {"id": "5302a102-4b67-4b50-a1ed-bb50a1026785", "entityName": "task", "taskId": "d9954720-f782-45fc-066f-988e4720667d", "taskTitle": "Learn React", "type": "create", "timestamp": "1537523057377"},
+                ]
+            }
+        ;
 
         fetchMock
             .getOnce(
-                "/api/tasks",
+                "/api/entity-events/",
                 {
                     body: responseBody,
                     headers: { "content-type": "application/json" }
@@ -28,12 +35,12 @@ describe("thunks", () => {
             );
 
         const expectedActions = [
-            { type: events.EVENT_TASKS_FETCHING_STARTED },
-            { type: events.EVENT_TASKS_FETCHING_SUCCEEDED, json: responseBody }
+            { type: events.EVENT_ENTITY_EVENTS_FETCHING_STARTED },
+            { type: events.EVENT_ENTITY_EVENTS_FETCHING_SUCCEEDED, json: responseBody }
         ];
         const store = mockStore({ tasks: [] });
 
-        return store.dispatch(thunks.fetchTasksThunk()).then(() => {
+        return store.dispatch(thunks.fetchEntityEventsThunk()).then(() => {
             expect(store.getActions()).toEqual(expectedActions)
         });
     });

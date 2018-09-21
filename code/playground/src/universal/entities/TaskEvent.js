@@ -4,6 +4,7 @@ import uuidv1 from "uuid";
 class CreateTaskEvent {
     constructor(id, timestamp, taskId, taskTitle) {
         this.id = id;
+        this.entityName = "task";
         this.type = eventTypeCreate();
         this.timestamp = timestamp;
         this.taskId = taskId;
@@ -16,6 +17,7 @@ class CreateTaskEvent {
 class UpdateTaskEvent {
     constructor(id, timestamp, taskId, taskUpdates) {
         this.id = id;
+        this.entityName = "task";
         this.type = eventTypeUpdate();
         this.timestamp = timestamp;
         this.taskId = taskId;
@@ -53,10 +55,10 @@ export const createTaskEventFromObject = (obj) => {
     }
 
     if (obj.type === eventTypeUpdate()) {
-        if (obj.taskUpdates== null || typeof obj.taskUpdates !== "object") {
+        if (obj.taskUpdates == null || typeof obj.taskUpdates !== "object") {
             throw "taskUpdates is not defined or of wrong type in " + JSON.stringify(obj);
         }
-        if (obj.taskUpdates.title== null || typeof obj.taskUpdates.title !== "string") {
+        if (obj.taskUpdates.title == null || typeof obj.taskUpdates.title !== "string") {
             throw "taskUpdates.title is not defined or of wrong type in " + JSON.stringify(obj);
         }
         return new UpdateTaskEvent(obj.id, obj.timestamp, obj.taskId, obj.taskUpdates)
