@@ -57,4 +57,56 @@ describe("createTasksFromTaskEvents", () => {
         ]);
     });
 
+
+    it("creates tasks for a correct list of task events where a create and an update event have the same timestamp", () => {
+        const fooTaskCreateEvent = createInitialCreateTaskEvent("foo");
+        const fooTaskUpdateEvent = createTaskEventFromObject({
+            id: uuidv1(),
+            type: eventTypeUpdate(),
+            timestamp: fooTaskCreateEvent.timestamp,
+            taskId: fooTaskCreateEvent.taskId,
+            taskUpdates: { title: "foo2" }
+        });
+
+        const taskEvents = [
+            fooTaskCreateEvent,
+            fooTaskUpdateEvent,
+        ];
+
+        const tasks = createTasksFromTaskEvents(taskEvents);
+
+        expect(tasks).toEqual([
+            {
+                id: fooTaskCreateEvent.taskId,
+                isDeleted: false,
+                lastModified: fooTaskUpdateEvent.timestamp,
+                title: "foo2"
+            },
+        ]);
+    });
+
+
+    it("fails to create tasks for an event list where the update event ", () => {
+        const fooTaskCreateEvent = createInitialCreateTaskEvent("foo");
+        const fooTaskUpdateEvent = createTaskEventFromObject({
+            id: uuidv1(),
+            type: eventTypeUpdate(),
+            timestamp: fooTaskCreateEvent.timestamp - 1000,
+            taskId: fooTaskCreateEvent.taskId,
+            taskUpdates: { title: "foo2" }
+        });
+
+        const taskEvents = [
+            fooTaskCreateEvent,
+            fooTaskUpdateEvent,
+        ];
+
+        expect(() =>
+            createTasksFromTaskEvents([
+                fooTaskCreateEvent,
+                fooTaskUpdateEvent,
+            ])
+        ).toThrow();
+    });
+
 });

@@ -42,6 +42,7 @@ export const createTaskFromObject = (obj) => {
 
 
 export const createTasksFromTaskEvents = (taskEvents) => {
+
     const sortedTaskEvents = (taskEvents.slice(0)).sort(compareTimestamps);
 
     const tasks = [];
@@ -60,7 +61,7 @@ export const createTasksFromTaskEvents = (taskEvents) => {
         if (taskEvent.type === eventTypeUpdate()) {
             const task = tasks.find(_ => _.id === taskEvent.taskId);
             if (task == null) {
-                console.error(`Got an 'update' event for a task that is not yet created, unexpected event is ${taskEvent}`);
+                throw `Got an 'update' event for a task that is not yet created, unexpected event is ${JSON.stringify(taskEvent)}`;
             } else {
                 task.lastModified = taskEvent.timestamp;
                 task.title = taskEvent.taskUpdates.title;
