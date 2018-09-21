@@ -73,30 +73,28 @@ export const mergeEntityEventArrays = (entityEventsA, entityEventsB) => {
     return mergedEntityEvents;
 };
 
-export const mergeStates = (stateA, stateB) => {
+export const mergeStatesAndRecalculate = (stateA, stateB) => {
+    let mergedState = emptyState();
+
     if (stateA == null) {
         console.debug("stateA is null, not merging.");
-        return stateB;
-    }
-
-    if (stateB == null) {
+        mergedState = stateB;
+    } else if (stateB == null) {
         console.debug("stateB is null, not merging.");
-        return stateA;
+        mergedState = stateA;
+    } else {
+        console.debug(`mergeStates: stateA is ${JSON.stringify(stateA)}, stateB is ${JSON.stringify(stateB)}`);
+
+        mergedState.entities.tasks.allEvents = mergeEntityEventArrays(
+            stateA.entities.tasks.allEvents,
+            stateB.entities.tasks.allEvents
+        );
+
+        mergedState.entities.tasks.unsyncedEvents = mergeEntityEventArrays(
+            stateA.entities.tasks.unsyncedEvents,
+            stateB.entities.tasks.unsyncedEvents
+        );
     }
-
-    const mergedState = emptyState();
-
-    console.debug(`mergeStates: stateA is ${JSON.stringify(stateA)}, stateB is ${JSON.stringify(stateB)}`);
-
-    mergedState.entities.tasks.allEvents = mergeEntityEventArrays(
-        stateA.entities.tasks.allEvents,
-        stateB.entities.tasks.allEvents
-    );
-
-    mergedState.entities.tasks.unsyncedEvents = mergeEntityEventArrays(
-        stateA.entities.tasks.unsyncedEvents,
-        stateB.entities.tasks.unsyncedEvents
-    );
 
     mergedState.entities.tasks.calculatedEntities = createTasksFromEntityEvents(mergedState.entities.tasks.allEvents);
 
