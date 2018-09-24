@@ -46,7 +46,7 @@ export class CreateEntityEvent extends EntityEvent {
     }
 }
 
-export class UpdateTaskEvent extends EntityEvent {
+export class UpdateEntityEvent extends EntityEvent {
     constructor(id, timestamp, entityName, entityId, payload) {
         super(typeUpdate(), id, timestamp, entityName, entityId, payload);
     }
@@ -69,7 +69,9 @@ export const createEntityEventFromObject = (obj) => {
         throw `${entityName} is not in list of supported entities ${JSON.stringify(supportedEntities)}`
     }
 
-    if (!(type in eventTypes))
+    if (!(type in eventTypes)) {
+        throw `${type} is not in list of supported event types ${JSON.stringify(types)}`
+    }
 
     const className = `${type.charAt(0).toUpperCase() + type.substr(1)}${entityName}EntityEvent`;
 

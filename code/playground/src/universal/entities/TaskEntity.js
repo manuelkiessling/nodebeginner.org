@@ -1,4 +1,3 @@
-import { eventTypeCreate, eventTypeUpdate } from "./eventTypes";
 import { CreateTaskEntityEvent, UpdateTaskEntityEvent } from "./TaskEntityEvents";
 import typeOf from "type-of-data";
 
@@ -40,7 +39,7 @@ const createTaskFromObject = (obj) => {
     }
 
     if (!(typeof obj.isImportant === "boolean")) {
-        throw "isImportant must be a number"
+        throw "isImportant must be a boolean"
     }
 
     return new TaskEntity(obj.id, obj.title, obj.lastModified, obj.isImportant);
@@ -49,7 +48,10 @@ const createTaskFromObject = (obj) => {
 
 export const createTasksFromEntityEvents = (entityEvents) => {
 
-    const sortedTaskEntityEvents = (entityEvents.slice(0)).filter(_ => _ instanceof CreateTaskEntityEvent || _ instanceof UpdateTaskEntityEvent).sort(compareTimestamps);
+    const sortedTaskEntityEvents =
+        (entityEvents.slice(0))
+            .filter(_ => _ instanceof CreateTaskEntityEvent || _ instanceof UpdateTaskEntityEvent)
+            .sort(compareTimestamps);
 
     const taskEntities = [];
 
@@ -65,7 +67,7 @@ export const createTasksFromEntityEvents = (entityEvents) => {
                     id: entityEvent.entityId,
                     title: entityEvent.payload.title,
                     lastModified: entityEvent.timestamp,
-                    isDeleted: false
+                    isImportant: false
                 });
                 console.debug(`Creating new task ${JSON.stringify(taskEntity)} from event ${JSON.stringify(entityEvent)}`);
                 taskEntities.push(taskEntity);

@@ -1,7 +1,6 @@
-import { eventTypeCreate, eventTypeUpdate } from "./eventTypes";
 import uuidv1 from "uuid";
 import typeOf from "type-of-data";
-import { CreateEntityEvent, UpdateTaskEvent } from "./EntityEvents";
+import { CreateEntityEvent, UpdateEntityEvent } from "./EntityEvents";
 
 const entityName = "Task";
 
@@ -26,7 +25,7 @@ export class CreateTaskEntityEvent extends CreateEntityEvent {
     }
 }
 
-export class UpdateTaskEntityEvent extends CreateEntityEvent {
+export class UpdateTaskEntityEvent extends UpdateEntityEvent {
     constructor(id, timestamp, entityId, payload) {
         const { title, isImportant } = payload;
         typeOf([
@@ -36,5 +35,19 @@ export class UpdateTaskEntityEvent extends CreateEntityEvent {
         super(id, timestamp, entityName, entityId, payload);
         Object.seal(this);
         Object.freeze(this);
+    }
+
+    static withNewTitle(id, title) {
+        typeOf([
+            { id, is: String },
+            { title, is: String }
+            ]);
+
+        return new UpdateTaskEntityEvent(
+            super.createId(),
+            super.getCurrentTimestamp(),
+            id,
+            { title: title }
+        );
     }
 }
