@@ -8,8 +8,16 @@ const path = require("path");
 
 const ENV = {
     NODE_ENV: process.env.NODE_ENV || "development",
-    SW_PREFETCH: (process.env.SW_PREFETCH || "false") === "true",
+    SW_PREFETCH: (process.env.SW_PREFETCH || "true") === "true",
 };
+
+console.info(`NODE_ENV is ${ENV.NODE_ENV}.`);
+if (ENV.SW_PREFETCH) {
+    console.info(`SW_PREFETCH is enabled.`);
+} else {
+    console.info(`SW_PREFETCH is disabled.`);
+}
+
 
 const plugins = [];
 
