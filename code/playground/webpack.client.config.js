@@ -53,7 +53,7 @@ if (ENV.SW_PREFETCH) {
 } else {
     plugins.push(
         new HtmlWebPackPlugin({
-            template: "./src/universal/html-templates/index.html",
+            template: "./src/universal/html-templates/index-client-devserver.html",
             filename: "./index.html"
         }),
     );
