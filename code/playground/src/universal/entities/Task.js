@@ -1,5 +1,4 @@
 import { eventTypeCreate, eventTypeUpdate } from "./eventTypes";
-import { succeededFetchingEntityEventsEvent } from "../redux-actions/events";
 
 export class Task {
     constructor(id, title, lastModified, isDeleted) {
