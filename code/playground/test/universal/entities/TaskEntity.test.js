@@ -1,7 +1,6 @@
 import uuidv1 from "uuid";
-import { eventTypeUpdate } from "../../../src/universal/entities/eventTypes";
-import { CreateTaskEvent, createTaskEventFromObject } from "../../../src/universal/entities/TaskEvent";
-import { createTasksFromEntityEvents } from "../../../src/universal/entities/Task";
+import { CreateTaskEvent, createTaskEventFromObject } from "../../../src/universal/entities/EntityEvents";
+import { createTasksFromEntityEvents } from "../../../src/universal/entities/TaskEntity";
 
 describe("createTasksFromEntityEvents", () => {
 
@@ -9,7 +8,7 @@ describe("createTasksFromEntityEvents", () => {
         const fooTaskCreateEvent = CreateTaskEvent.fromTitle("foo");
         const fooTaskUpdateEvent = createTaskEventFromObject({
             id: uuidv1(),
-            type: eventTypeUpdate(),
+            type: "update",
             timestamp: Date.now(),
             taskId: fooTaskCreateEvent.taskId,
             taskUpdates: { title: "foo2" }
@@ -18,14 +17,14 @@ describe("createTasksFromEntityEvents", () => {
         const barTaskCreateEvent = CreateTaskEvent.fromTitle("bar");
         const barTaskUpdateEvent1 = createTaskEventFromObject({
             id: uuidv1(),
-            type: eventTypeUpdate(),
+            type: "update",
             timestamp: Date.now(),
             taskId: barTaskCreateEvent.taskId,
             taskUpdates: { title: "bar2" }
         });
         const barTaskUpdateEvent2 = createTaskEventFromObject({
             id: uuidv1(),
-            type: eventTypeUpdate(),
+            type: "update",
             timestamp: Date.now(),
             taskId: barTaskCreateEvent.taskId,
             taskUpdates: { title: "bar3" }
@@ -62,7 +61,7 @@ describe("createTasksFromEntityEvents", () => {
         const fooTaskCreateEvent = CreateTaskEvent.fromTitle("foo");
         const fooTaskUpdateEvent = createTaskEventFromObject({
             id: uuidv1(),
-            type: eventTypeUpdate(),
+            type: "update",
             timestamp: fooTaskCreateEvent.timestamp,
             taskId: fooTaskCreateEvent.taskId,
             taskUpdates: { title: "foo2" }
@@ -90,7 +89,7 @@ describe("createTasksFromEntityEvents", () => {
         const fooTaskCreateEvent = CreateTaskEvent.fromTitle("foo");
         const fooTaskUpdateEvent = createTaskEventFromObject({
             id: uuidv1(),
-            type: eventTypeUpdate(),
+            type: "update",
             timestamp: fooTaskCreateEvent.timestamp - 1000,
             taskId: fooTaskCreateEvent.taskId,
             taskUpdates: { title: "foo2" }

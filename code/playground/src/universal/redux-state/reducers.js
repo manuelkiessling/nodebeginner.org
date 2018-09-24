@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
 import { COMMAND_INITIALIZE, COMMAND_TASK_ADD } from "../redux-actions/commands";
 import { EVENT_ENTITY_EVENTS_FETCHING_SUCCEEDED } from "../redux-actions/events";
-import { createFromObject, createTasksFromEntityEvents } from "../entities/Task";
-import { CreateTaskEvent, createTaskEventFromObject } from "../entities/TaskEvent";
+import { createFromObject, createTasksFromEntityEvents } from "../entities/TaskEntity";
+import { CreateTaskEvent, createTaskEventFromObject } from "../entities/EntityEvents";
 import { mergeEntityEventArrays } from "../syncHelpers";
 
 export const emptyState = () => ({

@@ -1,7 +1,7 @@
 {
   "entity-events": [
-    {"id": "74d01c2b-7fb0-4b50-a1ed-5302a1026785", "entityName": "task", "taskId": "94244957-f782-45fc-988e-d9954720667d", "taskTitle": "Learn React", "type": "create", "timestamp": 1537523057377},
-    {"id": "bf02c74c-bf5f-4b67-a9bc-820abb506824", "entityName": "task", "taskId": "94244957-f782-45fc-988e-d9954720667d", "taskUpdates": { "title": "Updated: Learn React" }, "type": "update", "timestamp": 1537523057387},
-    {"id": "5302a102-4b67-4b50-a1ed-bb50a1026785", "entityName": "task", "taskId": "d9954720-f782-45fc-066f-988e4720667d", "taskTitle": "Learn JavaScript", "type": "create", "timestamp": 1537523057377}
+    {"type": "create", "id": "74d01c2b-7fb0-4b50-a1ed-5302a1026785", "timestamp": 1537523057377, "entityName": "Task", "entityId": "94244957-f782-45fc-988e-d9954720667d", "payload": { "title": "Learn React" } },
+    {"type": "update", "id": "bf02c74c-bf5f-4b67-a9bc-820abb506824", "timestamp": 1537523057387, "entityName": "Task", "entityId": "94244957-f782-45fc-988e-d9954720667d", "payload": { "title": "Updated: Learn React", "isImportant": true } },
+    {"type": "create", "id": "5302a102-4b67-4b50-a1ed-bb50a1026785", "timestamp": 1537523057377, "entityName": "Task", "entityId": "d9954720-f782-45fc-066f-988e4720667d", "payload": { "title": "Learn React" }}
   ]
 }

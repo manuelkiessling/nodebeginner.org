@@ -47,7 +47,7 @@
  */
 
 import { emptyState } from "./redux-state/reducers";
-import { createTasksFromEntityEvents } from "./entities/Task";
+import { createTasksFromEntityEvents } from "./entities/TaskEntity";
 
 export const mergeEntityEventArrays = (entityEventsA, entityEventsB) => {
     if (!Array.isArray(entityEventsA)) {

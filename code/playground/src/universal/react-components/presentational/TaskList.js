@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import MuiList from "@material-ui/core/List";
 import TaskListItem from "./TaskListItem";
 import MuiPaper from "./mui-overrides/Paper";
-import { Task } from "../../entities/Task";
+import { TaskEntity } from "../../entities/TaskEntity";
 
 const TaskList = ({ tasks }) => (
     <MuiPaper>
@@ -16,7 +16,7 @@ const TaskList = ({ tasks }) => (
 );
 
 TaskList.propTypes = {
-    tasks: PropTypes.arrayOf(PropTypes.instanceOf(Task))
+    tasks: PropTypes.arrayOf(PropTypes.instanceOf(TaskEntity))
 };
 
 export default TaskList;
