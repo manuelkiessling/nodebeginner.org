@@ -23,13 +23,13 @@ const plugins = [];
 
 plugins.push(
     new MiniCssExtractPlugin({
-        filename: "app.css",
+        filename: "client.css",
     })
 );
 
 plugins.push(
     new ManifestPlugin({
-        "fileName": "assets-manifest.json"
+        "fileName": "client-assets-manifest.json"
     })
 );
 
@@ -38,7 +38,7 @@ if (ENV.SW_PREFETCH) {
         new SWPrecacheWebpackPlugin(
             {
                 cacheId: "playground",
-                filename: "service-worker.js",
+                filename: "client-service-worker.js",
                 minify: false,
                 navigateFallback: "/sw-precache-appshell",
                 navigateFallbackWhitelist: [/^\/(?!(api)).*/], // Only fall back to the app shell for requests that are not to the api

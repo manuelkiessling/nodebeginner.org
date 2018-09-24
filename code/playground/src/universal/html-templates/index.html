@@ -9,8 +9,8 @@
         (function() {
             console.info("Attempting to register service worker for offline app loading...");
             if ("serviceWorker" in navigator) {
-                console.info("Registering service worker for offline app loading via /service-worker.js.");
-                navigator.serviceWorker.register("/service-worker.js");
+                console.info("Registering service worker for offline app loading via /client-service-worker.js.");
+                navigator.serviceWorker.register("/client-service-worker.js");
             } else {
                 console.info("serviceWorker capability is not available.");
             }

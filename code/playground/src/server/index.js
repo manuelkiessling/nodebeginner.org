@@ -9,7 +9,7 @@ import { StaticRouter as Router, matchPath } from "react-router-dom";
 import { Provider } from "react-redux";
 import AppContainer from "../universal/react-components/container/AppContainer";
 import createStore from "../universal/redux-state/store";
-import manifest from "../../dist/assets-manifest.json";
+import clientAssetsManifest from "../../dist/client-assets-manifest.json";
 import { initializeCommand } from "../universal/redux-actions/commands";
 import routes from "../universal/routes";
 import { SheetsRegistry } from "react-jss/lib/jss";
@@ -145,10 +145,10 @@ const extractAssets = (assets, chunks, ending) => Object.keys(assets)
     .filter(asset => chunks.indexOf(asset.replace(ending, "")) > -1)
     .map(k => assets[k]);
 
-const javascriptChunks = extractAssets(manifest, ["main"], ".js")
+const javascriptChunks = extractAssets(clientAssetsManifest, ["main"], ".js")
     .map(c => `<script type="text/javascript" src="/${c}"></script>`);
 
-const cssChunks = extractAssets(manifest, ["main"], ".css")
+const cssChunks = extractAssets(clientAssetsManifest, ["main"], ".css")
     .map(c => `<link rel="stylesheet" href="/${c}" />`);
 
 
