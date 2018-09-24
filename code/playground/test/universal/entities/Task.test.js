@@ -1,12 +1,12 @@
 import uuidv1 from "uuid";
 import { eventTypeUpdate } from "../../../src/universal/entities/eventTypes";
-import { createInitialCreateTaskEvent, createTaskEventFromObject } from "../../../src/universal/entities/TaskEvent";
+import { CreateTaskEvent, createTaskEventFromObject } from "../../../src/universal/entities/TaskEvent";
 import { createTasksFromEntityEvents } from "../../../src/universal/entities/Task";
 
 describe("createTasksFromEntityEvents", () => {
 
     it("creates tasks for a correct list of task events", () => {
-        const fooTaskCreateEvent = createInitialCreateTaskEvent("foo");
+        const fooTaskCreateEvent = CreateTaskEvent.fromTitle("foo");
         const fooTaskUpdateEvent = createTaskEventFromObject({
             id: uuidv1(),
             type: eventTypeUpdate(),
@@ -15,7 +15,7 @@ describe("createTasksFromEntityEvents", () => {
             taskUpdates: { title: "foo2" }
         });
 
-        const barTaskCreateEvent = createInitialCreateTaskEvent("bar");
+        const barTaskCreateEvent = CreateTaskEvent.fromTitle("bar");
         const barTaskUpdateEvent1 = createTaskEventFromObject({
             id: uuidv1(),
             type: eventTypeUpdate(),
@@ -59,7 +59,7 @@ describe("createTasksFromEntityEvents", () => {
 
 
     it("creates tasks for a correct list of task events where a create and an update event have the same timestamp", () => {
-        const fooTaskCreateEvent = createInitialCreateTaskEvent("foo");
+        const fooTaskCreateEvent = CreateTaskEvent.fromTitle("foo");
         const fooTaskUpdateEvent = createTaskEventFromObject({
             id: uuidv1(),
             type: eventTypeUpdate(),
@@ -87,7 +87,7 @@ describe("createTasksFromEntityEvents", () => {
 
 
     it("fails to create tasks for an event list where the update event ", () => {
-        const fooTaskCreateEvent = createInitialCreateTaskEvent("foo");
+        const fooTaskCreateEvent = CreateTaskEvent.fromTitle("foo");
         const fooTaskUpdateEvent = createTaskEventFromObject({
             id: uuidv1(),
             type: eventTypeUpdate(),

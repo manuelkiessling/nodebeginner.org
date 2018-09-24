@@ -1,8 +1,8 @@
-import { eventTypeCreate, eventTypes, eventTypeUpdate } from "./eventTypes";
+import { eventTypeCreate, eventTypeUpdate } from "./eventTypes";
 import uuidv1 from "uuid";
 import typeOf from "type-of-data";
 
-class CreateTaskEvent {
+export class CreateTaskEvent {
     constructor(id, timestamp, taskId, taskTitle) {
         this.id = id;
         this.entityName = "task";
@@ -12,6 +12,18 @@ class CreateTaskEvent {
         this.taskTitle = taskTitle;
         Object.seal(this);
         Object.freeze(this);
+    }
+
+    static fromTitle(title) {
+        typeOf({ title, is: String });
+
+        return createTaskEventFromObject({
+            id: uuidv1(),
+            type: eventTypeCreate(),
+            timestamp: Date.now(),
+            taskId: uuidv1(),
+            taskTitle: title
+        });
     }
 }
 
@@ -52,18 +64,4 @@ export const createTaskEventFromObject = (obj) => {
     }
 
     throw "Cannot handle object " + JSON.stringify(obj);
-};
-
-export const createInitialCreateTaskEvent = (taskTitle) => {
-    if (typeof taskTitle !== "string") {
-        throw "taskTitle must be string";
-    }
-
-    return createTaskEventFromObject({
-        id: uuidv1(),
-        type: eventTypeCreate(),
-        timestamp: Date.now(),
-        taskId: uuidv1(),
-        taskTitle: taskTitle
-    });
 };
