@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
 import { COMMAND_INITIALIZE, COMMAND_TASK_ADD } from "../redux-actions/commands";
 import { EVENT_ENTITY_EVENTS_FETCHING_SUCCEEDED } from "../redux-actions/events";
-import { createFromObject, createTasksFromEntityEvents } from "../entities/TaskEntity";
-import { CreateTaskEvent, createTaskEventFromObject } from "../entities/EntityEvents";
 import { mergeEntityEventArrays } from "../syncHelpers";
+import { CreateTaskEntityEvent } from "../entities/TaskEntityEvents";
+import { createTasksFromEntityEvents } from "../entities/TaskEntity";
 
 export const emptyState = () => ({
     entities: {
@@ -21,9 +21,9 @@ const entities = (state = emptyState().entities, action) => {
         case COMMAND_INITIALIZE:
             return emptyState().entities;
         case COMMAND_TASK_ADD: {
-            const createTaskEvent = CreateTaskEvent.fromTitle(action.taskTitle);
-            const updatedAllEvents = state.tasks.allEvents.concat(createTaskEvent);
-            const updatedUnsyncedEvents = state.tasks.unsyncedEvents.concat(createTaskEvent);
+            const createTaskEntityEvent = CreateTaskEntityEvent.fromTitle(action.taskTitle);
+            const updatedAllEvents = state.tasks.allEvents.concat(createTaskEntityEvent);
+            const updatedUnsyncedEvents = state.tasks.unsyncedEvents.concat(createTaskEntityEvent);
             const updatedCalculatedEntities = createTasksFromEntityEvents(updatedAllEvents);
             return {
                 ...state,
