@@ -50,13 +50,10 @@ describe("createTasksFromEntityEvents", () => {
 
     it("creates tasks for a correct list of task events where a create and an update event have the same timestamp", () => {
         const fooTaskCreateEvent = CreateTaskEntityEvent.fromTitle("foo");
-        const fooTaskUpdateEvent = createTaskEventFromObject({
-            id: uuidv1(),
-            type: "update",
-            timestamp: fooTaskCreateEvent.timestamp,
-            taskId: fooTaskCreateEvent.taskId,
-            taskUpdates: { title: "foo2" }
-        });
+        const fooTaskUpdateEvent = UpdateTaskEntityEvent.withNewTitle(
+            fooTaskCreateEvent.entityId,
+            "foo2"
+        );
 
         const taskEvents = [
             fooTaskCreateEvent,
@@ -67,8 +64,8 @@ describe("createTasksFromEntityEvents", () => {
 
         expect(tasks).toEqual([
             {
-                id: fooTaskCreateEvent.taskId,
-                isDeleted: false,
+                id: fooTaskCreateEvent.entityId,
+                isImportant: false,
                 lastModified: fooTaskUpdateEvent.timestamp,
                 title: "foo2"
             },
@@ -76,20 +73,14 @@ describe("createTasksFromEntityEvents", () => {
     });
 
 
-    it("fails to create tasks for an event list where the update event ", () => {
+    it("fails to create tasks for an event list where the update event is older than the create event", () => {
         const fooTaskCreateEvent = CreateTaskEntityEvent.fromTitle("foo");
-        const fooTaskUpdateEvent = createTaskEventFromObject({
-            id: uuidv1(),
-            type: "update",
-            timestamp: fooTaskCreateEvent.timestamp - 1000,
-            taskId: fooTaskCreateEvent.taskId,
-            taskUpdates: { title: "foo2" }
-        });
-
-        const taskEvents = [
-            fooTaskCreateEvent,
-            fooTaskUpdateEvent,
-        ];
+        const fooTaskUpdateEvent = new UpdateTaskEntityEvent(
+            uuidv1(),
+            fooTaskCreateEvent.timestamp - 1000,
+            fooTaskCreateEvent.entityId,
+            { title: "foo2" }
+        );
 
         expect(() =>
             createTasksFromEntityEvents([
