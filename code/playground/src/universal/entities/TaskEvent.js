@@ -29,21 +29,19 @@ class UpdateTaskEvent {
 
 export const createTaskEventFromObject = (obj) => {
 
-    // We intentionally compare `undefined` with ==, not with ===, to implicitly also check against `null`
-
-    if (obj.id== null || typeof obj.id !== "string") {
+    if (obj.id == null || typeof obj.id !== "string") {
         throw "Event id is not defined or of wrong type in " + JSON.stringify(obj);
     }
 
-    if (obj.type== null || typeof obj.type !== "string" || !eventTypes.includes(obj.type)) {
+    if (obj.type == null || typeof obj.type !== "string" || !eventTypes.includes(obj.type)) {
         throw "Event type is not defined or of wrong type or wrong value in" + JSON.stringify(obj);
     }
 
-    if (obj.timestamp== null || typeof obj.timestamp !== "number") {
+    if (obj.timestamp == null || typeof obj.timestamp !== "number") {
         throw "Event timestamp is not defined or of wrong type in " + JSON.stringify(obj);
     }
 
-    if (obj.taskId== null || typeof obj.taskId !== "string") {
+    if (obj.taskId == null || typeof obj.taskId !== "string") {
         throw "Task id is not defined or of wrong type in " + JSON.stringify(obj);
     }
 
