@@ -2,20 +2,27 @@ import { combineReducers } from "redux";
 import { COMMAND_INITIALIZE, COMMAND_TASK_ADD } from "../redux-actions/commands";
 import { EVENT_ENTITY_EVENTS_FETCHING_SUCCEEDED } from "../redux-actions/events";
 import { mergeEntityEventArrays } from "../syncHelpers";
-import { CreateTaskEntityEvent } from "../entities/TaskEntityEvents";
-import { createTasksFromEntityEvents } from "../entities/TaskEntity";
-import { createEntityEventFromObject } from "../entities/EntityEvents";
+import { entityName as taskEntityName, CreateTaskEntityEvent } from "../entities/TaskEntityEvents";
+import { createEntityEventFromObject, entityNamesToClasses } from "../entities/EntityEvents";
 
-export const emptyState = () => ({
-    entities: {
-        tasks: {
+export const emptyState = () => {
+
+    const entities = {};
+
+    for (const entityName in entityNamesToClasses) {
+        entities[entityName] = {
             allEvents: [],
             unsyncedEvents: [],
-            calculatedEntities: []
-        }
-    },
-    debugInfo: ""
-});
+            calculatedEntities: [],
+        };
+    }
+
+    return {
+        entities: entities,
+        debugInfo: ""
+    };
+};
+
 
 const entities = (state = emptyState().entities, action) => {
     switch (action.type) {
@@ -23,12 +30,12 @@ const entities = (state = emptyState().entities, action) => {
             return emptyState().entities;
         case COMMAND_TASK_ADD: {
             const createTaskEntityEvent = CreateTaskEntityEvent.fromTitle(action.taskTitle);
-            const updatedAllEvents = state.tasks.allEvents.concat(createTaskEntityEvent);
-            const updatedUnsyncedEvents = state.tasks.unsyncedEvents.concat(createTaskEntityEvent);
-            const updatedCalculatedEntities = createTasksFromEntityEvents(updatedAllEvents);
+            const updatedAllEvents = state[taskEntityName].allEvents.concat(createTaskEntityEvent);
+            const updatedUnsyncedEvents = state[taskEntityName].unsyncedEvents.concat(createTaskEntityEvent);
+            const updatedCalculatedEntities = entityNamesToClasses[taskEntityName].entityClass.createFromEntityEvents(updatedAllEvents);
             return {
                 ...state,
-                tasks: {
+                [taskEntityName]: {
                     allEvents: updatedAllEvents,
                     unsyncedEvents: updatedUnsyncedEvents,
                     calculatedEntities: updatedCalculatedEntities
@@ -37,12 +44,12 @@ const entities = (state = emptyState().entities, action) => {
         }
         case EVENT_ENTITY_EVENTS_FETCHING_SUCCEEDED: {
             const receivedEntityEvents = action.json.map((entityEventObject) => createEntityEventFromObject(entityEventObject));
-            const updatedAllEvents = mergeEntityEventArrays(state.tasks.allEvents, receivedEntityEvents);
-            const updatedCalculatedEntities = createTasksFromEntityEvents(updatedAllEvents);
+            const updatedAllEvents = mergeEntityEventArrays(state[taskEntityName].allEvents, receivedEntityEvents);
+            const updatedCalculatedEntities = entityNamesToClasses[taskEntityName].entityClass.createFromEntityEvents(updatedAllEvents);
             return {
                 ...state,
-                tasks: {
-                    ...state.tasks,
+                [taskEntityName]: {
+                    ...state[taskEntityName],
                     allEvents: updatedAllEvents,
                     calculatedEntities: updatedCalculatedEntities
                 }

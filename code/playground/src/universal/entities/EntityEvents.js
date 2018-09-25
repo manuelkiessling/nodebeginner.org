@@ -1,10 +1,12 @@
 import uuidv1 from "uuid";
 import typeOf from "type-of-data";
-import { CreateTaskEntityEvent, UpdateTaskEntityEvent } from "./TaskEntityEvents";
+import { entityName as taskEntityName, CreateTaskEntityEvent, UpdateTaskEntityEvent } from "./TaskEntityEvents";
+import { TaskEntity } from "./TaskEntity";
 
-export const supportedEntities = ["Task"];
+export const entityNamesToClasses = {};
+entityNamesToClasses[taskEntityName] = { entityClass: TaskEntity, createEntityEventClass: CreateTaskEntityEvent, updateEntityEventClass: UpdateTaskEntityEvent };
 
-export const typeCreate = () => "create";
+const typeCreate = () => "create";
 const typeUpdate = () => "update";
 const typeDelete = () => "delete";
 
@@ -38,6 +40,8 @@ class EntityEvent {
     static getCurrentTimestamp() {
         return Date.now();
     }
+
+    static entityNameTo
 }
 
 export class CreateEntityEvent extends EntityEvent {
@@ -65,8 +69,8 @@ export const createEntityEventFromObject = (obj) => {
         { payload, is: Object }
     ]);
 
-    if (!(supportedEntities.includes(entityName))) {
-        throw `${entityName} is not in list of supported entities ${JSON.stringify(supportedEntities)}`
+    if (!(entityName in entityNamesToClasses)) {
+        throw `${entityName} is not in list of supported entities ${JSON.stringify(entityNamesToClasses)}`
     }
 
     if (!(eventTypes.includes(type))) {

@@ -1,6 +1,5 @@
 import { emptyState } from "./redux-state/reducers";
-import { createTasksFromEntityEvents } from "./entities/TaskEntity";
-import { supportedEntities, createEntityEventFromObject } from "./entities/EntityEvents";
+import { createEntityEventFromObject, entityNamesToClasses } from "./entities/EntityEvents";
 
 export const mergeEntityEventArrays = (entityEventsA, entityEventsB) => {
     if (!Array.isArray(entityEventsA)) {
@@ -15,14 +14,14 @@ export const mergeEntityEventArrays = (entityEventsA, entityEventsB) => {
 
     console.debug(`Merging entity events ${JSON.stringify(entityEventsB)} into ${JSON.stringify(mergedEntityEvents)}`);
 
-    for (let i = 0; i < entityEventsB.length; i++) {
-        if (!mergedEntityEvents.find((entityEvent) => entityEvent.id === entityEventsB[i].id)) {
-            console.debug(`Adding entity event ${JSON.stringify(entityEventsB[i])} to ${JSON.stringify(mergedEntityEvents)}`);
-            mergedEntityEvents.push(entityEventsB[i])
+    entityEventsB.forEach((entityEventB) => {
+        if (!mergedEntityEvents.find((mergedEntityEvent) => mergedEntityEvent.id === entityEventB.id)) {
+            console.debug(`Adding entity event ${JSON.stringify(entityEventB)} to ${JSON.stringify(mergedEntityEvents)}`);
+            mergedEntityEvents.push(entityEventB)
         } else {
-            console.debug(`Entity event ${JSON.stringify(entityEventsB[i])} already in ${JSON.stringify(mergedEntityEvents)}`);
+            console.debug(`Entity event ${JSON.stringify(entityEventB)} already in ${JSON.stringify(mergedEntityEvents)}`);
         }
-    }
+    });
     return mergedEntityEvents;
 };
 
@@ -42,32 +41,32 @@ export const mergeStatesAndRecalculate = (stateA, stateB) => {
         } else {
             console.debug(`mergeStates: stateA is ${JSON.stringify(stateA)}, stateB is ${JSON.stringify(stateB)}`);
 
-            mergedState.entities.tasks.allEvents = mergeEntityEventArrays(
-                stateA.entities.tasks.allEvents,
-                stateB.entities.tasks.allEvents
-            );
+            for (const entityName in entityNamesToClasses) {
+                mergedState.entities[entityName].allEvents = mergeEntityEventArrays(
+                    stateA.entities[entityName].allEvents,
+                    stateB.entities[entityName].allEvents
+                );
 
-            mergedState.entities.tasks.unsyncedEvents = mergeEntityEventArrays(
-                stateA.entities.tasks.unsyncedEvents,
-                stateB.entities.tasks.unsyncedEvents
-            );
+                mergedState.entities[entityName].unsyncedEvents = mergeEntityEventArrays(
+                    stateA.entities[entityName].unsyncedEvents,
+                    stateB.entities[entityName].unsyncedEvents
+                );
+            }
         }
 
     }
 
-    supportedEntities.forEach((entityName) => {
-        const transformedEntityName = entityName.toLowerCase() + "s";
-
+    for (const entityName in entityNamesToClasses) {
         // EntityEvents from persistent storages are not typed, they are just plain objects.
         // Thus, we map them into "real" EntityEvent objects, which also verifies their correctness
-        mergedState.entities[transformedEntityName].allEvents =
-            mergedState.entities[transformedEntityName].allEvents.map(_ => createEntityEventFromObject(_));
+        mergedState.entities[entityName].allEvents =
+            mergedState.entities[entityName].allEvents.map(_ => createEntityEventFromObject(_));
 
         mergedState.entities.tasks.unsyncedEvents =
-            mergedState.entities[transformedEntityName].unsyncedEvents.map(_ => createEntityEventFromObject(_));
+            mergedState.entities[entityName].unsyncedEvents.map(_ => createEntityEventFromObject(_));
 
-        mergedState.entities[transformedEntityName].calculatedEntities = createTasksFromEntityEvents(mergedState.entities.tasks.allEvents);
-    });
+        mergedState.entities[entityName].calculatedEntities = entityNamesToClasses[entityName].entityClass.createFromEntityEvents(mergedState.entities.tasks.allEvents);
+    }
 
     return mergedState;
 };
