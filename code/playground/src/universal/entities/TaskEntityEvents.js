@@ -1,6 +1,6 @@
 import uuidv1 from "uuid";
 import typeOf from "type-of-data";
-import { CreateEntityEvent, UpdateEntityEvent } from "./EntityEvents";
+import { CreateEntityEvent, EntityEvent, UpdateEntityEvent } from "./EntityEvents";
 
 export const entityName = "Task";
 
@@ -17,8 +17,8 @@ export class CreateTaskEntityEvent extends CreateEntityEvent {
         typeOf({ title, is: String });
 
         return new CreateTaskEntityEvent(
-            super.createId(),
-            super.getCurrentTimestamp(),
+            EntityEvent.createId(),
+            EntityEvent.getCurrentTimestamp(),
             uuidv1(),
             { title: title }
         );
@@ -44,8 +44,8 @@ export class UpdateTaskEntityEvent extends UpdateEntityEvent {
             ]);
 
         return new UpdateTaskEntityEvent(
-            super.createId(),
-            super.getCurrentTimestamp(),
+            EntityEvent.createId(),
+            EntityEvent.getCurrentTimestamp(),
             id,
             { title: title }
         );

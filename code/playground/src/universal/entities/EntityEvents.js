@@ -1,10 +1,11 @@
 import uuidv1 from "uuid";
 import typeOf from "type-of-data";
-import { entityName as taskEntityName, CreateTaskEntityEvent, UpdateTaskEntityEvent } from "./TaskEntityEvents";
+import { entityName as taskEntityName } from "./TaskEntityEvents";
 import { TaskEntity } from "./TaskEntity";
 
-export const entityNamesToClasses = {};
-entityNamesToClasses[taskEntityName] = { entityClass: TaskEntity, createEntityEventClass: CreateTaskEntityEvent, updateEntityEventClass: UpdateTaskEntityEvent };
+export const entityNamesToClasses = {
+    [taskEntityName]: { entityClass: TaskEntity }
+};
 
 const typeCreate = () => "create";
 const typeUpdate = () => "update";
@@ -13,7 +14,7 @@ const typeDelete = () => "delete";
 const eventTypes = [typeCreate(), typeUpdate(), typeDelete()];
 
 
-class EntityEvent {
+export class EntityEvent {
     constructor(type, id, timestamp, entityName, entityId, payload) {
         typeOf([
             { type, is: String },
@@ -40,8 +41,6 @@ class EntityEvent {
     static getCurrentTimestamp() {
         return Date.now();
     }
-
-    static entityNameTo
 }
 
 export class CreateEntityEvent extends EntityEvent {
