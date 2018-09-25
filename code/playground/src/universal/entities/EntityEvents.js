@@ -2,7 +2,7 @@ import uuidv1 from "uuid";
 import typeOf from "type-of-data";
 import { CreateTaskEntityEvent, UpdateTaskEntityEvent } from "./TaskEntityEvents";
 
-const supportedEntities = ["Task"];
+export const supportedEntities = ["Task"];
 
 export const typeCreate = () => "create";
 const typeUpdate = () => "update";
@@ -65,18 +65,22 @@ export const createEntityEventFromObject = (obj) => {
         { payload, is: Object }
     ]);
 
-    if (!(entityName in supportedEntities)) {
+    if (!(supportedEntities.includes(entityName))) {
         throw `${entityName} is not in list of supported entities ${JSON.stringify(supportedEntities)}`
     }
 
-    if (!(type in eventTypes)) {
+    if (!(eventTypes.includes(type))) {
         throw `${type} is not in list of supported event types ${JSON.stringify(types)}`
     }
 
+    const classes = {
+        'CreateTaskEntityEvent': CreateTaskEntityEvent,
+        'UpdateTaskEntityEvent': UpdateTaskEntityEvent
+    };
     const className = `${type.charAt(0).toUpperCase() + type.substr(1)}${entityName}EntityEvent`;
 
-    if (obj.type === typeCreate()) {
-        return new className(id, timestamp, entityId, payload)
+    if (obj.type === typeCreate() || obj.type === typeUpdate() ) {
+        return new classes[className](id, timestamp, entityId, payload)
     }
 
     throw "Cannot handle object " + JSON.stringify(obj);

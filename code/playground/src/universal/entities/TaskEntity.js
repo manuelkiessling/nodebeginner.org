@@ -53,13 +53,17 @@ export const createTasksFromEntityEvents = (entityEvents) => {
             .filter(_ => _ instanceof CreateTaskEntityEvent || _ instanceof UpdateTaskEntityEvent)
             .sort(compareTimestamps);
 
+    console.debug(`Handling ${JSON.stringify(sortedTaskEntityEvents)}...`);
+
     const taskEntities = [];
 
     for (let i = 0; i < sortedTaskEntityEvents.length; i++) {
         const entityEvent = sortedTaskEntityEvents[i];
 
+        console.debug(`Handling ${JSON.stringify(entityEvent)}...`);
 
         if (entityEvent instanceof CreateTaskEntityEvent) {
+            console.debug(`Using ${JSON.stringify(entityEvent)} to create Task entity...`);
             if (taskEntities.find(_ => _.id === entityEvent.entityId)) {
                 console.error(`Found more than one 'create' event for task ${entityEvent.entityId} in event list, unexpected event is ${JSON.stringify(entityEvent)}`);
             } else {
@@ -72,9 +76,8 @@ export const createTasksFromEntityEvents = (entityEvents) => {
                 console.debug(`Creating new task ${JSON.stringify(taskEntity)} from event ${JSON.stringify(entityEvent)}`);
                 taskEntities.push(taskEntity);
             }
-        }
-
-        if (entityEvent instanceof UpdateTaskEntityEvent) {
+        } else if (entityEvent instanceof UpdateTaskEntityEvent) {
+            console.debug(`Using ${JSON.stringify(entityEvent)} to update Task entity...`);
             const taskEntity = taskEntities.find(_ => _.id === entityEvent.entityId);
             if (taskEntity == null) {
                 throw `Got an 'update' event for a task that is not yet created, unexpected event is ${JSON.stringify(entityEvent)}`;
@@ -84,6 +87,8 @@ export const createTasksFromEntityEvents = (entityEvents) => {
                 taskEntity.title = entityEvent.payload.title;
                 console.debug(`Updated task ${JSON.stringify(taskEntity)} from event ${JSON.stringify(entityEvent)}`);
             }
+        } else {
+            console.debug(`Cannot handle ${JSON.stringify(entityEvent)} because it is an instance of ${entityEvent.constructor.name}`);
         }
     }
 

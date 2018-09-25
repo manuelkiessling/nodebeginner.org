@@ -4,6 +4,7 @@ import { EVENT_ENTITY_EVENTS_FETCHING_SUCCEEDED } from "../redux-actions/events"
 import { mergeEntityEventArrays } from "../syncHelpers";
 import { CreateTaskEntityEvent } from "../entities/TaskEntityEvents";
 import { createTasksFromEntityEvents } from "../entities/TaskEntity";
+import { createEntityEventFromObject } from "../entities/EntityEvents";
 
 export const emptyState = () => ({
     entities: {
@@ -35,7 +36,7 @@ const entities = (state = emptyState().entities, action) => {
             };
         }
         case EVENT_ENTITY_EVENTS_FETCHING_SUCCEEDED: {
-            const receivedEntityEvents = action.json.map((entityEventObject) => createTaskEventFromObject(entityEventObject));
+            const receivedEntityEvents = action.json.map((entityEventObject) => createEntityEventFromObject(entityEventObject));
             const updatedAllEvents = mergeEntityEventArrays(state.tasks.allEvents, receivedEntityEvents);
             const updatedCalculatedEntities = createTasksFromEntityEvents(updatedAllEvents);
             return {
