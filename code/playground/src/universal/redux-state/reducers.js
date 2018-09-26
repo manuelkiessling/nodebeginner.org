@@ -30,7 +30,7 @@ const entities = (state = emptyState().entities, action) => {
         case COMMAND_INITIALIZE:
             return emptyState().entities;
         case COMMAND_TASK_ADD: {
-            const createTaskEntityEvent = CreateTaskEntityEvent.fromTitle(action.taskTitle);
+            const createTaskEntityEvent = CreateTaskEntityEvent.withTitle(action.taskTitle);
             const updatedAllEvents = state[taskEntityName].allEvents.concat(createTaskEntityEvent);
             const updatedUnsyncedEvents = state[taskEntityName].unsyncedEvents.concat(createTaskEntityEvent);
             const updatedCalculatedEntities = entityNamesToClasses[taskEntityName].entityClass.createFromEntityEvents(updatedAllEvents);

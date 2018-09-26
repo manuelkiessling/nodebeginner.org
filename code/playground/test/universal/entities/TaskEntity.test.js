@@ -6,13 +6,13 @@ describe("TaskEntity", () => {
     describe("createFromEntityEvents", () => {
 
         it("creates tasks for a correct list of task events", () => {
-            const fooTaskCreateEvent = CreateTaskEntityEvent.fromTitle("foo");
+            const fooTaskCreateEvent = CreateTaskEntityEvent.withTitle("foo");
             const fooTaskUpdateEvent = UpdateTaskEntityEvent.withNewTitle(
                 fooTaskCreateEvent.entityId,
                 "foo2"
             );
 
-            const barTaskCreateEvent = CreateTaskEntityEvent.fromTitle("bar");
+            const barTaskCreateEvent = CreateTaskEntityEvent.withTitle("bar");
             const barTaskUpdateEvent1 = UpdateTaskEntityEvent.withNewTitle(
                 barTaskCreateEvent.entityId,
                 "bar2"
@@ -50,7 +50,7 @@ describe("TaskEntity", () => {
 
 
         it("creates tasks for a correct list of task events where a create and an update event have the same timestamp", () => {
-            const fooTaskCreateEvent = CreateTaskEntityEvent.fromTitle("foo");
+            const fooTaskCreateEvent = CreateTaskEntityEvent.withTitle("foo");
             const fooTaskUpdateEvent = UpdateTaskEntityEvent.withNewTitle(
                 fooTaskCreateEvent.entityId,
                 "foo2"
@@ -75,7 +75,7 @@ describe("TaskEntity", () => {
 
 
         it("fails to create tasks for an event list where the update event is older than the create event", () => {
-            const fooTaskCreateEvent = CreateTaskEntityEvent.fromTitle("foo");
+            const fooTaskCreateEvent = CreateTaskEntityEvent.withTitle("foo");
             const fooTaskUpdateEvent = new UpdateTaskEntityEvent(
                 uuidv1(),
                 fooTaskCreateEvent.timestamp - 1000,

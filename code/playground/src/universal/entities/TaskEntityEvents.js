@@ -12,7 +12,7 @@ export class CreateTaskEntityEvent extends CreateEntityEvent {
         Object.freeze(this);
     }
 
-    static fromTitle(title) {
+    static withTitle(title) {
         typeOf({ title, is: String });
 
         return new CreateTaskEntityEvent(
