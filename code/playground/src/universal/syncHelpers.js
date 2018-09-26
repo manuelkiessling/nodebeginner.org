@@ -1,14 +1,12 @@
+import typeOf from "type-of-data";
 import { emptyState } from "./redux-state/reducers";
 import { EntityEventFactory, entityNamesToClasses } from "./entities/EntityEventFactory";
 
 export const mergeEntityEventArrays = (entityEventsA, entityEventsB) => {
-    if (!Array.isArray(entityEventsA)) {
-        throw "entityEventsA must be an array, got " + JSON.stringify(entityEventsA);
-    }
-
-    if (!Array.isArray(entityEventsB)) {
-        throw "entityEventsB must be an array, got " + JSON.stringify(entityEventsB);
-    }
+    typeOf([
+        { entityEventsA, is: Array },
+        { entityEventsB, is: Array }
+    ]);
 
     const mergedEntityEvents = entityEventsA.splice(0);
 
