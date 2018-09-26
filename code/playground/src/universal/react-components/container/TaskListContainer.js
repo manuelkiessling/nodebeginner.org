@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import TaskList from "../presentational/TaskList"
+import { entityName as taskEntityName } from "../../entities/TaskEntity";
 
 const mapStateToProps = (state) => {
     return {
-        tasks: state.entities.tasks.calculatedEntities
+        tasks: state.entities[taskEntityName].calculatedEntities
     };
 };
 

@@ -2,8 +2,9 @@ import { combineReducers } from "redux";
 import { COMMAND_INITIALIZE, COMMAND_TASK_ADD } from "../redux-actions/commands";
 import { EVENT_ENTITY_EVENTS_FETCHING_SUCCEEDED } from "../redux-actions/events";
 import { mergeEntityEventArrays } from "../syncHelpers";
-import { entityName as taskEntityName, CreateTaskEntityEvent } from "../entities/TaskEntityEvents";
-import { createEntityEventFromObject, entityNamesToClasses } from "../entities/EntityEvents";
+import { entityName as taskEntityName } from "../entities/TaskEntity";
+import { CreateTaskEntityEvent } from "../entities/TaskEntityEvents";
+import { EntityEventFactory, entityNamesToClasses } from "../entities/EntityEventFactory";
 
 export const emptyState = () => {
 
@@ -43,7 +44,7 @@ const entities = (state = emptyState().entities, action) => {
             };
         }
         case EVENT_ENTITY_EVENTS_FETCHING_SUCCEEDED: {
-            const receivedEntityEvents = action.json.map((entityEventObject) => createEntityEventFromObject(entityEventObject));
+            const receivedEntityEvents = action.json.map((entityEventObject) => EntityEventFactory.createEntityEventFromObject(entityEventObject));
             const updatedAllEvents = mergeEntityEventArrays(state[taskEntityName].allEvents, receivedEntityEvents);
             const updatedCalculatedEntities = entityNamesToClasses[taskEntityName].entityClass.createFromEntityEvents(updatedAllEvents);
             return {

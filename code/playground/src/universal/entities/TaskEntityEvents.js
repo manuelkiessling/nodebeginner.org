@@ -1,8 +1,7 @@
 import uuidv1 from "uuid";
 import typeOf from "type-of-data";
-import { CreateEntityEvent, EntityEvent, UpdateEntityEvent } from "./EntityEvents";
-
-export const entityName = "Task";
+import { entityName } from "./TaskEntity";
+import { CreateEntityEvent, EntityEvent, UpdateEntityEvent } from "./EntityEvent";
 
 export class CreateTaskEntityEvent extends CreateEntityEvent {
     constructor(id, timestamp, entityId, payload) {

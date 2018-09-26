@@ -1,5 +1,5 @@
 import { emptyState } from "./redux-state/reducers";
-import { createEntityEventFromObject, entityNamesToClasses } from "./entities/EntityEvents";
+import { EntityEventFactory, entityNamesToClasses } from "./entities/EntityEventFactory";
 
 export const mergeEntityEventArrays = (entityEventsA, entityEventsB) => {
     if (!Array.isArray(entityEventsA)) {
@@ -60,12 +60,12 @@ export const mergeStatesAndRecalculate = (stateA, stateB) => {
         // EntityEvents from persistent storages are not typed, they are just plain objects.
         // Thus, we map them into "real" EntityEvent objects, which also verifies their correctness
         mergedState.entities[entityName].allEvents =
-            mergedState.entities[entityName].allEvents.map(_ => createEntityEventFromObject(_));
+            mergedState.entities[entityName].allEvents.map(_ => EntityEventFactory.createEntityEventFromObject(_));
 
-        mergedState.entities.tasks.unsyncedEvents =
-            mergedState.entities[entityName].unsyncedEvents.map(_ => createEntityEventFromObject(_));
+        mergedState.entities[entityName].unsyncedEvents =
+            mergedState.entities[entityName].unsyncedEvents.map(_ => EntityEventFactory.createEntityEventFromObject(_));
 
-        mergedState.entities[entityName].calculatedEntities = entityNamesToClasses[entityName].entityClass.createFromEntityEvents(mergedState.entities.tasks.allEvents);
+        mergedState.entities[entityName].calculatedEntities = entityNamesToClasses[entityName].entityClass.createFromEntityEvents(mergedState.entities[entityName].allEvents);
     }
 
     return mergedState;
