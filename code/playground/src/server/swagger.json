@@ -1,0 +1,128 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "",
+    "version": "1.0.0",
+    "title": "Node Beginner Book Playground Task Manager App API",
+    "termsOfService": "",
+    "contact": {
+      "email": "manuel@kiessling.net"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "127.0.0.1:10001",
+  "basePath": "/api",
+  "tags": [
+    {
+      "name": "EntityEvents",
+      "description": "Events for entities"
+    }
+  ],
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "paths": {
+    "/entity-events/": {
+      "post": {
+        "tags": [
+          "EntityEvents"
+        ],
+        "summary": "Add one or more entity events.",
+        "description": "",
+        "operationId": "addEntityEvents",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Array of entity event objects.",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/EntityEvent"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "EntityEvents"
+        ],
+        "summary": "Get a list of all entity events.",
+        "description": "",
+        "operationId": "getEntityEvents",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all entity events.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/EntityEvent"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "EntityEvent": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "create",
+            "update",
+            "delete"
+          ]
+        },
+        "timestamp": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "entityName": {
+          "type": "string",
+          "enum": [
+            "Task"
+          ]
+        },
+        "entityId": {
+          "type": "string",
+          "format": "uuid",
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+        },
+        "payload": {
+          "type": "object"
+        }
+      }
+    }
+  }
+}
