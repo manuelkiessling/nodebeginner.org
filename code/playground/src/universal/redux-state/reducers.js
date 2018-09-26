@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 import { COMMAND_INITIALIZE, COMMAND_TASK_ADD } from "../redux-actions/commands";
 import { EVENT_ENTITY_EVENTS_FETCHING_SUCCEEDED } from "../redux-actions/events";
-import { mergeEntityEventArrays } from "../syncHelpers";
+import { mergeEntityEventArrays } from "../entities/EntityEvent";
 import { TaskEntity } from "../entities/TaskEntity";
 import { CreateTaskEntityEvent } from "../entities/TaskEntityEvents";
 import { EntityEventFactory, entityNamesToClasses } from "../entities/EntityEventFactory";

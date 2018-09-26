@@ -48,3 +48,24 @@ export class UpdateEntityEvent extends EntityEvent {
         super(typeUpdate(), id, timestamp, entityName, entityId, payload);
     }
 }
+
+export const mergeEntityEventArrays = (entityEventsA, entityEventsB) => {
+    typeOf([
+        { entityEventsA, is: Array },
+        { entityEventsB, is: Array }
+    ]);
+
+    const mergedEntityEvents = entityEventsA.splice(0);
+
+    console.debug(`Merging entity events ${JSON.stringify(entityEventsB)} into ${JSON.stringify(mergedEntityEvents)}`);
+
+    entityEventsB.forEach((entityEventB) => {
+        if (!mergedEntityEvents.find((mergedEntityEvent) => mergedEntityEvent.id === entityEventB.id)) {
+            console.debug(`Adding entity event ${JSON.stringify(entityEventB)} to ${JSON.stringify(mergedEntityEvents)}`);
+            mergedEntityEvents.push(entityEventB)
+        } else {
+            console.debug(`Entity event ${JSON.stringify(entityEventB)} already in ${JSON.stringify(mergedEntityEvents)}`);
+        }
+    });
+    return mergedEntityEvents;
+};
