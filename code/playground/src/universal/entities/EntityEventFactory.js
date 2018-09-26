@@ -1,10 +1,10 @@
 import typeOf from "type-of-data";
-import { entityName as taskEntityName, TaskEntity } from "./TaskEntity";
+import { TaskEntity } from "./TaskEntity";
 import { CreateTaskEntityEvent, UpdateTaskEntityEvent } from "./TaskEntityEvents";
 import { eventTypes, typeCreate, typeUpdate } from "./EntityEvent";
 
 export const entityNamesToClasses = {
-    [taskEntityName]: { entityClass: TaskEntity }
+    [TaskEntity.entityName()]: { entityClass: TaskEntity }
 };
 
 export class EntityEventFactory {

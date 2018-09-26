@@ -1,9 +1,11 @@
 import { CreateTaskEntityEvent, UpdateTaskEntityEvent } from "./TaskEntityEvents";
 import typeOf from "type-of-data";
 
-export const entityName = "Task";
-
 export class TaskEntity {
+    static entityName() {
+        return "Task";
+    };
+
     constructor(id, title, lastModified, isImportant) {
         typeOf([
             { id, is: String },

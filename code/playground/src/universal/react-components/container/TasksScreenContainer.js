@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchEntityEventsThunk } from "../../redux-actions/thunks";
 import TasksScreen from "../presentational/TasksScreen";
-import { entityName as taskEntityName } from "../../entities/TaskEntity";
+import { TaskEntity } from "../../entities/TaskEntity";
 
 const mapStateToProps = (state) => {
     return {
-        tasks: state.entities[taskEntityName].calculatedEntities
+        tasks: state.entities[TaskEntity.entityName()].calculatedEntities
     };
 };
 

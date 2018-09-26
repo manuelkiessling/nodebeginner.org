@@ -1,13 +1,13 @@
 import uuidv1 from "uuid";
 import typeOf from "type-of-data";
-import { entityName } from "./TaskEntity";
+import { TaskEntity } from "./TaskEntity";
 import { CreateEntityEvent, EntityEvent, UpdateEntityEvent } from "./EntityEvent";
 
 export class CreateTaskEntityEvent extends CreateEntityEvent {
     constructor(id, timestamp, entityId, payload) {
         const { title } = payload;
         typeOf({ title, is: String });
-        super(id, timestamp, entityName, entityId, payload);
+        super(id, timestamp, TaskEntity.entityName(), entityId, payload);
         Object.seal(this);
         Object.freeze(this);
     }
@@ -31,7 +31,7 @@ export class UpdateTaskEntityEvent extends UpdateEntityEvent {
             { title, is: String, optional: true },
             { isImportant, is: Boolean, optional: true },
         ]);
-        super(id, timestamp, entityName, entityId, payload);
+        super(id, timestamp, TaskEntity.entityName(), entityId, payload);
         Object.seal(this);
         Object.freeze(this);
     }

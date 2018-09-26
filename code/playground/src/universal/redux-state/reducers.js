@@ -2,7 +2,7 @@ import { combineReducers } from "redux";
 import { COMMAND_INITIALIZE, COMMAND_TASK_ADD } from "../redux-actions/commands";
 import { EVENT_ENTITY_EVENTS_FETCHING_SUCCEEDED } from "../redux-actions/events";
 import { mergeEntityEventArrays } from "../syncHelpers";
-import { entityName as taskEntityName } from "../entities/TaskEntity";
+import { TaskEntity } from "../entities/TaskEntity";
 import { CreateTaskEntityEvent } from "../entities/TaskEntityEvents";
 import { EntityEventFactory, entityNamesToClasses } from "../entities/EntityEventFactory";
 
@@ -31,12 +31,12 @@ const entities = (state = emptyState().entities, action) => {
             return emptyState().entities;
         case COMMAND_TASK_ADD: {
             const createTaskEntityEvent = CreateTaskEntityEvent.withTitle(action.taskTitle);
-            const updatedAllEvents = state[taskEntityName].allEvents.concat(createTaskEntityEvent);
-            const updatedUnsyncedEvents = state[taskEntityName].unsyncedEvents.concat(createTaskEntityEvent);
-            const updatedCalculatedEntities = entityNamesToClasses[taskEntityName].entityClass.createFromEntityEvents(updatedAllEvents);
+            const updatedAllEvents = state[TaskEntity.entityName()].allEvents.concat(createTaskEntityEvent);
+            const updatedUnsyncedEvents = state[TaskEntity.entityName()].unsyncedEvents.concat(createTaskEntityEvent);
+            const updatedCalculatedEntities = entityNamesToClasses[TaskEntity.entityName()].entityClass.createFromEntityEvents(updatedAllEvents);
             return {
                 ...state,
-                [taskEntityName]: {
+                [TaskEntity.entityName()]: {
                     allEvents: updatedAllEvents,
                     unsyncedEvents: updatedUnsyncedEvents,
                     calculatedEntities: updatedCalculatedEntities
@@ -45,12 +45,12 @@ const entities = (state = emptyState().entities, action) => {
         }
         case EVENT_ENTITY_EVENTS_FETCHING_SUCCEEDED: {
             const receivedEntityEvents = action.json.map((entityEventObject) => EntityEventFactory.createEntityEventFromObject(entityEventObject));
-            const updatedAllEvents = mergeEntityEventArrays(state[taskEntityName].allEvents, receivedEntityEvents);
-            const updatedCalculatedEntities = entityNamesToClasses[taskEntityName].entityClass.createFromEntityEvents(updatedAllEvents);
+            const updatedAllEvents = mergeEntityEventArrays(state[TaskEntity.entityName()].allEvents, receivedEntityEvents);
+            const updatedCalculatedEntities = entityNamesToClasses[TaskEntity.entityName()].entityClass.createFromEntityEvents(updatedAllEvents);
             return {
                 ...state,
-                [taskEntityName]: {
-                    ...state[taskEntityName],
+                [TaskEntity.entityName()]: {
+                    ...state[TaskEntity.entityName()],
                     allEvents: updatedAllEvents,
                     calculatedEntities: updatedCalculatedEntities
                 }
