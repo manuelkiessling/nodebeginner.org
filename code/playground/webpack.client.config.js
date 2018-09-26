@@ -148,7 +148,7 @@ module.exports = {
                 secure: false
             }
         },
-        historyApiFallback: true, // required to make serving react-router routes like /tasks work
+        historyApiFallback: true, // required to make serving react-router routes like /notes work
         host: '127.0.0.1',
         port: 10000
     },

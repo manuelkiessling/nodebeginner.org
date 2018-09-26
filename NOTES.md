@@ -53,19 +53,19 @@ package.json:
 
 - Redux Actions are either simple and serializable objects, or functions
 - Redux action creators create either event actions (type object), command actions (type object), or thunk actions (type function)
-- Event action creators are past tense ("succededFetchTasks")
-- Command and thunk action creators are present tense ("addTask")
+- Event action creators are past tense ("succededFetchNotes")
+- Command and thunk action creators are present tense ("addNote")
 - Commands and events are synchronous, while thunks are asynchronous and can have side effects like API calls, and dispatch other actions
 
-App state semantics can be either "atomic" or "expressive". Atomic e.g. means that a thunk which fetches tasks then atomically dispatches the actions that change the state step-by-step, in form of commands:
+App state semantics can be either "atomic" or "expressive". Atomic e.g. means that a thunk which fetches notes then atomically dispatches the actions that change the state step-by-step, in form of commands:
 - dispatch(stopFetchSpinner)
-- dispatch(addTasks)
+- dispatch(addNotes)
 
-If using the expressive approach, thunks dispatch only one action instead of multiple steps, of type event, e.g. "succeededFetchTasks", and the reducer then changes the state all at one (stop the spinner, add the tasks etc.)
+If using the expressive approach, thunks dispatch only one action instead of multiple steps, of type event, e.g. "succeededFetchNotes", and the reducer then changes the state all at one (stop the spinner, add the notes etc.)
 Boils down to personal taste, but I like the expressive approach better.
 
-Action names: `<COMMAND|EVENT>_<ENTITY[S]>_<OPERATION>[_<EVENTNAME>]` -> `COMMAND_TASK_ADD`, `EVENT_TASKS_FETCHING_SUCCEEDED`
-Action creator names: `[<eventname>]<operation|Operation><Entity><Command|Event|Thunk>` -> `addTaskCommand`, `startedFetchingEntityEventsEvent`, `fetchTasksThunk`
+Action names: `<COMMAND|EVENT>_<ENTITY[S]>_<OPERATION>[_<EVENTNAME>]` -> `COMMAND_NOTE_ADD`, `EVENT_NOTES_FETCHING_SUCCEEDED`
+Action creator names: `[<eventname>]<operation|Operation><Entity><Command|Event|Thunk>` -> `addNoteCommand`, `startedFetchingEntityEventsEvent`, `fetchNotesThunk`
 
 
 

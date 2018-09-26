@@ -2,18 +2,18 @@ import React from "react";
 import PropTypes from "prop-types";
 import MuiListItem from "@material-ui/core/ListItem";
 import MuiTypography from "@material-ui/core/Typography";
-import { TaskEntity } from "../../entities/TaskEntity";
+import { NoteEntity } from "../../entities/NoteEntity";
 
-const TaskListItem = ({ task }) => (
+const NoteListItem = ({ note }) => (
     <MuiListItem>
         <MuiTypography variant="body1">
-            {task.id}: {task.title}
+            {note.id}: {note.title}
         </MuiTypography>
     </MuiListItem>
 );
 
-TaskListItem.propTypes = {
-    task: PropTypes.instanceOf(TaskEntity)
+NoteListItem.propTypes = {
+    note: PropTypes.instanceOf(NoteEntity)
 };
 
-export default TaskListItem;
+export default NoteListItem;

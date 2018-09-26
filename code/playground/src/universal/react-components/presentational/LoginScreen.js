@@ -11,7 +11,7 @@ const LoginScreen = () => (
             <MuiCardContent>
                 <MuiButton
                     component={Link}
-                    to="/tasks"
+                    to="/notes"
                     color="primary"
                     variant="raised"
                 >

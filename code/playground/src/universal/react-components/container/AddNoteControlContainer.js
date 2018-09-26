@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import uuidv4 from "uuid";
-import AddTaskControl from "../presentational/AddTaskControl"
-import { addTaskCommand } from "../../redux-actions/commands"
+import AddNoteControl from "../presentational/AddNoteControl"
+import { addNoteCommand } from "../../redux-actions/commands"
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        dispatchAddTask: (taskTitle) => dispatch(addTaskCommand(taskTitle))
+        dispatchAddNote: (noteTitle) => dispatch(addNoteCommand(noteTitle))
     };
 };
 
-class AddTaskControlContainer extends Component {
+class AddNoteControlContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -28,16 +28,16 @@ class AddTaskControlContainer extends Component {
         event.preventDefault();
         const { title } = this.state;
         const id = uuidv4();
-        this.props.dispatchAddTask(title);
+        this.props.dispatchAddNote(title);
         this.setState({ title: "" });
     }
 
     render() {
         const { title } = this.state;
         return (
-            <AddTaskControl handleSubmit={this.handleSubmit} handleChange={this.handleChange} title={title} />
+            <AddNoteControl handleSubmit={this.handleSubmit} handleChange={this.handleChange} title={title} />
         );
     }
 }
 
-export default connect(null, mapDispatchToProps)(AddTaskControlContainer);
+export default connect(null, mapDispatchToProps)(AddNoteControlContainer);

@@ -65,7 +65,7 @@ server.get("/sw-precache-appshell", (req, res) => {
 });
 
 
-server.get(/^\/(tasks|)(\?.*)*$/, (req, res) => {
+server.get(/^\/(notes|)(\?.*)*$/, (req, res) => {
 
     console.debug("__dirname:" + __dirname);
     console.debug("path.resolve(__dirname):" + path.resolve(__dirname));

@@ -29,7 +29,7 @@ describe("thunks", () => {
                 { type: events.EVENT_ENTITY_EVENTS_FETCHING_STARTED },
                 { type: events.EVENT_ENTITY_EVENTS_FETCHING_SUCCEEDED, json: [] }
             ];
-            const store = mockStore({ tasks: [] });
+            const store = mockStore({ notes: [] });
 
             return store.dispatch(thunks.fetchEntityEventsThunk()).then(() => {
                 expect(store.getActions()).toEqual(expectedActions)

@@ -3,7 +3,7 @@
   "info": {
     "description": "",
     "version": "1.0.0",
-    "title": "Node Beginner Book Playground Task Manager App API",
+    "title": "Node Beginner Book Playground Note Manager App API",
     "termsOfService": "",
     "contact": {
       "email": "manuel@kiessling.net"
@@ -111,7 +111,7 @@
         "entityName": {
           "type": "string",
           "enum": [
-            "Task"
+            "Note"
           ]
         },
         "entityId": {

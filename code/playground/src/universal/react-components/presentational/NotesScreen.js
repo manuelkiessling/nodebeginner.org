@@ -3,23 +3,23 @@ import MuiCard from "@material-ui/core/Card";
 import MuiCardContent from "@material-ui/core/CardContent";
 import MuiCardHeader from "@material-ui/core/CardHeader";
 import MuiGrid from "@material-ui/core/Grid";
-import AddTaskControlContainer from "../container/AddTaskControlContainer";
-import TaskListContainer from "../container/TaskListContainer";
+import AddNoteControlContainer from "../container/AddNoteControlContainer";
+import NoteListContainer from "../container/NoteListContainer";
 
-const TasksScreen = () => (
+const NotesScreen = () => (
     <MuiCard>
-        <MuiCardHeader title="Your tasks" />
+        <MuiCardHeader title="Your notes" />
 
         <MuiCardContent>
 
             <MuiGrid container direction="column">
 
                 <MuiGrid item>
-                    <AddTaskControlContainer/>
+                    <AddNoteControlContainer/>
                 </MuiGrid>
 
                 <MuiGrid item>
-                    <TaskListContainer/>
+                    <NoteListContainer/>
                 </MuiGrid>
 
             </MuiGrid>
@@ -29,4 +29,4 @@ const TasksScreen = () => (
     </MuiCard>
 );
 
-export default TasksScreen;
+export default NotesScreen;

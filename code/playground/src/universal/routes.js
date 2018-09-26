@@ -1,5 +1,5 @@
 import LoginScreen from "./react-components/presentational/LoginScreen";
-import TasksScreenContainer from "./react-components/container/TasksScreenContainer";
+import NotesScreenContainer from "./react-components/container/NotesScreenContainer";
 
 export default [
     {
@@ -8,8 +8,8 @@ export default [
         exact: true
     },
     {
-        path: "/tasks",
-        component: TasksScreenContainer,
+        path: "/notes",
+        component: NotesScreenContainer,
         exact: true
     }
 ];

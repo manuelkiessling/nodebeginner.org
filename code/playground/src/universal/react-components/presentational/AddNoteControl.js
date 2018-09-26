@@ -5,7 +5,7 @@ import MuiFormControl from "@material-ui/core/FormControl";
 import MuiInputLabel from "@material-ui/core/InputLabel";
 import MuiInput from "@material-ui/core/Input";
 
-const AddTaskControl = ({ handleSubmit, handleChange, title }) => (
+const AddNoteControl = ({ handleSubmit, handleChange, title }) => (
     <form onSubmit={handleSubmit}>
         <MuiFormControl margin="normal">
             <MuiInputLabel htmlFor="title">Title</MuiInputLabel>
@@ -19,10 +19,10 @@ const AddTaskControl = ({ handleSubmit, handleChange, title }) => (
     </form>
 );
 
-AddTaskControl.propTypes = {
+AddNoteControl.propTypes = {
     handleSubmit: PropTypes.func,
     handleChange: PropTypes.func,
     title: PropTypes.string
 };
 
-export default AddTaskControl;
+export default AddNoteControl;

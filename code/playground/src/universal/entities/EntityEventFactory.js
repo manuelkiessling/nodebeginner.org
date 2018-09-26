@@ -1,10 +1,10 @@
 import typeOf from "type-of-data";
-import { TaskEntity } from "./TaskEntity";
-import { CreateTaskEntityEvent, UpdateTaskEntityEvent } from "./TaskEntityEvents";
+import { NoteEntity } from "./NoteEntity";
+import { CreateNoteEntityEvent, UpdateNoteEntityEvent } from "./NoteEntityEvents";
 import { eventTypes, typeCreate, typeUpdate } from "./EntityEvent";
 
 export const entityNamesToClasses = {
-    [TaskEntity.entityName()]: { entityClass: TaskEntity }
+    [NoteEntity.entityName()]: { entityClass: NoteEntity }
 };
 
 export class EntityEventFactory {
@@ -30,8 +30,8 @@ export class EntityEventFactory {
         }
 
         const classes = {
-            "CreateTaskEntityEvent": CreateTaskEntityEvent,
-            "UpdateTaskEntityEvent": UpdateTaskEntityEvent
+            "CreateNoteEntityEvent": CreateNoteEntityEvent,
+            "UpdateNoteEntityEvent": UpdateNoteEntityEvent
         };
         const className = `${type.charAt(0).toUpperCase() + type.substr(1)}${entityName}EntityEvent`;
 

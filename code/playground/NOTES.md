@@ -35,27 +35,27 @@
 
 * Route: /login-form
 * REST: POST /api/sessiontokens/
-* Redirects to: Screen **Tasks**
+* Redirects to: Screen **Notes**
 
 
-### Screen "Tasks"
+### Screen "Notes"
 
-* Route: /tasks/
+* Route: /notes/
 
-#### AddTaskContainer
+#### AddNoteContainer
 
-##### AddTaskForm
+##### AddNoteForm
 
-* Route: /tasks/add-form
-* REST: POST /api/tasks/
+* Route: /notes/add-form
+* REST: POST /api/notes/
 
-#### TaskListContainer
-##### TaskList
-###### TaskListItem
+#### NoteListContainer
+##### NoteList
+###### NoteListItem
 
-* Links to: /tasks/:id
+* Links to: /notes/:id
 
-####### TaskListItemDetails
+####### NoteListItemDetails
 
-####### RemoveTaskControl
-######## RemoveTaskControlModal
+####### RemoveNoteControl
+######## RemoveNoteControlModal
