@@ -7,7 +7,7 @@ import "typeface-roboto";
 import { createStoreFromInitialState, mergeStatesAndRecalculate } from "../universal/redux-state/store";
 import AppContainer from "../universal/react-components/container/AppContainer";
 import "../universal/styling/app.scss";
-import muiTheme from "../universal/styling/mui-theme"
+import muiTheme from "../universal/styling/muiTheme"
 import { getEnvVar } from "../universal/utils/env";
 import { retrieveStateFromLocalStorage, setUpLocalStorageStoreSubscription } from "./localStorage";
 

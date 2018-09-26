@@ -14,7 +14,7 @@ import routes from "../universal/routes";
 import { SheetsRegistry } from "react-jss/lib/jss";
 import JssProvider from "react-jss/lib/JssProvider";
 import { MuiThemeProvider, createGenerateClassName } from "@material-ui/core/styles";
-import muiTheme from "../universal/styling/mui-theme";
+import muiTheme from "../universal/styling/muiTheme";
 import { createStoreFromInitialState } from "../universal/redux-state/store";
 
 sourceMapSupport.install();
