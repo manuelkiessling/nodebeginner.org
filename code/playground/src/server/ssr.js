@@ -22,7 +22,7 @@ sourceMapSupport.install();
 const server = express();
 
 const staticPath = path.resolve(__dirname); // Webpack will store the bundled server.js
-                                            // file into dist, where the other static stuff ends up, too
+                                            // file into /dist, where the other static stuff ends up, too
 
 
 server.get(/^\/server\.(.*)/, (req, res) => {

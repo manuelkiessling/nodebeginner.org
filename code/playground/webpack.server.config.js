@@ -30,7 +30,7 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin(pathsToClean, cleanOptions),
     ],
-    entry: "./src/server/index.js",
+    entry: "./src/server/ssr.js",
     output: { filename: "server.js" },
     devtool: "source-map",
     node: {
