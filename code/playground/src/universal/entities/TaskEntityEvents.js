@@ -1,4 +1,4 @@
-import uuidv1 from "uuid";
+import uuidv4 from "uuid";
 import typeOf from "type-of-data";
 import { TaskEntity } from "./TaskEntity";
 import { CreateEntityEvent, EntityEvent, UpdateEntityEvent } from "./EntityEvent";
@@ -18,7 +18,7 @@ export class CreateTaskEntityEvent extends CreateEntityEvent {
         return new CreateTaskEntityEvent(
             EntityEvent.createId(),
             EntityEvent.getCurrentTimestamp(),
-            uuidv1(),
+            uuidv4(),
             { title: title }
         );
     }

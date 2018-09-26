@@ -10,7 +10,7 @@ export const fetchEntityEventsThunk = () => (dispatch) => {
         .then((response) => response.json())
         .then((json) => {
             dispatch(succeededFetchingEntityEventsEvent(json));
-            console.debug("Done fetching tasks.");
+            console.debug("Done fetching entity events.");
         })
         .catch((e) => console.error(e));
 };

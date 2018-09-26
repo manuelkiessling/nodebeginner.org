@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import uuidv1 from "uuid";
+import uuidv4 from "uuid";
 import AddTaskControl from "../presentational/AddTaskControl"
 import { addTaskCommand } from "../../redux-actions/commands"
 
@@ -27,7 +27,7 @@ class AddTaskControlContainer extends Component {
     handleSubmit(event) {
         event.preventDefault();
         const { title } = this.state;
-        const id = uuidv1();
+        const id = uuidv4();
         this.props.dispatchAddTask(title);
         this.setState({ title: "" });
     }

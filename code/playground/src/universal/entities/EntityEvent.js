@@ -1,4 +1,4 @@
-import uuidv1 from "uuid";
+import uuidv4 from "uuid";
 import typeOf from "type-of-data";
 
 export const typeCreate = () => "create";
@@ -29,7 +29,7 @@ export class EntityEvent {
     }
 
     static createId() {
-        return uuidv1();
+        return uuidv4();
     }
 
     static getCurrentTimestamp() {
