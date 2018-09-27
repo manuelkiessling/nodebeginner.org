@@ -346,7 +346,7 @@ For your consideration: Hello, World
 
 Just like we called the `log` function on `console` before, we can now call a function `log` on our own `politeConsole` (which in turn calls `console.log`` of course).
 
-This code can be improved, though. We already saw that Node.js supports version ES6 of JavaScript, which gives us *let* and *const*. It also allows to write function declarations more succinctly, and instead of concatenating strings with the `+` operator, we can use string templates using the backtick operator `` ` ``:
+This code can be improved, though. We already saw that Node.js supports the ES6 language version of JavaScript, which gives us *let* and *const*. It also allows to write function declarations more succinctly, and instead of concatenating strings with the `+` operator, we can use string templates using the backtick operator `` ` ``:
 
 ```javascript
 const politeConsole = {
@@ -354,4 +354,26 @@ const politeConsole = {
 };
 
 politeConsole.log("Hello, World");
+```
+
+Let's now take a look at something that is not typically possible or commonly done in "conventional" languages like PHP or Java, but is very natural in JavaScript.
+
+Assume that while we want our keep our politeConsole object in charge of actually printing text to the console, we want more freedom regarding the "layouting" of the text that is written out.
+
+For example, we might sometimes want to write out a console message in ALL UPPERCASE. We could call the `politeConsole.log` function as follows:
+
+```javascript
+const politeConsole = {
+  log: function(text) {
+    console.log("For your consideration: " + text);
+  }
+};
+
+politeConsole.log("Hello, World".toUpperCase());
+```
+
+but this would result in
+
+```text
+For your consideration: " + text
 ```
