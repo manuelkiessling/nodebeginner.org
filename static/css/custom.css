@@ -91,6 +91,12 @@ span.filename.beforecode {
     padding: 8px 20px 8px 22px;
 }
 
+code {
+    background-color: rgba(64, 224, 208, 0.25);
+    padding-left: 0.4em;
+    padding-right: 0.4em;
+}
+
 pre {
     margin-top: -22px;
 }
