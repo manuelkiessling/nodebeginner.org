@@ -97,6 +97,12 @@ code {
     padding-right: 0.4em;
 }
 
+pre > code {
+    background-color: initial;
+    padding-left: 0;
+    padding-right: 0;
+}
+
 pre {
     margin-top: -22px;
 }
