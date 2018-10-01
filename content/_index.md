@@ -358,7 +358,7 @@ politeConsole.log("Hello, World");
 
 Let's now take a look at something that is not typically possible or commonly done in "conventional" languages like PHP or Java, but is very natural in JavaScript.
 
-Assume that while we want our keep our politeConsole object in charge of actually printing text to the console, we want more freedom regarding the "layouting" of the text that is written out.
+Assume that while we want our keep our `politeConsole` object in charge of actually printing text to the console, we want more freedom regarding the "typography" of the text that is written out.
 
 For example, we might sometimes want to write out a console message in ALL UPPERCASE. We could call the `politeConsole.log` function as follows:
 
@@ -375,5 +375,166 @@ politeConsole.log("Hello, World".toUpperCase());
 but this would result in
 
 ```text
-For your consideration: " + text
+For your consideration: HELLO, WORLD
 ```
+
+This is not what we want - we want the whole text to be written in all uppercase, like this:
+
+```text
+FOR YOUR CONSIDERATION: HELLO, WORLD
+```
+
+We could, of course, extend `politeConsole.log` accordingly - for example, by adding a boolean parameter `uppercase` that defaults to `false`, but can be passed with `true` by a function caller.
+
+While this is not inherently wrong, it is not very flexible. What if later on we want to be able to have our log message written out all lowercase? Or base64? Or have it transformed into a JSON representation?
+
+We would have to touch `politeConsole` again and again, and the signature of function `politeConsole.log` would become more and more complex.
+
+But there is another, more flexible solution. Instead of having `politeConsole` decide on text formatting, we generalize the fact that the "polite" message might be transformed. The transformation itself however is done outside of `politeConsole`.
+
+This can be achieved with the following steps:
+
+- extend `politeConsole.log` with a parameter `transform` that takes a function
+- instead of directly writing out the `"For your consideration: " + text` with `console.log`, write out the result of `transform("For your consideration: " + text)` if `transform` is a function
+- when calling `politeConsole.log`, callers optionally pass a transform function
+
+This is possible because in JavaScript, functions are a so-called "first class citizen". You can define and call functions like in other languages, too, but you are not limited to that. Function can be passed around and passed as parameters to other functions, just like passing numbers or strings.
+
+Here is how this looks in our example:
+
+```javascript
+const politeConsole = {
+  log: function(text, transform) {
+    let politeText = "For your consideration: " + text;
+    if (typeof(transform) === "function") {
+      politeText = transform(politeText);
+    }
+    console.log(politeText);
+  }
+};
+
+function upperCaseText(text) {
+    return text.toUpperCase();
+}
+
+politeConsole.log("Hello, World", upperCaseText);
+
+politeConsole.log("Hello, World");
+```
+
+If you this, the output is as follows:
+
+```text
+FOR YOUR CONSIDERATION: HELLO, WORLD
+For your consideration: Hello, World
+```
+
+There's quite a lot of new stuff going on in a few lines of code, so let's dissect it step by step.
+
+The `log` function got an additional parameter, `transform`. In the function body, we analyze the type of the parameter that has been passed to us under that name. We check if it is a function, using `typeof`. If it is indeed a function, and not `null` or `undefined` or a `string` etc., then we know we can call it.
+
+Which is what we do in this case: We call the `transform` function that got passed to us, passing, in turn, our "politelized" text. Note how `politeConsole.log` doesn't know anything about the passed function (other than the fact that it is, indeed, a function).
+
+The result of running `politeText` through `transform` is then re-assigned to back to `politeText`, which is possible because we defined it with `let` instead of `const`.
+
+If `transform` is not a function (e.g. because the caller hasn't passed anything for this parameter, or passed something else, like a string), then `politeText` is not transformed. Transformed or not, the final `politeText` is finally printed to the screen with `console.log`.
+
+On line 15, we make use of this new capability. We call `politeConsole.log` with two parameters: the text itself, and the name of the function that should be used to transform the output before it is written to the console.
+
+In this case, it's a simple function declared on lines 11-13. It takes a parameter `text`, and returns the uppercase version of that text.
+
+Note how on line 15, the second function call parameter is `upperCaseText`, not `upperCaseText()` - it is important to not add the parentheses here! If we would add those, like this:
+
+
+```javascript
+politeConsole.log("Hello, World", upperCaseText());
+```
+
+then what would be passed to `politeConsole.log` as the second parameter `transform` is not the function `upperCaseText`, but instead the **result** of calling `upperCaseText()` - which, in this case, would result in `TypeError: Cannot read property 'toUpperCase' of undefined`, because line 12, `return text.toUpperCase()`, cannot work if nothing has been passed for parameter `text` of function `upperCaseText`.
+
+In other words: Always make sure to pass the **function**, not the **function result**.
+
+The code above works as intended, but can be improved significantly. For example, we don't actually need to explicitly declare and name the `upperCaseText` function - we can "inline" this declaration, like so:
+
+```javascript
+const politeConsole = {
+  log: function(text, transform) {
+    let politeText = "For your consideration: " + text;
+    if (typeof(transform) === "function") {
+      politeText = transform(politeText);
+    }
+    console.log(politeText);
+  }
+};
+
+politeConsole.log("Hello, World", function(text) { return text.toUpperCase(); });
+```
+
+This way, we declared an *anonymous function* right where we want to pass it. It doesn't exist outside of the function call to `politeConsole.log` - it is declared inline, passed, used, and then discarded. 
+
+And thanks to the new ES6 language features of JavaScript, we can further refactor the code and make it even more concise (I'm only showing the `politeConsole.log` now):
+
+
+```javascript
+politeConsole.log("Hello, World", text => text.toUpperCase());
+```
+
+No `function` keyword needed - the new `=>`, or "arrow" operator makes this a function declaration.
+
+No need to put the function parameter in `()` parentheses, as long as it's the only parameter.
+
+No need to put the function body in `{}` brackets, as long as it contains only one line.
+
+No need for a `return` statement - in a body without brackets, the result of the body is implicitly returned.
+
+This syntax is not limited to anonymous function declarations - here are a couple of function declarations that are all valid:
+
+```javascript
+function upper1(text) {
+  return text.toUpperCase();
+}
+
+const upper2 = text => text.toUpperCase();
+
+const lowerAndUpper =
+  (lowertext, uppertext) => lowertext.toLowerCase() + uppertext.toUpperCase();
+
+const complexLowerAndUpper = (lowertext, uppertext) => {
+  if (lowertext === "") {
+    console.error("lowertext parameter is empty!");
+    return "";
+  } else {
+    return lowertext.toLowerCase() + uppertext.toUpperCase();
+  }
+};
+
+console.log(upper1("upper"));
+
+console.log(upper2("upper"));
+
+console.log(lowerAndUpper("lower", "upper"));
+
+console.log(complexLowerAndUpper("lower", "upper"));
+
+console.log(complexLowerAndUpper("", "upper"));
+```
+
+From here on, we will declare all functions, anonymous and named, using the new and concise arrow operator syntax, and named function variables will be declared as `const`.
+
+That said, we can apply a final optimization to our code:
+
+```javascript
+const politeConsole = {
+  log: (text, transform) => {
+    let politeText = "For your consideration: " + text;
+    if (typeof(transform) === "function") {
+      politeText = transform(politeText);
+    }
+    console.log(politeText);
+  }
+};
+
+politeConsole.log("Hello, World", function(text) { return text.toUpperCase(); });
+```
+
+Now, even the function declaration on line 2 uses the short form.
