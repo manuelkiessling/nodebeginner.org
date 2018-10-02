@@ -546,3 +546,32 @@ With this, even the function declaration on line 2 uses the short form.
 
 
 # A first real Node.js application
+
+So, this has been a nice first trip into Node.js land, but now it's time to get more serious. Let's write a first real app that does something useful.
+
+While it is possible to write nearly any kind of application imaginable with Node.js, including 3D applications, Node.js isn't a good fit for every type of application.
+
+One area that is very natural for Node.js software development is network servers. Node.js comes with all the batteries included that make writing an HTTP webserver relatively straight-forward.
+
+Thus, this is our next step: writing a Node.js server application that responds to HTTP requests.
+
+
+## The structure of Node.js applications
+
+Before we dive into the actual code base of such an application, let's take a moment and have a look at how the code bases of Node.js applications are structured.
+
+Of course, for small experiments or single-purpose scripts, putting all the JavaScript code into a single file, like we did in *helloworld.js*, is perfectly fine. Even for huge and complex code bases, there is nothing that forbids putting all the tens of thousands of lines of code into just one file. But as in practically any other programming language out there, this wouldn't exactly make life easier.
+
+The primary structural component of Node.js code bases is the *module*, and the module system allows to split large code bases into multiple files.
+
+In fact, we already came in contact with a module - the `console` object is part of the already included 
+
+
+There are three categories of modules that we can use in our applications:
+
+- Modules that ship with Node.js itself, for example `http`
+- Modules that are provided by third parties and that we make available in our own code bases via dependency management tools like NPM
+- Modules that we write ourselves
+
+We will get in contact with all three types of modules in due time.
+
