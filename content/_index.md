@@ -564,14 +564,46 @@ Of course, for small experiments or single-purpose scripts, putting all the Java
 
 The primary structural component of Node.js code bases is the *module*, and the module system allows to split large code bases into multiple files.
 
-In fact, we already came in contact with a module - the `console` object is part of the already included 
-
-
 There are three categories of modules that we can use in our applications:
 
-- Modules that ship with Node.js itself, for example `http`
+- Modules that ship with Node.js
 - Modules that are provided by third parties and that we make available in our own code bases via dependency management tools like NPM
 - Modules that we write ourselves
 
 We will get in contact with all three types of modules in due time.
 
+Creating and using modules ourselves is simple. The central idea behind the module system is that the code in one file *exports* elements (e.g. an object), and code in another file *imports* the exported element, which enables it to use that element as if it was declared in the same file.
+
+We can transform the code file that defines `politeConsole` into a module by exporting the `politeConsole` object, and import and use that object in another file.
+
+To do so, rename *helloworld.js* into *politeConsole.js* and edit its contents, resulting in the following:
+
+```javascript
+const politeConsole = {
+  log: (text, transform) => {
+    let politeText = "For your consideration: " + text;
+    if (typeof(transform) === "function") {
+      politeText = transform(politeText);
+    }
+    console.log(politeText);
+  }
+};
+
+module.exports = politeConsole;
+```
+
+To transform our code file into a module that can be imported elsewhere, we simply removed any code outside of the `politeConsole` definition, and we assigned the `politeConsole` object to the attribute `exports` on special object `module`. This object is what makes the module system tick in Node.js - whatever we assign to its `exports` attribute in one file can be imported into and used in other code files.
+
+To illustrate this, again create a file *helloworld.js* (remember that we renamed the existing *helloworld.js* file to *politeConsole.js* before).
+
+Put the following code into *helloworld.js*:
+
+```javascript
+const politeConsole = require("./politeConsole");
+
+politeConsole("Hello, World");
+```
+
+As you can see, we declare a const `politeConsole`, but instead of defining its value ourselves, we assign a value using the special function `require`. This function takes the source of a module as its parameter.
+
+For internal Node.js modules and modules that we manage as external dependencies (more on this later), the source of a module is simply its name. But because we want to refer to our own module in file *politeConsole.js*, we pass t
