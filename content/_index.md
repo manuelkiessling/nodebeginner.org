@@ -601,9 +601,78 @@ Put the following code into *helloworld.js*:
 ```javascript
 const politeConsole = require("./politeConsole");
 
-politeConsole("Hello, World");
+politeConsole.log("Hello, World");
 ```
 
-As you can see, we declare a const `politeConsole`, but instead of defining its value ourselves, we assign a value using the special function `require`. This function takes the source of a module as its parameter.
+As you can see, we declare a const `politeConsole`, but instead of *defining* its value ourselves, we *assign* a value using the special function `require`. This function takes the source of a module as its parameter.
 
-For internal Node.js modules and modules that we manage as external dependencies (more on this later), the source of a module is simply its name. But because we want to refer to our own module in file *politeConsole.js*, we pass t
+For internal Node.js modules and modules that we manage as external dependencies (more on this later), the source of a module is simply its name. But because we want to refer to our own module in file *politeConsole.js*, we pass the path to the file containing the module as its source. Because file *helloworld.js* and file *politeConsole* are located in the same folder, and because the file extension isn't required, `./politeConsole` does the job. Feel free to use the full path, `./politeConsole.js`, if you like. Throughout the book, we will leave the file extension out.
+
+I would like to stress that really nothing special happens by exporting stuff in a module via `module.exports` and importing it via `require`. For example, instead of passing the whole object, you can pass only the function defined on its `log` attribute:
+
+```javascript
+// politeconsole.js
+
+const politeConsole = {
+  log: (text, transform) => {
+    let politeText = "For your consideration: " + text;
+    if (typeof(transform) === "function") {
+      politeText = transform(politeText);
+    }
+    console.log(politeText);
+  }
+};
+
+module.exports = politeConsole.log;
+```
+
+```javascript
+// helloworld.js
+
+const politeConsoleLog = require("./politeConsole");
+
+politeConsoleLog("Hello, World");
+```
+
+Furthermore, you may want to export multiple things from a module if it defines more than one thing - no problem, `module.exports` can be an object with multiple attributes:
+
+```javascript
+// politeconsole.js
+
+const normalPoliteConsole = {
+  log: (text, transform) => {
+    let politeText = "For your consideration: " + text;
+    if (typeof(transform) === "function") {
+      politeText = transform(politeText);
+    }
+    console.log(politeText);
+  }
+};
+
+
+const extremePoliteConsole = {
+  log: (text, transform) => {
+    let politeText = "For your consideration, your highness: " + text;
+    if (typeof(transform) === "function") {
+      politeText = transform(politeText);
+    }
+    console.log(politeText);
+  }
+};
+
+
+module.exports = {
+  normalPoliteConsole: normalPoliteConsole,
+  extremePoliteConsole: extremePoliteConsole
+};
+```
+
+```javascript
+// helloworld.js
+
+const politeConsole = require("./politeConsole");
+
+politeConsole.normalPoliteConsole.log("Hello, World");
+politeConsole.extremePoliteConsole.log("Hello, World");
+```
+
