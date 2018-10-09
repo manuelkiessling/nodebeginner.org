@@ -729,22 +729,33 @@ console.log(obj.b);
 
 cannot work because there is no way for the JavaScript interpreter to find out what you mean when accessing `obj.b`.
 
+Even more sophisticated patterns of exporting and importing things via the module system are available, and we will get to those later in the book.
 
-## Importing and using built-in Node.js modules
+
+## Creating an HTTP server using a built-in Node.js module
 
 For our first real Node.js application, we will use what we learned about modularization and split our code base into multiple files, which will avoid ending up with one large file full of spaghetti code.
 
-Additionally, we will use internal Node.js modules. Because our mission is writing a Node.js server application that responds to HTTP requests, and because Node.js provides us with a module that allows to do just that, let's start on a blank canvas and create a new project folder *webserver*, with an *index.js* file that imports and uses the `http` module:
+Additionally, we will now also use internal Node.js modules. Because our mission is writing a Node.js server application that responds to HTTP requests, and because Node.js provides us with an internal module that allows to do just that, let's start on a blank canvas and create a new project folder *webserver*, with an *index.js* file that imports and uses the `http` module:
 
 ```javascript
 const http = require("http");
 
-http.createServer(function(request, response) {
+http.createServer((request, response) => {
     response.writeHead(200, {"Content-Type": "text/plain"});
-    response.write("Hello World");
+    response.write("Hello, World");
     response.end();
-}).listen(8888);
+}).listen(8000);
 ```
+
+As you can see, we declare a *const* named `http`, and assign it the value that results from calling `require("http")`, with *"http"* being the name of the internal Node.js module we want to use. In this case, it is not a file path name - it's just a name that Node.js knows how to resolve to this module. Of course, the code for the module does live in a file at the end of the day - have a look at [/lib/http.js in the Node.js GitHub repository](https://github.com/nodejs/node/blob/0f841208d2d89d91395536a3227c4b11e1bf2425/lib/http.js) if you are interested.
+
+With this, `http` is now an object that provides the function needed to create an HTTP server - `createServer`. This function takes one parameter - a function that `createServer` will call  
+whenever a client issues a new HTTP request against our server. When calling the function, `createServer` will pass two parameters, `request` and `response`. The `request` parameter is an object that provides information about the received request. The `reponse` parameter is an object that provides functions which allow us to send an HTTP response to the retrieved request.
+
+Here, we use it to set the HTTP Content-Type header, set the body of our response (again, a simple *"Hello, World"*), and to signal that our response is completely and shall be sent over the wire to the requesting client, via `response.end()`.
+
+
 
 
 ## Further readings
