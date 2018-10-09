@@ -545,6 +545,12 @@ politeConsole.log("Hello, World", function(text) { return text.toUpperCase(); })
 With this, even the function declaration on line 2 uses the short form.
 
 
+## Further readings
+
+- [Stevey's Blog Rants: Execution in the Kingdom of Nouns](https://steve-yegge.blogspot.com/2006/03/execution-in-kingdom-of-nouns.html)
+
+
+
 # A first real Node.js application
 
 So, this has been a nice first trip into Node.js land, but now it's time to get more serious. Let's write a first real app that does something useful.
@@ -610,9 +616,9 @@ For internal Node.js modules and modules that we manage as external dependencies
 
 I would like to stress that really nothing special happens by exporting stuff in a module via `module.exports` and importing it via `require`. For example, instead of passing the whole object, you can pass only the function defined on its `log` attribute:
 
-```javascript
-// politeconsole.js
+*politeconsole.js:*
 
+```javascript 
 const politeConsole = {
   log: (text, transform) => {
     let politeText = "For your consideration: " + text;
@@ -626,9 +632,9 @@ const politeConsole = {
 module.exports = politeConsole.log;
 ```
 
-```javascript
-// helloworld.js
+*helloworld.js:*
 
+```javascript
 const politeConsoleLog = require("./politeConsole");
 
 politeConsoleLog("Hello, World");
@@ -636,9 +642,9 @@ politeConsoleLog("Hello, World");
 
 Furthermore, you may want to export multiple things from a module if it defines more than one thing - no problem, `module.exports` can be an object with multiple attributes:
 
-```javascript
-// politeconsole.js
+*politeConsole.js:*
 
+```javascript
 const normalPoliteConsole = {
   log: (text, transform) => {
     let politeText = "For your consideration: " + text;
@@ -667,12 +673,82 @@ module.exports = {
 };
 ```
 
-```javascript
-// helloworld.js
+*helloworld.js:*
 
+```javascript
 const politeConsole = require("./politeConsole");
 
 politeConsole.normalPoliteConsole.log("Hello, World");
 politeConsole.extremePoliteConsole.log("Hello, World");
 ```
+
+The version of *politeConsole.js* above presents the opportunity to introduce another ES6 nicety. Instead of explicitly
+declaring object attributes as key-value pairs, like so:
+
+```javascript
+module.exports = {
+  normalPoliteConsole: normalPoliteConsole,
+  extremePoliteConsole: extremePoliteConsole
+};
+```
+
+we can as well declare the object attributes using only the values:
+
+```javascript
+module.exports = {
+  normalPoliteConsole,
+  extremePoliteConsole
+};
+```
+
+This is called *Object Property Value Shorthand*, and for it to work as expected, naming things correctly obviously is important.
+
+While in the traditional syntax something like
+
+```javascript
+const a = "foo";
+
+const obj = {
+    b: a
+};
+
+console.log(obj.b);
+```
+
+works,
+
+```javascript
+const a = "foo";
+
+const obj = {
+    a
+};
+
+console.log(obj.b);
+```
+
+cannot work because there is no way for the JavaScript interpreter to find out what you mean when accessing `obj.b`.
+
+
+## Importing and using built-in Node.js modules
+
+For our first real Node.js application, we will use what we learned about modularization and split our code base into multiple files, which will avoid ending up with one large file full of spaghetti code.
+
+Additionally, we will use internal Node.js modules. Because our mission is writing a Node.js server application that responds to HTTP requests, and because Node.js provides us with a module that allows to do just that, let's start on a blank canvas and create a new project folder *webserver*, with an *index.js* file that imports and uses the `http` module:
+
+```javascript
+const http = require("http");
+
+http.createServer(function(request, response) {
+    response.writeHead(200, {"Content-Type": "text/plain"});
+    response.write("Hello World");
+    response.end();
+}).listen(8888);
+```
+
+
+## Further readings
+
+- [Node.js: exports vs module.exports](https://www.hacksparrow.com/node-js-exports-vs-module-exports.html)
+- [Object initializer: New notations in ECMAScript 2015](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer#New_notations_in_ECMAScript_2015)
 
