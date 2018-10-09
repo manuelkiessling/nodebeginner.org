@@ -121,7 +121,7 @@ npm -v
 The output should look similar to the following:
 
 ```
-~$> node -v
+$> node -v
 v10.12.0
 
 ~$ > npm -v
@@ -148,7 +148,7 @@ console.log("Hello, World");
 Save the file, and make Node.js read, interpret, and execute it:
 
 ```text
-~$> node helloworld.js
+$> node helloworld.js
 
 Hello, World
 ```
@@ -186,7 +186,7 @@ console.log("Hello, World");
 ```
 
 ```text
-~$> node helloworld.js
+$> node helloworld.js
 
 42
 ```
@@ -198,7 +198,7 @@ console.log(console);
 ```
 
 ```text
-~$> node helloworld.js
+$> node helloworld.js
 
 Console {
   log: [Function: bound consoleCall],
@@ -255,7 +255,7 @@ console.log(c);
 ```
 
 ```text
-~$> node helloworld.js
+$> node helloworld.js
 
 this is a var
 this is a let
@@ -282,7 +282,7 @@ console.log(myObject);
 ```
 
 ```text
-~$> node helloworld.js
+$> node helloworld.js
 
 {}
 { info: 'this object has been changed' }
@@ -305,7 +305,7 @@ console.log(myObject);
 Here, we do try to assign a completely new object instance to the variable `myObject`, and because `myObject` has been declared a `const`, this fails:
 
 ```text
-~$> node helloworld.js
+$> node helloworld.js
 
 {}
 /Users/manuelkiessling/helloworld.js:5
@@ -341,7 +341,7 @@ politeConsole.log("Hello, World");
 The output now looks like this:
 
 ```text
-~$> node helloworld.js
+$> node helloworld.js
 
 For your consideration: Hello, World
 ```
@@ -751,11 +751,73 @@ http.createServer((request, response) => {
 As you can see, we declare a *const* named `http`, and assign it the value that results from calling `require("http")`, with *"http"* being the name of the internal Node.js module we want to use. In this case, it is not a file path name - it's just a name that Node.js knows how to resolve to this module. Of course, the code for the module does live in a file at the end of the day - have a look at [/lib/http.js in the Node.js GitHub repository](https://github.com/nodejs/node/blob/0f841208d2d89d91395536a3227c4b11e1bf2425/lib/http.js) if you are interested.
 
 With this, `http` is now an object that provides the function needed to create an HTTP server - `createServer`. This function takes one parameter - a function that `createServer` will call  
-whenever a client issues a new HTTP request against our server. When calling the function, `createServer` will pass two parameters, `request` and `response`. The `request` parameter is an object that provides information about the received request. The `reponse` parameter is an object that provides functions which allow us to send an HTTP response to the retrieved request.
+whenever a client issues a new HTTP request against our server. When calling the function, `createServer` will pass two parameters, `request` and `response`. The `request` parameter is an object that provides information about the received request (but we don't use it yet). The `response` parameter is an object that provides functions which allow us to send an HTTP response to the retrieved request.
 
-Here, we use it to set the HTTP Content-Type header, set the body of our response (again, a simple *"Hello, World"*), and to signal that our response is completely and shall be sent over the wire to the requesting client, via `response.end()`.
+Here, we use it to set the HTTP response code to *200 OK*, set a *Content-Type* header, set the body of our response (again, a simple *"Hello, World"*), and to signal that our response is complete and shall be sent over the wire to the requesting client, via `response.end()`.
 
+Note that `http.createServer()` alone isn't enough to build a fully working web server. `createServer()` returns an object on which we need to call the `listen()` function with a port number as the parameter, in order to bind our application to that port. This makes the operating system and in turn Node.js forward packets arriving at that port to our application.
 
+After starting the web server application via `node index.js`, we can send HTTP requests to it - either by opening `http://127.0.0.1:8000/` in a browser, or by using the command line tool *curl*, like so:
+
+```text
+~$ > curl -v http://127.0.0.1:8000/
+*   Trying 127.0.0.1...
+* TCP_NODELAY set
+* Connected to 127.0.0.1 (127.0.0.1) port 8000 (#0)
+> GET / HTTP/1.1
+> Host: 127.0.0.1:8000
+> User-Agent: curl/7.54.0
+> Accept: */*
+>
+< HTTP/1.1 200 OK
+< Content-Type: text/plain
+< Date: Tue, 09 Oct 2018 15:33:52 GMT
+< Connection: keep-alive
+< Transfer-Encoding: chunked
+<
+* Connection #0 to host 127.0.0.1 left intact
+Hello, World
+```
+
+As expected, we get the string *Hello, World* as the response body, and the *Content-Type* header has been set to `text/plain`. Other headers are automatically set be the *http* module.
+
+Let's proof that the anonymous function we passed as the parameter to `createServer` is indeed called anew every time we send an HTTP request; and while we are at it, let's include some information about the request:
+
+```javascript
+const http = require("http");
+
+http.createServer((request, response) => {
+    console.log(`Received request for ${request.url}`);
+    response.writeHead(200, {"Content-Type": "text/plain"});
+    response.write("Hello, World");
+    response.end();
+}).listen(8000);
+```
+
+Stop the running application (by hitting `CTRL` + `c`), and start it again after making the change.
+
+Sending requests to the server will now result in output on the console where the application has been started:
+
+```text
+$> curl http://127.0.0.1:8000/
+$> curl http://127.0.0.1:8000/foo
+$> curl http://127.0.0.1:8000/bar?a=b
+```
+
+results in
+
+```text
+$> node index.js
+Received request for /
+Received request for /foo
+Received request for /bar?a=b
+```
+
+Let's have a closer look at what is really going on here. We pass an (anonymous) function as the parameter to another function. We already discussed this in our first "Hello, World" experiments. But there's a difference - in our experiments, we passed a function which was immediately called. Here, at first nothing happens with the function we pass. An external event - in this case, an HTTP request - is required to make the `http` module code call our passed function.
+
+This is a very common pattern in Node.js (and JavaScript in general). It is called the *callback pattern*, because it's like giving someone your phone number and asking them to call back whenever they have relevant information for you.
+
+The pattern makes obvious that a lot is going on behind the scenes to make our simple web server work. Node.js is executing the code we feed it, but it also handles events that happen outside our code.
 
 
 ## Further readings
