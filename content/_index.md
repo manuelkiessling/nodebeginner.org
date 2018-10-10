@@ -736,7 +736,7 @@ Even more sophisticated patterns of exporting and importing things via the modul
 
 For our first real Node.js application, we will use what we learned about modularization and split our code base into multiple files, which will avoid ending up with one large file full of spaghetti code.
 
-Additionally, we will now also use internal Node.js modules. Because our mission is writing a Node.js server application that responds to HTTP requests, and because Node.js provides us with an internal module that allows to do just that, let's start on a blank canvas and create a new project folder *webserver*, with an *index.js* file that imports and uses the `http` module:
+Additionally, we will now also use internal Node.js modules. Because our mission is writing a Node.js server application that responds to HTTP requests, and because Node.js provides us with an internal module that allows to do just that, let's start on a blank canvas and create a new project folder *webserver*, with an *server.js* file that imports and uses the `http` module:
 
 ```javascript
 const http = require("http");
@@ -757,7 +757,7 @@ Here, we use it to set the HTTP response code to *200 OK*, set a *Content-Type* 
 
 Note that `http.createServer()` alone isn't enough to build a fully working web server. `createServer()` returns an object on which we need to call the `listen()` function with a port number as the parameter, in order to bind our application to that port. This makes the operating system and in turn Node.js forward packets arriving at that port to our application.
 
-After starting the web server application via `node index.js`, we can send HTTP requests to it - either by opening `http://127.0.0.1:8000/` in a browser, or by using the command line tool *curl*, like so:
+After starting the web server application via `node server.js`, we can send HTTP requests to it - either by opening `http://127.0.0.1:8000/` in a browser, or by using the command line tool *curl*, like so:
 
 ```text
 ~$ > curl -v http://127.0.0.1:8000/
@@ -807,21 +807,105 @@ $> curl http://127.0.0.1:8000/bar?a=b
 results in
 
 ```text
-$> node index.js
+$> node server.js
 Received request for /
 Received request for /foo
 Received request for /bar?a=b
 ```
 
-Let's have a closer look at what is really going on here. We pass an (anonymous) function as the parameter to another function. We already discussed this in our first "Hello, World" experiments. But there's a difference - in our experiments, we passed a function which was immediately called. Here, at first nothing happens with the function we pass. An external event - in this case, an HTTP request - is required to make the `http` module code call our passed function.
 
-This is a very common pattern in Node.js (and JavaScript in general). It is called the *callback pattern*, because it's like giving someone your phone number and asking them to call back whenever they have relevant information for you.
+## Event-driven asynchronous callbacks
+
+Let's have a closer look at what is really going on here. We pass an (anonymous) function as the parameter to another function. We already discussed this in our first "Hello, World" experiments. But there's a difference - in our experiments, we passed a function that was then immediately called. Here, at first nothing happens with the function we pass. An external event - in this case, an HTTP request - is required to make the `http` module code call our passed function.
+
+This is a very common pattern in Node.js (and JavaScript in general). It is called the *callback pattern*, because it's like giving someone your phone number and asking them to call you back whenever they have relevant information for you.
 
 The pattern makes obvious that a lot is going on behind the scenes to make our simple web server work. Node.js is executing the code we feed it, but it also handles events that happen outside our code.
+
+To understand why Node.js applications have to be written this way, we need to understand how Node.js executes our code. Node's approach isn't unique, but the underlying execution model is different from runtime environments like Python, Ruby, PHP or Java.
+
+Let's take a very simple piece of code like this:
+
+
+```javascript
+const result = database.query("SELECT * FROM hugetable");
+console.log("Hello, World");
+```
+
+Please ignore for now that we haven't actually talked about connecting to databases before - it's just an example. The first line queries a database for lots of rows, the second line puts "Hello, World" to the console.
+
+Let's assume that the database query is really slow, that it has to read an awful lot of rows, which takes several seconds.
+
+The way we have written this code, the JavaScript interpreter of Node.js first has to read the complete result set from the database, and then it can execute the console.log() function.
+
+If this piece of code actually was, say, PHP, it would work the same way: read all the results at once, then execute the next line of code. If this code would be part of an application that serves a web page, then the user would have to wait several seconds for that web page to load.
+
+However, in the execution model of PHP, this would not become a "global" problem: the web server starts its own PHP process for every HTTP request it receives. If one of these requests results in the execution of a slow piece of code, it results in a slow page load for this particular user, but other users requesting other pages would not be affected.
+
+The execution model of Node.js is different - there is only one single process. If there is a slow database query somewhere in this process, this affects the whole process - everything comes to a halt until the slow query has finished.
+
+To avoid this kind of *blocking* behaviour, JavaScript, and therefore Node.js, introduces the concept of event-driven, asynchronous callbacks, by utilizing an *event loop*.
+
+We can understand this concept by analyzing a rewritten version of our problematic code:
+
+```javascript
+let result;
+database.query("SELECT * FROM hugetable", (rows) => result = rows);
+console.log("Hello, World");
+```
+
+Here, instead of expecting `database.query()` to directly return a result to us, we pass it a second parameter, an anonymous function.
+
+In its previous form, our code was *synchronous*, and therefore blocking: first do the database query, and only when this is done, then write to the console.
+
+Now, Node.js can handle the database request asynchronously, and therefore non-blocking. Provided that `database.query()` is part of an asynchronous library, this is what Node.js does: just as before, it takes the query and sends it to the database. But instead of waiting for it to be finished, it makes a mental note that says “When at some point in the future the database server is done and sends the result of the query, then I have to execute the anonymous function that was passed to database.query()."
+
+This way, Node.js can immediately execute `console.log()`, and afterwards, it enters the event loop. Node.js continuously cycles through this loop again and again whenever there is nothing else to do, waiting for external events. Events like, e.g., a slow database query finally delivering its results.
+
+This also explains why our HTTP server needs a function it can call upon each incoming requests - if Node.js would start the server and then just pause, waiting for the next request, continuing only when it arrives, that would be highly inefficient. If a second user requests the server while it is still serving the first request, that second request could only be answered after the first one is done - as soon as you have more than a handful of HTTP requests per second, this wouldn't work at all.
+
+It's important to note that this asynchronous, non-blocking, single-threaded, event-driven execution model isn't an infinitely scalable performance unicorn with silver bullets attached. It is just one of several execution models, and it has its limitations. One being that as of now, a running Node.js application is just one single operating system process and it can run on only one single CPU core.
+
+However, this execution model is quite approachable, because it allows us to write applications that deal with concurrency in an efficient and relatively straightforward manner.
+
+Let's play around a bit with this new concept. Can we prove that our code continues after creating the server, even if no HTTP request happened and the callback function we passed isn't called? Let's give it a try:
+
+```javascript
+const http = require("http");
+
+http.createServer((request, response) => {
+    console.log(`Received request for ${request.url}`);
+    response.writeHead(200, {"Content-Type": "text/plain"});
+    response.write("Hello, World");
+    response.end();
+}).listen(8000);
+
+console.log("Server has started.");
+```
+
+All we do here is to add another console log message at the end of our script. If it's true that `createServer().listen()` only registers the callback function for later use and immediately continues with the execution of our code, then we should immediately see the new message on the console, even if no HTTP request is handled:
+
+```text
+$> node server.js
+Server has started.
+```
+
+Sure enough, this is exactly what happens - event-driven asynchronous non-blocking server-side JavaScript in full force!
+
+
+## Extending the application
+
+Ok, I promised we will get back to how to organize our application. We have the code for a very basic HTTP server in file *server.js*. For now, this is file *is* our application, but because the application will grow and we want to keep things tidy and organized, it's time to turn it into a module.
+
+To do so, we need to make the server code export a function that allows us to start our HTTP server from another file:
+
+
+
+
 
 
 ## Further readings
 
 - [Node.js: exports vs module.exports](https://www.hacksparrow.com/node-js-exports-vs-module-exports.html)
 - [Object initializer: New notations in ECMAScript 2015](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer#New_notations_in_ECMAScript_2015)
-
+- [Felix Geisendörfer: Understanding node.js](http://debuggable.com/posts/understanding-node-js:4bd98440-45e4-4a9a-8ef7-0f7ecbdd56cb)
