@@ -10,7 +10,7 @@ weight: -270
 
 Welcome to **The Node.js and React Beginner Book**. The aim of this book is to teach you everything you need to know to build full-blown web applications that are useful, reliable, and fast, using modern JavaScript features and tools.
 
-We will start with the basics and build on these step-by-step. Everything is explained in detail and taught at just the right pace, making sure that everything sticks and can be understood easily.
+We will start with the basics and build on these step-by-step. Everything is explained in detail and taught at just the right pace, making sure that everything sticks and can be understood easily. At the end of the book, you will have built a simple yet complete Node.js HTTP web server that provides a JSON-based REST API, and a simple yet complete client-side React Single-Page Application that will make use of this API. Together, the Node.js API server and the React SPA will 
 
 All you need to bring to the table is a basic understanding of programming in general. 
 
@@ -557,9 +557,24 @@ So, this has been a nice first trip into Node.js land, but now it's time to get 
 
 While it is possible to write nearly any kind of application imaginable with Node.js, including 3D applications, Node.js isn't a good fit for every type of application.
 
-One area that is very natural for Node.js software development is network servers. Node.js comes with all the batteries included that make writing an HTTP webserver relatively straight-forward.
+One area that is very natural for Node.js software development is network servers. Node.js comes with all the batteries included that make writing an HTTP web server relatively straight-forward.
 
 Thus, this is our next step: writing a Node.js server application that responds to HTTP requests.
+
+
+## The requirements
+
+More specifically, we will create a very simple REST API server. This API will allow us to add, list, and delete Todo items - the API will thus serve as the backend for the React Single-Page Application that we are going to build in the course of this book.
+
+When it is finished, the API will allow the following operations:
+
+- Sending a POST to `/api/todos/` with a JSON object like `{"content": "Hello, World"}` will create a new Todo item
+- Sending a GET to `/api/todos/` will return a list of all Todo items, like this: `[ {"id": 1, "content": "Hello, World"}, {"id": 2, "content": "Foo bar"} ]`
+- Sending a DELETE to `/api/todos/:id` will remove the Todo item with the given id
+
+Furthermore, the server will also serve the document containing the client-side React application that we will write later.
+
+In the final version, it's the React application which will send these requests and handle the responses from the API of the web server. However, we will fully implement the API first, and test it with a pure HTTP client like `curl` before we even start working on the React app.
 
 
 ## The structure of Node.js applications
@@ -890,15 +905,38 @@ $> node server.js
 Server has started.
 ```
 
-Sure enough, this is exactly what happens - event-driven asynchronous non-blocking server-side JavaScript in full force!
+Sure enough, this is exactly what happens - event-driven asynchronous non-blocking server-side JavaScript in action.
 
 
 ## Extending the application
 
-Ok, I promised we will get back to how to organize our application. We have the code for a very basic HTTP server in file *server.js*. For now, this is file *is* our application, but because the application will grow and we want to keep things tidy and organized, it's time to turn it into a module.
+Ok, I promised we will get back to how to organize our application. We have the code for a very basic HTTP server in file *server.js*. For now, this file *is* our application, but because the application will grow and we want to keep things tidy and organized, it's time to turn it into a module.
 
 To do so, we need to make the server code export a function that allows us to start our HTTP server from another file:
 
+
+```javascript
+const http = require("http");
+
+module.exports.start = () => {
+    http.createServer((request, response) => {
+        console.log(`Received request for ${request.url}`);
+        response.writeHead(200, { "Content-Type": "text/plain" });
+        response.write("Hello, World");
+        response.end();
+    }).listen(8000);
+
+    console.log("Server has started.");
+};
+```
+
+With this, we can create our main application file, *index.js*, which requires the exported function and uses it to start the web server:
+
+```javascript
+const startHttpServer = require("./server").start;
+
+startHttpServer();
+```
 
 
 
