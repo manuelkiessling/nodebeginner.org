@@ -747,11 +747,13 @@ Even more sophisticated patterns of exporting and importing things via the modul
 
 ## Creating an HTTP server using a built-in Node.js module
 
-For our first real Node.js application, we will use what we learned about modularization and split our code base into multiple files, which will avoid ending up with one large file full of spaghetti code.
+For our first real Node.js application, we will use what we learned about modularization and split our code base into multiple files, which will avoid that we end up with one large file full of spaghetti code.
 
-Additionally, we will now also use internal Node.js modules. Because our mission is writing a Node.js server application that responds to HTTP requests, and because Node.js provides us with an internal module that allows to do just that, let's start on a blank canvas and create a new project folder *webserver*, with an *server.js* file that imports and uses the `http` module:
+Additionally, we will now also use internal Node.js modules. Because our mission is to write a Node.js server application that responds to HTTP requests, and because Node.js provides an internal module that allows to do just that, let's start on a blank canvas and create a new project folder *todos-app*, a subfolder *backend* within directory *todos-app*, and within with folder *backend*, a *server.js* file that imports and uses the `http` module:
 
 ```javascript
+// backend/server.js
+
 const http = require("http");
 
 http.createServer((request, response) => {
@@ -760,6 +762,8 @@ http.createServer((request, response) => {
     response.end();
 }).listen(8000);
 ```
+
+(Note that from here on, we assume that our project folder is *todos-app*, that on the command line, this is the current directory, and thus all file paths like *backend/server.js* are relative to the *todos-app* folder)
 
 As you can see, we declare a *const* named `http`, and assign it the value that results from calling `require("http")`, with *"http"* being the name of the internal Node.js module we want to use. In this case, it is not a file path name - it's just a name that Node.js knows how to resolve to this module. Of course, the code for the module does live in a file at the end of the day - have a look at [/lib/http.js in the Node.js GitHub repository](https://github.com/nodejs/node/blob/0f841208d2d89d91395536a3227c4b11e1bf2425/lib/http.js) if you are interested.
 
@@ -770,7 +774,7 @@ Here, we use it to set the HTTP response code to *200 OK*, set a *Content-Type* 
 
 Note that `http.createServer()` alone isn't enough to build a fully working web server. `createServer()` returns an object on which we need to call the `listen()` function with a port number as the parameter, in order to bind our application to that port. This makes the operating system and in turn Node.js forward packets arriving at that port to our application.
 
-After starting the web server application via `node server.js`, we can send HTTP requests to it - either by opening `http://127.0.0.1:8000/` in a browser, or by using the command line tool *curl*, like so:
+After starting the web server application via `node backend/server.js`, we can send HTTP requests to it - either by opening `http://127.0.0.1:8000/` in a browser, or by using the command line tool *curl*, like so:
 
 ```text
 ~$ > curl -v http://127.0.0.1:8000/
@@ -820,7 +824,7 @@ $> curl http://127.0.0.1:8000/bar?a=b
 results in
 
 ```text
-$> node server.js
+$> node backend/server.js
 Received request for /
 Received request for /foo
 Received request for /bar?a=b
@@ -899,7 +903,7 @@ console.log("Server has started.");
 All we do here is to add another console log message at the end of our script. If it's true that `createServer().listen()` only registers the callback function for later use and immediately continues with the execution of our code, then we should immediately see the new message on the console, even if no HTTP request is handled:
 
 ```text
-$> node server.js
+$> node backend/server.js
 Server has started.
 ```
 
@@ -908,7 +912,7 @@ Sure enough, this is exactly what happens - event-driven asynchronous non-blocki
 
 ## Extending the application
 
-Ok, I promised we will get back to how to organize our application. We have the code for a very basic HTTP server in file *server.js*. For now, this file *is* our application, but because the application will grow and we want to keep things tidy and organized, it's time to turn it into a module.
+Ok, I promised we will get back to how to organize our application. We have the code for a very basic HTTP server in file *backend/server.js*. For now, this file *is* our application, but because the application will grow and we want to keep things tidy and organized, it's time to turn it into a module.
 
 To do so, we need to make the server code export a function that allows us to start our HTTP server from another file:
 
@@ -928,7 +932,7 @@ module.exports.start = () => {
 };
 ```
 
-With this, we can create our main application file, *index.js*, which requires the exported function and uses it to start the web server:
+With this, we can create our main backend application file, *backend/index.js*, which requires the exported function and uses it to start the web server:
 
 ```javascript
 const startHttpServer = require("./server").start;
