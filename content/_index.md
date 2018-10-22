@@ -557,7 +557,7 @@ So, this has been a nice first trip into Node.js land, but now it's time to get 
 
 While it is possible to write nearly any kind of application imaginable with Node.js, including 3D applications, Node.js isn't a good fit for every type of application.
 
-One area that is very natural for Node.js software development is network servers. Node.js comes with all the batteries included that make writing an HTTP web server relatively straight-forward.
+One area that is very natural for Node.js software development is network servers. And Node.js comes with all the batteries included that make writing an HTTP web server relatively straight-forward.
 
 Thus, this is our next step: writing a Node.js server application that responds to HTTP requests.
 
@@ -566,15 +566,13 @@ Thus, this is our next step: writing a Node.js server application that responds 
 
 More specifically, we will create a very simple REST API server. This API will allow us to add, list, and delete Todo items - the API will thus serve as the backend for the React Single-Page Application that we are going to build in the course of this book.
 
-When it is finished, the API will allow the following operations:
+When finished, the API will allow the following operations:
 
-- Sending a POST to `/api/todos/` with a JSON object like `{"content": "Hello, World"}` will create a new Todo item
-- Sending a GET to `/api/todos/` will return a list of all Todo items, like this: `[ {"id": 1, "content": "Hello, World"}, {"id": 2, "content": "Foo bar"} ]`
-- Sending a DELETE to `/api/todos/:id` will remove the Todo item with the given id
+- Sending a POST request to `/api/todos/` with a JSON object like `{"title": "Hello, World"}` will create a new Todo item
+- Sending a GET request to `/api/todos/` will return a list of all Todo items, like this: `[ {"id": 1, "title": "Hello, World"}, {"id": 2, "title": "Foo bar"} ]`
+- Sending a DELETE request to `/api/todos/:id` will remove the Todo item with the given id
 
-Furthermore, the server will also serve the document containing the client-side React application that we will write later.
-
-In the final version, it's the React application which will send these requests and handle the responses from the API of the web server. However, we will fully implement the API first, and test it with a pure HTTP client like `curl` before we even start working on the React app.
+In the final version, it is the React application which will send these requests and handle the responses from the API of the web server. However, we will fully implement the API first, and test it with a pure HTTP client like `curl` before we even start working on the React app.
 
 
 ## The structure of Node.js applications
