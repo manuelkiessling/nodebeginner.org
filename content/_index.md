@@ -572,7 +572,7 @@ When finished, the API will allow the following operations:
 - Sending a GET request to `/api/todos/` will return a list of all Todo items, like this: `[ {"id": 1, "title": "Hello, World"}, {"id": 2, "title": "Foo bar"} ]`
 - Sending a DELETE request to `/api/todos/:id` will remove the Todo item with the given id
 
-In the final version, it is the React application which will send these requests and handle the responses from the API of the web server. However, we will fully implement the API first, and test it with a pure HTTP client like `curl` before we even start working on the React app.
+In the final version, it is the React application which will send these requests and handle the responses from the API provided by the web server. However, we will fully implement the API server first, and test it with a pure HTTP client like `curl`, before we even start working on the React app.
 
 
 ## The structure of Node.js applications
