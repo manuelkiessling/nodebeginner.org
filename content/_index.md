@@ -824,7 +824,6 @@ $> curl http://127.0.0.1:8000/bar?a=b
 results in
 
 ```text
-$> node backend/server.js
 Received request for /
 Received request for /foo
 Received request for /bar?a=b
