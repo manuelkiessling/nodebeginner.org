@@ -1,15 +1,20 @@
 const URL = require("url").URL;
 
+const getHandlerId = (method, pathname) => `${method} ${pathname}`;
+
 let registeredHandlers = {};
 
 module.exports = {
     register: (method, pathname, requestHandler) => {
-        registeredHandlers[method + pathname] = requestHandler;
+        registeredHandlers[getHandlerId(method, pathname)] = requestHandler;
     },
+
     route: (request, response) => {
         const pathname = new URL(`http://localhost${request.url}`).pathname;
-        const handlerId = request.method + pathname;
+        const handlerId = getHandlerId(request.method, pathname);
+
         console.log(`About to route request for ${request.method} ${pathname}`);
+
         if (typeof registeredHandlers[handlerId] === 'function') {
             registeredHandlers[handlerId](response);
             return true;
