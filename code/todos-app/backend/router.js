@@ -2,7 +2,7 @@ const URL = require("url").URL;
 
 const getHandlerId = (method, pathname) => `${method} ${pathname}`;
 
-let registeredHandlers = {};
+const registeredHandlers = {};
 
 module.exports = {
     register: (method, pathname, requestHandler) => {
