@@ -15,8 +15,8 @@ module.exports = {
 
         console.log(`About to route request for ${request.method} ${pathname}`);
 
-        if (typeof registeredHandlers[handlerId] === 'function') {
-            registeredHandlers[handlerId](response);
+        if (typeof(registeredHandlers[handlerId]) === 'function') {
+            registeredHandlers[handlerId](request, response);
             return true;
         } else {
             console.log(`No request handler found for ${request.method} ${pathname}`);
