@@ -776,10 +776,91 @@
                 <li>And much more.</li>
             </ul>
 
-            <div style="text-align: center;">
-                <a class="buttonlink salelink vwo-conv-link-bundle-2-bottom" href="superstack/?utm_source=nodebeginner.org&utm_medium=infobox&utm_content=link1">
-                    <div class="button" style="width: 90%;">Click here to learn more about The Ultimate Programmer Super Stack.</div>
-                </a>
+            <div>
+                <script>
+                    function countdown(endDate) {
+                        let days, hours, minutes, seconds;
+
+                        endDate = new Date(endDate).getTime();
+
+                        if (isNaN(endDate)) {
+                            return;
+                        }
+
+                        setInterval(calculate, 1000);
+
+                        function calculate() {
+                            let startDate = new Date();
+                            startDate = startDate.getTime();
+
+                            let timeRemaining = parseInt((endDate - startDate) / 1000);
+
+                            if (timeRemaining >= 0) {
+                                days = parseInt(timeRemaining / 86400);
+                                timeRemaining = (timeRemaining % 86400);
+
+                                hours = parseInt(timeRemaining / 3600);
+                                timeRemaining = (timeRemaining % 3600);
+
+                                minutes = parseInt(timeRemaining / 60);
+                                timeRemaining = (timeRemaining % 60);
+
+                                seconds = parseInt(timeRemaining);
+
+                                document.getElementById("days").innerHTML = parseInt(days, 10);
+                                document.getElementById("hours").innerHTML = ("0" + hours).slice(-2);
+                                document.getElementById("minutes").innerHTML = ("0" + minutes).slice(-2);
+                                document.getElementById("seconds").innerHTML = ("0" + seconds).slice(-2);
+                            } else {
+                                return;
+                            }
+                        }
+                    }
+
+                    (function () {
+                        countdown('11/13/2018 11:59:59 PM');
+                    }());
+                </script>
+
+
+                <div style="border-radius: 16px; text-align: center; font-size: 18px; color: #fff; background-color: green; padding: 8px; padding-top: 32px; padding-bottom: 32px;">
+
+                    <div>
+                        There are now only
+                    </div>
+
+                    <table align="center" style="margin-top: 32px; margin-bottom: 32px;">
+                        <tr style="font-weight: bold;">
+                            <td><span id="days"></span></td>
+                            <td>:</td>
+                            <td><span id="hours"></span></td>
+                            <td>:</td>
+                            <td><span id="minutes"></span></td>
+                            <td>:</td>
+                            <td><span id="seconds"></span></td>
+                        </tr>
+                        <tr style="font-size: 12px;">
+                            <td><span>days</span></td>
+                            <td></td>
+                            <td><span>hours</span></td>
+                            <td></td>
+                            <td><span>minutes</span></td>
+                            <td></td>
+                            <td><span>seconds</span></td>
+                        </tr>
+                    </table>
+
+                    <div>
+                        left until offer ends!
+                    </div>
+
+                    <div style="text-align: center;">
+                        <a class="buttonlink salelink vwo-conv-link-bundle-2-bottom" href="superstack/?utm_source=nodebeginner.org&utm_medium=infobox&utm_content=link1">
+                            <div class="button" style="width: 90%; padding-top: 16px; padding-bottom: 16px;">Click here to get the bundle before it's gone!</div>
+                        </a>
+                    </div>
+
+                </div>
             </div>
 
             <p>
