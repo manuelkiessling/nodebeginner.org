@@ -8,6 +8,7 @@
     "watch:dev:test": "jest --verbose --silent --watchAll ./test",
     "build:dev:client": "rm -rf dist/* && webpack --mode development --config webpack.client.config.js",
     "build:dev:ssr-server": "npm run build:dev:client && webpack --mode development --config webpack.server.config.js",
+    "build:dev:*": "npm run build:dev:ssr-server",
     "build:production:client": "rm -rf dist/* && cross-env NODE_ENV=production webpack --mode production --config webpack.client.config.js",
     "build:production:ssr-server": "npm run build:production:client && cross-env NODE_ENV=production webpack --mode production --config webpack.server.config.js",
     "build:production:*": "npm run build:production:ssr-server",
