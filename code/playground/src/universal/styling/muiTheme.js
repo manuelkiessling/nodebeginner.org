@@ -8,4 +8,7 @@ export default createMuiTheme({
         accent: red,
         type: "dark",
     },
+    typography: {
+        useNextVariants: true,
+    }
 });
