@@ -5,7 +5,7 @@ import path from "path";
 import fs from "fs";
 import React from "react";
 import { renderToString } from "react-dom/server";
-import { StaticRouter as Router, matchPath } from "react-router-dom";
+import { matchPath, StaticRouter as Router } from "react-router-dom";
 import { Provider } from "react-redux";
 import AppContainer from "../universal/react-components/container/AppContainer";
 import clientAssetsManifest from "../../dist/client-assets-manifest.json";
@@ -13,7 +13,7 @@ import { initializeCommand } from "../universal/redux-actions/commands";
 import routes from "../universal/routes";
 import { SheetsRegistry } from "react-jss/lib/jss";
 import JssProvider from "react-jss/lib/JssProvider";
-import { MuiThemeProvider, createGenerateClassName } from "@material-ui/core/styles";
+import { createGenerateClassName, MuiThemeProvider } from "@material-ui/core/styles";
 import muiTheme from "../universal/styling/muiTheme";
 import { createStoreFromInitialState } from "../universal/redux-state/store";
 
