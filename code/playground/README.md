@@ -21,16 +21,20 @@ In order to provide a working application to the end user, three runtime compone
 
 ### Locally
 
-#### Full setup (with SSR, with Mock API, with client-side app)
+#### Full setup
 
-    npm install
+With SSR, with Mock API, client-side app served from dedicated server process.
+
+    npm install --no-save
     npm run build:dev:*
     npm run start:dev:mock-api-server
     npm run start:dev:ssr-server
 
 
-#### Client-only (w/o SSR, with Mock API, with client-side app)
+#### Client-only
 
-    npm install
+Without SSR, with Mock API, client-side app served from Webpack development server.
+
+    npm install --no-save
     npm run start:dev:mock-api-serve
     start:dev:client-webpack-dev-server
