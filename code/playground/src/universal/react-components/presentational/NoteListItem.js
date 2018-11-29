@@ -6,7 +6,7 @@ import { NoteEntity } from "../../entities/NoteEntity";
 import MuiGrid from "@material-ui/core/Grid/Grid";
 import MuiHidden from "@material-ui/core/Hidden/Hidden";
 import NoteListItemDetails from "./NoteListItemDetails";
-import MuiPaper from "@material-ui/core/es/Paper/Paper";
+import MuiPaper from "./mui-overrides/Paper";
 
 const NoteListItem = ({ note, selectedNoteId, handleSelectNote }) => (
     <MuiListItem onClick={() => handleSelectNote(note)}>

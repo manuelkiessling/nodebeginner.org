@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import MuiTypography from "@material-ui/core/Typography";
-import MuiPaper from "@material-ui/core/es/Paper/Paper";
+import MuiPaper from "./mui-overrides/Paper";
 import { withStyles } from "@material-ui/core/styles";
 import { NoteEntity } from "../../entities/NoteEntity";
 
