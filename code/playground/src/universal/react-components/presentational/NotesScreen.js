@@ -3,10 +3,17 @@ import MuiCard from "@material-ui/core/Card";
 import MuiCardContent from "@material-ui/core/CardContent";
 import MuiCardHeader from "@material-ui/core/CardHeader";
 import MuiGrid from "@material-ui/core/Grid";
+import { withStyles } from "@material-ui/core/styles";
 import AddNoteControlContainer from "../container/AddNoteControlContainer";
 import NoteListContainer from "../container/NoteListContainer";
 
-const NotesScreen = () => (
+const styles = (theme) => ({
+    addNoteControlGridItem: {
+        marginBottom: theme.spacing.unit * 2
+    }
+});
+
+const NotesScreen = ({ classes }) => (
     <MuiCard>
         <MuiCardHeader title="Your notes" />
 
@@ -14,7 +21,7 @@ const NotesScreen = () => (
 
             <MuiGrid container direction="column">
 
-                <MuiGrid item>
+                <MuiGrid item className={classes.addNoteControlGridItem}>
                     <AddNoteControlContainer/>
                 </MuiGrid>
 
@@ -29,4 +36,4 @@ const NotesScreen = () => (
     </MuiCard>
 );
 
-export default NotesScreen;
+export default withStyles(styles)(NotesScreen);
