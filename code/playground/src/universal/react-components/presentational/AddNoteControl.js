@@ -12,7 +12,7 @@ const AddNoteControl = ({ handleSubmit, handleChange, title }) => (
             <MuiTextField id="title" label="New note title" variant="outlined" value={title} onChange={handleChange} fullWidth />
         </MuiGrid>
         <MuiGrid item xs={4} md={4} lg={2} xl={1}>
-            <MuiButton color="primary" variant="contained" aria-label="Add" onClick={handleSubmit}>
+            <MuiButton color="secondary" variant="contained" aria-label="Add" onClick={handleSubmit}>
                 <MuiHidden xsDown>
                     Add new note
                 </MuiHidden>
