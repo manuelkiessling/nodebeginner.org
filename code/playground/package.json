@@ -23,7 +23,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@material-ui/core": "^3.5.1",
+    "@material-ui/core": "^3.6.0",
     "autoprefixer": "^9.3.1",
     "babel-core": "^6.26.3",
     "babel-jest": "^23.6.0",
@@ -68,7 +68,7 @@
     "typeface-roboto": "0.0.54",
     "url-loader": "^1.1.2",
     "uuid": "^3.3.2",
-    "webpack": "^4.26.0",
+    "webpack": "^4.26.1",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.10",
     "webpack-manifest-plugin": "^2.0.4"
