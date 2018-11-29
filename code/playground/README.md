@@ -16,7 +16,7 @@
 
 ## Running the project
 
-In order to provide a working application to the end user, three runtime components are required: a build of the React/Redux application, a build of the SSR server application, and, for now, a mock API server application.
+In order to provide a working application to the end user, three runtime components are required: a build of the client-side React/Redux application, a build of the SSR server application, and, for now, a mock API server application.
 
 
 ### Locally
