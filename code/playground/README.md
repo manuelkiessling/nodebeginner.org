@@ -27,8 +27,8 @@ With SSR, with Mock API, client-side app served from dedicated server process.
 
     npm install --no-save
     npm run build:dev:*
-    npm run start:dev:mock-api-server
-    npm run start:dev:ssr-server
+    npm run start:dev:mock-api-server # in one terminal session
+    npm run start:dev:ssr-server      # in another terminal session
 
 
 #### Client-only
@@ -36,5 +36,5 @@ With SSR, with Mock API, client-side app served from dedicated server process.
 Without SSR, with Mock API, client-side app served from Webpack development server.
 
     npm install --no-save
-    npm run start:dev:mock-api-serve
+    npm run start:dev:mock-api-server
     start:dev:client-webpack-dev-server
