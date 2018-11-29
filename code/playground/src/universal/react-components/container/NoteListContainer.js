@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import NoteList from "../presentational/NoteList"
 import { NoteEntity } from "../../entities/NoteEntity";
-import { showNoteCommand } from "../../redux-actions/commands";
+import { selectNoteCommand } from "../../redux-actions/commands";
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        dispatchSelectNote: (note) => dispatch(showNoteCommand(note))
+        dispatchSelectNote: (note) => dispatch(selectNoteCommand(note))
     };
 };
 
@@ -24,12 +24,12 @@ class NoteListContainer extends Component {
     }
 
     handleSelectNote(note) {
-
+        this.props.dispatchSelectNote(note);
     }
 
     render() {
-        return <NoteList notes={this.props.notes} selectedNote={this.props.selectedNote} />;
+        return <NoteList notes={this.props.notes} selectedNote={this.props.selectedNote} handleSelectNote={this.handleSelectNote} />;
     }
 }
 
-export default connect(mapStateToProps, null)(NoteListContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(NoteListContainer);

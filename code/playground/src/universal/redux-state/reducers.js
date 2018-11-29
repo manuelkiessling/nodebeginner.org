@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { COMMAND_INITIALIZE, COMMAND_NOTE_ADD, COMMAND_NOTE_SHOW } from "../redux-actions/commands";
+import { COMMAND_INITIALIZE, COMMAND_NOTE_ADD, COMMAND_NOTE_SELECT } from "../redux-actions/commands";
 import { EVENT_ENTITY_EVENTS_FETCHING_SUCCEEDED } from "../redux-actions/events";
 import { mergeEntityEventArrays } from "../entities/EntityEvent";
 import { NoteEntity } from "../entities/NoteEntity";
@@ -66,7 +66,9 @@ const entities = (state = emptyState().entities, action) => {
 
 const ui = (state = emptyState().ui, action) => {
     switch (action.type) {
-        case COMMAND_NOTE_SHOW:
+        case COMMAND_INITIALIZE:
+            return emptyState().ui;
+        case COMMAND_NOTE_SELECT:
             return {
                ...state,
                 selectedNote: action.note
