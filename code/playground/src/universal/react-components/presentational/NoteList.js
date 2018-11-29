@@ -6,13 +6,11 @@ import MuiPaper from "./mui-overrides/Paper";
 import { NoteEntity } from "../../entities/NoteEntity";
 
 const NoteList = ({ notes }) => (
-    <MuiPaper>
-        <MuiList>
-            {notes.map(note => (
-                <NoteListItem key={note.id} note={note} />
-            ))}
-        </MuiList>
-    </MuiPaper>
+    <MuiList>
+        {notes.map(note => (
+            <NoteListItem key={note.id} note={note} />
+        ))}
+    </MuiList>
 );
 
 NoteList.propTypes = {

@@ -4,7 +4,7 @@ import Paper from "@material-ui/core/Paper";
 
 const styles = (theme) => ({
     root: {
-        padding: theme.spacing.unit * 1,
+        padding: theme.spacing.unit * 1
     },
 });
 
