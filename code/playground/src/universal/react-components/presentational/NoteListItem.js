@@ -8,26 +8,27 @@ import MuiHidden from "@material-ui/core/Hidden/Hidden";
 import NoteListItemDetails from "./NoteListItemDetails";
 import MuiPaper from "./mui-overrides/Paper";
 
+const NoteListItemSummary = ({ note, selectedNoteId }) => (
+    <div>
+        <MuiTypography variant="h6" color="textPrimary">
+            {note.title}
+        </MuiTypography>
+        <MuiTypography variant="caption" color={selectedNoteId === note.id && "textPrimary" || "textSecondary"}>
+            {note.id}
+        </MuiTypography>
+    </div>
+);
+
 const NoteListItem = ({ note, selectedNoteId, handleSelectNote }) => (
     <MuiListItem onClick={() => handleSelectNote(note)}>
         <MuiGrid container direction="column">
             <MuiGrid item>
                 {selectedNoteId === note.id &&
                 <MuiPaper>
-                    <MuiTypography variant="h6" color="textPrimary">
-                        {note.title}
-                    </MuiTypography>
+                    <NoteListItemSummary note={note} selectedNoteId={selectedNoteId} />
                 </MuiPaper> ||
-                <MuiTypography variant="h6" color="textSecondary">
-                    {note.title}
-                </MuiTypography>
-                }
+                <NoteListItemSummary note={note} selectedNoteId={selectedNoteId} />}
 
-            </MuiGrid>
-            <MuiGrid item>
-                <MuiTypography variant="caption" color={selectedNoteId === note.id && "textPrimary" || "textSecondary"}>
-                    {note.id}
-                </MuiTypography>
             </MuiGrid>
             {selectedNoteId === note.id &&
             <MuiHidden smUp>
