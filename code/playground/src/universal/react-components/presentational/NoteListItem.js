@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import MuiListItem from "@material-ui/core/ListItem";
+import MuiListItem from "./mui-overrides/ListItem";
 import MuiTypography from "@material-ui/core/Typography";
 import { NoteEntity } from "../../entities/NoteEntity";
 
