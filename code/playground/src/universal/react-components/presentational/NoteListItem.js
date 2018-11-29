@@ -6,9 +6,18 @@ import { NoteEntity } from "../../entities/NoteEntity";
 
 const NoteListItem = ({ note }) => (
     <MuiListItem>
-        <MuiTypography variant="body1">
-            {note.id}: {note.title}
-        </MuiTypography>
+        <div>
+            <div>
+                <MuiTypography variant="body1">
+                    {note.title}
+                </MuiTypography>
+            </div>
+            <div>
+                <MuiTypography variant="caption" color="textSecondary">
+                    {note.id}
+                </MuiTypography>
+            </div>
+        </div>
     </MuiListItem>
 );
 
