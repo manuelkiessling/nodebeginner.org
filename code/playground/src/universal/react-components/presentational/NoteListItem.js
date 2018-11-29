@@ -4,8 +4,8 @@ import MuiListItem from "./mui-overrides/ListItem";
 import MuiTypography from "@material-ui/core/Typography";
 import { NoteEntity } from "../../entities/NoteEntity";
 
-const NoteListItem = ({ note }) => (
-    <MuiListItem>
+const NoteListItem = ({ note, selectedNote, handleSelectNote }) => (
+    <MuiListItem onclick={() => handleSelectNote(note)}>
         <div>
             <div>
                 <MuiTypography variant="body1">
@@ -17,6 +17,13 @@ const NoteListItem = ({ note }) => (
                     {note.id}
                 </MuiTypography>
             </div>
+        </div>
+        <div>
+            {selectedNote === note &&
+            <MuiTypography variant="caption" color="textSecondary">
+                {note.lastModified}
+            </MuiTypography>
+            }
         </div>
     </MuiListItem>
 );

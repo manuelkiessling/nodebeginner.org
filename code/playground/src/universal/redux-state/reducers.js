@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { COMMAND_INITIALIZE, COMMAND_NOTE_ADD } from "../redux-actions/commands";
+import { COMMAND_INITIALIZE, COMMAND_NOTE_ADD, COMMAND_NOTE_SHOW } from "../redux-actions/commands";
 import { EVENT_ENTITY_EVENTS_FETCHING_SUCCEEDED } from "../redux-actions/events";
 import { mergeEntityEventArrays } from "../entities/EntityEvent";
 import { NoteEntity } from "../entities/NoteEntity";
@@ -20,6 +20,9 @@ export const emptyState = () => {
 
     return {
         entities: entities,
+        ui: {
+            selectedNote: null
+        },
         debugInfo: ""
     };
 };
@@ -61,6 +64,18 @@ const entities = (state = emptyState().entities, action) => {
     }
 };
 
+const ui = (state = emptyState().ui, action) => {
+    switch (action.type) {
+        case COMMAND_NOTE_SHOW:
+            return {
+               ...state,
+                selectedNote: action.note
+            };
+        default:
+            return state;
+    }
+};
+
 const debugInfo = (state = emptyState().debugInfo, action) => {
     switch (action.type) {
         case COMMAND_INITIALIZE:
@@ -74,5 +89,6 @@ const debugInfo = (state = emptyState().debugInfo, action) => {
 
 export const rootReducer = combineReducers({
     entities,
+    ui,
     debugInfo
 });
