@@ -8,13 +8,16 @@ import AddNoteControlContainer from "../container/AddNoteControlContainer";
 import NoteListContainer from "../container/NoteListContainer";
 
 const styles = (theme) => ({
+    root: {
+        minHeight: "100vh"
+    },
     addNoteControlGridItem: {
         marginBottom: theme.spacing.unit * 2
     }
 });
 
 const NotesScreen = ({ classes }) => (
-    <MuiCard>
+    <MuiCard className={classes.root}>
         <MuiCardHeader title="Your notes" />
 
         <MuiCardContent>
