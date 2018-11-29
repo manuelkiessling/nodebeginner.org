@@ -13,7 +13,7 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
     return {
         notes: state.entities[NoteEntity.entityName()].calculatedEntities,
-        selectedNote: state.ui.selectedNote
+        selectedNoteId: state.ui.selectedNoteId
     };
 };
 
@@ -28,7 +28,7 @@ class NoteListContainer extends Component {
     }
 
     render() {
-        return <NoteList notes={this.props.notes} selectedNote={this.props.selectedNote} handleSelectNote={this.handleSelectNote} />;
+        return <NoteList notes={this.props.notes} selectedNoteId={this.props.selectedNoteId} handleSelectNote={this.handleSelectNote} />;
     }
 }
 

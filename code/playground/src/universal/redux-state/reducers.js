@@ -21,7 +21,7 @@ export const emptyState = () => {
     return {
         entities: entities,
         ui: {
-            selectedNote: null
+            selectedNoteId: null
         },
         debugInfo: ""
     };
@@ -71,7 +71,7 @@ const ui = (state = emptyState().ui, action) => {
         case COMMAND_NOTE_SELECT:
             return {
                ...state,
-                selectedNote: action.note
+                selectedNoteId: action.note.id
             };
         default:
             return state;

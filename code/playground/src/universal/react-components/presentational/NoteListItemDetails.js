@@ -8,19 +8,23 @@ import { NoteEntity } from "../../entities/NoteEntity";
 const styles = (theme) => ({
     root: {
         padding: theme.spacing.unit * 4,
-        minHeight: "100%"
+        minHeight: "100%",
+        maxHeight: "100vh",
+        minWidth: "100%"
     },
 });
 
 const NoteListItemDetails = ({ note, classes }) => (
     <MuiPaper className={classes.root}>
+        {note != null &&
+
         <MuiTypography variant="caption" color="textSecondary">
             {note.id}
             -
             {note.title}
             -
             {note.lastModified}
-        </MuiTypography>
+        </MuiTypography>}
     </MuiPaper>
 );
 

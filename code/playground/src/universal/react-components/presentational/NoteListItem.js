@@ -6,21 +6,30 @@ import { NoteEntity } from "../../entities/NoteEntity";
 import MuiGrid from "@material-ui/core/Grid/Grid";
 import MuiHidden from "@material-ui/core/Hidden/Hidden";
 import NoteListItemDetails from "./NoteListItemDetails";
+import MuiPaper from "@material-ui/core/es/Paper/Paper";
 
-const NoteListItem = ({ note, selectedNote, handleSelectNote }) => (
+const NoteListItem = ({ note, selectedNoteId, handleSelectNote }) => (
     <MuiListItem onClick={() => handleSelectNote(note)}>
         <MuiGrid container direction="column">
             <MuiGrid item>
-                <MuiTypography variant={selectedNote === note && "h4" || "h5"} color={selectedNote === note && "textPrimary" || "textSecondary"}>
+                {selectedNoteId === note.id &&
+                <MuiPaper>
+                    <MuiTypography variant="h6" color="textPrimary">
+                        {note.title}
+                    </MuiTypography>
+                </MuiPaper> ||
+                <MuiTypography variant="h6" color="textSecondary">
                     {note.title}
                 </MuiTypography>
+                }
+
             </MuiGrid>
             <MuiGrid item>
-                <MuiTypography variant="caption" color={selectedNote === note && "textPrimary" || "textSecondary"}>
+                <MuiTypography variant="caption" color={selectedNoteId === note.id && "textPrimary" || "textSecondary"}>
                     {note.id}
                 </MuiTypography>
             </MuiGrid>
-            {selectedNote === note &&
+            {selectedNoteId === note.id &&
             <MuiHidden smUp>
                 <MuiGrid item>
                     <NoteListItemDetails note={note} />
