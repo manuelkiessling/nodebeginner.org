@@ -21,7 +21,7 @@ const NoteListItemSummary = ({ note, selectedNoteId }) => (
 
 const NoteListItem = ({ note, selectedNoteId, handleSelectNote }) => (
     <MuiListItem onClick={() => handleSelectNote(note)}>
-        <MuiGrid container direction="column">
+        <MuiGrid container direction="column" alignItems="stretch" justify="space-evenly">
             <MuiGrid item>
                 {selectedNoteId === note.id &&
                 <MuiPaper>
