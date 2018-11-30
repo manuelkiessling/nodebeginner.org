@@ -12,6 +12,9 @@ const styles = (theme) => ({
     root: {},
     list: {
         paddingTop: 0
+    },
+    gridItem: {
+        width: "100%"
     }
 });
 
@@ -43,7 +46,7 @@ const NoteList = ({ notes, selectedNoteId, handleSelectNote, classes }) => (
         </MuiHidden>
         <MuiHidden smUp>
             <MuiGrid container direction="row">
-                <MuiGrid item>
+                <MuiGrid item className={classes.gridItem}>
                     <MuiList>
                         {notes.map(note => (
                             <NoteListItem key={note.id} note={note} selectedNoteId={selectedNoteId} handleSelectNote={handleSelectNote} />
