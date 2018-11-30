@@ -18,7 +18,16 @@ const styles = (theme) => ({
         marginBottom: 0,
         cursor: "pointer"
     },
-    padding: {
+    paddingDetails: {
+        marginTop: theme.spacing.unit * -5,
+        paddingBottom: theme.spacing.unit * 5
+    },
+    paddingSelected: {
+        paddingTop: theme.spacing.unit * 5,
+        paddingBottom: theme.spacing.unit * 5
+    },
+    paddingDeselected: {
+        paddingTop: theme.spacing.unit * 5,
         paddingBottom: theme.spacing.unit * 5
     }
 });
@@ -40,17 +49,17 @@ const NoteListItem = ({ note, selectedNoteId, handleSelectNote, classes }) => (
 
             <MuiGrid item>
                 {selectedNoteId === note.id &&
-                <MuiSelectedPaper>
+                <MuiSelectedPaper className={classes.paddingSelected}>
                     <NoteListItemSummary note={note} selectedNoteId={selectedNoteId} />
                 </MuiSelectedPaper> ||
-                <MuiDeselectedPaper className={classes.padding}>
+                <MuiDeselectedPaper className={classes.paddingDeselected}>
                     <NoteListItemSummary note={note} selectedNoteId={selectedNoteId} />
                 </MuiDeselectedPaper>}
             </MuiGrid>
 
             {selectedNoteId === note.id &&
             <MuiHidden smUp>
-                <MuiGrid item className={classes.padding}>
+                <MuiGrid item className={classes.paddingDetails}>
                     <NoteListItemDetails note={note} />
                 </MuiGrid>
             </MuiHidden>}
