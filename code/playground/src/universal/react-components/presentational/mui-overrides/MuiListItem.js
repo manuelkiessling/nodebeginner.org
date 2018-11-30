@@ -9,10 +9,10 @@ const styles = (theme) => ({
     },
 });
 
-const OverriddenListItem = (props) => (
+const MuiListItem = (props) => (
     <ListItem className={props.classes.root} {...props}>
         {props.children}
     </ListItem>
 );
 
-export default withStyles(styles)(OverriddenListItem);
+export default withStyles(styles)(MuiListItem);
