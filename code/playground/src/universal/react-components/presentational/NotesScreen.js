@@ -11,7 +11,8 @@ const styles = (theme) => ({
     root: {},
     addNoteControlGridItem: {
         marginBottom: theme.spacing.unit * 2
-    }
+    },
+    noteListContainerGridItem: {}
 });
 
 const NotesScreen = ({ classes }) => (
@@ -26,7 +27,7 @@ const NotesScreen = ({ classes }) => (
                     <AddNoteControlContainer/>
                 </MuiGrid>
 
-                <MuiGrid item>
+                <MuiGrid item className={classes.noteListContainerGridItem}>
                     <NoteListContainer/>
                 </MuiGrid>
 

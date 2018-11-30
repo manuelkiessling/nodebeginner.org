@@ -5,7 +5,15 @@ import NoteListItem from "./NoteListItem";
 import { NoteEntity } from "../../entities/NoteEntity";
 import MuiGrid from "@material-ui/core/Grid/Grid";
 import MuiHidden from "@material-ui/core/Hidden/Hidden";
+import { withStyles } from "@material-ui/core/styles";
 import NoteListItemDetails from "./NoteListItemDetails";
+
+const styles = (theme) => ({
+    root: {},
+    list: {
+        paddingTop: 0
+    }
+});
 
 const noteById = (notes, noteId) => {
     for (let i=0; i < notes.length; i++) {
@@ -16,12 +24,12 @@ const noteById = (notes, noteId) => {
     return null;
 };
 
-const NoteList = ({ notes, selectedNoteId, handleSelectNote }) => (
+const NoteList = ({ notes, selectedNoteId, handleSelectNote, classes }) => (
     <div>
         <MuiHidden xsDown>
             <MuiGrid container direction="row">
                 <MuiGrid item xs={4}>
-                    <MuiList>
+                    <MuiList className={classes.list}>
                         {notes.map(note => (
                             <NoteListItem key={note.id} note={note} selectedNoteId={selectedNoteId} handleSelectNote={handleSelectNote} />
                         ))}
@@ -51,4 +59,4 @@ NoteList.propTypes = {
     notes: PropTypes.arrayOf(PropTypes.instanceOf(NoteEntity))
 };
 
-export default NoteList;
+export default withStyles(styles)(NoteList);

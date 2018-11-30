@@ -6,7 +6,8 @@ import { NoteEntity } from "../../entities/NoteEntity";
 import MuiGrid from "@material-ui/core/Grid/Grid";
 import MuiHidden from "@material-ui/core/Hidden/Hidden";
 import NoteListItemDetails from "./NoteListItemDetails";
-import MuiPaper from "./mui-overrides/Paper";
+import MuiSelectedPaper from "./mui-overrides/MuiSelectedPaper";
+import MuiDeselectedPaper from "./mui-overrides/MuiDeselectedPaper";
 
 const NoteListItemSummary = ({ note, selectedNoteId }) => (
     <div>
@@ -22,20 +23,24 @@ const NoteListItemSummary = ({ note, selectedNoteId }) => (
 const NoteListItem = ({ note, selectedNoteId, handleSelectNote }) => (
     <MuiListItem onClick={() => handleSelectNote(note)}>
         <MuiGrid container direction="column" alignItems="stretch" justify="space-evenly">
+
             <MuiGrid item>
                 {selectedNoteId === note.id &&
-                <MuiPaper>
+                <MuiSelectedPaper>
                     <NoteListItemSummary note={note} selectedNoteId={selectedNoteId} />
-                </MuiPaper> ||
-                <NoteListItemSummary note={note} selectedNoteId={selectedNoteId} />}
-
+                </MuiSelectedPaper> ||
+                <MuiDeselectedPaper>
+                    <NoteListItemSummary note={note} selectedNoteId={selectedNoteId} />
+                </MuiDeselectedPaper>}
             </MuiGrid>
+
             {selectedNoteId === note.id &&
             <MuiHidden smUp>
                 <MuiGrid item>
                     <NoteListItemDetails note={note} />
                 </MuiGrid>
             </MuiHidden>}
+
         </MuiGrid>
     </MuiListItem>
 );

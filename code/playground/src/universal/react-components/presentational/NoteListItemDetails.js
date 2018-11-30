@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import MuiTypography from "@material-ui/core/Typography";
-import MuiPaper from "./mui-overrides/Paper";
+import MuiSelectedPaper from "./mui-overrides/MuiSelectedPaper";
 import { withStyles } from "@material-ui/core/styles";
 import { NoteEntity } from "../../entities/NoteEntity";
 
@@ -15,7 +15,7 @@ const styles = (theme) => ({
 });
 
 const NoteListItemDetails = ({ note, classes }) => (
-    <MuiPaper className={classes.root}>
+    <MuiSelectedPaper className={classes.root}>
         {note != null &&
 
         <MuiTypography variant="caption" color="textSecondary">
@@ -25,7 +25,7 @@ const NoteListItemDetails = ({ note, classes }) => (
             <br/>
             {note.lastModified}
         </MuiTypography>}
-    </MuiPaper>
+    </MuiSelectedPaper>
 );
 
 NoteListItemDetails.propTypes = {
