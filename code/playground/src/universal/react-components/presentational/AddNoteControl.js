@@ -14,6 +14,8 @@ const styles = (theme) => ({
 });
 
 const AddNoteControl = ({ handleSubmit, handleChange, title, classes }) => (
+    <form onSubmit={handleSubmit}>
+
     <MuiGrid container direction="row" spacing={24} justify="flex-start" alignItems="center">
         <MuiGrid item xs container className={classes.textFieldGridItem}>
             <MuiTextField id="title" label="New note title" variant="outlined" value={title} onChange={handleChange} fullWidth />
@@ -29,6 +31,8 @@ const AddNoteControl = ({ handleSubmit, handleChange, title, classes }) => (
             </MuiButton>
         </MuiGrid>
     </MuiGrid>
+    </form>
+
 );
 
 AddNoteControl.propTypes = {
