@@ -8,6 +8,20 @@ import MuiHidden from "@material-ui/core/Hidden/Hidden";
 import NoteListItemDetails from "./NoteListItemDetails";
 import MuiSelectedPaper from "./mui-overrides/MuiSelectedPaper";
 import MuiDeselectedPaper from "./mui-overrides/MuiDeselectedPaper";
+import { withStyles } from "@material-ui/core/styles";
+
+const styles = (theme) => ({
+    root: {
+        marginBottom: 0
+    },
+    rootWithPointer: {
+        marginBottom: 0,
+        cursor: "pointer"
+    },
+    padding: {
+        paddingBottom: theme.spacing.unit * 5
+    }
+});
 
 const NoteListItemSummary = ({ note, selectedNoteId }) => (
     <div>
@@ -20,8 +34,8 @@ const NoteListItemSummary = ({ note, selectedNoteId }) => (
     </div>
 );
 
-const NoteListItem = ({ note, selectedNoteId, handleSelectNote }) => (
-    <MuiListItem onClick={() => handleSelectNote(note)}>
+const NoteListItem = ({ note, selectedNoteId, handleSelectNote, classes }) => (
+    <MuiListItem onClick={() => handleSelectNote(note)} className={selectedNoteId === note.id && classes.root || classes.rootWithPointer}>
         <MuiGrid container direction="column" alignItems="stretch" justify="space-evenly">
 
             <MuiGrid item>
@@ -29,14 +43,14 @@ const NoteListItem = ({ note, selectedNoteId, handleSelectNote }) => (
                 <MuiSelectedPaper>
                     <NoteListItemSummary note={note} selectedNoteId={selectedNoteId} />
                 </MuiSelectedPaper> ||
-                <MuiDeselectedPaper>
+                <MuiDeselectedPaper className={classes.padding}>
                     <NoteListItemSummary note={note} selectedNoteId={selectedNoteId} />
                 </MuiDeselectedPaper>}
             </MuiGrid>
 
             {selectedNoteId === note.id &&
             <MuiHidden smUp>
-                <MuiGrid item>
+                <MuiGrid item className={classes.padding}>
                     <NoteListItemDetails note={note} />
                 </MuiGrid>
             </MuiHidden>}
@@ -49,4 +63,4 @@ NoteListItem.propTypes = {
     note: PropTypes.instanceOf(NoteEntity)
 };
 
-export default NoteListItem;
+export default withStyles(styles)(NoteListItem);

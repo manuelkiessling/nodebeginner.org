@@ -7,7 +7,7 @@ const styles = (theme) => ({
         padding: theme.spacing.unit * 1,
         boxShadow: "none",
         borderRadius: 0,
-        backgroundColor: theme.palette.grey[200]
+        backgroundColor: theme.palette.grey[0]
     },
 });
 
