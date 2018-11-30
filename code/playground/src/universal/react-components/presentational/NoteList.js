@@ -11,10 +11,15 @@ import NoteListItemDetails from "./NoteListItemDetails";
 const styles = (theme) => ({
     root: {},
     list: {
+        borderTop: `${theme.spacing.unit * 1}px solid ${theme.palette.grey[200]}`,
         paddingTop: 0
     },
-    gridItem: {
+    listGridItem: {
         width: "100%"
+    },
+    detailsGridItem: {
+        borderTop: `${theme.spacing.unit * 1}px solid ${theme.palette.grey[200]}`,
+        borderRight: `${theme.spacing.unit * 1}px solid ${theme.palette.grey[200]}`
     }
 });
 
@@ -39,14 +44,14 @@ const NoteList = ({ notes, selectedNoteId, handleSelectNote, classes }) => (
                     </MuiList>
                 </MuiGrid>
                 {selectedNoteId != null &&
-                    <MuiGrid item xs={8}>
+                    <MuiGrid item xs={8} className={classes.detailsGridItem}>
                         <NoteListItemDetails note={noteById(notes, selectedNoteId)} />
                     </MuiGrid>}
             </MuiGrid>
         </MuiHidden>
         <MuiHidden smUp>
             <MuiGrid container direction="row">
-                <MuiGrid item className={classes.gridItem}>
+                <MuiGrid item className={classes.listGridItem}>
                     <MuiList>
                         {notes.map(note => (
                             <NoteListItem key={note.id} note={note} selectedNoteId={selectedNoteId} handleSelectNote={handleSelectNote} />
