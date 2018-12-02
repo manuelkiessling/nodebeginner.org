@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import uuidv4 from "uuid";
-import AddNoteControl from "../presentational/CreateNoteControl"
+import CreateNoteControl from "../presentational/CreateNoteControl"
 import { createNoteCommand } from "../../redux-actions/commands"
 
 const mapDispatchToProps = (dispatch) => {
@@ -35,7 +35,7 @@ class CreateNoteControlContainer extends Component {
     render() {
         const { title } = this.state;
         return (
-            <AddNoteControl handleSubmit={this.handleSubmit} handleChange={this.handleChange} title={title} />
+            <CreateNoteControl handleSubmit={this.handleSubmit} handleChange={this.handleChange} title={title} />
         );
     }
 }
