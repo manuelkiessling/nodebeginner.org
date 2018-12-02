@@ -13,7 +13,7 @@ const styles = (theme) => ({
     buttonGridItem: {}
 });
 
-const AddNoteControl = ({ handleSubmit, handleChange, title, classes }) => (
+const CreateNoteControl = ({ handleSubmit, handleChange, title, classes }) => (
     <form onSubmit={handleSubmit}>
 
     <MuiGrid container direction="row" spacing={24} justify="flex-start" alignItems="center">
@@ -35,10 +35,10 @@ const AddNoteControl = ({ handleSubmit, handleChange, title, classes }) => (
 
 );
 
-AddNoteControl.propTypes = {
+CreateNoteControl.propTypes = {
     handleSubmit: PropTypes.func,
     handleChange: PropTypes.func,
     title: PropTypes.string
 };
 
-export default withStyles(styles)(AddNoteControl);
+export default withStyles(styles)(CreateNoteControl);

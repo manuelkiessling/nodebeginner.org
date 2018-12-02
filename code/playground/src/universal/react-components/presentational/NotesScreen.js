@@ -4,7 +4,7 @@ import MuiCardContent from "@material-ui/core/CardContent";
 import MuiCardHeader from "@material-ui/core/CardHeader";
 import MuiGrid from "@material-ui/core/Grid";
 import { withStyles } from "@material-ui/core/styles";
-import AddNoteControlContainer from "../container/AddNoteControlContainer";
+import AddNoteControlContainer from "../container/CreateNoteControlContainer";
 import NoteListContainer from "../container/NoteListContainer";
 
 const styles = (theme) => ({

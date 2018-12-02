@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import uuidv4 from "uuid";
-import AddNoteControl from "../presentational/AddNoteControl"
-import { addNoteCommand } from "../../redux-actions/commands"
+import AddNoteControl from "../presentational/CreateNoteControl"
+import { createNoteCommand } from "../../redux-actions/commands"
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        dispatchAddNote: (noteTitle) => dispatch(addNoteCommand(noteTitle))
+        dispatchCreateNote: (noteTitle) => dispatch(createNoteCommand(noteTitle))
     };
 };
 
-class AddNoteControlContainer extends Component {
+class CreateNoteControlContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -28,7 +28,7 @@ class AddNoteControlContainer extends Component {
         event.preventDefault();
         const { title } = this.state;
         const id = uuidv4();
-        this.props.dispatchAddNote(title);
+        this.props.dispatchCreateNote(title);
         this.setState({ title: "" });
     }
 
@@ -40,4 +40,4 @@ class AddNoteControlContainer extends Component {
     }
 }
 
-export default connect(null, mapDispatchToProps)(AddNoteControlContainer);
+export default connect(null, mapDispatchToProps)(CreateNoteControlContainer);
