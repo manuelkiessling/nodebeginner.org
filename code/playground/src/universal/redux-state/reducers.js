@@ -2,8 +2,8 @@ import { combineReducers } from "redux";
 import {
     COMMAND_INITIALIZE,
     COMMAND_NOTE_CREATE,
-    COMMAND_NOTE_SELECT,
-    COMMAND_NOTE_UPDATE
+    COMMAND_NOTE_SELECT, COMMAND_NOTE_UPDATE_CONTENT,
+    COMMAND_NOTE_UPDATE_TITLE
 } from "../redux-actions/commands";
 import { EVENT_ENTITY_EVENTS_FETCHING_SUCCEEDED } from "../redux-actions/events";
 import { mergeEntityEventArrays } from "../entities/EntityEvent";
@@ -51,8 +51,22 @@ const entities = (state = emptyState().entities, action) => {
                 }
             };
         }
-        case COMMAND_NOTE_UPDATE: {
-            const updateNoteEntityEvent = UpdateNoteEntityEvent.withNewTitle(action.noteId, action.noteTitle);
+        case COMMAND_NOTE_UPDATE_TITLE: {
+            const updateNoteEntityEvent = UpdateNoteEntityEvent.withUpdatedTitle(action.note, action.updatedTitle);
+            const updatedAllEvents = state[NoteEntity.entityName()].allEvents.concat(updateNoteEntityEvent);
+            const updatedUnsyncedEvents = state[NoteEntity.entityName()].unsyncedEvents.concat(updateNoteEntityEvent);
+            const updatedCalculatedEntities = entityNamesToClasses[NoteEntity.entityName()].entityClass.createFromEntityEvents(updatedAllEvents);
+            return {
+                ...state,
+                [NoteEntity.entityName()]: {
+                    allEvents: updatedAllEvents,
+                    unsyncedEvents: updatedUnsyncedEvents,
+                    calculatedEntities: updatedCalculatedEntities
+                }
+            };
+        }
+        case COMMAND_NOTE_UPDATE_CONTENT: {
+            const updateNoteEntityEvent = UpdateNoteEntityEvent.withUpdatedContent(action.note, action.updatedContent);
             const updatedAllEvents = state[NoteEntity.entityName()].allEvents.concat(updateNoteEntityEvent);
             const updatedUnsyncedEvents = state[NoteEntity.entityName()].unsyncedEvents.concat(updateNoteEntityEvent);
             const updatedCalculatedEntities = entityNamesToClasses[NoteEntity.entityName()].entityClass.createFromEntityEvents(updatedAllEvents);

@@ -39,6 +39,6 @@ export class EntityEventFactory {
             return new classes[className](id, timestamp, entityId, payload)
         }
 
-        throw "Cannot handle object " + JSON.stringify(obj);
+        throw new Error("Cannot handle object " + JSON.stringify(obj));
     }
 }

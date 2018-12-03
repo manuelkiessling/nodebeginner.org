@@ -2,6 +2,7 @@ import uuidv4 from "uuid";
 import typeOf from "type-of-data";
 import { NoteEntity } from "./NoteEntity";
 import { CreateEntityEvent, EntityEvent, UpdateEntityEvent } from "./EntityEvent";
+import { noteById } from "./Helpers";
 
 export class CreateNoteEntityEvent extends CreateEntityEvent {
     constructor(id, timestamp, entityId, payload) {
@@ -25,28 +26,57 @@ export class CreateNoteEntityEvent extends CreateEntityEvent {
 }
 
 export class UpdateNoteEntityEvent extends UpdateEntityEvent {
-    constructor(id, timestamp, entityId, payload) {
-        const { title, isImportant } = payload;
+    constructor(eventId, timestamp, entityId, payload) {
+        if (payload.content == null) {
+            payload.content = "";
+        }
+        if (payload.isImportant == null) {
+            payload.isImportant = false;
+        }
+        const { title, content, isImportant } = payload;
         typeOf([
-            { title, is: String, optional: true },
-            { isImportant, is: Boolean, optional: true },
+            { title, is: String },
+            { content, is: String },
+            { isImportant, is: Boolean },
         ]);
-        super(id, timestamp, NoteEntity.entityName(), entityId, payload);
+        super(eventId, timestamp, NoteEntity.entityName(), entityId, payload);
         Object.seal(this);
         Object.freeze(this);
     }
 
-    static withNewTitle(id, title) {
+    static withUpdatedTitle(note, updatedTitle) {
         typeOf([
-            { id, is: String },
-            { title, is: String }
-            ]);
+            { note, is: NoteEntity },
+            { updatedTitle, is: String }
+        ]);
 
         return new UpdateNoteEntityEvent(
             EntityEvent.createId(),
             EntityEvent.getCurrentTimestamp(),
-            id,
-            { title: title }
+            note.id,
+            {
+                title: updatedTitle,
+                content: note.content,
+                isImportant: note.isImportant,
+            }
+        );
+    }
+
+    static withUpdatedContent(note, updatedContent) {
+        typeOf([
+            { note, is: NoteEntity },
+            { updatedContent, is: String }
+        ]);
+
+        return new UpdateNoteEntityEvent(
+            EntityEvent.createId(),
+            EntityEvent.getCurrentTimestamp(),
+            note.id,
+            {
+                title: note.title,
+                content: updatedContent,
+                isImportant: note.isImportant,
+            }
         );
     }
 }

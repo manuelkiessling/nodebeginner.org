@@ -7,17 +7,17 @@ describe("NoteEntity", () => {
 
         it("creates notes for a correct list of note events", () => {
             const fooNoteCreateEvent = CreateNoteEntityEvent.withTitle("foo");
-            const fooNoteUpdateEvent = UpdateNoteEntityEvent.withNewTitle(
+            const fooNoteUpdateEvent = UpdateNoteEntityEvent.withUpdatedTitle(
                 fooNoteCreateEvent.entityId,
                 "foo2"
             );
 
             const barNoteCreateEvent = CreateNoteEntityEvent.withTitle("bar");
-            const barNoteUpdateEvent1 = UpdateNoteEntityEvent.withNewTitle(
+            const barNoteUpdateEvent1 = UpdateNoteEntityEvent.withUpdatedTitle(
                 barNoteCreateEvent.entityId,
                 "bar2"
             );
-            const barNoteUpdateEvent2 = UpdateNoteEntityEvent.withNewTitle(
+            const barNoteUpdateEvent2 = UpdateNoteEntityEvent.withUpdatedTitle(
                 barNoteCreateEvent.entityId,
                 "bar3"
             );
@@ -51,7 +51,7 @@ describe("NoteEntity", () => {
 
         it("creates notes for a correct list of note events where a create and an update event have the same timestamp", () => {
             const fooNoteCreateEvent = CreateNoteEntityEvent.withTitle("foo");
-            const fooNoteUpdateEvent = UpdateNoteEntityEvent.withNewTitle(
+            const fooNoteUpdateEvent = UpdateNoteEntityEvent.withUpdatedTitle(
                 fooNoteCreateEvent.entityId,
                 "foo2"
             );

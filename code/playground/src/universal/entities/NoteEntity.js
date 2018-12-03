@@ -6,15 +6,17 @@ export class NoteEntity {
         return "Note";
     };
 
-    constructor(id, title, lastModified, isImportant) {
+    constructor(id, title, content, lastModified, isImportant) {
         typeOf([
             { id, is: String },
             { title, is: String },
+            { content, is: String },
             { lastModified, is: Number },
             { isImportant, is: Boolean }
         ]);
         this.id = id;
         this.title = title;
+        this.content = content;
         this.lastModified = lastModified;
         this.isImportant = isImportant;
         Object.seal(this);
@@ -31,23 +33,34 @@ export class NoteEntity {
         };
 
         const createNoteFromObject = (obj) => {
+            if (obj.content == null) {
+                obj.content = "";
+            }
+            if (obj.isImportant == null) {
+                obj.isImportant = false;
+            }
+
             if (!(typeof obj.id === "string")) {
-                throw "id must be a string"
+                throw new Error("id must be a string")
             }
 
             if (!(typeof obj.title === "string")) {
-                throw "title must be a string in " + JSON.stringify(obj)
+                throw new Error("title must be a string in " + JSON.stringify(obj))
+            }
+
+            if (!(typeof obj.content === "string")) {
+                throw new Error("content must be a string in " + JSON.stringify(obj))
             }
 
             if (!(typeof obj.lastModified === "number")) {
-                throw "lastModified must be a number"
+                throw new Error("lastModified must be a number")
             }
 
             if (!(typeof obj.isImportant === "boolean")) {
-                throw "isImportant must be a boolean"
+                throw new Error("isImportant must be a boolean")
             }
 
-            return new NoteEntity(obj.id, obj.title, obj.lastModified, obj.isImportant);
+            return new NoteEntity(obj.id, obj.title, obj.content, obj.lastModified, obj.isImportant);
         };
 
         const sortedNoteEntityEvents =
@@ -70,8 +83,9 @@ export class NoteEntity {
                     const noteEntity = createNoteFromObject({
                         id: entityEvent.entityId,
                         title: entityEvent.payload.title,
-                        lastModified: entityEvent.timestamp,
-                        isImportant: false
+                        content: entityEvent.payload.content,
+                        isImportant: entityEvent.isImportant,
+                        lastModified: entityEvent.timestamp
                     });
                     console.debug(`Creating new note ${JSON.stringify(noteEntity)} from event ${JSON.stringify(entityEvent)}`);
                     noteEntities.push(noteEntity);
@@ -85,6 +99,7 @@ export class NoteEntity {
                     console.debug(`Updating note ${JSON.stringify(noteEntity)} from event ${JSON.stringify(entityEvent)}`);
                     noteEntity.lastModified = entityEvent.timestamp;
                     noteEntity.title = entityEvent.payload.title;
+                    noteEntity.content = entityEvent.payload.content;
                     console.debug(`Updated note ${JSON.stringify(noteEntity)} from event ${JSON.stringify(entityEvent)}`);
                 }
             } else {

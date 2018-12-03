@@ -5,6 +5,7 @@ import MuiSelectedPaper from "./mui-overrides/MuiSelectedPaper";
 import { withStyles } from "@material-ui/core/styles";
 import { NoteEntity } from "../../entities/NoteEntity";
 import EditNoteTitleControlContainer from "../container/EditNoteTitleControlContainer";
+import EditNoteContentControlContainer from "../container/EditNoteContentControlContainer";
 
 const styles = (theme) => ({
     root: {
@@ -47,6 +48,10 @@ const NoteListItemDetails = ({ note, classes }) => (
                         Last changed at: {note.lastModified}
                     </MuiTypography>
                 </div>
+            </div>
+
+            <div>
+                <EditNoteContentControlContainer key={note.id} note={note} />
             </div>
         </div>
         ||

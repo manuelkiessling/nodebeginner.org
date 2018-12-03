@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import EditNoteControl from "../presentational/EditNoteTitleControl"
-import { updateNoteCommand } from "../../redux-actions/commands"
+import { updateNoteTitleCommand } from "../../redux-actions/commands"
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        dispatchUpdateNote: (noteId, noteTitle) => dispatch(updateNoteCommand(noteId, noteTitle))
+        dispatchUpdateNoteTitle: (note, updatedTitle) => dispatch(updateNoteTitleCommand(note, updatedTitle))
     };
 };
 
@@ -38,7 +38,7 @@ class EditNoteTitleControlContainer extends Component {
         event.preventDefault();
         const { title } = this.state;
         this.setState({ inEditMode: false });
-        this.props.dispatchUpdateNote(this.props.note.id, title);
+        this.props.dispatchUpdateNoteTitle(this.props.note, title);
     }
 
     render() {

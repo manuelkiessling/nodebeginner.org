@@ -1,7 +1,7 @@
 {
   "entity-events": [
-    {"type": "create", "id": "74d01c2b-7fb0-4b50-a1ed-5302a1026785", "timestamp": 1537523057377, "entityName": "Note", "entityId": "94244957-f782-45fc-988e-d9954720667d", "payload": { "title": "Learn React" } },
-    {"type": "update", "id": "bf02c74c-bf5f-4b67-a9bc-820abb506824", "timestamp": 1537523057387, "entityName": "Note", "entityId": "94244957-f782-45fc-988e-d9954720667d", "payload": { "title": "Updated: Learn React", "isImportant": true } },
-    {"type": "create", "id": "5302a102-4b67-4b50-a1ed-bb50a1026785", "timestamp": 1537523057377, "entityName": "Note", "entityId": "d9954720-f782-45fc-066f-988e4720667d", "payload": { "title": "Learn JavaScript" }}
+    {"type": "create", "id": "74d01c2b-7fb0-4b50-a1ed-5302a1026785", "timestamp": 1537523057377, "entityName": "Note", "entityId": "94244957-f782-45fc-988e-d9954720667d", "payload": { "title": "Learn React", "content": "React is nice." } },
+    {"type": "update", "id": "bf02c74c-bf5f-4b67-a9bc-820abb506824", "timestamp": 1537523057387, "entityName": "Note", "entityId": "94244957-f782-45fc-988e-d9954720667d", "payload": { "title": "Updated: Learn React", "content": "", "isImportant": true } },
+    {"type": "create", "id": "5302a102-4b67-4b50-a1ed-bb50a1026785", "timestamp": 1537523057377, "entityName": "Note", "entityId": "d9954720-f782-45fc-066f-988e4720667d", "payload": { "title": "Learn JavaScript", "content": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet." }}
   ]
 }
