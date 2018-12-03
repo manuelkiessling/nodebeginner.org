@@ -13,7 +13,7 @@ const LoginScreen = () => (
                     component={Link}
                     to="/notes"
                     color="primary"
-                    variant="raised"
+                    variant="contained"
                 >
                     Log in
                 </MuiButton>
