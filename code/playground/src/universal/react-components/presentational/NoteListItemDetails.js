@@ -36,7 +36,7 @@ const NoteListItemDetails = ({ note, classes }) => (
             </div>
 
             <div className={classes.editNoteTitleControlContainer}>
-                <EditNoteTitleControlContainer note={note} />
+                <EditNoteTitleControlContainer key={note.id} note={note} /> {/* "key" is crucial here - without it, the component is not replaced when switching between notes! */}
             </div>
         </div>}
     </MuiSelectedPaper>
