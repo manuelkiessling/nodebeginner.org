@@ -17,6 +17,14 @@ const styles = (theme) => ({
     },
     abortButton: {
         marginLeft: theme.spacing.unit * 1
+    },
+    contentArea: {
+        minHeight: theme.spacing.unit * 10,
+    },
+    contentText: {
+        backgroundColor: theme.palette.grey[100],
+        padding: theme.spacing.unit * 2,
+        borderRadius: theme.spacing.unit * 1
     }
 });
 
@@ -41,16 +49,19 @@ const EditNoteContentControl = ({ handleClickContent: handleClick, handleChange,
                 </MuiGrid>
             </form>
         ||
-            <div>
+            <div className={classes.contentArea} onClick={handleClick}>
                 {content === ""
                 &&
-                    <MuiButton color="primary" variant="contained" aria-label="Save new content" onClick={handleClick}>
+                    <MuiButton color="primary" variant="contained" aria-label="Save new content">
                         <MuiEditIcon/>
                     </MuiButton>
-                }
-                <MuiTypography variant="body1" onClick={handleClick}>
-                    {content}
+                ||
+                <MuiTypography className={classes.contentText} variant="body1">
+                    {content.split('\n').map((item, key) => {
+                        return <React.Fragment key={key}>{item}<br/></React.Fragment>
+                    })}
                 </MuiTypography>
+                }
             </div>
         }
     </div>
