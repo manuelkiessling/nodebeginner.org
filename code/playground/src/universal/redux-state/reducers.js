@@ -1,9 +1,14 @@
 import { combineReducers } from "redux";
-import { COMMAND_INITIALIZE, COMMAND_NOTE_CREATE, COMMAND_NOTE_SELECT } from "../redux-actions/commands";
+import {
+    COMMAND_INITIALIZE,
+    COMMAND_NOTE_CREATE,
+    COMMAND_NOTE_SELECT,
+    COMMAND_NOTE_UPDATE
+} from "../redux-actions/commands";
 import { EVENT_ENTITY_EVENTS_FETCHING_SUCCEEDED } from "../redux-actions/events";
 import { mergeEntityEventArrays } from "../entities/EntityEvent";
 import { NoteEntity } from "../entities/NoteEntity";
-import { CreateNoteEntityEvent } from "../entities/NoteEntityEvents";
+import { CreateNoteEntityEvent, UpdateNoteEntityEvent } from "../entities/NoteEntityEvents";
 import { EntityEventFactory, entityNamesToClasses } from "../entities/EntityEventFactory";
 
 export const emptyState = () => {
@@ -36,6 +41,20 @@ const entities = (state = emptyState().entities, action) => {
             const createNoteEntityEvent = CreateNoteEntityEvent.withTitle(action.noteTitle);
             const updatedAllEvents = state[NoteEntity.entityName()].allEvents.concat(createNoteEntityEvent);
             const updatedUnsyncedEvents = state[NoteEntity.entityName()].unsyncedEvents.concat(createNoteEntityEvent);
+            const updatedCalculatedEntities = entityNamesToClasses[NoteEntity.entityName()].entityClass.createFromEntityEvents(updatedAllEvents);
+            return {
+                ...state,
+                [NoteEntity.entityName()]: {
+                    allEvents: updatedAllEvents,
+                    unsyncedEvents: updatedUnsyncedEvents,
+                    calculatedEntities: updatedCalculatedEntities
+                }
+            };
+        }
+        case COMMAND_NOTE_UPDATE: {
+            const updateNoteEntityEvent = UpdateNoteEntityEvent.withNewTitle(action.noteId, action.noteTitle);
+            const updatedAllEvents = state[NoteEntity.entityName()].allEvents.concat(updateNoteEntityEvent);
+            const updatedUnsyncedEvents = state[NoteEntity.entityName()].unsyncedEvents.concat(updateNoteEntityEvent);
             const updatedCalculatedEntities = entityNamesToClasses[NoteEntity.entityName()].entityClass.createFromEntityEvents(updatedAllEvents);
             return {
                 ...state,
