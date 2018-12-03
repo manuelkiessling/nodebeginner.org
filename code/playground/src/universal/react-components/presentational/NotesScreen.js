@@ -8,7 +8,9 @@ import AddNoteControlContainer from "../container/CreateNoteControlContainer";
 import NoteListContainer from "../container/NoteListContainer";
 
 const styles = (theme) => ({
-    root: {},
+    root: {
+        paddingTop: theme.spacing.unit * 2
+    },
     addNoteControlGridItem: {
         marginBottom: theme.spacing.unit * 5
     },
