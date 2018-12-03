@@ -33,14 +33,16 @@ const styles = (theme) => ({
 });
 
 const NoteListItemSummary = ({ note, selectedNoteId }) => (
-    <div>
-        <MuiTypography variant="h6" color="textPrimary">
-            {note.title}
-        </MuiTypography>
-        <MuiTypography variant="caption" color={selectedNoteId === note.id && "textPrimary" || "textSecondary"}>
-            {note.id}
-        </MuiTypography>
-    </div>
+    <MuiHidden xsDown={selectedNoteId === note.id}>
+        <div>
+            <MuiTypography variant="h6" color="textPrimary">
+                {note.title}
+            </MuiTypography>
+            <MuiTypography variant="caption" color={selectedNoteId === note.id && "textPrimary" || "textSecondary"}>
+                {note.id}
+            </MuiTypography>
+        </div>
+    </MuiHidden>
 );
 
 const NoteListItem = ({ note, selectedNoteId, handleSelectNote, classes }) => (
