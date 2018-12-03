@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import uuidv4 from "uuid";
 import CreateNoteControl from "../presentational/CreateNoteControl"
 import { createNoteCommand } from "../../redux-actions/commands"
 
@@ -27,7 +26,6 @@ class CreateNoteControlContainer extends Component {
     handleSubmit(event) {
         event.preventDefault();
         const { title } = this.state;
-        const id = uuidv4();
         this.props.dispatchCreateNote(title);
         this.setState({ title: "" });
     }
