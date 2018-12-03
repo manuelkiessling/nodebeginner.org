@@ -13,5 +13,8 @@ export default createMuiTheme({
             "disabled": "rgba(0, 0, 0, 0.38)",
             "hint": "rgba(0, 0, 0, 0.38)"
         }
+    },
+    typography: {
+        useNextVariants: true,
     }
 });
