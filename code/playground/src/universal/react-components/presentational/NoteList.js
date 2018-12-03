@@ -7,6 +7,7 @@ import MuiGrid from "@material-ui/core/Grid/Grid";
 import MuiHidden from "@material-ui/core/Hidden/Hidden";
 import { withStyles } from "@material-ui/core/styles";
 import NoteListItemDetails from "./NoteListItemDetails";
+import { noteById } from "../../entities/Helpers";
 
 const styles = (theme) => ({
     root: {},
@@ -22,15 +23,6 @@ const styles = (theme) => ({
         borderRight: `${theme.spacing.unit * 1}px solid ${theme.palette.grey[200]}`
     }
 });
-
-const noteById = (notes, noteId) => {
-    for (let i=0; i < notes.length; i++) {
-        if (notes[i].id === noteId) {
-            return notes[i];
-        }
-    }
-    return null;
-};
 
 const NoteList = ({ notes, selectedNoteId, handleSelectNote, classes }) => (
     <div>
