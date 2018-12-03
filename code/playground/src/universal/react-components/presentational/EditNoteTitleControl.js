@@ -17,6 +17,9 @@ const styles = (theme) => ({
     },
     abortButton: {
         marginLeft: theme.spacing.unit * 1
+    },
+    title: {
+        wordBreak: "break-all"
     }
 });
 
@@ -41,7 +44,7 @@ const EditNoteTitleControl = ({ handleClickTitle, handleChange, handleAbort, han
             </MuiGrid>
         </form>
         ||
-        <MuiTypography variant="h5" onClick={handleClickTitle}>
+        <MuiTypography variant="h5" className={classes.title} onClick={handleClickTitle}>
             {title}
         </MuiTypography>
         }

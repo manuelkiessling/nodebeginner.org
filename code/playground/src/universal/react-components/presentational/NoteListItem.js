@@ -24,11 +24,13 @@ const styles = (theme) => ({
     },
     paddingSelected: {
         paddingTop: theme.spacing.unit * 5,
-        paddingBottom: theme.spacing.unit * 5
+        paddingBottom: theme.spacing.unit * 5,
+        wordBreak: "break-all"
     },
     paddingDeselected: {
         paddingTop: theme.spacing.unit * 5,
-        paddingBottom: theme.spacing.unit * 5
+        paddingBottom: theme.spacing.unit * 5,
+        wordBreak: "break-all"
     }
 });
 

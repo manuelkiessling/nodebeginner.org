@@ -24,7 +24,9 @@ const styles = (theme) => ({
     contentText: {
         backgroundColor: theme.palette.grey[100],
         padding: theme.spacing.unit * 2,
-        borderRadius: theme.spacing.unit * 1
+        borderRadius: theme.spacing.unit * 1,
+        whiteSpace: "pre-wrap",
+        wordBreak: "break-all"
     }
 });
 
@@ -57,9 +59,7 @@ const EditNoteContentControl = ({ handleClickContent: handleClick, handleChange,
                     </MuiButton>
                 ||
                 <MuiTypography className={classes.contentText} variant="body1">
-                    {content.split('\n').map((line, key) => {
-                        return <React.Fragment key={key}>{line}<br/></React.Fragment>
-                    })}
+                    {content}
                 </MuiTypography>
                 }
             </div>

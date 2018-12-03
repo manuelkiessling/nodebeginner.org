@@ -11,14 +11,6 @@ const App = () => (
 
         <MuiCssBaseline />
 
-        <MuiAppBar position="static" color="primary">
-            <MuiToolbar>
-                <MuiTypography variant="h6" color="inherit">
-                    Notes app
-                </MuiTypography>
-            </MuiToolbar>
-        </MuiAppBar>
-
         <Switch>
             { routes.map( route => <Route key={ route.path } { ...route } /> ) }
         </Switch>
