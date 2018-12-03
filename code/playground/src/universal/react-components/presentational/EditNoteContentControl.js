@@ -57,8 +57,8 @@ const EditNoteContentControl = ({ handleClickContent: handleClick, handleChange,
                     </MuiButton>
                 ||
                 <MuiTypography className={classes.contentText} variant="body1">
-                    {content.split('\n').map((item, key) => {
-                        return <React.Fragment key={key}>{item}<br/></React.Fragment>
+                    {content.split('\n').map((line, key) => {
+                        return <React.Fragment key={key}>{line}<br/></React.Fragment>
                     })}
                 </MuiTypography>
                 }
