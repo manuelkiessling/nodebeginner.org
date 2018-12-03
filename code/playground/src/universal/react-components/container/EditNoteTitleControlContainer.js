@@ -13,10 +13,16 @@ class EditNoteTitleControlContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            inEditMode: false,
             title: this.props.note.title
         };
+        this.handleClickTitle = this.handleClickTitle.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleClickTitle(event) {
+        this.setState({ inEditMode: true });
     }
 
     handleChange(event) {
@@ -26,13 +32,25 @@ class EditNoteTitleControlContainer extends Component {
     handleSubmit(event) {
         event.preventDefault();
         const { title } = this.state;
+        this.setState({ inEditMode: false });
         this.props.dispatchUpdateNote(this.props.note.id, title);
     }
 
     render() {
-        const { title } = this.state;
+        const { title, inEditMode } = this.state;
+        let titleHasBeenChanged = false;
+        if (title !== this.props.note.title) {
+            titleHasBeenChanged = true;
+        }
         return (
-            <EditNoteControl handleSubmit={this.handleSubmit} handleChange={this.handleChange} title={title} />
+            <EditNoteControl
+                handleClickTitle={this.handleClickTitle}
+                handleChange={this.handleChange}
+                handleSubmit={this.handleSubmit}
+                title={title}
+                inEditMode={inEditMode}
+                titleHasBeenChanged={titleHasBeenChanged}
+            />
         );
     }
 }

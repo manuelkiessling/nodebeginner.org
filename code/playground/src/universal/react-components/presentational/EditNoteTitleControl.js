@@ -6,33 +6,44 @@ import MuiGrid from "@material-ui/core/Grid/Grid";
 import MuiButton from "@material-ui/core/es/Button/Button";
 import MuiHidden from "@material-ui/core/Hidden";
 import { withStyles } from "@material-ui/core/styles";
+import MuiTypography from "@material-ui/core/Typography/Typography";
 
 const styles = (theme) => ({
     root: {},
     textFieldGridItem: {},
-    buttonGridItem: {}
+    buttonGridItem: {
+        marginRight: theme.spacing.unit * 2
+    }
 });
 
-const EditNoteTitleControl = ({ handleSubmit, handleChange, title, classes }) => (
-    <form onSubmit={handleSubmit}>
+const EditNoteTitleControl = ({ handleClickTitle, handleChange, handleSubmit, title, inEditMode, titleHasBeenChanged, classes }) => (
+    <div>
+        {inEditMode
+        &&
+        <form onSubmit={handleSubmit}>
 
-    <MuiGrid container direction="row" spacing={24} justify="flex-start" alignItems="center">
-        <MuiGrid item xs container className={classes.textFieldGridItem}>
-            <MuiTextField id="title" label="Note title" variant="outlined" value={title} onChange={handleChange} fullWidth />
-        </MuiGrid>
-        <MuiGrid item className={classes.buttonGridItem}>
-            <MuiButton color="secondary" variant="contained" aria-label="Save" onClick={handleSubmit}>
-                <MuiHidden xsDown>
-                    Save
-                </MuiHidden>
-                <MuiHidden smUp>
-                    <MuiCheckIcon />
-                </MuiHidden>
-            </MuiButton>
-        </MuiGrid>
-    </MuiGrid>
-    </form>
-
+            <MuiGrid container direction="row" spacing={24} justify="flex-start" alignItems="center">
+                <MuiGrid item xs container className={classes.textFieldGridItem}>
+                    <MuiTextField autoFocus id="title" label="Change note title" variant="outlined" value={title} onChange={handleChange} fullWidth/>
+                </MuiGrid>
+                <MuiGrid item className={classes.buttonGridItem}>
+                    <MuiButton color="secondary" variant="contained" disabled={!titleHasBeenChanged}  aria-label="Save" onClick={handleSubmit}>
+                        <MuiHidden smDown>
+                            Save new title
+                        </MuiHidden>
+                        <MuiHidden mdUp>
+                            <MuiCheckIcon/>
+                        </MuiHidden>
+                    </MuiButton>
+                </MuiGrid>
+            </MuiGrid>
+        </form>
+        ||
+        <MuiTypography variant="h6" onClick={handleClickTitle}>
+            {title}
+        </MuiTypography>
+        }
+    </div>
 );
 
 EditNoteTitleControl.propTypes = {
