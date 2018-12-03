@@ -13,6 +13,7 @@ const styles = (theme) => ({
     root: {},
     list: {
         borderTop: `${theme.spacing.unit * 1}px solid ${theme.palette.grey[200]}`,
+        borderRight: `1px dotted ${theme.palette.grey[400]}`,
         paddingTop: 0
     },
     listGridItem: {

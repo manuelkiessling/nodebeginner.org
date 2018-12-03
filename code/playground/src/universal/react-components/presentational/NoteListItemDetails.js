@@ -8,13 +8,22 @@ import EditNoteTitleControlContainer from "../container/EditNoteTitleControlCont
 
 const styles = (theme) => ({
     root: {
-        padding: theme.spacing.unit * 1,
+        padding: theme.spacing.unit * 2,
         minHeight: "100%",
         minWidth: "100%",
         width: "100%"
     },
     editNoteTitleControlContainer: {
         marginTop: theme.spacing.unit * 2,
+        marginBottom: theme.spacing.unit * 2,
+        paddingBottom: theme.spacing.unit * 2,
+        borderBottom: `1px solid ${theme.palette.grey[200]}`
+    },
+    metadata: {
+        marginTop: theme.spacing.unit * 2,
+        marginBottom: theme.spacing.unit * 2,
+        paddingBottom: theme.spacing.unit * 2,
+        borderBottom: `1px solid ${theme.palette.grey[200]}`
     }
 });
 
@@ -23,21 +32,21 @@ const NoteListItemDetails = ({ note, classes }) => (
         {note != null
         &&
         <div>
-            <div>
-                <div>
-                    <MuiTypography variant="caption">
-                        {note.id}
-                    </MuiTypography>
-                </div>
-                <div>
-                    <MuiTypography variant="caption">
-                        {note.lastModified}
-                    </MuiTypography>
-                </div>
-            </div>
-
             <div className={classes.editNoteTitleControlContainer}>
                 <EditNoteTitleControlContainer key={note.id} note={note} /> {/* "key" is crucial here - without it, the component is not replaced when switching between notes! */}
+            </div>
+
+            <div className={classes.metadata}>
+                <div>
+                    <MuiTypography variant="caption">
+                        ID: {note.id}
+                    </MuiTypography>
+                </div>
+                <div>
+                    <MuiTypography variant="caption">
+                        Last changed at: {note.lastModified}
+                    </MuiTypography>
+                </div>
             </div>
         </div>
         ||

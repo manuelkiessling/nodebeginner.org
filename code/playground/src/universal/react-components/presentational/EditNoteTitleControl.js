@@ -39,7 +39,7 @@ const EditNoteTitleControl = ({ handleClickTitle, handleChange, handleSubmit, ti
             </MuiGrid>
         </form>
         ||
-        <MuiTypography variant="h6" onClick={handleClickTitle}>
+        <MuiTypography variant="h5" onClick={handleClickTitle}>
             {title}
         </MuiTypography>
         }
