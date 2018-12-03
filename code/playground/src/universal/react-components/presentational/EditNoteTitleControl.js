@@ -1,0 +1,44 @@
+import React from "react";
+import PropTypes from "prop-types";
+import MuiCheckIcon from "@material-ui/icons/Check";
+import MuiTextField from "@material-ui/core/TextField";
+import MuiGrid from "@material-ui/core/Grid/Grid";
+import MuiButton from "@material-ui/core/es/Button/Button";
+import MuiHidden from "@material-ui/core/Hidden";
+import { withStyles } from "@material-ui/core/styles";
+
+const styles = (theme) => ({
+    root: {},
+    textFieldGridItem: {},
+    buttonGridItem: {}
+});
+
+const EditNoteTitleControl = ({ handleSubmit, handleChange, title, classes }) => (
+    <form onSubmit={handleSubmit}>
+
+    <MuiGrid container direction="row" spacing={24} justify="flex-start" alignItems="center">
+        <MuiGrid item xs container className={classes.textFieldGridItem}>
+            <MuiTextField id="title" label="Note title" variant="outlined" value={title} onChange={handleChange} fullWidth />
+        </MuiGrid>
+        <MuiGrid item className={classes.buttonGridItem}>
+            <MuiButton color="secondary" variant="contained" aria-label="Save" onClick={handleSubmit}>
+                <MuiHidden xsDown>
+                    Save
+                </MuiHidden>
+                <MuiHidden smUp>
+                    <MuiCheckIcon />
+                </MuiHidden>
+            </MuiButton>
+        </MuiGrid>
+    </MuiGrid>
+    </form>
+
+);
+
+EditNoteTitleControl.propTypes = {
+    handleSubmit: PropTypes.func,
+    handleChange: PropTypes.func,
+    title: PropTypes.string
+};
+
+export default withStyles(styles)(EditNoteTitleControl);

@@ -4,6 +4,7 @@ import MuiTypography from "@material-ui/core/Typography";
 import MuiSelectedPaper from "./mui-overrides/MuiSelectedPaper";
 import { withStyles } from "@material-ui/core/styles";
 import { NoteEntity } from "../../entities/NoteEntity";
+import EditNoteTitleControlContainer from "../container/EditNoteTitleControlContainer";
 
 const styles = (theme) => ({
     root: {
@@ -12,19 +13,32 @@ const styles = (theme) => ({
         minWidth: "100%",
         width: "100%"
     },
+    editNoteTitleControlContainer: {
+        marginTop: theme.spacing.unit * 2,
+    }
 });
 
 const NoteListItemDetails = ({ note, classes }) => (
     <MuiSelectedPaper className={classes.root}>
         {note != null &&
+        <div>
+            <div>
+                <div>
+                    <MuiTypography variant="caption">
+                        {note.id}
+                    </MuiTypography>
+                </div>
+                <div>
+                    <MuiTypography variant="caption">
+                        {note.lastModified}
+                    </MuiTypography>
+                </div>
+            </div>
 
-        <MuiTypography variant="caption" color="textSecondary">
-            {note.id}
-            <br/>
-            {note.title}
-            <br/>
-            {note.lastModified}
-        </MuiTypography>}
+            <div className={classes.editNoteTitleControlContainer}>
+                <EditNoteTitleControlContainer note={note} />
+            </div>
+        </div>}
     </MuiSelectedPaper>
 );
 
