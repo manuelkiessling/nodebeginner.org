@@ -20,7 +20,8 @@ const styles = (theme) => ({
 
 const NoteListItemDetails = ({ note, classes }) => (
     <MuiSelectedPaper className={classes.root}>
-        {note != null &&
+        {note != null
+        &&
         <div>
             <div>
                 <div>
@@ -38,7 +39,11 @@ const NoteListItemDetails = ({ note, classes }) => (
             <div className={classes.editNoteTitleControlContainer}>
                 <EditNoteTitleControlContainer key={note.id} note={note} /> {/* "key" is crucial here - without it, the component is not replaced when switching between notes! */}
             </div>
-        </div>}
+        </div>
+        ||
+        <MuiTypography variant="body1">
+            "No note selected."
+        </MuiTypography>}
     </MuiSelectedPaper>
 );
 

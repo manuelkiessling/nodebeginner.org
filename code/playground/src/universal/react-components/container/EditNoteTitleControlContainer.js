@@ -5,7 +5,7 @@ import { updateNoteCommand } from "../../redux-actions/commands"
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        dispatchUpdateNote: (noteTitle) => dispatch(updateNoteCommand(noteTitle))
+        dispatchUpdateNote: (noteId, noteTitle) => dispatch(updateNoteCommand(noteId, noteTitle))
     };
 };
 
@@ -37,4 +37,4 @@ class EditNoteTitleControlContainer extends Component {
     }
 }
 
-export default connect(mapDispatchToProps)(EditNoteTitleControlContainer);
+export default connect(null, mapDispatchToProps)(EditNoteTitleControlContainer);
