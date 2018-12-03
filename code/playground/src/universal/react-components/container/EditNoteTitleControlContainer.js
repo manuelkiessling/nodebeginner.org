@@ -18,6 +18,7 @@ class EditNoteTitleControlContainer extends Component {
         };
         this.handleClickTitle = this.handleClickTitle.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.handleAbort = this.handleAbort.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -27,6 +28,10 @@ class EditNoteTitleControlContainer extends Component {
 
     handleChange(event) {
         this.setState({ [event.target.id]: event.target.value });
+    }
+
+    handleAbort(event) {
+        this.setState({ title: this.props.note.title, inEditMode: false });
     }
 
     handleSubmit(event) {
@@ -46,6 +51,7 @@ class EditNoteTitleControlContainer extends Component {
             <EditNoteControl
                 handleClickTitle={this.handleClickTitle}
                 handleChange={this.handleChange}
+                handleAbort={this.handleAbort}
                 handleSubmit={this.handleSubmit}
                 title={title}
                 inEditMode={inEditMode}
