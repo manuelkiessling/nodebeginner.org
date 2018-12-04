@@ -45,7 +45,7 @@ const NoteListItemDetails = ({ note, classes }) => (
                 </div>
                 <div>
                     <MuiTypography variant="caption">
-                        Last changed at: {note.lastModified}
+                        <strong>Last changed at:</strong> {(new Date(note.lastModified)).toLocaleString()}
                     </MuiTypography>
                 </div>
             </div>

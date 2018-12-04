@@ -41,7 +41,7 @@ const NoteListItemSummary = ({ note, selectedNoteId }) => (
                 {note.title}
             </MuiTypography>
             <MuiTypography variant="caption" color={selectedNoteId === note.id && "textPrimary" || "textSecondary"}>
-                {note.id}
+                {(new Date(note.lastModified)).toLocaleString()}
             </MuiTypography>
         </div>
     </MuiHidden>
