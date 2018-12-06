@@ -5,7 +5,7 @@ import {
     COMMAND_NOTE_SELECT, COMMAND_NOTE_UPDATE_CONTENT,
     COMMAND_NOTE_UPDATE_TITLE
 } from "../redux-actions/commands";
-import { EVENT_ENTITY_EVENTS_FETCHING_SUCCEEDED } from "../redux-actions/events";
+import { EVENT_ENTITY_EVENTS_FETCHING_SUCCEEDED, EVENT_ENTITY_EVENTS_SYNCING_SUCCEEDED } from "../redux-actions/events";
 import { mergeEntityEventArrays } from "../entities/EntityEvent";
 import { NoteEntity } from "../entities/NoteEntity";
 import { CreateNoteEntityEvent, UpdateNoteEntityEvent } from "../entities/NoteEntityEvents";
@@ -89,6 +89,16 @@ const entities = (state = emptyState().entities, action) => {
                     ...state[NoteEntity.entityName()],
                     allEvents: updatedAllEvents,
                     calculatedEntities: updatedCalculatedEntities
+                }
+            };
+        }
+        case EVENT_ENTITY_EVENTS_SYNCING_SUCCEEDED: {
+            const entityName = action.entityName;
+            return {
+                ...state,
+                [entityName]: {
+                    ...state[NoteEntity.entityName()],
+                    unsyncedEvents: []
                 }
             };
         }
