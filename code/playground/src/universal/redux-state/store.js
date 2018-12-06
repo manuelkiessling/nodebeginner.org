@@ -20,7 +20,7 @@ export const mergeStatesAndRecalculate = (stateA, stateB) => {
             console.debug("stateB is null, not merging.");
             mergedState = stateA;
         } else {
-            console.debug(`mergeStates: stateA is ${JSON.stringify(stateA)}, stateB is ${JSON.stringify(stateB)}`);
+            console.debug(`mergeStates: stateA is ${JSON.stringify(stateA, null, 4)}, stateB is ${JSON.stringify(stateB, null, 4)}`);
 
             for (const entityName in entityNamesToClasses) {
                 mergedState.entities[entityName].allEvents = mergeEntityEventArrays(

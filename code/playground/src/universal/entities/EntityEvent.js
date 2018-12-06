@@ -57,14 +57,14 @@ export const mergeEntityEventArrays = (entityEventsA, entityEventsB) => {
 
     const mergedEntityEvents = entityEventsA.splice(0);
 
-    console.debug(`Merging entity events ${JSON.stringify(entityEventsB)} into ${JSON.stringify(mergedEntityEvents)}`);
+    console.debug(`Merging entity events ${JSON.stringify(entityEventsB, null, 4)} into ${JSON.stringify(mergedEntityEvents, null, 4)}`);
 
     entityEventsB.forEach((entityEventB) => {
         if (!mergedEntityEvents.find((mergedEntityEvent) => mergedEntityEvent.id === entityEventB.id)) {
-            console.debug(`Adding entity event ${JSON.stringify(entityEventB)} to ${JSON.stringify(mergedEntityEvents)}`);
+            console.debug(`Adding entity event ${JSON.stringify(entityEventB, null, 4)} to ${JSON.stringify(mergedEntityEvents, null, 4)}`);
             mergedEntityEvents.push(entityEventB)
         } else {
-            console.debug(`Entity event ${JSON.stringify(entityEventB)} already in ${JSON.stringify(mergedEntityEvents)}`);
+            console.debug(`Entity event ${JSON.stringify(entityEventB, null, 4)} already in ${JSON.stringify(mergedEntityEvents, null, 4)}`);
         }
     });
     return mergedEntityEvents;

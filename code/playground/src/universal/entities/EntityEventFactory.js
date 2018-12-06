@@ -22,11 +22,11 @@ export class EntityEventFactory {
         ]);
 
         if (!(entityName in entityNamesToClasses)) {
-            throw `${entityName} is not in list of supported entities ${JSON.stringify(entityNamesToClasses)}`
+            throw `${entityName} is not in list of supported entities ${JSON.stringify(entityNamesToClasses, null, 4)}`
         }
 
         if (!(eventTypes.includes(type))) {
-            throw `${type} is not in list of supported event types ${JSON.stringify(types)}`
+            throw `${type} is not in list of supported event types ${JSON.stringify(types, null, 4)}`
         }
 
         const classes = {

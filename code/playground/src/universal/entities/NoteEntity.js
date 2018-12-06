@@ -68,17 +68,17 @@ export class NoteEntity {
                 .filter(_ => _ instanceof CreateNoteEntityEvent || _ instanceof UpdateNoteEntityEvent)
                 .sort(compareTimestamps);
 
-        console.debug(`Handling ${JSON.stringify(sortedNoteEntityEvents)}...`);
+        console.debug(`Handling ${JSON.stringify(sortedNoteEntityEvents, null, 4)}...`);
 
         const noteEntities = [];
 
         sortedNoteEntityEvents.forEach((entityEvent) => {
-            console.debug(`Handling ${JSON.stringify(entityEvent)}...`);
+            console.debug(`Handling ${JSON.stringify(entityEvent, null, 4)}...`);
 
             if (entityEvent instanceof CreateNoteEntityEvent) {
-                console.debug(`Using ${JSON.stringify(entityEvent)} to create Note entity...`);
+                console.debug(`Using ${JSON.stringify(entityEvent, null, 4)} to create Note entity...`);
                 if (noteEntities.find(_ => _.id === entityEvent.entityId)) {
-                    console.error(`Found more than one 'create' event for note ${entityEvent.entityId} in event list, unexpected event is ${JSON.stringify(entityEvent)}`);
+                    console.error(`Found more than one 'create' event for note ${entityEvent.entityId} in event list, unexpected event is ${JSON.stringify(entityEvent, null, 4)}`);
                 } else {
                     const noteEntity = createNoteFromObject({
                         id: entityEvent.entityId,
@@ -87,23 +87,23 @@ export class NoteEntity {
                         isImportant: entityEvent.isImportant,
                         lastModified: entityEvent.timestamp
                     });
-                    console.debug(`Creating new note ${JSON.stringify(noteEntity)} from event ${JSON.stringify(entityEvent)}`);
+                    console.debug(`Creating new note ${JSON.stringify(noteEntity)} from event ${JSON.stringify(entityEvent, null, 4)}`);
                     noteEntities.push(noteEntity);
                 }
             } else if (entityEvent instanceof UpdateNoteEntityEvent) {
-                console.debug(`Using ${JSON.stringify(entityEvent)} to update Note entity...`);
+                console.debug(`Using ${JSON.stringify(entityEvent, null, 4)} to update Note entity...`);
                 const noteEntity = noteEntities.find(_ => _.id === entityEvent.entityId);
                 if (noteEntity == null) {
-                    throw `Got an 'update' event for a note that is not yet created, unexpected event is ${JSON.stringify(entityEvent)}`;
+                    throw `Got an 'update' event for a note that is not yet created, unexpected event is ${JSON.stringify(entityEvent, null, 4)}`;
                 } else {
-                    console.debug(`Updating note ${JSON.stringify(noteEntity)} from event ${JSON.stringify(entityEvent)}`);
+                    console.debug(`Updating note ${JSON.stringify(noteEntity, null, 4)} from event ${JSON.stringify(entityEvent, null, 4)}`);
                     noteEntity.lastModified = entityEvent.timestamp;
                     noteEntity.title = entityEvent.payload.title;
                     noteEntity.content = entityEvent.payload.content;
-                    console.debug(`Updated note ${JSON.stringify(noteEntity)} from event ${JSON.stringify(entityEvent)}`);
+                    console.debug(`Updated note ${JSON.stringify(noteEntity, null, 4)} from event ${JSON.stringify(entityEvent, null, 4)}`);
                 }
             } else {
-                console.debug(`Cannot handle ${JSON.stringify(entityEvent)} because it is an instance of ${entityEvent.constructor.name}`);
+                console.debug(`Cannot handle ${JSON.stringify(entityEvent, null, 4)} because it is an instance of ${entityEvent.constructor.name}`);
             }
         });
 
