@@ -24,29 +24,30 @@ export const syncEntityEventsThunk = () => (dispatch, getState) => {
     for (const entityName in entityNamesToClasses) {
         const unsyncedEvents = getState().entities[entityName].unsyncedEvents;
 
-        if (unsyncedEvents ===[]) {
-            return;
+        if (unsyncedEvents.length !== 0) {
+
+            console.debug(`About to sync unsynced ${entityName} events: ${JSON.stringify(unsyncedEvents, null, 4)}`);
+
+            dispatch(startedSyncingEntityEventsEvent());
+
+            fetch(
+                apiBase + "/api/entity-events/",
+                {
+                    method: "POST",
+                    headers: {
+                        "Accept": "application/json",
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(unsyncedEvents)
+                })
+                .then((response) => response.json())
+                .then((json) => {
+                    dispatch(succeededSyncingEntityEventsEvent(entityName));
+                    console.debug(JSON.stringify(json, null, 4));
+                })
+                .catch((e) => console.error(e));
         }
-
-        console.debug(`About to sync unsynced ${entityName} events: ${JSON.stringify(unsyncedEvents, null, 4)}`);
-
-        dispatch(startedSyncingEntityEventsEvent());
-
-        fetch(
-            apiBase + "/api/entity-events/",
-            {
-                method: "POST",
-                headers: {
-                    "Accept": "application/json",
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(unsyncedEvents)
-            })
-            .then((response) => response.json())
-            .then((json) => {
-                dispatch(succeededSyncingEntityEventsEvent(entityName));
-                console.debug(JSON.stringify(json, null, 4));
-            })
-            .catch((e) => console.error(e));
     }
+
+    return new Promise((resolve) => { resolve() });
 };
