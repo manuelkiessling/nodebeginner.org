@@ -11,42 +11,45 @@ sourceMapSupport.install();
 
 const server = express();
 
-activateApiServer(server);
-activateSsr(server);
+const boot = () => {
+    activateSsr(server);
 
-const staticPath = path.resolve(__dirname); // Webpack will store the bundled server.js
-                                            // file into /dist, where the other static stuff ends up, too
+    const staticPath = path.resolve(__dirname); // Webpack will store the bundled server.js
+                                                // file into /dist, where the other static stuff ends up, too
 
 
-server.get(/^\/server\.(.*)/, (req, res) => {
-    res.sendStatus(404);
-    res.end("404 Not found.")
-});
-
-server.use(express.static(staticPath));
-
-server.get("/sw-precache-appshell", (req, res) => {
-    const templateFileName = path.resolve(__dirname, "..", "src", "universal", "html-templates", "sw-precache-appshell.html");
-
-    fs.readFile(templateFileName, "utf8", (err, templateContent) => {
-        if (err) {
-            console.error("err", err);
-            return res.status(404).end()
-        }
-
-        res.writeHead(200, {"Content-Type": "text/html"});
-        res.end(renderHtmlTemplate(templateContent, false, false, false));
-
+    server.get(/^\/server\.(.*)/, (req, res) => {
+        res.sendStatus(404);
+        res.end("404 Not found.")
     });
-});
 
-server.get("/*", (req, res) => {
-    res.sendStatus(404);
-    res.end("404 Not found.")
-});
+    server.use(express.static(staticPath));
+
+    server.get("/sw-precache-appshell", (req, res) => {
+        const templateFileName = path.resolve(__dirname, "..", "src", "universal", "html-templates", "sw-precache-appshell.html");
+
+        fs.readFile(templateFileName, "utf8", (err, templateContent) => {
+            if (err) {
+                console.error("err", err);
+                return res.status(404).end()
+            }
+
+            res.writeHead(200, { "Content-Type": "text/html" });
+            res.end(renderHtmlTemplate(templateContent, false, false, false));
+
+        });
+    });
+
+    server.get("/*", (req, res) => {
+        res.sendStatus(404);
+        res.end("404 Not found.")
+    });
 
 
-server.listen(10000);
+    server.listen(10000);
 
-console.info("Will serve static files from " + staticPath);
-console.info("Server listening on http://127.0.0.1:10000");
+    console.info("Will serve static files from " + staticPath);
+    console.info("Server listening on http://127.0.0.1:10000");
+};
+
+activateApiServer(server, boot);
