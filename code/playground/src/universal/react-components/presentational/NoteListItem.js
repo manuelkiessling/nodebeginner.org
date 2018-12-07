@@ -9,6 +9,7 @@ import NoteListItemDetails from "./NoteListItemDetails";
 import MuiSelectedPaper from "./mui-overrides/MuiSelectedPaper";
 import MuiDeselectedPaper from "./mui-overrides/MuiDeselectedPaper";
 import { withStyles } from "@material-ui/core/styles";
+import NoteSyncStatusIndicatorContainer from "../container/NoteSyncStatusIndicatorContainer";
 
 const styles = (theme) => ({
     root: {
@@ -43,6 +44,7 @@ const NoteListItemSummary = ({ note, selectedNoteId }) => (
             <MuiTypography variant="caption" color={selectedNoteId === note.id && "textPrimary" || "textSecondary"}>
                 {(new Date(note.lastModified)).toLocaleString()}
             </MuiTypography>
+            <NoteSyncStatusIndicatorContainer note={note} />
         </div>
     </MuiHidden>
 );

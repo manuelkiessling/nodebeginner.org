@@ -12,6 +12,6 @@ export default (store) => {
                 store.dispatch(syncEntityEventsThunk(entityName));
             }
         }
-    }, 2000);
+    }, 5000);
 
 };
