@@ -10,6 +10,7 @@ import "../universal/styling/app.scss";
 import muiTheme from "../universal/styling/muiTheme"
 import { getEnvVar } from "../universal/utils/env";
 import { retrieveStateFromLocalStorage, setUpLocalStorageStoreSubscription } from "./localStorage";
+import activateServerSync from "./serverSync";
 
 let store;
 if (window.SSR_REDUX_STORE_STATE == null) {
@@ -31,6 +32,7 @@ if (window.SSR_REDUX_STORE_STATE == null) {
 }
 
 setUpLocalStorageStoreSubscription(store);
+activateServerSync(store);
 
 const appDom = (
     <Provider store={store}>

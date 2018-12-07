@@ -14,6 +14,7 @@ const activateApi = (server, callback) => {
         const entityEventsByUserId = db.collection("entityEventsByUserId");
 
         server.get(/^\/api\/entity-events\/$/, (req, res) => {
+            console.info(`Received API request: ${JSON.stringify(req.route, null, 4)}`);
             entityEventsByUserId
                 .findOne({ userId: 1234 }, {}, (err, doc) => {
                     if (err) {
@@ -23,13 +24,20 @@ const activateApi = (server, callback) => {
                     } else {
                         res.writeHead(200, { "Content-Type": "application/json" });
                         if (doc != null && doc.hasOwnProperty("events") && doc.events != null) {
-                            res.end(JSON.stringify(doc.events))
+                            res.end(JSON.stringify(doc.events));
                         } else {
-                            res.end(JSON.stringify([]))
+                            res.end(JSON.stringify([]));
                         }
                     }
                 });
 
+        });
+
+        server.post(/^\/api\/entity-events\/$/, (req, res) => {
+            console.info(`Received API request: ${JSON.stringify(req.route, null, 4)}`);
+            console.debug(`Request body: ${JSON.stringify(req.body, null, 4)}`);
+            res.writeHead(200, { "Content-Type": "application/json" });
+            res.end(JSON.stringify("Entity events successfully stored"));
         });
 
         console.info("API support at /api activated.");
