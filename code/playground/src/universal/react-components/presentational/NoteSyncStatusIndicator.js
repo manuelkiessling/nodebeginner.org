@@ -1,7 +1,14 @@
 import React from "react";
+import MuiCloudUploadIcon from "@material-ui/icons/CloudUpload";
+import MuiCloudDoneIcon from "@material-ui/icons/CloudDone";
 
-export default ({status}) => (
-    <div>
-        {status}
-    </div>
+export default ({isSynced}) => (
+    <span>
+        {isSynced
+        &&
+            <MuiCloudDoneIcon/>
+        ||
+            <MuiCloudUploadIcon/>
+        }
+    </span>
 );

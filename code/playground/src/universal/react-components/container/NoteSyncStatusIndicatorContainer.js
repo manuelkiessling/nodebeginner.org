@@ -15,13 +15,13 @@ class NoteSyncStatusIndicatorContainer extends Component {
     }
 
     render() {
-        let status = "synced";
+        let isSynced = true;
         for (let i=0; i < this.props.unsyncedNoteEntityEvents.length; i++) {
             if (this.props.unsyncedNoteEntityEvents[i].entityId === this.props.note.id) {
-                status = "not synced";
+                isSynced = false;
             }
         }
-        return <NoteSyncStatusIndicator status={status} />
+        return <NoteSyncStatusIndicator isSynced={isSynced} />
     }
 }
 
