@@ -14,15 +14,19 @@ const activateApi = (server, callback) => {
         const entityEventsByUserId = db.collection("entityEventsByUserId");
 
         server.get(/^\/api\/entity-events\/$/, (req, res) => {
-            res.writeHead(200, { "Content-Type": "application/json" });
-
             entityEventsByUserId
                 .findOne({ userId: 1234 }, {}, (err, doc) => {
                     if (err) {
                         console.error(err);
+                        res.writeHead(500, { "Content-Type": "application/json" });
                         res.end(JSON.stringify({error: err.message }))
                     } else {
-                        res.end(JSON.stringify(doc.events))
+                        res.writeHead(200, { "Content-Type": "application/json" });
+                        if (doc != null && doc.hasOwnProperty("events") && doc.events != null) {
+                            res.end(JSON.stringify(doc.events))
+                        } else {
+                            res.end(JSON.stringify([]))
+                        }
                     }
                 });
 
