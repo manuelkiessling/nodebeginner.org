@@ -1,10 +1,13 @@
 import { MongoClient } from "mongodb";
-
+import bodyParser from "body-parser";
 
 const url = "mongodb://127.0.0.1:27017";
 const client = new MongoClient(url, { useNewUrlParser: true });
 
 const activateApi = (server, callback) => {
+
+    server.use(bodyParser.json());
+
     client.connect((err) => {
         if (err) throw err;
 
@@ -14,13 +17,13 @@ const activateApi = (server, callback) => {
         const entityEventsByUserId = db.collection("entityEventsByUserId");
 
         server.get(/^\/api\/entity-events\/$/, (req, res) => {
-            console.info(`Received API request: ${JSON.stringify(req.route, null, 4)}`);
+            console.info(`Received API request: ${req.method} ${req.originalUrl}`);
             entityEventsByUserId
                 .findOne({ userId: 1234 }, {}, (err, doc) => {
                     if (err) {
                         console.error(err);
                         res.writeHead(500, { "Content-Type": "application/json" });
-                        res.end(JSON.stringify({error: err.message }))
+                        res.end(JSON.stringify({ error: err.message }));
                     } else {
                         res.writeHead(200, { "Content-Type": "application/json" });
                         if (doc != null && doc.hasOwnProperty("events") && doc.events != null) {
@@ -34,10 +37,29 @@ const activateApi = (server, callback) => {
         });
 
         server.post(/^\/api\/entity-events\/$/, (req, res) => {
-            console.info(`Received API request: ${JSON.stringify(req.route, null, 4)}`);
+            console.info(`Received API request: ${req.method} ${req.originalUrl}`);
             console.debug(`Request body: ${JSON.stringify(req.body, null, 4)}`);
-            res.writeHead(200, { "Content-Type": "application/json" });
-            res.end(JSON.stringify("Entity events successfully stored"));
+
+            const updatePromises = [];
+
+            for (let i=0; i < req.body.length; i++) {
+                console.debug(`Upserting ${req.body[i]}`);
+                updatePromises.push(entityEventsByUserId.updateOne(
+                    { userId: 1234 },
+                    { $push: { events: req.body[i] } },
+                    { upsert: true }
+                ));
+            }
+
+            Promise.all(updatePromises)
+                .then(() => {
+                    res.writeHead(200, { "Content-Type": "application/json" });
+                    res.end(JSON.stringify("Entity events successfully stored"));
+                })
+                .catch((err) => {
+                    res.writeHead(500, { "Content-Type": "application/json" });
+                    res.end(JSON.stringify({ error: err.message }));
+                });
         });
 
         console.info("API support at /api activated.");
