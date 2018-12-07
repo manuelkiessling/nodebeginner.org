@@ -1,5 +1,6 @@
 import { MongoClient } from "mongodb";
 import bodyParser from "body-parser";
+import { EntityEventFactory } from "../universal/entities/EntityEventFactory";
 
 const url = "mongodb://127.0.0.1:27017";
 const client = new MongoClient(url, { useNewUrlParser: true });
@@ -41,12 +42,24 @@ const activateApi = (server, callback) => {
             console.debug(`Request body: ${JSON.stringify(req.body, null, 4)}`);
 
             const updatePromises = [];
+            const entityEvents = [];
 
-            for (let i=0; i < req.body.length; i++) {
-                console.debug(`Upserting ${req.body[i]}`);
+            try {
+                for (let i=0; i < req.body.length; i++) {
+                    entityEvents.push(EntityEventFactory.createEntityEventFromObject(req.body[i]))
+                }
+            } catch (e) {
+                console.error(e);
+                res.writeHead(500, { "Content-Type": "application/json" });
+                res.end(JSON.stringify({ error: e.message }));
+                return;
+            }
+
+
+            for (let i=0; i < entityEvents.length; i++) {
                 updatePromises.push(entityEventsByUserId.updateOne(
                     { userId: 1234 },
-                    { $push: { events: req.body[i] } },
+                    { $push: { events: entityEvents[i] } },
                     { upsert: true }
                 ));
             }
