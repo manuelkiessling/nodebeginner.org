@@ -3,7 +3,8 @@ import express from "express";
 import path from "path";
 import fs from "fs";
 import React from "react";
-import activateApiServer from "./api";
+import activateEntityApi from "./entityApi";
+import activateAuthApi from "./authApi";
 import activateSsr from "./ssr";
 import renderHtmlTemplate from "./renderHtmlTemplate";
 
@@ -52,4 +53,8 @@ const boot = () => {
     console.info("Server listening on http://127.0.0.1:10000");
 };
 
-activateApiServer(server, boot);
+activateEntityApi(server,
+    () => activateAuthApi(server,
+        boot
+    )
+);
