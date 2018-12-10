@@ -46,6 +46,16 @@ const boot = () => {
         res.end("404 Not found.")
     });
 
+    server.use((err, req, res, next) => {
+        console.info(`Received request: ${req.method} ${req.originalUrl}`);
+        if (err) {
+            console.error(`Received invalid request: ${JSON.stringify(req.headers)}  ${JSON.stringify(req.body)}`);
+            res.writeHead(400, { "Content-Type": "application/json" });
+            res.end(JSON.stringify({ "error": "Invalid request."}));
+        } else {
+            next();
+        }
+    });
 
     server.listen(10000);
 
