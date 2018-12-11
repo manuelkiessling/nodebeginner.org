@@ -1,11 +1,7 @@
-import { MongoClient } from "mongodb";
 import bodyParser from "body-parser";
 import bcrypt from "bcryptjs";
 import uuidv4 from "uuid";
 import jwt from "jsonwebtoken";
-
-const url = "mongodb://127.0.0.1:27017";
-const client = new MongoClient(url, { useNewUrlParser: true });
 
 
 const generateSessionToken = (userId, callback) => {
@@ -13,19 +9,15 @@ const generateSessionToken = (userId, callback) => {
 };
 
 
-const activateAuth = (server, callback) => {
+const activateAuth = (httpServer, mongoDb) => {
 
-    server.use(bodyParser.json());
+    return new Promise((resolve) => {
 
-    client.connect((err) => {
-        if (err) throw err;
+        const accounts = mongoDb.collection("accounts");
 
-        console.info("Connected to MongoDB server.");
+        httpServer.use(bodyParser.json());
 
-        const db = client.db("test");
-        const accounts = db.collection("accounts");
-
-        server.post(/^\/api\/session-tokens\/$/, (req, res) => {
+        httpServer.post(/^\/api\/session-tokens\/$/, (req, res) => {
             console.info(`Received auth request: ${req.method} ${req.originalUrl}`);
 
             if (    (req.body == null)
@@ -111,8 +103,11 @@ const activateAuth = (server, callback) => {
 
         });
 
-        callback();
+        console.info("Session Tokens API support at /api/session-tokens/ activated.");
+        resolve();
+
     });
+
 };
 
 export default activateAuth;
