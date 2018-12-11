@@ -16,7 +16,7 @@ const cssChunks = extractAssets(clientAssetsManifest, ["main"], ".css")
 export default (templateContent, reactDom, store, inlineStyle) => {
     return (
         templateContent
-        // write the rendered React app DOM
+            // write the rendered React app DOM
             .replace('<div id="app"></div>', reactDom ? `<div id="app">${reactDom}</div>` : '<div id="app"></div>')
 
             // write the Redux store state

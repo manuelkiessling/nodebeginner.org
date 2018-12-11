@@ -103,7 +103,7 @@ const activateAuth = (httpServer, mongoDb) => {
 
         });
 
-        console.info("Session Tokens API support at /api/session-tokens/ activated.");
+        console.info("Will serve session tokens API at /api/session-tokens/.");
         resolve();
 
     });

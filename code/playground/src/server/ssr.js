@@ -16,72 +16,68 @@ import renderHtmlTemplate from "./renderHtmlTemplate";
 
 export default (httpServer) => {
 
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
 
-        httpServer.get(/^\/(notes|)(\?.*)*$/, (req, res) => {
+        const templateFileName = path.resolve(__dirname, "..", "src", "universal", "html-templates", "index.html");
 
-            console.debug("__dirname:" + __dirname);
-            console.debug("path.resolve(__dirname):" + path.resolve(__dirname));
+        fs.readFile(templateFileName, "utf8", (err, templateContent) => {
+            if (err) {
+                reject(err);
+            } else {
+                httpServer.get(/^\/(notes|)(\?.*)*$/, (req, res) => {
 
-            const templateFileName = path.resolve(__dirname, "..", "src", "universal", "html-templates", "index.html");
+                    const store = createStoreFromInitialState();
+                    store.dispatch(initializeCommand());
 
-            fs.readFile(templateFileName, "utf8", (err, templateContent) => {
-                if (err) {
-                    console.error("err", err);
-                    return res.status(404).end()
-                }
+                    const ssrDispatchHooks =
+                        routes
+                            .filter((route) => matchPath(req.url, route))                    // filter matching paths
+                            .map((route) => route.component)                                 // map to components
+                            .filter((component) => component.ssrDispatchHook)                // filter to components that have a SSR trigger
+                            .map((component) => {
+                                console.debug("Triggering ssrDispatchHook on " + component.name);
+                                return store.dispatch(component.ssrDispatchHook());          // dispatch trigger
+                            });
 
-                const store = createStoreFromInitialState();
-                store.dispatch(initializeCommand());
+                    Promise.all(ssrDispatchHooks).then(() => {
+                        const context = {};
 
-                const ssrDispatchHooks =
-                    routes
-                        .filter((route) => matchPath(req.url, route))                    // filter matching paths
-                        .map((route) => route.component)                                 // map to components
-                        .filter((component) => component.ssrDispatchHook)                // filter to components that have a SSR trigger
-                        .map((component) => {
-                            console.debug("Triggering ssrDispatchHook on " + component.name);
-                            return store.dispatch(component.ssrDispatchHook());          // dispatch trigger
-                        });
+                        const sheetsRegistry = new SheetsRegistry();
 
-                Promise.all(ssrDispatchHooks).then(() => {
-                    const context = {};
+                        // Create a sheetsManager instance.
+                        const sheetsManager = new Map();
 
-                    const sheetsRegistry = new SheetsRegistry();
+                        // Create a new class name generator.
+                        const generateClassName = createGenerateClassName();
 
-                    // Create a sheetsManager instance.
-                    const sheetsManager = new Map();
+                        console.debug("Building JSX");
+                        const jsx = (
+                            <Provider store={store}>
+                                <Router context={context} location={req.url}>
+                                    <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
+                                        <MuiThemeProvider theme={muiTheme} sheetsManager={sheetsManager}>
+                                            <AppContainer/>
+                                        </MuiThemeProvider>
+                                    </JssProvider>
+                                </Router>
+                            </Provider>
+                        );
 
-                    // Create a new class name generator.
-                    const generateClassName = createGenerateClassName();
+                        console.debug("Starting JSX rendering...");
+                        const reactDom = renderToString(jsx);
+                        console.debug("Finished JSX rendering.");
 
-                    console.debug("Building JSX");
-                    const jsx = (
-                        <Provider store={store}>
-                            <Router context={context} location={req.url}>
-                                <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
-                                    <MuiThemeProvider theme={muiTheme} sheetsManager={sheetsManager}>
-                                        <AppContainer/>
-                                    </MuiThemeProvider>
-                                </JssProvider>
-                            </Router>
-                        </Provider>
-                    );
+                        const style = sheetsRegistry.toString();
 
-                    console.debug("Starting JSX rendering...");
-                    const reactDom = renderToString(jsx);
-                    console.debug("Finished JSX rendering.");
-
-                    const style = sheetsRegistry.toString();
-
-                    res.writeHead(200, {"Content-Type": "text/html"});
-                    res.end(renderHtmlTemplate(templateContent, reactDom, store, style));
+                        res.writeHead(200, { "Content-Type": "text/html" });
+                        res.end(renderHtmlTemplate(templateContent, reactDom, store, style));
+                    });
                 });
-            });
+
+                console.info("Will serve server-side rendered application at / and /notes.");
+                resolve();
+            }
+
         });
-
-        console.info("SSR support at / and /notes activated.")
-        resolve();
-
     });
-};
+}

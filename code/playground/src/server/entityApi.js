@@ -65,7 +65,7 @@ const activateApi = (httpServer, mongoDb) => {
                 });
         });
 
-        console.info("Entity Events API support at /api/entity-events/ activated.");
+        console.info("Will serve entity events API at /api/entity-events/.");
         resolve();
 
     });
