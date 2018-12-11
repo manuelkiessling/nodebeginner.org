@@ -17,12 +17,16 @@ const activateApi = (httpServer, mongoDb) => {
 
             if (req.cookies.hasOwnProperty("sessionToken") && req.cookies.sessionToken != null) {
 
+                console.info(`Verifying session token ${req.cookies.sessionToken.blue}...`);
                 jwt.verify(req.cookies.sessionToken, "secret", (err, decoded) => {
                     if (err) {
+                        console.info(`Session token ${req.cookies.sessionToken.blue} ${"could not be verified".yellow}.`);
                         console.error(err);
                         res.writeHead(200, { "Content-Type": "application/json" });
                         res.end(JSON.stringify({ error: "Session token is invalid." }));
                     } else {
+                        console.info(`Session token ${req.cookies.sessionToken.blue} ${"could be verified".green}.`);
+                        console.info(`Verifying session token ${req.cookies.sessionToken.blue}...`);
                         entityEventsByUserId.findOne({ userId: decoded.userId }, {}, (err, doc) => {
                             if (err) {
                                 console.error(err);

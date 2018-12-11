@@ -11,7 +11,7 @@ const setCookieAndEnd = (userId, res) => {
             res.writeHead(500, { "Content-Type": "application/json" });
             res.end(JSON.stringify({ error: "Could not create session token." }));
         } else {
-            res.cookie("sessionToken", JSON.stringify(jwt), { httpOnly: true });
+            res.cookie("sessionToken", jwt, { httpOnly: true });
             res.writeHead(200, { "Content-Type": "application/json" });
             res.end(JSON.stringify({ authSuccess: true }));
         }

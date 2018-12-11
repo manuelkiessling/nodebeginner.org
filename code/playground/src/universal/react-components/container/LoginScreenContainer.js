@@ -2,10 +2,19 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchSessionTokenThunk } from "../../redux-actions/thunks";
 import LoginScreen from "../presentational/LoginScreen";
+import MuiTypography from "@material-ui/core/Typography/Typography";
+import { Redirect } from "react-router-dom";
 
 const mapDispatchToProps = (dispatch) => {
     return {
         dispatchFetchSessionTokenThunk: (username, password) => dispatch(fetchSessionTokenThunk(username, password))
+    };
+};
+
+const mapStateToProps = (state) => {
+    return {
+        isLoggedIn: state.isLoggedIn,
+        errorMessage: state.ui.errorMessage
     };
 };
 
@@ -33,9 +42,18 @@ class LoginScreenContainer extends Component {
     render() {
         const { username, password } = this.state;
         return (
-            <LoginScreen handleSubmit={this.handleSubmit} handleChange={this.handleChange} username={username} password={password} />
+            <React.Fragment>
+                {this.props.isLoggedIn && <Redirect push to="/notes" />}
+
+                {this.props.errorMessage !== "" &&
+                <MuiTypography variant="h6" color="error">
+                    {this.props.errorMessage}
+                </MuiTypography>}
+
+                <LoginScreen handleSubmit={this.handleSubmit} handleChange={this.handleChange} username={username} password={password} />
+            </React.Fragment>
         );
     }
 }
 
-export default connect(null, mapDispatchToProps)(LoginScreenContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginScreenContainer);
