@@ -9,7 +9,7 @@ export const eventTypes = [typeCreate(), typeUpdate(), typeDelete()];
 
 
 export class EntityEvent {
-    constructor(type, id, timestamp, entityName, entityId, payload) {
+    constructor(type, id, timestamp, entityName, entityId, payload) { // TODO: add userId attribute, only fetch/push events for current user
         typeOf([
             { type, is: String },
             { id, is: String },
