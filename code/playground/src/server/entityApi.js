@@ -10,7 +10,7 @@ const activateApi = (httpServer, mongoDb) => {
         const entityEventsByUserId = mongoDb.collection("entityEventsByUserId");
 
         httpServer.get(/^\/api\/entity-events\/$/, (req, res) => {
-            console.info(`Received API request: ${req.method} ${req.originalUrl}`);
+            console.info(`Received entity events API request ${req.method.cyan} ${req.originalUrl.green}`);
             entityEventsByUserId.findOne({ userId: 1234 }, {}, (err, doc) => {
                 if (err) {
                     console.error(err);
@@ -28,8 +28,8 @@ const activateApi = (httpServer, mongoDb) => {
         });
 
         httpServer.post(/^\/api\/entity-events\/$/, (req, res) => {
-            console.info(`Received API request: ${req.method} ${req.originalUrl}`);
-            console.debug(`Request body: ${JSON.stringify(req.body, null, 4)}`);
+            console.info(`Received entity events API request ${req.method.cyan} ${req.originalUrl.green}`);
+            console.debug(`Request body: ${JSON.stringify(req.body, null, 4).blue}`);
 
             const updatePromises = [];
             const entityEvents = [];
@@ -65,7 +65,7 @@ const activateApi = (httpServer, mongoDb) => {
                 });
         });
 
-        console.info("Will serve entity events API at /api/entity-events/.");
+        console.info(`Will serve ${"entity events API".blue} at ${"/api/entity-events/".green}.`);
         resolve();
 
     });

@@ -2,7 +2,7 @@ import bodyParser from "body-parser";
 import bcrypt from "bcryptjs";
 import uuidv4 from "uuid";
 import jwt from "jsonwebtoken";
-
+import colors from "colors";
 
 const generateSessionToken = (userId, callback) => {
     return jwt.sign({ userId: userId }, "secret", callback);
@@ -32,7 +32,7 @@ const activateAuth = (httpServer, mongoDb) => {
                 || !(typeof req.body.password === "string")
                 ||  (req.body.password.length === 0)
             ) {
-                console.info(`Request body ${JSON.stringify(req.body, null, 4)} is invalid.`);
+                console.info(`Auth request body ${JSON.stringify(req.body, null, 4).blue} is ${"invalid".red}.`);
                 res.writeHead(400, { "Content-Type": "application/json" });
                 res.end(JSON.stringify({ error: "Invalid authentication body." }));
                 return;
@@ -48,14 +48,14 @@ const activateAuth = (httpServer, mongoDb) => {
                 } else {
                     if (doc != null && doc.hasOwnProperty("passwordHash") && doc.passwordHash != null) {
 
-                        console.info(`Account with username ${username} exists, verifying password...`);
+                        console.info(`Account with username ${username.blue} exists, verifying password...`);
                         bcrypt.compare(password, doc.passwordHash, (err, matched) => {
                             if (matched === true) {
-                                console.info(`Password for account with username ${username} is valid, creating session token...`);
+                                console.info(`Password for account with username ${username.blue} is valid, creating session token...`);
                                 res.writeHead(200, { "Content-Type": "application/json" });
                                 res.end(JSON.stringify(generateSessionToken(doc.userId)));
                             } else {
-                                console.info(`Password for account with username ${username} is invalid.`);
+                                console.info(`Password for account with username ${username.blue} is ${"invalid".yellow}.`);
                                 res.writeHead(200, { "Content-Type": "application/json" });
                                 res.end(JSON.stringify("Access denied."));
                             }
@@ -63,7 +63,7 @@ const activateAuth = (httpServer, mongoDb) => {
 
                     } else {
 
-                        console.info(`Account with username ${username} does not yet exist, creating...`);
+                        console.info(`Account with username ${username.blue} does not yet exist, creating...`);
 
                         bcrypt.genSalt(12, (err, salt) => {
                             bcrypt.hash(password, salt, (err, passwordHash) => {
@@ -79,9 +79,10 @@ const activateAuth = (httpServer, mongoDb) => {
                                         { userId: userId, username: username, passwordHash: passwordHash },
                                         null
                                     ).then(() => {
-                                        console.info(`Account with username ${username} has been created with user id ${userId}, creating session token...`);
+                                        console.info(`Account with username ${username.blue} has been created with user id ${userId.cyan}, creating session token...`);
                                         generateSessionToken(userId, (err, jwt) => {
                                             if (err) {
+                                                console.error(err);
                                                 res.writeHead(500, { "Content-Type": "application/json" });
                                                 res.end(JSON.stringify({ error: "Could not create session token." }));
                                             } else {
@@ -103,7 +104,7 @@ const activateAuth = (httpServer, mongoDb) => {
 
         });
 
-        console.info("Will serve session tokens API at /api/session-tokens/.");
+        console.info(`Will serve ${"session tokens API".blue} at ${"/api/session-tokens/".green}.`);
         resolve();
 
     });

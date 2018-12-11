@@ -74,7 +74,7 @@ export default (httpServer) => {
                     });
                 });
 
-                console.info("Will serve server-side rendered application at / and /notes.");
+                console.info(`Will serve ${"server-side rendered application".blue} at ${"/".green} and ${"/notes".green}.`);
                 resolve();
             }
 

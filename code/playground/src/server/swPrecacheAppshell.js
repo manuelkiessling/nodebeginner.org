@@ -16,7 +16,7 @@ export default (httpServer) => {
                     res.end(renderHtmlTemplate(templateContent, false, false, false));
 
                 });
-                console.info(`Will serve sw precache appshell at /sw-precache-appshell, from ${swPrecacheAppshellPath}`);
+                console.info(`Will serve ${"sw precache appshell".blue} at ${"/sw-precache-appshell".cyan}, from ${swPrecacheAppshellPath.cyan}.`);
                 resolve();
             }
         });
