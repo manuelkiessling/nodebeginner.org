@@ -5,7 +5,6 @@ import {
     succeededFetchingEntityEventsEvent, succeededSyncingEntityEventsEvent
 } from "./events";
 import { getEnvVar } from "../utils/env";
-import { entityNamesToClasses } from "../entities/EntityEventFactory";
 
 const apiBase = getEnvVar("APP_API_BASE", "");
 
@@ -20,7 +19,7 @@ export const fetchEntityEventsThunk = () => (dispatch) => {
         .catch((e) => console.error(e));
 };
 
-export const syncEntityEventsThunk = (entityName) => (dispatch, getState) => {
+export const pushEntityEventsThunk = (entityName) => (dispatch, getState) => {
     const unsyncedEvents = getState().entities[entityName].unsyncedEvents;
 
     console.debug(`About to sync unsynced ${entityName} events: ${JSON.stringify(unsyncedEvents, null, 4)}`);
