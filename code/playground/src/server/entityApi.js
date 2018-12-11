@@ -1,4 +1,6 @@
 import bodyParser from "body-parser";
+import cookieParser from "cookie-parser";
+import jwt from "jsonwebtoken";
 import { EntityEventFactory } from "../universal/entities/EntityEventFactory";
 
 const activateApi = (httpServer, mongoDb) => {
@@ -6,25 +8,42 @@ const activateApi = (httpServer, mongoDb) => {
     return new Promise((resolve) => {
 
         httpServer.use(bodyParser.json());
+        httpServer.use(cookieParser());
 
         const entityEventsByUserId = mongoDb.collection("entityEventsByUserId");
 
         httpServer.get(/^\/api\/entity-events\/$/, (req, res) => {
             console.info(`Received entity events API request ${req.method.cyan} ${req.originalUrl.green}`);
-            entityEventsByUserId.findOne({ userId: 1234 }, {}, (err, doc) => {
-                if (err) {
-                    console.error(err);
-                    res.writeHead(500, { "Content-Type": "application/json" });
-                    res.end(JSON.stringify({ error: err.message }));
-                } else {
-                    res.writeHead(200, { "Content-Type": "application/json" });
-                    if (doc != null && doc.hasOwnProperty("events") && doc.events != null) {
-                        res.end(JSON.stringify(doc.events));
+
+            if (req.cookies.hasOwnProperty("sessionToken") && req.cookies.sessionToken != null) {
+
+                jwt.verify(req.cookies.sessionToken, "secret", (err, decoded) => {
+                    if (err) {
+                        console.error(err);
+                        res.writeHead(200, { "Content-Type": "application/json" });
+                        res.end(JSON.stringify({ error: "Session token is invalid." }));
                     } else {
-                        res.end(JSON.stringify([]));
+                        entityEventsByUserId.findOne({ userId: decoded.userId }, {}, (err, doc) => {
+                            if (err) {
+                                console.error(err);
+                                res.writeHead(500, { "Content-Type": "application/json" });
+                                res.end(JSON.stringify({ error: err.message }));
+                            } else {
+                                res.writeHead(200, { "Content-Type": "application/json" });
+                                if (doc != null && doc.hasOwnProperty("events") && doc.events != null) {
+                                    res.end(JSON.stringify(doc.events));
+                                } else {
+                                    res.end(JSON.stringify([]));
+                                }
+                            }
+                        });
                     }
-                }
-            });
+                });
+
+            } else {
+                res.writeHead(200, { "Content-Type": "application/json" });
+                res.end(JSON.stringify({ error: "No valid session token found." }));
+            }
         });
 
         httpServer.post(/^\/api\/entity-events\/$/, (req, res) => {

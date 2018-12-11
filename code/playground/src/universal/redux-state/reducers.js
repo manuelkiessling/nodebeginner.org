@@ -5,7 +5,11 @@ import {
     COMMAND_NOTE_SELECT, COMMAND_NOTE_UPDATE_CONTENT,
     COMMAND_NOTE_UPDATE_TITLE
 } from "../redux-actions/commands";
-import { EVENT_ENTITY_EVENTS_FETCHING_SUCCEEDED, EVENT_ENTITY_EVENTS_SYNCING_SUCCEEDED } from "../redux-actions/events";
+import {
+    EVENT_ENTITY_EVENTS_FETCHING_SUCCEEDED,
+    EVENT_ENTITY_EVENTS_PUSHING_SUCCEEDED, EVENT_SESSION_TOKEN_FETCHING_ERRORED, EVENT_SESSION_TOKEN_FETCHING_FAILED,
+    EVENT_SESSION_TOKEN_FETCHING_SUCCEEDED
+} from "../redux-actions/events";
 import { mergeEntityEventArrays } from "../entities/EntityEvent";
 import { NoteEntity } from "../entities/NoteEntity";
 import { CreateNoteEntityEvent, UpdateNoteEntityEvent } from "../entities/NoteEntityEvents";
@@ -25,8 +29,10 @@ export const emptyState = () => {
 
     return {
         entities: entities,
+        isLoggedIn: false,
         ui: {
-            selectedNoteId: null
+            selectedNoteId: null,
+            errorMessage: ""
         },
         debugInfo: ""
     };
@@ -92,7 +98,7 @@ const entities = (state = emptyState().entities, action) => {
                 }
             };
         }
-        case EVENT_ENTITY_EVENTS_SYNCING_SUCCEEDED: {
+        case EVENT_ENTITY_EVENTS_PUSHING_SUCCEEDED: {
             const entityName = action.entityName;
             return {
                 ...state,
@@ -107,6 +113,20 @@ const entities = (state = emptyState().entities, action) => {
     }
 };
 
+const isLoggedIn = (state = emptyState().ui, action) => {
+    switch (action.type) {
+        case EVENT_SESSION_TOKEN_FETCHING_SUCCEEDED:
+            return true;
+        case EVENT_SESSION_TOKEN_FETCHING_FAILED:
+            return false;
+        case EVENT_SESSION_TOKEN_FETCHING_ERRORED:
+            return false;
+        default:
+            return state;
+    }
+};
+
+
 const ui = (state = emptyState().ui, action) => {
     switch (action.type) {
         case COMMAND_INITIALIZE:
@@ -115,6 +135,16 @@ const ui = (state = emptyState().ui, action) => {
             return {
                ...state,
                 selectedNoteId: action.note.id
+            };
+        case EVENT_SESSION_TOKEN_FETCHING_FAILED:
+            return {
+                ...state,
+                errorMessage: "Login failed due to invalid credentials."
+            };
+        case EVENT_SESSION_TOKEN_FETCHING_ERRORED:
+            return {
+                ...state,
+                errorMessage: "Login failed due to an unknown error."
             };
         default:
             return state;
@@ -134,6 +164,7 @@ const debugInfo = (state = emptyState().debugInfo, action) => {
 
 export const rootReducer = combineReducers({
     entities,
+    isLoggedIn,
     ui,
     debugInfo
 });

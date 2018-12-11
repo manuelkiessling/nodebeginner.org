@@ -4,10 +4,19 @@ import uuidv4 from "uuid";
 import jwt from "jsonwebtoken";
 import colors from "colors";
 
-const generateSessionToken = (userId, callback) => {
-    return jwt.sign({ userId: userId }, "secret", callback);
+const setCookieAndEnd = (userId, res) => {
+    jwt.sign({ userId: userId }, "secret", (err, jwt) => {
+        if (err) {
+            console.error(err);
+            res.writeHead(500, { "Content-Type": "application/json" });
+            res.end(JSON.stringify({ error: "Could not create session token." }));
+        } else {
+            res.cookie("sessionToken", JSON.stringify(jwt), { httpOnly: true });
+            res.writeHead(200, { "Content-Type": "application/json" });
+            res.end(JSON.stringify({ authSuccess: true }));
+        }
+    });
 };
-
 
 const activateAuth = (httpServer, mongoDb) => {
 
@@ -34,7 +43,7 @@ const activateAuth = (httpServer, mongoDb) => {
             ) {
                 console.info(`Auth request body ${JSON.stringify(req.body, null, 4).blue} is ${"invalid".red}.`);
                 res.writeHead(400, { "Content-Type": "application/json" });
-                res.end(JSON.stringify({ error: "Invalid authentication body." }));
+                res.end(JSON.stringify({ authSuccess: false, error: "Invalid authentication body." }));
                 return;
             }
 
@@ -44,20 +53,19 @@ const activateAuth = (httpServer, mongoDb) => {
                 if (err) {
                     console.error(err);
                     res.writeHead(500, { "Content-Type": "application/json" });
-                    res.end(JSON.stringify({ error: "Unable to look up your account." }));
+                    res.end(JSON.stringify({ authSuccess: false, error: "Unable to look up your account." }));
                 } else {
                     if (doc != null && doc.hasOwnProperty("passwordHash") && doc.passwordHash != null) {
 
                         console.info(`Account with username ${username.blue} exists, verifying password...`);
                         bcrypt.compare(password, doc.passwordHash, (err, matched) => {
                             if (matched === true) {
-                                console.info(`Password for account with username ${username.blue} is valid, creating session token...`);
-                                res.writeHead(200, { "Content-Type": "application/json" });
-                                res.end(JSON.stringify(generateSessionToken(doc.userId)));
+                                console.info(`Password for account with username ${username.blue} is valid, sending session token...`);
+                                setCookieAndEnd(doc.userId, res);
                             } else {
                                 console.info(`Password for account with username ${username.blue} is ${"invalid".yellow}.`);
                                 res.writeHead(200, { "Content-Type": "application/json" });
-                                res.end(JSON.stringify("Access denied."));
+                                res.end(JSON.stringify({ authSuccess: false, error: "Access denied." }));
                             }
                         });
 
@@ -70,7 +78,7 @@ const activateAuth = (httpServer, mongoDb) => {
                                 if (err) {
                                     console.error(err);
                                     res.writeHead(500, { "Content-Type": "application/json" });
-                                    res.end(JSON.stringify({ error: "Could not create new account." }));
+                                    res.end(JSON.stringify({ authSuccess: false, error: "Could not create new account." }));
 
                                 } else {
 
@@ -79,21 +87,12 @@ const activateAuth = (httpServer, mongoDb) => {
                                         { userId: userId, username: username, passwordHash: passwordHash },
                                         null
                                     ).then(() => {
-                                        console.info(`Account with username ${username.blue} has been created with user id ${userId.cyan}, creating session token...`);
-                                        generateSessionToken(userId, (err, jwt) => {
-                                            if (err) {
-                                                console.error(err);
-                                                res.writeHead(500, { "Content-Type": "application/json" });
-                                                res.end(JSON.stringify({ error: "Could not create session token." }));
-                                            } else {
-                                                res.writeHead(200, { "Content-Type": "application/json" });
-                                                res.end(JSON.stringify(jwt));
-                                            }
-                                        });
+                                        console.info(`Account with username ${username.blue} has been created with user id ${userId.cyan}, sending session token...`);
+                                        setCookieAndEnd(doc.userId, res);
                                     }).catch((err) => {
                                         console.error(err);
                                         res.writeHead(500, { "Content-Type": "application/json" });
-                                        res.end(JSON.stringify({ error: "Could not create new account." }));
+                                        res.end(JSON.stringify({ authSuccess: false, error: "Could not create new account." }));
                                     });
                                 }
                             });

@@ -3,9 +3,11 @@ import { connect } from "react-redux";
 import { fetchEntityEventsThunk } from "../../redux-actions/thunks";
 import NotesScreen from "../presentational/NotesScreen";
 import { NoteEntity } from "../../entities/NoteEntity";
+import { Redirect } from "react-router-dom";
 
 const mapStateToProps = (state) => {
     return {
+        isLoggedIn: state.isLoggedIn,
         notes: state.entities[NoteEntity.entityName()].calculatedEntities
     };
 };
@@ -23,7 +25,11 @@ class NotesScreenContainer extends Component {
     }
 
     render() {
-        return <NotesScreen />;
+        return (
+            <React.Fragment>
+                {this.props.isLoggedIn && <NotesScreen /> || <Redirect push to="/" />}
+            </React.Fragment>
+        );
     }
 }
 

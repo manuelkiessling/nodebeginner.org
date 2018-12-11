@@ -1,12 +1,41 @@
 import "cross-fetch/polyfill";
 import {
-    startedFetchingEntityEventsEvent,
+    erroredFetchingSessionTokenEvent,
+    failedFetchingSessionTokenEvent,
+    startedFetchingEntityEventsEvent, startedFetchingSessionTokenEvent,
     startedSyncingEntityEventsEvent,
-    succeededFetchingEntityEventsEvent, succeededSyncingEntityEventsEvent
+    succeededFetchingEntityEventsEvent, succeededFetchingSessionTokenEvent, succeededSyncingEntityEventsEvent
 } from "./events";
 import { getEnvVar } from "../utils/env";
 
 const apiBase = getEnvVar("APP_API_BASE", "");
+
+export const fetchSessionTokenThunk = (username, password) => (dispatch) => {
+    dispatch(startedFetchingSessionTokenEvent());
+    return fetch(
+        apiBase + "/api/session-tokens/",
+        {
+            method: "POST",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ username: username, password: password })
+        })
+        .then((response) => response.json())
+        .then((json) => {
+            console.debug(JSON.stringify(json, null, 4));
+            if (json.hasOwnProperty("authSuccess") && json.authSuccess === true) {
+                dispatch(succeededFetchingSessionTokenEvent());
+            } else {
+                dispatch(failedFetchingSessionTokenEvent());
+            }
+        })
+        .catch((error) => {
+            console.error(error);
+            dispatch(erroredFetchingSessionTokenEvent());
+        });
+};
 
 export const fetchEntityEventsThunk = () => (dispatch) => {
     dispatch(startedFetchingEntityEventsEvent());

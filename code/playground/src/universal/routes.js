@@ -1,10 +1,10 @@
-import LoginScreen from "./react-components/presentational/LoginScreen";
 import NotesScreenContainer from "./react-components/container/NotesScreenContainer";
+import LoginScreenContainer from "./react-components/container/LoginScreenContainer";
 
 export default [
     {
         path: "/",
-        component: LoginScreen,
+        component: LoginScreenContainer,
         exact: true
     },
     {
