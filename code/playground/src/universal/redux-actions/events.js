@@ -14,13 +14,13 @@ export const EVENT_ENTITY_EVENTS_PUSHING_ERRORED = "EVENT_ENTITY_EVENTS_PUSHING_
 
 
 export const startedFetchingSessionTokenEvent = () => ({ type: EVENT_SESSION_TOKEN_FETCHING_STARTED });
-export const succeededFetchingSessionTokenEvent = () => ({ type: EVENT_SESSION_TOKEN_FETCHING_SUCCEEDED });
+export const succeededFetchingSessionTokenEvent = (userId) => ({ type: EVENT_SESSION_TOKEN_FETCHING_SUCCEEDED, userId });
 export const failedFetchingSessionTokenEvent = () => ({ type: EVENT_SESSION_TOKEN_FETCHING_FAILED });
 export const erroredFetchingSessionTokenEvent = (error) => ({ type: EVENT_SESSION_TOKEN_FETCHING_ERRORED, error: error });
 
-export const startedFetchingEntityEventsEvent = () => ({ type: EVENT_ENTITY_EVENTS_FETCHING_STARTED });
-export const succeededFetchingEntityEventsEvent = (json) => ({ type: EVENT_ENTITY_EVENTS_FETCHING_SUCCEEDED, json: json });
-export const failedFetchingEntityEventsEvent = () => ({ type: EVENT_ENTITY_EVENTS_FETCHING_FAILED });
+export const startedFetchingEntityEventsEvent = (userId) => ({ type: EVENT_ENTITY_EVENTS_FETCHING_STARTED, userId });
+export const succeededFetchingEntityEventsEvent = (userId, json) => ({ type: EVENT_ENTITY_EVENTS_FETCHING_SUCCEEDED, userId, json });
+export const failedFetchingEntityEventsEvent = (userId) => ({ type: EVENT_ENTITY_EVENTS_FETCHING_FAILED, userId });
 
-export const startedSyncingEntityEventsEvent = () => ({ type: EVENT_ENTITY_EVENTS_PUSHING_STARTED });
-export const succeededSyncingEntityEventsEvent = (entityName) => ({ type: EVENT_ENTITY_EVENTS_PUSHING_SUCCEEDED, entityName: entityName });
+export const startedPushingEntityEventsEvent = (userId) => ({ type: EVENT_ENTITY_EVENTS_PUSHING_STARTED, userId });
+export const succeededPushingEntityEventsEvent = (userId, entityName) => ({ type: EVENT_ENTITY_EVENTS_PUSHING_SUCCEEDED, userId, entityName });

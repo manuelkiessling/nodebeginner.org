@@ -19,20 +19,12 @@ import { CreateNoteEntityEvent, UpdateNoteEntityEvent } from "../entities/NoteEn
 import { EntityEventFactory, entityNamesToClasses } from "../entities/EntityEventFactory";
 
 export const emptyState = () => {
-
-    const entities = {};
-
-    for (const entityName in entityNamesToClasses) {
-        entities[entityName] = {
-            allEvents: [],
-            unsyncedEvents: [],
-            calculatedEntities: [],
-        };
-    }
-
     return {
-        entities: entities,
-        isLoggedIn: false,
+        entities: {},
+        session: {
+            isLoggedIn: false,
+            userId: null,
+        },
         ui: {
             selectedNoteId: null,
             errorMessage: ""
@@ -46,68 +38,99 @@ const entities = (state = emptyState().entities, action) => {
     switch (action.type) {
         case COMMAND_INITIALIZE:
             return emptyState().entities;
+        case EVENT_SESSION_TOKEN_FETCHING_SUCCEEDED:
+            if (!state.hasOwnProperty(action.userId)) {
+                const entities = {};
+                for (const entityName in entityNamesToClasses) {
+                    entities[entityName] = {
+                        allEvents: [],
+                        unsyncedEvents: [],
+                        calculatedEntities: []
+                    }
+                }
+                return {
+                    ...state,
+                    [action.userId]: entities
+                };
+            } else {
+                return state;
+            }
         case COMMAND_NOTE_CREATE: {
             const createNoteEntityEvent = CreateNoteEntityEvent.withTitle(action.noteTitle);
-            const updatedAllEvents = state[NoteEntity.entityName()].allEvents.concat(createNoteEntityEvent);
-            const updatedUnsyncedEvents = state[NoteEntity.entityName()].unsyncedEvents.concat(createNoteEntityEvent);
+            const updatedAllEvents = state[action.userId][NoteEntity.entityName()].allEvents.concat(createNoteEntityEvent);
+            const updatedUnsyncedEvents = state[action.userId][NoteEntity.entityName()].unsyncedEvents.concat(createNoteEntityEvent);
             const updatedCalculatedEntities = entityNamesToClasses[NoteEntity.entityName()].entityClass.createFromEntityEvents(updatedAllEvents);
             return {
                 ...state,
-                [NoteEntity.entityName()]: {
-                    allEvents: updatedAllEvents,
-                    unsyncedEvents: updatedUnsyncedEvents,
-                    calculatedEntities: updatedCalculatedEntities
+                [action.userId]: {
+                    ...state[action.userId],
+                    [NoteEntity.entityName()]: {
+                        allEvents: updatedAllEvents,
+                        unsyncedEvents: updatedUnsyncedEvents,
+                        calculatedEntities: updatedCalculatedEntities
+                    }
                 }
             };
         }
         case COMMAND_NOTE_UPDATE_TITLE: {
             const updateNoteEntityEvent = UpdateNoteEntityEvent.withUpdatedTitle(action.note, action.updatedTitle);
-            const updatedAllEvents = state[NoteEntity.entityName()].allEvents.concat(updateNoteEntityEvent);
-            const updatedUnsyncedEvents = state[NoteEntity.entityName()].unsyncedEvents.concat(updateNoteEntityEvent);
+            const updatedAllEvents = state[action.userId][NoteEntity.entityName()].allEvents.concat(updateNoteEntityEvent);
+            const updatedUnsyncedEvents = state[action.userId][NoteEntity.entityName()].unsyncedEvents.concat(updateNoteEntityEvent);
             const updatedCalculatedEntities = entityNamesToClasses[NoteEntity.entityName()].entityClass.createFromEntityEvents(updatedAllEvents);
             return {
                 ...state,
-                [NoteEntity.entityName()]: {
-                    allEvents: updatedAllEvents,
-                    unsyncedEvents: updatedUnsyncedEvents,
-                    calculatedEntities: updatedCalculatedEntities
+                [action.userId]: {
+                    ...state[action.userId],
+                    [NoteEntity.entityName()]: {
+                        allEvents: updatedAllEvents,
+                        unsyncedEvents: updatedUnsyncedEvents,
+                        calculatedEntities: updatedCalculatedEntities
+                    }
                 }
             };
         }
         case COMMAND_NOTE_UPDATE_CONTENT: {
             const updateNoteEntityEvent = UpdateNoteEntityEvent.withUpdatedContent(action.note, action.updatedContent);
-            const updatedAllEvents = state[NoteEntity.entityName()].allEvents.concat(updateNoteEntityEvent);
-            const updatedUnsyncedEvents = state[NoteEntity.entityName()].unsyncedEvents.concat(updateNoteEntityEvent);
+            const updatedAllEvents = state[action.userId][NoteEntity.entityName()].allEvents.concat(updateNoteEntityEvent);
+            const updatedUnsyncedEvents = state[action.userId][NoteEntity.entityName()].unsyncedEvents.concat(updateNoteEntityEvent);
             const updatedCalculatedEntities = entityNamesToClasses[NoteEntity.entityName()].entityClass.createFromEntityEvents(updatedAllEvents);
             return {
                 ...state,
-                [NoteEntity.entityName()]: {
-                    allEvents: updatedAllEvents,
-                    unsyncedEvents: updatedUnsyncedEvents,
-                    calculatedEntities: updatedCalculatedEntities
+                [action.userId]: {
+                    ...state[action.userId],
+                    [NoteEntity.entityName()]: {
+                        allEvents: updatedAllEvents,
+                        unsyncedEvents: updatedUnsyncedEvents,
+                        calculatedEntities: updatedCalculatedEntities
+                    }
                 }
             };
         }
         case EVENT_ENTITY_EVENTS_FETCHING_SUCCEEDED: {
             const receivedEntityEvents = action.json.map((entityEventObject) => EntityEventFactory.createEntityEventFromObject(entityEventObject));
-            const updatedAllEvents = mergeEntityEventArrays(state[NoteEntity.entityName()].allEvents, receivedEntityEvents);
+            const updatedAllEvents = mergeEntityEventArrays(state[action.userId][NoteEntity.entityName()].allEvents, receivedEntityEvents);
             const updatedCalculatedEntities = entityNamesToClasses[NoteEntity.entityName()].entityClass.createFromEntityEvents(updatedAllEvents);
             return {
                 ...state,
-                [NoteEntity.entityName()]: {
-                    ...state[NoteEntity.entityName()],
-                    allEvents: updatedAllEvents,
-                    calculatedEntities: updatedCalculatedEntities
+                [action.userId]: {
+                    ...state[action.userId],
+                    [NoteEntity.entityName()]: {
+                        ...state[action.userId][NoteEntity.entityName()],
+                        allEvents: updatedAllEvents,
+                        calculatedEntities: updatedCalculatedEntities
+                    }
                 }
             };
         }
         case EVENT_ENTITY_EVENTS_PUSHING_SUCCEEDED: {
-            const entityName = action.entityName;
             return {
                 ...state,
-                [entityName]: {
-                    ...state[NoteEntity.entityName()],
-                    unsyncedEvents: []
+                [action.userId]: {
+                    ...state[action.userId],
+                    [action.entityName]: {
+                        ...state[action.userId][action.entityName],
+                        unsyncedEvents: []
+                    }
                 }
             };
         }
@@ -116,14 +139,23 @@ const entities = (state = emptyState().entities, action) => {
     }
 };
 
-const isLoggedIn = (state = emptyState().ui, action) => {
+const session = (state = emptyState().session, action) => {
     switch (action.type) {
         case EVENT_SESSION_TOKEN_FETCHING_SUCCEEDED:
-            return true;
+            return {
+                isLoggedIn: true,
+                userId: action.userId,
+            };
         case EVENT_SESSION_TOKEN_FETCHING_FAILED:
-            return false;
+            return {
+                isLoggedIn: false,
+                userId: null,
+            };
         case EVENT_SESSION_TOKEN_FETCHING_ERRORED:
-            return false;
+            return {
+                isLoggedIn: state.isLoggedIn,
+                userId: state.userId,
+            };
         default:
             return state;
     }
@@ -139,6 +171,8 @@ const ui = (state = emptyState().ui, action) => {
                ...state,
                 selectedNoteId: action.note.id
             };
+        case EVENT_SESSION_TOKEN_FETCHING_SUCCEEDED:
+            return emptyState().ui;
         case EVENT_SESSION_TOKEN_FETCHING_FAILED:
             return {
                 ...state,
@@ -167,7 +201,7 @@ const debugInfo = (state = emptyState().debugInfo, action) => {
 
 export const rootReducer = combineReducers({
     entities,
-    isLoggedIn,
+    session,
     ui,
     debugInfo
 });

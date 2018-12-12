@@ -3,8 +3,8 @@ import {
     erroredFetchingSessionTokenEvent, failedFetchingEntityEventsEvent,
     failedFetchingSessionTokenEvent,
     startedFetchingEntityEventsEvent, startedFetchingSessionTokenEvent,
-    startedSyncingEntityEventsEvent,
-    succeededFetchingEntityEventsEvent, succeededFetchingSessionTokenEvent, succeededSyncingEntityEventsEvent
+    startedPushingEntityEventsEvent,
+    succeededFetchingEntityEventsEvent, succeededFetchingSessionTokenEvent, succeededPushingEntityEventsEvent
 } from "./events";
 import { getEnvVar } from "../utils/env";
 
@@ -25,8 +25,8 @@ export const fetchSessionTokenThunk = (username, password) => (dispatch) => {
         .then((response) => response.json())
         .then((json) => {
             console.debug(JSON.stringify(json, null, 4));
-            if (json.hasOwnProperty("authSuccess") && json.authSuccess === true) {
-                dispatch(succeededFetchingSessionTokenEvent());
+            if (json.hasOwnProperty("authSuccess") && json.authSuccess === true && json.hasOwnProperty("userId") && json.userId != null) {
+                dispatch(succeededFetchingSessionTokenEvent(json.userId));
             } else {
                 dispatch(failedFetchingSessionTokenEvent());
             }
@@ -37,27 +37,27 @@ export const fetchSessionTokenThunk = (username, password) => (dispatch) => {
         });
 };
 
-export const fetchEntityEventsThunk = () => (dispatch) => {
-    dispatch(startedFetchingEntityEventsEvent());
+export const fetchEntityEventsThunk = (userId) => (dispatch) => {
+    dispatch(startedFetchingEntityEventsEvent(userId));
     return fetch(apiBase + "/api/entity-events/")
         .then((response) => response.json())
         .then((json) => {
             if (json.hasOwnProperty("error")) {
-                dispatch(failedFetchingEntityEventsEvent());
+                dispatch(failedFetchingEntityEventsEvent(userId));
             } else {
-                dispatch(succeededFetchingEntityEventsEvent(json));
+                dispatch(succeededFetchingEntityEventsEvent(userId, json));
             }
             console.debug("Done fetching entity events.");
         })
         .catch((e) => console.error(e));
 };
 
-export const pushEntityEventsThunk = (entityName) => (dispatch, getState) => {
-    const unsyncedEvents = getState().entities[entityName].unsyncedEvents;
+export const pushEntityEventsThunk = (userId, entityName) => (dispatch, getState) => {
+    const unsyncedEvents = getState().entities[userId][entityName].unsyncedEvents;
 
-    console.debug(`About to sync unsynced ${entityName} events: ${JSON.stringify(unsyncedEvents, null, 4)}`);
+    console.debug(`About to sync unsynced ${entityName} events for userId ${userId}: ${JSON.stringify(unsyncedEvents, null, 4)}`);
 
-    dispatch(startedSyncingEntityEventsEvent());
+    dispatch(startedPushingEntityEventsEvent(userId));
 
     return fetch(
         apiBase + "/api/entity-events/",
@@ -71,7 +71,7 @@ export const pushEntityEventsThunk = (entityName) => (dispatch, getState) => {
         })
         .then((response) => response.json())
         .then((json) => {
-            dispatch(succeededSyncingEntityEventsEvent(entityName));
+            dispatch(succeededPushingEntityEventsEvent(userId, entityName));
             console.debug(JSON.stringify(json, null, 4));
         })
         .catch((e) => console.error(e));

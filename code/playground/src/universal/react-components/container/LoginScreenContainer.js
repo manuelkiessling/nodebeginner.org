@@ -13,7 +13,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
     return {
-        isLoggedIn: state.isLoggedIn,
+        isLoggedIn: state.session.isLoggedIn,
         errorMessage: state.ui.errorMessage
     };
 };

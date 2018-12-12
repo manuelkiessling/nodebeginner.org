@@ -3,9 +3,13 @@ import { connect } from "react-redux";
 import EditNoteControl from "../presentational/EditNoteTitleControl"
 import { updateNoteTitleCommand } from "../../redux-actions/commands"
 
+const mapStateToProps = (state) => ({
+    userId: state.session.userId
+});
+
 const mapDispatchToProps = (dispatch) => {
     return {
-        dispatchUpdateNoteTitle: (note, updatedTitle) => dispatch(updateNoteTitleCommand(note, updatedTitle))
+        dispatchUpdateNoteTitle: (userId, note, updatedTitle) => dispatch(updateNoteTitleCommand(userId, note, updatedTitle))
     };
 };
 
@@ -38,7 +42,7 @@ class EditNoteTitleControlContainer extends Component {
         event.preventDefault();
         const { title } = this.state;
         this.setState({ inEditMode: false });
-        this.props.dispatchUpdateNoteTitle(this.props.note, title);
+        this.props.dispatchUpdateNoteTitle(this.props.userId, this.props.note, title);
     }
 
     render() {
@@ -61,4 +65,4 @@ class EditNoteTitleControlContainer extends Component {
     }
 }
 
-export default connect(null, mapDispatchToProps)(EditNoteTitleControlContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(EditNoteTitleControlContainer);

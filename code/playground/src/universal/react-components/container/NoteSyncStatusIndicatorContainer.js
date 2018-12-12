@@ -4,8 +4,11 @@ import NoteSyncStatusIndicator from "../presentational/NoteSyncStatusIndicator";
 import { NoteEntity } from "../../entities/NoteEntity";
 
 const mapStateToProps = (state) => {
+    const isLoggedIn = state.session.isLoggedIn;
+    const userId = state.session.userId;
+
     return {
-        unsyncedNoteEntityEvents: state.entities[NoteEntity.entityName()].unsyncedEvents
+        unsyncedNoteEntityEvents: isLoggedIn ? state.entities[userId][NoteEntity.entityName()].unsyncedEvents : []
     };
 };
 

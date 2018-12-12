@@ -13,7 +13,7 @@ const setCookieAndEnd = (userId, res) => {
         } else {
             res.cookie("sessionToken", jwt, { httpOnly: true });
             res.writeHead(200, { "Content-Type": "application/json" });
-            res.end(JSON.stringify({ authSuccess: true }));
+            res.end(JSON.stringify({ authSuccess: true, userId }));
         }
     });
 };
@@ -88,7 +88,7 @@ const activateAuth = (httpServer, mongoDb) => {
                                         null
                                     ).then(() => {
                                         console.info(`Account with username ${username.blue} has been created with user id ${userId.cyan}, sending session token...`);
-                                        setCookieAndEnd(doc.userId, res);
+                                        setCookieAndEnd(userId, res);
                                     }).catch((err) => {
                                         console.error(err);
                                         res.writeHead(500, { "Content-Type": "application/json" });

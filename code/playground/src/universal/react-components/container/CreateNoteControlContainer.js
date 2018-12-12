@@ -3,9 +3,13 @@ import { connect } from "react-redux";
 import CreateNoteControl from "../presentational/CreateNoteControl"
 import { createNoteCommand } from "../../redux-actions/commands"
 
+const mapStateToProps = (state) => ({
+    userId: state.session.userId
+});
+
 const mapDispatchToProps = (dispatch) => {
     return {
-        dispatchCreateNote: (noteTitle) => dispatch(createNoteCommand(noteTitle))
+        dispatchCreateNote: (userId, noteTitle) => dispatch(createNoteCommand(userId, noteTitle))
     };
 };
 
@@ -26,7 +30,7 @@ class CreateNoteControlContainer extends Component {
     handleSubmit(event) {
         event.preventDefault();
         const { title } = this.state;
-        this.props.dispatchCreateNote(title);
+        this.props.dispatchCreateNote(this.props.userId, title);
         this.setState({ title: "" });
     }
 
@@ -38,4 +42,4 @@ class CreateNoteControlContainer extends Component {
     }
 }
 
-export default connect(null, mapDispatchToProps)(CreateNoteControlContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateNoteControlContainer);

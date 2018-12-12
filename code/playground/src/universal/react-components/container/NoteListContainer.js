@@ -11,8 +11,11 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const mapStateToProps = (state) => {
+    const isLoggedIn = state.session.isLoggedIn;
+    const userId = state.session.userId;
+
     return {
-        notes: state.entities[NoteEntity.entityName()].calculatedEntities,
+        notes: (isLoggedIn && userId != null && state.entities.hasOwnProperty(userId)) ? state.entities[userId][NoteEntity.entityName()].calculatedEntities : [],
         selectedNoteId: state.ui.selectedNoteId
     };
 };

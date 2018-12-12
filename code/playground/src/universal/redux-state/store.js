@@ -6,6 +6,25 @@ import { mergeEntityEventArrays } from "../entities/EntityEvent";
 
 export const createStoreFromInitialState = (initialState) => createStore(rootReducer, initialState, applyMiddleware(thunkMiddleware));
 
+const getAllUserIds = (entitiesA, entitiesB) => {
+    let userIds = [];
+    for (const userId in entitiesA) {
+        if (entitiesA.hasOwnProperty(userId)) {
+            if (!userIds.includes(userId)) {
+                userIds.push(userId);
+            }
+        }
+    }
+    for (const userId in entitiesB) {
+        if (entitiesB.hasOwnProperty(userId)) {
+            if (!userIds.includes(userId)) {
+                userIds.push(userId);
+            }
+        }
+    }
+    return userIds;
+};
+
 export const mergeStatesAndRecalculate = (stateA, stateB) => {
     let mergedState = emptyState();
 
@@ -22,31 +41,59 @@ export const mergeStatesAndRecalculate = (stateA, stateB) => {
         } else {
             console.debug(`mergeStates: stateA is ${JSON.stringify(stateA, null, 4)}, stateB is ${JSON.stringify(stateB, null, 4)}`);
 
-            for (const entityName in entityNamesToClasses) {
-                mergedState.entities[entityName].allEvents = mergeEntityEventArrays(
-                    stateA.entities[entityName].allEvents,
-                    stateB.entities[entityName].allEvents
-                );
+            const userIds = getAllUserIds(stateA.entities, stateB.entities);
 
-                mergedState.entities[entityName].unsyncedEvents = mergeEntityEventArrays(
-                    stateA.entities[entityName].unsyncedEvents,
-                    stateB.entities[entityName].unsyncedEvents
-                );
+            for (let i=0; i < userIds.length; i++) {
+
+                if (!mergedState.entities.hasOwnProperty(userIds[i])) {
+                    const entities = {};
+                    for (const entityName in entityNamesToClasses) {
+                        entities[entityName] = {
+                            allEvents: [],
+                            unsyncedEvents: [],
+                            calculatedEntities: []
+                        }
+                    }
+                    mergedState.entities[userIds[i]] = entities;
+                }
+
+                for (const entityName in entityNamesToClasses) {
+                    let entitiesStateAllEventsA = [];
+                    let entitiesStateUnsyncedEventsA = [];
+                    if (stateA.entities.hasOwnProperty(userIds[i])) {
+                        entitiesStateAllEventsA = stateA.entities[userIds[i]][entityName].allEvents;
+                        entitiesStateUnsyncedEventsA = stateA.entities[userIds[i]][entityName].unsyncedEvents;
+                    }
+
+                    let entitiesStateAllEventsB = [];
+                    let entitiesStateUnsyncedEventsB = [];
+                    if (stateB.entities.hasOwnProperty(userIds[i])) {
+                        entitiesStateAllEventsB = stateB.entities[userIds[i]][entityName].allEvents;
+                        entitiesStateUnsyncedEventsB = stateB.entities[userIds[i]][entityName].unsyncedEvents;
+                    }
+
+                    mergedState.entities[userIds[i]][entityName].allEvents = mergeEntityEventArrays(
+                        entitiesStateAllEventsA,
+                        entitiesStateAllEventsB
+                    );
+
+                    mergedState.entities[userIds[i]][entityName].unsyncedEvents = mergeEntityEventArrays(
+                        entitiesStateUnsyncedEventsA,
+                        entitiesStateUnsyncedEventsB
+                    );
+
+                    mergedState.entities[userIds[i]][entityName].allEvents =
+                        mergedState.entities[userIds[i]][entityName].allEvents.map(_ => EntityEventFactory.createEntityEventFromObject(_));
+
+                    mergedState.entities[userIds[i]][entityName].unsyncedEvents =
+                        mergedState.entities[userIds[i]][entityName].unsyncedEvents.map(_ => EntityEventFactory.createEntityEventFromObject(_));
+
+                    mergedState.entities[userIds[i]][entityName].calculatedEntities =
+                        entityNamesToClasses[entityName].entityClass.createFromEntityEvents(mergedState.entities[userIds[i]][entityName].allEvents);
+                }
             }
         }
 
-    }
-
-    for (const entityName in entityNamesToClasses) {
-        // EntityEvents from persistent storages are not typed, they are just plain objects.
-        // Thus, we map them into "real" EntityEvent objects, which also verifies their correctness
-        mergedState.entities[entityName].allEvents =
-            mergedState.entities[entityName].allEvents.map(_ => EntityEventFactory.createEntityEventFromObject(_));
-
-        mergedState.entities[entityName].unsyncedEvents =
-            mergedState.entities[entityName].unsyncedEvents.map(_ => EntityEventFactory.createEntityEventFromObject(_));
-
-        mergedState.entities[entityName].calculatedEntities = entityNamesToClasses[entityName].entityClass.createFromEntityEvents(mergedState.entities[entityName].allEvents);
     }
 
     return mergedState;
