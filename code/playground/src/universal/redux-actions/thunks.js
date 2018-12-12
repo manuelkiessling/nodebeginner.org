@@ -37,13 +37,27 @@ export const fetchSessionTokenThunk = (username, password) => (dispatch) => {
         });
 };
 
-export const fetchEntityEventsThunk = (userId) => (dispatch) => {
+export const fetchEntityEventsThunk = (userId, sessionToken) => (dispatch) => {
     if (userId == null) {
         console.error("userId is null.");
         return;
     }
+
+    const options = {};
+    options.headers = {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+    };
+    if (sessionToken != null) {
+        options.headers = {
+            ...options.headers,
+            "Cookie": `sessionToken=${sessionToken}`
+        };
+        options.credentials = "include";
+    }
+
     dispatch(startedFetchingEntityEventsEvent(userId));
-    return fetch(apiBase + "/api/entity-events/")
+    return fetch(apiBase + "/api/entity-events/", options)
         .then((response) => response.json())
         .then((json) => {
             if (json.hasOwnProperty("error")) {

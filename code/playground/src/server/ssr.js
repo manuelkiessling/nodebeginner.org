@@ -14,7 +14,7 @@ import muiTheme from "../universal/styling/muiTheme";
 import { createStoreFromInitialState } from "../universal/redux-state/store";
 import renderHtmlTemplate from "./renderHtmlTemplate";
 import { emptyState } from "../universal/redux-state/reducers";
-import { getUserIdFromRequest } from "./authApi";
+import { getUserIdAndSessionTokenFromRequest } from "./authApi";
 
 export default (httpServer) => {
 
@@ -28,8 +28,8 @@ export default (httpServer) => {
             } else {
                 httpServer.get(/^\/(notes|)(\?.*)*$/, (req, res) => {
 
-                    getUserIdFromRequest(req)
-                        .then((userId) => {
+                    getUserIdAndSessionTokenFromRequest(req)
+                        .then(({ userId, sessionToken }) => {
                             const initialState = emptyState();
 
                             if (userId != null) {
@@ -46,8 +46,8 @@ export default (httpServer) => {
                                     .map((route) => route.component)                       // map to components
                                     .filter((component) => component.ssrDispatchHook)      // filter to components that have a SSR trigger
                                     .map((component) => {
-                                        console.debug("Triggering ssrDispatchHook on " + component.name);
-                                        return store.dispatch(component.ssrDispatchHook(userId));    // dispatch trigger
+                                        console.debug(`Triggering ssrDispatchHook on ${component.name.blue} with userId ${userId} and sessionToken ${sessionToken}.`);
+                                        return store.dispatch(component.ssrDispatchHook(userId, sessionToken));    // dispatch trigger
                                     });
 
                             Promise.all(ssrDispatchHooks).then(() => {

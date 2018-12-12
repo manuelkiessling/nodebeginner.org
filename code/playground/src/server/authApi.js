@@ -6,7 +6,8 @@ import colors from "colors";
 
 const jwtSecret = "secret";
 
-export const getUserIdFromRequest = (req) => {
+export const getUserIdAndSessionTokenFromRequest = (req) => {
+
     return new Promise((resolve) => {
 
         if (req.cookies.sessionToken != null) {
@@ -14,15 +15,16 @@ export const getUserIdFromRequest = (req) => {
             jwt.verify(req.cookies.sessionToken, jwtSecret, (err, decoded) => {
                 if (err) {
                     console.info(`Session token ${req.cookies.sessionToken.blue} ${"could not be verified".yellow}.`);
-                    resolve(null);
+                    resolve({ userId: null, sessionToken: null });
                 } else {
                     console.info(`Session token ${req.cookies.sessionToken.blue} ${"could be verified".green}, userId is ${decoded.userId.cyan}.`);
-                    resolve(decoded.userId);
+                    resolve({ userId: decoded.userId, sessionToken: req.cookies.sessionToken});
                 }
             });
 
         } else {
-            resolve(null);
+            console.info(`No ${"sessionToken".blue} cookie found in cookies ${JSON.stringify(req.cookies).cyan}.`);
+            resolve({ userId: null, sessionToken: null });
         }
     });
 };

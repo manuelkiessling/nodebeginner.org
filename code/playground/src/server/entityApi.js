@@ -1,12 +1,12 @@
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import { EntityEventFactory } from "../universal/entities/EntityEventFactory";
-import { getUserIdFromRequest } from "./authApi";
+import { getUserIdAndSessionTokenFromRequest } from "./authApi";
 
 const getUserIdFromRequestOrDeny = (req, res) => {
     return new Promise((resolve, reject) => {
-        getUserIdFromRequest(req)
-            .then((userId) => {
+        getUserIdAndSessionTokenFromRequest(req)
+            .then(({ userId }) => {
                 if (userId != null) {
                     resolve(userId);
                 } else {
@@ -18,7 +18,7 @@ const getUserIdFromRequestOrDeny = (req, res) => {
             .catch((error) => {
                 res.writeHead(200, { "Content-Type": "application/json" });
                 res.end(JSON.stringify({ error: "Could not authenticate request." }));
-                reject(new Error("Could not authenticate request."));
+                reject(error);
             });
     });
 };

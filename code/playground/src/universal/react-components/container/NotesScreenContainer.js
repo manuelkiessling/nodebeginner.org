@@ -44,11 +44,11 @@ class NotesScreenContainer extends Component {
     }
 }
 
-NotesScreenContainer.ssrDispatchHook = (userId) => {
-    if (userId != null) {
-        return () => { console.debug("fired with userId"); fetchEntityEventsThunk(userId); }
+NotesScreenContainer.ssrDispatchHook = (userId, sessionToken) => {
+    if (userId != null && sessionToken != null) {
+        return fetchEntityEventsThunk(userId, sessionToken);
     } else {
-        return () => { console.debug("fired without userId"); };
+        return () => {};
     }
 };
 
