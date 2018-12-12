@@ -44,6 +44,12 @@ class NotesScreenContainer extends Component {
     }
 }
 
-NotesScreenContainer.ssrDispatchHook = fetchEntityEventsThunk;
+NotesScreenContainer.ssrDispatchHook = (userId) => {
+    if (userId != null) {
+        return () => { console.debug("fired with userId"); fetchEntityEventsThunk(userId); }
+    } else {
+        return () => { console.debug("fired without userId"); };
+    }
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(NotesScreenContainer);

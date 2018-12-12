@@ -54,7 +54,6 @@ const entities = (state = emptyState().entities, action) => {
         }
     };
 
-
     switch (action.type) {
         case COMMAND_INITIALIZE:
             return emptyState().entities;

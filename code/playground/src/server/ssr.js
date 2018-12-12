@@ -43,11 +43,11 @@ export default (httpServer) => {
                             const ssrDispatchHooks =
                                 routes
                                     .filter((route) => matchPath(req.url, route))                    // filter matching paths
-                                    .map((route) => route.component)                                 // map to components
-                                    .filter((component) => component.ssrDispatchHook)                // filter to components that have a SSR trigger
+                                    .map((route) => route.component)                       // map to components
+                                    .filter((component) => component.ssrDispatchHook)      // filter to components that have a SSR trigger
                                     .map((component) => {
                                         console.debug("Triggering ssrDispatchHook on " + component.name);
-                                        return store.dispatch(component.ssrDispatchHook());          // dispatch trigger
+                                        return store.dispatch(component.ssrDispatchHook(userId));    // dispatch trigger
                                     });
 
                             Promise.all(ssrDispatchHooks).then(() => {

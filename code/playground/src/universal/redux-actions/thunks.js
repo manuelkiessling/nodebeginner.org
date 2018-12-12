@@ -1,7 +1,7 @@
 import "cross-fetch/polyfill";
 import {
     erroredFetchingSessionTokenEvent, failedFetchingEntityEventsEvent,
-    failedFetchingSessionTokenEvent,
+    failedFetchingSessionTokenEvent, failedPushingEntityEventsEvent,
     startedFetchingEntityEventsEvent, startedFetchingSessionTokenEvent,
     startedPushingEntityEventsEvent,
     succeededFetchingEntityEventsEvent, succeededFetchingSessionTokenEvent, succeededPushingEntityEventsEvent
@@ -75,7 +75,11 @@ export const pushEntityEventsThunk = (userId, entityName) => (dispatch, getState
         })
         .then((response) => response.json())
         .then((json) => {
-            dispatch(succeededPushingEntityEventsEvent(userId, entityName));
+            if (json.hasOwnProperty("error")) {
+                dispatch(failedPushingEntityEventsEvent(userId, entityName, json.error))
+            } else {
+                dispatch(succeededPushingEntityEventsEvent(userId, entityName));
+            }
             console.debug(JSON.stringify(json, null, 4));
         })
         .catch((e) => console.error(e));
