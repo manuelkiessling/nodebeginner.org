@@ -80,7 +80,7 @@ const activateApi = (httpServer, mongoDb) => {
 
                     for (let i = 0; i < entityEvents.length; i++) {
                         updatePromises.push(entityEventsByUserId.updateOne(
-                            { userId: 1234 },
+                            { userId: userId },
                             { $push: { events: entityEvents[i] } },
                             { upsert: true }
                         ));
