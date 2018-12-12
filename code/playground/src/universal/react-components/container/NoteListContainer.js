@@ -31,6 +31,9 @@ class NoteListContainer extends Component {
     }
 
     render() {
+
+        console.debug(`this.props.notes in NoteListContainer is ${JSON.stringify(this.props.note, null, 4)}.`);
+
         return <NoteList notes={this.props.notes} selectedNoteId={this.props.selectedNoteId} handleSelectNote={this.handleSelectNote} />;
     }
 }

@@ -11,8 +11,10 @@ const mapStateToProps = (state) => {
     let notes = [];
 
     if (isLoggedIn && userId != null && state.entities.hasOwnProperty(userId)) {
-        notes = state.entities[state.session.userId][NoteEntity.entityName()].calculatedEntities;
+        notes = state.entities[userId][NoteEntity.entityName()].calculatedEntities;
     }
+
+    console.log(`Notes in NotesScreenContainer is ${JSON.stringify(notes, null, 4)}.`); // TODO: Why is this undefined during SSR?
 
     return {
         isLoggedIn: isLoggedIn,

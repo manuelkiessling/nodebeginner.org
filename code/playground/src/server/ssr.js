@@ -51,6 +51,8 @@ export default (httpServer) => {
                                     });
 
                             Promise.all(ssrDispatchHooks).then(() => {
+                                console.debug("Here we are".red);
+                                console.debug(`State is now: ${JSON.stringify(store.getState()).cyan}`);
                                 const context = {};
 
                                 const sheetsRegistry = new SheetsRegistry();
@@ -87,7 +89,7 @@ export default (httpServer) => {
                         .catch((error) => {
                             console.error(error);
                             res.writeHead(500, { "Content-Type": "text/plain" });
-                            res.end("Unrecoverable error during auth handling.");
+                            res.end("Unrecoverable error.");
                         });
 
                 });
