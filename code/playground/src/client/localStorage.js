@@ -11,6 +11,7 @@ const saveStateToLocalStorage = (state) => {
 };
 
 export const setUpLocalStorageStoreSubscription = (store) => {
+    saveStateToLocalStorage(store.getState());
     store.subscribe(() => {
         console.debug(`Syncing new state to localStorage`);
         saveStateToLocalStorage(store.getState())
