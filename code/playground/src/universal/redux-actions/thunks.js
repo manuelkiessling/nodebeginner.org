@@ -38,6 +38,10 @@ export const fetchSessionTokenThunk = (username, password) => (dispatch) => {
 };
 
 export const fetchEntityEventsThunk = (userId) => (dispatch) => {
+    if (userId == null) {
+        console.error("userId is null.");
+        return;
+    }
     dispatch(startedFetchingEntityEventsEvent(userId));
     return fetch(apiBase + "/api/entity-events/")
         .then((response) => response.json())

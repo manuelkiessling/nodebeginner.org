@@ -4,8 +4,31 @@ import uuidv4 from "uuid";
 import jwt from "jsonwebtoken";
 import colors from "colors";
 
+const jwtSecret = "secret";
+
+export const getUserIdFromRequest = (req) => {
+    return new Promise((resolve) => {
+
+        if (req.cookies.sessionToken != null) {
+
+            jwt.verify(req.cookies.sessionToken, jwtSecret, (err, decoded) => {
+                if (err) {
+                    console.info(`Session token ${req.cookies.sessionToken.blue} ${"could not be verified".yellow}.`);
+                    resolve(null);
+                } else {
+                    console.info(`Session token ${req.cookies.sessionToken.blue} ${"could be verified".green}, userId is ${decoded.userId.cyan}.`);
+                    resolve(decoded.userId);
+                }
+            });
+
+        } else {
+            resolve(null);
+        }
+    });
+};
+
 const setCookieAndEnd = (userId, res) => {
-    jwt.sign({ userId: userId }, "secret", (err, jwt) => {
+    jwt.sign({ userId: userId }, jwtSecret, (err, jwt) => {
         if (err) {
             console.error(err);
             res.writeHead(500, { "Content-Type": "application/json" });

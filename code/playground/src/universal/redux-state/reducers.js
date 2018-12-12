@@ -33,28 +33,33 @@ export const emptyState = () => {
     };
 };
 
-
 const entities = (state = emptyState().entities, action) => {
+
+    const initializeForUserId = (entitiesFromState, userId) => {
+        if (!entitiesFromState.hasOwnProperty(userId)) {
+            const entities = {};
+            for (const entityName in entityNamesToClasses) {
+                entities[entityName] = {
+                    allEvents: [],
+                    unsyncedEvents: [],
+                    calculatedEntities: []
+                }
+            }
+            return {
+                ...entitiesFromState,
+                [action.userId]: entities
+            };
+        } else {
+            return entitiesFromState;
+        }
+    };
+
+
     switch (action.type) {
         case COMMAND_INITIALIZE:
             return emptyState().entities;
         case EVENT_SESSION_TOKEN_FETCHING_SUCCEEDED:
-            if (!state.hasOwnProperty(action.userId)) {
-                const entities = {};
-                for (const entityName in entityNamesToClasses) {
-                    entities[entityName] = {
-                        allEvents: [],
-                        unsyncedEvents: [],
-                        calculatedEntities: []
-                    }
-                }
-                return {
-                    ...state,
-                    [action.userId]: entities
-                };
-            } else {
-                return state;
-            }
+            return initializeForUserId(state, action.userId);
         case COMMAND_NOTE_CREATE: {
             const createNoteEntityEvent = CreateNoteEntityEvent.withTitle(action.noteTitle);
             const updatedAllEvents = state[action.userId][NoteEntity.entityName()].allEvents.concat(createNoteEntityEvent);
@@ -107,6 +112,7 @@ const entities = (state = emptyState().entities, action) => {
             };
         }
         case EVENT_ENTITY_EVENTS_FETCHING_SUCCEEDED: {
+            state = initializeForUserId(state, action.userId);
             const receivedEntityEvents = action.json.map((entityEventObject) => EntityEventFactory.createEntityEventFromObject(entityEventObject));
             const updatedAllEvents = mergeEntityEventArrays(state[action.userId][NoteEntity.entityName()].allEvents, receivedEntityEvents);
             const updatedCalculatedEntities = entityNamesToClasses[NoteEntity.entityName()].entityClass.createFromEntityEvents(updatedAllEvents);

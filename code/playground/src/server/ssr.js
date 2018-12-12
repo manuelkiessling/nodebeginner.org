@@ -13,6 +13,8 @@ import { createGenerateClassName, MuiThemeProvider } from "@material-ui/core/sty
 import muiTheme from "../universal/styling/muiTheme";
 import { createStoreFromInitialState } from "../universal/redux-state/store";
 import renderHtmlTemplate from "./renderHtmlTemplate";
+import { emptyState } from "../universal/redux-state/reducers";
+import { getUserIdFromRequest } from "./authApi";
 
 export default (httpServer) => {
 
@@ -26,52 +28,68 @@ export default (httpServer) => {
             } else {
                 httpServer.get(/^\/(notes|)(\?.*)*$/, (req, res) => {
 
-                    const store = createStoreFromInitialState();
-                    store.dispatch(initializeCommand());
+                    getUserIdFromRequest(req)
+                        .then((userId) => {
+                            const initialState = emptyState();
 
-                    const ssrDispatchHooks =
-                        routes
-                            .filter((route) => matchPath(req.url, route))                    // filter matching paths
-                            .map((route) => route.component)                                 // map to components
-                            .filter((component) => component.ssrDispatchHook)                // filter to components that have a SSR trigger
-                            .map((component) => {
-                                console.debug("Triggering ssrDispatchHook on " + component.name);
-                                return store.dispatch(component.ssrDispatchHook());          // dispatch trigger
+                            if (userId != null) {
+                                initialState.session.isLoggedIn = true;
+                                initialState.session.userId = userId;
+                            }
+
+                            const store = createStoreFromInitialState(initialState);
+                            store.dispatch(initializeCommand());
+
+                            const ssrDispatchHooks =
+                                routes
+                                    .filter((route) => matchPath(req.url, route))                    // filter matching paths
+                                    .map((route) => route.component)                                 // map to components
+                                    .filter((component) => component.ssrDispatchHook)                // filter to components that have a SSR trigger
+                                    .map((component) => {
+                                        console.debug("Triggering ssrDispatchHook on " + component.name);
+                                        return store.dispatch(component.ssrDispatchHook());          // dispatch trigger
+                                    });
+
+                            Promise.all(ssrDispatchHooks).then(() => {
+                                const context = {};
+
+                                const sheetsRegistry = new SheetsRegistry();
+
+                                // Create a sheetsManager instance.
+                                const sheetsManager = new Map();
+
+                                // Create a new class name generator.
+                                const generateClassName = createGenerateClassName();
+
+                                console.debug("Building JSX");
+                                const jsx = (
+                                    <Provider store={store}>
+                                        <Router context={context} location={req.url}>
+                                            <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
+                                                <MuiThemeProvider theme={muiTheme} sheetsManager={sheetsManager}>
+                                                    <AppContainer/>
+                                                </MuiThemeProvider>
+                                            </JssProvider>
+                                        </Router>
+                                    </Provider>
+                                );
+
+                                console.debug("Starting JSX rendering...");
+                                const reactDom = renderToString(jsx);
+                                console.debug("Finished JSX rendering.");
+
+                                const style = sheetsRegistry.toString();
+
+                                res.writeHead(200, { "Content-Type": "text/html" });
+                                res.end(renderHtmlTemplate(templateContent, reactDom, store, style));
                             });
+                        })
+                        .catch((error) => {
+                            console.error(error);
+                            res.writeHead(500, { "Content-Type": "text/plain" });
+                            res.end("Unrecoverable error during auth handling.");
+                        });
 
-                    Promise.all(ssrDispatchHooks).then(() => {
-                        const context = {};
-
-                        const sheetsRegistry = new SheetsRegistry();
-
-                        // Create a sheetsManager instance.
-                        const sheetsManager = new Map();
-
-                        // Create a new class name generator.
-                        const generateClassName = createGenerateClassName();
-
-                        console.debug("Building JSX");
-                        const jsx = (
-                            <Provider store={store}>
-                                <Router context={context} location={req.url}>
-                                    <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
-                                        <MuiThemeProvider theme={muiTheme} sheetsManager={sheetsManager}>
-                                            <AppContainer/>
-                                        </MuiThemeProvider>
-                                    </JssProvider>
-                                </Router>
-                            </Provider>
-                        );
-
-                        console.debug("Starting JSX rendering...");
-                        const reactDom = renderToString(jsx);
-                        console.debug("Finished JSX rendering.");
-
-                        const style = sheetsRegistry.toString();
-
-                        res.writeHead(200, { "Content-Type": "text/html" });
-                        res.end(renderHtmlTemplate(templateContent, reactDom, store, style));
-                    });
                 });
 
                 console.info(`Will serve ${"server-side rendered application".blue} at ${"/".green} and ${"/notes".green}.`);

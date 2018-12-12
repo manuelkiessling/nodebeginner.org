@@ -1,30 +1,25 @@
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
-import jwt from "jsonwebtoken";
 import { EntityEventFactory } from "../universal/entities/EntityEventFactory";
+import { getUserIdFromRequest } from "./authApi";
 
-const getUserIdFromSessionTokenOrDeny = (req, res) => {
+const getUserIdFromRequestOrDeny = (req, res) => {
     return new Promise((resolve, reject) => {
-
-        if (req.cookies.sessionToken != null) {
-
-            jwt.verify(req.cookies.sessionToken, "secret", (err, decoded) => {
-                if (err) {
-                    console.info(`Session token ${req.cookies.sessionToken.blue} ${"could not be verified".yellow}.`);
-                    res.writeHead(200, { "Content-Type": "application/json" });
-                    res.end(JSON.stringify({ error: "Session token is invalid." }));
-                    reject(new Error("Session token is invalid."));
+        getUserIdFromRequest(req)
+            .then((userId) => {
+                if (userId != null) {
+                    resolve(userId);
                 } else {
-                    console.info(`Session token ${req.cookies.sessionToken.blue} ${"could be verified".green}, userId is ${decoded.userId.cyan}.`);
-                    resolve(decoded.userId);
+                    res.writeHead(200, { "Content-Type": "application/json" });
+                    res.end(JSON.stringify({ error: "No valid session token found." }));
+                    reject(new Error("No valid session token found."));
                 }
+            })
+            .catch((error) => {
+                res.writeHead(200, { "Content-Type": "application/json" });
+                res.end(JSON.stringify({ error: "Could not authenticate request." }));
+                reject(new Error("Could not authenticate request."));
             });
-
-        } else {
-            res.writeHead(200, { "Content-Type": "application/json" });
-            res.end(JSON.stringify({ error: "No valid session token found." }));
-            reject(new Error("No valid session token found."));
-        }
     });
 };
 
@@ -40,7 +35,7 @@ const activateApi = (httpServer, mongoDb) => {
         httpServer.get(/^\/api\/entity-events\/$/, (req, res) => {
             console.info(`Received entity events API request ${req.method.cyan} ${req.originalUrl.green}`);
 
-            getUserIdFromSessionTokenOrDeny(req, res)
+            getUserIdFromRequestOrDeny(req, res)
                 .then((userId) => {
                     entityEventsByUserId.findOne({ userId: userId }, {}, (err, doc) => {
                         if (err) {
@@ -66,7 +61,7 @@ const activateApi = (httpServer, mongoDb) => {
             console.info(`Received entity events API request ${req.method.cyan} ${req.originalUrl.green}`);
             console.debug(`Request body: ${JSON.stringify(req.body, null, 4).blue}`);
 
-            getUserIdFromSessionTokenOrDeny(req, res)
+            getUserIdFromRequestOrDeny(req, res)
                 .then((userId) => {
                     const updatePromises = [];
                     const entityEvents = [];

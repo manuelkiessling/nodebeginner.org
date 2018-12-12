@@ -25,6 +25,19 @@ const getAllUserIds = (entitiesA, entitiesB) => {
     return userIds;
 };
 
+const getWinningValue = (valueA, valueB, loosingValue) => {
+    if ((valueA !== undefined && valueA !== loosingValue) && (valueB !== undefined && valueB !== loosingValue)) {
+        return valueA;
+    }
+    if ((valueB === loosingValue || valueB === undefined) && (valueA !== undefined && valueA !== loosingValue)) {
+        return valueA;
+    }
+    if ((valueA === loosingValue || valueA === undefined) && (valueB !== undefined && valueB !== loosingValue)) {
+        return valueB;
+    }
+    return loosingValue;
+};
+
 export const mergeStatesAndRecalculate = (stateA, stateB) => {
     let mergedState = emptyState();
 
@@ -40,6 +53,9 @@ export const mergeStatesAndRecalculate = (stateA, stateB) => {
             mergedState = stateA;
         } else {
             console.debug(`mergeStates: stateA is ${JSON.stringify(stateA, null, 4)}, stateB is ${JSON.stringify(stateB, null, 4)}`);
+
+            mergedState.session.isLoggedIn = getWinningValue(stateA.session.isLoggedIn, stateB.session.isLoggedIn, false);
+            mergedState.session.userId = getWinningValue(stateA.session.userId, stateB.session.userId, null);
 
             const userIds = getAllUserIds(stateA.entities, stateB.entities);
 
