@@ -38,34 +38,34 @@ const styles = (theme) => ({
 });
 
 const NoteListItemSummary = ({ note, selectedNoteId }) => (
-    <MuiHidden xsDown={selectedNoteId === note.id} implementation="css">
-        <div>
-            <MuiTypography variant="h6" color="textPrimary">
-                {note.title}
-            </MuiTypography>
-            <MuiTypography variant="caption" color={selectedNoteId === note.id && "textPrimary" || "textSecondary"}>
-                <NoteSyncStatusIndicatorContainer note={note} />
-                {(new Date(note.lastModified)).toLocaleString()}
-            </MuiTypography>
-        </div>
-    </MuiHidden>
+    <div>
+        <MuiTypography variant="h6" color="textPrimary">
+            {note.title}
+        </MuiTypography>
+        <MuiTypography variant="caption" color={selectedNoteId === note.id && "textPrimary" || "textSecondary"}>
+            <NoteSyncStatusIndicatorContainer note={note} />
+            {(new Date(note.lastModified)).toLocaleString()}
+        </MuiTypography>
+    </div>
 );
 
 const NoteListItem = ({ note, selectedNoteId, handleSelectNote, classes }) => (
     <MuiListItem onClick={() => handleSelectNote(note)} className={selectedNoteId === note.id && classes.root || classes.rootWithPointer}>
         <MuiGrid container direction="column" alignItems="stretch" justify="space-evenly">
 
-            <MuiGrid item>
-                {selectedNoteId === note.id
-                &&
-                <MuiSelectedPaper className={classes.selectedPaper}>
-                    <NoteListItemSummary note={note} selectedNoteId={selectedNoteId} />
-                </MuiSelectedPaper>
-                ||
-                <MuiDeselectedPaper className={classes.deselectedPaper}>
-                    <NoteListItemSummary note={note} selectedNoteId={selectedNoteId} />
-                </MuiDeselectedPaper>}
-            </MuiGrid>
+            <MuiHidden xsDown={selectedNoteId === note.id} implementation="css">
+                <MuiGrid item>
+                    {selectedNoteId === note.id
+                    &&
+                    <MuiSelectedPaper className={classes.selectedPaper}>
+                        <NoteListItemSummary note={note} selectedNoteId={selectedNoteId} />
+                    </MuiSelectedPaper>
+                    ||
+                    <MuiDeselectedPaper className={classes.deselectedPaper}>
+                        <NoteListItemSummary note={note} selectedNoteId={selectedNoteId} />
+                    </MuiDeselectedPaper>}
+                </MuiGrid>
+            </MuiHidden>
 
             {selectedNoteId === note.id &&
             <MuiHidden smUp implementation="css">
