@@ -10,6 +10,9 @@ import { withStyles } from "@material-ui/core/styles";
 const styles = (theme) => ({
     root: {},
     textFieldGridItem: {},
+    textField: {
+        backgroundColor: theme.palette.common.white
+    },
     buttonGridItem: {}
 });
 
@@ -18,7 +21,7 @@ const CreateNoteControl = ({ handleSubmit, handleChange, title, classes }) => (
 
     <MuiGrid container direction="row" spacing={24} justify="flex-start" alignItems="center">
         <MuiGrid item xs container className={classes.textFieldGridItem}>
-            <MuiTextField id="title" label="New note title" variant="outlined" value={title} onChange={handleChange} fullWidth />
+            <MuiTextField  className={classes.textField} id="title" label="New note title" variant="outlined" value={title} onChange={handleChange} fullWidth />
         </MuiGrid>
         <MuiGrid item className={classes.buttonGridItem}>
             <MuiButton color="secondary" variant="contained" aria-label="Add" onClick={handleSubmit}>

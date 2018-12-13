@@ -9,20 +9,27 @@ import NoteListContainer from "../container/NoteListContainer";
 
 const styles = (theme) => ({
     root: {
-        paddingTop: theme.spacing.unit * 2,
-        minHeight: "100vh"
+        paddingTop: 0,
+        minHeight: "100vh",
+    },
+    cardHeader: {
+        backgroundColor: theme.palette.primary.light
+    },
+    cardContent: {
+        borderBottom: `1px solid ${theme.palette.grey[200]}`,
+        backgroundColor: theme.palette.grey[100]
     },
     addNoteControlGridItem: {
-        marginBottom: theme.spacing.unit * 5
+        marginBottom: 0
     },
     noteListContainerGridItem: {}
 });
 
 const NotesScreen = ({ classes }) => (
     <MuiCard className={classes.root}>
-        <MuiCardHeader title="Your notes" />
+        <MuiCardHeader title="My notes" className={classes.cardHeader}/>
 
-        <MuiCardContent>
+        <MuiCardContent className={classes.cardContent}>
 
             <MuiGrid container direction="column">
 
