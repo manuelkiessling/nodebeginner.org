@@ -14,7 +14,7 @@ import NoteSyncStatusIndicatorContainer from "../container/NoteSyncStatusIndicat
 const styles = (theme) => ({
     root: {
         margin: 0,
-        borderBottom: `1px solid ${theme.palette.primary.contrastText}`
+        borderBottom: `1px solid ${theme.palette.common.white}`
     },
     rootWithPointer: {
         margin: 0,
