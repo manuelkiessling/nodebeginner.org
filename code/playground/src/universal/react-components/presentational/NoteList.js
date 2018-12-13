@@ -17,8 +17,9 @@ const styles = (theme) => ({
         overflow: "hidden scroll",
         position: "absolute",
         bottom: 0,
-        top: "160px",
-        width: "30%"
+        top: "161px",
+        width: "30%",
+        marginLeft: "-23px"
     },
     listGridItem: {
         width: "100%"
@@ -30,7 +31,7 @@ const styles = (theme) => ({
         position: "absolute",
         bottom: 0,
         right: 0,
-        top: "160px",
+        top: "161px",
         width: "70%",
         paddingLeft: `${theme.spacing.unit * 1}px`,
     }

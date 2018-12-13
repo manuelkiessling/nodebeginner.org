@@ -16,8 +16,8 @@ const styles = (theme) => ({
         margin: 0,
         paddingBottom: `${theme.spacing.unit * 0.5}px`,
         borderRadius: 0,
-        border: `${theme.spacing.unit * 0.5}px solid ${theme.palette.grey[50]}`,
-        backgroundColor: theme.palette.grey[50]
+        border: `${theme.spacing.unit * 0.5}px solid ${theme.palette.background.selected}`,
+        backgroundColor: theme.palette.background.selected
     },
     rootDeselected: {
         margin: 0,
@@ -36,7 +36,7 @@ const styles = (theme) => ({
         paddingTop: theme.spacing.unit * 5,
         paddingBottom: theme.spacing.unit * 5,
         wordBreak: "break-all",
-        backgroundColor: theme.palette.grey[50]
+        backgroundColor: theme.palette.background.selected
     },
     deselectedPaper: {
         paddingTop: theme.spacing.unit * 5,
