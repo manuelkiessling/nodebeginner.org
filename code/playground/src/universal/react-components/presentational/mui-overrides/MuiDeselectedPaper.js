@@ -7,7 +7,7 @@ const styles = (theme) => ({
         padding: theme.spacing.unit * 1,
         boxShadow: "none",
         borderRadius: 0,
-        border: `${theme.spacing.unit * 0.5}px solid ${theme.palette.primary.contrastText}`,
+        border: `${theme.spacing.unit * 0.5}px solid ${theme.palette.common.white}`,
         backgroundColor: theme.palette.common.white
     },
 });
