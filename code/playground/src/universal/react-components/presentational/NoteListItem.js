@@ -13,22 +13,24 @@ import NoteSyncStatusIndicatorContainer from "../container/NoteSyncStatusIndicat
 
 const styles = (theme) => ({
     root: {
-        marginBottom: 0
+        margin: 0,
+        borderBottom: `1px solid ${theme.palette.primary.contrastText}`
     },
     rootWithPointer: {
-        marginBottom: 0,
-        cursor: "pointer"
+        margin: 0,
+        cursor: "pointer",
+        borderBottom: `1px solid ${theme.palette.grey[200]}`
     },
     paddingDetails: {
         marginTop: theme.spacing.unit * -5,
         paddingBottom: theme.spacing.unit * 5
     },
-    paddingSelected: {
+    selectedPaper: {
         paddingTop: theme.spacing.unit * 5,
         paddingBottom: theme.spacing.unit * 5,
-        wordBreak: "break-all"
+        wordBreak: "break-all",
     },
-    paddingDeselected: {
+    deselectedPaper: {
         paddingTop: theme.spacing.unit * 5,
         paddingBottom: theme.spacing.unit * 5,
         wordBreak: "break-all"
@@ -55,10 +57,10 @@ const NoteListItem = ({ note, selectedNoteId, handleSelectNote, classes }) => (
 
             <MuiGrid item>
                 {selectedNoteId === note.id &&
-                <MuiSelectedPaper className={classes.paddingSelected}>
+                <MuiSelectedPaper className={classes.selectedPaper}>
                     <NoteListItemSummary note={note} selectedNoteId={selectedNoteId} />
                 </MuiSelectedPaper> ||
-                <MuiDeselectedPaper className={classes.paddingDeselected}>
+                <MuiDeselectedPaper className={classes.deselectedPaper}>
                     <NoteListItemSummary note={note} selectedNoteId={selectedNoteId} />
                 </MuiDeselectedPaper>}
             </MuiGrid>

@@ -12,7 +12,8 @@ const styles = (theme) => ({
         padding: theme.spacing.unit * 2,
         minHeight: "100%",
         minWidth: "100%",
-        width: "100%"
+        width: "100%",
+        border: 0
     },
     editNoteTitleControlContainer: {
         marginTop: theme.spacing.unit * 2,

@@ -12,16 +12,14 @@ import { noteById } from "../../entities/Helpers";
 const styles = (theme) => ({
     root: {},
     list: {
-        borderTop: `${theme.spacing.unit * 1}px solid ${theme.palette.grey[200]}`,
-        borderRight: `1px dotted ${theme.palette.grey[400]}`,
+        border: 0,
         paddingTop: 0
     },
     listGridItem: {
         width: "100%"
     },
     detailsGridItem: {
-        borderTop: `${theme.spacing.unit * 1}px solid ${theme.palette.grey[200]}`,
-        borderRight: `${theme.spacing.unit * 1}px solid ${theme.palette.grey[200]}`
+        paddingLeft: `${theme.spacing.unit * 1}px`,
     }
 });
 
