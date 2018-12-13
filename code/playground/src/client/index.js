@@ -8,7 +8,6 @@ import { createStoreFromInitialState, mergeStatesAndRecalculate } from "../unive
 import AppContainer from "../universal/react-components/container/AppContainer";
 import "../universal/styling/app.scss";
 import muiTheme from "../universal/styling/muiTheme"
-import { getEnvVar } from "../universal/utils/env";
 import { retrieveStateFromLocalStorage, setUpLocalStorageStoreSubscription } from "./localStorage";
 import activateServerSync from "./serverSync";
 
@@ -45,12 +44,14 @@ const appDom = (
 
 const app = document.getElementById("app");
 
-if (getEnvVar("SSR", "false") === "false") {
+if (window.SSR_REDUX_STORE_STATE == null) {
+    console.info("Not in SSR mode, rendering the React DOM from scratch.");
     ReactDOM.render(
         appDom,
         app
     );
 } else {
+    console.info("SSR mode, hydrating an existing server-side rendered React DOM.");
     ReactDOM.hydrate(
         appDom,
         app

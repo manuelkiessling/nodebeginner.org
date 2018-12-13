@@ -97,15 +97,21 @@ export const mergeStatesAndRecalculate = (stateA, stateB) => {
                         entitiesStateUnsyncedEventsA,
                         entitiesStateUnsyncedEventsB
                     );
+                }
+            }
+        }
 
-                    mergedState.entities[userIds[i]][entityName].allEvents =
-                        mergedState.entities[userIds[i]][entityName].allEvents.map(_ => EntityEventFactory.createEntityEventFromObject(_));
+        for (const userId in mergedState.entities) {
+            if (mergedState.entities.hasOwnProperty(userId)) {
+                for (const entityName in entityNamesToClasses) {
+                    mergedState.entities[userId][entityName].allEvents =
+                        mergedState.entities[userId][entityName].allEvents.map(_ => EntityEventFactory.createEntityEventFromObject(_));
 
-                    mergedState.entities[userIds[i]][entityName].unsyncedEvents =
-                        mergedState.entities[userIds[i]][entityName].unsyncedEvents.map(_ => EntityEventFactory.createEntityEventFromObject(_));
+                    mergedState.entities[userId][entityName].unsyncedEvents =
+                        mergedState.entities[userId][entityName].unsyncedEvents.map(_ => EntityEventFactory.createEntityEventFromObject(_));
 
-                    mergedState.entities[userIds[i]][entityName].calculatedEntities =
-                        entityNamesToClasses[entityName].entityClass.createFromEntityEvents(mergedState.entities[userIds[i]][entityName].allEvents);
+                    mergedState.entities[userId][entityName].calculatedEntities =
+                        entityNamesToClasses[entityName].entityClass.createFromEntityEvents(mergedState.entities[userId][entityName].allEvents);
                 }
             }
         }
