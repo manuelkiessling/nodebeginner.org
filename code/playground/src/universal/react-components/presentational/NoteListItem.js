@@ -14,13 +14,20 @@ import NoteSyncStatusIndicatorContainer from "../container/NoteSyncStatusIndicat
 const styles = (theme) => ({
     rootSelected: {
         margin: 0,
+        paddingBottom: `${theme.spacing.unit * 0.5}px`,
+        borderRadius: 0,
         border: `${theme.spacing.unit * 0.5}px solid ${theme.palette.grey[50]}`,
         backgroundColor: theme.palette.grey[50]
     },
     rootDeselected: {
         margin: 0,
+        paddingBottom: `${theme.spacing.unit * 0.5}px`,
         cursor: "pointer",
-        borderBottom: `1px solid ${theme.palette.grey[200]}`
+        borderRadius: 0,
+        borderTop: `${theme.spacing.unit * 0.5}px solid ${theme.palette.common.white}`,
+        borderLeft: `${theme.spacing.unit * 0.5}px solid ${theme.palette.common.white}`,
+        borderRight: `${theme.spacing.unit * 0.5}px solid ${theme.palette.common.white}`,
+        borderBottom: `${theme.spacing.unit * 0.5}px solid ${theme.palette.grey[100]}`
     },
     paddingDetails: {
         paddingBottom: theme.spacing.unit * 1
@@ -29,6 +36,7 @@ const styles = (theme) => ({
         paddingTop: theme.spacing.unit * 5,
         paddingBottom: theme.spacing.unit * 5,
         wordBreak: "break-all",
+        backgroundColor: theme.palette.grey[50]
     },
     deselectedPaper: {
         paddingTop: theme.spacing.unit * 5,
