@@ -12,11 +12,12 @@ import { withStyles } from "@material-ui/core/styles";
 import NoteSyncStatusIndicatorContainer from "../container/NoteSyncStatusIndicatorContainer";
 
 const styles = (theme) => ({
-    root: {
+    rootSelected: {
         margin: 0,
-        borderBottom: `1px solid ${theme.palette.grey[200]}`
+        border: `${theme.spacing.unit * 0.5}px solid ${theme.palette.grey[50]}`,
+        backgroundColor: theme.palette.grey[50]
     },
-    rootWithPointer: {
+    rootDeselected: {
         margin: 0,
         cursor: "pointer",
         borderBottom: `1px solid ${theme.palette.grey[200]}`
@@ -49,7 +50,7 @@ const NoteListItemSummary = ({ note, selectedNoteId }) => (
 );
 
 const NoteListItem = ({ note, selectedNoteId, handleSelectNote, classes }) => (
-    <MuiListItem onClick={() => handleSelectNote(note)} className={selectedNoteId === note.id && classes.root || classes.rootWithPointer}>
+    <MuiListItem onClick={() => handleSelectNote(note)} className={selectedNoteId === note.id && classes.rootSelected || classes.rootDeselected}>
         <MuiGrid container direction="column" alignItems="stretch" justify="space-evenly">
 
             <MuiHidden xsDown={selectedNoteId === note.id} implementation="css">
@@ -69,7 +70,7 @@ const NoteListItem = ({ note, selectedNoteId, handleSelectNote, classes }) => (
             {selectedNoteId === note.id &&
             <MuiHidden smUp implementation="css">
                 <MuiGrid item className={classes.paddingDetails}>
-                    <NoteListItemDetails note={note} />
+                    <NoteListItemDetails note={note} contrasted={true} />
                 </MuiGrid>
             </MuiHidden>}
 

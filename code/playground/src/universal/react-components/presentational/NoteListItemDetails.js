@@ -7,14 +7,17 @@ import { NoteEntity } from "../../entities/NoteEntity";
 import EditNoteTitleControlContainer from "../container/EditNoteTitleControlContainer";
 import EditNoteContentControlContainer from "../container/EditNoteContentControlContainer";
 
+const rootStyle = (theme) => ({
+    padding: theme.spacing.unit * 2,
+    minHeight: "100%",
+    minWidth: "100%",
+    width: "100%",
+    border: 0
+});
+
 const styles = (theme) => ({
-    root: {
-        padding: theme.spacing.unit * 2,
-        minHeight: "100%",
-        minWidth: "100%",
-        width: "100%",
-        border: 0
-    },
+    root: rootStyle(theme),
+    rootContrasted: { ...rootStyle(theme), backgroundColor: theme.palette.grey[50] },
     editNoteTitleControlContainer: {
         marginTop: theme.spacing.unit * 2,
         marginBottom: theme.spacing.unit * 2,
@@ -29,8 +32,8 @@ const styles = (theme) => ({
     }
 });
 
-const NoteListItemDetails = ({ note, classes }) => (
-    <MuiSelectedPaper className={classes.root}>
+const NoteListItemDetails = ({ note, classes, contrasted }) => (
+    <MuiSelectedPaper className={contrasted ? classes.rootContrasted : classes.root}>
         {note != null
         &&
         <div>

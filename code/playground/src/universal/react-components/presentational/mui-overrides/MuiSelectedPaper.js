@@ -8,9 +8,7 @@ const styles = (theme) => {
     root: {
         padding: theme.spacing.unit * 1,
         boxShadow: "none",
-        borderRadius: 0,
-        border: `${theme.spacing.unit * 0.5}px solid ${theme.palette.grey[200]}`,
-        backgroundColor: theme.palette.common.white
+        borderRadius: 0
     },
 }};
 
