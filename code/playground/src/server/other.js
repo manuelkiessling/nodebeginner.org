@@ -6,11 +6,9 @@ export default (httpServer) => {
     return new Promise((resolve) => {
 
         // Make sure that we don't serve the server code.
-        // We can not, however, respond with 404 - the service-worker code is requesting this,
-        // and will fail to register if it encounters an error.
         httpServer.get(/^\/server\.(.*)/, (req, res) => {
             console.warn(`${"Not serving".yellow} ${req.method.cyan} ${req.originalUrl.blue}.`);
-            res.sendStatus(200);
+            res.sendStatus(404);
             res.end("Not found.")
         });
 

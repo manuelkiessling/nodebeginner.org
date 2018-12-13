@@ -43,9 +43,9 @@ if (ENV.SW_PREFETCH) {
                 navigateFallback: "/sw-precache-appshell",
                 navigateFallbackWhitelist: [/^\/(?!(api)).*/], // Only fall back to the app shell for requests that are not to the api
                 maximumFileSizeToCacheInBytes: 10485760,
-                staticFileGlobs: [
-                    "dist/**/*.js",
-                    "dist/**/*.css"
+                staticFileGlobs: [   // Put the assets which an offline app needs to work into the service worker cache...
+                    "dist/client.js",
+                    "dist/client.css"
                 ],
                 staticFileGlobsIgnorePatterns: [/\.map$/, /assets-manifest\.json$/],
                 stripPrefix: "dist/",
