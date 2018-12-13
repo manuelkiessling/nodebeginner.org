@@ -14,7 +14,7 @@ import NoteSyncStatusIndicatorContainer from "../container/NoteSyncStatusIndicat
 const styles = (theme) => ({
     root: {
         margin: 0,
-        borderBottom: `1px solid ${theme.palette.common.white}`
+        borderBottom: `1px solid ${theme.palette.grey[200]}`
     },
     rootWithPointer: {
         margin: 0,
@@ -22,8 +22,7 @@ const styles = (theme) => ({
         borderBottom: `1px solid ${theme.palette.grey[200]}`
     },
     paddingDetails: {
-        marginTop: theme.spacing.unit * -5,
-        paddingBottom: theme.spacing.unit * 5
+        paddingBottom: theme.spacing.unit * 1
     },
     selectedPaper: {
         paddingTop: theme.spacing.unit * 5,

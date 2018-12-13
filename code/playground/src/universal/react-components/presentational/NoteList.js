@@ -11,14 +11,27 @@ import { noteById } from "../../entities/Helpers";
 
 const styles = (theme) => ({
     root: {},
-    list: {
+    smUplist: {
         border: 0,
-        paddingTop: 0
+        paddingTop: 0,
+        overflow: "hidden scroll",
+        position: "absolute",
+        bottom: 0,
+        top: "200px",
+        width: "30%"
     },
     listGridItem: {
         width: "100%"
     },
     detailsGridItem: {
+        border: 0,
+        paddingTop: 0,
+        overflow: "hidden scroll",
+        position: "absolute",
+        bottom: 0,
+        right: 0,
+        top: "200px",
+        width: "70%",
         paddingLeft: `${theme.spacing.unit * 1}px`,
     }
 });
@@ -28,7 +41,7 @@ const NoteList = ({ notes, selectedNoteId, handleSelectNote, classes }) => (
         <MuiHidden xsDown implementation="css">
             <MuiGrid container direction="row">
                 <MuiGrid item xs={4}>
-                    <MuiList className={classes.list}>
+                    <MuiList className={classes.smUplist}>
                         {notes.map(note => (
                             <NoteListItem key={note.id} note={note} selectedNoteId={selectedNoteId} handleSelectNote={handleSelectNote} />
                         ))}

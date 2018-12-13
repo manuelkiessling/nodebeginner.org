@@ -36,7 +36,7 @@ const EditNoteContentControl = ({ handleClickContent: handleClick, handleChange,
         &&
             <form onSubmit={handleSubmit}>
 
-                <MuiGrid container direction="row" spacing={24} justify="flex-start" alignItems="center">
+                <MuiGrid container direction="row" spacing={24} justify="flex-start" alignItems="flex-start">
                     <MuiGrid item md container className={classes.textFieldGridItem}>
                         <MuiTextField multiline autoFocus id="content" label="Change note content" variant="outlined" value={content} onChange={handleChange} fullWidth/>
                     </MuiGrid>
