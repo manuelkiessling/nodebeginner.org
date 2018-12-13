@@ -56,10 +56,12 @@ const NoteListItem = ({ note, selectedNoteId, handleSelectNote, classes }) => (
         <MuiGrid container direction="column" alignItems="stretch" justify="space-evenly">
 
             <MuiGrid item>
-                {selectedNoteId === note.id &&
+                {selectedNoteId === note.id
+                &&
                 <MuiSelectedPaper className={classes.selectedPaper}>
                     <NoteListItemSummary note={note} selectedNoteId={selectedNoteId} />
-                </MuiSelectedPaper> ||
+                </MuiSelectedPaper>
+                ||
                 <MuiDeselectedPaper className={classes.deselectedPaper}>
                     <NoteListItemSummary note={note} selectedNoteId={selectedNoteId} />
                 </MuiDeselectedPaper>}
