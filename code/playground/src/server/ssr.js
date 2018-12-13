@@ -50,41 +50,45 @@ export default (httpServer) => {
                                         return store.dispatch(component.ssrDispatchHook(userId, sessionToken));    // dispatch trigger
                                     });
 
-                            Promise.all(ssrDispatchHooks).then(() => {
-                                console.debug("Here we are".red);
-                                console.debug(`State is now: ${JSON.stringify(store.getState()).cyan}`);
-                                const context = {};
+                            Promise.all(ssrDispatchHooks)
+                                .then(() => {
+                                    const context = {};
 
-                                const sheetsRegistry = new SheetsRegistry();
+                                    const sheetsRegistry = new SheetsRegistry();
 
-                                // Create a sheetsManager instance.
-                                const sheetsManager = new Map();
+                                    // Create a sheetsManager instance.
+                                    const sheetsManager = new Map();
 
-                                // Create a new class name generator.
-                                const generateClassName = createGenerateClassName();
+                                    // Create a new class name generator.
+                                    const generateClassName = createGenerateClassName();
 
-                                console.debug("Building JSX");
-                                const jsx = (
-                                    <Provider store={store}>
-                                        <Router context={context} location={req.url}>
-                                            <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
-                                                <MuiThemeProvider theme={muiTheme} sheetsManager={sheetsManager}>
-                                                    <AppContainer/>
-                                                </MuiThemeProvider>
-                                            </JssProvider>
-                                        </Router>
-                                    </Provider>
-                                );
+                                    console.debug("Building JSX");
+                                    const jsx = (
+                                        <Provider store={store}>
+                                            <Router context={context} location={req.url}>
+                                                <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
+                                                    <MuiThemeProvider theme={muiTheme} sheetsManager={sheetsManager}>
+                                                        <AppContainer/>
+                                                    </MuiThemeProvider>
+                                                </JssProvider>
+                                            </Router>
+                                        </Provider>
+                                    );
 
-                                console.debug("Starting JSX rendering...");
-                                const reactDom = renderToString(jsx);
-                                console.debug("Finished JSX rendering.");
+                                    console.debug("Starting JSX rendering...");
+                                    const reactDom = renderToString(jsx);
+                                    console.debug("Finished JSX rendering.");
 
-                                const style = sheetsRegistry.toString();
+                                    const style = sheetsRegistry.toString();
 
-                                res.writeHead(200, { "Content-Type": "text/html" });
-                                res.end(renderHtmlTemplate(templateContent, reactDom, store, style));
-                            });
+                                    res.writeHead(200, { "Content-Type": "text/html" });
+                                    res.end(renderHtmlTemplate(templateContent, reactDom, store, style));
+                                })
+                                .catch((error) => {
+                                    console.error(error);
+                                    res.writeHead(500, { "Content-Type": "text/plain" });
+                                    res.end("Unrecoverable error during server-side rendering.");
+                                });
                         })
                         .catch((error) => {
                             console.error(error);

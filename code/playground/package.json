@@ -6,6 +6,8 @@
   "scripts": {
     "test": "jest --verbose --silent ./test",
     "watch:dev:test": "jest --verbose --silent --watchAll ./test",
+    "watch:dev:client": "rm -rf dist/* && webpack --mode development --config webpack.client.config.js --watch",
+    "watch:dev:server": "webpack --mode development --config webpack.server.config.js --watch",
     "build:dev:client": "rm -rf dist/* && webpack --mode development --config webpack.client.config.js",
     "build:dev:server": "webpack --mode development --config webpack.server.config.js",
     "build:dev:all": "npm run build:dev:client && npm run build:dev:server",

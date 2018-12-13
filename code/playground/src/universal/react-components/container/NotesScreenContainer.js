@@ -14,8 +14,6 @@ const mapStateToProps = (state) => {
         notes = state.entities[userId][NoteEntity.entityName()].calculatedEntities;
     }
 
-    console.log(`Notes in NotesScreenContainer is ${JSON.stringify(notes, null, 4)}.`); // TODO: Why is this undefined during SSR?
-
     return {
         isLoggedIn: isLoggedIn,
         userId: userId,
