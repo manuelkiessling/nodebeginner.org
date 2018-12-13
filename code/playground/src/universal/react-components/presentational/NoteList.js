@@ -27,7 +27,7 @@ const styles = (theme) => ({
 
 const NoteList = ({ notes, selectedNoteId, handleSelectNote, classes }) => (
     <div>
-        <MuiHidden xsDown>
+        <MuiHidden xsDown implementation="css">
             <MuiGrid container direction="row">
                 <MuiGrid item xs={4}>
                     <MuiList className={classes.list}>
@@ -42,7 +42,7 @@ const NoteList = ({ notes, selectedNoteId, handleSelectNote, classes }) => (
                     </MuiGrid>}
             </MuiGrid>
         </MuiHidden>
-        <MuiHidden smUp>
+        <MuiHidden smUp implementation="css">
             <MuiGrid container direction="row">
                 <MuiGrid item className={classes.listGridItem}>
                     <MuiList>

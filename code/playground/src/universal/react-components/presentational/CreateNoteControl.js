@@ -22,10 +22,10 @@ const CreateNoteControl = ({ handleSubmit, handleChange, title, classes }) => (
         </MuiGrid>
         <MuiGrid item className={classes.buttonGridItem}>
             <MuiButton color="secondary" variant="contained" aria-label="Add" onClick={handleSubmit}>
-                <MuiHidden xsDown>
+                <MuiHidden xsDown implementation="css">
                     Add new note
                 </MuiHidden>
-                <MuiHidden smUp>
+                <MuiHidden smUp implementation="css">
                     <MuiAddIcon />
                 </MuiHidden>
             </MuiButton>

@@ -36,7 +36,7 @@ const styles = (theme) => ({
 });
 
 const NoteListItemSummary = ({ note, selectedNoteId }) => (
-    <MuiHidden xsDown={selectedNoteId === note.id}>
+    <MuiHidden xsDown={selectedNoteId === note.id} implementation="css">
         <div>
             <MuiTypography variant="h6" color="textPrimary">
                 {note.title}
@@ -64,7 +64,7 @@ const NoteListItem = ({ note, selectedNoteId, handleSelectNote, classes }) => (
             </MuiGrid>
 
             {selectedNoteId === note.id &&
-            <MuiHidden smUp>
+            <MuiHidden smUp implementation="css">
                 <MuiGrid item className={classes.paddingDetails}>
                     <NoteListItemDetails note={note} />
                 </MuiGrid>
