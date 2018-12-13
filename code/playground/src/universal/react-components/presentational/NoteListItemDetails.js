@@ -55,7 +55,7 @@ const NoteListItemDetails = ({ note, classes, contrasted }) => (
             </div>
 
             <div>
-                <EditNoteContentControlContainer key={note.id} note={note} />
+                <EditNoteContentControlContainer key={note.id} note={note} contrasted={contrasted} />
             </div>
         </div>
         ||

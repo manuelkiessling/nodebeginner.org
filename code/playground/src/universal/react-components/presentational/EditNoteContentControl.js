@@ -9,9 +9,20 @@ import MuiButton from "@material-ui/core/es/Button/Button";
 import { withStyles } from "@material-ui/core/styles";
 import MuiTypography from "@material-ui/core/Typography/Typography";
 
+const contentText = (theme) => ({
+    backgroundColor: theme.palette.grey[100],
+    padding: theme.spacing.unit * 2,
+    borderRadius: theme.spacing.unit * 1,
+    whiteSpace: "pre-wrap",
+    wordBreak: "break-all"
+});
+
 const styles = (theme) => ({
     root: {},
     textFieldGridItem: {},
+    textField: {
+        backgroundColor: theme.palette.common.white
+    },
     buttonGridItem: {
         marginRight: theme.spacing.unit * 2
     },
@@ -21,16 +32,11 @@ const styles = (theme) => ({
     contentArea: {
         minHeight: theme.spacing.unit * 10,
     },
-    contentText: {
-        backgroundColor: theme.palette.grey[100],
-        padding: theme.spacing.unit * 2,
-        borderRadius: theme.spacing.unit * 1,
-        whiteSpace: "pre-wrap",
-        wordBreak: "break-all"
-    }
+    contentText: contentText(theme),
+    contentTextContrasted: { ...contentText(theme), backgroundColor: theme.palette.common.white }
 });
 
-const EditNoteContentControl = ({ handleClickContent: handleClick, handleChange, handleAbort, handleSubmit, content, inEditMode, contentHasBeenChanged, classes }) => (
+const EditNoteContentControl = ({ handleClickContent, handleChange, handleAbort, handleSubmit, content, inEditMode, contentHasBeenChanged, classes, contrasted }) => (
     <div>
         {inEditMode
         &&
@@ -38,7 +44,7 @@ const EditNoteContentControl = ({ handleClickContent: handleClick, handleChange,
 
                 <MuiGrid container direction="row" spacing={24} justify="flex-start" alignItems="flex-start">
                     <MuiGrid item md container className={classes.textFieldGridItem}>
-                        <MuiTextField multiline autoFocus id="content" label="Change note content" variant="outlined" value={content} onChange={handleChange} fullWidth/>
+                        <MuiTextField multiline autoFocus id="content" label="Change note content" variant="outlined" value={content} onChange={handleChange} fullWidth className={classes.textField} />
                     </MuiGrid>
                     <MuiGrid item className={classes.buttonGridItem}>
                         <MuiButton color="primary" variant="contained" disabled={!contentHasBeenChanged} aria-label="Save new content" onClick={handleSubmit}>
@@ -51,14 +57,14 @@ const EditNoteContentControl = ({ handleClickContent: handleClick, handleChange,
                 </MuiGrid>
             </form>
         ||
-            <div className={classes.contentArea} onClick={handleClick}>
+            <div className={classes.contentArea} onClick={handleClickContent}>
                 {content === ""
                 &&
                     <MuiButton color="primary" variant="contained" aria-label="Save new content">
                         <MuiEditIcon/>
                     </MuiButton>
                 ||
-                <MuiTypography className={classes.contentText} variant="body1">
+                <MuiTypography className={contrasted ? classes.contentTextContrasted : classes.contentText} variant="body1">
                     {content}
                 </MuiTypography>
                 }

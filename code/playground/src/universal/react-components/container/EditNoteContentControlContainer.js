@@ -60,6 +60,7 @@ class EditNoteContentControlContainer extends Component {
                 content={content}
                 inEditMode={inEditMode}
                 contentHasBeenChanged={contentHasBeenChanged}
+                contrasted={this.props.contrasted}
             />
         );
     }
