@@ -16,11 +16,11 @@
 
         <script type="text/javascript">
             // Disqus
-            var disqus_shortname = 'nodebeginner';
-            var disqus_identifier = 'nodebeginner-book-spanish';
-            var disqus_url = 'https://www.nodebeginner.org/index-es.html';
+            let disqus_shortname = 'nodebeginner';
+            let disqus_identifier = 'nodebeginner-book-spanish';
+            let disqus_url = 'https://www.nodebeginner.org/index-es.html';
             (function() {
-                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                let dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
                 dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
                 (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
             })();
@@ -527,7 +527,7 @@
         <em>server.js</em> en el directorio raíz de tu proyecto,
         y llénalo con el código siguiente:
     </p>
-<pre class="prettyprint lang-js">var http = require("http");
+<pre class="prettyprint lang-js">const http = require("http");
 
 http.createServer(function(request, response) {
   response.writeHead(200, {"Content-Type": "text/html"});
@@ -577,8 +577,8 @@ http.createServer(function(request, response) {
         Nosotros podríamos haber escrito el código que inicia a nuestro
         servidor y lo hace escuchar al puerto 8888 de la siguiente manera:
     </p>
-<pre class="prettyprint lang-js">var http = require("http");
-var server = http.createServer();
+<pre class="prettyprint lang-js">const http = require("http");
+const server = http.createServer();
 server.listen(8888);</pre>
     <p>
         Esto hubiese iniciado al servidor HTTP en el puerto 8888
@@ -668,7 +668,7 @@ ejecutar(function(palabra){ console.log(palabra) }, "Hola");
         Con este conocimiento, Volvamos a nuestro servidor HTTP
         minimalista:
     </p>
-<pre class="prettyprint lang-js">var http = require("http");
+<pre class="prettyprint lang-js">const http = require("http");
 
 http.createServer(function(request, response) {
   response.writeHead(200, {"Content-Type": "text/html"});
@@ -684,7 +684,7 @@ http.createServer(function(request, response) {
     <p>
         Podemos llegar a lo mismo refactorizando nuestro código así:
     </p>
-<pre class="prettyprint lang-js">var http = require("http");
+<pre class="prettyprint lang-js">const http = require("http");
 
 function onRequest(request, response) {
   response.writeHead(200, {"Content-Type": "text/html"});
@@ -775,7 +775,7 @@ http.createServer(onRequest).listen(8888);
         si no ha sucedido ninguna petición HTTP y la función callback que
         pasamos no ha sido llamada? Probemos:
     </p>
-<pre class="prettyprint lang-js">var http = require("http");
+<pre class="prettyprint lang-js">const http = require("http");
 
 function onRequest(request, response) {
   console.log("Peticion Recibida.");
@@ -864,7 +864,7 @@ console.log("Servidor Iniciado.");
     <p>
         Como habrán notado, ya hemos usado módulos en nuestro código, como éste:
     </p>
-<pre class="prettyprint lang-js">var http = require("http");
+<pre class="prettyprint lang-js">const http = require("http");
 
 ...
 
@@ -883,7 +883,7 @@ http.createServer(...);
         Es práctica común elegir el nombre del módulo como nombre para nuestra
         variable local, pero somos libres de escoger cualquiera que nos guste:
     </p>
-<pre class="prettyprint lang-js">var foo = require("http");
+<pre class="prettyprint lang-js">let foo = require("http");
 
 ...
 
@@ -911,7 +911,7 @@ foo.createServer(...);
         Para hacer esto posible, dotaremos al código de nuestro servidor de una
         función llamada <em>inicio</em>, y exportaremos esta función:
     <p>
-<pre class="prettyprint lang-js">var http = require("http");
+<pre class="prettyprint lang-js">const http = require("http");
 
 function iniciar() {
   function onRequest(request, response) {
@@ -935,7 +935,7 @@ exports.iniciar = iniciar;
     <p>
         Crea un archivo <em>index.js</em> con el siguiente contenido:
     </p>
-<pre class="prettyprint lang-js">var server = require("./server");
+<pre class="prettyprint lang-js">const server = require("./server");
 
 server.iniciar();
 </pre>
@@ -1025,12 +1025,12 @@ http://localhost:8888/iniciar?foo=bar&amp;hello=world
         Agreguemos ahora a nuestra función <em>onRequest()</em> la lógica 
         requerida para encontrar que ruta URL el browser solicitó:
     <p>
-<pre class="prettyprint lang-js">var http = require("http");
-var url = require("url");
+<pre class="prettyprint lang-js">const http = require("http");
+const url = require("url");
 
 function iniciar() {
   function onRequest(request, response) {
-    var pathname = url.parse(request.url).pathname;
+    const pathname = url.parse(request.url).pathname;
     console.log("Petición para " + pathname + " recibida.");
     response.writeHead(200, {"Content-Type": "text/html"});
     response.write("Hola Mundo");
@@ -1086,12 +1086,12 @@ exports.route = route;
             Primero extendamos nuestra función <em>iniciar()</em> de manera de permitirnos
             pasar la función de ruteo a ser usada como parámetro:
         </p>
-<pre class="prettyprint lang-js">var http = require("http");
-var url = require("url");
+<pre class="prettyprint lang-js">const http = require("http");
+const url = require("url");
 
 function iniciar(route) {
   function onRequest(request, response) {
-    var pathname = url.parse(request.url).pathname;
+    const pathname = url.parse(request.url).pathname;
     console.log("Peticion para " + pathname + " recibida.");
 
     route(pathname);
@@ -1111,8 +1111,8 @@ exports.iniciar = iniciar;
         Y extendamos nuestro <em>index.js</em> adecuadamente, esto es,
         inyectando la función de ruteo de nuestro router en el servidor:
     </p>
-<pre class="prettyprint lang-js">var server = require("./server");
-var router = require("./router");
+<pre class="prettyprint lang-js">const server = require("./server");
+const router = require("./router");
 
 server.iniciar(router.route);
 
@@ -1275,11 +1275,11 @@ exports.subir = subir;
     <p>
         Empecemos con poner el objeto en nuestro archivo principal <em>index.js</em>:
     </p>
-<pre class="prettyprint lang-js">var server = require("./server");
-var router = require("./router");
-var requestHandlers = require("./requestHandlers");
+<pre class="prettyprint lang-js">const server = require("./server");
+const router = require("./router");
+const requestHandlers = require("./requestHandlers");
 
-var handle = {}
+let handle = {}
 handle["/"] = requestHandlers.iniciar;
 handle["/iniciar"] = requestHandlers.iniciar;
 handle["/subir"] = requestHandlers.subir;
@@ -1310,12 +1310,12 @@ server.iniciar(router.route, handle);
         de este:
     </p>
     
-<pre class="prettyprint lang-js">var http = require("http");
-var url = require("url");
+<pre class="prettyprint lang-js">const http = require("http");
+const url = require("url");
 
 function iniciar(route, handle) {
   function onRequest(request, response) {
-    var pathname = url.parse(request.url).pathname;
+    const pathname = url.parse(request.url).pathname;
     console.log("Peticion para " + pathname + " recibida.");
 
     route(handle, pathname);
@@ -1430,16 +1430,16 @@ exports.route = route;
         contenido que los manipuladores de petición le retornaron vía 
         el router, transformando de esta manera a <em>server.js</em> en:
     </p>
-<pre class="prettyprint lang-js">var http = require("http");
-var url = require("url");
+<pre class="prettyprint lang-js">const http = require("http");
+const url = require("url");
 
 function iniciar(route, handle) {
   function onRequest(request, response) {
-    var pathname = url.parse(request.url).pathname;
+    const pathname = url.parse(request.url).pathname;
     console.log("Peticion para " + pathname + " recibida.");
 
     response.writeHead(200, {"Content-Type": "text/html"});
-    var content = route(handle, pathname)
+    let content = route(handle, pathname)
     response.write(content);
     response.end();
   }
@@ -1494,7 +1494,7 @@ exports.iniciar = iniciar;
 
   function sleep(milliSeconds) {  
     // obten la hora actual
-    var startTime = new Date().getTime();
+    let startTime = new Date().getTime();
     // atasca la cpu
     while (new Date().getTime() &lt; startTime + milliSeconds); 
   }
@@ -1680,12 +1680,12 @@ exports.subir = subir;
     <p>
         Empecemos con nuestro servidor, <em>server.js</em>:
     </p>
-<pre class="prettyprint lang-js">var http = require("http");
-var url = require("url");
+<pre class="prettyprint lang-js">const http = require("http");
+const url = require("url");
 
 function iniciar(route, handle) {
   function onRequest(request, response) {
-    var pathname = url.parse(request.url).pathname;
+    const pathname = url.parse(request.url).pathname;
     console.log("Peticion para " + pathname + " recibida.");
 
     route(handle, pathname, response);
@@ -1736,7 +1736,7 @@ exports.route = route;
         <em>requestHandlers.js</em> (el archivo de manipuladores
         de petición).
     </p>
-<pre class="prettyprint lang-js">var exec = require("child_process").exec;
+<pre class="prettyprint lang-js">let exec = require("child_process").exec;
 
 function iniciar(response) {
   console.log("Manipulador de petición 'iniciar' fue llamado.");
@@ -1779,7 +1779,7 @@ exports.subir = subir;
         respondidas inmediatamente, entonces modifica tu archivo
         <em>requestHandlers.js</em> como sigue:
     <p>
-<pre class="prettyprint lang-js">var exec = require("child_process").exec;
+<pre class="prettyprint lang-js">let exec = require("child_process").exec;
 
 function iniciar(response) {
   console.log("Manipulador de petición 'iniciar' fue llamado.");
@@ -1863,7 +1863,7 @@ exports.subir = subir;
 <pre class="prettyprint lang-js">function iniciar(response) {
   console.log("Manipulador de peticiones 'iniciar' fue llamado.");
 
-  var body = '&lt;html&gt;'+
+  let body = '&lt;html&gt;'+
     '&lt;head&gt;'+
     '&lt;meta http-equiv="Content-Type" content="text/html; 
         charset=UTF-8" /&gt;'+
@@ -1975,13 +1975,13 @@ request.addListener("end", function() {
     <p>
         Aquí vamos, empezando con <em>server.js</em>:
     </p>
-<pre class="prettyprint lang-js">var http = require("http");
-var url = require("url");
+<pre class="prettyprint lang-js">const http = require("http");
+const url = require("url");
 
 function iniciar(route, handle) {
   function onRequest(request, response) {
-        var dataPosteada = "";
-        var pathname = url.parse(request.url).pathname;
+        let dataPosteada = "";
+        const pathname = url.parse(request.url).pathname;
         console.log("Peticion para " + pathname + " recibida.");
 
         request.setEncoding("utf8");
@@ -2049,7 +2049,7 @@ exports.route = route;
 <pre class="prettyprint lang-js">function iniciar(response, postData) {
   console.log("Manipulador de Peticion 'iniciar' fue llamado.");
 
-  var body = '&lt;html&gt;'+
+  let body = '&lt;html&gt;'+
     '&lt;head&gt;'+
     '&lt;meta http-equiv="Content-Type" content="text/html; 
         charset=UTF-8" /&gt;'+
@@ -2095,12 +2095,12 @@ exports.subir = subir;
         el que nos ayuda con esto:
     </p>
 
-<pre class="prettyprint lang-js">var querystring = require("querystring");
+<pre class="prettyprint lang-js">let querystring = require("querystring");
 
 function iniciar(response, postData) {
   console.log("Manipulador de peticion 'inicio' fue llamado.");
 
-  var body = '&lt;html&gt;'+
+  let body = '&lt;html&gt;'+
     '&lt;head&gt;'+
     '&lt;meta http-equiv="Content-Type" content="text/html; 
         charset=UTF-8" /&gt;'+
